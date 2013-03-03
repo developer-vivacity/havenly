@@ -7,16 +7,17 @@
 	<meta name="keywords" content="" />
 	<meta name="robots" content="index,follow" />
 	<link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Quicksand|Imprima' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
 	
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
-	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.cycle.js")?>></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.js")?>></script>
 	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.pack.js")?>></script>
-		
-
+	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.cycle.js")?>></script>
 	</head>
 
 <body>
@@ -74,10 +75,23 @@ function fb_login(){
 </script>
 
 <div class = "full_wrapper">
+<div class = "inner_wrapper">
 					<div class = "header">
-					<div class = "banner_container">
 					
-						<?php 
+					
+						
+									
+						
+						<div class = "logo_container">
+						<a class = "logo" href=<?php echo base_url();?>>Amity Drive</a>
+						</div>
+						<div class = "nav_bar">
+					<ul class = "nav">
+						<li><a href=<?php echo base_url('index.php/Users/site');?>>Your Designs & Inspiration</a></li>
+						<li><a href="">Community Inspiration</li>
+					</ul>
+					</div>
+					<div class = "login_button">	<?php 
 							$userid = $this->session->userdata('userid');
 							if($userid):?>
 								<a class = "fancybox_logout" href= <?php echo base_url('index.php/site/logout');?> onclick="FB.logout()">Logout</a>
@@ -85,22 +99,14 @@ function fb_login(){
 								<a class = "fancybox"  href="#login"> Login </a>
 							 <?php endif?>
 							
-									
-						
-						<div class = "logo_container">
-						<a class = "logo" href=<?php echo base_url();?>>EASABLE</a>
-						</div>
 					</div>
 					
 					</div>
-			<div class = "nav_bar">
-			<ul class = "nav">
-				<li><a href="">Browse Designs</a></li>
-				<li><a href=<?php echo base_url('index.php/Users/site');?>>Get Your Designs</a></li>
-				<li><a href="">Post Designs</a></li>
-			</ul>
-			</div>
-			<div class = "banner_2">Blog Us Here</div>
+										
+						<hr class = "style2"/>
+										
+				
+
 			
 			<div id="login" style="display:none";>
 				<div class = "fancybox_div">
@@ -123,4 +129,3 @@ function fb_login(){
 	
 </script>		
 
-<div id = "main_content">

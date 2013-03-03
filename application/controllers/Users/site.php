@@ -30,7 +30,7 @@ Class Site extends CI_Controller {
 		$data['contest_pics'][$contest_id]['files']=$this->contest_model->get_contest_photos($contest_id);
 	}
 	}	
-	
+	else {$data['contest_pics']=0;}
 	$data['images'] = $this->picture_model->get_user_photos($userid);
 	
 	$this->load->view('Users/home',$data);

@@ -5,18 +5,24 @@ include(APPPATH.'/views/templates/header.php');
 
 
 
-<div class = "photo_form_container">
+<div class = "upload_form_container">
+<div class='close'>X</div>
+<p>Upload photo from a file or from a website:</p>
 
-<input type = "submit" name = "photo_submit" id="upload_cancel" class = "submit" 
-value = "Cancel and Return">
-<br><br><br><br>
-<p>Upload photo from a file or from a website:</p><br><br>
-<div class = "error">
 <?php 
 	if (isset($error))
-		{echo $error;}
+		{echo '<div class = "error">';
+		echo $error;
+		echo '</div>';}
 	else {echo '';}		
 ?>
+
+
+
+<div class = "form">
+
+<div id="loading">
+  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
 
 <?php
@@ -24,34 +30,64 @@ value = "Cancel and Return">
 	$this->load->helper('form');
 	echo '<div class = "photo_form">';
 	echo form_open_multipart('users/upload/upload_photo');
-	echo '<div class = "input_photo"> Browse for a file';
-	echo form_upload("file",'Browse for a file','class="file_hidden"');
+	echo '<div>';
+	echo '<input class = "input_photo" value = "Browse for file" id = "photo_cover" type = "text" name = "cover">';?>
+		<a class = "flat" id = "browse" onclick = '$("#file1").click();'>Browse</a>
+	<?php
+	echo form_upload("file",'Browse for a file','id = "file13"', 'class="file_hidden"');
 	echo '</div>';
-	echo form_submit("submit", "submit", 'class="submit"');
+	echo '<br>';?>
+	<input type="text" name="desc" value="Description" class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br><br>
+	<?php
+	echo form_submit("submit", "Submit", 'class="flat2"');
 	echo form_close();
 	echo '</div>';
 	
 
-	echo '<div class = "photo_form">';
-	echo form_open('users/upload/photo_link');?>
-	<input type="text" name="weblink" value="http://" id="photo_link"  class="input_photo" 
-	onfocus="value=''" onblur="value=value" />
+	echo '<div class = "photo_form">';?>
 	<?php
-	echo form_submit("submit1", 'submit', 'class="submit"');
+	$attr = array('id'=>'upload_form');
+	echo form_open('users/upload/photo_link',$attr);?>
+	<input type="text" name="weblink" value="http://" id="photo_link"  class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br><br>
+	<input type="text" name="desc" value="Description" class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br>
+	<br>
+	<?php
+	echo form_submit("submit1", 'Submit', 'class="flat2"', 'id="submit1"');
 	echo form_close();
 	echo '</div>';
 	
+	
+	
 ?>
-<br><br>
+
+</div>
+
 </div>
 <script>
 $(document).ready(function() {
     
-		$("#upload_cancel").click(function() {
-			location.href='/test/design/index.php/users/site';
+		$(".close").click(function() {
+			location.href='/test/design2/index.php/users/site';
 			});
-				
-		});
+		
+		$("#loading").hide();		});
+
+
+		
+$("#file1").change(function(){
+	$('#photo_cover').val($(this).val());
+	});
+	
+	
+$("#upload_form").submit(function(){
+	$('#loading').show();
+	
+	return true;
+	});
+	
 </script>
 
 <?php

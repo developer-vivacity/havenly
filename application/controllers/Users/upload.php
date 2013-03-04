@@ -286,6 +286,7 @@ $mh = curl_multi_init ();
 			$size = getimagesize ( $temp );
 			if($size[1]>200){
 			$res[]=$url;
+			unlink($temp);
 			}
 			else {unlink($temp);
 			}

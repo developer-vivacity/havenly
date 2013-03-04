@@ -1,13 +1,13 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
+
 <?php if (isset($contest_pics)&&!empty($contest_pics)&&$contest_pics!=0):?>
 <div id="loading">
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
-<?php endif?>
 <div id = "main1">
-
+<?php endif?>
 <script type = "text/javascript">
 $("#main1").hide();
 </script>
@@ -63,7 +63,7 @@ Add Design Contest
 	$name= $contest['contest_name'];
 	echo '<div class = "user_photos" id = "contest_photos">';
 	echo '<a class = "contest_show" href ="'.base_url('index.php/Contests/site/show_contest/'.$id).'">';
-	echo '<img src="'.base_url('assets/Images/linen_pop_up_fw.png').'" height=230 width=230  class="home_user_contest">';
+	echo '<img src="'.base_url('assets/Images/linen_pop_up.fw.png').'" height=230 width=230  class="home_user_contest">';
 	echo '<div id="title_contest_div"><h1 id = "title_contest">'.$name.'</h1></div>';
 	echo '</a>';
 	echo '</div>';

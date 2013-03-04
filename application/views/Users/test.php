@@ -1,7 +1,6 @@
 
 <?php
 include(APPPATH.'/views/templates/header.php');
-$this->session->keep_flashdata('desc');
 ?>
 <div id = "users_nav">
 <div id = "button_nav">
@@ -13,10 +12,12 @@ Cancel & Return
 </div>
 </div>
 
-<div class = "loading">
-	<img src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
+<div id= "loading">
+	<img id = "loading-image" src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
 	<br><br>
 	</div>
+	
+<input type="hidden" name="description" id="description" value="<?php echo $desc;?>" />
 <?php
 
 foreach ($images as $key=>$value) 
@@ -34,19 +35,19 @@ $(document).ready(function() {
 			$(this).toggleClass('active');
 			});
 			
-		$('.loader').hide();
+		$('#loading').hide();
 		
 		$("#photo_submit").click(function() {
 			
 			$('.loader').show();
 			var values = JSON.stringify($(".active").map(function()  
 			{return $(this).attr('src');}).get());
-		
+			var desc = $("#description").val();
 			
 			 $.ajax({        
 					type: 'POST',
 					url: '/test/design2/index.php/users/upload/upload_photo_link',
-					data: {images:values},
+					data: {desc:desc, images:values},
 					success: function(data){
 						location.href='/test/design2/index.php/users/site/';
 						}

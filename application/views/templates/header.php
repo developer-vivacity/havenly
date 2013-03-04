@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Easable | Design for Everyone</title>
+	<title>Havenly | Design for Everyone</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -83,7 +83,7 @@ function fb_login(){
 									
 						
 						<div class = "logo_container">
-						<a class = "logo" href=<?php echo base_url();?>>Amity Drive</a>
+						<a class = "logo" href=<?php echo base_url();?>>Havenly</a>
 						</div>
 						<div class = "nav_bar">
 					<ul class = "nav">
@@ -110,7 +110,7 @@ function fb_login(){
 			
 			<div id="login" style="display:none";>
 				<div class = "fancybox_div">
-					<p id="login_title"> Sign In to Easable </p>
+					<p id="login_title"> Sign In to Havenly </p>
 					<p id="login_text"> Trust us,it's way more fun</p>
 					<a href = # onclick="fb_login();"><img src=<?php echo base_url("assets/Images/FBbutton.fw.png");?>></a>
 				</div>

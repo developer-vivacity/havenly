@@ -1,2 +1,3 @@
 <?php
-print_r($files);
+print_r($formid);
+

@@ -49,7 +49,7 @@ $(document).ready(function() {
 			
 			 $.ajax({        
 					type: 'POST',
-					url: '/test/design/index.php/users/upload/upload_photo_link',
+					url: '/test/design2/index.php/users/upload/upload_photo_link',
 					data: {images:values},
 					success: function(data){
 						location.href='/test/design/index.php/users/site/';

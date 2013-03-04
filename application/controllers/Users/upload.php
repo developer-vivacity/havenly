@@ -195,7 +195,7 @@ if (isset($_POST['submit1']))
 			copy($src,$file_location);//copy over file source
 			
 			$size=getimagesize($file_location);
-			if($size[0]>200) {
+			if($size[1]>200) {
 				$images[]=$src;
 				}//only images over certain width
 			unlink($file_location);

@@ -24,7 +24,7 @@ include(APPPATH.'/views/templates/header.php');
 <div class = "form_container">
 	<p class = "title">Why don't we...Start you up</p>
 	<p class = "text">What are you waiting for? After all, <span>there's no day like today.</span></p>
-	<input type="hidden" name="formid" id="formid" value=<?php echo $id;?> />
+	<input type="hidden" name="formid" id="formid" value=<?php echo $formid;?> />
 	<div class = "left_form_1">
 	<label for="name" id = "title_input">Name your Contest:</label><br>
 	<input type="text" name="name" value="Contest Name" id="title_input" maxlength="30" onfocus='value=""' 
@@ -33,11 +33,11 @@ include(APPPATH.'/views/templates/header.php');
 	<div class = "right_form_1">
 	<label for="room_type" id = "room_type">Type of Room:</label><br>
 	<select name="room_type" id="room_type">
-		<option value="living_room">Living Room</option>
-		<option value="bedroom" selected="selected">Bedroom</option>
-		<option value="dining_room">Dining Room</option>
-		<option value="study">Study</option>
-		<option value="basement">Basement</option>
+		<option value="Living Room">Living Room</option>
+		<option value="Bedroom" selected="selected">Bedroom</option>
+		<option value="Dining Room">Dining Room</option>
+		<option value="Study">Study</option>
+		<option value="Basement">Basement</option>
 	</select>
 	</div>
 	
@@ -53,14 +53,15 @@ include(APPPATH.'/views/templates/header.php');
 <input type = "text" name = "sqfoot" id = "sqfoot"/>
 </div>
 	</div>
+	<a class="nexttab" href="#">Next: Your Room</a>
 </div>
 </div>
 <div id = "room">
 <div class = "form_container">
 <p class = "title"> Tell us about your room</p>
 <p class = "text">What are you using it for?  What do you want it to be?  <span>How do you want it to feel?</span></p>
-<textarea rows="10" cols="80" name="not_like" id="not_like"></textarea>
-
+<textarea rows="10" cols="80" name="about" id="about"></textarea><BR><br>
+<a class="nexttab" href="#">Next: Likes and Hates</a>
 </div>
 </div>
 <div id = "likes">
@@ -73,8 +74,9 @@ include(APPPATH.'/views/templates/header.php');
 <div class = "right_form">
 <p class = "title"> What do you hate about the room?</p>
 <p class = "text">And we know you hate <span>something.</span></p>
-<textarea rows="10" cols="50" name="likes" id="likes">I hate your face.</textarea>
+<textarea rows="10" cols="50" name="not_likes" id="not_likes">I hate the turquoise wallpaper and pink tiles.</textarea>
 </div>
+<a class="nexttab" href="#">Next: Furnishings</a>
 </div>
 </div>
 <div id = "floorplan">
@@ -111,7 +113,7 @@ Supported browsers:
 </p>
 </canvas>
 <canvas id="imageTemp" width="400" height="400"></canvas>
-<a class = "flat" id = "clear" href="">Clear</a>
+<a class = "flat" id = "clear">Clear</a>
 <a class = "flat" id = "image_save">Save</a>
 </div>
 </div>
@@ -306,14 +308,39 @@ img_update();
 init();
 }, false); }
 // vim:set spell spl=en fo=wan1croql tw=80 ts=2 sw=2 sts=2 sta et ai cin fenc=utf-8 ff=unix:
- document.getElementById('clear').addEventListener('click', function() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-      }, false);
+$("#clear").bind('click', function() {
+var canvas = document.getElementById('imageView');
+canvas.width=canvas.width;
+return false;
+});
 
+	  
+$("#image_save").bind('click', function(){
+		var canvas = document.getElementById('imageView');
+		
+		var img = canvas.toDataURL("image/png");
+		var formid = document.getElementById('formid').value;
+	
+		$.ajax({
+		type: "POST",
+		url: '/test/design2/index.php/Contests/site/floorplan_upload',
+		contentType: 'application/x-www-form-urlencoded',
+		data: {
+		img:img,
+		formid:formid},
+		success: function (){
+		alert("We gotcha!");},
+		error: function() {
+		alert('Error Occurred');}
+		});
+});
+	
 </script>
 
+</div><br><br>
+<a class="nexttab" href="#">Next: Room Photos</a>
 </div>
-</div>
+
 </div>
 
 
@@ -329,7 +356,7 @@ init();
 	<a class = "flat" id = "browse_file" onclick = '$("#file1").click();'>Browse</a>
 	<?php
 	echo form_upload("room_photo[]",'Browse for a file','id = "file1"', 'class="file_hidden"');
-	echo form_input("room_photo_desc[]",'What are we looking at?');
+	echo form_input("room_photo_desc[]",'Description');
 	echo '</div>';
 	?>
 
@@ -338,7 +365,7 @@ init();
 	<a class = "flat" id = "browse_file" onclick = '$("#file2").click();'>Browse</a>
 	<?php
 	echo form_upload("room_photo[]",'Browse for a file','id = "file2"', 'class="file_hidden"');
-	echo form_input("room_photo_desc[]",'What are we looking at?');
+	echo form_input("room_photo_desc[]",'Description');
 	echo '</div>';
 ?>
 
@@ -347,7 +374,7 @@ init();
 	<a class = "flat" id = "browse_file" onclick = '$("#file3").click();'>Browse</a>
 	<?php
 	echo form_upload("room_photo[]",'Browse for a file','id = "file3"', 'class="file_hidden"');
-	echo form_input("room_photo_desc[]",'What are we looking at?');
+	echo form_input("room_photo_desc[]",'Description');
 	echo '</div>';
 ?>
 
@@ -356,7 +383,7 @@ init();
 	<a class = "flat" id = "browse_file" onclick = '$("#file4").click();'>Browse</a>
 	<?php
 	echo form_upload("room_photo[]",'Browse for a file','id = "file4"', 'class="file_hidden"');
-	echo form_input("room_photo_desc[]",'What are we looking at?');
+	echo form_input("room_photo_desc[]",'Description');
 	echo '</div>';
 ?>
 
@@ -365,10 +392,11 @@ init();
 	<a class = "flat" id = "browse_file" onclick = '$("#file5").click();'>Browse</a>
 	<?php
 	echo form_upload("room_photo[]",'Browse for a file','id = "file5"', 'class="file_hidden"');
-	echo form_input("room_photo_desc[]",'What are we looking at?');
+	echo form_input("room_photo_desc[]",'Description');
 	echo '</div>';
 	?>
-
+<br>
+	<a class="nexttab" href="#">Next: Your Style</a>
 </div>
 </div>
 
@@ -401,8 +429,9 @@ init();
 <hr class= "style"/>
 <p class = "title"> Tell me about it, stud.</p>
 <p class = "text">A picture may be a thousand words, but we want some more from you: colors you <span>love.</span>  Things that bother you.</p>
-<textarea rows="10" cols="80" name="not_like" id="not_like"></textarea>
-</div>
+<textarea rows="10" cols="80" name="style" id="style"></textarea>
+</div><br><br>
+<a class="nexttab" href="#">Next: Your Inspiration</a>
 </div>
 </div>
 
@@ -438,7 +467,8 @@ init();
 </div>
 <div class = "right_form_1">
 <a id= "photo_popup" href="#contest_inspr_photos"> Add Already Uploaded</a>
-</div>
+
+</div><br><br><a class="nexttab" href="#">Next: Budget</a>
 </div>
 
 
@@ -474,13 +504,13 @@ else { echo 'You don\'t have photos uploaded'; }?>
 <div class = "left_form">
 <p class = "title"> Pieces to Keep</p>
 <p class = "text">Which items do you want to keep in the room</p>
-<textarea rows="10" cols="50" name="likes" id="likes">Obsessed with my couch.</textarea>
+<textarea rows="10" cols="50" name="keep" id="keep">Obsessed with my couch.</textarea>
 </div>
 <div class = "right_form">
 <p class = "title"> Pieces to Buy</p>
 <p class = "text">Tell us what items you'd like recommendations on.</p>
-<textarea rows="10" cols="50" name="likes" id="likes">Drapes, etc...</textarea>
-</div>
+<textarea rows="10" cols="50" name="need" id="need">Drapes, etc...</textarea>
+</div><br><br><a class="nexttab" href="#">Next: Floorplan</a>
 </div>
 </div>
 
@@ -513,10 +543,17 @@ else { echo 'You don\'t have photos uploaded'; }?>
 	
 	$(document).ready(function(){
 		$("#tabs").tabs();
+		
+		$(".nexttab").click(function() {
+		var selected = $("#tabs").tabs("option", "active");
+		$("#tabs").tabs("option", "active", selected + 1);
+			});
 		$("#contest_inspr_photos").hide();
 		$('.cbox').hide();
 		});
 	
+
+
 		
 	$(".contest_user_pics2").click(function(){
 		$(this).toggleClass('active1');
@@ -579,7 +616,8 @@ else { echo 'You don\'t have photos uploaded'; }?>
 	$('#file12hide').val($(this).val());
 	});	
 		
-	
+
+
 </script>	
 
 

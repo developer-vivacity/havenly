@@ -110,6 +110,45 @@ a {
     display: none; /* disabled tabs don't show up */ 
 } 
 
+
+#tabs1 { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs1 .ui-widget-header { 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid #888888; 
+	margin-bottom: 10px;
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs1 .ui-tabs-nav .ui-state-default { 
+    background: transparent; 
+    border: none; padding: 5px;
+} 
+#tabs1 .ui-tabs-nav .ui-state-active { 
+    order: none; padding: 5px;
+} 
+#tabs1 .ui-tabs-nav .ui-state-default a { 
+    color: #888888; 
+	font-family: 'Quicksand';
+	font-size: 1.3em;
+	padding: 5px;
+} 
+#tabs1 .ui-tabs-nav .ui-state-active a { 
+    color: #00CCCC;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.3em;
+	padding: 5px;
+}
+
+#tabs1.ui-tabs .ui-state-disabled { 
+    display: none; /* disabled tabs don't show up */ 
+} 
+
+
 .basic_text { 
 font-family: 'Sanchez';
 font-size: 1em;
@@ -642,13 +681,7 @@ color: black;
 	top:0;
 	left: 0;
 	border: 5px solid white; 
-    -webkit-box-shadow: 
-                0 0 5px rgba(0,0,0,0.3); 
-    -moz-box-shadow: 
-                 0 0 5px rgba(0,0,0,0.3); 
-    box-shadow: 
-                 0 0 5px rgba(0,0,0,0.3); 
- 	margin: 8px;
+   	margin: 8px;
 	display: inline-block;
 	color: #888;
 	font-size: 1em;
@@ -657,6 +690,7 @@ color: black;
 	
 /* Design Pics Div */
 .design_pics{
+	border:5px solid white;
 	position: relative;
 	display: inline-block;
 	}
@@ -872,8 +906,14 @@ font-size: 1.4em;
 
 .form_container  .text  {
 padding: 0px 0 40px 0;
-font-family: 'Sanchez', sans-serif;
+font-family: 'Sanchez';
 font-size: .7em;
+}
+
+.form_container  .text1  {
+padding: 0px 0 10px 0;
+font-family: 'Sanchez';
+font-size: .9em;
 }
 
 .contest_form_container  span {
@@ -941,6 +981,10 @@ clear: both;
 position: relative;
 padding:20px;
 min-height: 50px;
+}
+
+#room_photos, #inspiration{
+text-align:center;
 }
 
 
@@ -1073,3 +1117,21 @@ position: absolute; left:30px;
 #image_save{
 position: absolute; right:30px;
 }
+
+.view_container{
+border: 3px solid lightgray;
+background-image: none;
+padding: 15px;
+margin: 0 0 0 0;
+background-color: white;
+}
+#room_details span{
+color: #CC0033;
+}
+.project_title{
+text-align: center;
+}
+.style_stuff{
+text-align: center;
+}
+

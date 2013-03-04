@@ -1,11 +1,11 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-
+<?php if (isset($contest_pics)&&!empty($contest_pics)&&$contest_pics!=0):?>
 <div id="loading">
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
-
+<?php endif?>
 <div id = "main1">
 
 <script type = "text/javascript">
@@ -93,66 +93,66 @@ if(isset($images)&&$images!=0):?>
 		echo '</div>';
 	}
 	else : ?>
-	<div class = "photo_form_container">
-	<br><br><br><br>
-	<p>Let's get started:  Upload a picture from a file or a website:</p>
+	
+<div class = "upload_form_container">
+<p>Let's get started: Upload some pictures that inspire you.</p>
 
-	<div class = "error">
-	<?php 
-		if (isset($error))
-			{echo $error;}
-		else {echo '';}		
-	?>
-	</div>
-
-
-	<div class = "upload_form_container">
+<?php 
+	if (isset($error))
+		{echo '<div class = "error">';
+		echo $error;
+		echo '</div>';}
+	else {echo '';}		
+?>
 
 
 
+<div class = "form">
+
+<div id="loading">
+  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
+</div>
+
+<?php
+
+	$this->load->helper('form');
+	echo '<div class = "photo_form">';
+	echo form_open_multipart('users/upload/upload_photo');
+	echo '<div>';
+	echo '<input class = "input_photo" value = "Browse for file" id = "photo_cover" type = "text" name = "cover">';?>
+		<a class = "flat" id = "browse" onclick = '$("#file1").click();'>Browse</a>
 	<?php
+	echo form_upload("file",'Browse for a file','id = "file13"', 'class="file_hidden"');
+	echo '</div>';
+	echo '<br>';?>
+	<input type="text" name="desc" value="Description" class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br><br>
+	<?php
+	echo form_submit("submit", "Submit", 'class="flat2"');
+	echo form_close();
+	echo '</div>';
+	
 
-		$this->load->helper('form');
-		echo '<div class = "photo_form">';
-		echo form_open_multipart('users/upload/upload_photo');
-		echo '<div>';
-		echo '<input class = "input_photo" value = "Browse for file" id = "photo_cover" type = "text" name = "cover">';?>
-			<a class = "navigation1" id = "browse" onclick = '$("#file1").click();'>Browse</a>
-		<?php
-		echo form_upload("file",'Browse for a file','id = "file1"', 'class="file_hidden"');
-		echo '</div>';
-		echo '<br>';?>
-		<input type="text" name="desc" value="Description" class="input_photo" 
-		onfocus="value=''" onblur="value=value" /><br><br>
-		<?php
-		echo form_submit("submit", "Submit", 'class="navigation1"');
-		echo form_close();
-		echo '</div>';
-		
-
-		echo '<div class = "photo_form">';?>
-		<div class = "loader">
-		<img src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
-		<br><br>
-		</div>
-		<?php
-		$attr = array('id'=>'upload_form');
-		echo form_open('users/upload/photo_link',$attr);?>
-		<input type="text" name="weblink" value="http://" id="photo_link"  class="input_photo" 
-		onfocus="value=''" onblur="value=value" /><br><br>
-		<input type="text" name="desc" value="Description" class="input_photo" 
-		onfocus="value=''" onblur="value=value" /><br>
-		<br>
-		<?php
-		echo form_submit("submit1", 'Submit', 'class="navigation1"', 'id="submit1"');
-		echo form_close();
-		echo '</div>';
-		
+	echo '<div class = "photo_form">';?>
+	<?php
+	$attr = array('id'=>'upload_form');
+	echo form_open('users/upload/photo_link',$attr);?>
+	<input type="text" name="weblink" value="http://" id="photo_link"  class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br><br>
+	<input type="text" name="desc" value="Description" class="input_photo" 
+	onfocus="value=''" onblur="value=value" /><br>
+	<br>
+	<?php
+	echo form_submit("submit1", 'Submit', 'class="flat2"', 'id="submit1"');
+	echo form_close();
+	echo '</div>';
 	?>
-	</div></div>
-	<?php endif?>
-</div></div>
 
+</div>
+
+</div>
+<?php endif?>
+</div>
 <div id = "push"></div>
 
 <?php 

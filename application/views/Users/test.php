@@ -13,14 +13,10 @@ Cancel & Return
 </div>
 </div>
 
-<div class = "loader">
+<div class = "loading">
 	<img src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
 	<br><br>
 	</div>
-</div>
-</div>
-
-
 <?php
 
 foreach ($images as $key=>$value) 
@@ -52,13 +48,13 @@ $(document).ready(function() {
 					url: '/test/design2/index.php/users/upload/upload_photo_link',
 					data: {images:values},
 					success: function(data){
-						location.href='/test/design/index.php/users/site/';
+						location.href='/test/design2/index.php/users/site/';
 						}
 					 });
 					 }); 
 		
 		$("#photo_cancel").click(function() {
-			location.href='/test/design/index.php/users/upload';
+			location.href='/test/design2/index.php/users/upload';
 			});
 		
 		});

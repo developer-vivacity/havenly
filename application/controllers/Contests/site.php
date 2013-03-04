@@ -99,11 +99,7 @@ function contest_submit()
 					
 					}
 				}
-				
-	
-				
-				
-				
+					
 				
 		redirect(base_url('index.php/Users/site'));
 	}

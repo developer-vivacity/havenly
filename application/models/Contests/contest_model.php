@@ -126,4 +126,11 @@ function get_contest_photos_current($contest_id) {
 	}
 	
 	
+function delete_temp($contest_id)
+{
+	$this->db->where('id',$contest_id);
+	$this->db->where('status','temp');
+	$this->db->delete('contests');
+}
+	
 	}

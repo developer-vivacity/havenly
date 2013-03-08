@@ -223,7 +223,9 @@ function contest_submit()
 }
 				
 	
+	function delete_temp(){
+		$contest_id=$_POST['formid'];
+		$this->contest_model->delete_temp($contest_id);
 	
-		
-	
+}
 }

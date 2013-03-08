@@ -154,12 +154,12 @@ if(isset($images)&&$images!=0):?>
 <?php endif?>
 </div>
 <div id = "push"></div>
-
+</div>
 <?php 
 include(APPPATH.'/views/templates/footer.php');
 ?>
 
-</div>
+
 
 <script type = "text/javascript">
     

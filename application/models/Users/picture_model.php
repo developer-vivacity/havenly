@@ -39,13 +39,16 @@
 	function get_user_photos($userid) {
 		$data = array();
 		
-		$sql='SELECT p.* from pictures p 
+			
+	$sql='SELECT p.* from pictures p 
 		where userid = ? and id not in 
 		(SELECT picture_id from picture_map pm
 		join contests c on pm.contest_id = c.id
-		where c.userid = ? and pm.type = "current")';
-		
-		$query=$this->db->query($sql, array($userid, $userid));
+		where c.userid = ? and pm.type = "current") and id not in 
+		(SELECT picture_id from picture_product_map pm join user_product_map um 
+		on pm.product_id = um.product_id where user_id = ?)';
+			
+		$query=$this->db->query($sql, array($userid, $userid, $userid));
 		
 		// $this->db->where('userid', $userid);
 		// $this->db->limit(20);

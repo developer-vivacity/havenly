@@ -39,7 +39,7 @@ $(document).ready(function() {
 		
 		$("#photo_submit").click(function() {
 			
-			$('.loader').show();
+			$('#loading').show();
 			var values = JSON.stringify($(".active").map(function()  
 			{return $(this).attr('src');}).get());
 			var desc = $("#description").val();

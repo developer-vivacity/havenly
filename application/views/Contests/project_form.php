@@ -531,7 +531,7 @@ else { echo 'You don\'t have photos uploaded'; }?>
 </div>
 </div>	
 <div id = "second_row">
-<input type="submit" value="You're Done!" class = "flat2" id = "contest_submit"/>
+<input type="submit" value="You're Done!" onclick = "window.onbeforeunload=null" class = "flat2" id = "contest_submit"/>
 <div>
 </div>
 </div>
@@ -552,8 +552,6 @@ else { echo 'You don\'t have photos uploaded'; }?>
 		$('.cbox').hide();
 		});
 	
-
-
 		
 	$(".contest_user_pics2").click(function(){
 		$(this).toggleClass('active1');

@@ -3,13 +3,13 @@
 </div>	
 <div class = "footer">
  <section class = "block">
-<h3> About Us</h3>
-<p>We are awesome, don't you know.</p><br>
+<br><br>
 <ul>
 <li> How we work</li>
-<li> Careers</li>
-<li> Meet the team </li>
-</ul>
+<li> Who we are </li>
+<li>Blog</li>
+</ul><br>
+<p>Designed with love in beautiful Colorado.</p>
 
 </section>
 <section class = "block2">

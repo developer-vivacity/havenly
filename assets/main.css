@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	height: 100%;
 }
 ol, ul {
 	list-style: none;
@@ -205,7 +206,7 @@ vertical-align: top;}
 	height: auto !important;
 	height: 100%;
 	background-color: white; 
-	margin: 0 auto -120px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
 	z-index: -1;
 	}
 
@@ -345,15 +346,15 @@ padding: 20px;
 
 
 .push {
-	height: 120px; /* .push must be the same height as .footer */
+	height: 100px; /* .push must be the same height as .footer */
 }
 
 .footer {
-	height:120px;
+	background-color: #99FFFF;
+	height:100px;
 	clear:both;
 	width: 100%;
-	min-height: 120px;
-	background-image: url('Images/linen.jpg');
+	min-height: 100px;
 	opacity:1;
 	overflow: hidden;
 	 padding-bottom: 10px;
@@ -370,18 +371,19 @@ padding: 20px;
 	font-size: .75em;
 	width: 40%; 
 	float:left;
-	text-align: left;}
+	text-align: left;
+	vertical-align: top;}
 	
 .block h3{
 	font-size: 1.5em;
 	font-family: 'Quicksand', sans-serif;
 	text-shadow: 0px 1px .2px rgba(255,255,255,1);
 	margin-bottom: 5px;
-	margin-top: 20px;
+	margin-top: 0px;
 	}
 	
 .block ul {
-	   padding-bottom: 10px;
+	   padding-bottom: 0px;
 		padding-left: 0;
 		padding-right: 0;
 		padding-top: 0;
@@ -393,12 +395,22 @@ padding: 20px;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 20px;
     padding-top: 5px;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.3em;
+	display:inline;
 	}
-	
+
+section p {
+font-family: 'Sanchez';
+font-size: .9em;
+padding:0;
+margin:0;
+vertical-align:top;
+}
 	
 .block2 {
 	padding-top: 20px;
@@ -445,7 +457,9 @@ padding:0;
 margin: auto;
 z-index:0;
 }
-
+p span {
+color: #CC0033;
+}
 
 .hero_text {
 	font-family: sans-serif;
@@ -762,7 +776,7 @@ div #add_button_right:hover, #photo_cancel:hover{
 
 /* Photo Selection Page	 */
 img.inactive {
-	border: 20px solid white;
+	border: 10px solid white;
 	margin:10px;
 }
 img:hover{
@@ -772,18 +786,9 @@ cursor: pointer;
 
 
 img.active {
-	border: 5px solid #00CCCC;
+	border: 10px solid #00CCCC;
 	margin: 10px;
-	-webkit-box-shadow: 
-		  inset 0 0 8px  rgba(0,0,0,0.5),
-				0 0 16px rgba(0,0,0,0.5); 
-	-moz-box-shadow: 
-		  inset 0 0 8px  rgba(0,0,0,0.5),
-				0 0 16px rgba(0,0,0,0.5); 
-	box-shadow: 
-		  inset 0 0 8px  rgba(0,0,0,0.5),
-				0 0 16px rgba(0,0,0,0.5);
-}
+	}
 
 img.active1{
 border: 5px solid #00CCCC;
@@ -848,7 +853,7 @@ padding: 10px;
 
 
 
-.upload_form_container input[type="text"]{ 
+.upload_form_container input[type="text"] { 
 	border: 1px solid lightgray; 
     -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
     -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
@@ -862,6 +867,23 @@ padding: 10px;
 	font-size: .7em;
 	font-family: 'Quicksand', sans-serif;
 }
+
+
+.input_photo
+{
+	border: 1px solid lightgray; 
+    -webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+    box-shadow: inset 2px 2px 2px 0px #dddddd;
+	background-color: white;  
+	width: 60%;
+	padding: 10px;
+	color: #000;
+	font-size: .7em;
+	font-family: 'Quicksand', sans-serif;
+	margin: auto;
+	margin-bottom: 10px; margin-top:10px;
+	}
 
 
 .file_hidden, #file1, #file2, #file3, #file4, #file5, #file11, #file21, #file31, #file12, #file13{
@@ -898,19 +920,19 @@ height: 18px}
 	margin-right: auto;
 	margin-top: 20px;
 	}
-.form_container .title {
+.title {
 padding: 10px;
 font-family: 'Quicksand', sans-serif;
 font-size: 1.4em;
 }
 
-.form_container  .text  {
+.text  {
 padding: 0px 0 40px 0;
 font-family: 'Sanchez';
 font-size: .7em;
 }
 
-.form_container  .text1  {
+.text1  {
 padding: 0px 0 10px 0;
 font-family: 'Sanchez';
 font-size: .9em;
@@ -1094,7 +1116,28 @@ cursor: pointer;
 padding: 10px;
 }
 
+.close1 {font-family: 'Quicksand', sans-serif;
+color: lightgray;
+font-size: 2.5em;
+position: absolute; top: 10px; left: 20px;
+border: 1px solid lightgray;
+cursor: pointer;
+padding: 10px;
+}
+
 input.flat2{
+margin: 10px;
+background-color: #00CCCC;
+color: white;
+padding:5px;
+font-family: 'Quicksand';
+vertical-align: middle;
+border: 5px solid white;
+cursor: pointer;
+font-size: 1em;
+}
+
+a.flat2{
 margin: 10px;
 background-color: #00CCCC;
 color: white;
@@ -1118,6 +1161,7 @@ position: absolute; left:30px;
 position: absolute; right:30px;
 }
 
+/* View Contests */
 .view_container{
 border: 3px solid lightgray;
 background-image: none;
@@ -1135,3 +1179,92 @@ text-align: center;
 text-align: center;
 }
 
+/* Drag and Drop */
+
+
+.drag_container{
+display: inline-block;
+margin: 10px;
+}
+
+.draggable{
+height: 50px;
+}
+
+/* Product Upload */
+.container{
+text-align: center;
+position: relative;
+}
+
+#user_items {
+display: inline-block;
+vertical-align: top;
+}
+
+.item{
+padding:0;
+border: 1px dotted light gray;
+margin: 0;
+}
+
+.hide{
+display: none;
+opacity:0;
+}
+
+#template{
+padding: 10px;
+margin: 20px;
+display: inline-block;
+height: 500px;
+width: 40%;
+border: 1px solid lightgray;
+position: relative;
+vertical-align: middle;
+text-align: center;}
+
+
+.drag_drop_container{
+vertical-align: top;
+}
+.drag_drop_container #tabs2{
+display: inline-block;
+vertical-align: top;
+margin-top: 20px;
+margin-left: 10px;
+min-height: 200px;
+width: 50%;
+}
+
+
+.drag_drop_container #tabs2 { 
+    padding: 0px; 
+    background: none; 
+	border: 1px solid lightgray;
+} 
+.drag_drop_container #tabs2 .ui-tabs-nav { 
+    padding-left: 0px; 
+    background: none; 
+	border: none;
+ } 
+.drag_drop_container #tabs2  .ui-tabs-panel{ 
+   background: none;
+   border: 1px lightgray;
+}
+
+.drag_drop_container #tabs2 .ui-tabs-nav .ui-state-active a { 
+    border: 1px lightgray;
+}
+
+
+.drag_drop_container #tabs2 .ui-tabs-nav .ui-state-default a { 
+    color: #c0c0c0; 
+	font-family: 'Quicksand';
+	font-size: .6em;
+} 
+.drag_drop_container #tabs2 .ui-tabs-nav .ui-state-active a { 
+    color: #00CCCC;
+	font-family: 'Quicksand', sans-serif;
+	font-size: .6em;
+}

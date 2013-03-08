@@ -116,6 +116,8 @@ $(".item").droppable({
         });
 	
 		
+
+		
 		
 		});
 </script>	

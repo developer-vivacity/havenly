@@ -1,3 +1,3 @@
 <?php
 
-print_r($price);
+print_r($html);

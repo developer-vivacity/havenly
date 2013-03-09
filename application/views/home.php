@@ -34,7 +34,7 @@ $(document).ready(function() {
 	
 <div class = "push_down">.</div>
 <div class = "desc_container">
-<div id = "header_left">
+<div id = "header_left"><br><br>
 <h2 class ="desc_header">Get Your Design</h2>
 <p>We build you a custom design plan from professional decorators and design enthusiasts. <br> All for one flat fee.</p></div>
 <div id= "left"> 

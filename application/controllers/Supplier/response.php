@@ -39,4 +39,10 @@ function __construct() {
 	$this->load->view('Supplier/upload_form');
 	
 	}
+	
+	function test()
+	{
+	$data['html']=$_POST['html'];
+	return $data;
+	}
 	}

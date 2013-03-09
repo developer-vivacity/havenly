@@ -13,7 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery-1.9.js")?>></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.js")?>></script>
 	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.pack.js")?>></script>
@@ -85,10 +86,10 @@ function fb_login(){
 						<div class = "logo_container">
 						<a class = "logo" href=<?php echo base_url();?>>Havenly</a>
 						</div>
-						<div class = "nav_bar">
+					<div class = "nav_bar">
 					<ul class = "nav">
 						<li><a href=<?php echo base_url('index.php/Users/site');?>>Your Designs & Inspiration</a></li>
-						<li><a href="">Community Inspiration</li>
+						<li><a href="">Community Inspiration</a></li>
 					</ul>
 					</div>
 					<div class = "login_button">	<?php 

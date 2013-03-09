@@ -93,29 +93,29 @@ Draw the walls, include the length of each side of your room, and try and draw u
 <br><br><label> For Doors: </label><img src = <?php echo base_url('assets/Images/door.fw.png');?> width = "100" height: 20> 
 </div>
 <br><br>
-<label>Pick a Drawing Object</label><br>
-<select id="dtool">
-<option value="line">Line</option>
-<option value="rect">Rectangle</option>
-<option value="pencil">Pencil</option>
-</select>
+	<label>Pick a Drawing Object</label><br>
+	<select id="dtool">
+	<option value="line">Line</option>
+	<option value="rect">Rectangle</option>
+	<option value="pencil">Pencil</option>
+	</select>
 
-<div id="container_fp">
-<canvas id="imageView" height="400" width="400">
-<p>Unfortunately, your browser doesn't support HTML5 canvas - which means you can't draw your floorplan online - you can download one of the following, or submit a picture.</p>
-<p>
-Supported browsers:
-<a href="http://www.opera.com">Opera</a>
-,
-<a href="http://www.mozilla.com">Firefox</a>
-, and
-<a href="http://www.apple.com/safari">Safari</a>
-</p>
-</canvas>
-<canvas id="imageTemp" width="400" height="400"></canvas>
-<a class = "flat" id = "clear">Clear</a>
-<a class = "flat" id = "image_save">Save</a>
-</div>
+	<div id="container_fp">
+	<canvas id="imageView" height="400" width="400">
+	<p>Unfortunately, your browser doesn't support HTML5 canvas - which means you can't draw your floorplan online - you can download one of the following, or submit a picture.</p>
+	<p>
+	Supported browsers:
+	<a href="http://www.opera.com">Opera</a>
+	,
+	<a href="http://www.mozilla.com">Firefox</a>
+	, and
+	<a href="http://www.apple.com/safari">Safari</a>
+	</p>
+	</canvas>
+	<canvas id="imageTemp" width="400" height="400"></canvas>
+	<a class = "flat" id = "clear">Clear</a>
+	<a class = "flat" id = "image_save">Save</a>
+	</div>
 </div>
 </div>
 </div>
@@ -131,7 +131,6 @@ If you're more organized than us, and have a floor plan handy, <span>upload it b
 	echo form_upload("floor_plan",'Browse for a file','id = "file12"', 'class="file_hidden"');
 	echo '</div>';
 ?>
-
 
 <script type="text/javascript">
 if(window.addEventListener) {
@@ -305,7 +304,18 @@ img_update();
 }
 };
 };
+
+// var save = document.getElementById('image_save');
+// save.addEventListener('click', alerting, false);
+
+// function alerting(){
+// alert('yay');
+// }
+
 init();
+
+
+
 }, false); }
 // vim:set spell spl=en fo=wan1croql tw=80 ts=2 sw=2 sts=2 sta et ai cin fenc=utf-8 ff=unix:
 $("#clear").bind('click', function() {
@@ -316,6 +326,8 @@ return false;
 
 	  
 $("#image_save").bind('click', function(){
+		
+		alert('yay');
 		var canvas = document.getElementById('imageView');
 		
 		var img = canvas.toDataURL("image/png");

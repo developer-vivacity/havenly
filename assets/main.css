@@ -19,6 +19,10 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+a:hover{
+cursor:pointer;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -794,6 +798,10 @@ img.active1{
 border: 5px solid #00CCCC;
 }
 
+.selected{
+border: 1px solid black;
+}
+
 #button_container {
 	width:100%;
 	text-align: center;
@@ -1155,11 +1163,11 @@ position: absolute; bottom: 5px; right: 20px;
 }
 
 #clear{
-position: absolute; left:30px;
+position: absolute; left:30px; top: 410px;
 }
 #image_save{
-position: absolute; right:30px;
-}
+position: absolute; right:30px; top:410px;
+} 
 
 /* View Contests */
 .view_container{
@@ -1215,10 +1223,7 @@ opacity:0;
 
 #template{
 padding: 10px;
-margin: 20px;
-display: inline-block;
 height: 500px;
-width: 40%;
 border: 1px solid lightgray;
 position: relative;
 vertical-align: middle;
@@ -1268,3 +1273,43 @@ width: 50%;
 	font-family: 'Quicksand', sans-serif;
 	font-size: .6em;
 }
+
+.canvas_container{
+width: 47%;
+display: inline-block;
+}
+
+.canvas_container p{
+font-size: .9em;
+}
+
+.canvas_menu{
+padding: 10px;
+text-align: center;
+min-height: 20px;
+}
+
+.canvas_menu ul {
+	padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+	list-style-type: none;
+}
+
+.canvas_menu ul li{
+	display:inline;
+	list-style-position: outside;
+	list-style-type: none;
+	padding-right: 40px;
+	font-size: .5em;
+	font-family: 'Sanchez';
+	}
+	
+	
+.canvas_menu ul li a{
+	border-radius: 5px;
+	background-color: gray;
+	color: white;
+	padding: 10px
+	}

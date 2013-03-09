@@ -283,7 +283,7 @@ $mh = curl_multi_init ();
 			touch ($temp);
 			$imageContent = curl_multi_getcontent ( $curl_array [$i] );
 			file_put_contents ( $temp, $imageContent );
-			$size = getimagesize ( $temp );
+			$size = @getimagesize ( $temp );
 			if($size[1]>200){
 			$res[]=$url;
 			unlink($temp);

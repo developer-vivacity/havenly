@@ -16,7 +16,14 @@ Cancel & Return
 	<img id = "loading-image" src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
 	<br><br>
 	</div>
-	
+
+<script>
+$('#loading').hide();
+
+
+			
+</script>
+
 <input type="hidden" name="description" id="description" value="<?php echo $desc;?>" />
 <?php
 
@@ -27,21 +34,23 @@ foreach ($images as $key=>$value)
 
 ?>
 
-<script type="text/javascript">
 
-$(document).ready(function() {
-    
-		$(".inactive").click(function() {
+
+<script>
+
+$(function(){
+ 		$(".inactive").click(function() {
+			
 			$(this).toggleClass('active');
 			});
 			
-		$('#loading').hide();
-		
+			
 		$("#photo_submit").click(function() {
 			
 			$('#loading').show();
 			var values = JSON.stringify($(".active").map(function()  
 			{return $(this).attr('src');}).get());
+			
 			var desc = $("#description").val();
 			
 			 $.ajax({        
@@ -58,7 +67,7 @@ $(document).ready(function() {
 			location.href='/test/design2/index.php/users/upload';
 			});
 		
-		});
+});		
 	
 </script>
 <?php

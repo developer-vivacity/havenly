@@ -77,7 +77,7 @@ function upload_photo()
 													$data['images']=$file_name;
 													$this->supplier_model->map_product_photo($id);
 													$this->load->view('Supplier/product_detail',$data);
-													
+													unlink($file_location);
 													
 													}
 												else {

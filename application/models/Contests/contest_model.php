@@ -109,8 +109,15 @@ function save_floorplan($data){
 	$insert = array(
 	'form_id'=>$data['form_id'],
 	'filename'=>$data['filename']);
-	$this->db->insert('floorplans', $insert);
-}
+
+	$this->db->where('form_id',$data['form_id']);
+	$query=$this->db->get('floorplans');
+	
+	if($query->num_rows()>0)
+	{$this->db->where('id',$data['form_id']);
+	$this->db->update('floorplans',$insert);}
+	else{
+	$this->db->insert('floorplans', $insert);}}
 
 
 function get_contest_photos($contest_id) {
@@ -131,6 +138,21 @@ function delete_temp($contest_id)
 	$this->db->where('id',$contest_id);
 	$this->db->where('status','temp');
 	$this->db->delete('contests');
+}
+
+function get_floorplan($contest_id)
+{
+$this->db->where('form_id',$contest_id);
+$query = $this->db->get('floorplans');
+$num_rows=$query->result_array();
+return $num_rows;}
+
+function save_options($data)
+{
+$insert = array(
+'contest_type' =>$data['contest_type']);
+$this->db->where('id', $data['contestid']);
+$this->db->update('contests',$insert);
 }
 	
 	}

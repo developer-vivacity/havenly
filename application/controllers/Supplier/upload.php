@@ -153,7 +153,11 @@ function photo_link() {
 				unlink($file_location);
 				$data['productid']=$productid;
 				$data['images']=$file_name;
-				$this->load->view('Supplier/product_detail',$data);
+				
+				if($this->input->is_ajax_request()){
+				return $data;}
+				else{
+				$this->load->view('Supplier/product_detail',$data);}
 				
 				}
 			else {	
@@ -182,8 +186,8 @@ function photo_link() {
 		$data['store']=$url['host'];
 		
 		preg_match( '/(\$[0-9,]+(\.[0-9]{2})?)/', $html, $matches);
-			
-			$data['price']=$matches[0];
+		if($matches||!empty($matches)||$matches[0]!=NULL)	
+			{$data['price']=$matches[0];}
 		
 		if ($html->find ( 'img' )) {
 		foreach($html->find('img') as $element)
@@ -195,7 +199,11 @@ function photo_link() {
 		$data['orig_src']=$link;
 		$data['productid']=$productid;
 		$data['images']=$this->imageDownload($nodes);
-		$this->load->view('Supplier/product_detail',$data);
+		
+		if($this->input->is_ajax_request()){
+				$this->load->view('Supplier/product_detail2',$data);}
+				else{
+				$this->load->view('Supplier/product_detail',$data);}
 		}
 		else {$id['error']='Unable to Upload';
 			$this->load->view('Supplier/upload_form',$id);}
@@ -283,7 +291,11 @@ function upload_photo_link()
 	
 	$this->image_path= realpath(APPPATH.'/images');
 	$images =json_decode($_POST['images']);
-	$desc =	$_POST['desc'];	
+	
+	if(!empty($_POST['desc'])&&$_POST['desc']!=NULL&&isset($_POST['desc'])){
+	$desc =	$_POST['desc'];	}
+	else {$desc = NULL;}
+	
 	foreach ($images as $image){
 	$file_name = $this->set_file_name();
 	//continue getting file names until get new one
@@ -306,7 +318,7 @@ function upload_photo_link()
 	//initiate bucket
 	$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);
 	$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
-			
+	$html="";		
 	//if s3 responds with something return 1 to the site page view
 	if($s3result) {
 		$data['desc']=NULL;
@@ -317,15 +329,21 @@ function upload_photo_link()
 		
 		$id['product_id']=$this->input->post('productid');
 		$this->supplier_model->map_product_photo($id);
+		$product_name=$this->input->post('name');
 		
-		}
-	else {
-			return 0;
-		}	
-}//end foreach
-
-	}	
-
+		$html.="<div class = 'drag_container'><img class = 'draggable' src='https://s3.amazonaws.com/easableimages/{$file_name}' height=100 title ='{$product_name}'></div>";
+		
+	}else {$html=0;}
+	
+	
+		
+	} echo $html;
+	
+	
+	}
+		
+		
+	
 }
 	
 

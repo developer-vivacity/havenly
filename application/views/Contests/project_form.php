@@ -6,6 +6,9 @@ include(APPPATH.'/views/templates/header.php');
 <div class="form">
 <form name="Contest" enctype = "multipart/form-data" method="post" action=<?php echo base_url('index.php/Contests/site/contest_submit');?>>
 <div class = "contest_form_container">
+<?php echo validation_errors(); ?>
+<?php if(!empty($error)&&$error!=NULL&&isset($error)){
+echo '<div class = "error">'.$error.'</div>';}?>
 <div id = "tabs">
 	<ul>
 	<li><a href="#startup">Start Up</a></li>
@@ -22,9 +25,14 @@ include(APPPATH.'/views/templates/header.php');
 
 <div id = "startup">
 <div class = "form_container">
+
 	<p class = "title">Why don't we...Start you up</p>
 	<p class = "text">What are you waiting for? After all, <span>there's no day like today.</span></p>
-	<input type="hidden" name="formid" id="formid" value=<?php echo $formid;?> />
+	<input type="hidden" name="formid" id="formid" value=<?php 
+	if(isset($formid)&&$formid!=NULL&&$formid!=0){
+	echo $formid;}
+	else{echo $_POST['formid'];}
+	?> />
 	<div class = "left_form_1">
 	<label for="name" id = "title_input">Name your Contest:</label><br>
 	<input type="text" name="name" value="Contest Name" id="title_input" maxlength="30" onfocus='value=""' 
@@ -327,7 +335,6 @@ return false;
 	  
 $("#image_save").bind('click', function(){
 		
-		alert('yay');
 		var canvas = document.getElementById('imageView');
 		
 		var img = canvas.toDataURL("image/png");
@@ -507,7 +514,7 @@ $src=$value['Orig_src'];
 
 }
 
-else { echo 'You don\'t have photos uploaded'; }?>
+else { echo '<p class = "text1">You don\'t have photos uploaded</p>'; }?>
 </div>
 </div>
 </div>
@@ -544,7 +551,7 @@ else { echo 'You don\'t have photos uploaded'; }?>
 </div>	
 <div id = "second_row">
 <input type="submit" value="You're Done!" onclick = "window.onbeforeunload=null" class = "flat2" id = "contest_submit"/>
-<div>
+</div>
 </div>
 </div>
 </div>

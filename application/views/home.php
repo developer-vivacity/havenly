@@ -34,9 +34,10 @@ $(document).ready(function() {
 	
 <div class = "push_down">.</div>
 <div class = "desc_container">
-<div id = "header_left"><br><br>
+<div id = "header_left"><br>
 <h2 class ="desc_header">Get Your Design</h2>
-<p>We build you a custom design plan from professional decorators and design enthusiasts. <br> All for one flat fee.</p></div>
+<p>We build you a custom design plan from professional decorators and design enthusiasts. <br><br> All for one flat fee.</p></div>
+<br>
 <div id= "left"> 
 	<img src= <?php echo base_url('assets/Images/photoicon2.fw.png');?>>
 	<h3 class = "desc_subtitle">Tell Us About Your Style</h3>

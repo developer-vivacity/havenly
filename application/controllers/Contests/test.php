@@ -1,3 +1,2 @@
 <?php
-print_r($formid);
-
+print_r($data);

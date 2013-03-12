@@ -39,12 +39,13 @@
 						<li><a href=<?php echo base_url('index.php/Users/site');?>>Your Designs & Inspiration</a></li>
 						<li><a href="">Community Inspiration</a></li>
 					</ul>
+					
 					</div>
 										
 															
-						<hr class = "style2"/>
-										
-				
-
+						
+						<br><br>				
+				</div>
+<hr class = "style2"/>
 
 

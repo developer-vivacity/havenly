@@ -798,7 +798,7 @@ img.active1{
 border: 5px solid #00CCCC;
 }
 
-.selected{
+#selected{
 border: 1px solid black;
 }
 
@@ -955,6 +955,18 @@ padding: 20px;
 background-image: url('Images/debut_light.png');
 font-family: 'Sanchez';
 vertical-align: top;
+}
+
+.form_container_center {
+padding: 20px;
+background-image: url('Images/debut_light.png');
+font-family: 'Sanchez';
+vertical-align: top;
+text-align: center;
+margin: auto;
+margin-top: 2em;
+width: 80%;
+border: 5px solid lightgray;
 }
 
 .form_container label {
@@ -1203,6 +1215,7 @@ height: 50px;
 .container{
 text-align: center;
 position: relative;
+
 }
 
 #user_items {
@@ -1222,30 +1235,35 @@ opacity:0;
 }
 
 #template{
-padding: 10px;
-height: 500px;
+height: 540px;
 border: 1px solid lightgray;
 position: relative;
 vertical-align: middle;
-text-align: center;}
+text-align: center;
+color: gray;
+background-color: white;}
 
 
 .drag_drop_container{
 vertical-align: top;
+background-image: url('Images/debut_light.png');
+padding: 9px;
+padding-bottom: 40px;
+margin-top: 10px;
 }
 .drag_drop_container #tabs2{
 display: inline-block;
 vertical-align: top;
-margin-top: 20px;
+margin-top: 10px;
 margin-left: 10px;
 min-height: 200px;
-width: 50%;
+width: 40%;
 }
 
 
 .drag_drop_container #tabs2 { 
     padding: 0px; 
-    background: none; 
+    background-color: white; 
 	border: 1px solid lightgray;
 } 
 .drag_drop_container #tabs2 .ui-tabs-nav { 
@@ -1253,44 +1271,59 @@ width: 50%;
     background: none; 
 	border: none;
  } 
-.drag_drop_container #tabs2  .ui-tabs-panel{ 
-   background: none;
-   border: 1px lightgray;
+ 
+.drag_drop_container #tabs2 .ui-widget-header { 
+   border: none; 
+}
+.drag_drop_container #tabs2 .ui-tabs-nav .ui-helper-reset .ui-helper-clearfix .ui-widget-header .ui-corner-all{
+border:none;
 }
 
-.drag_drop_container #tabs2 .ui-tabs-nav .ui-state-active a { 
-    border: 1px lightgray;
-}
 
+.drag_drop_container #tabs2 .ui-state-active,.ui-tabs-selected{
+border-right: 1px solid lightgray;
+border-left: 1px solid lightgray;
+border-top: 1px solid lightgray;
+}
 
 .drag_drop_container #tabs2 .ui-tabs-nav .ui-state-default a { 
     color: #c0c0c0; 
 	font-family: 'Quicksand';
-	font-size: .6em;
+	font-size: .7em;
 } 
 .drag_drop_container #tabs2 .ui-tabs-nav .ui-state-active a { 
     color: #00CCCC;
 	font-family: 'Quicksand', sans-serif;
-	font-size: .6em;
+	font-size: .7em;
 }
 
 .canvas_container{
-width: 47%;
+width: 57%;
 display: inline-block;
+position: relative;
 }
+
 
 .canvas_container p{
 font-size: .9em;
 }
 
 .canvas_menu{
-padding: 10px;
+width: 98.5%;
+padding: 5px;
 text-align: center;
 min-height: 20px;
+z-index: 40;
+position: absolute;
+border-bottom: 1px solid lightgray;
+-moz-box-shadow:0px 0px 2px 0px #888888;
+	-webkit-box-shadow: 0px 0px 2px 0px #888888;
+	box-shadow: 0px 0px 2px 0px #888888;
+background-color: white;
 }
 
 .canvas_menu ul {
-	padding-bottom: 10px;
+	padding-bottom: 0px;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
@@ -1298,12 +1331,12 @@ min-height: 20px;
 }
 
 .canvas_menu ul li{
-	display:inline;
+	display: inline;
 	list-style-position: outside;
 	list-style-type: none;
-	padding-right: 40px;
 	font-size: .5em;
 	font-family: 'Sanchez';
+	padding: 1em;
 	}
 	
 	
@@ -1311,5 +1344,46 @@ min-height: 20px;
 	border-radius: 5px;
 	background-color: gray;
 	color: white;
-	padding: 10px
+	padding: 5px
 	}
+
+.drag_drop_container #tabs2 {
+font-family: 'sanchez';
+font-size:.8em;
+color: gray;}
+
+#product_link
+{
+border: 1px solid lightgray;
+width: 50%;
+font-family: 'sanchez';
+font-size:.8em;
+color: gray;
+margin: 5px;
+}
+
+
+
+#product_detail {
+position: fixed;
+ width: 100%;
+ height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: #888;
+  opacity: 1;
+  z-index: 99;
+  text-align: center;
+}
+
+#product_window {
+  width: 80%;
+  position: absolute;
+  top: 30px;
+  left: 120px;
+  z-index: 100;
+  text-align: center;
+  margin:auto;
+  border: 5px solid lightgray;
+  background-color: white;
+}

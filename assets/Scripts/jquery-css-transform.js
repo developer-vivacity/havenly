@@ -77,7 +77,10 @@
         //
         // But, only do the forced mapping if the correct CSS property
         // is not 'transform' and is something else.
-        if (_propsObj['transform'] != 'transform')
+        
+	var ua = $.browser;
+    if ( _propsObj['transform'] != 'transform' || ( ua.mozilla && ua.version.slice(0,3) >= "16" ) )
+		
         {
             // Call in form of css('transform' ...)
             if (arg == 'transform')

@@ -1,3 +1,4 @@
 <?php 
-print_r ($img);
+print_r ($error);
+print_r ($error1);
 ?>

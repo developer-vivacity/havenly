@@ -6,6 +6,7 @@ function __construct() {
 	parent::__construct();
 	$this->load->library('s3');
 	$this->load->library('session');
+	$this->load->library('form_validation');
 	$this->load->model('Contests/contest_model');
 	$this->load->model('Users/picture_model');
 	$user_auth=$this->session->userdata('is_logged_in');
@@ -31,12 +32,38 @@ function show_contest(){
 }
 
 
-function contest_submit()
+function contest_submit(){
+
+$this->form_validation->set_rules('name','Contest Name', 'trim|required|min_length[3]|required');
+$this->form_validation->set_rules('sqfoot','Square Footage','trim|required|numeric');
+$this->form_validation->set_rules('about', 'Room Description', 'trim|required');
+$this->form_validation->set_rules('budget','Budget','trim|required|alpha_numeric');
+$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('Contests/project_form');
+		}
+else
+	{ 
+		$id['contestid']=$this->input->post('formid');
+		$query=$this->contest_model->get_floorplan($id['contestid']);
+		
+		if((!$query)&&$_FILES['floor_plan']['size']==0){
+		$data['error']='Please show us a floorplan - pretty please';
+		$this->load->view('Contests/project_form', $data);
+		}
+		
+		else{
 
 
-{ 		
-	if (!empty($_POST))
-	{	//setup basic form data
+		if(empty($_FILES["room_photo"]["size"])||!isset($_FILES["room_photo"]["size"])||$_FILES["room_photo"]["size"]==0)
+		{
+			$data['error']='Let us see a picture of your room!';
+			$this->load->view('Contests/test', $data);
+		}
+		else{
+	
 		$data['form_id']=$this->input->post('formid');
 		$data['userid']=$this->session->userdata('userid');
 		$data['name']=$this->input->post('name');
@@ -71,24 +98,25 @@ function contest_submit()
 			
 		$data['store']=$this->input->post('store');
 		$this->contest_model->submit_contest($data);
-		
-		$id['contestid']=$this->input->post('formid');
+		//if we need to upload a floor plan
+		if($_FILES['floor_plan']['size']==0||$_FILES['floor_plan']!=NULL&&!empty($_FILES['floor_plan'])&&isset($_FILES['floor_plan']))
+		{
+			$name = "floor_plan";
+			$this->floorplan_upload_file($name);}
 	
-		
-				
 		//if room_photo uploaded
-		if($_FILES["room_photo"]["size"][0]>0)
+		if($_FILES["room_photo"]["size"][0]>0||$_FILES["room_photo"]["size"][1]>0||$_FILES["room_photo"]["size"][2]>0||$_FILES["room_photo"]["size"][3]>0||$_FILES["room_photo"]["size"][4]>0)
 		{  	
 			$name = "room_photo";
 			$this->user_photo_upload($name);
 		}//endif isset for uploading room photos
 		
-		if($_FILES["inspr_photo"]["size"][0]>0)
+		if($_FILES["inspr_photo"]["size"][0]>0||$_FILES["inspr_photo"]["size"][1]>0||$_FILES["inspr_photo"]["size"][2]>0||$_FILES["inspr_photo"]["size"][3]>0||$_FILES["inspr_photo"]["size"][4]>0)
 		{
 			$name = "inspr_photo";
 			$this->user_photo_upload($name);
 		}
-			//room pics from uploaded
+			//inspiration pictures from those already uploaded
 			if (!empty($_POST['inspr_pics']))
 			{
 				foreach($_POST['inspr_pics'] as $pic){
@@ -101,9 +129,9 @@ function contest_submit()
 				}
 					
 				
-		redirect(base_url('index.php/Users/site'));
+		redirect(base_url('index.php/Contests/site/options/'.$id['contestid']));
 	}
-	}
+	}}}
 	
 	
 		
@@ -117,23 +145,21 @@ function contest_submit()
 		return $file_name;
 	}
 	
-	
+	//upload a user photo to databse
 	function user_photo_upload($name){
-			$numfiles = count($_FILES[$name]["size"]);
-			$id['contestid']=$this->input->post('formid');
-				for($i=0; $i<$numfiles; $i++) {
-				if ($_FILES[$name]["size"][$i]>0){
+			$numfiles = count($_FILES[$name]["size"]);//count number of files uploaded
+			$id['contestid']=$this->input->post('formid');//assign form id
+				for($i=0; $i<$numfiles; $i++) {//loop through files array
+				if ($_FILES[$name]["size"][$i]>0){//files size greater than 0
 				
-			
-				$data['file']=$_FILES[$name];
-				$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");
+				$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
 				$extension = end(explode(".", $_FILES[$name]["name"][$i]));
 				if ((($_FILES[$name]["type"][$i] == "image/gif")
 				|| ($_FILES[$name]["type"][$i] == "image/jpeg")
 				|| ($_FILES[$name]["type"][$i] == "image/png")
 				|| ($_FILES[$name]["type"][$i] == "image/pjpeg")
 				|| ($_FILES[$name]["type"][$i] == "image/jpg"))
-				&& ($_FILES[$name]["size"][$i] < 3000000)
+				&& ($_FILES[$name]["size"][$i] < 3000000)//less than a certain size
 				&& in_array($extension, $allowedExts))
 				{
 					$data['error']=0;
@@ -149,26 +175,29 @@ function contest_submit()
 								
 									if ($file_name==0)
 										{
-											$file_name=$this->set_file_name();
+											$file_name=$this->set_file_name();//repeat until unique file name
 										}
 									else 
 										{	
 											$file_name = $file_name.'.'.$extension;
-											$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);
+											$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
 											$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
 												if($s3result) {
 												
 													$data['file_name']=$file_name;
-													$data['orig_src']=10;
+													$data['orig_src']=10;//since uploaded from user photo, no original link
 													if($name = "room_photo"&&(!empty($_POST["room_photo_desc"]))&&($_POST["room_photo_desc"]!="Description"))
-														{$data['desc']=$_POST["room_photo_desc"][$i];}
+														{$data['desc']=$_POST["room_photo_desc"][$i];}//if a description was entered
 														else {$data['desc']=NULL;}
 																										
-													$id['pictureid']=$this->picture_model->store_photo($data);
+													$id['pictureid']=$this->picture_model->store_photo($data);//store photo in database
 													
-													if ($name = "room_photo")
-													{$this->contest_model->set_map_current($id);}
-													{$this->contest_model->set_map_inspiration($id);}
+													if($id['pictureid']){
+														if ($name = "room_photo")//if it's a current room photo set it as a current room photo
+															{$this->contest_model->set_map_current($id);
+															$data['error']=NULL;}
+															else{$this->contest_model->set_map_inspiration($id);
+															$data['error']=NULL;}//else set it as an inspiration room photo
 																									
 													}
 												else {
@@ -176,24 +205,26 @@ function contest_submit()
 																									
 													
 													}		
-									}	
+									}	else {
+													$data['error']='Unable to Upload';
+																									
+													
+													}	
 					}	
 			
-			}
+			}}
 			else
 				{
-				$data['error']=$_FILES[$name];
-				$this->load->view("Contests/test",$data);
+				$data['error']='Invalid File Type, please ensure you are uploading an image';
+				$this->load->view("Contests/project_form",$data);
 				}
 }//end name check
-}	//end for		
+}	//end for	
+return $data;	
 }	
 	
 	
-	
-	function user_photo_select(){
-	}
-	
+		
 	
 	
 	function floorplan_upload(){
@@ -207,6 +238,10 @@ function contest_submit()
 	
 		$dataimg = base64_decode($img);
 		$file_name = $this->set_file_name();
+		if ($file_name==0)
+										{
+											$file_name=$this->set_file_name();//repeat until unique file name
+										}
 		$file_name = $file_name.'.png';
 		$file_location=$this->image_path.'/'.$file_name;
 		$data['file_location'] = $this->image_path.'/'.$file_name;
@@ -220,12 +255,66 @@ function contest_submit()
 				$this->contest_model->save_floorplan($data);
 				unlink($file_location);
 				}
+		
 }
+
+function floorplan_upload_file($name){
+			$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
+				$extension = end(explode(".", $_FILES[$name]["name"][$i]));
+				if ((($_FILES[$name]["type"] == "image/gif")
+				|| ($_FILES[$name]["type"] == "image/jpeg")
+				|| ($_FILES[$name]["type"] == "image/png")
+				|| ($_FILES[$name]["type"] == "image/pjpeg")
+				|| ($_FILES[$name]["type"] == "image/jpg"))
+				&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
+				&& in_array($extension, $allowedExts))
+				{
+					$data['error']=0;
+					if ($_FILES[$name]["error"] > 0)
+							{
+								$data['error']='error loading file';
+								return $data;
+								}
 				
+				else
+							{
+								$file_location = $_FILES[$name]["tmp_name"];
+								$file_name = $this->set_file_name();
+								
+									if ($file_name==0)
+										{
+											$file_name=$this->set_file_name();//repeat until unique file name
+										}
+									else 
+										{	
+											$file_name = $file_name.'.'.$extension;
+											$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
+											$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
+												if($s3result) {$data['filename']=$file_name;
+												$data['form_id']=$this->input->post('formid');
+												$this->contest_model->save_floorplan($data);
+												return true;
+												}
+												}
+	}
+	}}
 	
 	function delete_temp(){
 		$contest_id=$_POST['formid'];
 		$this->contest_model->delete_temp($contest_id);
 	
 }
+
+function options(){
+$data['contestid']=$this->uri->segment(4);
+$data['price_main']='$250';
+$data['price_high']='$550+';
+$this->load->view('Contests/options', $data);
 }
+
+function save_options(){
+$data['option'] = $this->input->post('contest_type');
+$data['contestid']=$this->input->post('contestid');
+$this->contest_model->save_options($data);
+redirect(base_url('index.php/Users/site'));
+}}

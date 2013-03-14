@@ -893,12 +893,20 @@ padding: 10px;
 	margin-bottom: 10px; margin-top:10px;
 	}
 
+#inspr_photo_link1, #inspr_photo_link2, #inspr_photo_link3
+{width: 60%;
+	margin-bottom: 10px; margin-top:0px;
+	}
+
+#inspiration .right_form_1 div{
+
+}
 
 .file_hidden, #file1, #file2, #file3, #file4, #file5, #file11, #file21, #file31, #file12, #file13{
-	position:absolute;
-	top:10;
-	left:10;
+	position:absolute; top:10; left:10;
 	opacity:0;
+	width: 5%;
+	margin:0;
 }
 
 #photo_cover
@@ -997,6 +1005,8 @@ margin: 0px 0 10px 0;
 	font-family: 'Quicksand', sans-serif;
 }
 
+
+
 .contest_form_container textarea{
 border: 1px solid lightgray;
 color: #888;
@@ -1030,7 +1040,7 @@ text-align:center;
 }
 
 
-#room_photos input{
+#room_photos input[type="text"]{
 width: 30%;}
 
 .left_form{
@@ -1071,9 +1081,41 @@ width: 45%;
 display: inline-block;
 margin: 0 30px 0 0;
 text-align: center;	
+position: relative;
 }
 
+#room_photos .form_container div{
+position: relative;
+}
+.select_container label{
+font-family: 'Quicksand', sans-serif;
+font-size: 1em;
+}
 
+.select_container input{
+font-family: 'Quicksand', sans-serif;
+font-size: 1em;
+width: 70%;
+}
+
+#inspiration .right_form_1, #inspiration .left_form_1{
+border: 1px solid lightgray;
+padding-bottom: 2em;
+}
+
+.uploaded_images{
+position: relative;
+height: 80px;
+display: inline-block;
+margin-right: 10px;
+}
+
+#photo_popup{
+background-color: #00CCCC;
+color: white;
+font-size: .9em;
+padding: 7px;
+}
 
 .design_photos{
 display: inline-block;

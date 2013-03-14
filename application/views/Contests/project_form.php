@@ -3,6 +3,10 @@
 include(APPPATH.'/views/templates/header.php');
 ?>
 
+<div id= "loading">
+	<img id = "loading-image" src = <?php echo base_url('assets/Images/ajax-loader.gif');?>>
+	<br><br>
+	</div>
 <div class="form">
 <form name="Contest" enctype = "multipart/form-data" method="post" action=<?php echo base_url('index.php/Contests/site/contest_submit');?>>
 <div class = "contest_form_container">
@@ -77,13 +81,13 @@ echo '<div class = "error">'.$error.'</div>';}?>
 <div class = "left_form">
 <p class = "title"> What do you love about the room?</p>
 <p class = "text">Come on, we know you love <span>something.</span></p>
-<textarea rows="10" cols="50" name="likes" id="likes">I love the way you lie.</textarea>
+<textarea rows="10" cols="50" name="likes" id="likes" onfocus = "if(this.value=='I love the dust bunnies'){this.value=''}; return false;">I love the dust bunnies</textarea>
 </div>
 <div class = "right_form">
 <p class = "title"> What do you hate about the room?</p>
 <p class = "text">And we know you hate <span>something.</span></p>
-<textarea rows="10" cols="50" name="not_likes" id="not_likes">I hate the turquoise wallpaper and pink tiles.</textarea>
-</div>
+<textarea rows="10" cols="50" name="not_likes" id="not_likes" onfocus = "if(this.value=='I really hate the turquoise wallpaper'){this.value=''}; return false;">I really hate the turquoise wallpaper</textarea>
+</div><br><br>
 <a class="nexttab" href="#">Next: Furnishings</a>
 </div>
 </div>
@@ -458,9 +462,11 @@ $("#image_save").bind('click', function(){
 <div class = "form_container">
 <p class = "title">What Inspires You?</p>
 <p class = "text">Add some pictures of rooms you love, and <span>inspire us</span></p>
-
-<div class = "left_form_1">
+<a id= "photo_popup" href="#contest_inspr_photos"> Add Already Uploaded</a> or....<br><br>	<br>
+<div class = "left_form_1"><br><br>
+<p class = "text1">Upload from file</p>
 <?php echo '<div>';
+
 	echo form_input('room_photo_hide',"", 'id="file11hide"' );?>
 	<a class = "flat" onclick = '$("#file11").click();'>Browse</a>
 	<?php
@@ -469,6 +475,7 @@ $("#image_save").bind('click', function(){
 ?>
 
 <?php echo '<div>';
+
 	echo form_input('room_photo_hide',"", 'id="file21hide"' );?>
 	<a class = "flat" onclick = '$("#file21").click();'>Browse</a>
 	<?php
@@ -485,11 +492,25 @@ $("#image_save").bind('click', function(){
 ?>
 </div>
 <div class = "right_form_1">
-<a id= "photo_popup" href="#contest_inspr_photos"> Add Already Uploaded</a>
+<br><br>
+<p class = "text1">Upload from link</p>
 
+<div>
+<input type="text" name="weblink" value="http://" id="inspr_photo_link1"  class="input_photo_contest" 
+	onfocus="value=''" onblur="value=value" /><a class = "flat" id="inspr_photo_click3">Upload</a>
+</div><div>
+<input type="text" name="weblink" value="http://" id="inspr_photo_link1"  class="input_photo_contest" 
+	onfocus="value=''" onblur="value=value" /><a class = "flat" id="inspr_photo_click3">Upload</a>
+</div><div>	
+<input type="text" name="weblink" value="http://" id="inspr_photo_link1"  class="input_photo_contest" 
+	onfocus="value=''" onblur="value=value" /><a class = "flat" id="inspr_photo_click3">Upload</a>
+</div>	
 </div><br><br><a class="nexttab" href="#">Next: Budget</a>
 </div>
-
+<div id = "product_detail">
+<div id = "product_window">
+</div>
+</div>
 
 <div id = "contest_inspr_photos">
 <div id = "already_uploaded">
@@ -523,12 +544,12 @@ else { echo '<p class = "text1">You don\'t have photos uploaded</p>'; }?>
 <div class = "left_form">
 <p class = "title"> Pieces to Keep</p>
 <p class = "text">Which items do you want to keep in the room</p>
-<textarea rows="10" cols="50" name="keep" id="keep">Obsessed with my couch.</textarea>
+<textarea rows="10" cols="50" name="keep" id="keep" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;">Obsessed with my couch.</textarea>
 </div>
 <div class = "right_form">
 <p class = "title"> Pieces to Buy</p>
 <p class = "text">Tell us what items you'd like recommendations on.</p>
-<textarea rows="10" cols="50" name="need" id="need">Drapes, etc...</textarea>
+<textarea rows="10" cols="50" name="need" id="need" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;">Drapes, tables, chairs, pillows...</textarea>
 </div><br><br><a class="nexttab" href="#">Next: Floorplan</a>
 </div>
 </div>
@@ -539,7 +560,7 @@ else { echo '<p class = "text1">You don\'t have photos uploaded</p>'; }?>
 <div class = "left_form_1">
 <p class = "title"> Total Furnishings Budget</p>
 <p class = "text"><span>How much are you willing to spend</span> on furniture and paint?</p>
-<input type="text" name="budget" value="1 billion dollars" id="budget" maxlength="30" />
+<input type="text" name="budget" value="1 billion dollars" id="budget" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;"/>
 </div>
 <div class = "right_form_1">
 <p class = "title"> Furniture I like</p>
@@ -569,6 +590,8 @@ else { echo '<p class = "text1">You don\'t have photos uploaded</p>'; }?>
 			});
 		$("#contest_inspr_photos").hide();
 		$('.cbox').hide();
+		$("#product_detail").hide();
+		$("#loading").hide();
 		});
 	
 		
@@ -632,7 +655,33 @@ else { echo '<p class = "text1">You don\'t have photos uploaded</p>'; }?>
 		$("#file12").change(function(){
 	$('#file12hide').val($(this).val());
 	});	
-		
+	
+	$("#inspiration .right_form_1 a").click(function(){
+
+	var link=$(this).parent().find('.input_photo_contest').val();
+	var desc='contest inspiration';
+	var formid = $("#formid").val();
+	if (link =="http://"||link==""){
+	alert('please enter link');
+
+	}
+	
+	else {
+	$("#loading").show();
+	 $.ajax({        
+					type: 'POST',
+					url: '/test/design2/index.php/Contests/site/photo_link',
+					data: {weblink:link, desc:desc, formid: formid},
+					success: function(data){
+						$("#loading").hide();
+						$("#product_detail").show();
+						$("#product_window").html(data);
+				
+					}
+					 })}
+	
+	
+	});
 
 
 </script>	

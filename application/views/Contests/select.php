@@ -31,10 +31,10 @@ Cancel & Return
 </div>
 <br>
 <div class = "select_container">
-<label for="description">Tell Us What You Like About This Picture</label>
-<input type="text" name="description" id="description" value="<?php echo $desc?>"/>
-<input type="hidden" name="description" id="formid" value="<?php echo $formid?>" />
-
+<label for="description">Tell Us What You Like About This Picture:</label>
+<input type="text" name="description" id="description" value="<?php echo $desc?>" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;"/>
+<input type="hidden" name="description" id="formid" value="<?php echo $formid?>" /><br><br>
+<hr class = "style"/>
 <p class = 'title'>Select The Picture That Inspires You</p>
 <?php
 
@@ -63,6 +63,9 @@ $(function(){
 			{return $(this).attr('src');}).get());
 			
 			var desc = $("#description").val();
+			if(desc=="")
+			{alert('please enter a description for this picture');}
+			else{
 			var formid = $("#formid").val();
 			
 			 $.ajax({        
@@ -72,8 +75,9 @@ $(function(){
 					success: function(data){
 								$("#product_detail").hide();
 						$("#inspiration .right_form_1").append(data);
+						$("#product_detail").html('');
 						}
-					 });
+					 });}
 					 }); 
 		
 		$("#photo_cancel").click(function() {

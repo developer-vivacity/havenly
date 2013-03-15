@@ -39,7 +39,7 @@ echo '<div class = "error">'.$error.'</div>';}?>
 	?> />
 	<div class = "left_form_1">
 	<label for="name" id = "title_input">Name your Contest:</label><br>
-	<input type="text" name="name" value="Contest Name" id="title_input" maxlength="30" onfocus='value=""' 
+	<input type="text" name="name" value="<?php echo set_value('name', 'Contest Name');?>" id="title_input" maxlength="30" onfocus='value=""' 
 	/>
 	</div>
 	<div class = "right_form_1">
@@ -62,7 +62,7 @@ echo '<div class = "error">'.$error.'</div>';}?>
 </div>
 <div class = "right_form_1">
 <label for = "sqfoot">Approx. square footage</label><br>
-<input type = "text" name = "sqfoot" id = "sqfoot"/>
+<input type = "text" name = "sqfoot" id = "sqfoot" value = "<?php echo set_value('sqfoot');?>"/>
 </div>
 	</div>
 	<a class="nexttab" href="#">Next: Your Room</a>
@@ -72,7 +72,7 @@ echo '<div class = "error">'.$error.'</div>';}?>
 <div class = "form_container">
 <p class = "title"> Tell us about your room</p>
 <p class = "text">What are you using it for?  What do you want it to be?  <span>How do you want it to feel?</span></p>
-<textarea rows="10" cols="80" name="about" id="about"></textarea><BR><br>
+<textarea rows="10" cols="80" name="about" id="about"><?php echo set_value('about');?></textarea><BR><br>
 <a class="nexttab" href="#">Next: Likes and Hates</a>
 </div>
 </div>
@@ -81,12 +81,12 @@ echo '<div class = "error">'.$error.'</div>';}?>
 <div class = "left_form">
 <p class = "title"> What do you love about the room?</p>
 <p class = "text">Come on, we know you love <span>something.</span></p>
-<textarea rows="10" cols="50" name="likes" id="likes" onfocus = "if(this.value=='I love the dust bunnies'){this.value=''}; return false;">I love the dust bunnies</textarea>
+<textarea rows="10" cols="50" name="likes" id="likes" onfocus = "if(this.value=='I love the dust bunnies'){this.value=''}; return false;"><?php if(isset($_POST['likes'])){echo $_POST['likes'];} else{echo 'I love the dust bunnies';}?></textarea>
 </div>
 <div class = "right_form">
 <p class = "title"> What do you hate about the room?</p>
 <p class = "text">And we know you hate <span>something.</span></p>
-<textarea rows="10" cols="50" name="not_likes" id="not_likes" onfocus = "if(this.value=='I really hate the turquoise wallpaper'){this.value=''}; return false;">I really hate the turquoise wallpaper</textarea>
+<textarea rows="10" cols="50" name="not_likes" id="not_likes" onfocus = "if(this.value=='I really hate the turquoise wallpaper'){this.value=''}; return false;"><?php if(isset($_POST['not_likes'])){echo $_POST['not_likes'];} else{echo 'I really hate the turquoise wallpaper';}?></textarea>
 </div><br><br>
 <a class="nexttab" href="#">Next: Furnishings</a>
 </div>
@@ -112,8 +112,15 @@ Draw the walls, include the length of each side of your room, and try and draw u
 	<option value="pencil">Pencil</option>
 	</select>
 
-	<div id="container_fp">
-	<canvas id="imageView" height="400" width="400">
+	<div id="container_fp"><?php if(isset($floorplan)):
+	
+	$filename = $floorplan[0]['filename'];
+	echo "<img src = 'https://s3.amazonaws.com/easableimages/{$filename}'/>";
+	
+	else:
+	?>
+		<canvas id="imageView" height="400" width="400">
+	
 	<p>Unfortunately, your browser doesn't support HTML5 canvas - which means you can't draw your floorplan online - you can download one of the following, or submit a picture.</p>
 	<p>
 	Supported browsers:
@@ -126,7 +133,7 @@ Draw the walls, include the length of each side of your room, and try and draw u
 	</canvas>
 	<canvas id="imageTemp" width="400" height="400"></canvas>
 	<a class = "flat" id = "clear">Clear</a>
-	<a class = "flat" id = "image_save">Save</a>
+	<a class = "flat" id = "image_save">Save</a><?php endif ?>
 	</div>
 </div>
 </div>
@@ -154,27 +161,27 @@ var tool_default = 'line';
 function init () {
 // Find the canvas element.
 canvaso = document.getElementById('imageView');
-if (!canvaso) {
-alert('Error: I cannot find the canvas element!');
-return;
-}
-if (!canvaso.getContext) {
-alert('Error: no canvas.getContext!');
-return;
-}
+// if (!canvaso) {
+// alert('Error: I cannot find the canvas element!');
+// return;
+// }
+// if (!canvaso.getContext) {
+// alert('Error: no canvas.getContext!');
+// return;
+// }
 // Get the 2D canvas context.
 contexto = canvaso.getContext('2d');
-if (!contexto) {
-alert('Error: failed to getContext!');
-return;
-}
+// if (!contexto) {
+// alert('Error: failed to getContext!');
+// return;
+// }
 // Add the temporary canvas.
 var container = canvaso.parentNode;
 canvas = document.createElement('canvas');
-if (!canvas) {
-alert('Error: I cannot create a new canvas element!');
-return;
-}
+// if (!canvas) {
+// alert('Error: I cannot create a new canvas element!');
+// return;
+// }
 canvas.id = 'imageTemp';
 canvas.width = canvaso.width;
 canvas.height = canvaso.height;
@@ -182,10 +189,10 @@ container.appendChild(canvas);
 context = canvas.getContext('2d');
 // Get the tool select input.
 var tool_select = document.getElementById('dtool');
-if (!tool_select) {
-alert('Error: failed to get the dtool element!');
-return;
-}
+// if (!tool_select) {
+// alert('Error: failed to get the dtool element!');
+// return;
+// }
 tool_select.addEventListener('change', ev_tool_change, false);
 // Activate the default tool.
 if (tools[tool_default]) {
@@ -351,8 +358,10 @@ $("#image_save").bind('click', function(){
 		data: {
 		img:img,
 		formid:formid},
-		success: function (){
-		alert("We gotcha!");},
+		success: function (data){
+		alert("We gotcha!");
+		$('#container_fp').html(data);
+		},
 		error: function() {
 		alert('Error Occurred');}
 		});

@@ -121,13 +121,13 @@ function save_floorplan($data){
 
 
 function get_contest_photos($contest_id) {
-	$sql = "SELECT filename FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='inspiration'";
+	$sql = "SELECT description, filename FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='inspiration'";
 	$query = $this->db->query($sql,$contest_id); 
 	return $query->result_array();
 	}
 	
 function get_contest_photos_current($contest_id) {
-	$sql = "SELECT filename FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='current'";
+	$sql = "SELECT filename, description FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='current'";
 	$query = $this->db->query($sql,$contest_id); 
 	return $query->result_array();
 	}

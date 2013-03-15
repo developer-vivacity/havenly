@@ -27,6 +27,8 @@ $need = $contest_data[0]['need'];
 $budget = $contest_data[0]['Budget'];
 $store = $contest_data[0]['store'];
 $sqfoot = $contest_data[0]['sqfoot'];
+$about = $contest_data[0]['about'];
+$type = $contest_data[0]['contest_type'];
 ?>
 <div class = "view_container">
 <div id = "tabs1">
@@ -35,6 +37,7 @@ $sqfoot = $contest_data[0]['sqfoot'];
 	<li><a href = "#style">Style Details</a></li>
 	<li><a href="#room_photos">Room Photos</a></li>
 	<li><a href ="#inspiration">Inspiration</a><li>
+	<li><a href ="#floorplan">Floorplans</a><li>
 	</ul>
 
 
@@ -44,7 +47,9 @@ $sqfoot = $contest_data[0]['sqfoot'];
 <?php foreach ($contest_files_curr as $file)
 { 
 	$filename =  $file['filename'];
-	echo '<img src="https://s3.amazonaws.com/easableimages/'.$filename.'" height = 300px class = "home_user_pics">';
+	$desc=$file['description'];
+	echo '<img src="https://s3.amazonaws.com/easableimages/'.$filename.'" height = 300px class = "home_user_pics" title="'.$desc.'">';
+	echo '<p class = "text">'.$desc.'</p>';
 }
 ?>
 </div>
@@ -55,9 +60,25 @@ $sqfoot = $contest_data[0]['sqfoot'];
 
 <?php foreach ($contest_files_insp as $file)
 { 
+		$desc=$file['description'];
+	$filename =  $file['filename'];
+	echo '<img src="https://s3.amazonaws.com/easableimages/'.$filename.'" height = 300px class = "home_user_pics" title="'.$desc.'">';
+		echo '<p class = "text">'.$desc.'</p>';
+	}
+?>
+</div></div>
+
+
+
+
+<div id = "floorplan">
+<div class = "form_container">
+
+<?php foreach ($floorplans as $file)
+{ 
 	$filename =  $file['filename'];
 	echo '<img src="https://s3.amazonaws.com/easableimages/'.$filename.'" height = 300px class = "home_user_pics">';
-}
+	}
 ?>
 </div></div>
 
@@ -95,6 +116,16 @@ $sqfoot = $contest_data[0]['sqfoot'];
 <p class = "text1">Things Needed:<span>  <?php if ($need !=NULL){echo $need;} else {echo 'No response';}?></span></p>
 </div>
 
+
+<div class = "room_stuff">
+<div class = "left_form_1">
+<p class = "text1">Stores I shop at:<span> <?php if ($store !=NULL){echo $store;} else {echo 'No response';}?></span></p>
+</div>
+
+<div class = "right_form_1">
+<p class = "text1">About the Room:<span>  <?php if ($about !=NULL){echo $about;} else {echo 'No response';}?></span></p>
+</div>
+</div>
 <hr class = "style"/>
 <div class = "room_stuff">
 <div class = "left_form_1">
@@ -107,7 +138,7 @@ $sqfoot = $contest_data[0]['sqfoot'];
 <div id= "style"><div class ="form_container">
 <div class = "style_stuff">
 <p class = "title">Your Style:</p>
-<p class = "text1"><?php echo $style;?></p>
+<p class = "text1"><span><?php if($style!=NULL){echo $style;}else{echo'No response';}?></span></p>
 </div>
 <hr class = "style"/>
 

@@ -34,7 +34,8 @@ function show_contest(){
 
 
 function contest_submit(){
-
+$id['contestid']=$this->input->post('formid');
+$data['floorplan']=$this->contest_model->get_floorplan($id['contestid']);
 $this->form_validation->set_rules('name','Contest Name', 'trim|required|min_length[3]|required');
 $this->form_validation->set_rules('sqfoot','Square Footage','trim|required|numeric');
 $this->form_validation->set_rules('about', 'Room Description', 'trim|required');
@@ -43,14 +44,13 @@ $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('Contests/project_form');
+			$this->load->view('Contests/project_form', $data);
 		}
 else
 	{ 
-		$id['contestid']=$this->input->post('formid');
-		$query=$this->contest_model->get_floorplan($id['contestid']);
 		
-	if((!$query)&&$_FILES['floor_plan']['size']==0){
+		
+	if((!$data['floorplan'])&&$_FILES['floor_plan']['size']==0){
 		$data['error']='Please show us a floorplan - pretty please';
 		$this->load->view('Contests/project_form', $data);
 		}
@@ -243,6 +243,7 @@ else
 				$data['form_id']=$form_id;
 				$this->contest_model->save_floorplan($data);
 				unlink($file_location);
+				echo "<img src = 'https://s3.amazonaws.com/easableimages/{$file_name}'>";
 				}
 		
 }
@@ -453,7 +454,8 @@ function upload_photo_link()
 }//end foreach 
 if(isset($files)){
 $file_name = $files[0];
-echo "<div class = 'uploaded_images'><img src='https://s3.amazonaws.com/easableimages/{$file_name}' height=80></div>";}
+$delicon=base_url('assets/Images/delicon.fw.png');
+echo "<div class = 'uploaded_images'><img src='https://s3.amazonaws.com/easableimages/{$file_name}' height=80><img class = 'uploaded_icon' src={$delicon}></div>";}
 
 	}
 

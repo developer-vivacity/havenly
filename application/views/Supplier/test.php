@@ -1,3 +1,3 @@
 <?php
-
-print_r($html);
+print_r($option);
+print_r($contestid);

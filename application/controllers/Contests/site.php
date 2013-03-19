@@ -127,6 +127,18 @@ else
 				$this->contest_model->set_map_inspiration($id);
 				
 		}}
+		
+		if (!empty($_POST['inspr_pics']))
+			{
+				foreach($_POST['inspr_pics'] as $pic){
+					$filename = $pic;
+					$data['pictureid'] = $this->picture_model->get_pictureid($filename);
+					$id['pictureid']=$data['pictureid'][0]['id'];
+					$this->contest_model->set_map_inspiration($id);
+					
+					}
+				}
+		
 		}//end if room photo exists
 		}//end if floorplan exists
 					
@@ -307,6 +319,7 @@ $data['option'] = $this->input->post('contest_type');
 $data['contestid']=$this->input->post('contestid');
 $this->contest_model->save_options($data);
 redirect(base_url('index.php/Users/site'));
+
 }
 
 

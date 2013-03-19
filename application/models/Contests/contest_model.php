@@ -150,7 +150,7 @@ return $num_rows;}
 function save_options($data)
 {
 $insert = array(
-'contest_type' =>$data['contest_type']);
+'contest_type' =>$data['option']);
 $this->db->where('id', $data['contestid']);
 $this->db->update('contests',$insert);
 }

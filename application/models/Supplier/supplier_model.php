@@ -59,7 +59,66 @@
 	}
 	
 	
+	function get_contests_numrows(){
+	$this->db->where("status IN ('Completed', 'Saved')");
+	$query=$this->db->get('contests');
+	return $query->num_rows;
+	}
+	
+	function get_recent_contests($per_pg=20, $offset=0){
+			
+		$data = array();
+		$this->db->where("status IN ('Completed', 'Saved')");
+		$this->db->order_by("timestamp", "desc"); 
+		$query=$this->db->get('contests', $per_pg, $offset);
+	
+		if ($query->num_rows()>0)
+			{
+				$data=$query->result_array();
+				$contests=array();	
+					foreach ($data as $row){
+						$contestid=$row['id'];
+						$contests[$contestid]['id']=$row['id'];
+						$contests[$contestid]['name']=$row['contest_name'];
+						$contests[$contestid]['budget']=$row['Budget'];
+						$contests[$contestid]['room']=$row['room_type'];
+						$date = new DateTime($row['Timestamp']);
+						$newTimestamp = $date->add(new DateInterval('P5D'));
+						$newTimestamp=$newTimestamp->format('M-d-y');
+						$contests[$contestid]['time_close']=$newTimestamp;
+						$style ="";
+						if($row['modern']=='yes')
+						{$style.='modern';}
+						if($row['eclectic']=='yes')
+						{$style.=' eclectic';}
+						if($row['traditional']=='yes')
+						{$style.=' traditional';}
+						$contests[$contestid]['style']=$style;						
+						$contests[$contestid]['contest_type']=$row['contest_type'];
+						$contests[$contestid]['about']=substr($row['about'],0,100).'...';
+						$current = $this->get_contest_photos_current($row['id']);
+						$inspiration = $this->get_contest_photos($row['id']);
+						$contests[$contestid]['current']=$current[0]['filename'];
+						$contests[$contestid]['inspiration']=$inspiration[0]['filename'];
+						}
+					
+		return $contests;
+	}
+	else {$data= 0; return $data;}
+	
+	}
 	
 	
+function get_contest_photos($contest_id) {
+	$sql = "SELECT filename FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='inspiration' LIMIT 1";
+	$query = $this->db->query($sql,$contest_id); 
+	return $query->result_array();
+	}
+	
+function get_contest_photos_current($contest_id) {
+	$sql = "SELECT filename FROM Pictures p JOIN Picture_map pm ON p.id = pm.picture_id WHERE pm.contest_id = ? and pm.type='current' LIMIT 1";
+	$query = $this->db->query($sql,$contest_id); 
+	return $query->result_array();
+	}
 		
 	}

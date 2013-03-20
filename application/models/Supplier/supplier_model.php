@@ -120,5 +120,48 @@ function get_contest_photos_current($contest_id) {
 	$query = $this->db->query($sql,$contest_id); 
 	return $query->result_array();
 	}
-		
-	}
+	
+	
+function get_supplier_profile(){
+	$user_id=$this->session->userdata('userid');
+	$this->db->where('user_id',$user_id);
+	$query=$this->db->get('suppliers');
+
+	if ($query->num_rows()>0){
+		return $query->result_array();}
+	else{return 0;}
+
+}
+
+function check_file_name($file_name){
+$this->db->where('pic_filename',$file_name);
+$query = $this->db->get('suppliers');
+
+if($query->num_rows()>0)
+{return 1;}
+
+
+}
+
+function store_profile($data){
+$insert=array(
+'first_name'=>$data['first_name'],
+'last_name'=>$data['last_name'],
+'business_name'=>$data['business_name'],
+'pic_filename'=>$data['pic_filename'],
+'about'=>$data['about'],
+'certification'=>$data['Certification'],
+'user_id'=>$data['user_id']);
+
+$this->db->where('user_id', $data['user_id']);
+$query=$this->db->get('suppliers');
+if($query->num_rows()>0)
+{
+	$this->db->where('user_id', $data['user_id']);
+	$this->db->update('suppliers',$insert);
+}
+else {
+$this->db->insert('suppliers',$insert);	
+
+}}
+}

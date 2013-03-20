@@ -262,7 +262,7 @@ else
 
 function floorplan_upload_file($name){
 			$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
-				$extension = end(explode(".", $_FILES[$name]["name"][$i]));
+				$extension = end(explode(".", $_FILES[$name]["name"]));
 				if ((($_FILES[$name]["type"] == "image/gif")
 				|| ($_FILES[$name]["type"] == "image/jpeg")
 				|| ($_FILES[$name]["type"] == "image/png")

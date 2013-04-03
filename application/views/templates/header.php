@@ -9,7 +9,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
-	
+	<link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
@@ -22,77 +22,22 @@
 	</head>
 
 <body>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-
-<div id="fb-root"></div>
-<script>
-  
- window.fbAsyncInit = function() {
-    FB.init({
-        appId   : '284754988319059',
-        oauth   : true,
-        status  : true, // check login status
-        cookie  : true, // enable cookies to allow the server to access the session
-        xfbml   : true // parse XFBML
-    });
-
-  };
-
-function fb_login(){
-    FB.login(function(response) {
-
-        if (response.authResponse) {
-            access_token = response.authResponse.accessToken; //get access token
-            user_id = response.authResponse.userID; //get FB UID
-
-            FB.api('/me', function(response) {
-            user_email = response.email; //get user email
-             
-			location.replace('index.php/site/login');
-		
-			
-			});
-
-        } else {
-            //user hit cancel button
-            console.log('User cancelled login or did not fully authorize.');
-
-        }
-    }, {
-        scope: 'publish_stream,email'
-    });
-}
 
 
-
-(function() {
-    var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-    e.async = true;
-    document.getElementById('fb-root').appendChild(e);
-}());
-
-
-</script>
 
 <div class = "full_wrapper">
 <div class = "inner_wrapper">
-					<div class = "header">
+					<div class = "header_main">
 					
-					
-						
+									
 									
 						
-						<div class = "logo_container">
-						<a class = "logo" href=<?php echo base_url();?>>Havenly</a>
+						<div class = "logo_container_main third inline">
+						<a class = "logo dark_gray_text" href=<?php echo base_url();?>>Havenly</a>
+						<p class = "small dark_gray_text text1">Decorate the world.</p>
 						</div>
-					<div class = "nav_bar">
-					<ul class = "nav">
-						<li><a href=<?php echo base_url('index.php/Users/site');?>>Your Designs & Inspiration</a></li>
-						<li><a href="">Community Inspiration</a></li>
-					</ul>
-					</div>
-					<div class = "login_button">	<?php 
+					
+					<div class = "login_button inline">	<?php 
 							$userid = $this->session->userdata('userid');
 							if($userid):?>
 								<a class = "fancybox_logout" href= <?php echo base_url('index.php/site/logout');?> onclick="FB.logout()">Logout</a>
@@ -103,30 +48,7 @@ function fb_login(){
 					</div>
 					
 					</div>
-										
-						<hr class = "style2"/>
-										
-				
+														
 
 			
-			<div id="login" style="display:none";>
-				<div class = "fancybox_div">
-					<p id="login_title"> Sign In to Havenly </p>
-					<p id="login_text"> Trust us,it's way more fun</p>
-					<a href = # onclick="fb_login();"><img src=<?php echo base_url("assets/Images/FBbutton.fw.png");?>></a>
-				</div>
-			</div>
 				
-				
-<script type = "text/javascript">
-	$(".fancybox").fancybox({
-    openEffect  : 'none',
-    closeEffect : 'none',
-    afterLoad   : function() {
-               this.content = this.content.html();
-			  }
-	});
-	
-	
-</script>		
-

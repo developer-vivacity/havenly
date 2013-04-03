@@ -14,9 +14,9 @@
 </section>
 <section class = "block2">
 <ul>
-<li><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"> </li>
-<li><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"> </li>
-<li><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </li>
+<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
+<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
+<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
 </ul>
 </section>
 </div>

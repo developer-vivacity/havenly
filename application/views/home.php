@@ -15,18 +15,15 @@ $(document).ready(function() {
 
 <div id = "slideshow_holder">
 	<div id = "slideshow">
-			<img src = <?php echo base_url("assets/Images/LR_1.jpg")?> class=bgM>
-			<img src = <?php echo base_url("assets/Images/LR_2.jpg")?> class=bgM>
+			<img src = <?php echo base_url("assets/Images/MyDr.jpg")?> class=bgM>
+			<img src = <?php echo base_url("assets/Images/MyLR.jpg")?> class=bgM>
 	</div>
 	<div>.</div>
 
 	<div class="hero_text">
-		<strong><h1 id="hero_text_1">We Design the <span>World.</h1></strong>
-		<p>Interior decorating, for the rest of us. </P>
-		<p class = "small">Search design inspiration:</p>
-		<?php echo form_open('');
-		echo form_input("search", "Search");
-		?>
+		<strong><h1 id="hero_text_1">We Decorate the <span>World.</h1></strong>
+		<p>Your room, designed and delivered. </P>
+			<a class = "button2 teal" href = <?php echo base_url('index.php/Users/site');?>>Take me away  	&rarr;</a>
 		
 </div>
 </div>
@@ -35,35 +32,27 @@ $(document).ready(function() {
 <div class = "push_down">.</div>
 <div class = "desc_container">
 <div id = "header_left"><br>
-<h2 class ="desc_header">Get Your Design</h2>
-<p>We build you a custom design plan from professional decorators and design enthusiasts. <br><br> All for one flat fee.</p></div>
-<br>
+<h2 class ="desc_header">Create Some Magic</h2>
+<p>Professional designers decorate your room. All for one (very low) flat fee.</p></div>
 <div id= "left"> 
 	<img src= <?php echo base_url('assets/Images/photoicon2.fw.png');?>>
 	<h3 class = "desc_subtitle">Tell Us About Your Style</h3>
 	<p>
-	Get started by saving some insipration photos.
-	Complete a short design brief that outlines 
-	what you’re looking for in your new space. 
-	Choose which design package best suits your needs.  
+	Get started by telling us a little about you.  Snap a pic, or tweet us, and we'll get to work.
 	</p>
 	</div>
 
 <div id = "middle">
 	<img src= <?php echo base_url('assets/Images/talkicon.fw.png');?>>
-	<h3 class = "desc_subtitle">Work With Your Favorite Designer</h3>
-	<p>Designers submit concepts to make your room magical. 
-	Compare and choose a winner to help design a room that you’re sure to love. </p>
+	<h3 class = "desc_subtitle">Select the Pieces you Love</h3>
+	<p>Our professional designers show you how your place could look with the items they have picked.  You tell us to buy it all, or just a few of the items we love. </p>
 	</div>
 
 <div id = "right">
 <img src= <?php echo base_url('assets/Images/houseicon.fw.png');?>>
 	<h3 class = "desc_subtitle">Love Your Finished Room</h3>
 	<p>
-	Choose your favorite design concept and complete your room.
-	You will receive a custom design box, 
-	including drawings, paint swatches, floor plans, and an 
-	itemized list of what you'll need, all for a transparent, flat per room fee. 
+	It's as easy as that.  We deliver it for you, and help you find a way to install them.  Keep coming back to see new items we've found that would make your home even more spectacular.
  </p>
 	</div>
 </div>

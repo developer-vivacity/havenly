@@ -26,8 +26,8 @@
 	
 	function check_name($new_file_name) {
 		
-		$this->db->where('filename',$new_file_name);
-		$query = $this->db->get('pictures');
+		$this->db->where('room_photo1',$new_file_name);
+		$query = $this->db->get('user_rooms');
 		
 		if ($query->num_rows()>0)
 		{

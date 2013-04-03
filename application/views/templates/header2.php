@@ -3,13 +3,13 @@
 <head>
 	<title>Havenly | Design for Everyone</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	<meta name="description" content="Havenly decorates your room. We connect you with professional interior designers and help you get everything you need for a beautiful room." />
+	<meta name="keywords" content="Havenly, decorate, interior design, interior decorating, furniture, online furniture, chair, throw pillow" />
 	<meta name="robots" content="index,follow" />
 	<link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
-	
+	<link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
@@ -25,27 +25,21 @@
 
 <div class = "full_wrapper">
 <div class = "inner_wrapper">
-					<div class = "header">
+					<div class = "header center">
 					
-					
+		
+						<br>			
 						
-									
-						
-						<div class = "logo_container">
-						<a class = "logo" href=<?php echo base_url();?>>Havenly</a>
+						<div class = "logo_container center half">
+						<a class = "logo large gray_text" href=<?php echo base_url();?>>Havenly</a>
+						<p class = "text1 small gray_text">Decorate the world.</p>
+						<hr class = "style"/>		
 						</div>
-					<div class = "nav_bar">
-					<ul class = "nav">
-						<li><a href=<?php echo base_url('index.php/Users/site');?>>Your Designs & Inspiration</a></li>
-						<li><a href="">Community Inspiration</a></li>
-					</ul>
-					
-					</div>
-										
+												
 															
 						
 						<br><br>				
 				</div>
-<hr class = "style2"/>
+
 
 

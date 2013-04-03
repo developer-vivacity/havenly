@@ -1,2 +1,7 @@
 <?php
-		print_r($fb_id);
+echo $style;
+echo $color;
+
+echo $style;
+echo $room_type;
+

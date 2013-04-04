@@ -32,18 +32,25 @@
 									
 									
 						
-						<div class = "logo_container_main third inline">
+						<div class = "logo_container_main padding_left third inline">
 						<a class = "logo dark_gray_text" href=<?php echo base_url();?>>Havenly</a>
 						<p class = "small dark_gray_text text1">Decorate the world.</p>
 						</div>
 					
-					<div class = "login_button inline">	<?php 
+					<div class = "login_button inline">
+					 
+							<ul class = "menu_bar">
+							<li class = "inline"> <a href = <?php echo base_url('index.php/Users/site/howwework');?>>How we work</li>
+							<li class = "inline"> <a href = <?php echo base_url('index.php/Users/site/whoweare');?>>Who we are </li>
+							</ul>
+					<?php 
 							$userid = $this->session->userdata('userid');
 							if($userid):?>
 								<a class = "fancybox_logout" href= <?php echo base_url('index.php/site/logout');?> onclick="FB.logout()">Logout</a>
 							 <?php else: ?>
 								<a class = "fancybox"  href="#login"> Login </a>
 							 <?php endif?>
+							
 							
 					</div>
 					

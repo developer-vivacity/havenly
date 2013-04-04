@@ -61,6 +61,7 @@
 		<br><br>
 		<label for="room_type">Which Room Type?</label>
 		<select name="room_type" id="room_type">
+			<option value = "none"></option>
 			<option value="BR" >Bedroom</option>
 			<option value="LR">Living Room</option>
 	</select><br><br>

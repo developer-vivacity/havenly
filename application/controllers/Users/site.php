@@ -108,11 +108,24 @@ Class Site extends CI_Controller {
 	}
 	
 	
-	function how_we_work()
+	function howwework()
 	{
 		$this->load->view('howwework');
 		
 	
+}
+
+
+function whoweare()
+	{
+		$this->load->view('whoweare');
+		
+	
+}
+
+function careers()
+{
+$this->load->view('careers');
 }
 
 }

@@ -1,13 +1,16 @@
+</div>
 
 <div class = "push">
-</div>	
+</div>	</div>
+
 <div class = "footer">
- <section class = "block">
+ <section class = "block padding_left white_text">
 <br><br>
 <ul>
-<li> How we work</li>
-<li> Who we are </li>
-<li>Blog</li>
+<li> <a href = <?php echo base_url('index.php/Users/site/howwework');?>>How we work</li>
+<li> <a href = <?php echo base_url('index.php/Users/site/whoweare');?>>Who we are </li>
+<li> <a href = <?php echo base_url('index.php/Users/site/careers');?>>Careers </li>
+<li><a href = "http://blog.havenly.com">Blog</a></li>
 </ul><br>
 <p>Designed with love in beautiful Colorado.</p>
 

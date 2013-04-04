@@ -9,14 +9,14 @@
 
 <img src = <?php echo base_url('assets/Images/model.jpg');?> height=200><br><br><br>
 <p class = "dark_gray_text medium text1 center">Meet Your Designer: Valerie</p>
-<p class = "gray_text small center">She'll help put together a design plan for you, along with all of the items that she thinks you'd love.</p>
+<p class = "gray_text small center">Valerie will give you a call, and then she'll help put together a design plan for you, along with all of the items that she thinks you'd love.</p>
 </div>
 
 <div id ="second" class = "third inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/throw.jpg');?> height=200><br><br><br>
 <p class = "dark_gray_text medium text1 center">Select the Items You Love</p>
-<p class = "gray_text small center">You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
+<p class = "gray_text small center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
 </div>
 
 

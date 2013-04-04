@@ -76,6 +76,9 @@ a {
 	font-size: 1em;
 }
 
+div p{
+font-family: 'quicksand', sans-serif;}
+
 .noscript{
 background-color: FF6699;
 padding: 10em;
@@ -90,9 +93,6 @@ hr.style { border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); borde
 hr.style1 { border: 0; height: 0; border-top: 1.5px solid rgba (0, 0, 0, 0.5); border-bottom: 1.8px solid rgba(255, 255, 255, 0.9); }
 hr.style2 { border: 0; height:0; border-top: 2px dotted #00CCCC; padding: 0; margin: 5px 0 0 0;}
 
-div p{
-font-family: 'quicksand', sans-serif;
-padding-top: 30px;}
 
 .form p {text-align: center;}
 
@@ -228,7 +228,7 @@ right: 2em;
 }
 
 .push {
-	height: 100px; /* .push must be the same height as .footer */
+	height: 70px; /* .push must be the same height as .footer */
 }
 
 .footer {
@@ -325,6 +325,18 @@ padding:15px 0 0 0 ;
 margin: 0;
 vertical-align: top;
 }
+
+.menu_bar{
+padding: 1em;
+display: inline;
+font-size: 1em;
+font-family: 'Sanchez';
+} 
+
+.menu_bar li{
+padding-left: 1em;
+}
+
 #slideshow{
        	padding:0;
 		width: 100%;
@@ -390,7 +402,7 @@ font-size: .8em;
 }
 
 p.medium{
-font-size: 1.1em;
+font-size: 1.3em;
 }
 .hero_text input {
 	font-family: sans-serif;
@@ -424,27 +436,24 @@ padding-top:10px;
 padding-bottom: 10px;
 margin:0;
 font-family: 'Quicksand', sans-serif;
-font-size:1.1em;
+font-size:1.5em;
 text-shadow: 0px 1px 0.8px  #F5FFFA;
 vertical-align: top;
 }
 
 .desc_container p {
-padding: 5px;
 font-size: .9em;
 font-family: "Sanchez";
-
 }
+
 #header_left{
 text-align: left;
 height: 80px;
-padding-left: 50px;
 padding-bottom: 70px;}
 
 .desc_header {
 font-family: 'Quicksand', sans-serif;
-font-size: 2em;
-padding-left: 7px;
+font-size: 3em;
 }
 
 #header_left p {
@@ -509,6 +518,10 @@ margin-right: 1em;
 vertical-align: top;
 }
 
+.forty{
+width: 40%;
+margin-right: 2em;
+}
 .quicksand{
 font-family: 'Quicksand', sans-serif;
 }
@@ -569,13 +582,20 @@ font-size: 1.7em;
 .top{
 vertical-align: top;
 }
+.middle{
+vertical-align: middle;
+}
 
 .center{
 text-align: center;
 }
 .gray{
 background-color: gray;}
-
+.light_gray{
+background-color: #E8E8E8;
+}
+.light_teal{
+background-color:#C9ECE6;}
 .teal{
 background-color: #00CCCC;
 }
@@ -597,8 +617,9 @@ color: #00CCCC;
 .pink_text{
 color: #CC0033;
 }
-
-
+.white_text{
+color: white;
+}
 
 .inline{
 display: inline-block;
@@ -606,7 +627,6 @@ display: inline-block;
 
 
 .title {
-padding: 10px;
 font-family: 'Quicksand', sans-serif;
 font-size: 3em;
 }
@@ -626,10 +646,8 @@ margin: 0;
 }
 
 .text2  {
-padding: 0px 0 0px 0;
 font-family: 'Sanchez';
 font-size: 1.7em;
-color: gray;
 }
 
 .third{
@@ -661,6 +679,10 @@ margin-left: 3em;
 .right{
 float: right;
 margin-right: 3em;
+}
+
+.left-align{
+text-align: left;
 }
 
 /* New Contest Form */
@@ -798,4 +820,47 @@ font-family: 'Quicksand', sans-serif;
 cursor: pointer;
 }
 
+/* How we work */
+.cover {
+position: relative;
+}
+.horizontal{
+width: 100%;
+}
+.block{
+margin: 0;
+padding: 0;
+display: block;
+vertical-align: middle;
+}
+.absolute{
+position: absolute;
+top: 8em;
+left: 8em;
+z-index: 999;
+background-color: white; 
+opacity: .8}
+
+.padding{
+padding: 5em;
+}
+
+.padding_small{
+padding: 1em;
+}
+
+.padding_left{
+padding-left: 100px;
+}
+
+.padding_right{
+padding-right: 100px;
+}
+.margin_left{
+margin-left: 100px;
+}
+.cover{
+min-width: 1024;
+padding: 0;
+}
 

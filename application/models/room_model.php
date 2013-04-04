@@ -19,7 +19,8 @@ $insert = array(
 'height'=>$data['room_height'],
 'room_type'=>$data['room_type'],
 'room_photo1'=>$data['room_photo1'],
-'room_photo2'=>$data['room_photo2']);
+'room_photo2'=>$data['room_photo2'],
+'status'=>'open');
 
 
 $this->db->insert('user_rooms',$insert);

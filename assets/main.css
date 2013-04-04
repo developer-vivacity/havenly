@@ -863,4 +863,7 @@ margin-left: 100px;
 min-width: 1024;
 padding: 0;
 }
+span.qq-drop-processing{
+display: none;
+}
 

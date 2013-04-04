@@ -3,7 +3,7 @@
 ?>
 
 
-<script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
+<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
 <br>
 
 
@@ -11,16 +11,18 @@
 <noscript>
 <style type="text/css">
         .form_container {display:none;}
-    </style>
-		<br><br><div class = "noscript"><p class = "text2">You Should Enable Javascript.  It is, after all, 2013!</p>
+  </style>
+<br><br>
+<div class = "noscript"><p class = "text2">You Should Enable Javascript.  It is, after all, 2013!</p>
 		
-			<p class = "text">Don't know how?<br><br>
-		Click here for <a href = "https://support.mozilla.org/en-US/home">Mozilla.</a><br>
-						  Click here for <a href= "https://support.microsoft.com/ph/807">Internet Explorer</a><br>
-						   Click here for <a href= "http://support.google.com/adsense/bin/answer.py?hl=en&answer=12654">Google Chrome</a>
-		
-		</div>
+	<p class = "text">Don't know how?<br><br>
+			Click here for <a href = "https://support.mozilla.org/en-US/home">Mozilla.</a><br>
+			Click here for <a href= "https://support.microsoft.com/ph/807">Internet Explorer</a><br>
+			Click here for <a href= "http://support.google.com/adsense/bin/answer.py?hl=en&answer=12654">Google Chrome</a>
+	</p>
+</div>
 </noscript>	
+
 <div class = "form_container">
 <div id="loading">
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
@@ -30,24 +32,21 @@
 
 <div id = "room_pics" class = "resize" ><br><br>
 	<p class = "title dark_gray_text">Let's Start You Up </p>
-<p class = "text1 dark_gray_text"> Pictures are worth 10,000 words.</p>
-<br><br>
+	<p class = "text1 dark_gray_text"> Pictures are worth 10,000 words.</p>
+	<br><br>
 <div id = "first_photo"> 
 	<p class = "text1 dark_gray_text">Get us a <span>shot of the room.</span></p><br>
 	<div>
-		<a class = "button2 teal" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
-		<input type = "file" name = "room_photo1" id = "room_photo1"/>
+		<div id="uploader1">.</div>
 		<input type="hidden" name="room_file1" id="room_file1" />
-		<div id = "image1">.</div>
+		
 	</div>
 </div>
 <div id = "second_photo">
 	<p class = "text1 dark_gray_text"><span>Want Another?</span> Go right ahead</p><br>
 	<div>
-		<a class = "button2 teal" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
-		<input type = "file" name = "room_photo2" id = "room_photo2"/>
+		<div id="uploader2">.</div>
 		<input type="hidden" name="room_file2" id="room_file2" />
-		<div id = "image2">.</div>
 	</div>
 </div><br><br><hr class = "style half"><br>
 <div>
@@ -213,10 +212,69 @@
 	</div>
 	</form>
 	</div>
+	
 	<script>
 	
 	$(document).ready(function(){
 
+		 $('#uploader1').fineUploader({
+				request: {
+				endpoint: '/test/design3/index.php/Users/site/upload_room_pic'
+				},
+				debug:true,
+				multiple: false,
+				validation: {
+				allowedExtensions: ['JPG', 'jpeg', 'jpg', 'gif', 'png'],
+				
+				},
+				text: {
+				uploadButton: '<a class="button2 teal"> Browse</a>'
+				}
+				}).on('complete', function(event, id, fileName, responseJSON) {
+				if (responseJSON.success) {
+					var data = responseJSON.filename;
+					var newimage= '<img src="https://s3.amazonaws.com/easableimages/'+data+'" height=250>';
+					$(this).append(newimage);
+					$("#second_photo").show();
+					$("#room_pics .continue").show();
+					$("#uploader1 .qq-uploader").hide();
+				}
+				});
+			
+	
+		$('#uploader2').fineUploader({
+				request: {
+				endpoint: '/test/design3/index.php/Users/site/upload_room_pic'
+				},
+				debug:true,
+				multiple: false,
+				validation: {
+				allowedExtensions: ['jpeg', 'jpg', 'gif', 'JPG', 'png'],
+				
+				},
+				text: {
+				uploadButton: '<a class="button2 teal"> Browse</a>'
+				}
+				}).on('complete', function(event, id, fileName, responseJSON) {
+				if (responseJSON.success) {
+					var data = responseJSON.filename;
+					var newimage= '<img src="https://s3.amazonaws.com/easableimages/'+data+'" height=250>';
+					$(this).append(newimage);
+					$("#uploader2 .qq-uploader").hide();				 
+				}
+				});
+	
+		$("#room_pics .continue").click(function(){
+			var filename1 =$("#uploader1 img").attr('src');
+			$("#room_file1").val(filename1);
+			var filename2 =$("#uploader2 img").attr('src');
+			$("#room_file2").val(filename2);
+		});
+ 
+
+	
+	
+	
 		$(".inactive").click(function(){
 		$(this).toggleClass('active');
 		var checkbox = $(this).parent().find('.cbox');
@@ -291,58 +349,8 @@ if (isMobile)
 }
 
 
-	
-$("#room_photo1").change(function(){
-$("#loading").show();
-var filename=$("#room_photo1").val();
-$.ajaxFileUpload({
-         dataType : 'JSON',
-		 url         :'/test/design3/index.php/Users/site/upload_room_pic',
-         secureuri      :false,
-         fileElementId  :'room_photo1',
-		 data: {'id':'room_photo1'},
-		 success: function (data){
-		var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
-		$("#image1").html(newimage);
-		$("#image1").show();
-		$("#loading").hide();
-		$("#second_photo").show();
-		$("#room_button1").hide();
-		$(".login").show();
-		}
 
-
-});
-$("#room_pics .continue").fadeIn();
-  });
- 
-$("#room_pics .continue").click(function(){
-var filename =$("#image1 img").attr('src');
-$("#room_file1").val(filename);
-});
- 
-
-$("#room_photo2").change(function(){
-
-$("#loading").show();
-$.ajaxFileUpload({
-         dataType : 'JSON',
-		 url         :'/test/design3/index.php/Users/site/upload_room_pic',
-         secureuri      :false,
-         fileElementId  :'room_photo2',
-		 data: {'id':'room_photo2'},
-		 success: function (data){
-			var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
-			$("#image2").html(newimage);
-			$("#image2").fadeIn();
-			$("#loading").hide();
-			$("#room_button2").hide();
-		}
-});
-
-});
-
-$("#information input:text, #information input:password").keyup(function(){
+ $("#information input:text, #information input:password").keyup(function(){
 if ($("#first_name").val()=="Holly"||$("#first_name").val()==''||$("#last_name").val()=="Golightly"||$("#last_name").val()==''||
 $("#email").val()=="cat@gmail.com"||$("#email").val()==''||$("#phone").val()=="867-5309"||
 $("#phone").val()==''||$("#password").val()=="Password"||$("#password").val()=='')

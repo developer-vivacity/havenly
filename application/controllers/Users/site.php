@@ -23,7 +23,7 @@ Class Site extends CI_Controller {
 	function upload_room_pic(){
 	$this->image_path= realpath(APPPATH.'/images');
 		
-		$name = $this->input->post('id');
+		$name = 'qqfile';
 		$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
 		$extension = end(explode(".", $_FILES[$name]["name"]));
 				if ((($_FILES[$name]["type"] == "image/gif")
@@ -88,9 +88,16 @@ Class Site extends CI_Controller {
 							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
 							if($s3result)
 							{
-							echo $file_name;
-							unlink ($file_location);}
-							else {echo 'Sorry!  Try again';}
+							$result['filename']=$file_name;
+							$result['success']=true;
+							unlink ($file_location);
+							header("Content-Type: text/plain");
+							echo json_encode($result);}
+							else {
+							$result['error']= 'Sorry!  Try again';
+							header("Content-Type: text/plain");
+							echo json_encode($result);
+							}
 							}
 		
 }}}

@@ -200,24 +200,25 @@
 	</div>
 	<div id = "information" class = "resize">
 		<p class = "title dark_gray_text">Now Let Us Get to Know You</p>
-		<p class = "text1 dark_gray_text">We'll be in <span>touch.</span></p><br><br>
+		<p class = "text1 dark_gray_text">We'll be in <span>touch.</span></p><br>
 		<div class = "labels">
-			<label for="first_name">Your First Name:</label><br><br>
-			<label for="last_name">Your Last Name:</label> <br><br>
-			<label for="email">Your Email Address:</label><br><br>
-			<label for="phone">Your Phone Number:</label><br><br>
-			<label for="address">Your Address:</label><br><br>
-			<label for="zipcode">Your Zipcode: </label><br><br>
-			<label for="password">Pick a Password: </label><br>
+		<br><br>
+			<label class = "formlabel" for="first_name">First Name:</label><br><br>
+			<label class = "formlabel" for="last_name">Last Name:</label> <br><br>
+			<label class = "formlabel" for="email">Email:</label><br><br>
+			<label class = "formlabel" for="phone">Phone Number:</label><br><br>
+			<label class = "formlabel" for="address">Address:</label><br><br>
+			<label class = "formlabel" for="zipcode">Zipcode: </label><br><br>
+			<label class = "formlabel" for="password">Pick a Password: </label><br>
 			</div>
 		<div class = "inputs">
-		<input type="text" name="first_name" value="Holly" id="first_name" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="last_name" value="Golightly" id="last_name" maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="email" value="cat@gmail.com" id="email" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="phone" value="867-5309" id="phone" maxlength="100"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="address" value="1 Fifth Avenue" id="address" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="zipcode" value="10024" id="zipcode" maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="password" name="password" value="Password" id="password" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+		<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="text" name="last_name" value="Golightly" id="last_name" class = "forminput"  maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="text" name="email" value="cat@gmail.com" id="email" class = "forminput"  maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="text" name="phone" value="867-5309" id="phone" class = "forminput"  maxlength="100"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="text" name="address" value="1 Fifth Avenue" class = "forminput"  id="address" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<input type="password" name="password" value="Password" id="password" class = "forminput" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
 		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 teal pink" value="Submit" /> 
 	</div>
@@ -229,7 +230,7 @@
 	$(document).ready(function(){
 
 	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #submit").hide();
-  $("#style_pics,#colors,#type,#sizes, #information").hide();
+ $("#style_pics,#colors,#type,#sizes, #information").hide();
 	
 	
 		 $('#uploader1').fineUploader({
@@ -402,6 +403,8 @@ $("#BR").hide();}
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 if (isMobile)
 {
+
+	$(".title").css("font-size","3.5em");
 	$(".resize").css("padding","3em");
 	$("a").css("font-size","40px");
 	$("a").removeClass(".right");
@@ -413,6 +416,27 @@ if (isMobile)
 	$("img.inactive, img.inactive_one, #color .inline").css("height","400");
 	$("#file1, #file2").show();
 	$("#uploader1,#uploader2").hide();
+	$("#room_type").css("width","80%");
+	$("#room_type").css("font-size","2.5em");
+	$("#room_width,#room_height,#about").css("font-size","3.5em");
+	$(".midlarge").css("font-size","2em");
+	$(".forminput").css("font-size","4em");
+	$(".forminput").css("width","100%");
+	$(".labels").hide();
+	$(".inputs").css("width","90%");
+	$(".inputs").css("text-align","center")
+	$(".inputs").css("padding","0em");
+	$(".inputs").css("margin","0em");
+	$("#first_name").val('First Name');
+	$("#last_name").val('Last Name');
+		$("#email").val('Email');
+		$("#phone").val('Phone');
+		$("#address").val('Address');
+		$("#zipcode").val('Zipcode');
+		$("#zipcode").val('Zipcode');
+	$(".forminput").on("click", function(){
+		$(this).val("");
+		});
 	
 }
 

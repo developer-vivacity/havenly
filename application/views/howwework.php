@@ -7,9 +7,10 @@
 <div class = "absolute padding">
 
 <p class = "title">
-Ever wanted the help of a professional?
+	Ever wanted the help of a professional?
 </p><br>
-<p class = "text teal_text right"> .....Now you can.</p>
+<p class = "text teal_text right"> 
+.....Now you've got one.</p>
 </div>
 <div class = "horizontal pink middle block"><br><br>
 <p class = "large white_text padding_left"> We help you get your home perfect.</p><br><br>
@@ -56,7 +57,7 @@ In the event that you dislike a furniture item, give us a call - we'll pick it u
 <div class = "light_teal horizontal block">
 <br><br><br><br><br>
 <div class = "inline">
-<div class = "padding_left inline top">
+<div class = "padding_left padding_right inline top">
 <img src = <?php echo base_url('assets/Images/heart.fw.png');?> height=40>
 <p class = "inline top title dark_gray_text">
 No really, why should I use Havenly?
@@ -76,3 +77,21 @@ Do you just feel like your room needs a little something, but you're not sure wh
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
+
+
+
+<script>
+var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+if (isMobile)
+{
+	$(".padding").css("padding","2em");
+	$(".absolute").css("top","4em");
+	$(".forty").css("width","70%");
+	$(".forty").addClass("padding_left");
+	$(".forty").addClass("padding");
+	$(".large").css("font-size","4em");
+	$(".medium").css("font-size","2.5em");
+	
+}
+
+</script>

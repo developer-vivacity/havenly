@@ -4,8 +4,8 @@
 
 
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
-
-<script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
+<!--<script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
+-->
 <br>
 
 
@@ -40,12 +40,15 @@
 	<p class = "text1 dark_gray_text">Get us a <span>shot of the room.</span></p><br>
 	<div>
 		<div id="uploader1">.</div>
+		
+		
+	<!--	<div id="file_1">
+			<input type = "file" name = "roomphoto1" id = "roomphoto1">
+			<a class = "button2 teal" onclick="$('#roomphoto1').click();">Browse</a>
+			<div id = "image1"></div>
+		</div>
 		<input type="hidden" name="room_file1" id="room_file1" />
-		<div id = "file1">
-			<a class = "button2 teal" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
-			<input type = "file" name = "room_photo1" id = "room_photo1"/>
-			<div id = "image1">.</div>
-		</div>	
+-->		
 	</div>
 </div>
 <div id = "second_photo">
@@ -53,15 +56,15 @@
 	<div>
 		<div id="uploader2">.</div>
 		<input type="hidden" name="room_file2" id="room_file2" />
-		<div id = "file2">
-			<a class = "button2 teal" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
-			<input type = "file" name = "room_photo2" id = "room_photo2"/>
-			<div id = "image2">.</div>
-		</div>	
+		<div id="file_2">
+			<input type = "file" name = "roomphoto2" id = "roomphoto2">
+			<a class = "button2 teal" onclick="$('#roomphoto2').click();">Browse</a>
+			<div id = "image2"></div>
+		</div>
 	</div>
 </div><br><br><hr class = "style half"><br>
 <div>
-	<!--<a class = "button2 login gray">Login, if this is old</a>-->
+	<a class = "button2 login gray">Login, if this is old</a>
 	<a class = "button2 continue pink">Keep Going &rarr;</a><br><br>
 </div>
 </div>
@@ -184,17 +187,17 @@
 	  <p class ="title dark_gray_text">How Much Help Do You Need?</p>
 	  <p class = "text1 dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
-	  <div class = "third inline top">
+	  <div class = "third padding_small inline top">
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Notempty.jpg');?> height=200em><br>
 		<input type="radio" name="type" value = "incomplete" class='cbox' />
-		<p class = "midlarge quicksand gray_text">Just a Little Help</p><br>
-		<p class = "text1 gray_text medium">We'll work around your 'big' pieces and suggest items to make your place the coolest one in school.</p>
+		<br><p class = "midlarge quicksand gray_text">Just a Little Help</p>
+		<p class = "text1 padding_small gray_text medium">We'll work around your 'big' pieces and suggest items to make your place the coolest one in school.</p>
 		</div>	 
-<div class = "third inline top">
+<div class = "third padding_small inline top">
 	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Empty.jpg');?> height=200em><br>
 	  <input type="radio" name="type" value = "complete" class='cbox' />
-	  <p class = "midlarge quicksand gray_text">Complete Makeover</p><br>
-	  <p class = "text1 medium gray_text">Just moving in?  Hate all your furniture?  This option comes with all the pieces to make your room beautiful</p>
+		<br><p class = "midlarge quicksand gray_text">Complete Makeover</p>
+	  <p class = "text1 padding_small medium gray_text">Just moving in?  Hate all your furniture?  This option comes with all the pieces to make your room beautiful</p>
 	  </div>		
 		<br><br><hr class = "style half"/><br><a class = "button2 continue pink" alt="And going!">Keep Going &rarr;</a><br><br>
 	</div>
@@ -228,13 +231,9 @@
 	
 	$(document).ready(function(){
 
-	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #submit").hide();
-  $("#style_pics,#colors,#type,#sizes, #information").hide();
-	
-	
-		 $('#uploader1').fineUploader({
+	 $('#uploader1').fineUploader({
 				request: {
-				endpoint: '/test/design3/index.php/Users/site/upload_room_pic'
+				endpoint: '/031782/index.php/Users/site/upload_room_pic'
 				},
 				debug:true,
 				multiple: false,
@@ -278,58 +277,51 @@
 					$("#uploader2 .qq-uploader").hide();				 
 				}
 				});
-	
-	
-	
-	
-	$("#room_photo1").change(function(){
-	$("#loading").show();
-	var filename=$("#room_photo1").val();
-	$.ajaxFileUpload({
-	dataType : 'JSON',
-	url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
-	secureuri :false,
-	fileElementId :'room_photo1',
-	data: {'id':'room_photo1'},
-	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
-	$("#image1").html(newimage);
-	$("#image1").show();
-	$("#loading").hide();
-	$("#second_photo").show();
-	$("#room_button1").hide();
-	// $(".login").show();
-}
-});
-$("#room_pics .continue").show();
-});
 
+				
+$("#roomphoto1").change(function(){
 
-
-$("#room_photo2").change(function(){
-	$("#loading").show();
-	var filename=$("#room_photo2").val();
-	$.ajaxFileUpload({
-	dataType : 'JSON',
-	url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
-	secureuri :false,
-	fileElementId :'room_photo2',
-	data: {'id':'room_photo2'},
-	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
-	$("#image2").html(newimage);
-	$("#image2").show();
-	$("#loading").hide();
-	$("#room_button2").hide();
-	// $(".login").show();
-}
-
+		$("#loading").show();
+		$.ajaxFileUpload({
+			dataType : 'JSON',
+			url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
+			secureuri :false,
+			fileElementId :'roomphoto1',
+			data: {'id':'roomphoto1'},
+			success: function (data){
+			var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+			$("#image1").html(newimage);
+			$("#loading").hide();
+			$("#first_photo a").hide();
+			$("#second_photo").show();
+			$("#room_pics .continue").show();
+			}
+		});
 
 });
 
+$("#roomphoto2").change(function(){
+
+		$("#loading").show();
+		$.ajaxFileUpload({
+			dataType : 'JSON',
+			url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
+			secureuri :false,
+			fileElementId :'roomphoto2',
+			data: {'id':'roomphoto2'},
+			success: function (data){
+			var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+			$("#image2").html(newimage);
+			$("#loading").hide();
+			$("#second_photo a").hide();
+			}
+		});
+
 });
-	
-	
+
+
+
+
 	
 		$("#room_pics .continue").click(function(){
 			var filename1 =$("#first_photo img").attr('src');
@@ -384,7 +376,8 @@ $("#room_photo2").change(function(){
 			});
 		
 		
-		
+		 $(" #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #submit").hide();
+		$("#style_pics,#colors,#type,#sizes, #information").hide();
 	
 $("#room_type").change(function(){
 if ($(this).val()=='BR'){
@@ -411,8 +404,6 @@ if (isMobile)
 	$("div.third").css("width","70%");
 	$("#sizes div, #information div, #type div").css("padding-bottom","3em");
 	$("img.inactive, img.inactive_one, #color .inline").css("height","400");
-	$("#file1, #file2").show();
-	$("#uploader1,#uploader2").hide();
 	
 }
 

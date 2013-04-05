@@ -56,9 +56,10 @@ $data['password']=$this->input->post('password');
 
 $data['about']=$this->input->post('about');
 $data['type']=$this->input->post('type');
-$data['user_id'] =$this->user_model->save_user($data);
+$data['user_id']=$this->user_model->save_user($data);
+$data['room_id']=$this->room_model->save_room($data);
 $this->user_model->save_preferences($data);
-$this->room_model->save_room($data);
+
 
 $this->session->set_userdata('user_id',$data['user_id']);
 $this->confirm($data);

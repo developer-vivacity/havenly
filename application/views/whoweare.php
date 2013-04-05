@@ -25,7 +25,7 @@ She was formerly a VP at Bankrate, a consultant at Bain, and worked in strategy 
 <br><br>Lee has an MBA from Harvard and a B.S. from Columbia.<br><br>
 She loves cows and has most recenly learned to ski.  Ask her about her collection of speeding tickets.</p>
 </div>
-<div class = "forty inline top">
+<div class = "forty inline top padding_small_sides">
 <p class = "Quicksand midlarge">
 Emily Motayed
 </p>

@@ -11,8 +11,8 @@ public function __construct() {
 
 function index()
 	{
-		$data['main_content'] = 'home';
-		$this->load->view('template',$data);
+		
+		$this->load->view('home');
 		
 		}
 

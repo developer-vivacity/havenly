@@ -28,4 +28,32 @@ $query=$this->db->insert_id();
 return $query;
 		
 		}
+		
+		
+function get_open_rooms(){
+$this->db->where('status !=','closed');
+$this->db->order_by("status", "asc");
+$query=$this->db->get('user_rooms');
+return $query->result_array();
+		
+		}
+
+function get_room($room_id){
+$this->db->where('id',$room_id);
+$query=$this->db->get('user_rooms');
+return $query->result_array();
+		
+		}
+		
+		
+function change_status($room_id, $status){
+$update= array(
+'status'=>$status);
+
+$this->db->where('id',$room_id);
+$query=$this->db->update('user_rooms', $update);
+		
+		}
+
+				
 		}

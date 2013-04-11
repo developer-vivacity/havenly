@@ -37,4 +37,19 @@ $this->db->insert('user_preferences',$insert);
 		
 		}
 		
+function get_user_prefs($user_id, $room_type){
+$this->db->where('user_id',$user_id);
+$this->db->where('room_type',$room_type);
+$query = $this->db->get('user_preferences');
+return $query->result_array();
+
+}		
+
+function get_user($user_id){
+$this->db->where('id',$user_id);
+$query = $this->db->get('users');
+return $query->result_array();
+
+}	
+
 		}

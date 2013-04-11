@@ -1,5 +1,5 @@
 <?php 
-	include(APPPATH.'/views/templates/header.php');
+	include(APPPATH.'/views/templates/header2.php');
 ?>
 	
 	<br><br><br>
@@ -13,7 +13,8 @@
 	If that's you, reach out to lee at havenly dot com.
 	</p>
 	<br><br><br>
-	<div class = "push_down">
+	<div class = "push">
+	</div></div>
 	<?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>

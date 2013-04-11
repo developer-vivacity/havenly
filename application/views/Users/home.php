@@ -1,8 +1,9 @@
 <?php 
-	include(APPPATH.'/views/templates/header2.php');
+	include(APPPATH.'/views/templates/header4.php');
 ?>
-
-
+<a id = "hidden_link" href = "#details"></a>
+<div class = "center"><br><br><br>
+</div>
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
 
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
@@ -33,11 +34,11 @@
 <form name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
 
 <div id = "room_pics" class = "resize" ><br><br>
-	<p class = "title dark_gray_text">Let's Start You Up </p>
-	<p class = "text1 dark_gray_text"> Pictures are worth 10,000 words.</p>
-	<br><br>
+	<p class = "title dark_gray_text">Let's Get Started. </p><br>
+	<p class = "text1 dark_gray_text"> A couple questions to help us better serve you.  <br>We'll be quick.  <span>We promise.</span></p>
+	<br><br><br><br>
 <div id = "first_photo"> 
-	<p class = "text1 dark_gray_text">Get us a <span>shot of the room.</span></p><br>
+	<p class = "text1 midlarge dark_gray_text">Start by uploading a pic of the room:</p><br>
 	<div>
 		<div id="uploader1">.</div>
 		<input type="hidden" name="room_file1" id="room_file1" />
@@ -59,15 +60,20 @@
 			<div id = "image2">.</div>
 		</div>	
 	</div>
-</div><br><br><hr class = "style half"><br>
-<div>
+</div>
+<div class = "horizontal">
+<div class = "padding_small half border auto light_gray">
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text text1 inline"> Or, tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
+</div></div>
+<br><br><hr class = "style half"><br><br><br><br><br>
+<div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 continue pink">Keep Going &rarr;</a><br><br>
+	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
 </div>
 </div>
 	<div id = "style_pics" class = "resize">
-		<p class = "title dark_gray_text">Pick the Pictures You Like </p>
-		<p class = "text1 dark_gray_text"> Just focus on the <span>style</span>.  We'll get to the other stuff later.</p>
+		<p class = "title dark_gray_text">Select the Styles You Like </p><br>
+		<p class = "text1 dark_gray_text"> This helps us match you up with the <span>perfect designer</span></p>
 		<br><br>
 		<label for="room_type">Which Room Type?</label>
 		<select name="room_type" id="room_type">
@@ -76,7 +82,7 @@
 			<option value="LR">Living Room</option>
 	</select><br><br>
 		
-	<div id = "BR">
+	<div id = "BR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=230em></div>
@@ -98,10 +104,9 @@
 		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=230em>
 		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=230em></div>
-		<img class = "notmystyle" src = <?php echo base_url('assets/Images/notmystyle.fw.png');?> height=230em>
-		<br></div>
+		</div>
 		
-		<div id = "LR">
+		<div id = "LR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR1.jpg');?> height=230em></div>
@@ -120,15 +125,17 @@
 		</div><div><input type="checkbox" name="style[]" value = 8 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR8.jpg');?> height=230em>
 		</div>
-		<img class = "notmystyle" src = <?php echo base_url('assets/Images/notmystyle.fw.png');?> height=230em>
-		<br></div>
+		</div>
 		
 		<br>
-<hr class = "style half"/><br><a class = "button2 continue pink">Keep Going &rarr;</a><br><br>
+<hr class = "style half"/><br><br><br><br><br><div class = "continue horizontal"><br>
+	<!--<a class = "button2 login gray">Login, if this is old</a>-->
+	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+</div><br><br>
 </div>
 	<div id = "colors" class = "resize">
-	<p class = "title dark_gray_text">And Some Colors </p>
-		<p class = "text1 dark_gray_text"> Which appeal to you most for your room?</p><br><br>
+	<p class = "title dark_gray_text">Select Some Colors You'd Like </p><br>
+		<p class = "text1 dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(188,196,188);"></div>
 		<input type="checkbox" name="color[]" value = 1 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(255,243,196);"></div>
@@ -144,65 +151,77 @@
 		<div class = "inline"><div class = "color" style = "background-color: rgb(197, 222, 204);"></div>
 		<input type="checkbox" name="color[]" value = 7 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(190, 210, 213);"></div>
-		<input type="checkbox" name="color[]" value = 7 class='cbox' /></div><br>
+		<input type="checkbox" name="color[]" value = 8 class='cbox' /></div><br>
 				
 		<div class = "inline"><div class = "color" style = "background-color: #FF0055;"></div>
-		<input type="checkbox" name="color[]" value = 8 class='cbox' /></div>
-		<div class = "inline"><div class = "color" style = "background-color: #006FFF;"></div>
 		<input type="checkbox" name="color[]" value = 9 class='cbox' /></div>
-		<div class = "inline"><div class = "color" style = "background-color: #00FFF7;"></div>
+		<div class = "inline"><div class = "color" style = "background-color: #006FFF;"></div>
 		<input type="checkbox" name="color[]" value = 10 class='cbox' /></div>
-		<div class = "inline"><div class = "color" style = "background-color: #00FF5E;"></div>
+		<div class = "inline"><div class = "color" style = "background-color: #00FFF7;"></div>
 		<input type="checkbox" name="color[]" value = 11 class='cbox' /></div>
+		<div class = "inline"><div class = "color" style = "background-color: #00FF5E;"></div>
+		<input type="checkbox" name="color[]" value = 12 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: #FFD500;"></div>
-		<input type="checkbox" name="color[]" value = 12 class='cbox' /></div><div class = "inline">
+		<input type="checkbox" name="color[]" value = 13 class='cbox' /></div><div class = "inline">
 		<div class = "color" style = "background-color: #FF1100;"></div>
-		<input type="checkbox" name="color[]" value = 13 class='cbox' /></div>	
+		<input type="checkbox" name="color[]" value = 14 class='cbox' /></div>	
 
-	<br><br><hr class = "style half"/><br><a class = "button2 continue pink">Keep Going &rarr;</a><br><br></div>	
+	<br><br><hr class = "style half"/><br><br><br><br><br>
+	<div class = "continue horizontal"><br>
+	
+	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+</div>
+</div>	
 
 	
 
 	<div id = "sizes" class = "resize" >
-	<p class = "title dark_gray_text">Just a Teeny Bit About the Room </p>
-		<br><p class = "text1 dark_gray_text"> So that we know what we're looking at.</p><br><br>
-		<div class = "left center half">
-		<p class = "midlarge quicksand center gray_text">Rough room dimensions:<p class = "small"> (in feet)</span></p><br>
+	<p class = "title dark_gray_text">Just a Teeny Bit About the Room </p><br>
+		<p class = "text1 dark_gray_text"> That way we know what <span>we're looking at.</span></p><br><br>
+		<div class = "center half">
+		<p class = "midlarge text1 center dark_gray_text">Rough room dimensions:<p class = "small text1 dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="height" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
 		</div>
-		<div class = "right center half">
-			<p class = "midlarge quicksand center gray_text ">Quick note to us:</p><br>
-			<textarea rows="5" cols="20" name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
-	  </div><div class = "clear">
-	  <br><br><hr class = "style half"/><br><br><a class = "button2 continue pink">Keep Going &rarr;</a><br><br></div>	</div>
+		<div class = "center half">
+			<p class = "midlarge text1 center dark_gray_text ">Quick note to us:</p><br>
+			<textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
+	  </div><br><br><br><br>
+	  <div class = "continue horizontal"><br>
+		<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+</div>	</div>
 
 
 	  <div id = "type" class = "resize">
-	  <p class ="title dark_gray_text">How Much Help Do You Need?</p>
+	  <p class ="title dark_gray_text">How Much Help Do You Need?</p><br>
 	  <p class = "text1 dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
-	  <div class = "third inline top">
+	  <div class = "third padding_small inline top">
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Notempty.jpg');?> height=200em><br>
 		<input type="radio" name="type" value = "incomplete" class='cbox' />
 		<p class = "midlarge quicksand gray_text">Just a Little Help</p><br>
-		<p class = "text1 gray_text medium">We'll work around your 'big' pieces and suggest items to make your place the coolest one in school.</p>
+		<p class = "text1 seventy gray_text small">We'll work around your 'big' pieces and suggest items to make your place the coolest one in school.</p>
 		</div>	 
-<div class = "third inline top">
+<div class = "third inline padding_small top">
 	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Empty.jpg');?> height=200em><br>
 	  <input type="radio" name="type" value = "complete" class='cbox' />
 	  <p class = "midlarge quicksand gray_text">Complete Makeover</p><br>
-	  <p class = "text1 medium gray_text">Just moving in?  Hate all your furniture?  This option comes with all the pieces to make your room beautiful</p>
+	  <p class = "text1 seventy small gray_text">Just moving in?  Hate all your furniture?  This option comes with all the pieces to make your room beautiful</p>
 	  </div>		
-		<br><br><hr class = "style half"/><br><a class = "button2 continue pink" alt="And going!">Keep Going &rarr;</a><br><br>
+		<br><br><br><br><hr class = "style half"/><br>
+		<div class = "continue horizontal"><br>
+	
+			<a class = "button2 pink">Keep Going &rarr;</a><br><br>		
+		</div>
+		
 	</div>
 	<div id = "information" class = "resize">
-		<p class = "title dark_gray_text">Now Let Us Get to Know You</p>
-		<p class = "text1 dark_gray_text">We'll be in <span>touch.</span></p><br>
+		<p class = "title dark_gray_text">Now Let Us Get to Know You</p><br>
+		<p class = "text1 dark_gray_text">We'll be in <span>touch.</span></p><br><br>
 		<div class = "labels">
-		<br><br>
+		
 			<label class = "formlabel" for="first_name">First Name:</label><br><br>
 			<label class = "formlabel" for="last_name">Last Name:</label> <br><br>
 			<label class = "formlabel" for="email">Email:</label><br><br>
@@ -225,22 +244,33 @@
 	</form>
 	</div>
 	
-	<script>
 	
-	$(document).ready(function(){
 
+	
+	
+	<script>
+
+	
+	
+	$(document).ready(function(){	  
+	
+	$("#room_pics").fadeIn("slow");
+
+		var left = ($(window).width())/2;
+	$("#loading-image").css("left",left);
+	
 	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #submit").hide();
- $("#style_pics,#colors,#type,#sizes, #information").hide();
+   $("#style_pics,#colors,#type,#sizes, #information").hide();
 	
 	
 		 $('#uploader1').fineUploader({
 				request: {
-				endpoint: '/test/design3/index.php/Users/site/upload_room_pic'
+				endpoint: '/test/Design3/index.php/Users/site/upload_room_pic'
 				},
 				debug:true,
 				multiple: false,
 				validation: {
-				allowedExtensions: ['JPG', 'jpeg', 'jpg', 'gif', 'png'],
+				allowedExtensions: ['JPG', 'jpeg', 'jpg', 'gif', 'png']
 				
 				},
 				text: {
@@ -260,12 +290,12 @@
 	
 		$('#uploader2').fineUploader({
 				request: {
-				endpoint: '/test/design3/index.php/Users/site/upload_room_pic'
+				endpoint: '/test/Design3/index.php/Users/site/upload_room_pic'
 				},
 				debug:true,
 				multiple: false,
 				validation: {
-				allowedExtensions: ['jpeg', 'jpg', 'gif', 'JPG', 'png'],
+				allowedExtensions: ['jpeg', 'jpg', 'gif', 'JPG', 'png']
 				
 				},
 				text: {
@@ -288,7 +318,7 @@
 	var filename=$("#room_photo1").val();
 	$.ajaxFileUpload({
 	dataType : 'JSON',
-	url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
+	url :'/test/Design3/index.php/Users/site/upload_room_pic_phone',
 	secureuri :false,
 	fileElementId :'room_photo1',
 	data: {'id':'room_photo1'},
@@ -306,13 +336,20 @@ $("#room_pics .continue").show();
 });
 
 
+$("#later").click(function(){
+	if($("#later").prop('checked')==true)
+	{$("#room_pics .continue").show();}
+	
+	else {$("#room_pics .continue").hide();}
+	});
+
 
 $("#room_photo2").change(function(){
 	$("#loading").show();
 	var filename=$("#room_photo2").val();
 	$.ajaxFileUpload({
 	dataType : 'JSON',
-	url :'/test/design3/index.php/Users/site/upload_room_pic_phone',
+	url :'/test/Design3/index.php/Users/site/upload_room_pic_phone',
 	secureuri :false,
 	fileElementId :'room_photo2',
 	data: {'id':'room_photo2'},
@@ -405,22 +442,21 @@ if (isMobile)
 {
 
 	$(".title").css("font-size","3.5em");
-	$(".resize").css("padding","3em");
-	$("a").css("font-size","40px");
+	$(".resize").css("padding-top","3em");
+	$(".button2").css("font-size","30px");
 	$("a").removeClass(".right");
 	$("div.half").css("width","90%");
-	$("div.half").removeClass(".left");
-	$("div.half").removeClass(".right");
 	$("div.third").css("width","70%");
-	$("#sizes div, #information div, #type div").css("padding-bottom","3em");
+	$(".resize").css("padding-bottom","3em");
 	$("img.inactive, img.inactive_one, #color .inline").css("height","400");
 	$("#file1, #file2").show();
 	$("#uploader1,#uploader2").hide();
 	$("#room_type").css("width","80%");
 	$("#room_type").css("font-size","2.5em");
-	$("#room_width,#room_height,#about").css("font-size","3.5em");
+	$("#room_width,#room_height,#about").css("font-size","3em");
 	$(".midlarge").css("font-size","2em");
 	$(".forminput").css("font-size","4em");
+	$("#submit").css("font-size","3em")
 	$(".forminput").css("width","100%");
 	$(".labels").hide();
 	$(".inputs").css("width","90%");
@@ -437,6 +473,8 @@ if (isMobile)
 	$(".forminput").on("click", function(){
 		$(this).val("");
 		});
+		
+
 	
 }
 

@@ -15,8 +15,10 @@ function __construct() {
 
 
 function room_submit(){
+if($this->input->post('room_file1')){
+$data['room_photo1']=$this->input->post('room_file1');}
+else {$data['room_photo1']="not submitted";}
 
-$data['room_photo1']=$this->input->post('room_file1');
 
 if($this->input->post('room_file2'))
 {$data['room_photo2']=$this->input->post('room_file2');}
@@ -68,8 +70,50 @@ $this->confirm($data);
 
 function confirm($data)
 {
-	$this->load->view('Users/confirm',$data);
 
+	$config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	$this->load->library('email',$config);
+			$this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this ->email->to($data['email']);
+			$this->email->subject('Hello from Havenly');
+		
+			$this->email->message($this->load->view('Users/confirm_email', $data, true));
+			
+				
+			
+		if($this->email->send()) {
+			$data['message']= 'thank you';
+			}
+			else {
+			ob_start();
+			$this->email->print_debugger();
+			$error = ob_end_clean();
+			$errors[] = $error;
+			
+			}
+		
+	
+	
+	$this->load->library('email',$config);
+			$this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this ->email->to('hello@havenly.com');
+			$this->email->subject('New Room to Design');
+		
+			$this->email->message("New room to design from {$data['first_name']}");
+		$this->email->send();
+	
+	$this->load->view('Users/confirm', $data);
 }
 
 

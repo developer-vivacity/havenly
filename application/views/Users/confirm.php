@@ -1,41 +1,78 @@
 <?php 
-	include(APPPATH.'/views/templates/header2.php');
+	include(APPPATH.'/views/templates/header4.php');
 ?>
 
 
 <div class = "form_container">
+<div id="loading">
+  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
+</div>
+<br><br>
 <p class = "title dark_gray_text">Thanks <?php echo $first_name;?>! <br>Now What Should You<span> Expect?</span>:</p>
 <div id = "first" class = "third left inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/model.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Meet Your Designer: Valerie</p>
-<p class = "gray_text small center">Valerie will give you a call, and then she'll help put together a design plan for you, along with all of the items that she thinks you'd love.</p>
+<p class = "dark_gray_text medium text1 center">Meet Your Designer: Valerie</p><br>
+<p class = "gray_text small text1 center">Valerie will give you a call, and then she'll help put together a design plan for you, along with all of the items that she thinks you'd love.</p>
 </div>
 
 <div id ="second" class = "third inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/throw.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Select the Items You Love</p>
-<p class = "gray_text small center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
+<p class = "dark_gray_text medium text1 center">Select the Items You Love</p><br>
+<p class = "gray_text small text1 center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
 </div>
 
 
 <div id = "third" class = "third right inline"><br><br>
 <img src = <?php echo base_url('assets/Images/lovehome.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Love Your Home</p>
-<p class = "gray_text small center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
+<p class = "dark_gray_text medium text1 center">Love Your Home</p><br>
+<p class = "gray_text small text1 center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
 </div>
 </div>
-<br></div><br><br>
+<br><br><br>
+</div>
+
+
+<!-- Google Code for Completed Form Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 993352783;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+// var google_conversion_color = "ffffff";
+var google_conversion_label = "FkCVCPmWyQQQz7jV2QM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:none;">
+<img height="1" width="1" style="border-style:none; display: none;" alt="" src="//www.googleadservices.com/pagead/conversion/993352783/?value=0&amp;label=FkCVCPmWyQQQz7jV2QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
 
+
+
+
 <script>
-	
+var left = ($(window).width())/2;
+$("#loading-image").css("left",left);
+$(".form_continer").hide();
+$(".form_container img").load(function(){
+	$("#loading").hide();
+	$(".form_container").fadeIn();
+});
+
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 if (isMobile)
 {
+		
 	$(".third img").css("height", 400);
 	$(".medium").css("font-size", "2em");
 
@@ -46,4 +83,6 @@ if (isMobile)
 	$("#third").removeClass("right");
 		
 }
+
+
 </script>

@@ -1,5 +1,5 @@
 <?php
-echo $room_type;
+echo $message;
 
 
 

@@ -1,8 +1,7 @@
 <?php 
-	include(APPPATH.'/views/templates/header.php');
+	include(APPPATH.'/views/templates/header4.php');
 ?>
-<hr class= "style">
-<br>
+<br><br><br>
 <div>
 <p class = "title padding_left">
 We love design.
@@ -36,7 +35,7 @@ She was formerly in marketing at American Express, and a consultant for Huron Co
 <br><br>Emily has a B.A. from Vanderbilt University.<br><br>
 She hates sweating too much, and loves to pocket dial her parents at 3am.</p>
 </div>
-
+<br><br><br><br>
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>

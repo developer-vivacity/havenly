@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Havenly';
+$config['base_url']	= 'http://localhost/test/Design3';
 
 /*
 |--------------------------------------------------------------------------

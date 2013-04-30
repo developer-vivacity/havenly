@@ -608,12 +608,12 @@ color: black;
 } 
 #tabs .ui-tabs-nav .ui-state-default a { 
     color: #c0c0c0; 
-	font-family: 'Quicksand';
+	font-family: 'museo100', 'Lato', sans-serif;
 	font-size: .7em;
 } 
 #tabs .ui-tabs-nav .ui-state-active a { 
     color: #00CCCC;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'museo100', 'Lato', sans-serif;
 	font-size: .7em;
 	text-decoration: underline;
 }
@@ -1008,4 +1008,5 @@ display: none;
 #HWAbackground{
 background-color: white;
 opacity: .8;
+box-shadow: 6px 6px 6px 6px #888;
 }

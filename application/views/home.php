@@ -11,7 +11,7 @@
 	<div class="hero_text margin_left">
 		<strong><h1 id="hero_text_1">We Decorate the <span>World.</h1></strong>
 		<p>Your room, designed and delivered. </P>
-		<a class = "button2 teal" href = <?php echo base_url('index.php/Users/site');?>>Take me away  	&rarr;</a>
+		<a class = "button2 teal" href = <?php echo base_url('index.php/Users/site');?>>Get Started  	&rarr;</a>
 		
 	</div>
 	
@@ -23,10 +23,9 @@
 <h2 class ="desc_header gray_text padding_left padding_right"><br>
 	Want a beautiful room, easily?</h2><br>
 			<p id = "subheader" class = "text padding_left gray_text padding_right midlarge">
-			Our professional interior designers 
-			will create a design plan for you based 
-			on your style and budget- whether you’re 
-			starting from scratch or you’re just looking for that one special piece. No minimums or commitments.  Give us a try!
+			Let our decorators help you pull your room together.  Whether you’re 
+			starting from scratch or you <span>just need a little flair</span>.  
+			We work around the room you already have to suggest items that will complete your style.
 			</p>
 </div></div><br>
 <div class = "horizontal">
@@ -52,7 +51,10 @@
 	<p class = "text1 small gray_text">
 	Show off your new room! Check back in with us for more fun items, your designer will continue to find you items that you love.  You have <span>no commitment</span> to buy anything you don't love!
  </p>
-	</div>
+ 
+</div>
+  <br><br><br><br><br>	<p class = "text1 midlarge gray_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p>
+
 </div>
 <br>
 <br>
@@ -118,13 +120,16 @@ if (isMobile)
 	$(".hero_text").css("left",".3em");
 	$(".hero_text").css("width","70%");
 	$(".hero_text").css("text-align","center");
-	$(".hero_text a").css("font-size","2em");
-	$("#subheader").css("font-size", "1.8em");	
+	$(".hero_text a").css("font-size","2.2em");
+	$("#subheader").css("font-size", "2em");	
 	$(".third").css("width", "70%");
 	$(".third").removeClass("padding_left");
 	$(".third").removeClass("padding_right");
 	$(".third").addClass("padding_small");
-	$("h3").css("font-size","2.5em");
+	$("h3").css("font-size","3em");
+	$(".midlarge").css("font-size", "3em");
+	$(".small").css("font-size", "1.5em");
+	$(".gray_text").removeClass("gray_text");
 	
 }
 

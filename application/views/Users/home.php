@@ -50,7 +50,7 @@
 	</div>
 </div>
 <div id = "second_photo">
-	<p class = "text1 dark_gray_text"><span>Want Another?</span> Go right ahead</p><br>
+	<p class = "text1 dark_gray_text"><span>Share Another.</span> Go right ahead</p><br>
 	<div>
 		<div id="uploader2">.</div>
 		<input type="hidden" name="room_file2" id="room_file2" />
@@ -61,14 +61,14 @@
 		</div>	
 	</div>
 </div>
-<div class = "horizontal">
-<div class = "padding_small half border auto light_gray">
-	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text text1 inline"> Or, tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
-</div></div>
+<div class = "horizontal"><a>
+<div id = "tweetsend" class = "padding_small half border auto light_gray">
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text text1 inline"> Click here to tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
+</div></a></div>
 <br><br><hr class = "style half"><br><br><br><br><br>
 <div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+	<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>
 </div>
 	<div id = "style_pics" class = "resize">
@@ -130,7 +130,7 @@
 		<br>
 <hr class = "style half"/><br><br><br><br><br><div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+	<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'style_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div><br><br>
 </div>
 	<div id = "colors" class = "resize">
@@ -169,7 +169,7 @@
 	<br><br><hr class = "style half"/><br><br><br><br><br>
 	<div class = "continue horizontal"><br>
 	
-	<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+	<a class = "button2 pink"  onClick="_gaq.push(['_trackEvent', 'color_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>
 </div>	
 
@@ -190,7 +190,7 @@
 			<textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
 	  </div><br><br><br><br>
 	  <div class = "continue horizontal"><br>
-		<a class = "button2 pink">Keep Going &rarr;</a><br><br>
+		<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>	</div>
 
 
@@ -213,7 +213,7 @@
 		<br><br><br><br><hr class = "style half"/><br>
 		<div class = "continue horizontal"><br>
 	
-			<a class = "button2 pink">Keep Going &rarr;</a><br><br>		
+			<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'type', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
 		</div>
 		
 	</div>
@@ -239,7 +239,7 @@
 		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
 		<input type="password" name="password" value="Password" id="password" class = "forminput" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
-		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 teal pink" value="Submit" /> 
+		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 teal pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
 	</form>
 	</div>
@@ -259,7 +259,7 @@
 		var left = ($(window).width())/2;
 	$("#loading-image").css("left",left);
 	
-	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #submit").hide();
+	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
    $("#style_pics,#colors,#type,#sizes, #information").hide();
 	
 	
@@ -336,12 +336,12 @@ $("#room_pics .continue").show();
 });
 
 
-$("#later").click(function(){
-	if($("#later").prop('checked')==true)
-	{$("#room_pics .continue").show();}
+// $("#later").click(function(){
+	// if($("#later").prop('checked')==true)
+	// {$("#room_pics .continue").show();}
 	
-	else {$("#room_pics .continue").hide();}
-	});
+	// else {$("#room_pics .continue").hide();}
+	// });
 
 
 $("#room_photo2").change(function(){
@@ -481,9 +481,20 @@ if (isMobile)
 
 
  $("#information input:text, #information input:password").keyup(function(){
-if ($("#first_name").val()=="Holly"||$("#first_name").val()==''||$("#last_name").val()=="Golightly"||$("#last_name").val()==''||
-$("#email").val()=="cat@gmail.com"||$("#email").val()==''||$("#phone").val()=="867-5309"||
-$("#phone").val()==''||$("#password").val()=="Password"||$("#password").val()=='')
+if ($("#first_name").val()=="Holly"||
+$("#first_name").val()==''||
+$("#first_name").val()=='First Name'||
+$("#last_name").val()=="Golightly"||
+$("#last_name").val()==''||
+$("#last_name").val()=="Last Name"||
+$("#email").val()==''||
+$("#email").val()=="cat@gmail.com"||
+$("#email").val()=="email"||
+$("#phone").val()=="867-5309"||
+$("#phone").val()=="phone"||
+$("#phone").val()==''||
+$$("#password").val()=="Password"||
+$("#password").val()=='')
 {
 $("#submit").hide();
 }
@@ -493,8 +504,21 @@ $("#submit").fadeIn();
 
 });
 
-});
+$("#tweetsend").click(function(){
+var check = $(this).find('#later');
+
+check.prop('checked',!check[0].checked);
+if (check.prop('checked')==true)
+	{$("#room_pics .continue").show();
+	$(this).css("background-color","#CC0033");
+	}
 	
+	else {$("#room_pics .continue").hide();
+	$(this).css("background-color","#F0F0F0")
+	}
+
+});
+	});
 
 	
 	</script>

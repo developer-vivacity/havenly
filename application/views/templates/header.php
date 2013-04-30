@@ -42,6 +42,7 @@
 							<ul class = "menu_bar">
 							<li class = "inline text1"> <a href = <?php echo base_url('index.php/Users/site/howwework');?>>How we work</li>
 							<li class = "inline text1"> <a href = <?php echo base_url('index.php/Users/site/whoweare');?>>Who we are </li></a>
+							<li class = "inline text1"> <a href = "http://blog.havenly.com">Blog </li></a>
 							<li class = "pink_text text1 inline"> 1-888-978-3152</li>
 							</ul>
 				

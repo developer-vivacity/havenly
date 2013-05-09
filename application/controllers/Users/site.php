@@ -200,7 +200,14 @@ Class Site extends CI_Controller {
 	
 	function howwework()
 	{
-		$this->load->view('howwework');
+		$this->load->view('Static/howwework');
+		
+	
+}
+
+	function expect()
+	{
+		$this->load->view('Static/expect');
 		
 	
 }
@@ -208,14 +215,14 @@ Class Site extends CI_Controller {
 
 function whoweare()
 	{
-		$this->load->view('whoweare');
+		$this->load->view('Static/whoweare');
 		
 	
 }
 
 function careers()
 {
-$this->load->view('careers');
+$this->load->view('Static/careers');
 }
 
 }

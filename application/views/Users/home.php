@@ -1,5 +1,5 @@
 <?php 
-	include(APPPATH.'/views/templates/header4.php');
+	include(APPPATH.'/views/templates/header2.php');
 ?>
 <a id = "hidden_link" href = "#details"></a>
 <div class = "center"><br><br><br>
@@ -33,29 +33,29 @@
 
 <form name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
 
-<div id = "room_pics" class = "resize" ><br><br>
-	<p class = "title dark_gray_text">Let's Get Started. </p><br>
-	<p class = "text1 dark_gray_text"> A couple questions to help us better serve you.  <br>We'll be quick.  <span>We promise.</span></p>
-	<br><br><br><br>
+<div id = "room_pics" class = "resize" ><br>
+	<p class = "extralarge serif blue_text">Let's Get Started. </p><br>
+	<p class = "midlarge condensed dark_gray_text"> These questions help us better serve you.  <br>We'll be quick.  <span>We promise.</span></p>
+	<br><br>
 <div id = "first_photo"> 
-	<p class = "text1 midlarge dark_gray_text">Start by uploading a pic of the room:</p><br>
+	<p class = "sanslight midlarge dark_gray_text">Start by uploading a picture of the room</p><br>
 	<div>
 		<div id="uploader1">.</div>
 		<input type="hidden" name="room_file1" id="room_file1" />
 		<div id = "file1">
-			<a class = "button2 teal" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
+			<a class = "button2 pink" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
 			<input type = "file" name = "room_photo1" id = "room_photo1"/>
 			<div id = "image1">.</div>
 		</div>	
 	</div>
 </div>
 <div id = "second_photo">
-	<p class = "text1 dark_gray_text"><span>Share Another.</span> Go right ahead</p><br>
+	<p class = "sanslight midlarge dark_gray_text"><span>Share Another.</span> Go right ahead</p><br>
 	<div>
 		<div id="uploader2">.</div>
 		<input type="hidden" name="room_file2" id="room_file2" />
 		<div id = "file2">
-			<a class = "button2 teal" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
+			<a class = "button2 pink" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
 			<input type = "file" name = "room_photo2" id = "room_photo2"/>
 			<div id = "image2">.</div>
 		</div>	
@@ -63,17 +63,17 @@
 </div>
 <div class = "horizontal"><a>
 <div id = "tweetsend" class = "padding_small half border auto light_gray">
-	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text text1 inline"> Click here to tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> Click here to tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
 </div></a></div>
 <br><br><hr class = "style half"><br><br><br><br><br>
 <div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>
 </div>
 	<div id = "style_pics" class = "resize">
-		<p class = "title dark_gray_text">Select the Styles You Like </p><br>
-		<p class = "text1 dark_gray_text"> This helps us match you up with the <span>perfect designer</span></p>
+		<p class = "serif large blue_text">Select the Styles You Like </p><br>
+		<p class = "condensed midlarge dark_gray_text"> This helps us match you up with the <span>perfect designer</span></p>
 		<br><br>
 		<label for="room_type">Which Room Type?</label>
 		<select name="room_type" id="room_type">
@@ -130,12 +130,12 @@
 		<br>
 <hr class = "style half"/><br><br><br><br><br><div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'style_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'style_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div><br><br>
 </div>
 	<div id = "colors" class = "resize">
-	<p class = "title dark_gray_text">Select Some Colors You'd Like </p><br>
-		<p class = "text1 dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
+	<p class = "large serif blue_text">Select Some Colors You'd Like </p><br>
+		<p class = "condensed midlarge dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(188,196,188);"></div>
 		<input type="checkbox" name="color[]" value = 1 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(255,243,196);"></div>
@@ -169,48 +169,42 @@
 	<br><br><hr class = "style half"/><br><br><br><br><br>
 	<div class = "continue horizontal"><br>
 	
-	<a class = "button2 pink"  onClick="_gaq.push(['_trackEvent', 'color_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 medium pink"  onClick="_gaq.push(['_trackEvent', 'color_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>
 </div>	
 
 	
 
 	<div id = "sizes" class = "resize" >
-	<p class = "title dark_gray_text">Just a Teeny Bit About the Room </p><br>
-		<p class = "text1 dark_gray_text"> That way we know what <span>we're looking at.</span></p><br><br>
+	<p class = "large serif blue_text">Just a Teeny Bit About the Room </p><br>
+		<p class = "condensed midlarge dark_gray_text"> That way we know what <span>we're looking at.</span></p><br><br>
 		<div class = "center half">
-		<p class = "midlarge text1 center dark_gray_text">Rough room dimensions:<p class = "small text1 dark_gray_text"> (in feet)</span></p><br>
+		<p class = "midlarge condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="height" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
 		</div>
 		<div class = "center half">
-			<p class = "midlarge text1 center dark_gray_text ">Quick note to us:</p><br>
+			<p class = "midlarge condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
 			<textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
-	  </div><br><br><br><br>
+	  </div><br><br><br><br><br><br><br>
 	  <div class = "continue horizontal"><br>
-		<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+		<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>	</div>
 
 
 	  <div id = "type" class = "resize">
-	  <p class ="title dark_gray_text">How Much Help Do You Need?</p><br>
-	  <p class = "text1 dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
+	  <p class ="large serif blue_text">How Much Help Do You Need?</p><br>
+	  <p class = "midlarge condensed dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
-		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Notempty.jpg');?> height=200em><br>
-		<input type="radio" name="type" value = "incomplete" class='cbox' />
-		<p class = "midlarge quicksand gray_text">Just a Little Help</p><br>
-		<p class = "text1 seventy gray_text small">We'll work around your 'big' pieces and suggest items to make your place the coolest one in school.</p>
+		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
 		</div>	 
 <div class = "third inline padding_small top">
-	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Empty.jpg');?> height=200em><br>
-	  <input type="radio" name="type" value = "complete" class='cbox' />
-	  <p class = "midlarge quicksand gray_text">Complete Makeover</p><br>
-	  <p class = "text1 seventy small gray_text">Just moving in?  Hate all your furniture?  This option comes with all the pieces to make your room beautiful</p>
+	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Type2.png');?> height=300em>
 	  </div>		
-		<br><br><br><br><hr class = "style half"/><br>
+		<br><br><br><br><hr class = "style half"/><br><br><br><br>
 		<div class = "continue horizontal"><br>
 	
 			<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'type', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
@@ -218,25 +212,31 @@
 		
 	</div>
 	<div id = "information" class = "resize">
-		<p class = "title dark_gray_text">Now Let Us Get to Know You</p><br>
-		<p class = "text1 dark_gray_text">We'll be in <span>touch.</span></p><br><br>
-		<div class = "labels">
+		<p class = "large serif blue_text">Now Let Us Get to Know You</p><br>
+		<p class = "condensed midlarge dark_gray_text">We'll be in <span>touch.</span></p><br><br>
+	
+		<div class = "horizontal">
+			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="first_name">First Name:</label>
+			<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput inline" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+			
+		<div class = "horizontal">
+			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="last_name">Last Name:</label> <input type="text" name="last_name" value="Golightly" id="last_name" class = "forminput"  maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+			
+			
+		<div class = "horizontal">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="email">Email:</label>
+		<input type="text" name="email" value="cat@gmail.com" id="email" class = "forminput"  maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 		
-			<label class = "formlabel" for="first_name">First Name:</label><br><br>
-			<label class = "formlabel" for="last_name">Last Name:</label> <br><br>
-			<label class = "formlabel" for="email">Email:</label><br><br>
-			<label class = "formlabel" for="phone">Phone Number:</label><br><br>
-			<label class = "formlabel" for="address">Address:</label><br><br>
-			<label class = "formlabel" for="zipcode">Zipcode: </label><br><br>
-			<label class = "formlabel" for="password">Pick a Password: </label><br>
-			</div>
-		<div class = "inputs">
-		<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="last_name" value="Golightly" id="last_name" class = "forminput"  maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="email" value="cat@gmail.com" id="email" class = "forminput"  maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		<div class = "horizontal">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="phone">Phone Number:</label>
 		<input type="text" name="phone" value="867-5309" id="phone" class = "forminput"  maxlength="100"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="address" value="1 Fifth Avenue" class = "forminput"  id="address" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
-		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+		</div>
+		
+		<div class = "horizontal">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="zipcode">Zipcode: </label>
+		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+		<div class = "horizontal">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="password">Pick a Password: </label>
 		<input type="password" name="password" value="Password" id="password" class = "forminput" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
 		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 teal pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
@@ -245,7 +245,9 @@
 	</div>
 	
 	
-
+<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>
 	
 	
 	<script>
@@ -260,7 +262,7 @@
 	$("#loading-image").css("left",left);
 	
 	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
-   $("#style_pics,#colors,#type,#sizes, #information").hide();
+  $("#style_pics,#colors,#type,#sizes, #information").hide();
 	
 	
 		 $('#uploader1').fineUploader({
@@ -274,7 +276,7 @@
 				
 				},
 				text: {
-				uploadButton: '<a class="button2 teal"> Browse</a>'
+				uploadButton: '<a class="button2 pink"> Browse</a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -299,7 +301,7 @@
 				
 				},
 				text: {
-				uploadButton: '<a class="button2 teal"> Browse</a>'
+				uploadButton: '<a class="button2 pink"> Browse</a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -457,9 +459,10 @@ if (isMobile)
 	$(".midlarge").css("font-size","2em");
 	$(".forminput").css("font-size","4em");
 	$("#submit").css("font-size","3em")
-	$(".forminput").css("width","100%");
 	$(".labels").hide();
-	$(".inputs").css("width","90%");
+		$(".forminput").css("margin", "1em%");
+	$(".forminput").css("width","80%");
+	$(".inputs").css("width","80%");
 	$(".inputs").css("text-align","center")
 	$(".inputs").css("padding","0em");
 	$(".inputs").css("margin","0em");
@@ -467,7 +470,6 @@ if (isMobile)
 	$("#last_name").val('Last Name');
 		$("#email").val('Email');
 		$("#phone").val('Phone');
-		$("#address").val('Address');
 		$("#zipcode").val('Zipcode');
 		$("#zipcode").val('Zipcode');
 	$(".forminput").on("click", function(){
@@ -478,9 +480,11 @@ if (isMobile)
 	
 }
 
-
-
+ $("#sizes input:text").keyup(function(){
+ $(this).css("color","gray");});
+ 
  $("#information input:text, #information input:password").keyup(function(){
+ $(this).css("color","gray");
 if ($("#first_name").val()=="Holly"||
 $("#first_name").val()==''||
 $("#first_name").val()=='First Name'||
@@ -493,7 +497,7 @@ $("#email").val()=="email"||
 $("#phone").val()=="867-5309"||
 $("#phone").val()=="phone"||
 $("#phone").val()==''||
-$$("#password").val()=="Password"||
+$("#password").val()=="Password"||
 $("#password").val()=='')
 {
 $("#submit").hide();
@@ -510,7 +514,8 @@ var check = $(this).find('#later');
 check.prop('checked',!check[0].checked);
 if (check.prop('checked')==true)
 	{$("#room_pics .continue").show();
-	$(this).css("background-color","#CC0033");
+	$(this).css("background-color","gray");
+	$(this).css("color", "white");
 	}
 	
 	else {$("#room_pics .continue").hide();

@@ -6,9 +6,11 @@
 	<meta name="description" content="Havenly decorates your room. We connect you with professional interior designers and help you get everything you need for a beautiful room." />
 	<meta name="keywords" content="Havenly, decorate, interior design, interior decorating, furniture, online furniture, chair, throw pillow" />
 	<meta name="robots" content="index,follow" />
-		<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,700,800,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 	<link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
@@ -25,18 +27,18 @@
 
 <div class = "full_wrapper">
 <div class = "inner_wrapper">
-	<div class = "horizontal teal">
-	
+	<div class = "horizontal ">
+	<div class = "front">
 		<div class = "padding_left padding_small">
 	<a href = <?php echo base_url();?>>
-	<img src = <?php echo base_url('assets/Images/logowhitegray.png');?> height=40></a>
-	</div>
-	<div class = "login_button inline">
+	<img src = <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a>
+	</div></div>
+	<div class = "back login_button_main padding_small gray inline right-align">
 					 
-							<ul class = "menu_bar_2">
-							<li class = "white_text text1 inline "> <a href = <?php echo base_url('index.php/Users/site/howwework');?>>How we work</li>
-							<li class = "white_text text1 inline "> <a href = <?php echo base_url('index.php/Users/site/whoweare');?>>Who we are </li></a>
-							<li class = "pink_text text1 inline"> 1-888-978-3152</li>
+						<ul class = "menu_bar right-align">
+							<li class = "dark_gray_text condensed medium text1 inline "> <a class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>How we work</li>
+							<li class = "dark_gray_text condensed medium text1 inline "> <a class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>Who we are </li></a>
+							<li class = "pink_text condensed medium text1 inline"> 1-888-978-3152</li>
 							</ul>
 				
 							

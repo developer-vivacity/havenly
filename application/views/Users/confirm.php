@@ -1,5 +1,5 @@
 <?php 
-	include(APPPATH.'/views/templates/header4.php');
+	include(APPPATH.'/views/templates/header2.php');
 ?>
 
 
@@ -7,27 +7,27 @@
 <div id="loading">
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
-<br><br>
-<p class = "title dark_gray_text">Thanks <?php echo $first_name;?>! <br>Now What Should You<span> Expect?</span>:</p>
+<br><br><br><br><br><br>
+<p class = "serif large dark_gray_text">Thanks <?php echo $first_name;?>! <br>Now What Should You<span> Expect?</span>	</p>
 <div id = "first" class = "third left inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/model.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Meet Your Designer: Valerie</p><br>
-<p class = "gray_text small text1 center">Valerie will give you a call, and then she'll help put together a design plan for you, along with all of the items that she thinks you'd love.</p>
+<p class = "dark_gray_text midlarge condensed center">Meet Your Designer: Valerie</p><br>
+<p class = "gray_text small sanslight center">Valerie will give you a call within three business days, and she'll help put together a design plan for you, including all of the items that she thinks you'd love.</p>
 </div>
 
 <div id ="second" class = "third inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/throw.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Select the Items You Love</p><br>
-<p class = "gray_text small text1 center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
+<p class = "dark_gray_text midlarge condensed center">Select the Items You Love</p><br>
+<p class = "gray_text small sanslight center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
 </div>
 
 
 <div id = "third" class = "third right inline"><br><br>
 <img src = <?php echo base_url('assets/Images/lovehome.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text medium text1 center">Love Your Home</p><br>
-<p class = "gray_text small text1 center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
+<p class = "dark_gray_text midlarge condensed center">Love Your Home</p><br>
+<p class = "gray_text small sanslight center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
 </div>
 </div>
 <br><br><br>

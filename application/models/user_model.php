@@ -50,6 +50,13 @@ $this->db->where('id',$user_id);
 $query = $this->db->get('users');
 return $query->result_array();
 
-}	
+}
 
-		}
+function invite_request($data){
+$insert=array(
+'email'=>$data['email'],
+'zipcode'=>$data['zipcode']);
+	
+$this->db->insert('invite_requests',$insert);
+
+		}}

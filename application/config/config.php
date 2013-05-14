@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://192.168.1.3/test/Design3';
+$config['base_url']	= 'http://192.168.1.7/test/Design3';
 
 /*
 |--------------------------------------------------------------------------

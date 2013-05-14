@@ -1,0 +1,275 @@
+
+
+
+@media only screen and (min-device-width:768px) and (max-device-width: 1024px){
+.logo, #logo{
+position: absolute;
+top: .5em;
+left: .5em;
+}
+.logo img, #logo img{
+height: 100px;
+}
+
+#logo{
+padding: 0;
+}
+
+.coverimage{
+height: 500px;
+}
+
+.hero_text{
+	position: absolute; 
+	top: 150px;
+	width: 100%;
+	text-align: center;
+}
+
+.login_button_main, #menu_bar{
+display:none;
+}
+.navmenu{
+display: block;
+width: 100%;
+}
+
+.navmenu ul{
+display: none;
+}
+
+.navmenu ul{
+border: 1px solid lightgray;
+font-family: 'Open Sans Condensed';
+font-size: 1.4em;
+background-color: #F9F7F8;
+padding: 5px;
+}
+
+.navmenu ul li{
+padding: 5px;
+width: 45%; 
+display: inline-block;
+
+}
+
+#pull{
+
+display: block;
+position: absolute;
+top: .5em;
+right: .5em;
+border: 1px solid white;
+height: 25px;
+}
+
+#overlay .boxoverlay{
+width: 70%;
+}
+
+
+.extralarge{
+font-size: 42px;
+}
+
+.large{
+font-size: 36px;}
+
+.midlarge{
+font-size: 24px;
+}
+.medium{
+font-size: 20px;
+}
+.small{
+font-size: 16px;
+}
+
+
+.padding_left, .padding_right, .padding_small_sides, .padding_small, .padding{
+padding-left:0;
+padding-right: 0;
+}
+
+.paddingmob{
+padding-left: 15px;
+padding-right: 15px;
+} 
+
+.third{
+width: 30%;}
+
+#abouttheteam{
+height: 500px;
+}
+
+#abouthero{
+top:200px;
+}
+
+#howwework{
+height: 500px;
+}
+
+#workhero{
+position: absolute;
+top:200px;
+}
+
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 767px)
+{	
+.logo, #logo{
+position: absolute;
+top: .3em;
+left: .6em;}
+.logo img, #logo img{
+height: 50px;
+}
+
+#logo{
+padding: 0;
+
+}
+
+.footer ul li{
+display: block;
+}
+
+p{
+word-wrap:break-word;}
+
+.coverimage{
+	position: relative;
+	background-color: gray;
+	background-image: url('Images/flowermob.jpg');
+	background-repeat: no-repeat;
+	height: 500;
+	position: relative;
+	padding:0;
+	margin: auto;
+	overflow: hidden;}
+	
+.hero_text{position: absolute; 
+	top: 90px;
+	width: 100%;
+	text-align: center;}
+	
+
+.login_button_main, #menu_bar{
+display:none;
+}
+.navmenu{
+display: block;
+width: 100%;
+}
+
+.navmenu ul{
+display: none;
+}
+
+.navmenu ul{
+border: 1px solid lightgray;
+font-family: 'Open Sans Condensed';
+font-size: .9em;
+background-color: #F9F7F8;
+padding: 5px;
+}
+
+.navmenu ul li{
+padding: 5px;
+width: 45%; 
+display: inline-block;
+
+}
+
+#pull{
+display: block;
+position: absolute;
+top: .5em;
+right: .5em;
+border: 1px solid white;
+height: 22px;
+}
+
+#overlay .boxoverlay{
+width: 70%;
+}
+
+
+.extralarge{
+font-size: 32px;
+}
+
+.large{
+font-size: 24px;
+}	
+
+.midlargeplus{
+font-size: 26px;
+}
+
+.midlarge{
+font-size: 20px;
+}	
+
+
+.medium{
+font-size: 18px;
+}	
+
+
+.small{
+font-size: 14px;
+}	
+
+
+.third, .forty, .seventy{
+width: 90%;
+margin: 0;
+padding-bottom: 20px;
+}
+
+.half {
+width: 90%;
+margin: 0;
+padding-bottom: 20px;
+}
+
+#video{
+width: 90%}
+
+
+
+.padding_left, .padding_right, .padding_small_sides, .padding_small, .padding{
+padding-left:0;
+padding-right: 0;
+}
+
+.paddingmob{
+padding: 15px;
+}
+
+#abouttheteam{
+background-image: url('Images/lampmob.jpg');
+background-repeat: none;
+height:400px;
+width: 100%;
+position: relative;
+}
+
+
+#howwework{
+background-image: url('Images/MyLR2mob.jpg');
+background-repeat: none;
+width: 100%;
+position: relative;
+height: 400px;
+}
+
+#workimage, #shippingdiv img{
+widtH: 100%;
+}
+
+	}

@@ -24,19 +24,6 @@ a{
 color: gray;
 }
 
-
-
-@font-face {
-    font-family: 'museo100';
-		src: url('Fonts/museo100-webfont.eot');
-		src: url('Fonts/museo100-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Fonts/museo100-webfont.woff') format('woff'),
-         url('Fonts/museo100-webfont.ttf') format('truetype'),
-         url('Fonts/museo100-webfont.svg#museo_sans100') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 a:hover{
 cursor:pointer;
 opacity: .6;
@@ -77,7 +64,7 @@ body {
 }
 
 html, body, .full_wrapper, .inner_wrapper {
-    min-width: 1024px;
+  /*   min-width: 1024px; */
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -110,7 +97,7 @@ color: white;
 
 
 hr.style { border: 0; height: 0; border-top: 1.5px solid lightgray; border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
-
+hr.style1 { border: 0; height: 0; border-top: 1.5px solid gray;  }
 hr.style2 { border: 0; height: 0; border-bottom: 1.5px solid white; }
 
 
@@ -155,7 +142,7 @@ vertical-align: top;
 }
 
 .header {
-    min-width: 1024px;
+   /*  min-width: 1024px; */
 	opacity: 0.8;
 	background-repeat: repeat;
 	width: 100%;
@@ -166,7 +153,7 @@ vertical-align: top;
 }
 
 .header_main{
-    min-width: 1024px;
+    /* min-width: 1024px; */
 	background-repeat: repeat;
 	width: 100%;
 	height: 100px;
@@ -259,7 +246,7 @@ display: inline-block;
 *display: inline;
     zoom: 1;
 position: absolute;
-top: 0em;
+top: 25px;
 }
 
 .push {
@@ -317,7 +304,6 @@ top: 0em;
     padding-right: 20px;
     padding-top: 5px;
 	font-family: 'open sans condensed',  sans-serif;
-	font-size: 1.5em;
 	display:inline;
 	}
 
@@ -337,7 +323,7 @@ vertical-align:top;
 .block2 {
 	padding-top: 20px;
 	padding-right:50px;
-	width: 40%; 
+	width: 30%; 
 	float: right;}
 
 .block2 ul {
@@ -380,34 +366,33 @@ padding-right: 1em;
 
 
 .coverimage{
-	min-height: 400px;
+	min-height: 420px;
 	display: block;
-	min-width: 1024px;
+/* 	min-width: 1024px; */
 	width: 100%;
 }
 
-.bgM {
-	background-image: url('Images/Lampbg.jpg');
+.coverimage{
+	background-image: url('Images/flowerbg.jpg'); 
 	background-repeat: no-repeat;
 	width: 100%;
 	position: relative;
 	padding:0;
 	margin: auto;
 	overflow: hidden;
+	background-size: cover;
 }
 
-.bgM img{
-	width: 100%;
-	position: relative;
-	overflow: hidden;
-}
 
+.navmenu, #pull{
+display: none;
+}
 
 
 .logo{
 	position: absolute;
-	top: 10px;
-	left: 40px;
+	top: 15px;
+	left: 20px;;
 	/* width:100%;
 	text-align: center; */
 	}
@@ -415,9 +400,9 @@ padding-right: 1em;
 
 
 .hero_text {
-		font-family: sans-serif;
+	font-family: sans-serif;
 	position: absolute; 
-	top: 350px;
+	top: 150px;
 	width: 100%;
 	text-align: center;
 		}
@@ -482,6 +467,56 @@ font-size: 1.5em;
   z-index: 100;
 }
 
+#overlay{
+display:none;
+position: absolute;
+top:0px;
+left: 0px;
+width: 100%;
+height:100%;
+text-align: center;
+z-index: 999;
+vertical-align: middle;
+}
+
+#overlay .boxoverlay{
+margin: auto;
+width: 50%;
+background-image:url('Images/linen_bg.fw.png');
+text-align: center;
+vertical-align: middle;
+margin: 15px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+display: inline-block;
+background-clip: padding-box;
+-webkit-appearance: none;
+-moz-background-clip: padding;
+-webkit-background-clip: padding;
+border: 30px solid rgba(0,0,0,0.3);
+}
+#overlay .boxoverlay div{
+position: relative;
+}
+
+#overlay .close{
+position: absolute;
+top: 0px;
+left: 0px;
+}
+
+#overlay input[type=text] {
+text-align: center;
+font-size: 1.2em;
+padding: .4em;
+font-family: 'Open Sans', sans-serif;
+-webkit-box-shadow: inset 2px 2px 2px 0px #000000;
+    -moz-box-shadow: inset 2px 2px 2px 0px #000000;
+    box-shadow: inset 2px 2px 2px 0px #000000;
+}
 
 /* Tabs */
 
@@ -595,6 +630,9 @@ font-size: 7em;
 font-size: 4em;
 }
 
+.midlargeplus{
+font-size: 3em;
+}
 .midlarge{
 font-size: 2em;
 }
@@ -652,7 +690,7 @@ margin-right: 3em;
 .gray{
 background-color: gray;}
 .light_gray{
-background-color: #F4F2F0 ;}
+background-color:rgb(245, 245, 244) ;}
 .blue{
 background-color: #91C5C5;}
 .pink {
@@ -665,6 +703,9 @@ background-color: white;
 background-color: #a7d283;}
 .translucent{
 opacity: .5;
+}
+.translucent2{
+opacity: .8;
 }
 .tan{
 background-color: #BCB2A8;}
@@ -754,7 +795,7 @@ padding-right: 100px;
 margin-left: 100px;
 }
 .cover{
-min-width: 1024;
+/* min-width: 1024; */
 padding: 0;
 }
 
@@ -763,9 +804,9 @@ position: relative;
 z-index: 999;
 }
 
-.front{
+.back{
 position: relative;
-z-index: -5;
+z-index: 0;
 }
 
 
@@ -863,6 +904,7 @@ color: white;
 -moz-background-clip: padding;
 -webkit-background-clip: padding;
  border: 7px solid rgba(255,255,255,0.2);
+ z-index:999;
 }
 
 
@@ -1039,6 +1081,9 @@ cursor: pointer;
 #howwework{
 background-image:url('Images/MyLR2.jpg');
 background-repeat: none;
+width: 100%;
+position: relative;
+background-size: cover;
 }
 #howwework a:hover{
 opacity:.4;
@@ -1048,21 +1093,13 @@ height: 110px;
 }
 
 #abouttheteam{
-background-image: url('Images/MyLR3.jpg');
+background-image: url('Images/lampbg.jpg');
 background-repeat: none;
-
+background-size: cover;
 width: 100%;
 position: relative;
 }
 
-
-#lampstrip{
-background-image: url('Images/lampstrip.jpg');
-background-repeat: none;
-
-width: 100%;
-position: relative;
-}
 
 #abouthero{
 position: absolute;

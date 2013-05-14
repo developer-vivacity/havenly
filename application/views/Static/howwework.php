@@ -1,11 +1,20 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
+<div class="navmenu">  
+    <ul>  
+        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
+        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
+        <li><a href="#">1-888-978-3152</a></li>  
+      </ul>  
+  
+</div>  
 <div id = "howwework">
 <div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a></div>
 <div class = "right">
+<a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
 <div class = "right_align inline top padding_small">
-<ul class = "menu_bar dark_gray_text">
+<ul class = "menu_bar dark_gray_text" id = "menu_bar">
 		<li class = "inline dark_gray_text medium condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
 			
 		<li class = "dark_gray_text medium condensed inline"> 1-888-978-3152</li>
@@ -14,7 +23,7 @@
 
 <br><br>
 <div class = "center"><br><br>
-<div class = "clear white padding_small_top center" id = "workhero">
+<div class = "clear translucent2 white padding_small_top center" id = "workhero">
 <p class = "cursive middle dark_gray_text extralarge">
 Let us help.  </p>
 <p class = "half condensed dark_gray_text middle midlarge">We can help you put it together.  We ship you everything you need for a stylish room that reflects your taste and budget.  </p><br><br><BR><BR>
@@ -30,7 +39,7 @@ Let us help.  </p>
 <div id = "expectdiv"><br><br><br>
 <div class = "center"><p class = "condensed center">
 -what to expect-</p><BR><BR>
-<img src = <?php echo base_url('assets/Images/howwework.png');?> height = 220 class = "inline padding_small" ><br><br>
+<img src = <?php echo base_url('assets/Images/howwework.png');?> height = 220 class = "inline padding_small" id = "workimage"><br><br>
 <h2 class = "seventy serif medium dark_gray_text middle"><span>&sect;
 </span></h2>
 <br>
@@ -104,10 +113,30 @@ You log back in and with one click on the items you like,  we send them to you, 
 </div>
 <div class = "horizontal center padding_small_top light_gray"><BR><BR>
 <p class = "seventy large center pink_text condensed">
-Try us out  <a class = "pink_text cursive" href = <?php echo base_url('index.php/Users/site');?>> here &rarr;</a></p><br>
+Try us out  <a class = "pink_text cursive" id= "startbutton" href="#overlay"> here &rarr;</a></p><br>
 <p class = "serif small pink_text">
-(we won't hurt you)</p><BR><BR>
+(we're really nice, we promise.)</p><BR><BR>
 </div>
+
+
+<div id = "overlay">
+<div class = "boxoverlay"><div class = "paddingmob padding_small">
+<a class = "close sanslight small padding_small light_gray_text">X Close</a>
+<p class = "padding_small_top midlarge serif">You like us!</p>
+<hr class = "seventy style">
+<p class = "condensed medium padding_small">Havenly is currently open to people with an invitation.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
+</p>
+<form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
+<div class = "horizontal">
+<label class = "half sanslight medium middle inline" for="Email">Email Address:</label><br><br>
+<input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/>
+</div><br><br>
+<div class = "horizontal">
+<label class = "half sanslight medium middle inline" for="Zipcode">Zipcode:</label><br><br>
+<input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br><br>
+<a class = "button3 pink white_text serif" id = "requestinvite">Request</a><br><br>
+</form>
+</div></div></div>
 
 <script>
 function heroheight(){
@@ -119,18 +148,11 @@ $(" #shippingdiv, #portfoliodiv").hide();
 
 $(document).ready(function(){
 
+var viewportHeight = $(window).height();
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 if (isMobile)
 {
-	$(".padding").css("padding","2em");
-	$(".third").css("width","70%");
-	$(".third").addClass("padding_left");
-	$(".third").addClass("padding");
-	$(".large").css("font-size","4em");
-	$(".medium").css("font-size","2.5em");
-	$(".half").css("width","80%");
-	$(".button2").css("padding",".5em");
-	$("#howwework").height(800)
+		$("hr").hide();
 	}
 
 	else {heroheight();}
@@ -151,6 +173,26 @@ $("#portfoliodiv, #expect, #shipping").fadeIn(1500);
 
 	});
 	
+	
+ $("#pull").on('click', function(){
+	$(".navmenu ul").slideToggle();
+	
+ 
+    });
+	
+$("#startbutton").click(function(){
+$("#overlay").fadeIn(1000);
+});
+
+$("#overlay .close").on("click", function(){
+$("#overlay").fadeOut(1000);
+});
+$('#overlay').click(function(e) {
+    if (e.target.id === "overlay"){
+        $('#overlay').fadeOut();
+    }
+});
+
 	
 	});
 </script>

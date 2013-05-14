@@ -6,21 +6,17 @@
 	<meta name="description" content="Havenly decorates your room. We connect you with professional interior designers and help you get everything you need for a beautiful room." />
 	<meta name="keywords" content="Havenly, decorate, interior design, interior decorating, furniture, online furniture, chair, throw pillow" />
 	<meta name="robots" content="index,follow" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />	
+
 	<link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
-	<link rel="stylesheet" href=<?php echo base_url("assets/Scripts/jquery.fancybox.css")?> type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
-<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,700,800,300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 
-	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery-1.9.js")?>></script>
+	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
+	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/media.css");?> />
+	<link href='http://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,300|Open+Sans+Condensed:300|Arizonia' rel='stylesheet' type='text/css'>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.js")?>></script>
-	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fancybox.pack.js")?>></script>
-	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.cycle.js")?>></script>
 	</head>
 
 <body>

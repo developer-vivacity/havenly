@@ -3,21 +3,29 @@
 ?>
 
 <a id = "hidden_link" href = "#welcome"></a>
+<div class="navmenu">  
+    <ul>  
+        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
+        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
+        <li><a href="#">1-888-978-3152</a></li>  
+      </ul>  
+  
+</div>  
+
 
 <div class = "coverimage">
-<div class = "bgM">
-	<img src = <?php echo base_url("assets/Images/Lampbg.jpg")?>>
+<div class = "bgM horizontal right-align">
+	  <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
 </div>	
 
-
-
+<div class = "horizontal">
 <div class = "login_button_main right-align">
 <div class = "inline padding_small right-align">	
-	<ul class = "menu_bar midsmall dark_gray_text">
-	<li class = "inline midsmall condensed"> <a  class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
-		<li class = "inline midsmall condensed"> <a  class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>/
+	<ul class = "menu_bar midsmall white_text">
+	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
+		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>/
 			
-		<li class = "pink_text midsmall condensed inline"> 1-888-978-3152</li>
+		<li class = "blue_text midsmall condensed inline"> 1-888-978-3152</li>
 		
 	</div>
 	
@@ -28,20 +36,19 @@
 <div class = "logo">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
-				
+</div>				
 
 	
 	
 	<div class="hero_text"><br><br>
 		<div class = "padding_small">
-		<p class = "midlarge white_text sanslight">
+		<p class = "midlargeplus dark_gray_text sanslight">
 			YOUR ROOM, DECORATED AND DELIVERED.</p>
-			<hr class = "seventy style2">
-		<p class = "extralarge white_text cursive">
+			<hr class = "seventy style1">
+		<p class = "extralarge dark_gray_text cursive">
 			Your place just got better.</p><br>
-			<br><br><br>
-		<a id = "startbutton" class = "button3"
-		 href = <?php echo base_url('index.php/Users/site');?>>
+			<br>
+		<a id = "startbutton" class = "button3">
 		<p class = "condensed bottom inline midlarge white_text">GET STARTED&nbsp;
 		<p class = "inline cursive bottom white_text midlarge">here</p></a>
 				
@@ -49,15 +56,16 @@
 	
 </div>	</div></div>
 
-<div class = "horizontal white center padding_small_top middle" id = "titlerow">
+<div class = "horizontal back white center padding_small_top middle" id = "titlerow">
 
 </div>
 
 
 <div class = "horizontal"><br><br><br><br>
+<div id = "description" class = "paddingmob">
 <p class = "blue_text serif padding_left large">Your very own personal decorator.</p><br>
-<p class = "dark_gray_text sanslight medium space padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And if you like it, we deliver it all to you. No catch, really.</p>
-<br><BR>
+<p class = "dark_gray_text sanslight medium space padding_right padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And if you like it, we deliver it all to you. No catch, really.</p>
+<br><BR></div>
 <div class = "row center">
 <div class= "third top dark_gray_text center inline padding_left"> 
 	<img src= <?php echo base_url('assets/Images/Desc_1.png');?> height="105"><br><br>
@@ -89,25 +97,42 @@
 
 </div></div>
 <div class = "horizontal center light_gray"><br><br><br><br>
-<p class= "blue_text serif large">
-How Havenly Works</p>
-<br>
-
-<h2 class = "seventy serif medium dark_gray_text middle"><span class = "light_gray">&sect;
+<div class = "half inline">
+<BR><BR>
+<h2 class = "seventy sans-serif dark_gray_text middle"><span class = "light_gray small">HOW HAVENLY WORKS
 </span></h2><br><br>
-<p class = "sanslight midlarge dark_gray_text">
-It's pretty easy.  You tell us a bit about you.  We do the work.</p><br><br><br>
-
-<iframe height="315" width = "500" src="http://www.youtube.com/embed/UxMgM_TCbPE" frameborder="0" allowfullscreen></iframe>
-<br><br><br><BR><BR><BR><BR>
+<p class = "seventy paddingmob midlarge serif dark_gray_text">
+It's pretty easy.  You tell us a bit about you.  We do the work.</p></div>
+<div class = "half inline">
+<iframe id = "video" height="315" width = "500" src="http://www.youtube.com/embed/UxMgM_TCbPE" frameborder="0" allowfullscreen></iframe>
+</div>
+<BR><BR><BR><BR><BR>
 </div>
 
 <div class = "horizontal center padding_small_top white"><BR><BR>
 <p class = "seventy large center pink_text condensed">
-Try us out  <a class = "pink_text cursive" href = <?php echo base_url('index.php/Users/site');?>> here &rarr;</a></p><br>
+Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay"> here &rarr;</a></p><br>
 <p class = "serif small pink_text">
-(we won't hurt you)</p><BR><BR>
+(we don't bite)</p><BR><BR>
 </div>
+<div id = "overlay">
+<div class = "boxoverlay"><div class = "paddingmob padding_small">
+<a class = "close sanslight small paddingmob padding_small light_gray_text">X Close</a>
+<p class = "padding_small_top midlarge serif">You like us!</p>
+<hr class = "seventy style">
+<p class = "condensed medium padding_small">Havenly is currently open to people with an invitation.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
+</p>
+<form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
+<div class = "horizontal">
+<label class = "half sanslight medium middle inline" for="Email">Email Address:</label><br><br>
+<input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/>
+</div><br><br>
+<div class = "horizontal">
+<label class = "half sanslight medium middle inline" for="Zipcode">Zipcode:</label><br><br>
+<input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br><br>
+<a class = "button3 pink white_text serif" id = "requestinvite">Request</a><br><br>
+</form>
+</div></div></div>
 
 <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
@@ -143,60 +168,81 @@ olark.identify('5800-712-10-4032');/*]]>*/</script><noscript><a href="https://ww
 
 
 <script>
-$(".hero_text").hide()
-$("#titlerow").hide()
+
+$("#titlerow").hide();
+$(".hero_text").hide();
 
 $(document).ready(function(){
+
+
+$(window).on("load", function(){
+		handleimage();
+});
 
 
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 if (isMobile)
 {
-
-
-	$(".bgM img").css("width", "100%");
-	$(".logo img").css("position", "relative");
-	$(".third").css("width", "70%");
-	$(".third").removeClass("padding_left");
-	$(".third").removeClass("padding_right");
-	$(".third").addClass("padding_small");
-	$(".padding_left").addClass("padding_right");
-	$("#titlerow").fadeIn(1500);
-   $(".hero_text").css("top",90);
-   $(".hero_text").show();
-	$(".hero_text .cursive").css("font-size", "3em");
-	$(".hero_text .button3").css("margin-bottom", "2em");
-}
-
-
-$(".bgM img").on("load", function(){
-if (isMobile)
-{
-$("#titlerow").show();
-
-}
-
-else{
 	
-	$("#titlerow").fadeIn(1500);
-	var viewportHeight = $(window).height();
-	var bgmheight=$(".bgM").height();
-	var difference = bgmheight-1000;
-	$(".bgM").css("height", viewportHeight);
-	//$(".bgM img").css("margin-top",difference);
-	$(".hero_text").show().animate({top: viewportHeight/2-100}, {duration: 1200, easing: 'easeInOutBack'});
-	$("#titlerow").css("position", "absolute");
-	$("#titlerow").css("top", viewportHeight-25);
 	}
+else{
+$("#titlerow").fadeIn(500);
 
+$(window).resize(function(){
+handleimage();
+});}
+
+
+
+function handleimage(){
+	var sHeight = $(window).height();
+	var sWidth = $(window).width();
+	$(".coverimage").height(sHeight);
+	
+	$(".hero_text").show().animate({top:(sHeight/3)}, {duration: 2200, easing: 'easeInOutBack'});
+	
+	if(sHeight>300){
+		$("#titlerow").css("position", "absolute");
+		$("#titlerow").css("top", sHeight-25);
+		}
+		}
+
+$("#startbutton, #startbutton2").click(function(){
+	$("#overlay").fadeIn(1000);
 });
 
-
+$("#overlay .close").on("click", function(){
+	$("#overlay").fadeOut(1000);
+});
+$('#overlay').click(function(e) {
+    if (e.target.id === "overlay"){
+        $('#overlay').fadeOut();
+    }
 });
 
+$("#requestinvite").click(function(){
+var email = $("#email").val();
+var zipcode = $("#zipcode").val();
+$.ajax({
+    type: "POST",
+    url: "/test/Design3/index.php/Users/site/requestinvite",
+    data: {email: email, zipcode: zipcode},
+    success: function(data) {
+		if(data=='nope')
+			{$(".boxoverlay").prepend('<p class = "medium error">Oops, we need more information</p>');}
+		else{
+        $(".boxoverlay").html(data);
+		$("#overlay .close").on("click", function(){
+			$("#overlay").fadeOut(1000);
+			});}
+    }
+	});
+});
 
-
-
+ $("#pull").on('click', function(){
+	$(".navmenu ul").slideToggle();
+    });  
+});
 </script>
 
 

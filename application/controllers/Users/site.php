@@ -7,6 +7,7 @@ Class Site extends CI_Controller {
 	parent::__construct();
 	$this->load->library('s3');
 	$this->load->library('session');
+	$this->load->model('user_model');
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
 	
@@ -187,8 +188,7 @@ Class Site extends CI_Controller {
 }
 
 
-
-	function set_file_name()
+function set_file_name()
 	{
 		$file_name= random_string('numeric',9);
 		$exists=$this->picture_model->check_name($file_name);
@@ -197,21 +197,14 @@ Class Site extends CI_Controller {
 		return $file_name;
 	}
 	
-	
-	function howwework()
+function howwework()
 	{
 		$this->load->view('Static/howwework');
 		
 	
 }
 
-	function expect()
-	{
-		$this->load->view('Static/expect');
-		
 	
-}
-
 
 function whoweare()
 	{
@@ -220,9 +213,28 @@ function whoweare()
 	
 }
 
-function careers()
-{
-$this->load->view('Static/careers');
-}
+function requestinvite(){
 
-}
+$this->load->library('form_validation');
+$this->form_validation->set_rules('email', 'Email', 'required');
+$this->form_validation->set_rules('zipcode', 'Zipcode', 'required|exact_length[5]');
+$error = 'nope';
+
+if ($this->form_validation->run() == FALSE)
+		{
+			echo $error;
+		}
+		else
+		{
+			
+		$data['email'] = $this->input->post('email');
+		
+		$data['zipcode'] = $this->input->post('zipcode');
+		
+		$this->user_model->invite_request($data);
+		echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
+		
+		
+		
+
+}}}

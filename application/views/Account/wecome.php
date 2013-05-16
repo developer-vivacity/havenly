@@ -1,0 +1,3 @@
+<?php
+echo "Wecome ".$username;
+?>

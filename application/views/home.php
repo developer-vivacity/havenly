@@ -45,8 +45,8 @@
 		<p class = "midlargeplus dark_gray_text sanslight">
 			YOUR ROOM, DECORATED AND DELIVERED.</p>
 			<hr class = "seventy style1">
-		<p class = "extralarge dark_gray_text cursive">
-			Your place just got better.</p><br>
+		<p class = "extralarge dark_gray_text condensed">
+			YOUR PLACE JUST GOT BETTER.</p><br>
 			<br>
 		<a id = "startbutton" class = "button3">
 		<p class = "condensed bottom inline midlarge white_text">GET STARTED&nbsp;
@@ -93,7 +93,7 @@
  </p>
  
 </div>
-  <br><br><br><br><br>	<p class = "serif midlarge tan_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p><br><br><br>
+  <br><br><br><br><br>	<p class = "serif midlarge dark_gray_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p><br><br><br>
 
 </div></div>
 <div class = "horizontal center light_gray"><br><br><br><br>
@@ -101,7 +101,7 @@
 <BR><BR>
 <h2 class = "seventy sans-serif dark_gray_text middle"><span class = "light_gray small">HOW HAVENLY WORKS
 </span></h2><br><br>
-<p class = "seventy paddingmob midlarge serif dark_gray_text">
+<p class = "seventy paddingmob midlargeplus serif dark_gray_text">
 It's pretty easy.  You tell us a bit about you.  We do the work.</p></div>
 <div class = "half inline">
 <iframe id = "video" height="315" width = "500" src="http://www.youtube.com/embed/UxMgM_TCbPE" frameborder="0" allowfullscreen></iframe>

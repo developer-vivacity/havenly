@@ -61,7 +61,7 @@ class Site extends CI_Controller
   if($cur_id==-1)
   {
   
-    $data["email"]= "email already exist!";
+    $data["email"]= "Email already exists in our system, please try again.";
     $data["account_info"]="";
     $this->load->view('Account/UserRegistration', $data);
     
@@ -105,7 +105,7 @@ class Site extends CI_Controller
   
    //$config['base_url'];
   $data["email"]="";
-  $data["accoun_info"]= "Account has created!";
+  $data["account_info"]= "Account has created!";
   $this->load->view('Account/UserRegistration', $data); 
   /*
   $message = 'Your account has been created For more Informetion please Click here <a href="'.base_url().'">Click here</a>'; 

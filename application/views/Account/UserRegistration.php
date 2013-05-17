@@ -6,10 +6,10 @@
 	 <?php 
     
      
-   if(!empty($email) & empty($accountinfo))
+   if(!empty($email) & empty($account_info))
      echo $email;
-    if(!empty($accountinfo) & empty($email))
-    echo $accountinfo;
+    if(!empty($account_info) & empty($email))
+    echo $account_info;
     ?>
 	 <p>User Registration</p>
 	

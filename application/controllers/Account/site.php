@@ -3,135 +3,179 @@
 class Site extends CI_Controller
 {
 	public $data =array();
- //--For load account_model--------------//
+ 
   function __construct()
   {
     parent::__construct();
     $this->load->model('Accounts/account_model');
-  
+  //$this->load->model('Users/picture_model');
   }
- 
- //----This Function used to display registration Form-------//
   function registration()
-  {
+{
 
 	$data["title"]="Registration";
 	$this->load->view('Account/UserRegistration', $data);
 	
-  }
- 
- //------- This function use for  display login form----------//
+}
+
   function index()
   {
-	
 	 
 	  $data["title"]="Login";
-	  
+	  //$this->load->view('template', $data);
+	  //var_dump($data);
+	  //die();
 	  $this->load->view('Account/login', $data);
 	 
   }
-  
- //------- This function use for save register form data----------// 
   function add()
   {
 	 
    $this->load->library('form_validation');
+   // field name, error message, validation rules
+   $this->form_validation->set_rules('user_name', 'User Name', 'trim|required|min_length[4]|xss_clean');
+  $this->form_validation->set_rules('user_email', 'User Email', 'trim|required|valid_email');
   
-   $this->form_validation->set_rules('user_name', 'Name', 'trim|required|max_length[40]|xss_clean');
-   $this->form_validation->set_rules('user_email', 'Email', 'trim|required|valid_email');
-  
-  $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+  $this->form_validation->set_rules('password', 'User Password', 'trim|required|min_length[4]|max_length[32]');
   $this->form_validation->set_rules('compassword', 'Confirm_password', 'trim|required|matches[password]');
-  $this->form_validation->set_rules('phone_number', 'Phone', 'trim|required|max_length[20]|xss_clean');
-  $this->form_validation->set_rules('zip_code', 'Zip', 'trim|required|max_length[20]|xss_clean');
+
   if($this->form_validation->run() == FALSE)
   {
-	  
+	  // die("hi");
     $this->registration();
-    
   }
   else
   {  
 	  $this->account_model->creat_table();
-    
+    //$user_name=$this->input->post('user_name');
 
     $user_email=$this->input->post('user_email');
-   
+    //echo $this->input->post('password').'<br>';
    $user_password=md5($this->input->post('password'));
-   $phone=$this->input->post('phone_number');
-   $zip=$this->input->post('zip_code');
 
  $data=array(
-    'username'=>$this->input->post('user_name'),'email'=>$this->input->post('user_email'),'password'=>$user_password,'Phone_number'=>$phone,'Zip_code'=>$zip);
+    'username'=>$this->input->post('user_name'),'email'=>$this->input->post('user_email'),'password'=>$user_password);
 
-$cur_id=$this->account_model->insert_user_info( $data,$this->input->post('user_email'));
+   $cur_id=$this->account_model->insert_user_info( $data,$this->input->post('user_email'));
     
   if($cur_id==-1)
   {
   
-    $data["email"]= "email already exists";
-    $data["accountinfo"]="";
+    $data["email"]= "email already exist!";
+    $data["accoun_info"]="";
     $this->load->view('Account/UserRegistration', $data);
+    
+   // return;
+
   }
   else
   {
-	 $data["email"]="";
-  $data["accountinfo"]="Your account has been successfully created.";
+	  /*
+	$config['protocol'] = 'smtp'; // mail, sendmail, or smtp    The mail sending protocol.
+    $config['smtp_host'] = 'smtp.gmail.com'; // SMTP Server Address.
+    $config['smtp_user'] = 'me@gmail.com'; // SMTP Username.
+    $config['smtp_pass'] = '123'; // SMTP Password.
+    $config['smtp_port'] = '25'; // SMTP Port.
+    $config['smtp_timeout'] = '5'; // SMTP Timeout (in seconds).
+    $config['wordwrap'] = TRUE; // TRUE or FALSE (boolean)    Enable word-wrap.
+    $config['wrapchars'] = 76; // Character count to wrap at.
+    $config['mailtype'] = 'html'; // text or html Type of mail. If you send HTML email you must send it as a complete web page. Make sure you don't have any relative links or relative image paths otherwise they will not work.
+    $config['charset'] = 'utf-8'; // Character set (utf-8, iso-8859-1, etc.).
+    $config['validate'] = FALSE; // TRUE or FALSE (boolean)    Whether to validate the email address.
+    $config['priority'] = 3; // 1, 2, 3, 4, 5    Email Priority. 1 = highest. 5 = lowest. 3 = normal.
+    $config['crlf'] = "\r\n"; // "\r\n" or "\n" or "\r" Newline character. (Use "\r\n" to comply with RFC 822).
+    $config['newline'] = "\r\n"; // "\r\n" or "\n" or "\r"    Newline character. (Use "\r\n" to comply with RFC 822).
+    $config['bcc_batch_mode'] = FALSE; // TRUE or FALSE (boolean)    Enable BCC Batch Mode.
+    $config['bcc_batch_size'] = 200;
+	 */ 
+	  
+   $this->load->library('email');
+            /*
+            $config['protocol'] = 'sendmail';
+            $config['mailpath'] = '/usr/sbin/sendmail';
+            $config['charset'] = 'iso-8859-1';
+            $config['wordwrap'] = TRUE; 
+            
+            $this->email->initialize($config);
+            */
+  $to =$this->input->post('user_email');
+
   
-  $data["Name"]=$this->input->post('user_name');
+  $subject = 'For Account Informetion';
+  
+   //$config['base_url'];
+  $data["email"]="";
+  $data["accoun_info"]= "Account has created!";
   $this->load->view('Account/UserRegistration', $data); 
-   
+  /*
+  $message = 'Your account has been created For more Informetion please Click here <a href="'.base_url().'">Click here</a>'; 
+  
+  $this->email->from('','Your Name');
+  $this->email->to($to);
+  $this->email->subject($subject);
+  $this->email->message($message);
+  $this->email->send();
+  
+  echo $this->email->print_debugger();
+  
+  //mail($to, $subject, $message, $headers);
+  
+  $this->thank(); 
+  */
   
   }
     
  } 
 	  
   }
-
-//----This function used for when user login...............//
 function login()
  {
-
-    if(($this->session->userdata('user_name')!=""))
-    {
-	      
-	  $this->Dispalyuser($this->session->userdata('user_id'));
-	  return; 
-	}
-
+  
    $this->load->library('form_validation');
+   // field name, error message, validation rules
    
- 
+  
   $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
   
   $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
   if($this->form_validation->run() == FALSE)
   {
-	  
+	  // die("hi");
 	   $data["title"]="Login";
     $this->load->view('Account/login', $data);
     return;
-   }
-
+  }
+   
+   
+   
+   
     $email=$this->input->post('enteremail');
-    $this->input->post('enterpass');
+ $this->input->post('enterpass');
     $password=md5($this->input->post('enterpass'));
+//die($password);
+
+  //echo  $email."----".$password;
+  //die();
+
+   //$result=$this->account_model->login($email,$password);
  
-    $cur_id=$this->account_model->user_login($email,$password);
+  $cur_id=$this->account_model->user_login($email,$password);
  
-   if($cur_id) 
-   {  
+  if($cur_id) 
+  {  
 	 
 	$data["username"]=$cur_id;   
 	
-	$this->Dispalyuser($this->session->userdata('user_id'));
+	$this->Dispalyuser();
 	return;
+    //$this->load->view('Account/wecome', $data); 
+    //$url = $_SERVER['HTTP_REFERER'];
+    //redirect($url);
+     //$this->index();
    } 
-   else        
-   $this->index();
- }
-  
-  //-- for forgot password//
+  else        
+  $this->index();
+  }
   function forgotpassword()
   {
 	$data["username"]="Forgot Password";   
@@ -140,20 +184,18 @@ function login()
 	  
 	  
   }
-  //-------For generate random password ----------//
+  
  function randomPassword() 
  {
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
     $pass = array(); //remember to declare $pass as an array
-    $alphaLength = strlen($alphabet) - 1; 
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
     for ($i = 0; $i < 8; $i++) {
         $n = rand(0, $alphaLength);
         $pass[] = $alphabet[$n];
     }
     return implode($pass); //turn the array into a string
-  }
-
-//---For update user password .  
+}
   function validatemail()
   {
 	  
@@ -168,12 +210,14 @@ function login()
     
        $this->load->view('Account/forgotpassword', $data); 
      }
-	  else
-	  {
+	  
 	  
 	  
 	  
 	   $email=$this->input->post('enteremail');
+      //echo $email;
+      //die(); 
+      //$this->input->post('enterpass');
        
        $password=md5($this->input->post('enterpass'));
       
@@ -183,7 +227,9 @@ function login()
 			$this->load->library('email');
             
           $this->account_model->update_password($email,md5($this->randomPassword()));
-           
+           //var_dump($this->randomPassword()) ;
+          
+           //die();   
            $subject="Acoount Informetion in Hevenly";     
            $to =$email;
            $message = 'hi<br>
@@ -193,45 +239,48 @@ function login()
               $this->email->from('','Your Name');
               $this->email->to($to);
              $this->email->subject($subject);
-             $this->email->message($message);
-             $this->email->send();
+  $this->email->message($message);
+  $this->email->send();
   
-
-            $data["accountinfo"]="update";
-            $this->load->view('Account/updateinfo', $data); 
-  		
+  //echo $this->email->print_debugger();
+  $data["accountinfo"]="update";
+ $this->load->view('Account/updateinfo', $data); 
+  
+  //mail($to, $subject, $message, $headers);
+            
+            
+			
 		}
 		elseif(!empty($email))
 		{
-	      $data["register_info"]="Your are not register user!";
-		
-		  $this->load->view('Account/forgotpassword', $data); 	
+	
+		//echo "Your are not register user!";
+			
 		}
-	  }
+	  
 	  
   }
-  //--------For display user informetion...............
- public function Dispalyuser($id)
- {
-	
   
-
+ public function Dispalyuser()
+ {
+	 
   $arg_list = func_get_args(); 
   $this->load->library('pagination');
   
-
-  $config['base_url'] = 'http://www.havenly.com/testsite/index.php/Account/site/Dispalyuser';
+  $config['base_url'] = 'http://web2.kindlebit.com/parupkar/demo/havenly/index.php/Account/site/Dispalyuser';
   $config['total_rows'] = $this->account_model->total_rows();
-
-
+//$config['total_rows'] = 20;
+ 
   $config['per_page'] = 10;
 
   $this->pagination->initialize($config);
   $data["link"]=$this->pagination->create_links();
 
- {
+ // $user = $this->session->userdata('isAdmin');
+//if((!empty($user)))
+  {
     $data['title']= 'Welcome';
-   
+   // $this->load->model('user_model');
     if(sizeof($arg_list)>0)  
     {     
        $this->db->limit(10, $arg_list[0]);
@@ -240,48 +289,22 @@ function login()
     {
         $this->db->limit(10, 0);
     }
-       $data['query']=$this->account_model->user_getall($id);
-    
+       $data['query']=$this->account_model->user_getall();
+    // var_dump($data['query']);
+       //die("hi");
+	//$this->load->view('header_view',$data);
         $this->load->view('Account/userview', $data);
-     }
+  //echo $this->pagination->create_links();
+  //$this->load->view('thank_view.php', $data);
+      // $this->load->view('footer_view',$data);
+  }
+ 
+ /*else
+ {
+ $this->index();
+ }	*/
   
  }
- //-------For logout------------
-  public function logout()
- {
-  $newdata = array(
-  'user_id'   =>'',
-  'user_name'  =>'',
-  'user_email'     => ''
   
-  );
-  $this->session->unset_userdata($newdata );
-  $this->session->sess_destroy();
-  $this->index();
- }
- 
- //------For update user informetion---------
- public function updatedata()
- {
-	
-	
-	if($this->input->post('radio_value')=="true")
-	{
-		
-	$data=array(
-    'username'=> $this->input->post('update_name'),'email'=>$this->input->post('update_email'),'password'=>$this->input->post('update_password'),'Phone_number'=>$this->input->post('update_phone'),'Zip_code'=>$this->input->post('update_zip'));
-    }
-    else
-    {
-		
-    $data=array(
-    'username'=> $this->input->post('update_name'),'email'=>$this->input->post('update_email'),'Phone_number'=>$this->input->post('update_phone'),'Zip_code'=>$this->input->post('update_zip'));
-    }
-     $this->account_model->update_user_info($data,$this->input->post('hold_id'));
-     $this->login();
- }
- 
- 
- 
 }
 ?>

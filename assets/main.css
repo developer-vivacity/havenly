@@ -254,7 +254,7 @@ top: 25px;
 }
 
 .footer {
-	background-color: #91C5C5;
+	background-color: #000000;
 	height:100px;
 	clear:both;
 	width: 100%;
@@ -301,7 +301,7 @@ top: 25px;
     margin-top: 0;
     padding-bottom: 0px;
     padding-left: 0;
-    padding-right: 20px;
+    padding-right: 10px;
     padding-top: 5px;
 	font-family: 'open sans condensed',  sans-serif;
 	display:inline;
@@ -624,30 +624,35 @@ text-shadow: 1px 1px #D8D8D8 , -1px -1px #383838 }
 /* Font Size */
 
 .extralarge{
-font-size: 7em;
+font-size: 96px;
+line-height: 97px;
 }
 .large{
-font-size: 4em;
+font-size: 64px;
+line-height: 65px;
 }
 
 .midlargeplus{
-font-size: 3em;
+font-size: 48px;
 }
 .midlarge{
-font-size: 2em;
-}
-
-.midsmall {
-font-size: 1.1em;
-}
-
-.small {
-font-size: .9em;
+font-size: 36px;
 }
 
 .medium{
-font-size: 1.4em;
+font-size: 24px;
 }
+
+.midsmall {
+font-size: 22px;
+}
+
+.small {
+font-size: 16px;
+line-height: 17px;
+}
+
+
 
 
 .space{
@@ -870,7 +875,7 @@ display: inline-block;
     zoom: 1;
 text-align: center;
 vertical-align: middle;}
-.button2:hover{
+.button1:hover{
 opacity:.8;
 }
 
@@ -888,6 +893,7 @@ vertical-align: middle;}
 .button2:hover{
 opacity:.8;
 }
+
 .button3{
 margin: 0;
 padding: 10px;
@@ -1048,7 +1054,7 @@ margin: 1em;
 }
 
 
-.continue{
+.continue,.intro{
 position: fixed;
 bottom: 0;
 background-color: #F0F0F0;

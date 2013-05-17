@@ -166,7 +166,7 @@ function login()
 	 
 	$data["username"]=$cur_id;   
 	
-	$this->Dispalyuser();
+	$this->Displayuser();
 	return;
     //$this->load->view('Account/wecome', $data); 
     //$url = $_SERVER['HTTP_REFERER'];
@@ -230,7 +230,7 @@ function login()
            //var_dump($this->randomPassword()) ;
           
            //die();   
-           $subject="Acoount Informetion in Hevenly";     
+           $subject="Account Information from Havenly";     
            $to =$email;
            $message = 'hi<br>
            This is your  new password : '.$this->randomPassword().'<br>Thank you
@@ -261,13 +261,13 @@ function login()
 	  
   }
   
- public function Dispalyuser()
+ public function Displayuser()
  {
 	 
   $arg_list = func_get_args(); 
   $this->load->library('pagination');
   
-  $config['base_url'] = 'http://web2.kindlebit.com/parupkar/demo/havenly/index.php/Account/site/Dispalyuser';
+  $config['base_url'] = 'http://web2.kindlebit.com/parupkar/demo/havenly/index.php/Account/site/';
   $config['total_rows'] = $this->account_model->total_rows();
 //$config['total_rows'] = 20;
  

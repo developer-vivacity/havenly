@@ -134,7 +134,7 @@ Try us out  <a class = "pink_text cursive" id= "startbutton" href="#overlay"> he
 <div class = "horizontal">
 <label class = "half sanslight medium middle inline" for="Zipcode">Zipcode:</label><br><br>
 <input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br><br>
-<a class = "button3 pink white_text serif" id = "requestinvite">Request</a><br><br>
+<a class = "button3 pink white_text serif" id = "requestinvite2">Request</a><br><br>
 </form>
 </div></div></div>
 
@@ -191,6 +191,25 @@ $('#overlay').click(function(e) {
     if (e.target.id === "overlay"){
         $('#overlay').fadeOut();
     }
+});
+
+$("#requestinvite2").click(function(){
+var email = $("#email").val();
+var zipcode = $("#zipcode").val();
+$.ajax({
+    type: "POST",
+    url: "/test/Design3/index.php/Users/site/requestinvite",
+    data: {email: email, zipcode: zipcode},
+    success: function(data) {
+		if(data=='nope')
+			{$(".boxoverlay").prepend('<p class = "medium error">Oops, we need more information</p>');}
+		else{
+        $(".boxoverlay").html(data);
+		$("#overlay .close").on("click", function(){
+			$("#overlay").fadeOut(1000);
+			});}
+    }
+	});
 });
 
 	

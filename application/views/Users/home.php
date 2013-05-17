@@ -32,48 +32,25 @@
 </div>
 
 <form name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
+	
+	<div id = "intro" class = "resize">
+	
+		<p class = "extralarge sans-serif blue_text">
+			IT'S NICE TO MEET YOU.
+			</p>
+			<br><br><br>
+			<p class = "medium space half serif dark_gray_text">
+			We're going to ask you just 5 questions to get a sense of your style and your needs.  There are no wrong answers.  And don't worry, our designer will call you to talk a little further.
+			</p><BR><BR><BR><BR><BR>
+			
+			<a class = "button2 pink midsmall white_text" id = "introbutton">
+			Continue &rarr;</a><BR><BR>
+</div>
 
-<div id = "room_pics" class = "resize" ><br>
-	<p class = "extralarge serif blue_text">Let's Get Started. </p><br>
-	<p class = "midlarge condensed dark_gray_text"> These questions help us better serve you.  <br>We'll be quick.  <span>We promise.</span></p>
-	<br><br>
-<div id = "first_photo"> 
-	<p class = "sanslight midlarge dark_gray_text">Start by uploading a picture of the room</p><br>
-	<div>
-		<div id="uploader1">.</div>
-		<input type="hidden" name="room_file1" id="room_file1" />
-		<div id = "file1">
-			<a class = "button2 pink" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
-			<input type = "file" name = "room_photo1" id = "room_photo1"/>
-			<div id = "image1">.</div>
-		</div>	
-	</div>
-</div>
-<div id = "second_photo">
-	<p class = "sanslight midlarge dark_gray_text"><span>Share Another.</span> Go right ahead</p><br>
-	<div>
-		<div id="uploader2">.</div>
-		<input type="hidden" name="room_file2" id="room_file2" />
-		<div id = "file2">
-			<a class = "button2 pink" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
-			<input type = "file" name = "room_photo2" id = "room_photo2"/>
-			<div id = "image2">.</div>
-		</div>	
-	</div>
-</div>
-<div class = "horizontal"><a>
-<div id = "tweetsend" class = "padding_small half border auto light_gray">
-	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> Click here to tweet it to us (@thehavenly)<br> or email it to us.(hello@havenly.com)</p>
-</div></a></div>
-<br><br><hr class = "style half"><br><br><br><br><br>
-<div class = "continue horizontal"><br>
-	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
-</div>
-</div>
 	<div id = "style_pics" class = "resize">
-		<p class = "serif large blue_text">Select the Styles You Like </p><br>
-		<p class = "condensed midlarge dark_gray_text"> This helps us match you up with the <span>perfect designer</span></p>
+		<p class = "extralarge sans-serif blue_text">THE STYLE QUESTION </p><br>
+		<p class = "serif medium dark_gray_text"> 
+		This helps us match you up with the <span>perfect designer.</span></p>
 		<br><br>
 		<label for="room_type">Which Room Type?</label>
 		<select name="room_type" id="room_type">
@@ -122,20 +99,21 @@
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR6.jpg');?> height=230em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR7.jpg');?> height=230em>
-		</div><div><input type="checkbox" name="style[]" value = 8 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR8.jpg');?> height=230em>
 		</div>
 		</div>
 		
 		<br>
 <hr class = "style half"/><br><br><br><br><br><div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'style_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'style_photo', 'click', 'userform', '5']);">
+	Keep Going &rarr;</a><br><br>
 </div><br><br>
 </div>
+
+
 	<div id = "colors" class = "resize">
-	<p class = "large serif blue_text">Select Some Colors You'd Like </p><br>
-		<p class = "condensed midlarge dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
+	<p class = "extralarge sanslight blue_text">THE COLOR QUESTION</p><br>
+		<p class = "serif medium dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(188,196,188);"></div>
 		<input type="checkbox" name="color[]" value = 1 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(255,243,196);"></div>
@@ -169,34 +147,76 @@
 	<br><br><hr class = "style half"/><br><br><br><br><br>
 	<div class = "continue horizontal"><br>
 	
-	<a class = "button2 medium pink"  onClick="_gaq.push(['_trackEvent', 'color_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 midsmall pink"  onClick="_gaq.push(['_trackEvent', 'color_photo', 'click', 'userform', '5']);">
+	Keep Going &rarr;</a><br><br>
 </div>
 </div>	
+
+<div id = "room_pics" class = "resize" ><br>
+	<p class = "extralarge sanslight blue_text">SHOW US YOUR ROOM </p><br>
+	<p class = "medium serif dark_gray_text"> We won't share these with anyone but the designer.  We're secure. </span></p>
+	<br><br>
+<div id = "first_photo"> 
+	<p class = "condensed medium dark_gray_text">Browse for a picture:</p><br>
+	<div>
+		<div id="uploader1">.</div>
+		<input type="hidden" name="room_file1" id="room_file1" />
+		<div id = "file1">
+			<a class = "button2 small serif pink" id = "room_button1" onclick = '$("#room_photo1").click();'>Browse</a>
+			<input type = "file" name = "room_photo1" id = "room_photo1"/>
+			<div id = "image1">.</div>
+		</div>	
+	</div>
+</div>
+<div id = "second_photo">
+	<p class = "condensed medium dark_gray_text"><span>Share Another.</span> Go right ahead</p><br>
+	<div>
+		<div id="uploader2">.</div>
+		<input type="hidden" name="room_file2" id="room_file2" />
+		<div id = "file2">
+			<a class = "button2 midsmall pink" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
+			<input type = "file" name = "room_photo2" id = "room_photo2"/>
+			<div id = "image2">.</div>
+		</div>	
+	</div>
+</div>
+<div class = "horizontal"><a>
+<div id = "tweetsend" class = "padding_small third border auto light_gray">
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> 
+	OR, click here to tweet (@thehavenly)<br> or email hello@havenly.com) your pictures to us.</p>
+</div></a></div>
+<br><br><hr class = "style half"><br><br><br><br><br>
+<div class = "continue horizontal"><br>
+	<!--<a class = "button2 login gray">Login, if this is old</a>-->
+	<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+</div>
+</div>
+
 
 	
 
 	<div id = "sizes" class = "resize" >
-	<p class = "large serif blue_text">Just a Teeny Bit About the Room </p><br>
-		<p class = "condensed midlarge dark_gray_text"> That way we know what <span>we're looking at.</span></p><br><br>
+	<p class = "extralarge sanslight blue_text">TELL US ABOUT IT, STUD</p><br>
+		<p class = "serif medium dark_gray_text">Give us a little about your room. <span>And what you want for it</span></p><br><br>
 		<div class = "center half">
-		<p class = "midlarge condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
+		<p class = "medium condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="height" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
 		</div>
 		<div class = "center half">
-			<p class = "midlarge condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
+			<p class = "medium condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
 			<textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
 	  </div><br><br><br><br><br><br><br>
 	  <div class = "continue horizontal"><br>
-		<a class = "button2 medium pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+		<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>	</div>
 
 
 	  <div id = "type" class = "resize">
-	  <p class ="large serif blue_text">How Much Help Do You Need?</p><br>
-	  <p class = "midlarge condensed dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
+	  <p class ="extralarge sanslight blue_text">HOW CAN WE HELP?</p><br>
+	  <p class = "medium serif dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
@@ -207,13 +227,13 @@
 		<br><br><br><br><hr class = "style half"/><br><br><br><br>
 		<div class = "continue horizontal"><br>
 	
-			<a class = "button2 pink" onClick="_gaq.push(['_trackEvent', 'type', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
+			<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'type', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
 		</div>
 		
 	</div>
 	<div id = "information" class = "resize">
-		<p class = "large serif blue_text">Now Let Us Get to Know You</p><br>
-		<p class = "condensed midlarge dark_gray_text">We'll be in <span>touch.</span></p><br><br>
+		<p class = "extralarge sanslight blue_text">JUST A BIT ABOUT YOU.</p><br>
+		<p class = "medium serif dark_gray_text">We'll be in <span>touch.</span></p><br><br>
 	
 		<div class = "horizontal">
 			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="first_name">First Name:</label>
@@ -239,11 +259,11 @@
 		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="password">Pick a Password: </label>
 		<input type="password" name="password" value="Password" id="password" class = "forminput" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
-		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 teal pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
+		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
 	</form>
 	</div>
-	
+	</p>
 	
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
@@ -256,13 +276,17 @@
 	
 	$(document).ready(function(){	  
 	
-	$("#room_pics").fadeIn("slow");
+	$("#intro").fadeIn("slow");
 
-		var left = ($(window).width())/2;
+	var left = ($(window).width())/2;
 	$("#loading-image").css("left",left);
 	
-	 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
-  $("#style_pics,#colors,#type,#sizes, #information").hide();
+$(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
+  $("#room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
+	
+	$("#introbutton").click(function(){
+	$("#intro").hide();
+	$("#style_pics").fadeIn();});
 	
 	
 		 $('#uploader1').fineUploader({
@@ -338,13 +362,6 @@ $("#room_pics .continue").show();
 });
 
 
-// $("#later").click(function(){
-	// if($("#later").prop('checked')==true)
-	// {$("#room_pics .continue").show();}
-	
-	// else {$("#room_pics .continue").hide();}
-	// });
-
 
 $("#room_photo2").change(function(){
 	$("#loading").show();
@@ -378,7 +395,7 @@ $("#room_photo2").change(function(){
 			$("#room_file2").val(filename2);
 		});
  
-
+		
 	
 	
 	
@@ -422,7 +439,6 @@ $("#room_photo2").change(function(){
 				else {$(this).parent().parent().find('.continue').hide();}
 			} else {$(this).parent().parent().find('.continue').hide();}
 			});
-		
 		
 		
 	

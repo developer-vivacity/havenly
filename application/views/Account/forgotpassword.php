@@ -1,5 +1,7 @@
 <div>
 	<?php 
+	if(!empty($register_info))
+    echo $register_info;
     echo validation_errors('<p class="error">');
     ?>
 <div class="signin_form">
@@ -9,5 +11,5 @@
   <input type="text" id="enteremail" name="enteremail"  />
  <input type="submit" class="" value="Sign in" />
  <?php echo form_close(); ?>
- <a href="<?php base_url(); ?>/parupkar/demo/havenly/index.php/Account">login User</a>
+ <a href="http://www.havenly.com/testsite/index.php/Account">login User</a>
 </div>

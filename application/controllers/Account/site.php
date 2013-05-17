@@ -62,7 +62,7 @@ class Site extends CI_Controller
   {
   
     $data["email"]= "email already exist!";
-    $data["accoun_info"]="";
+    $data["account_info"]="";
     $this->load->view('Account/UserRegistration', $data);
     
    // return;
@@ -101,7 +101,7 @@ class Site extends CI_Controller
   $to =$this->input->post('user_email');
 
   
-  $subject = 'For Account Informetion';
+  $subject = 'Havenly Account Informetion';
   
    //$config['base_url'];
   $data["email"]="";
@@ -142,6 +142,7 @@ function login()
   {
 	  // die("hi");
 	   $data["title"]="Login";
+	   $data["error"]="Please ensure that you've entered a valid email and password";
     $this->load->view('Account/login', $data);
     return;
   }
@@ -150,14 +151,13 @@ function login()
    
    
     $email=$this->input->post('enteremail');
- $this->input->post('enterpass');
-    $password=md5($this->input->post('enterpass'));
-//die($password);
+	 $password=md5($this->input->post('enterpass'));
+		//die($password);
 
-  //echo  $email."----".$password;
-  //die();
+		  //echo  $email."----".$password;
+		  //die();
 
-   //$result=$this->account_model->login($email,$password);
+		   //$result=$this->account_model->login($email,$password);
  
   $cur_id=$this->account_model->user_login($email,$password);
  
@@ -166,7 +166,7 @@ function login()
 	 
 	$data["username"]=$cur_id;   
 	
-	$this->Dispalyuser();
+	$this->Displayuser();
 	return;
     //$this->load->view('Account/wecome', $data); 
     //$url = $_SERVER['HTTP_REFERER'];
@@ -178,9 +178,10 @@ function login()
   }
   function forgotpassword()
   {
+	
+	
 	$data["username"]="Forgot Password";   
-    
-   $this->load->view('Account/forgotpassword', $data); 
+    $this->load->view('Account/forgotpassword', $data); 
 	  
 	  
   }
@@ -199,9 +200,10 @@ function login()
   function validatemail()
   {
 	  
-	     $this->load->library('form_validation');
-   
-   
+	     
+		 
+		 $this->load->library('form_validation');
+      
         $this->form_validation->set_rules('enteremail', 'Your Email', 'trim|required|valid_email');
   
      if($this->form_validation->run() == FALSE)
@@ -230,11 +232,11 @@ function login()
            //var_dump($this->randomPassword()) ;
           
            //die();   
-           $subject="Acoount Informetion in Hevenly";     
+           $subject="Acoount Informetion for Havenly";     
            $to =$email;
-           $message = 'hi<br>
+           $message = 'Hi<br>
            This is your  new password : '.$this->randomPassword().'<br>Thank you
-              <a href="'.base_url().'">Hevenly</a>'; 
+              <a href="'.base_url().'">Havenly</a>'; 
   
               $this->email->from('','Your Name');
               $this->email->to($to);
@@ -243,8 +245,8 @@ function login()
   $this->email->send();
   
   //echo $this->email->print_debugger();
-  $data["accountinfo"]="update";
- $this->load->view('Account/updateinfo', $data); 
+	$data["accountinfo"]="update";
+	$this->load->view('Account/updateinfo', $data); 
   
   //mail($to, $subject, $message, $headers);
             
@@ -261,13 +263,13 @@ function login()
 	  
   }
   
- public function Dispalyuser()
+ public function Displayuser()
  {
 	 
   $arg_list = func_get_args(); 
   $this->load->library('pagination');
   
-  $config['base_url'] = 'http://web2.kindlebit.com/parupkar/demo/havenly/index.php/Account/site/Dispalyuser';
+  $config['base_url'] = 'http://web2.kindlebit.com/parupkar/demo/havenly/.php/Account/site/Dispalyuser';
   $config['total_rows'] = $this->account_model->total_rows();
 //$config['total_rows'] = 20;
  

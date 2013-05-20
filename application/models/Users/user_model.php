@@ -13,20 +13,20 @@ class user_model extends CI_Model
    {
 	   
 	     $query=$this->db->query('CREATE TABLE IF NOT EXISTS users (
-        id int(11) NOT NULL AUTO_INCREMENT,
-        first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        last_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        email varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        phone varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        address varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        zipcode int(50) NOT NULL,
-        password varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-        Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
-        ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
+			id int(11) NOT NULL AUTO_INCREMENT,
+			first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			last_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			email varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			phone varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			address varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			zipcode int(50) NOT NULL,
+			password varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+			Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			PRIMARY KEY (id)
+			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
   
    }
-   // For inser user informetion---------
+   // To insert user informetion---------
    function insert_user_info($data,$email)
    {
 	   

@@ -29,7 +29,7 @@ echo form_open('Users/site/updatedata/',$attributes);
 <div class="div_update_row"><div class="div_update_col">
 <input type="button" value="update" id="update_update">
 </div><div class="div_update_col">
-<input type="button" value="cancel" id="cancle_update"/>
+<input type="button" value="cancel" id="cancel_update"/>
 
 </div></div>
 </div>

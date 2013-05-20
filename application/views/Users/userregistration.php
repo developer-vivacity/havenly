@@ -114,23 +114,7 @@
   echo form_input($data);
   ?>
   </p>
- <p>
- <?php
- 
-  echo form_label('Confirm Password', 'Confirm Password');
-   $data = array(
-              'name'        => 'compassword',
-              'id'          => 'compassword',
-              'value'       => set_value('compassword'),
-              'maxlength'   => '100',
-              'size'        => '30',
-              'type'=>'password'
-              );
-	
-  echo form_input($data);
- ?> 
- 
-  </p>
+
  
  <p>
   <input type="submit" class="greenButton" value="Submit" />

@@ -9,7 +9,7 @@ class user_model extends CI_Model
    }
    
   // ---For create users table--------
-   function creat_table()
+   function create_table()
    {
 	   
 	     $query=$this->db->query('CREATE TABLE IF NOT EXISTS users (

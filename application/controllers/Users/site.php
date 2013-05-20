@@ -239,14 +239,14 @@ if ($this->form_validation->run() == FALSE)
 		
 
 }}
-//----This Function used to display registration Form-------//
+//----This Function is used to display the registration form-------//
   function registration()
   {
 
 	$data["title"]="Registration";
     $this->load->view('Users/userregistration', $data);
   }
- //------- This function use for save register form data----------// 
+ //------- This function used to save sign up data----------// 
   function add()
   { 
 	 if(($this->session->userdata('first_name')!=""))
@@ -263,15 +263,14 @@ if ($this->form_validation->run() == FALSE)
    $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
    $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-   $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
-  if($this->form_validation->run() == FALSE)
+    if($this->form_validation->run() == FALSE)
   {
     $this->registration();
   }
   else
   {  
 	 
-	 $this->user_model->creat_table();
+	 $this->user_model->create_table();
 	
      $user_email=$this->input->post('email');
      $user_password=md5($this->input->post('password'));
@@ -303,7 +302,7 @@ function login()
     if(($this->session->userdata('first_name')!=""))
     {
 
-	  $this->Dispalyuser($this->session->userdata('id'));
+	  $this->Displayuser($this->session->userdata('id'));
 	  return; 
 	}
    $this->load->library('form_validation');
@@ -328,7 +327,7 @@ if($this->form_validation->run() == FALSE)
 	 
 	$data["username"]=$cur_id;   
 	
-	$this->Dispalyuser($this->session->userdata('id'));
+	$this->Displayuser($this->session->userdata('id'));
 	return;
    } 
    else        
@@ -389,14 +388,14 @@ if($this->form_validation->run() == FALSE)
             
             $this->user_model->update_password($email,md5($this->randomPassword()));
            
-           $subject="Acoount Informetion in Hevenly";     
+           $subject="Havenly Password Request";     
            $to =$email;
            
            $data["randompassword"]=$this->randomPassword();
            
            $message = $this->load->view('Users/sendmailmessage',$data ,true);
            
-           $this->email->from('','Your Name');
+           $this->email->from('Havenly','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -407,7 +406,7 @@ if($this->form_validation->run() == FALSE)
 		}
 		elseif(!empty($email))
 		{
-	      $data["register_info"]="Your are not register user!";
+	      $data["register_info"]="Unfortunately, we have been unable to ";
 		
 		  $this->load->view('Users/forgotpassword', $data); 	
 		}
@@ -415,7 +414,7 @@ if($this->form_validation->run() == FALSE)
 	  
   }
   //--------For display user informetion...............
- public function Dispalyuser($id)
+ public function Displayuser($id)
  {
 	  
      $data['title']= 'Welcome';

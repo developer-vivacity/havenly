@@ -1,6 +1,5 @@
 <div>
-Your Update password informetion has been send to your email account.<br/>
-Please go to your email account and get information account Password.
+Your new password information has been sent to the email we have on file.<br/>
 <?php
 echo'<a href="'.base_url().'index.php/Users/site/login">login User</a>';
 ?>

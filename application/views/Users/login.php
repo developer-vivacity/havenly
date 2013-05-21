@@ -19,8 +19,9 @@
 </div>
 <br>
 
-<div class="signup_wrap half border white center">
-<div class="signin_form padding">
+<div class="half border white center">
+<div id = "login">
+<div class="padding">
 	<?php 
 	
     echo validation_errors('<p class="error">');?>
@@ -41,15 +42,40 @@
   <div class = "half inline">
   <input type="submit" class="button3 horizontal small condensed" value="Sign in" /></div>
  <?php echo form_close(); ?>
-</div><!--<div class="signin_form">-->
-<div class = "sanslight blue_text small">
-	<?php
-	echo '<a href="'.base_url().'index.php/Users/site/forgotpassword">Forgot Password</a>';
-	?>
-	</div>
 </div>
-	</div><div class = "bgcontainer">
-<br><BR><div class = "push">
+<div class = "sanslight blue_text small">
+	<a id = "forgotbutton" class = "small sanslight blue_text" href = "#forgot">Forgot Password</a>
+	</div>
+
+	</div>
+	
+<div id = "forgot">
+<div class = "padding">
+<?php 
+	if(!empty($register_info))
+    echo $register_info;
+    echo validation_errors('<p class="error">');
+    ?>
+	<div class="signin_form">
+   <?php echo form_open('Users/site/validatemail/');?>
+  <div class = "horizontal">
+   <div class = "third inline right-align bottom	">
+  <label class = "medium condensed" for="enteremail">Email:</label></div>
+  <div class = "half inline">
+  <input type="text" id="enteremail" name="enteremail"  /></div></div><BR><BR>
+    <div class = "third inline right-align bottom	"></div>
+	<div class = "half inline">
+ <input type="submit" class="button3 small horizontal condensed" value="Sign in" /></div>
+ <?php echo form_close(); ?>
+	
+</div>
+</div>
+</div>
+	
+	</div>
+	</div>
+<div class = "bgcontainer">
+<br><BR><BR><BR><div class = "push">
 </div>
 	</div>
 	
@@ -57,3 +83,12 @@
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
+
+<script>
+$("#forgot").hide();
+
+$("#forgotbutton").click(function(){
+$("#login").hide();
+$("#forgot").fadeIn();
+});
+</script>

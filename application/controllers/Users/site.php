@@ -346,12 +346,7 @@ if($this->form_validation->run() == FALSE)
 	$this->load->view('Users/login', $data); 
   }
   
-  //-- for forgot password//
-  function forgotpassword()
-  {
-	$data["username"]="Forgot Password";     
-    $this->load->view('Users/forgotpassword', $data); 
-   }
+
   //-------For generate random password ----------//
  function randomPassword() 
  {
@@ -377,13 +372,13 @@ if($this->form_validation->run() == FALSE)
      {
 	  $data["username"]="Forgot Password";   
     
-       $this->load->view('Users/forgotpassword', $data); 
+       $this->load->view('Users/login', $data); 
      }
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
        
-       $password=md5($this->input->post('enterpass'));
+      
       
       if($this->user_model->check_mail($email) & !empty($email))
         {

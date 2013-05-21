@@ -10,12 +10,12 @@
   
 </div>  
 <div id = "howwework">
-<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a></div>
+<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a></div>
 <div class = "right">
 <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
 <div class = "right_align inline top padding_small">
 <ul class = "menu_bar dark_gray_text" id = "menu_bar">
-		<li class = "inline dark_gray_text medium condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
+		<li class = "inline dark_gray_text medium condensed"> <a  class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
 			
 		<li class = "dark_gray_text medium condensed inline"> 1-888-978-3152</li>
 		<li class = "inline medium condensed"> <a class = "button2 dark_gray_text padding blue" href = <?php echo base_url('index.php/Users/site/whoweare');?>>Login </li></a>
@@ -23,25 +23,24 @@
 
 <br><br>
 <div class = "center"><br><br>
-<div class = "clear translucent2 white padding_small_top center" id = "workhero">
-<p class = "cursive middle dark_gray_text extralarge">
+<div class = "clear padding_small_top center" id = "workhero">
+<div class = "seventy white translucent2"><BR><BR>
+<p class = "cursive middle dark_gray_text large">
 Let us help.  </p>
-<p class = "half condensed dark_gray_text middle midlarge">We can help you put it together.  We ship you everything you need for a stylish room that reflects your taste and budget.  </p><br><br><BR><BR>
-<hr class = "seventy style"><br>
-<ul class = "menu_bar dark_gray_text">
-<a href = "#expectdiv" id = "expect"><li class = "inline dark_gray_text  medium condensed">WHAT TO EXPECT</li></a>|
-<a href = "#shippingdiv" id = "shipping"><li class = "inline dark_gray_text  medium condensed">SHIPPING & RETURNS</li></a>|
-<a href = "#portfoliodiv" id = "portfolio"><li class = "inline dark_gray_text medium condensed">PORTFOLIO</li></a>
-</ul><br><hr class = "seventy style">
+<p class = "seventy condensed dark_gray_text middle medium">We can help you put it together.  We ship you everything you need for a stylish room that reflects your taste and budget.  </p><br><br><BR><BR>
+<hr class = "seventy style">
+<ul class = "menu_bar dark_gray_text"><br>
+<a href = "#expectdiv" id = "expect"><li class = "inline dark_gray_text  midsmall condensed">WHAT TO EXPECT</li></a>
+<a href = "#shippingdiv" id = "shipping"><li class = "inline dark_gray_text  midsmall condensed">SHIPPING & RETURNS</li></a>
+<a href = "#portfoliodiv" id = "portfolio"><li class = "inline dark_gray_text midsmall  condensed">PORTFOLIO</li></a>
+</ul><br><hr class = "seventy style"><BR><BR> 
 
-</div></div></div>
+</div></div></div></div>
 
 <div id = "expectdiv"><br><br><br>
 <div class = "center"><p class = "condensed center">
 -what to expect-</p><BR><BR>
-<img src = <?php echo base_url('assets/Images/howwework.png');?> height = 220 class = "inline padding_small" id = "workimage"><br><br>
-<h2 class = "seventy serif medium dark_gray_text middle"><span>&sect;
-</span></h2>
+
 <br>
 <div class = "third padding_small inline top">
 <img src = <?php echo base_url('/assets/Images/Screenshot.png');?> height = 150><br><br><br>
@@ -79,15 +78,15 @@ You log back in and with one click on the items you like,  we send them to you, 
 <div class = "center"><p class = "condensed center">
 -shipping & returns-</p><BR><BR>
 
-<img src = <?php echo base_url('/assets/Images/box.png');?>>
+<img src = <?php echo base_url('/assets/Images/box.png');?> height = 100>
 <br><br>
-<div class = "seventy center">
-<p class = "serif large blue_text">Shipping</p>
+<div class = "half center">
+<p class = "serif medium blue_text">Shipping</p>
 <hr class = "seventy style"><br>
-<p class = "condensed midlarge dark_gray_text">We ship to you!  We have two types of items: small items that ship UPS or Fedex, and large items that are shipped through white glove delivery service.  Most items ship within 2-3 weeks, but differences are noted on the site.</p><br><br><br>
-<p class = "serif large blue_text">Returns</p>
+<p class = "condensed medium dark_gray_text">We ship to you!  We have two types of items: small items that ship UPS or Fedex, and large items that are shipped through white glove delivery service.  Most items ship within 2-3 weeks, but differences are noted on the site.</p><br><br><br>
+<p class = "serif medium blue_text">Returns</p>
 <hr class = "seventy style"><br>
-<p class = "condensed midlarge dark_gray_text">Unharmed items can be returned within 7 days of purchase.  We include return labels for all UPS and Fedex items, just stuff it back in the packaging and send back.  For white glove items, give us a call, and we will arrange a pickup - there is a fee for white glove items, unfortunately, but we'll try and minimize it.</p><br><br>
+<p class = "condensed medium dark_gray_text">Unharmed items can be returned within 7 days of purchase.  We include return labels for all UPS and Fedex items, just stuff it back in the packaging and send back.  For white glove items, give us a call, and we will arrange a pickup - there is a fee for white glove items, unfortunately, but we'll try and minimize it.</p><br><br>
 
 </div>	</div><br><br><br></div>
 
@@ -142,11 +141,11 @@ Try us out  <a class = "pink_text cursive" id= "startbutton" href="#overlay"> he
 function heroheight(){
 var viewportHeight = $(window).height();
 $("#howwework").height(viewportHeight);
-$("#workhero").css("top", ((viewportHeight)/2));
+$("#workhero").show().animate({top:(viewportHeight/2-20)}, {duration: 2200, easing: 'easeInOutBack'})
 }
 $(" #shippingdiv, #portfoliodiv").hide();
 
-$(document).ready(function(){
+$(window).load(function(){
 
 var viewportHeight = $(window).height();
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);

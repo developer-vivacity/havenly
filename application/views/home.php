@@ -69,8 +69,8 @@
 <div class = "row center">
 <div class= "third top dark_gray_text center inline padding_left"> 
 	<img src= <?php echo base_url('assets/Images/Desc_1.png');?> height="105"><br><br>
-	<p class = "condensed midlarge dark_gray_text">Tell Us About You</p>
-	<br><hr class = "style"><br>
+	<p class = "condensed medium dark_gray_text">TELL US ABOUT YOU</p>
+	<hr class = "style">
 	<p class = "sans-serif small dark_gray_text space">
 		Get started by telling us a little about you and your room.  
 		<span>Snap a pic</span>, fill out the quick form, and we'll get to work.  We'll match you with a designer that shares your style.
@@ -79,15 +79,15 @@
 
 <div class = "third top gray_text center padding_small_sides inline">
 	<img src= <?php echo base_url('assets/Images/Desc_2.png');?> height="105px"><br><br>
-	<p class = "condensed midlarge dark_gray_text">Buy What You Love</p>
-	<br><hr class = "style"><br>
+	<p class = "condensed medium dark_gray_text">BUY WHAT YOU LOVE</p>
+	<hr class = "style">
 	<p class = "sans-serif small dark_gray_text space">Our professional designers decorate your place, and show you how your room would look with the <span>items they have picked</span>. You tell us what you'd like to buy (or rent!), and we send it to you as quickly as we can. </p>
 	</div>
 
 <div class = "third top gray_text center inline padding_right">
 <img src= <?php echo base_url('assets/Images/Desc_3.png');?> height="105px"><br><br>
-<p class = "condensed midlarge dark_gray_text">Enjoy Your Room</p>
-	<br><hr class = "style"><br>
+<p class = "condensed medium dark_gray_text">ENJOY YOUR ROOM</p>
+	<hr class = "style">
 	<p class = "sans-serif small dark_gray_text space">
 	We deliver everything you need.  Show off your new room! Check back in with us for more fun items, your designer will continue to find you items that you love.  You have <span>no commitment</span> to buy!
  </p>
@@ -99,8 +99,10 @@
 <div class = "horizontal center light_gray"><br><br><br><br>
 <div class = "half inline">
 <BR><BR>
-<h2 class = "seventy sans-serif dark_gray_text middle"><span class = "light_gray small">HOW HAVENLY WORKS
-</span></h2><br><br>
+<hr class = "seventy">
+<div class = "centerline">
+<span class = "light_gray small sans-serif dark_gray_text">HOW HAVENLY WORKS
+</span></div>
 <p class = "seventy paddingmob midlargeplus serif dark_gray_text">
 It's pretty easy.  You tell us a bit about you.  We do the work.</p></div>
 <div class = "half inline">

@@ -8,12 +8,14 @@
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
 <br><br><br><br><br><br>
-<p class = "serif large dark_gray_text">Thanks <?php echo $first_name;?>! <br>Now What Should You<span> Expect?</span>	</p>
-<div id = "first" class = "third left inline"><br><br>
+<p class = "serif large dark_gray_text">Thanks <?php echo $first_name;?>! </p>
+<p class = "serif medium dark_gray_text">Now What Should You<span> Expect?</span>	</p>
 
+<div id = "display">
+<div id = "first" class = "third left inline"><br><br>
 <img src = <?php echo base_url('assets/Images/model.jpg');?> height=200><br><br><br>
-<p class = "dark_gray_text midlarge condensed center">Meet Your Designer: Valerie</p><br>
-<p class = "gray_text small sanslight center">Valerie will give you a call within three business days, and she'll help put together a design plan for you, including all of the items that she thinks you'd love.</p>
+<p class = "dark_gray_text midlarge condensed center">Meet Your Designer: Shelby</p><br>
+<p class = "gray_text small sanslight center">Shelby will give you a call within three business days, and she'll help put together a design plan for you, including all of the items that she thinks you'd love.</p>
 </div>
 
 <div id ="second" class = "third inline"><br><br>
@@ -30,7 +32,7 @@
 <p class = "gray_text small sanslight center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
 </div>
 </div>
-<br><br><br>
+<br><br><br><BR><BR><BR><BR><BR><BR>
 </div>
 
 
@@ -69,10 +71,16 @@ $(".form_container img").load(function(){
 	$(".form_container").fadeIn();
 });
 
+$("#display").hide();
+$(window).load(function(){
+	$("#display").fadeIn(4000);
+	});
+
+
 var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 if (isMobile)
 {
-		
+	$("#logo").height(50);
 	$(".third img").css("height", 400);
 	$(".medium").css("font-size", "2em");
 

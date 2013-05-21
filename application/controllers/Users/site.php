@@ -7,7 +7,7 @@ Class Site extends CI_Controller {
 	parent::__construct();
 	$this->load->library('s3');
 	$this->load->library('session');
-	$this->load->model('Users/user_model');
+	$this->load->model('user_model');
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
         $this->load->model('Users/user_model');
@@ -296,7 +296,7 @@ if ($this->form_validation->run() == FALSE)
   }  
   }   
  }
-//----This function used for when user login...............//
+//----This function will be used when a user logs in...............//
 function login()
  {
     if(($this->session->userdata('first_name')!=""))
@@ -305,6 +305,9 @@ function login()
 	  $this->Displayuser($this->session->userdata('id'));
 	  return; 
 	}
+	
+
+// Check for valid email and password
    $this->load->library('form_validation');
    $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
@@ -313,6 +316,7 @@ if($this->form_validation->run() == FALSE)
    {
 
 	$data["title"]="Login";
+	$data["error"]="Please enter a valid email and password";
     $this->load->view('Users/login', $data);
 
     return;

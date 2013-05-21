@@ -26,7 +26,11 @@ class user_model extends CI_Model
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
   
    }
-   // To insert user informetion---------
+   
+   
+   
+   
+   // To insert user information---------
    function insert_user_info($data,$email)
    {
 	   

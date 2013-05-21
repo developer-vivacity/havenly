@@ -576,17 +576,21 @@ cursor: pointer;
 }
 
 img.active{
-	border: .5em solid #CC0033;
+	border: .5em solid #00aebc;
 	opacity: .4;
 	}
 
 div.active{
-border: .5em solid #CC0033;
+border: .5em solid #00aebc;
 opacity: .4;
 }
 
+div.active:hover{
+cursor:pointer;
+}
+
 img.active1{
-border: 5px solid #CC0033;
+border: 5px solid #00aebc;
 }
 
 /* General CSS */
@@ -697,7 +701,7 @@ background-color: gray;}
 .light_gray{
 background-color:rgb(245, 245, 244) ;}
 .blue{
-background-color: #91C5C5;}
+background-color: #91c5c5;}
 .pink {
 background-color: #f9b199;
 }
@@ -710,7 +714,7 @@ background-color: #a7d283;}
 opacity: .5;
 }
 .translucent2{
-opacity: .8;
+opacity: .7;
 }
 .tan{
 background-color: #BCB2A8;}
@@ -721,7 +725,7 @@ color: gray;}
 .dark_gray_text{
 color: #505050 ;}
 .blue_text{
-color: #91C5C5;}
+color: #91c5c5}
 .pink_text{
 color: #f9b199;}
 .white_text{
@@ -735,9 +739,18 @@ color: #D3CCC4;
 
 /* Formatting */
 
-h2 { width:100%; text-align:center; border-bottom: 1px solid gray; line-height:0.1em; margin:10px 0 20px; } 
-h2 span { background:#fff; padding:0 10px;
-vertical-align: top; }
+.centerline { 
+	position: relative;
+     top: -1em;
+     text-align: center; 
+ } 
+.centerline span { 
+	  margin-left: auto;
+     margin-right: auto;
+     padding-left: 0.5em;
+     padding-right: 0.5em; }
+	 
+	 
 .negative{
 margin-top: -30px}
 
@@ -814,7 +827,9 @@ position: relative;
 z-index: 0;
 }
 
-
+.relative{
+position: relative;
+}
 
 .horizontal{
 width: 100%;
@@ -1090,6 +1105,7 @@ background-repeat: none;
 width: 100%;
 position: relative;
 background-size: cover;
+
 }
 #howwework a:hover{
 opacity:.4;
@@ -1109,7 +1125,7 @@ position: relative;
 
 #abouthero{
 position: absolute;
-top: 90px;}
+top: 150px;}
 
 
 span.qq-drop-processing{

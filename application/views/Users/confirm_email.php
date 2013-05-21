@@ -6,10 +6,7 @@
 .padding{
 padding: 3em;
 }
-.title{
-font-size: 3em;
-font-family: 'Quicksand',sans-serif;
-}
+
 .text{
 font-family: 'Sanchez';
 }
@@ -20,20 +17,25 @@ font-size: 1em;
 font-size: 1.3em;
 }
 .teal_text{
-color: #00CCCC;
+color: #91C5C5;
 }
 .small{
 font-size: .5em;
 }
+.inline{
+display: inline-block;
+width: 30%;
+}
+ 
 	</style>
 	</head>
 
 
 <div class = "padding">
-<img src = "http://www.havenly.com/LogoTest.fw.png" height=80><br>
-<p class = "teal_text title">Ready for some awesome?</p>
+<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80>
+<p class = "text inline teal_text midlarge">Ready for some awesome?</p>
 <br>
-<p class = "text dark_gray_text midlarge">Thanks for using havenly, <?php echo $first_name;?>!</p>
+<p class = "text dark_gray_text midlarge">Thanks for using Havenly, <?php echo $first_name;?>!</p>
 <P class = "text dark_gray_text medium">We here at Havenly are so excited to be helping you with your room.  Your designer will give you a call within the next three days to finalize your design.
 Pretty soon, you'll have a customized design plan, and we'll help you get everything you need to your house.
 

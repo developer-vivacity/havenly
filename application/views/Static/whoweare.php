@@ -11,7 +11,7 @@
   
 </div>  
 <div id = "abouttheteam">
-<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a></div>
+<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a></div>
 
 
 <div class = "right">
@@ -26,14 +26,14 @@
 	
 <div id = "abouthero" class = "horizontal padding_small_top center">
 
-<p class = "cursive middle white_text extralarge">
+<p class = "cursive middle white_text large">
 We've been there.  </p>
-<p class = "half condensed white_text middle midlarge">We were in the same shoes, not so long ago.  We know you're busy, we know you don't want to pay too much. Because we don't either.</p><br><br>
+<p class = "half condensed white_text middle medium">We were in the same shoes, not so long ago.  We know you're busy, we know you don't want to pay too much. Because we don't either.</p><br><br>
 <hr class = "style2 half"><br>
 <ul class = "menu_bar white_text">
-<a href = "#team"><li class = "inline white_text medium condensed">TEAM</li></a>|
-<a href = "#careers"><li class = "inline white_text medium condensed">CAREERS</li></a>|
-<a href = "#contact"><li class = "inline white_text medium condensed">CONTACT</li></a>
+<a href = "#team"><li class = "inline white_text midsmall condensed">TEAM</li></a>
+<a href = "#careers"><li class = "inline white_text midsmall condensed">CAREERS</li></a>
+<a href = "#contact"><li class = "inline white_text midsmall condensed">CONTACT</li></a>
 </ul><br>
 <hr class = "style half">
 </div></div>
@@ -90,9 +90,10 @@ She hates sweating too much, and loves to pocket dial her parents at 3am.</p>
 	
 
 <div id = "contact" class = "center padding">
-<div class = "seventy left-align"><br><br><br><br>
-<h2 class = "serif center large dark_gray_text "><span>
-	Let's Talk.</span></h2>
+<div class = "seventy center left-align"><br><br><br><br>
+<hr>
+<div class = "centerline midlarge"><span class = "white large serif dark_gray_text">
+	Let's Talk.</span></div>
 	<br><br><br>
 	<p class = "sanslight blue_text midlarge">
 	 speak: 1-888-978-3152<br>
@@ -111,8 +112,8 @@ She hates sweating too much, and loves to pocket dial her parents at 3am.</p>
 <script>
 function heroheight(){
 var viewportHeight = $(window).height();
-$("#abouttheteam").height(viewportHeight);
-$("#abouthero").css("top", ((viewportHeight)/2-80));
+$("#abouttheteam").height(viewportHeight-20);
+$("#abouthero").show().animate({top:(viewportHeight/2-100)}, {duration: 2200, easing: 'easeInOutBack'});
 }
 
 $(document).ready(function(){

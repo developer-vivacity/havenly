@@ -340,7 +340,7 @@ if($this->form_validation->run() == FALSE)
  }
   
   //------- This function use for  display login form----------//
-  function ForLogin()
+  function ViewLogin()
   {
     $data["title"]="Login"; 
 	$this->load->view('Users/login', $data); 

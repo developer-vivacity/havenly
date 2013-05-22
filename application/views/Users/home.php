@@ -220,9 +220,11 @@
 	  
 	  <div class = "third padding_small inline top">
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
-		</div>	 
+		<input type="radio" name="type" id="type" value = "incomplete" class = "cbox"/></div>	 
 <div class = "third inline padding_small top">
 	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Type2.png');?> height=300em>
+	  <input type="radio" name="type" id="type" value = "complete" class = "cbox"/>
+	  
 	  </div>		
 		<br><br><br><br><hr class = "style half"/><br><br><br><br>
 		<div class = "continue horizontal"><br>
@@ -267,7 +269,7 @@
 	</div>
 	
 	<div id = "information" class = "resize">
-		<p class = "extralarge sanslight blue_text">JUST A BIT ABOUT YOU.</p><br>
+		<p class = "extralarge sanslight blue_text">CREATE YOUR ACCOUNT</p><br>
 		<p class = "medium serif dark_gray_text">We'll be in <span>touch.</span></p><br><br>
 	
 		<div class = "horizontal">
@@ -292,7 +294,7 @@
 		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 		<div class = "horizontal">
 		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="password">Pick a Password: </label>
-		<input type="password" name="password" value="Password" id="password" class = "forminput" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+		<input type="text" name="password" value="Password (min 6 chars.)" id="password" class = "forminput pwd" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
 		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
@@ -452,7 +454,11 @@ $("#room_photo2").change(function(){
 		else {$("#colors .continue").fadeOut();}
 		});
 		
-				
+			 $('.pwd').click(function(){
+			$(this).get(0).type='password';
+				});
+
+		
 		$(".inactive_one").click(function(){ 
 		 $(".inactive_one").removeClass('active');
 		 $(this).toggleClass('active');
@@ -549,7 +555,9 @@ $("#phone").val()=="867-5309"||
 $("#phone").val()=="phone"||
 $("#phone").val()==''||
 $("#password").val()=="Password"||
-$("#password").val()=='')
+$("#password").val()=="Password (min 6 chars.)"||
+$("#password").val()==''||
+$("#password").val().length < 6)
 {
 $("#submit").hide();
 }

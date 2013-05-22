@@ -153,7 +153,7 @@
 </div>	
 
 <div id = "room_pics" class = "resize" ><br>
-	<p class = "extralarge sanslight blue_text">SHOW US YOUR ROOM </p><br>
+	<p class = "extralarge sanslight blue_text">THE PICTURE SECTION </p><br>
 	<p class = "medium serif dark_gray_text"> We won't share these with anyone but the designer.  We're secure. </span></p>
 	<br><br>
 <div id = "first_photo"> 
@@ -196,7 +196,7 @@
 	
 
 	<div id = "sizes" class = "resize" >
-	<p class = "extralarge sanslight blue_text">TELL US ABOUT IT, STUD</p><br>
+	<p class = "extralarge sanslight blue_text">THE ROOM QUESTIONS</p><br>
 		<p class = "serif medium dark_gray_text">Give us a little about your room. <span>And what you want for it</span></p><br><br>
 		<div class = "center half">
 		<p class = "medium condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
@@ -215,7 +215,7 @@
 
 
 	  <div id = "type" class = "resize">
-	  <p class ="extralarge sanslight blue_text">HOW CAN WE HELP?</p><br>
+	  <p class ="extralarge sanslight blue_text">THE NEEDS QUESTION</p><br>
 	  <p class = "medium serif dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
@@ -231,6 +231,41 @@
 		</div>
 		
 	</div>
+	<div id = "social" class = "resize">
+	<p class ="extralarge sanslight blue_text">THE GET TO KNOW YOU PART</p><br>
+	<p class = "medium seventy sans-serif space dark_gray_text">
+		OPTIONAL:  If you feel comfortable, let us see some of your social media profiles.</p>  <br><BR>
+		<P class = "small seventy space blue_text serif">We won't use this for anything other than to decorate.  <br>
+		(Please note, we can only view them if they are public)</p>
+		<br><br><br><br>
+		<div class = "horizontal">
+		<div class = "third inline right-align">
+		<img src = <?php echo base_url('assets/Images/fblarge.png');?> height = 80>
+		</div>
+		<div class = "half inline">
+		<input type = "text" name = "facebook" value = "Link to your Facebook page" id = "facebook"
+		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
+		/>
+		</div></div><BR><BR>
+		<div class = "horizontal">
+		<div class = "third inline right-align">
+		<img src = <?php echo base_url('assets/Images/pinlarge.png');?> height = 80>
+		</div>
+		
+		<div class = "half inline">
+		<input type = "text" name = "pinterest" value = "Link to a pinterest board" id = "pinterest"
+		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
+		/>
+		</div></div>
+	
+	<BR><BR>
+	
+	<div class = "continue horizontal"><br>
+	
+			<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'social', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
+	</div>
+	</div>
+	
 	<div id = "information" class = "resize">
 		<p class = "extralarge sanslight blue_text">JUST A BIT ABOUT YOU.</p><br>
 		<p class = "medium serif dark_gray_text">We'll be in <span>touch.</span></p><br><br>
@@ -282,8 +317,8 @@
 	$("#loading-image").css("left",left);
 	
 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
-  $("#room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
-	
+  $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
+$("#social .continue").show();
 	$("#introbutton").click(function(){
 	$("#intro").hide();
 	$("#style_pics").fadeIn();});

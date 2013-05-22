@@ -54,6 +54,15 @@ $data['zipcode']=$this->input->post('zipcode');
 $data['password']=$this->input->post('password');
 
 
+$data['facebook']=$this->input->post('facebook');
+if ($data['facebook']=="Link to your Facebook page")
+{$data['facebook']=NULL;}
+
+$data['pinterest']=$this->input->post('pinterest');
+if ($data['pinterest']=="Link to a pinterest board"){
+$data['pinterest']=NULL;
+}
+
 
 
 $data['about']=$this->input->post('about');

@@ -146,7 +146,7 @@ vertical-align: top;
 	opacity: 0.8;
 	background-repeat: repeat;
 	width: 100%;
-	height: 100px;
+	height: 150px;
 	background-color: white;
 	/* border-bottom: 1px solid #D3D3D3;
 	margin-bottom: 0px; */ 
@@ -1046,13 +1046,29 @@ border-radius: .5em;
 text-align: center;
 }
 
-#style_pics, #room_type, #style_pics label{
+#style_pics, #room_type, #style_pics label {
 font-family: 'Open Sans Condensed', sans-serif;
 font-size: 1.3em;
 font-weight: 300;
 color: #505050;
+vertical-align: middle;
+}
+#social label{
+font-family: 'Open Sans Condensed', sans-serif;
+font-size: 20px;
+height: 24px;
+padding: 4px;
 }
 
+
+#social input[type=text]{
+font-family: 'Open Sans', sans-serif;
+font-size: 16px;
+height: 80px;
+padding: 4px;
+width: 70%;
+color: gray;
+}
 
 .inputs, .labels{
 width: 45%;

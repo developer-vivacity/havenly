@@ -33,8 +33,8 @@
 		
 						<br>			
 						
-						<div class = "logo_container_main third inline">
-						<a href =<?php echo base_url();?>> <img id = "logo" src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=150></a>
+						<div class = "logo_container_main inline">
+						<a href =<?php echo base_url();?>> <img id = "logosmall" src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=150></a>
 						</div>
 					<br><br>
 										

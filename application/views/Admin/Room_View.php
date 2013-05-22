@@ -51,7 +51,7 @@ Room Details</p>
 <?php
 if (isset($room_data[0]['room_photo2'])){
 echo "<P class = 'medium dark_gray_text'>Photo 2</p>";
-echo "<img src ={$room_data[0]['room_photo1']} height = 300>";
+echo "<img src ={$room_data[0]['room_photo2']} height = 300>";
 }
 ?>
 </div>

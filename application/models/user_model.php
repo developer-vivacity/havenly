@@ -16,7 +16,9 @@ $insert = array(
 'address'=>$data['address'],
 'phone'=>$data['phone'],
 'zipcode'=>$data['zipcode'],
-'password'=>$data['password']);
+'password'=>$data['password'],
+'pinterest'=>$data['pinterest'],
+'facebook'=>$data['facebook']);
 
 $this->db->insert('users',$insert);
 $query=$this->db->insert_id();

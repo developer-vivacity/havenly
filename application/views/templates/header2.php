@@ -36,9 +36,9 @@
 						<div class = "logo_container_main inline">
 						<a href =<?php echo base_url();?>> <img id = "logosmall" src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=150></a>
 						</div>
-					<br><br>
+					
 										
-					</div><BR><BR>
+					</div>
 	
 									
 

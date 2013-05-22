@@ -9,12 +9,12 @@ function __construct()
 	$this->load->library('s3');
 	$this->load->library('session');
 	$this->load->model('user_model');
-<<<<<<< HEAD
+
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
-=======
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
+
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
 }
@@ -267,13 +267,13 @@ if ($this->form_validation->run() == FALSE)
   else
   {  
 	 
-<<<<<<< HEAD
+
 	  $user_email=$this->input->post('email');
-=======
+
 	 $this->user_model->create_table();
 	
      $user_email=$this->input->post('email');
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
      $user_password=md5($this->input->post('password'));
      $phone=$this->input->post('phone');
      $zip=$this->input->post('zipcode');
@@ -296,17 +296,17 @@ if ($this->form_validation->run() == FALSE)
   }  
   }   
  }
-<<<<<<< HEAD
+
 
 //----This function used for when user login...............//
  function login()
-=======
+
 //----This function will be used when a user logs in...............//
 function login()
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
  {
 
-<<<<<<< HEAD
+
   if(($this->session->userdata('first_name')!=""))
     {    
      if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
@@ -323,10 +323,10 @@ function login()
      $this->Dispalyuser($this->session->userdata('id'));
 	 return; 
      }
-=======
+
 	  $this->Displayuser($this->session->userdata('id'));
 	  return; 
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
 	}
 	
 
@@ -336,18 +336,18 @@ function login()
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
  if($this->form_validation->run() == FALSE)
    {
-<<<<<<< HEAD
+
 	 $data["title"]="Login";
      $this->load->view('Users/login', $data);
      return;
-=======
+
 
 	$data["title"]="Login";
 	$data["error"]="Please enter a valid email and password";
     $this->load->view('Users/login', $data);
 
     return;
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
@@ -355,7 +355,7 @@ function login()
     $userinfoarray=$this->user_model->user_login($email,$password);
    if($this->session->userdata('first_name')!="") 
    {  
-<<<<<<< HEAD
+
 	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
@@ -381,7 +381,7 @@ function login()
    $this->userlogin="The email you entered does not belong to any account.";   
    $this->ForLogin();
    }
-=======
+
 	 
 	$data["username"]=$cur_id;   
 	
@@ -391,7 +391,7 @@ function login()
    else        
   // $this->index();
   $this->ForLogin();
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
  }
   //------- This function use for  display login form----------//
   function ViewLogin()
@@ -425,18 +425,18 @@ function login()
   
      if($this->form_validation->run() == FALSE)
      {
-<<<<<<< HEAD
+
 	        $this->load->view('Users/forgotpassword'); 
-=======
+
 	  $data["username"]="Forgot Password";   
     
        $this->load->view('Users/login', $data); 
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
      }
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
-<<<<<<< HEAD
+
      
       $receivername=$this->user_model->check_mail($email);
       if(!empty($receivername)&!empty($email))
@@ -458,7 +458,7 @@ function login()
            $this->email->initialize($config);
 
            $this->email->from('abc@gmail.com','Title');
-=======
+
        
       
       
@@ -477,7 +477,7 @@ function login()
            $message = $this->load->view('Users/sendmailmessage',$data ,true);
            
            $this->email->from('Havenly','Havenly');
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);

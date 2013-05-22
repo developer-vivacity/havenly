@@ -1,14 +1,11 @@
 <?php
 
-
 class Room_model extends CI_Model { 
 	function __construct() {
 	 parent::__construct();
 
 	 }
-	 
-	 
-	 
+
 function save_room($data){
 
 $insert = array(
@@ -37,23 +34,24 @@ $query=$this->db->get('user_rooms');
 return $query->result_array();
 		
 		}
-
 function get_room($room_id){
 $this->db->where('id',$room_id);
 $query=$this->db->get('user_rooms');
 return $query->result_array();
 		
 		}
-		
-		
-function change_status($room_id, $status){
+function change_status($room_id, $status)
+{
 $update= array(
 'status'=>$status);
-
 $this->db->where('id',$room_id);
 $query=$this->db->update('user_rooms', $update);
-		
-		}
-
+}
+// status Open or Called for login user
+ function Check_user_rooms($id)
+ {
+   $query=$this->db->query("SELECT user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
+ return $query->result();
+ }
 				
 		}

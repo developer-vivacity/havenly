@@ -1,7 +1,6 @@
 <?php
-
-
-class User_model extends CI_Model { 
+class User_model extends CI_Model 
+{ 
 	function __construct() {
 	 parent::__construct();
 
@@ -16,9 +15,7 @@ $insert = array(
 'address'=>$data['address'],
 'phone'=>$data['phone'],
 'zipcode'=>$data['zipcode'],
-'password'=>$data['password'],
-'pinterest'=>$data['pinterest'],
-'facebook'=>$data['facebook']);
+'password'=>$data['password']);
 
 $this->db->insert('users',$insert);
 $query=$this->db->insert_id();
@@ -61,4 +58,111 @@ $insert=array(
 	
 $this->db->insert('invite_requests',$insert);
 
-		}}
+		}
+		
+		// For inser user informetion---------
+   function insert_user_info($data,$email)
+   {
+	   
+	 
+	    $this->db->where("email",$email);
+	    $query=$this->db->get("users");
+       if($query->num_rows()==0)
+       {
+         
+         $this->db->insert('users',$data);
+        
+	     $id=mysql_insert_id();
+         $newdata =array('id'=>$id,'first_name'=>  $data["first_name"],'last_name'=> $data["last_name"],'email'=> $data["email"],'phone'=>$data["phone"],'address'=>$data["address"],'zipcode'=>$data["zipcode"]);   
+         
+         $this->session->set_userdata($newdata);
+         return $id;
+        
+       }
+	   else
+	   {
+         return -1;   
+	   }
+		   
+   }
+//---For user login and create session.......
+  public function user_login($email,$password)
+   {
+   $this->db->where("email",$email);
+   $this->db->where("password",$password);
+   
+   $query=$this->db->get("users");
+   
+   if($query->num_rows()>0)
+   {
+
+    foreach($query->result() as $rows)
+    {
+      $newdata =array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode);   
+    }
+    $this->session->set_userdata($newdata);
+    
+    return $newdata;
+   }
+   else
+   {
+     $this->db->where("email",$email);
+     $query=$this->db->get("users");
+     if($query->num_rows()>0)
+     return "haveemail";
+     else
+     return "";
+   }
+   
+   }
+   //----For check user mail id.......
+   public function check_mail($email)
+   {
+	   $this->db->where("email",$email);
+	   $query=$this->db->get("users");
+      if($query->num_rows()>0)
+      {
+         $receivername=$query->row_array();
+         return $receivername["first_name"]."&nbsp;".$receivername["last_name"];
+      }
+     else
+     {
+				return "";
+		 }     
+   }
+   
+   // For update user informetion
+   public function update_user_info($data,$id)
+   {
+	   
+
+       $this->db->where("id",$id);
+       
+       $this->db->update("users", $data); 
+	 
+   }
+   // For update Password
+   public function update_password($email,$password)
+   {
+	   $data = array('password' => $password);
+
+       $this->db->where("email",$email);
+       
+       $this->db->update("users", $data); 
+	 
+   }
+   // For count total rows
+ public function total_rows()
+ {
+
+  $query=$this->db->query('SELECT * FROM users');
+  return $query->num_rows();
+ }
+ // For fetch user details which login.
+ function user_getall($id)
+  {
+           $query=$this->db->query("SELECT * FROM users where id=".$id."");
+           return $query->result();
+  }
+ 
+}

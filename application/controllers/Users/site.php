@@ -1,27 +1,27 @@
 <?php
 
-Class Site extends CI_Controller {
-
-	function __construct() {
-	
+Class Site extends CI_Controller 
+{
+public $userlogin;	
+function __construct() 
+{
 	parent::__construct();
 	$this->load->library('s3');
 	$this->load->library('session');
 	$this->load->model('user_model');
+<<<<<<< HEAD
+   $this->load->model('room_model');
+   $this->load->model('preference_model');
+   $this->load->model('designer_model');
+=======
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
-        $this->load->model('Users/user_model');
-	
-	}
-	
-	function index() {
-	
-		
-	$this->load->view('Users/home');
-		
-	}
-	
-	
+}
+ function index() 
+ {
+		$this->load->view('Users/home');
+ }
 	function upload_room_pic(){
 	$this->image_path= realpath(APPPATH.'/images');
 		
@@ -103,9 +103,6 @@ Class Site extends CI_Controller {
 							}
 		
 }}}
-
-
-
 	
 	function upload_room_pic_phone(){
 	$this->image_path= realpath(APPPATH.'/images');
@@ -270,9 +267,13 @@ if ($this->form_validation->run() == FALSE)
   else
   {  
 	 
+<<<<<<< HEAD
+	  $user_email=$this->input->post('email');
+=======
 	 $this->user_model->create_table();
 	
      $user_email=$this->input->post('email');
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      $user_password=md5($this->input->post('password'));
      $phone=$this->input->post('phone');
      $zip=$this->input->post('zipcode');
@@ -289,21 +290,43 @@ if ($this->form_validation->run() == FALSE)
     }
    else
    {
-	  
     $data["email"]="";
     $data["accountinfo"]="Wecome ".$this->input->post('user_name');
     $this->load->view('Users/accountconfirmation', $data); 
   }  
   }   
  }
+<<<<<<< HEAD
+
+//----This function used for when user login...............//
+ function login()
+=======
 //----This function will be used when a user logs in...............//
 function login()
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  {
-    if(($this->session->userdata('first_name')!=""))
-    {
 
+<<<<<<< HEAD
+  if(($this->session->userdata('first_name')!=""))
+    {    
+     if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
+     {
+	    $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+       $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+       $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
+       $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));  
+       $this->load->view('Users/accountinformation', $data); 
+       return;
+     }
+     else
+     {
+     $this->Dispalyuser($this->session->userdata('id'));
+	 return; 
+     }
+=======
 	  $this->Displayuser($this->session->userdata('id'));
 	  return; 
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
 	}
 	
 
@@ -311,23 +334,54 @@ function login()
    $this->load->library('form_validation');
    $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
-   
-if($this->form_validation->run() == FALSE)
+ if($this->form_validation->run() == FALSE)
    {
+<<<<<<< HEAD
+	 $data["title"]="Login";
+     $this->load->view('Users/login', $data);
+     return;
+=======
 
 	$data["title"]="Login";
 	$data["error"]="Please enter a valid email and password";
     $this->load->view('Users/login', $data);
 
     return;
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
     $password=md5($this->input->post('enterpass'));
-    $cur_id=$this->user_model->user_login($email,$password);
- 
- if($cur_id) 
+    $userinfoarray=$this->user_model->user_login($email,$password);
+   if($this->session->userdata('first_name')!="") 
    {  
+<<<<<<< HEAD
+	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
+    {
+       $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+       $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+       $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
+       $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       
+       $this->load->view('Users/accountinformation',$data);   
+    }
+    else
+    {
+    $this->Dispalyuser($this->session->userdata('id'));
+    return;   
+    }
+	} 
+  elseif($userinfoarray=="haveemail")
+  {
+    $this->userlogin="Password do not match";
+    $this->ForLogin();
+  }
+  else
+  { 
+   $this->userlogin="The email you entered does not belong to any account.";   
+   $this->ForLogin();
+   }
+=======
 	 
 	$data["username"]=$cur_id;   
 	
@@ -337,13 +391,14 @@ if($this->form_validation->run() == FALSE)
    else        
   // $this->index();
   $this->ForLogin();
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  }
-  
   //------- This function use for  display login form----------//
   function ViewLogin()
   {
     $data["title"]="Login"; 
-	$this->load->view('Users/login', $data); 
+    $data["Login"]=$this->userlogin; 	
+    $this->load->view('Users/login', $data); 
   }
   
 
@@ -366,17 +421,44 @@ if($this->form_validation->run() == FALSE)
 	  
 	  $this->load->library('form_validation');
    
-      $this->form_validation->set_rules('enteremail', 'Your Email', 'trim|required|valid_email');
+      $this->form_validation->set_rules('enteremail', 'Email', 'trim|required|valid_email');
   
      if($this->form_validation->run() == FALSE)
      {
+<<<<<<< HEAD
+	        $this->load->view('Users/forgotpassword'); 
+=======
 	  $data["username"]="Forgot Password";   
     
        $this->load->view('Users/login', $data); 
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      }
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
+<<<<<<< HEAD
+     
+      $receivername=$this->user_model->check_mail($email);
+      if(!empty($receivername)&!empty($email))
+        {
+		     $this->load->library('email');
+           $randompassword= $this->randomPassword();
+           $this->user_model->update_password($email,md5($randompassword));
+           $subject="Account Informetion in Hevenly";     
+           $to =$email;
+           $data["receivername"]=$receivername;
+           $data["randompassword"]=$randompassword;
+           $message = $this->load->view('Users/mailtemplate',$data,true);
+           $this->load->library('email');
+           $config=array(
+           'charset'=>'utf-8',
+           'wordwrap'=> TRUE,
+           'mailtype' => 'html'
+            );
+           $this->email->initialize($config);
+
+           $this->email->from('abc@gmail.com','Title');
+=======
        
       
       
@@ -395,6 +477,7 @@ if($this->form_validation->run() == FALSE)
            $message = $this->load->view('Users/sendmailmessage',$data ,true);
            
            $this->email->from('Havenly','Havenly');
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -433,7 +516,7 @@ if($this->form_validation->run() == FALSE)
   );
   $this->session->unset_userdata($newdata );
   $this->session->sess_destroy();
- // $this->index();
+ 
  $this->ForLogin();
  }
  
@@ -454,8 +537,7 @@ if($this->form_validation->run() == FALSE)
 	));
     }
     else
-    {
-		
+    {		
     $data =array('first_name'=> $this->input->post('update_name'),
 	'last_name'=> $this->input->post('update_last_name'),
 	'email'=> $this->input->post('update_email'),
@@ -466,6 +548,5 @@ if($this->form_validation->run() == FALSE)
      $this->user_model->update_user_info($data,$this->input->post('hold_id'));
      $this->login();
  }
-
 
 }

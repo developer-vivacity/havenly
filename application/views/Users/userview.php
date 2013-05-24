@@ -1,9 +1,7 @@
 <head>
-	
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style.css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js"></script>
-
 </head>
 <body>
 <?php
@@ -36,9 +34,14 @@ echo form_open('Users/site/updatedata/',$attributes);
 <input type="hidden" id="hold_id" name="hold_id">
 <input type="hidden" id="radio_value" name="radio_value">
 <?php echo form_close(); ?>
-<table align="center" width="600px" border="1">
+<table align="center" width="700px" border="1">
 <tr>
-
+<tr><td colspan="7">
+<?php
+if(isset($mailmessage))
+echo $mailmessage;
+?>
+</td></tr>
 <td  width="100px">First Name</td>
 <td  width="100px">Last Name</td>
 <td  width="100px">Email</td>

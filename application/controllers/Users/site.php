@@ -3,19 +3,18 @@
 Class Site extends CI_Controller 
 {
 public $userlogin;	
-public $mailmessage;	
+public $mailmessage;
 function __construct() 
 {
 	parent::__construct();
 	$this->load->library('s3');
 	$this->load->library('session');
+
 	$this->load->model('user_model');
-<<<<<<< HEAD
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
-=======
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
 }
@@ -194,36 +193,28 @@ function set_file_name()
 		if ($exists){$file_name= 0;}
 		else {$file_name = $file_name;}
 		return $file_name;
-	}
-	
+	}	
 function howwework()
 	{
 		$this->load->view('Static/howwework');
-		
-	
 }
-
-	
 
 function whoweare()
 	{
 		$this->load->view('Static/whoweare');
-		
-	
 }
 
-function requestinvite(){
-
-$this->load->library('form_validation');
-$this->form_validation->set_rules('email', 'Email', 'required');
-$this->form_validation->set_rules('zipcode', 'Zipcode', 'required|exact_length[5]');
-$error = 'nope';
-
-if ($this->form_validation->run() == FALSE)
+function requestinvite()
+{
+  $this->load->library('form_validation');
+  $this->form_validation->set_rules('email', 'Email', 'required');
+  $this->form_validation->set_rules('zipcode', 'Zipcode', 'required|exact_length[5]');
+  $error = 'nope';
+  if($this->form_validation->run() == FALSE)
 		{
 			echo $error;
 		}
-		else
+  else
 		{
 			
 		$data['email'] = $this->input->post('email');
@@ -232,22 +223,23 @@ if ($this->form_validation->run() == FALSE)
 		
 		$this->user_model->invite_request($data);
 		echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
-		
-		
-		
 
 }}
-//----This Function is used to display the registration form-------//
+//----This Function used to display registration Form-------//
   function registration()
   {
-
-	$data["title"]="Registration";
+    if($this->session->userdata('first_name')!="")
+    {    
+       $this->login();
+       return;
+     }
+ 	 $data["title"]="Registration";
     $this->load->view('Users/userregistration', $data);
   }
- //------- This function used to save sign up data----------// 
+ //------- This function use for save register form data----------// 
   function add()
   { 
-	 if(($this->session->userdata('first_name')!=""))
+	if(($this->session->userdata('first_name')!=""))
     {
 	      $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
           $this->load->view('Users/accountconfirmation', $data); 
@@ -261,20 +253,15 @@ if ($this->form_validation->run() == FALSE)
    $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
    $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-    if($this->form_validation->run() == FALSE)
+   $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
+  if($this->form_validation->run() == FALSE)
   {
     $this->registration();
   }
   else
   {  
 	 
-<<<<<<< HEAD
 	  $user_email=$this->input->post('email');
-=======
-	 $this->user_model->create_table();
-	
-     $user_email=$this->input->post('email');
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      $user_password=md5($this->input->post('password'));
      $phone=$this->input->post('phone');
      $zip=$this->input->post('zipcode');
@@ -292,25 +279,26 @@ if ($this->form_validation->run() == FALSE)
    else
    {
     $data["email"]="";
-    $data["accountinfo"]="Wecome&nbsp;".$this->session->userdata('first_name');
+    $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
     $this->load->view('Users/accountconfirmation', $data); 
   }  
   }   
  }
-<<<<<<< HEAD
-
+//--For User edit information 
+function UserEditInformation()
+{
+   if(($this->session->userdata('first_name')!=""))
+     {
+      $this->Dispalyuser($this->session->userdata('id'));
+     }
+}
 //----This function used for when user login...............//
  function login()
-=======
-//----This function will be used when a user logs in...............//
-function login()
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  {
 
-<<<<<<< HEAD
-  if(($this->session->userdata('first_name')!=""))
-    {    
-     if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
+ if(($this->session->userdata('first_name')!=""))
+    {
+ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
      {
 	    $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
@@ -324,31 +312,16 @@ function login()
      $this->Dispalyuser($this->session->userdata('id'));
 	 return; 
      }
-=======
-	  $this->Displayuser($this->session->userdata('id'));
-	  return; 
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
 	}
-	
-
-// Check for valid email and password
    $this->load->library('form_validation');
    $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
- if($this->form_validation->run() == FALSE)
+   
+if($this->form_validation->run() == FALSE)
    {
-<<<<<<< HEAD
 	 $data["title"]="Login";
-     $this->load->view('Users/login', $data);
-     return;
-=======
-
-	$data["title"]="Login";
-	$data["error"]="Please enter a valid email and password";
     $this->load->view('Users/login', $data);
-
     return;
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
@@ -356,7 +329,6 @@ function login()
     $userinfoarray=$this->user_model->user_login($email,$password);
    if($this->session->userdata('first_name')!="") 
    {  
-<<<<<<< HEAD
 	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
@@ -382,27 +354,27 @@ function login()
    $this->userlogin="The email you entered does not belong to any account.";   
    $this->ForLogin();
    }
-=======
-	 
-	$data["username"]=$cur_id;   
-	
-	$this->Displayuser($this->session->userdata('id'));
-	return;
-   } 
-   else        
-  // $this->index();
-  $this->ForLogin();
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  }
+
+
   //------- This function use for  display login form----------//
-  function ViewLogin()
+  function ForLogin()
   {
+    if($this->session->userdata('first_name')!="") 
+     {
+	    $this->Login();
+	    return;
+     } 
     $data["title"]="Login"; 
     $data["Login"]=$this->userlogin; 	
     $this->load->view('Users/login', $data); 
   }
-  
-
+  //-- for forgot password//
+  function forgotpassword()
+  {
+	$data["username"]="Forgot Password";     
+    $this->load->view('Users/forgotpassword', $data); 
+   }
   //-------For generate random password ----------//
  function randomPassword() 
  {
@@ -426,18 +398,11 @@ function login()
   
      if($this->form_validation->run() == FALSE)
      {
-<<<<<<< HEAD
 	        $this->load->view('Users/forgotpassword'); 
-=======
-	  $data["username"]="Forgot Password";   
-    
-       $this->load->view('Users/login', $data); 
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      }
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
-<<<<<<< HEAD
      
       $receivername=$this->user_model->check_mail($email);
       if(!empty($receivername)&!empty($email))
@@ -458,27 +423,7 @@ function login()
             );
            $this->email->initialize($config);
 
-           $this->email->from('abc@gmail.com','Title');
-=======
-       
-      
-      
-      if($this->user_model->check_mail($email) & !empty($email))
-        {
-		
-			$this->load->library('email');
-            
-            $this->user_model->update_password($email,md5($this->randomPassword()));
-           
-           $subject="Havenly Password Request";     
-           $to =$email;
-           
-           $data["randompassword"]=$this->randomPassword();
-           
-           $message = $this->load->view('Users/sendmailmessage',$data ,true);
-           
-           $this->email->from('Havenly','Havenly');
->>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+           $this->email->from('lee@havenly.com','Update Password');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -489,7 +434,7 @@ function login()
 		}
 		elseif(!empty($email))
 		{
-	      $data["register_info"]="Unfortunately, we have been unable to ";
+	      $data["register_info"]="Your are not register user!";
 		
 		  $this->load->view('Users/forgotpassword', $data); 	
 		}
@@ -497,13 +442,16 @@ function login()
 	  
   }
   //--------For display user informetion...............
- public function Displayuser($id)
+ public function Dispalyuser($id)
  {
+	  
      $data['title']= 'Welcome';
      $data['mailmessage']=$this->mailmessage;
      $data['query']=$this->user_model->user_getall($id);
      $this->load->view('Users/userview', $data);
-  }
+     
+  
+ }
  //-------For logout------------
   public function logout()
  {
@@ -522,42 +470,41 @@ function login()
  //------For update user informetion---------
  public function updatedata()
  {
-	
    if($this->input->post('update_email'))
-   {   
-	   $this->mailmessage="User information has been updated";
-	  if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->input->post('hold_id')))
+   {  
+      $this->mailmessage="User information has been updated";
+      if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->input->post('hold_id')))
       {
-       $this->mailmessage=$this->input->post('update_email')."&nbsp;Email already exists";
+       $this->mailmessage=$this->input->post('update_email')."&nbsp;email already exists";
        $this->login();
        return;
-      }
+    }
    }
-	
 	if($this->input->post('radio_value')=="true")
 	{
-		
-	$data =array('first_name'=> $this->input->post('update_name'),
-	'last_name'=> $this->input->post('update_last_name'),
-	'email'=> $this->input->post('update_email'),
-	'phone'=>$this->input->post('update_phone'),
-	'address'=>$this->input->post('update_address'),
-	'zipcode'=>$this->input->post('update_zip'),
-	'password'=>md5($this->input->post('update_password')
+	 $data =array('first_name'=> $this->input->post('update_name'),
+	 'last_name'=> $this->input->post('update_last_name'),
+	 'email'=> $this->input->post('update_email'),
+	 'phone'=>$this->input->post('update_phone'),
+	 'address'=>$this->input->post('update_address'),
+	 'zipcode'=>$this->input->post('update_zip'),
+	 'password'=>md5($this->input->post('update_password')
 	));
     }
     else
-    {		
+    {
     $data =array('first_name'=> $this->input->post('update_name'),
-	'last_name'=> $this->input->post('update_last_name'),
-	'email'=> $this->input->post('update_email'),
-	'phone'=>$this->input->post('update_phone'),
-	'address'=>$this->input->post('update_address'),
-	'zipcode'=>$this->input->post('update_zip'));
+	 'last_name'=> $this->input->post('update_last_name'),
+	 'email'=> $this->input->post('update_email'),
+	 'phone'=>$this->input->post('update_phone'),
+	 'address'=>$this->input->post('update_address'),
+	 'zipcode'=>$this->input->post('update_zip'));
     }
      $this->user_model->update_user_info($data,$this->input->post('hold_id'));
+     
      if($this->input->post('radio_value')=="true")
      {
+           
            $this->load->library('email');
            $subject="Account Informetion in Hevenly";     
            $to =$this->input->post('update_email');

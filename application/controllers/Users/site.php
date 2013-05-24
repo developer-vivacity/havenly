@@ -1,208 +1,215 @@
 <?php
 
-Class Site extends CI_Controller
+Class Site extends CI_Controller 
 {
 public $userlogin;	
-function __construct()
+public $mailmessage;	
+function __construct() 
 {
-  parent::__construct();
-  $this->load->library('s3');
-  $this->load->library('session');
-  $this->load->model('user_model');
-
+	parent::__construct();
+	$this->load->library('s3');
+	$this->load->library('session');
+	$this->load->model('user_model');
+<<<<<<< HEAD
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
-
-  $this->load->model('Users/picture_model');
-  $this->load->model('Supplier/supplier_model');
+=======
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
+	$this->load->model('Users/picture_model');
+	$this->load->model('Supplier/supplier_model');
 }
- function index()
+ function index() 
  {
-$this->load->view('Users/home');
+		$this->load->view('Users/home');
  }
-function upload_room_pic(){
-$this->image_path= realpath(APPPATH.'/images');
+	function upload_room_pic(){
+	$this->image_path= realpath(APPPATH.'/images');
+		
+		$name = 'qqfile';
+		$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
+		$extension = end(explode(".", $_FILES[$name]["name"]));
+				if ((($_FILES[$name]["type"] == "image/gif")
+				|| ($_FILES[$name]["type"] == "image/jpeg")
+				|| ($_FILES[$name]["type"] == "image/png")
+				|| ($_FILES[$name]["type"] == "image/pjpeg")
+				|| ($_FILES[$name]["type"] == "image/jpg"))
+				&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
+				&& in_array($extension, $allowedExts))
+				{
+					if ($_FILES[$name]["error"] > 0)
+							{
+								$error ='error loading file';
+								echo json_encode ($error);
+								}
+					else {
+					
+						$file_location = $_FILES[$name]['tmp_name'];
+						if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
+							{		
+								$this->image_path= realpath(APPPATH.'/images');
 
-$name = 'qqfile';
-$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
-$extension = end(explode(".", $_FILES[$name]["name"]));
-if ((($_FILES[$name]["type"] == "image/gif")
-|| ($_FILES[$name]["type"] == "image/jpeg")
-|| ($_FILES[$name]["type"] == "image/png")
-|| ($_FILES[$name]["type"] == "image/pjpeg")
-|| ($_FILES[$name]["type"] == "image/jpg"))
-&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
-&& in_array($extension, $allowedExts))
-{
-if ($_FILES[$name]["error"] > 0)
-{
-$error ='error loading file';
-echo json_encode ($error);
-}
-else {
+									$exif=@exif_read_data($_FILES[$name]['tmp_name']);
+									if(isset($exif['Orientation']))
+									{$orientation = $exif['Orientation'];}
 
-$file_location = $_FILES[$name]['tmp_name'];
-if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
-{	
-$this->image_path= realpath(APPPATH.'/images');
+									$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
 
-$exif=@exif_read_data($_FILES[$name]['tmp_name']);
-if(isset($exif['Orientation']))
-{$orientation = $exif['Orientation'];}
+									if(!empty($orientation)){
 
-$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
+									switch($orientation){
+											case 8:
+												$image = imagerotate($image,90,0);
+												break;
+											case 3:
+												$image = imagerotate($image,180,0);
+												break;
+											case 6:
+												$image = imagerotate($image,-90,0);
+												break;
+									}
 
-if(!empty($orientation)){
+									}
 
-switch($orientation){
-case 8:
-$image = imagerotate($image,90,0);
-break;
-case 3:
-$image = imagerotate($image,180,0);
-break;
-case 6:
-$image = imagerotate($image,-90,0);
-break;
-}
+									$file_name = $this->set_file_name();
 
-}
-
-$file_name = $this->set_file_name();
-
-if ($file_name==0) {$file_name = $this->set_file_name();}
+									if ($file_name==0) {$file_name = $this->set_file_name();}
 
 
-else{
-$file_location = $this->image_path.'/'.$file_name.'.jpg';
-imagejpeg($image,$file_location);
-
-}
-}	
-
-$file_name = $this->set_file_name();
-if ($file_name==0) {$file_name = $this->set_file_name();}
-else{
-$file_name = $file_name.'.'.$extension;
-$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
-$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
-if($s3result)
-{
-$result['filename']=$file_name;
-$result['success']=true;
-unlink ($file_location);
-header("Content-Type: text/plain");
-echo json_encode($result);}
-else {
-$result['error']= 'Sorry! Try again';
-header("Content-Type: text/plain");
-echo json_encode($result);
-}
-}
-
+									else{
+									$file_location = $this->image_path.'/'.$file_name.'.jpg';
+									imagejpeg($image,$file_location);
+										
+										}
+							}				
+						
+							$file_name = $this->set_file_name();
+							if ($file_name==0) {$file_name = $this->set_file_name();}
+							else{
+									$file_name = $file_name.'.'.$extension;
+							$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
+							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
+							if($s3result)
+							{
+							$result['filename']=$file_name;
+							$result['success']=true;
+							unlink ($file_location);
+							header("Content-Type: text/plain");
+							echo json_encode($result);}
+							else {
+							$result['error']= 'Sorry!  Try again';
+							header("Content-Type: text/plain");
+							echo json_encode($result);
+							}
+							}
+		
 }}}
+	
+	function upload_room_pic_phone(){
+	$this->image_path= realpath(APPPATH.'/images');
+		
+		$name = $this->input->post('id');
+		$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
+		$extension = end(explode(".", $_FILES[$name]["name"]));
+				if ((($_FILES[$name]["type"] == "image/gif")
+				|| ($_FILES[$name]["type"] == "image/jpeg")
+				|| ($_FILES[$name]["type"] == "image/png")
+				|| ($_FILES[$name]["type"] == "image/pjpeg")
+				|| ($_FILES[$name]["type"] == "image/jpg"))
+				&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
+				&& in_array($extension, $allowedExts))
+				{
+					if ($_FILES[$name]["error"] > 0)
+							{
+								$error ='error loading file';
+								echo json_encode ($error);
+								}
+					else {
+					
+						$file_location = $_FILES[$name]['tmp_name'];
+						if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
+							{		
+								$this->image_path= realpath(APPPATH.'/images');
 
-function upload_room_pic_phone(){
-$this->image_path= realpath(APPPATH.'/images');
+									$exif=@exif_read_data($_FILES[$name]['tmp_name']);
+									if(isset($exif['Orientation']))
+									{$orientation = $exif['Orientation'];}
 
-$name = $this->input->post('id');
-$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
-$extension = end(explode(".", $_FILES[$name]["name"]));
-if ((($_FILES[$name]["type"] == "image/gif")
-|| ($_FILES[$name]["type"] == "image/jpeg")
-|| ($_FILES[$name]["type"] == "image/png")
-|| ($_FILES[$name]["type"] == "image/pjpeg")
-|| ($_FILES[$name]["type"] == "image/jpg"))
-&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
-&& in_array($extension, $allowedExts))
-{
-if ($_FILES[$name]["error"] > 0)
-{
-$error ='error loading file';
-echo json_encode ($error);
-}
-else {
+									$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
 
-$file_location = $_FILES[$name]['tmp_name'];
-if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
-{	
-$this->image_path= realpath(APPPATH.'/images');
+									if(!empty($orientation)){
 
-$exif=@exif_read_data($_FILES[$name]['tmp_name']);
-if(isset($exif['Orientation']))
-{$orientation = $exif['Orientation'];}
+									switch($orientation){
+											case 8:
+												$image = imagerotate($image,90,0);
+												break;
+											case 3:
+												$image = imagerotate($image,180,0);
+												break;
+											case 6:
+												$image = imagerotate($image,-90,0);
+												break;
+									}
 
-$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
+									}
 
-if(!empty($orientation)){
+									$file_name = $this->set_file_name();
 
-switch($orientation){
-case 8:
-$image = imagerotate($image,90,0);
-break;
-case 3:
-$image = imagerotate($image,180,0);
-break;
-case 6:
-$image = imagerotate($image,-90,0);
-break;
-}
-
-}
-
-$file_name = $this->set_file_name();
-
-if ($file_name==0) {$file_name = $this->set_file_name();}
+									if ($file_name==0) {$file_name = $this->set_file_name();}
 
 
-else{
-$file_location = $this->image_path.'/'.$file_name.'.jpg';
-imagejpeg($image,$file_location);
-
-}
-}	
-
-$file_name = $this->set_file_name();
-if ($file_name==0) {$file_name = $this->set_file_name();}
-else{
-$file_name = $file_name.'.'.$extension;
-$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
-$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
-if($s3result)
-{
-echo $file_name;
-unlink ($file_location);
-}
-else {
-echo 'Sorry! Try again';
-
-}
-}
-
+									else{
+									$file_location = $this->image_path.'/'.$file_name.'.jpg';
+									imagejpeg($image,$file_location);
+										
+										}
+							}				
+						
+							$file_name = $this->set_file_name();
+							if ($file_name==0) {$file_name = $this->set_file_name();}
+							else{
+									$file_name = $file_name.'.'.$extension;
+							$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
+							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
+							if($s3result)
+							{
+							echo $file_name;
+							unlink ($file_location);
+							}
+							else {
+							echo 'Sorry!  Try again';
+							
+							}
+							}
+		
 }}
 
 }
 
 
 function set_file_name()
-{
-$file_name= random_string('numeric',9);
-$exists=$this->picture_model->check_name($file_name);
-if ($exists){$file_name= 0;}
-else {$file_name = $file_name;}
-return $file_name;
-}
+	{
+		$file_name= random_string('numeric',9);
+		$exists=$this->picture_model->check_name($file_name);
+		if ($exists){$file_name= 0;}
+		else {$file_name = $file_name;}
+		return $file_name;
+	}
+	
 function howwework()
-{
-$this->load->view('Static/howwework');
+	{
+		$this->load->view('Static/howwework');
+		
+	
 }
+
+	
 
 function whoweare()
-{
-$this->load->view('Static/whoweare');
-
-
+	{
+		$this->load->view('Static/whoweare');
+		
+	
 }
 
 function requestinvite(){
@@ -213,31 +220,34 @@ $this->form_validation->set_rules('zipcode', 'Zipcode', 'required|exact_length[5
 $error = 'nope';
 
 if ($this->form_validation->run() == FALSE)
-{
-echo $error;
-}
-else
-{
-
-$data['email'] = $this->input->post('email');
-
-$data['zipcode'] = $this->input->post('zipcode');
-
-$this->user_model->invite_request($data);
-echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
+		{
+			echo $error;
+		}
+		else
+		{
+			
+		$data['email'] = $this->input->post('email');
+		
+		$data['zipcode'] = $this->input->post('zipcode');
+		
+		$this->user_model->invite_request($data);
+		echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
+		
+		
+		
 
 }}
-//----This Function used to display registration Form-------//
+//----This Function is used to display the registration form-------//
   function registration()
   {
 
 	$data["title"]="Registration";
     $this->load->view('Users/userregistration', $data);
   }
- //------- This function use for save register form data----------// 
+ //------- This function used to save sign up data----------// 
   function add()
   { 
-	if(($this->session->userdata('first_name')!=""))
+	 if(($this->session->userdata('first_name')!=""))
     {
 	      $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
           $this->load->view('Users/accountconfirmation', $data); 
@@ -251,15 +261,20 @@ echo '<div class = "padding"><a class = "close sanslight small padding_small lig
    $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
    $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-   $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
-  if($this->form_validation->run() == FALSE)
+    if($this->form_validation->run() == FALSE)
   {
     $this->registration();
   }
   else
   {  
 	 
+<<<<<<< HEAD
 	  $user_email=$this->input->post('email');
+=======
+	 $this->user_model->create_table();
+	
+     $user_email=$this->input->post('email');
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      $user_password=md5($this->input->post('password'));
      $phone=$this->input->post('phone');
      $zip=$this->input->post('zipcode');
@@ -277,19 +292,25 @@ echo '<div class = "padding"><a class = "close sanslight small padding_small lig
    else
    {
     $data["email"]="";
-    $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
+    $data["accountinfo"]="Wecome&nbsp;".$this->session->userdata('first_name');
     $this->load->view('Users/accountconfirmation', $data); 
   }  
   }   
  }
+<<<<<<< HEAD
 
 //----This function used for when user login...............//
  function login()
+=======
+//----This function will be used when a user logs in...............//
+function login()
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  {
 
- if(($this->session->userdata('first_name')!=""))
-    {
- if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
+<<<<<<< HEAD
+  if(($this->session->userdata('first_name')!=""))
+    {    
+     if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
      {
 	    $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
@@ -303,16 +324,31 @@ echo '<div class = "padding"><a class = "close sanslight small padding_small lig
      $this->Dispalyuser($this->session->userdata('id'));
 	 return; 
      }
+=======
+	  $this->Displayuser($this->session->userdata('id'));
+	  return; 
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
 	}
+	
+
+// Check for valid email and password
    $this->load->library('form_validation');
    $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
-   
-if($this->form_validation->run() == FALSE)
+ if($this->form_validation->run() == FALSE)
    {
+<<<<<<< HEAD
 	 $data["title"]="Login";
+     $this->load->view('Users/login', $data);
+     return;
+=======
+
+	$data["title"]="Login";
+	$data["error"]="Please enter a valid email and password";
     $this->load->view('Users/login', $data);
+
     return;
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
@@ -320,6 +356,7 @@ if($this->form_validation->run() == FALSE)
     $userinfoarray=$this->user_model->user_login($email,$password);
    if($this->session->userdata('first_name')!="") 
    {  
+<<<<<<< HEAD
 	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
@@ -345,21 +382,27 @@ if($this->form_validation->run() == FALSE)
    $this->userlogin="The email you entered does not belong to any account.";   
    $this->ForLogin();
    }
+=======
+	 
+	$data["username"]=$cur_id;   
+	
+	$this->Displayuser($this->session->userdata('id'));
+	return;
+   } 
+   else        
+  // $this->index();
+  $this->ForLogin();
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
  }
   //------- This function use for  display login form----------//
-  function ForLogin()
+  function ViewLogin()
   {
     $data["title"]="Login"; 
     $data["Login"]=$this->userlogin; 	
     $this->load->view('Users/login', $data); 
   }
   
-  //-- for forgot password//
-  function forgotpassword()
-  {
-	$data["username"]="Forgot Password";     
-    $this->load->view('Users/forgotpassword', $data); 
-   }
+
   //-------For generate random password ----------//
  function randomPassword() 
  {
@@ -383,11 +426,18 @@ if($this->form_validation->run() == FALSE)
   
      if($this->form_validation->run() == FALSE)
      {
+<<<<<<< HEAD
 	        $this->load->view('Users/forgotpassword'); 
+=======
+	  $data["username"]="Forgot Password";   
+    
+       $this->load->view('Users/login', $data); 
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
      }
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
+<<<<<<< HEAD
      
       $receivername=$this->user_model->check_mail($email);
       if(!empty($receivername)&!empty($email))
@@ -409,6 +459,26 @@ if($this->form_validation->run() == FALSE)
            $this->email->initialize($config);
 
            $this->email->from('abc@gmail.com','Title');
+=======
+       
+      
+      
+      if($this->user_model->check_mail($email) & !empty($email))
+        {
+		
+			$this->load->library('email');
+            
+            $this->user_model->update_password($email,md5($this->randomPassword()));
+           
+           $subject="Havenly Password Request";     
+           $to =$email;
+           
+           $data["randompassword"]=$this->randomPassword();
+           
+           $message = $this->load->view('Users/sendmailmessage',$data ,true);
+           
+           $this->email->from('Havenly','Havenly');
+>>>>>>> 6941f912558908c95afb51e25dfa82428e3f2cb0
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -419,7 +489,7 @@ if($this->form_validation->run() == FALSE)
 		}
 		elseif(!empty($email))
 		{
-	      $data["register_info"]="Your are not register user!";
+	      $data["register_info"]="Unfortunately, we have been unable to ";
 		
 		  $this->load->view('Users/forgotpassword', $data); 	
 		}
@@ -427,16 +497,13 @@ if($this->form_validation->run() == FALSE)
 	  
   }
   //--------For display user informetion...............
- public function Dispalyuser($id)
+ public function Displayuser($id)
  {
-	  
      $data['title']= 'Welcome';
      $data['mailmessage']=$this->mailmessage;
      $data['query']=$this->user_model->user_getall($id);
      $this->load->view('Users/userview', $data);
-     
-  
- }
+  }
  //-------For logout------------
   public function logout()
  {
@@ -455,41 +522,42 @@ if($this->form_validation->run() == FALSE)
  //------For update user informetion---------
  public function updatedata()
  {
+	
    if($this->input->post('update_email'))
-   {  
-      $this->mailmessage="User information has been updated";
-      if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->input->post('hold_id')))
+   {   
+	   $this->mailmessage="User information has been updated";
+	  if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->input->post('hold_id')))
       {
-       $this->mailmessage=$this->input->post('update_email')."&nbsp;email already exists";
+       $this->mailmessage=$this->input->post('update_email')."&nbsp;Email already exists";
        $this->login();
        return;
-    }
+      }
    }
+	
 	if($this->input->post('radio_value')=="true")
 	{
-	 $data =array('first_name'=> $this->input->post('update_name'),
-	 'last_name'=> $this->input->post('update_last_name'),
-	 'email'=> $this->input->post('update_email'),
-	 'phone'=>$this->input->post('update_phone'),
-	 'address'=>$this->input->post('update_address'),
-	 'zipcode'=>$this->input->post('update_zip'),
-	 'password'=>md5($this->input->post('update_password')
+		
+	$data =array('first_name'=> $this->input->post('update_name'),
+	'last_name'=> $this->input->post('update_last_name'),
+	'email'=> $this->input->post('update_email'),
+	'phone'=>$this->input->post('update_phone'),
+	'address'=>$this->input->post('update_address'),
+	'zipcode'=>$this->input->post('update_zip'),
+	'password'=>md5($this->input->post('update_password')
 	));
     }
     else
-    {
+    {		
     $data =array('first_name'=> $this->input->post('update_name'),
-	 'last_name'=> $this->input->post('update_last_name'),
-	 'email'=> $this->input->post('update_email'),
-	 'phone'=>$this->input->post('update_phone'),
-	 'address'=>$this->input->post('update_address'),
-	 'zipcode'=>$this->input->post('update_zip'));
+	'last_name'=> $this->input->post('update_last_name'),
+	'email'=> $this->input->post('update_email'),
+	'phone'=>$this->input->post('update_phone'),
+	'address'=>$this->input->post('update_address'),
+	'zipcode'=>$this->input->post('update_zip'));
     }
      $this->user_model->update_user_info($data,$this->input->post('hold_id'));
-     
      if($this->input->post('radio_value')=="true")
      {
-           
            $this->load->library('email');
            $subject="Account Informetion in Hevenly";     
            $to =$this->input->post('update_email');

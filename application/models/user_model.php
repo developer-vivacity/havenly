@@ -149,20 +149,25 @@ $this->db->insert('invite_requests',$insert);
        $this->db->where("email",$email);
        
        $this->db->update("users", $data); 
-	 
    }
    // For count total rows
- public function total_rows()
- {
-
-  $query=$this->db->query('SELECT * FROM users');
-  return $query->num_rows();
- }
- // For fetch user details which login.
- function user_getall($id)
+  public function total_rows()
+  {
+        $query=$this->db->query('SELECT * FROM users');
+        return $query->num_rows();
+  }
+  // For fetch user details which login.
+  function user_getall($id)
   {
            $query=$this->db->query("SELECT * FROM users where id=".$id."");
            return $query->result();
   }
- 
+  function mail_with_login_id($email,$id)
+  {
+   $this->db->where("email",$email);
+   $this->db->where("id !=",$id);
+   $query=$this->db->get("users");
+   return $query->num_rows();
+  }
+  
 }

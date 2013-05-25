@@ -369,12 +369,6 @@ if($this->form_validation->run() == FALSE)
     $data["Login"]=$this->userlogin; 	
     $this->load->view('Users/login', $data); 
   }
-  //-- for forgot password//
-  function forgotpassword()
-  {
-	$data["username"]="Forgot Password";     
-    $this->load->view('Users/forgotpassword', $data); 
-   }
   //-------For generate random password ----------//
  function randomPassword() 
  {
@@ -414,7 +408,7 @@ if($this->form_validation->run() == FALSE)
            $to =$email;
            $data["receivername"]=$receivername;
            $data["randompassword"]=$randompassword;
-           $message = $this->load->view('Users/mailtemplate',$data,true);
+           $message = $this->load->view('Users/sendmailmessage',$data,true);
            $this->load->library('email');
            $config=array(
            'charset'=>'utf-8',
@@ -510,7 +504,7 @@ if($this->form_validation->run() == FALSE)
            $to =$this->input->post('update_email');
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
-           $message = $this->load->view('Users/mailtemplate',$data,true);
+           $message = $this->load->view('Users/sendmailmessage',$data,true);
            $this->load->library('email');
            $config=array(
            'charset'=>'utf-8',

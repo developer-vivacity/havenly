@@ -289,7 +289,7 @@ function UserEditInformation()
 {
    if(($this->session->userdata('first_name')!=""))
      {
-      $this->Dispalyuser($this->session->userdata('id'));
+      $this->Displayuser($this->session->userdata('id'));
      }
 }
 //----This function used for when user login...............//
@@ -309,7 +309,7 @@ function UserEditInformation()
      }
      else
      {
-     $this->Dispalyuser($this->session->userdata('id'));
+     $this->Displayuser($this->session->userdata('id'));
 	 return; 
      }
 	}
@@ -340,7 +340,7 @@ if($this->form_validation->run() == FALSE)
     }
     else
     {
-    $this->Dispalyuser($this->session->userdata('id'));
+    $this->Displayuser($this->session->userdata('id'));
     return;   
     }
 	} 
@@ -436,7 +436,7 @@ if($this->form_validation->run() == FALSE)
 	  
   }
   //--------For display user informetion...............
- public function Dispalyuser($id)
+ public function Displayuser($id)
  {
 	  
      $data['title']= 'Welcome';

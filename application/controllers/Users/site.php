@@ -327,7 +327,10 @@ if($this->form_validation->run() == FALSE)
     $this->input->post('enterpass');
     $password=md5($this->input->post('enterpass'));
     $userinfoarray=$this->user_model->user_login($email,$password);
-   if($this->session->userdata('first_name')!="") 
+  
+
+
+  if($this->session->userdata('first_name')!="") 
    {  
 	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
@@ -346,7 +349,7 @@ if($this->form_validation->run() == FALSE)
 	} 
   elseif($userinfoarray=="haveemail")
   {
-    $this->userlogin="Password does not match";
+    $this->userlogin="Password does not match our records.";
     $this->ForLogin();
   }
   else
@@ -366,7 +369,7 @@ if($this->form_validation->run() == FALSE)
 	    return;
      } 
     $data["title"]="Login"; 
-    $data["Login"]=$this->userlogin; 	
+    $data["errors"]=$this->userlogin; 	
     $this->load->view('Users/login', $data); 
   }
   //-------For generate random password ----------//

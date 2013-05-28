@@ -226,64 +226,64 @@ function requestinvite()
 
 }}
 //----This Function used to display registration Form-------//
-  function registration()
-  {
-    if($this->session->userdata('first_name')!="")
-    {    
-       $this->login();
-       return;
-     }
- 	 $data["title"]="Registration";
-    $this->load->view('Users/userregistration', $data);
-  }
- //------- This function use for save register form data----------// 
-  function add()
-  { 
-	if(($this->session->userdata('first_name')!=""))
-    {
-	      $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
-          $this->load->view('Users/accountconfirmation', $data); 
-	      return; 
-	} 
-   $this->load->library('form_validation');
-   $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[40]|xss_clean');
-   $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[40]|xss_clean');
-   $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-   $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[20]|xss_clean');
-   $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
-   $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
-   $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-   $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
-  if($this->form_validation->run() == FALSE)
-  {
-    $this->registration();
-  }
-  else
-  {  
+  // function registration()
+  // {
+    // if($this->session->userdata('first_name')!="")
+    // {    
+       // $this->login();
+       // return;
+     // }
+ 	 // $data["title"]="Registration";
+    // $this->load->view('Users/userregistration', $data);
+  // }
+ //------- This function used to save register form data----------// 
+  // function add()
+  // { 
+	// if(($this->session->userdata('first_name')!=""))
+    // {
+	      // $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
+          // $this->load->view('Users/accountconfirmation', $data); 
+	      // return; 
+	// } 
+   // $this->load->library('form_validation');
+   // $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[40]|xss_clean');
+   // $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[40]|xss_clean');
+   // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+   // $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[20]|xss_clean');
+   // $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
+   // $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
+   // $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+   // $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
+  // if($this->form_validation->run() == FALSE)
+  // {
+    // $this->registration();
+  // }
+  // else
+  // {  
 	 
-	  $user_email=$this->input->post('email');
-     $user_password=md5($this->input->post('password'));
-     $phone=$this->input->post('phone');
-     $zip=$this->input->post('zipcode');
+	  // $user_email=$this->input->post('email');
+     // $user_password=md5($this->input->post('password'));
+     // $phone=$this->input->post('phone');
+     // $zip=$this->input->post('zipcode');
      
-     $data=array(
-    'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'email'=>$this->input->post('email'),'phone'=>$phone,'address'=>$this->input->post('address'),'password'=>$user_password,'zipcode'=>$zip);
-     $cur_id=$this->user_model->insert_user_info( $data,$this->input->post('email'));
-    if($cur_id==-1)
-    {
+     // $data=array(
+    // 'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'email'=>$this->input->post('email'),'phone'=>$phone,'address'=>$this->input->post('address'),'password'=>$user_password,'zipcode'=>$zip);
+     // $cur_id=$this->user_model->insert_user_info( $data,$this->input->post('email'));
+    // if($cur_id==-1)
+    // {
 		 
-    $data["email"]= "email already exists";
-    $data["accountinfo"]="";
-    $this->load->view('Users/userregistration', $data);
-    }
-   else
-   {
-    $data["email"]="";
-    $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
-    $this->load->view('Users/accountconfirmation', $data); 
-  }  
-  }   
- }
+    // $data["email"]= "email already exists";
+    // $data["accountinfo"]="";
+    // $this->load->view('Users/userregistration', $data);
+    // }
+   // else
+   // {
+    // $data["email"]="";
+    // $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
+    // $this->load->view('Users/accountconfirmation', $data); 
+  // }  
+  // }   
+ // }
 //--For User edit information 
 function UserEditInformation()
 {
@@ -346,12 +346,12 @@ if($this->form_validation->run() == FALSE)
 	} 
   elseif($userinfoarray=="haveemail")
   {
-    $this->userlogin="Password do not match";
+    $this->userlogin="Password does not match";
     $this->ForLogin();
   }
   else
   { 
-   $this->userlogin="The email you entered does not belong to any account.";   
+   $this->userlogin="The email you entered is not yet registered.";   
    $this->ForLogin();
    }
  }
@@ -392,7 +392,7 @@ if($this->form_validation->run() == FALSE)
   
      if($this->form_validation->run() == FALSE)
      {
-	        $this->load->view('Users/forgotpassword'); 
+	        $this->load->view('Users/login'); 
      }
 	  else
 	  {
@@ -404,7 +404,7 @@ if($this->form_validation->run() == FALSE)
 		     $this->load->library('email');
            $randompassword= $this->randomPassword();
            $this->user_model->update_password($email,md5($randompassword));
-           $subject="Account Informetion in Hevenly";     
+           $subject="Account Information from Havenly";     
            $to =$email;
            $data["receivername"]=$receivername;
            $data["randompassword"]=$randompassword;
@@ -428,9 +428,9 @@ if($this->form_validation->run() == FALSE)
 		}
 		elseif(!empty($email))
 		{
-	      $data["register_info"]="Your are not register user!";
+	      $data["errors"]="Your are not a registered user!";
 		
-		  $this->load->view('Users/forgotpassword', $data); 	
+		  $this->load->view('Users/login', $data); 	
 		}
 	  }
 	  

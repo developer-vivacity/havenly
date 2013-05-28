@@ -21,7 +21,11 @@
 <div id = "login">
 <div class="padding">
 	<?php 
-	echo validation_errors('<p class="error">');?>
+	echo validation_errors('<p class="error">');
+	
+	if (!empty($errors))
+	{echo '<p class = "error">'.$errors.'</p>';}
+	?>
    <?php echo form_open('Users/site/login/');?>
    <div class = "horizontal">
    <div class = "third inline right-align bottom	">

@@ -309,7 +309,8 @@ function UserEditInformation()
      }
      else
      {
-     $this->Displayuser($this->session->userdata('id'));
+     $data["message"]="No Rooms found";
+     $this->load->view('Users/accountinformation', $data); 
 	 return; 
      }
 	}
@@ -328,8 +329,6 @@ if($this->form_validation->run() == FALSE)
     $password=md5($this->input->post('enterpass'));
     $userinfoarray=$this->user_model->user_login($email,$password);
   
-
-
   if($this->session->userdata('first_name')!="") 
    {  
 	 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
@@ -338,24 +337,26 @@ if($this->form_validation->run() == FALSE)
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
-       
        $this->load->view('Users/accountinformation',$data);   
     }
     else
     {
-    $this->Displayuser($this->session->userdata('id'));
-    return;   
+     $data["message"]="No Rooms found";
+     $this->load->view('Users/accountinformation', $data); 
+     return;   
     }
 	} 
-  elseif($userinfoarray=="haveemail")
-  {
-    $this->userlogin="Password does not match our records.";
+	 else
+	 {
+     if($userinfoarray=="haveemail")
+     {
+     $this->userlogin="Password does not match our records.";
+     } 
+    else
+    { 
+    $this->userlogin="The email you entered is not yet registered.";   
+    }
     $this->ForLogin();
-  }
-  else
-  { 
-   $this->userlogin="The email you entered is not yet registered.";   
-   $this->ForLogin();
    }
  }
 
@@ -404,7 +405,17 @@ if($this->form_validation->run() == FALSE)
       $receivername=$this->user_model->check_mail($email);
       if(!empty($receivername)&!empty($email))
         {
-		     $this->load->library('email');
+		     
+		      $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	       $this->load->library('email',$config);
+		     
            $randompassword= $this->randomPassword();
            $this->user_model->update_password($email,md5($randompassword));
            $subject="Account Information from Havenly";     
@@ -420,7 +431,7 @@ if($this->form_validation->run() == FALSE)
             );
            $this->email->initialize($config);
 
-           $this->email->from('lee@havenly.com','Update Password');
+           $this->email->from('lee@havenly.com','Lee from Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -502,8 +513,17 @@ if($this->form_validation->run() == FALSE)
      if($this->input->post('radio_value')=="true")
      {
            
-           $this->load->library('email');
-           $subject="Account Informetion in Hevenly";     
+          
+          $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	       $this->load->library('email',$config);
+		   $subject="Account Informetion in Hevenly";     
            $to =$this->input->post('update_email');
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
@@ -515,7 +535,7 @@ if($this->form_validation->run() == FALSE)
            'mailtype' => 'html'
             );
            $this->email->initialize($config);
-           $this->email->from('abc@gmail.com','Title');
+           $this->email->from('lee@havenly.com','Lee from Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);

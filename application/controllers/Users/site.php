@@ -422,14 +422,12 @@ if($this->form_validation->run() == FALSE)
 	       $this->load->library('email',$config);
 		     
            $randompassword= $this->randomPassword();
-<<<<<<< HEAD
-           //
+
            
            $this->user_model->update_password($email,md5($randompassword));
-          //die($randompassword);
-=======
+
            $this->user_model->update_password($email,$randompassword);
->>>>>>> 72c07affedb335d1eb1e9dd6533d572a4e8bfb18
+
            $subject="Account Information from Havenly";     
            $to = $email;
            $data["receivername"]=$receivername;

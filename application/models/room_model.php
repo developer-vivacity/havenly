@@ -49,9 +49,34 @@ $query=$this->db->update('user_rooms', $update);
 }
 // status Open or Called for login user
  function Check_user_rooms($id)
- {
-   $query=$this->db->query("SELECT user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
+ { 
+ $query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
  return $query->result();
  }
-				
-		}
+//	
+function updateroom_loginuser($id)
+{
+  $query=$this->db->query("SELECT user_rooms.id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.id =".$id."");  
+ return $query->result();
+}				
+// 
+ function updateroominfowithid($id,$data)
+ {
+
+       $this->db->where("id",$id);
+       $this->db->update("user_rooms",$data ); 
+ }	
+			
+ function create_table()
+ {
+	 
+	$this->db->query("CREATE TABLE color_code (id INT(10),color_code VARCHAR(100),PRIMARY KEY (id));");
+ }
+	
+function fetch_color_style_number() 
+{
+   $query=$this->db->query("select color_id,color_code from color_code");
+   return $query->result();
+
+}	
+}

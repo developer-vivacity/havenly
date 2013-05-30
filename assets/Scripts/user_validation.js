@@ -1,7 +1,6 @@
 
 $(document).ready(function()
 {
-   var user_id;
    var ischack=false;
    $("#radioyes").click(function()
    {
@@ -19,30 +18,10 @@ $(document).ready(function()
 	}
    
    )
-   
-   $(".edit_button").click(function()
-   { 
-	   
-     user_id=this.id;
-     
-     $("#update_name").val($("#u_name_"+this.id).html());
-     $("#update_last_name").val($("#u_lastname_"+this.id).html());
-     $("#update_email").val($("#u_email_"+this.id).html());
-     $("#update_phone").val($("#u_phone_"+this.id).html());
-     $("#update_zip").val($("#u_zip_"+this.id).html());
-     $("#update_address").val($("#u_address_"+this.id).html());
-     $("#div_show_error_message").html("");
-     $("#update_password").val("");    
-     $(".div_update_table").show();
-     $(".div_update_table").offset({left:400,top:250});
-     
-  });
   $("#cancle_update").click(function()
    {
-    
        $(".div_update_table").hide();
   });
-
   $("#update_update").click(function()
    {
         var e_value=1;
@@ -50,38 +29,38 @@ $(document).ready(function()
         $("#div_show_error_message").html("");
     if($("#update_name").val()=="")
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Name</p>'); 
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter name</p>'); 
         e_value=0;
     }
     if($("#update_last_name").val()=="")
     {
-		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Last Name</p>'); 
+		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter last name</p>'); 
         e_value=0;
 	}
 	if($("#update_address").val()=="")
     {
-		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Address</p>'); 
+		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter address</p>'); 
         e_value=0;
 	}
     if($("#update_email").val()=="")
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Email</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter email</p>');
         e_value=0;    
     }
    
 	 if(($("#update_phone").val()==""))
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Phone Number</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter phone number</p>');
         e_value=0;    
 	}
 	if(($("#update_zip").val()=="") )
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Zip</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter zip</p>');
         e_value=0;    
 	}
 	 if(($("#update_password").val()=="") && ischack==true)
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Password</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter password</p>');
         e_value=0;    
 	}
 	if(($("#update_password").val()!="") && ischack==true)
@@ -90,30 +69,193 @@ $(document).ready(function()
 		if($.trim($("#update_password").val()).length<4)
         {
 		
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User Password field must be at least 4 characters in length</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field must be at least 4 characters in length</p>');
         e_value=0;    
 	    }
 	    if($.trim($("#update_password").val()).length>32)
 	    {
-		$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User Password field can not exceed 32 characters in length</p>');
+		$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field can not exceed 32 characters in length</p>');
         e_value=0;	
 		}
 	}
     if(($("#update_email").val()!="") && (!emailReg.test($("#update_email").val()))) 
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid Email address</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid email address</p>');
         e_value=0;    
     }
     if(e_value==1)
     {
 
-		$("#hold_id").val(user_id);
+		
 		$("#radio_value").val(ischack);
-		
 		$('#updateform').submit();
-		
-		//window.location.href="updatedata?name="+$("#update_name").val()+"&email="+$("#update_email").val()+"&usertype="+$("#update_user_type").val()+"&userid="+user_id+"";
+				
     }
+
  });
+
+$("#update_room").click(function()
+{
+
+    var colorarea ="";
+	var area ="";
  
+    var file2=$("#update_photo2").val();
+    var fileextension_two = file2.substr( (file2.lastIndexOf('.') +1) );
+    var exts=new Array('jpg','png','gif','jpeg','pjpeg');
+   $("#div_show_error_message").html(''); 
+   e_value=1;
+  if($("#update_budget").val()=="")
+    {
+     $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room budget</p>'); 
+        e_value=0;
+    }
+    if($("#update_width").val()=="")
+    {
+    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width</p>');
+    e_value=0; 
+    }
+   if($("#update_height").val()=="")
+    {
+    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room height</p>');
+    e_value=0;
+    }
+   
+    if($("#update_photo1").val().trim()!="")
+    {
+        var file1=$("#update_photo1").val();
+        var fileextension_one = file1.substr((file1.lastIndexOf('.') +1) );
+    if ($.inArray (fileextension_one.toLowerCase(), exts ) < 0 )
+        {
+         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room photo1 in correct format</p>');
+         e_value=0;
+        } 
+    }
+    if($("#update_photo2").val().trim()!="")
+    {
+         var file2=$("#update_photo2").val();
+         
+         var fileextension_two = file2.substr((file2.lastIndexOf('.') +1) );
+         
+        if($.inArray (fileextension_two.toLowerCase(), exts ) < 0 )
+        {
+         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room photo2 in correct format</p>');
+         e_value=0;
+        } 
+    }
+    if($("#update_height").val().trim()!="" && !$.isNumeric($("#update_height").val()))
+    {
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room height in numeric format</p>');
+        e_value=0;
+    }
+    if($("#update_width").val().trim()!="" && !$.isNumeric($("#update_width").val()))
+    {
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width in numeric format</p>');
+        e_value=0;
+    }
+    if($("#update_budget").val()!="" && !$.isNumeric($("#update_budget").val()))
+    {
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter budget in numeric format</p>');
+        e_value=0;
+    }
+   
+ if(e_value==1)
+   { 
+    
+    if($('input[name="color[]"]:checked').length<=0)
+	{
+	 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
+	 e_value=0;
+	}
+	else 
+	{
+		var colorarea ="";
+	   $('input[name="color[]"]:checked').each(function(i,e) {
+       if(colorarea=="")
+       {
+		colorarea=e.value;
+	   }
+	   else
+	   {
+		colorarea=colorarea+","+e.value;
+	   }
+	   e_value=1;
+    });	
+    
+    }
+	if($('input[name="style[]"]:checked').length<=0 && $("#select_room").is(':visible'))
+	{
+		
+	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one color pic</p>');
+	e_value=0;
+	}else if($("#select_room").is(':visible'))
+	{
+	   var area ="";
+       $('input[name="style[]"]:checked').each(function(i,e) {
+       if(area=="")
+       {
+		area=e.value;
+	   }
+	   else
+	   {
+		area=area+","+e.value;
+	   }
+	   e_value=1;
+      });		
+	}
+	
+	if($('input[name="optionstyle[]"]:checked').length<=0 && $("#option_room").is(':visible'))
+	{
+		
+	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
+	e_value=0;
+	}else if($("#option_room").is(':visible'))
+	{
+		
+	   var area ="";
+       $('input[name="optionstyle[]"]:checked').each(function(i,e) {
+       
+       if(area=="")
+       {
+		area=e.value;
+	   }
+	   else
+	   {
+		area=area+","+e.value;
+	   }
+	   e_value=1;
+	   
+      });		
+	}
+if(e_value==1)
+{
+     $("#holdstyle").val(area);
+     $("#holdcolor").val(colorarea);
+    
+     $("#updateform").submit();
+ }
+   }
+}
+
+);
+$("#update_room_type").change(function() 
+{
+
+
+if($("#select_room").is(':visible'))
+{
+    $("#select_room").hide();
+    $("#option_room").show();
+}
+else 
+{
+	
+	$("#select_room").show();
+	$("#option_room").hide();
+}
+
+});
+
 }); 
+
+

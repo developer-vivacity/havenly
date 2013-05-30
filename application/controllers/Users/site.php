@@ -4,6 +4,7 @@ Class Site extends CI_Controller
 {
 public $userlogin;	
 public $mailmessage;
+
 function __construct() 
 {
 	parent::__construct();
@@ -17,6 +18,8 @@ function __construct()
 
 	$this->load->model('Users/picture_model');
 	$this->load->model('Supplier/supplier_model');
+	
+	$this->designer_model->create_table();
 }
  function index() 
  {
@@ -327,7 +330,7 @@ if($this->form_validation->run() == FALSE)
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
-    $password=md5($this->input->post('enterpass'));
+    $password=$this->input->post('enterpass');
     $userinfoarray=$this->user_model->user_login($email,$password);
   
   if($this->session->userdata('first_name')!="") 
@@ -419,12 +422,16 @@ if($this->form_validation->run() == FALSE)
 	       $this->load->library('email',$config);
 		     
            $randompassword= $this->randomPassword();
+<<<<<<< HEAD
            //
            
            $this->user_model->update_password($email,md5($randompassword));
           //die($randompassword);
+=======
+           $this->user_model->update_password($email,$randompassword);
+>>>>>>> 72c07affedb335d1eb1e9dd6533d572a4e8bfb18
            $subject="Account Information from Havenly";     
-           $to =$email;
+           $to = $email;
            $data["receivername"]=$receivername;
            $data["randompassword"]=$randompassword;
            $message = $this->load->view('Users/sendmailmessage',$data,true);
@@ -447,7 +454,7 @@ if($this->form_validation->run() == FALSE)
 		}
 		elseif(!empty($email))
 		{
-	      $data["errors"]="Your are not a registered user!";
+	      $data["errors"]="You are not yet a registered user, we'd love to have you though.";
 		
 		  $this->load->view('Users/login', $data); 	
 		}

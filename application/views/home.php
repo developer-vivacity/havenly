@@ -97,9 +97,9 @@
 
 </div></div>
 <div class = "horizontal center light_gray"><br><br><br><br>
-<div class = "half inline">
+<div class = "half top inline">
 <BR><BR>
-<hr class = "seventy">
+<hr class = "seventy style3">
 <div class = "centerline">
 <span class = "light_gray small sans-serif dark_gray_text">HOW HAVENLY WORKS
 </span></div>
@@ -118,19 +118,20 @@ Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay">
 (we don't bite)</p><BR><BR>
 </div>
 <div id = "overlay">
-<div class = "boxoverlay"><div class = "paddingmob padding_small">
-<a class = "close sanslight small paddingmob padding_small light_gray_text">X Close</a>
-<p class = "padding_small_top midlarge serif">You like us!</p>
-<hr class = "seventy style">
-<p class = "condensed medium padding_small">Havenly is currently open to people with an invitation.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
+<div class = "boxoverlay"><div class = "paddingmob dark_gray_text padding_small">
+<a class = "close sanslight small paddingmob padding_small light_gray_text">X Close</a><BR><BR>
+<p class = "large condensed">YOU LIKE US!</p>
+<hr class = "seventy style3">
+<p class = "condensed midlarge">We're in like with you too.</p>
+<p class = "condensed midsmall padding_small">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
 </p>
 <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
 <div class = "horizontal">
-<label class = "half sanslight medium middle inline" for="Email">Email Address:</label><br><br>
+<label class = "half condensed midsmall middle inline" for="Email">Email Address:</label><br><br>
 <input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/>
 </div><br><br>
 <div class = "horizontal">
-<label class = "half sanslight medium middle inline" for="Zipcode">Zipcode:</label><br><br>
+<label class = "half condensed midsmall middle inline" for="Zipcode">Zipcode:</label><br><br>
 <input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br><br>
 <a class = "button3 pink white_text serif" id = "requestinvite">Request</a><br><br>
 </form>
@@ -227,7 +228,7 @@ var email = $("#email").val();
 var zipcode = $("#zipcode").val();
 $.ajax({
     type: "POST",
-    url: "/test/Design3/index.php/Users/site/requestinvite",
+    url: "index.php/Users/site/requestinvite",
     data: {email: email, zipcode: zipcode},
     success: function(data) {
 		if(data=='nope')

@@ -10,109 +10,85 @@
   
 </div>  
 <div id = "howwework">
-<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a></div>
-<div class = "right">
+<div class = "padding_left padding_small left-align middle inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
+<div class = "right middle">
 <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
-<div class = "right_align inline top padding_small">
-<ul class = "menu_bar dark_gray_text" id = "menu_bar">
+<div class = "right_align inline middle padding_small"><BR>
+<ul class = "menu_bar medium dark_gray_text" id = "menu_bar">
 		<li class = "inline dark_gray_text medium condensed"> <a  class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
 			
 		<li class = "dark_gray_text medium condensed inline"> 1-888-978-3152</li>
 		<li class = "inline medium condensed"> <a class = "button2 dark_gray_text padding blue" href = <?php echo base_url('index.php/Users/site/whoweare');?>>Login </li></a>
 		</ul></div></div>
-
-<br><br>
-<div class = "center"><br><br>
-<div class = "clear padding_small_top center" id = "workhero">
-<div class = "seventy white translucent2"><BR><BR>
-<p class = "cursive middle dark_gray_text large">
-Let us help.  </p>
-<p class = "seventy condensed dark_gray_text middle medium">We can help you put it together.  We ship you everything you need for a stylish room that reflects your taste and budget.  </p><br><br><BR><BR>
-<hr class = "seventy style">
-<ul class = "menu_bar dark_gray_text"><br>
-<a href = "#expectdiv" id = "expect"><li class = "inline dark_gray_text  midsmall condensed">WHAT TO EXPECT</li></a>
-<a href = "#shippingdiv" id = "shipping"><li class = "inline dark_gray_text  midsmall condensed">SHIPPING & RETURNS</li></a>
-<a href = "#portfoliodiv" id = "portfolio"><li class = "inline dark_gray_text midsmall  condensed">PORTFOLIO</li></a>
-</ul><br><hr class = "seventy style"><BR><BR> 
-
-</div></div></div></div>
-
-<div id = "expectdiv"><br><br><br>
-<div class = "center"><p class = "condensed center">
--what to expect-</p><BR><BR>
-
-<br>
-<div class = "third padding_small inline top">
-<img src = <?php echo base_url('/assets/Images/Screenshot.png');?> height = 150><br><br><br>
-<p class = "serif medium blue_text">
-Here's What You Do</p><hr class = "seventy style"><br>
-<p class = "condensed medium dark_gray_text">
-You tell us about what you like in our online survey.  In three business days you'll get a call from one of our decorators, to talk a little bit further.
-</p><br><br>
-
 </div>
-<div class = "third padding_small inline top">
-<img src = <?php echo base_url('/assets/Images/couch.png');?> height = 150><br><br><br>
-<p class = "serif medium blue_text">
-Here's What You Get</p><hr class = "seventy style"><br>
-<p class = "condensed medium dark_gray_text">
-Our decorator suggests furnishings, furniture, and paint colors to complement your room and your style.  She'll also send you a floorplan, so you arrange everything as optimally as possible.</p><br><br><br>
-
-</div>
-<div class = "third padding_small inline top">
-<img src = <?php echo base_url('/assets/Images/gift.png'); ?> height = 150><br><br><br>
-<p class = "serif medium blue_text">
-Then What?</p><hr class = "seventy style"><br>
-<p class = "condensed medium dark_gray_text">
-You log back in and with one click on the items you like,  we send them to you, with return labels.  We'll specify ship times on the site.
-
-</p><br></div><br><br>
-<br><br><br>
-</div>
-
-</div>
-
-<div id = "shippingdiv"><br><br><br>
+<div class = "horizontal light_gray"><br><br><BR>
+<p class = "padding_left paddingmob sanslight midlargeplus dark_gray_text left-align">
+How it works</p><br><BR><BR></div><BR><BR><BR>
 <div class = "center">
+<table class = "hwwtable horizontal center dark_gray_text">
+<tr class = "horizontal padding_small_top">
+<td class = "center middle half"><BR><BR>
+<p class = "sanslight center midlarge">
+You tell us about you
+</p><br><BR>
+<p class = "serif small space center">
+Tell us about your room and your style<br><br>
+Take a picture of your room<br><BR>
+Your personal decorator calls you in three business days to chat further<br><br>
 
-<div class = "center"><p class = "condensed center">
--shipping & returns-</p><BR><BR>
+</p>
+</td>
+<td class = "half center"><img src = <?php echo base_url('assets/Images/survey.jpg');?> height= 250>
+</td>
+</tr>
+</table><BR><BR><BR>
+<hr class = "seventy style">
+</div><div class = "center">
+<table class = "hwwtable horizontal center dark_gray_text">
+<tr class = "horizontal padding_small_top">
+<BR><BR>
+<td class = "half center"><img src = <?php echo base_url('assets/Images/rendering.jpg');?> height= 300>
+</td>
+<td class = "center middle half"><BR><Br><BR>
+<p class = "sanslight center midlarge">
+..and then we decorate
+</p><br><BR>
+<p class = "serif small space center">
+Our decorator suggests paint colors, furnishings and furniture<br><br>
+We also show you what your room could look like with your new gear<br><br>
 
-<img src = <?php echo base_url('/assets/Images/box.png');?> height = 100>
-<br><br>
-<div class = "half center">
-<p class = "serif medium blue_text">Shipping</p>
-<hr class = "seventy style"><br>
-<p class = "condensed medium dark_gray_text">We ship to you!  We have two types of items: small items that ship UPS or Fedex, and large items that are shipped through white glove delivery service.  Most items ship within 2-3 weeks, but differences are noted on the site.</p><br><br><br>
-<p class = "serif medium blue_text">Returns</p>
-<hr class = "seventy style"><br>
-<p class = "condensed medium dark_gray_text">Unharmed items can be returned within 7 days of purchase.  We include return labels for all UPS and Fedex items, just stuff it back in the packaging and send back.  For white glove items, give us a call, and we will arrange a pickup - there is a fee for white glove items, unfortunately, but we'll try and minimize it.</p><br><br>
+</p>
+</td>
 
-</div>	</div><br><br><br></div>
-
+</tr>
+</table><BR><BR><BR>
+<hr class = "seventy style">
 </div>
-<div id = "portfoliodiv" class = "center">
-<br><br><br>
-<div class = "center"><p class = "condensed center">
--portfolio-</p><BR><BR><br><br>
-<h2 class = "seventy middle extralarge cursive dark_gray_text">
-<span>David</span></h2><br><br>
+<div class = "center">
+<table class = "hwwtable horizontal center dark_gray_text">
+<tr class = "horizontal padding_small_top">
+<td class = "center half middle half"><BR><BR>
+<p class = "sanslight center midlarge">
+..and send everything to you.
+</p><br><BR>
+<p class = "serif small space center">
+Log back in and select the items you love<br><br>
+We send it all to you with one click<br><BR>
+(No searching through different sites or entering your address 10 times)<br><br>
 
-<p class = "midlarge seventy condensed left-align dark_gray_text">Dave is busy.  He's really busy.  He finally had time to move out of the frat pad he lived in with three other guys, and he wanted something that was inviting, yet still masculine. When we started, it was totally empty.  He had a couple of Nets posters, and a mattress. We helped.</p><br><br><br>
-<img class = "seventy doubleborder" src = <?php echo base_url('assets/Images/Carrie.jpg');?>><br><br><br>
-<br><br><br>
-<h2 class = "seventy middle extralarge cursive dark_gray_text">
-<span>Lee</span></h2><br><br>
-
-<p class = "midlarge seventy condensed left-align dark_gray_text">Sure, Lee is our co-founder.  So who better to try the services of her team?  Her husband really doesn't like to spend much money on furniture, but after buying a new house, she felt like it needed a bit of help.  Havenly got it all to her in 3 weeks.  Pretty easy.</p><br><br><br>
-<img class = "seventy doubleborder" src = <?php echo base_url('assets/Images/MyLR.jpg');?>><br><br><br>
+</p>
+</td>
+<td class = "half center"><BR><BR>
+<img src = <?php echo base_url('assets/Images/shopping.jpg');?> height= 220>
+</td>
+</tr>
+</table><BR><BR><BR>
 </div>
 
 
-</div>
 <div class = "horizontal center padding_small_top light_gray"><BR><BR>
 <p class = "seventy large center pink_text condensed">
-Try us out  <a class = "pink_text cursive" id= "startbutton" href="#overlay"> here &rarr;</a></p><br>
+Try us out  <a class = "pink_text cursive" id= "startbutton2" href="#overlay"> here &rarr;</a></p><br>
 <p class = "serif small pink_text">
 (we're really nice, we promise.)</p><BR><BR>
 </div>
@@ -138,48 +114,15 @@ Try us out  <a class = "pink_text cursive" id= "startbutton" href="#overlay"> he
 </div></div></div>
 
 <script>
-function heroheight(){
-var viewportHeight = $(window).height();
-$("#howwework").height(viewportHeight);
-$("#workhero").show().animate({top:(viewportHeight/2-20)}, {duration: 2200, easing: 'easeInOutBack'})
-}
-$(" #shippingdiv, #portfoliodiv").hide();
-
-$(window).load(function(){
-
-var viewportHeight = $(window).height();
-var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-if (isMobile)
-{
-		$("hr").hide();
-	}
-
-	else {heroheight();}
 	
-$("#expect").click(function(){
-$(" #shippingdiv, #portfoliodiv").fadeOut(800);
-$("#expectdiv, #shipping, #portfolio").fadeIn(1500);});
-
-$("#shipping").click(function(){
-$(" #expectdiv, #portfoliodiv").fadeOut(800);
-$("#shippingdiv, #expect, #portfolio").fadeIn(1500);
-
-	});
-	
-$("#portfolio").click(function(){
-$(" #expectdiv, #shippingdiv").fadeOut(800);
-$("#portfoliodiv, #expect, #shipping").fadeIn(1500);
-
-	});
-	
-	
+$(document).ready(function(){
  $("#pull").on('click', function(){
 	$(".navmenu ul").slideToggle();
 	
  
     });
 	
-$("#startbutton").click(function(){
+$("#startbutton2").click(function(){
 $("#overlay").fadeIn(1000);
 });
 
@@ -197,7 +140,7 @@ var email = $("#email").val();
 var zipcode = $("#zipcode").val();
 $.ajax({
     type: "POST",
-    url: "/test/Design3/index.php/Users/site/requestinvite",
+    url: "requestinvite",
     data: {email: email, zipcode: zipcode},
     success: function(data) {
 		if(data=='nope')

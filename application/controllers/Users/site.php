@@ -300,8 +300,9 @@ function UserEditInformation()
     {
  if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
      {
-	    $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+	   $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+       $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));  
        $this->load->view('Users/accountinformation', $data); 
@@ -335,6 +336,7 @@ if($this->form_validation->run() == FALSE)
     {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
        $this->load->view('Users/accountinformation',$data);   
@@ -417,7 +419,10 @@ if($this->form_validation->run() == FALSE)
 	       $this->load->library('email',$config);
 		     
            $randompassword= $this->randomPassword();
+           //
+           
            $this->user_model->update_password($email,md5($randompassword));
+          //die($randompassword);
            $subject="Account Information from Havenly";     
            $to =$email;
            $data["receivername"]=$receivername;
@@ -456,6 +461,7 @@ if($this->form_validation->run() == FALSE)
      $data['title']= 'Welcome';
      $data['mailmessage']=$this->mailmessage;
      $data['query']=$this->user_model->user_getall($id);
+    
      $this->load->view('Users/userview', $data);
      
   

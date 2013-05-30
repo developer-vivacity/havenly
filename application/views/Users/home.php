@@ -328,7 +328,7 @@ $("#social .continue").show();
 	
 		 $('#uploader1').fineUploader({
 				request: {
-				endpoint: '/test/Design3/index.php/Users/site/upload_room_pic'
+				endpoint: 'site/upload_room_pic'
 				},
 				debug:true,
 				multiple: false,
@@ -353,7 +353,7 @@ $("#social .continue").show();
 	
 		$('#uploader2').fineUploader({
 				request: {
-				endpoint: '/test/Design3/index.php/Users/site/upload_room_pic'
+				endpoint: 'site/upload_room_pic'
 				},
 				debug:true,
 				multiple: false,
@@ -381,7 +381,7 @@ $("#social .continue").show();
 	var filename=$("#room_photo1").val();
 	$.ajaxFileUpload({
 	dataType : 'JSON',
-	url :'/test/Design3/index.php/Users/site/upload_room_pic_phone',
+	url :'site/upload_room_pic_phone',
 	secureuri :false,
 	fileElementId :'room_photo1',
 	data: {'id':'room_photo1'},
@@ -405,7 +405,7 @@ $("#room_photo2").change(function(){
 	var filename=$("#room_photo2").val();
 	$.ajaxFileUpload({
 	dataType : 'JSON',
-	url :'/test/Design3/index.php/Users/site/upload_room_pic_phone',
+	url :'site/upload_room_pic_phone',
 	secureuri :false,
 	fileElementId :'room_photo2',
 	data: {'id':'room_photo2'},

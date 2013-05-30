@@ -99,6 +99,15 @@ color: white;
 hr.style { border: 0; height: 0; border-top: 1.5px solid lightgray; border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
 hr.style1 { border: 0; height: 0; border-top: 1.5px solid gray;  }
 hr.style2 { border: 0; height: 0; border-bottom: 1.5px solid white; }
+hr.style3 {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc); 
+    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc); 
+}
 
 
 
@@ -116,7 +125,7 @@ hr.style2 { border: 0; height: 0; border-bottom: 1.5px solid white; }
 	height: auto;
 	height: 100%;
 	margin: auto;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 
@@ -510,8 +519,8 @@ left: 0px;
 
 #overlay input[type=text] {
 text-align: center;
-font-size: 1.2em;
-padding: .4em;
+font-size: 1em;
+padding: .3em;
 font-family: 'Open Sans', sans-serif;
 -webkit-box-shadow: inset 2px 2px 2px 0px #000000;
     -moz-box-shadow: inset 2px 2px 2px 0px #000000;
@@ -580,7 +589,7 @@ margin-top: .5em;
 
 
 /* Photo Selection Page	 */
-img.inactive, img.notmystyle, img.inactive_one {
+img.inactive, img.inactive_one {
 	border: .5em solid white;
 	}
 img.active:hover{
@@ -665,7 +674,7 @@ font-size: 22px;
 }
 
 .small {
-font-size: 16px;
+font-size: 14px;
 line-height: 17px;
 }
 
@@ -681,6 +690,7 @@ line-height: 1.4em;}
 vertical-align: top;
 }
 .middle{
+display: table-cell;
 vertical-align: middle;
 }
 
@@ -874,8 +884,11 @@ width: 45%;
 display: inline-block;
 *display: inline;
     zoom: 1;
-margin-right: 1em;
-vertical-align: top;
+margin-right: 16px;
+}
+
+.half2{
+width: 48%
 }
 
 .forty{
@@ -883,6 +896,9 @@ width: 40%;
 margin-right: 2em;
 }
 
+.sixty{
+width: 60%;
+}
 
 .seventy{
 width: 70%;
@@ -1135,6 +1151,7 @@ cursor: pointer;
 background-image:url('Images/MyLR2.jpg');
 background-repeat: none;
 width: 100%;
+height: 190px;
 position: relative;
 background-size: cover;
 
@@ -1142,18 +1159,22 @@ background-size: cover;
 #howwework a:hover{
 opacity:.4;
 }
+
 .linkboxes{
 height: 110px;
 }
 
 #abouttheteam{
-background-image: url('Images/lampbg.jpg');
+background-image: url('Images/Lampbg.jpg');
 background-repeat: none;
 background-size: cover;
 width: 100%;
 position: relative;
 }
 
+tr, td{
+vertical-align: middle;
+}
 
 #abouthero{
 position: absolute;

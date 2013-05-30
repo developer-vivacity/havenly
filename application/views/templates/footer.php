@@ -4,8 +4,8 @@
  <div class = "paddingmob padding_left block white_text">
 <br><br>
 <ul>
-<li> <a class= "medium condensed" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li>|
-<li> <a class= "medium condensed" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>|
+<li> <a class= "medium condensed" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li>
+<li> <a class= "medium condensed" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
 <li><a class= "medium condensed"href = "http://blog.havenly.com">BLOG</a></li>
 </ul><br>
 <p class = "cursive medium">Designed with love in beautiful Colorado.</p>

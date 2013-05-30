@@ -26,7 +26,7 @@
 	
 <div id = "abouthero" class = "horizontal padding_small_top center">
 
-<p class = "cursive middle white_text large">
+<p class = "cursive center white_text large">
 We've been there.  </p>
 <p class = "half condensed white_text middle medium">We were in the same shoes, not so long ago.  We know you're busy, we know you don't want to pay too much. Because we don't either.</p><br><br>
 <hr class = "style2 half"><br>
@@ -91,7 +91,7 @@ She hates sweating too much, and loves to pocket dial her parents at 3am.</p>
 
 <div id = "contact" class = "center padding">
 <div class = "seventy center left-align"><br><br><br><br>
-<hr>
+<hr class = "style3">
 <div class = "centerline midlarge"><span class = "white large serif dark_gray_text">
 	Let's Talk.</span></div>
 	<br><br><br>

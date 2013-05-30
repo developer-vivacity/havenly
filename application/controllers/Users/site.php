@@ -431,7 +431,7 @@ if($this->form_validation->run() == FALSE)
 		}
 		elseif(!empty($email))
 		{
-	      $data["errors"]="Your are not a registered user!";
+	      $data["errors"]="You are not yet a registered user, we'd love to have you though.";
 		
 		  $this->load->view('Users/login', $data); 	
 		}

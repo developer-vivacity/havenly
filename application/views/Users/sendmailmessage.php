@@ -3,7 +3,7 @@
 <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
-<style>
+<style type="text/css">
 .padding
 {
 padding: 3em;
@@ -39,6 +39,7 @@ width: 30%;
 {
 text-align: center;
 }
+</style>
 </head>
      <body> 
      <p class = "text midlarge">

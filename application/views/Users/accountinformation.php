@@ -1,9 +1,16 @@
 <?php
  echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
 ?>
-  <table>
+<?php
+if(isset($message))
+{
+	echo '<p>'.$message.'</p>';
+}
+?>
+<table>
 	 <?php
-     
+    if(isset($designerinformation))
+    {
 	  foreach($designerinformation as $key)
 	  {
             echo '<tr><td><img src="'.$key->designer_picture.'"></td></tr>';
@@ -11,15 +18,18 @@
 		      echo '<tr><td>Her Phone Number is:</td><td>'.$key->designer_phone_number.'</td></tr>';
 		      echo '<tr><td>Her Email Address is:</td><td>'.$key->designer_email.'</td></tr>';
 	   }
+   }
 	  ?>
 	 </table>
-
+<?php
+if(isset($userdetails))
+{
+?>
 <p><h1>User Information:<h1></p>
 <table>
 <tr><td>&nbsp;First Name&nbsp;</td><td>&nbsp;Last Name&nbsp;</td><td>&nbsp;Email&nbsp;</td><td>&nbsp;Address&nbsp;</td><td>&nbsp;Phone Number&nbsp;</td><td>&nbsp;Zip Code&nbsp;</td></tr>
 <?php
 $userid="";
-//foreach($roomsassociated as $key)
 foreach($userdetails as $key)
 {
   if($userid!=$key->id)
@@ -30,6 +40,13 @@ foreach($userdetails as $key)
 }
 ?>
 </table>
+<?php
+}
+?>
+<?php
+if(isset($roomsassociated))
+{
+?>
 <p><h1>User Room Information:<h1></p>
 <table>
 <tr><td>&nbsp;Roomtype&nbsp;</td><td>&nbsp;Budget&nbsp;</td><td>&nbsp;Room Width/Height&nbsp;</td><td>&nbsp;Room Photo1&nbsp;</td><td>&nbsp;Room Photo1&nbsp;</td></tr>
@@ -53,6 +70,13 @@ foreach($roomsassociated as $key)
 }
 ?>
 </table>
+<?php
+}
+?>
+<?php
+if(isset($userpreference))
+{
+?>
 <p><h1>User Preference Information:</h1></p>
 
 <table>
@@ -67,6 +91,8 @@ echo '<tr><td>&nbsp;&nbsp;'.$key->style_pics.'&nbsp;</td><td>&nbsp;&nbsp;'.$key-
 
 </table>
 
-
+<?php
+}
+?>
 
 

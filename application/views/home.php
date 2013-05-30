@@ -122,7 +122,7 @@ Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay">
 <a class = "close sanslight small paddingmob padding_small light_gray_text">X Close</a><BR><BR>
 <p class = "large condensed">YOU LIKE US!</p>
 <hr class = "seventy style3">
-<p class = "cursive midlarge">We're in like with you too.</p>
+<p class = "condensed midlarge">We're in like with you too.</p>
 <p class = "condensed midsmall padding_small">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
 </p>
 <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>

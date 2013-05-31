@@ -27,21 +27,31 @@
 	{echo '<p class = "error">'.$errors.'</p>';}
 	?>
    <?php echo form_open('Users/site/login/');?>
-   <div class = "horizontal">
-   <div class = "third inline right-align bottom	">
-  <label class = "medium condensed" for="email">Email:</label></div>
-  <div class = "half inline">
-  <input type="text" id="enteremail" name="enteremail" value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail'];?>"/><br></div>
-  </div>
-  <div class = "horizontal">
-  <div class = "third inline right-align">
-  <label class = "medium condensed " for="password">Password:</label></div>
-  <div class = "half inline">
-  <input type="password" id="enterpass" name="enterpass"  value="<?php if(isset($_POST['enterpass']))echo $_POST['enterpass'];?>"/><br></div></div><br>
-  <div class = "third inline right-align">
-  </div>
-  <div class = "half inline">
-  <input type="submit" class="button3 horizontal small condensed" value="Sign in" /></div>
+   <table class = "horizontal">
+	<tr class = "horizontal">
+	<td class = "third right-align middle">
+		<label class = "medium condensed" for="email">Email:</label>
+	</td>
+	<td class = "seventy left-align middle">
+		<input type="text" id="enteremail" name="enteremail" value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail'];?>"/>
+	</td>
+	</tr>
+  
+	<tr class = "horizontal">
+	<td class = "third middle right-align">
+		<label class = "medium condensed " for="password">Password:</label>
+	</td>
+	<td class = "seventy left-align middle">
+		<input type="password" id="enterpass" name="enterpass"  value="<?php if(isset($_POST['enterpass']))echo $_POST['enterpass'];?>"/>
+	</td></tr>
+	<tr class = "horizontal">
+	<td class = "third middle right-align">
+	</td>
+	<td class = "half left-align">
+		<BR><input type="submit" class="button3 horizontal small condensed" value="Sign in" />
+	</td>
+	</tr>
+	</table>
  <?php echo form_close(); ?>
 </div>
 <div class = "sanslight blue_text small">
@@ -57,13 +67,19 @@
     ?>
 	<div class="signin_form">
    <?php echo form_open('Users/site/validatemail/');?>
-  <div class = "horizontal">
-   <div class = "third inline right-align bottom	">
-  <label class = "medium condensed" for="enteremail">Email:</label></div>
-  <div class = "half inline">
-  <input type="text" id="enteremail" name="enteremail"  value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail']; ?>"/></div></div><BR><BR>
-    <div class = "third inline right-align bottom	"></div>
-	<div class = "half inline">
+   <table class = "horizontal">
+ <tr class = "middle horizontal">
+  <td class = "third right-align middle">
+  <label class = "medium condensed" for="enteremail">Email:</label>
+  </td>
+  <td class = "forty">
+  <input type="text" id="enteremail" name="enteremail"  class = "middle"  value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail']; ?>"/>
+  </td></tr>
+   </table>
+<BR><BR><BR>
+<div class = "horizontal">
+   <div class = "third inline right-align bottom"></div>
+	<div class = "forty inline">
  <input type="submit" class="button3 small horizontal condensed" value="Sign in" /></div>
  <?php echo form_close(); ?>
 	

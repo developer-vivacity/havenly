@@ -63,7 +63,7 @@
 
 <div class = "horizontal"><br><br><br><br>
 <div id = "description" class = "paddingmob">
-<p class = "blue_text serif padding_left large">Your very own personal decorator.</p><br>
+<p class = "blue_text serif padding_left large">Your very own decorator.</p><br>
 <p class = "dark_gray_text sanslight medium space padding_right padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And if you like it, we deliver it all to you. No catch, really.</p>
 <br><BR></div>
 <div class = "row center">

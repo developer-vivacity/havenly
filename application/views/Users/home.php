@@ -50,7 +50,7 @@
 	<div id = "style_pics" class = "resize">
 		<p class = "extralarge sans-serif blue_text">THE STYLE QUESTION </p><br>
 		<p class = "serif medium dark_gray_text"> 
-		This helps us match you up with the <span>perfect designer.</span></p>
+		Pick a few. This helps us match you up with the <span>perfect designer.</span></p>
 		<br><br>
 		<label for="room_type">Which Room Type?</label>
 		<select name="room_type" id="room_type">
@@ -62,43 +62,43 @@
 	<div id = "BR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 2 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 3 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 4 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=230em> 
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=270em> 
 		</div><div><input type="checkbox" name="style[]" value = 5 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 6 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 8 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 9 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=270em></div>
 		</div>
 		
 		<div id = "LR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR1.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR1.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 2 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR2.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR2.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 3 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR3.jpg');?> height=230em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR3.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 4 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR4.jpg');?> height=230em> 
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR4.jpg');?> height=270em> 
 		</div><div><input type="checkbox" name="style[]" value = 5 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR5.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR5.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 6 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR6.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR6.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR7.jpg');?> height=230em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR7.jpg');?> height=270em>
 		</div>
 		</div>
 		
@@ -198,17 +198,20 @@
 	<div id = "sizes" class = "resize" >
 	<p class = "extralarge sanslight blue_text">THE ROOM QUESTIONS</p><br>
 		<p class = "serif medium dark_gray_text">Give us a little about your room. <span>And what you want for it</span></p><br><br>
-		<div class = "center half">
+		<table class = "horizontal">
+		<tr>
+		<td class = "center top half">
 		<p class = "medium condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="height" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
-		</div>
-		<div class = "center half">
+		</td>
+		<td class = "center top half">
 			<p class = "medium condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
-			<textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
-	  </div><br><br><br><br><br><br><br>
+			<BR><textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
+	  </td></tr></table>
+	  <br><br><br><br><br><br><br>
 	  <div class = "continue horizontal"><br>
 		<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
 </div>	</div>
@@ -241,20 +244,20 @@
 		(Please note, we can only view them if they are public)</p>
 		<br><br><br><br>
 		<div class = "horizontal">
-		<div class = "third inline right-align">
+		<div class = "third middle inline right-align">
 		<img src = <?php echo base_url('assets/Images/fblarge.png');?> height = 80>
 		</div>
-		<div class = "half inline">
+		<div class = "half middle inline">
 		<input type = "text" name = "facebook" value = "Link to your Facebook page" id = "facebook"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
 		</div></div><BR><BR>
 		<div class = "horizontal">
-		<div class = "third inline right-align">
+		<div class = "third middle inline right-align">
 		<img src = <?php echo base_url('assets/Images/pinlarge.png');?> height = 80>
 		</div>
 		
-		<div class = "half inline">
+		<div class = "half middle inline">
 		<input type = "text" name = "pinterest" value = "Link to a pinterest board" id = "pinterest"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
@@ -319,7 +322,7 @@
 	$("#loading-image").css("left",left);
 	
 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
-  $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
+ // $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
 $("#social .continue").show();
 	$("#introbutton").click(function(){
 	$("#intro").hide();

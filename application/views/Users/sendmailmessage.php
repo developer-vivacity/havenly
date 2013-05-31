@@ -43,14 +43,15 @@ text-align: center;
 </head>
      <body> 
      <p class = "text midlarge">
-    Hi!  We at Havenly just received a request to change your password.  
+    Hi! <br>
+	We just received a request to change your password.  
     Your new password is below.  If you feel you've received this in error, please do give us a call.
     
     </p>
     <div class = "center">
     <p class = "text medium">
     <?php echo $randompassword;?>
-    </p>
+    </p></div>
 <br><br><br><br>
 <p class = "small text">
 You are a member of Havenly.<br>

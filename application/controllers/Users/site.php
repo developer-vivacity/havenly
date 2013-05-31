@@ -327,7 +327,7 @@ if($this->form_validation->run() == FALSE)
    }
     $email=$this->input->post('enteremail');
     $this->input->post('enterpass');
-    $password=md5($this->input->post('enterpass'));
+    $password=$this->input->post('enterpass');
     $userinfoarray=$this->user_model->user_login($email,$password);
   
   if($this->session->userdata('first_name')!="") 
@@ -405,38 +405,32 @@ if($this->form_validation->run() == FALSE)
 	   $email=$this->input->post('enteremail');
      
       $receivername=$this->user_model->check_mail($email);
-      if(!empty($receivername)&!empty($email))
-        {
-		     
-		      $config = array(
+      if(!empty($receivername)&!empty($email)){
+        $config = array(
 			'protocol'=>'smtp',
-			'smtp_host'=>'',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
 			'smtp_port'=> 465,
 			'mailtype' => 'html',
 			'smtp_user'=>'lee@havenly.com',
-			'smtp_pass'=>'Motayed123');
+			'smtp_pass'=>'Motayed123',
+			);
 			
 	       $this->load->library('email',$config);
-		     
-           $randompassword= $this->randomPassword();
-           //
-
-           $this->user_model->update_password($email,md5($randompassword));
+		   $this->email->set_newline("\r\n"); 
+           
+		   
+		   $randompassword= $this->randomPassword();
+		   $this->user_model->update_password($email,$randompassword);
           //die($randompassword);
-           $subject="Account Information from Havenly";     
+           
+		   $subject="Account Information from Havenly";     
            $to =$email;
            $data["receivername"]=$receivername;
            $data["randompassword"]=$randompassword;
            $message = $this->load->view('Users/sendmailmessage',$data,true);
-           $this->load->library('email');
-           $config=array(
-           'charset'=>'utf-8',
-           'wordwrap'=> TRUE,
-           'mailtype' => 'html'
-            );
-           $this->email->initialize($config);
+          
 
-           $this->email->from('lee@havenly.com','Lee from Havenly');
+           $this->email->from('lee@havenly.com','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -502,8 +496,8 @@ if($this->form_validation->run() == FALSE)
 	 'phone'=>$this->input->post('update_phone'),
 	 'address'=>$this->input->post('update_address'),
 	 'zipcode'=>$this->input->post('update_zip'),
-	 'password'=>md5($this->input->post('update_password')
-	));
+	 'password'=>$this->input->post('update_password')
+	);
     }
     else
     {
@@ -529,7 +523,7 @@ if($this->form_validation->run() == FALSE)
 			'smtp_pass'=>'Motayed123');
 			
 	       $this->load->library('email',$config);
-		   $subject="Account Informetion in Hevenly";     
+		   $subject="Account Information From Havenly";     
            $to =$this->input->post('update_email');
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
@@ -541,7 +535,7 @@ if($this->form_validation->run() == FALSE)
            'mailtype' => 'html'
             );
            $this->email->initialize($config);
-           $this->email->from('lee@havenly.com','Lee from Havenly');
+           $this->email->from('lee@havenly.com','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);

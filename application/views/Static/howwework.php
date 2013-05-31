@@ -54,7 +54,8 @@ Your personal decorator calls you in three business days to chat further<br><br>
 ..and then we decorate
 </p><br><BR>
 <p class = "serif small space center">
-Our decorator suggests paint colors, furnishings and furniture<br><br>
+Our team sends you some ideas, and you tell us which ones you like<br><br>
+Using your feedback, we suggest paint colors, furnishings and furniture<br><br>
 We also show you what your room could look like with your new gear<br><br>
 
 </p>

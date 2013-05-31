@@ -1,11 +1,12 @@
 <head>
-<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery-1.9.js");?>></script>
+	<script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery-1.9.js");?>></script>
+
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/user_validation.js")?>></script>
+
 </head>
 <?php
 echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'index.php/Users/site/login/"> Accountinformation </a>'; 
-$attributes = array('class' => 'updateform', 'id' => 'updateform');
-
+$attributes = array('class' => 'updateform', 'id' => 'updateform','enctype' => 'multipart/form-data');
 echo form_open('Rooms/room/updateroominfo/',$attributes);
 ?>
 
@@ -50,9 +51,8 @@ foreach($roomassociateduserid as $key)
 		    <div><input type="textbox" value="<?php echo $key->width;?>" name="update_width" id="update_width"/></div>
 		    <div><input type="textbox" value="<?php echo $key->height;?>" name="update_height" id="update_height"/></div>
 	    </div>
-		
 <?php	
-echo '<input type="hidden" id="hold_id" name="hold_id" value="'.$key->id.'"/>';	
+          echo '<input type="hidden" id="hold_id" name="hold_id" value="'.$key->id.'"/>';	
 	}
 	
 ?>

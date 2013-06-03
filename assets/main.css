@@ -156,7 +156,7 @@ vertical-align: top;
 	background-repeat: repeat;
 	width: 100%;
 	height: 150px;
-	background-color: white;
+	
 	/* border-bottom: 1px solid #D3D3D3;
 	margin-bottom: 0px; */ 
 }
@@ -562,13 +562,15 @@ font-family: 'Open Sans', sans-serif;
 } 
 #tabs .ui-tabs-nav .ui-state-default a { 
     color: #c0c0c0; 
-	font-family: 'Open Sans', 'Lato', sans-serif;
-	font-size: .7em;
+	font-family: 'Open Sans',  sans-serif;
+	font-weight: 300;
+	font-size: 1.2em;
 } 
 #tabs .ui-tabs-nav .ui-state-active a { 
-    color: #429C9E;
-	font-family: 'Open Sans', 'Lato', sans-serif;
-	font-size: .7em;
+    color: #91c5c5;
+	font-family: 'Open Sans',  sans-serif;
+		font-weight: 300;
+	font-size: 1.2em;
 	}
 
 #tabs .ui-tabs .ui-state-disabled { 
@@ -670,7 +672,7 @@ font-size: 24px;
 }
 
 .midsmall {
-font-size: 22px;
+font-size: 18px;
 }
 
 .small {

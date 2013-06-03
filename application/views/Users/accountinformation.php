@@ -1,6 +1,30 @@
+<?php 
+	include(APPPATH.'/views/templates/header.php');
+?>
+<div class = "header white">
+<div class = "logo">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
+</div>
+<div class = "right">
+	
 <?php
  echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
 ?>
+</div>
+</div>
+
+<div class = "center bgcontainer">
+<br>
+<div class = "seventy border white">
+<div id = "tabs">
+<ul>
+    <li><a href="#designer">DESIGNER</a></li>
+    <li><a href="#user">PROFILE</a></li>
+	<li><a href="#preferences">PREFERENCES</a></li>
+    <li><a href="#rooms">ROOMS</a></li>
+  </ul>
+  
+ <div id = "designer">
 <?php
 if(isset($message))
 {
@@ -11,43 +35,67 @@ if(isset($message))
 if(isset($designerinformation))
     {
 ?>
-  <table>
+  <table class = "horizontal center">
+ 
 	 <?php
-     
+     $url = base_url('assets/Images');
 	  foreach($designerinformation as $key)
 	  {
-            echo '<tr><td><img src="'.$key->designer_picture.'" width="100px" height="100px"></td></tr>';
-		      echo '<tr><td>Your Designer is:</td><td>'.$key->designer_name.'</td></tr>';
-		      echo '<tr><td>Her Phone Number is:</td><td>'.$key->designer_phone_number.'</td></tr>';
-		      echo '<tr><td>Her Email Address is:</td><td>'.$key->designer_email.'</td></tr>';
+            echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
+			
+			 echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
+		      echo '<tr> <td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
+			  echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
+			  echo '<tr><td><hr class = "third style"></td></tr>';
+		      echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
 	   }
 	  ?>
+	
 	 </table>
 <?php
    }
 ?>
+</div>
+
+<div id = "user">
 <?php
 if(isset($userdetails))
 {
 ?>
-<p><h1>User Information:</h1></p>
-<table>
-<tr><td>&nbsp;First Name&nbsp;</td><td>&nbsp;Last Name&nbsp;</td><td>&nbsp;Email&nbsp;</td><td>&nbsp;Address&nbsp;</td><td>&nbsp;Phone Number&nbsp;</td><td>&nbsp;Zip Code&nbsp;</td><td>&nbsp;</td></tr>
+<p class = "left-align sanslight medium">User Information:</p>
+<br>
+<div class = "left-align">
 <?php
 $userid="";
 foreach($userdetails as $key)
 {
-  if($userid!=$key->id)
-   {
-     $userid=$key->id;
-     echo '<tr><td>&nbsp;'.$key->first_name.'&nbsp;</td><td>&nbsp;'.$key->last_name.'&nbsp;</td><td>&nbsp;'.$key->email.'&nbsp;</td><td>&nbsp;'.$key->address.'&nbsp;</td><td>&nbsp;'.$key->phone.'&nbsp;</td><td>&nbsp;'.$key->zipcode.'&nbsp;</td><td><a href="'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></td></tr>';
-    }
+
+echo '<table class = "sanslight seventy midsmall left-align dark_gray_text">';
+echo '<tr width= "100%"><td width = "50%">First Name:<br><br></td>';
+echo '<td width = "50%">'.$key->first_name.'<br><br></td></tr>';
+echo '<tr><td>Last Name:<br><br></td>';
+echo '<td>'.$key->last_name.'<br><br></td></tr>';
+echo '<tr><td>Email:<br><br></td>';
+echo '<td>'.$key->email.'<br><br></td></tr>';
+echo '<tr><td>Address:<br><br></td>';
+echo '<td>'.$key->address.'<br><br></td></tr>';
+echo '<td>Phone Number:<br><br></td>';
+echo '<td>'.$key->phone.'<br><br></td></tr>';
+echo '<td>Zip Code:<br><br></td>';
+echo '<td>'.$key->zipcode.'<br><br></td></tr>';
+echo '</table>';
+echo '<BR><BR>';
+
+echo '<a class = "light_pink button2 blue_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a>';
+   
 }
 ?>
-</table>
+</div>
 <?php
 }
 ?>
+</div>
+<div id = "rooms">
 <?php
 if(isset($roomsassociated))
 {
@@ -81,6 +129,8 @@ foreach($roomsassociated as $key)
 <?php
 }
 ?>
+</div>
+<div id= "preferences">
 <?php
 if(isset($userpreference))
 {
@@ -132,7 +182,17 @@ foreach($userpreference as $key)
 <?php
 }
 ?>
+</div>
 
+</div>
 
+</div>
+<div class = "push"> 
+</div>
+<script>
+$("#tabs").tabs();
+</script>
 
-
+<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>

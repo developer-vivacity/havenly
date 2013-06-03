@@ -109,7 +109,8 @@ height: 500px;
 #abouthero{
 top:200px;
 }
-
+.style3{
+border: 0; height: 0; border-top: 1.5px solid gray; }
 
 
 }
@@ -276,6 +277,8 @@ widtH: 100%;
 td img{
 width: 100%;
 }
+.style3{
+border: 0; height: 0; border-top: 1.5px solid gray; }
 
 
 	}

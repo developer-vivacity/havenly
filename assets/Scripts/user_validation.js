@@ -8,7 +8,6 @@ $(document).ready(function()
 	$("#update_row_password").show();   
 	ischack=true;
 	}
-   
    )
     $("#radiono").click(function()
    {
@@ -16,7 +15,6 @@ $(document).ready(function()
 	$("#update_row_password").hide();   
 	   ischack=false;
 	}
-   
    )
   $("#cancle_update").click(function()
    {
@@ -158,13 +156,12 @@ $("#update_room").click(function()
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter budget in numeric format</p>');
         e_value=0;
     }
-   
- if(e_value==1)
+   if(e_value==1)
    { 
     
     if($('input[name="color[]"]:checked').length<=0)
 	{
-	 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
+	 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one color pic</p>');
 	 e_value=0;
 	}
 	else 
@@ -179,14 +176,14 @@ $("#update_room").click(function()
 	   {
 		colorarea=colorarea+","+e.value;
 	   }
-	   e_value=1;
+	   
     });	
     
     }
+
 	if($('input[name="style[]"]:checked').length<=0 && $("#select_room").is(':visible'))
 	{
-		
-	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one color pic</p>');
+	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
 	e_value=0;
 	}else if($("#select_room").is(':visible'))
 	{
@@ -200,13 +197,13 @@ $("#update_room").click(function()
 	   {
 		area=area+","+e.value;
 	   }
-	   e_value=1;
+	
       });		
 	}
 	
 	if($('input[name="optionstyle[]"]:checked').length<=0 && $("#option_room").is(':visible'))
 	{
-		
+
 	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
 	e_value=0;
 	}else if($("#option_room").is(':visible'))
@@ -223,10 +220,11 @@ $("#update_room").click(function()
 	   {
 		area=area+","+e.value;
 	   }
-	   e_value=1;
+	   
 	   
       });		
 	}
+
 if(e_value==1)
 {
      $("#holdstyle").val(area);
@@ -240,8 +238,6 @@ if(e_value==1)
 );
 $("#update_room_type").change(function() 
 {
-
-
 if($("#select_room").is(':visible'))
 {
     $("#select_room").hide();
@@ -249,13 +245,10 @@ if($("#select_room").is(':visible'))
 }
 else 
 {
-	
 	$("#select_room").show();
 	$("#option_room").hide();
 }
-
 });
-
 }); 
 
 

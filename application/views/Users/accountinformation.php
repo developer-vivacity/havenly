@@ -4,13 +4,13 @@
 <div class = "center bgcontainer"><BR>
 <div class = "seventy" style= "height:80px;">
 <table class = "left-align">
-<tr><td width = "75%">
+<tr><td width = "82%">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
 </td>
 <td width= "100%">
 <?php
- echo '<a class = "sanslight medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
- echo '<a class = "sanslight medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
+ echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
 ?>
 </td></table>
 </div>
@@ -70,7 +70,7 @@ if(isset($userdetails))
 
 <p class = "left-align sanslight medium">Account Information</p>
 <hr class = "style">
-<div class = "left-align padding_left">
+<div class = "left-align ">
 <?php
 $userid="";
 foreach($userdetails as $key)

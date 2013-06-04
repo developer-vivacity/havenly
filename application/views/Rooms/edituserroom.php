@@ -3,30 +3,32 @@
 ?>
 
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/user_validation.js")?>></script>
-<div class = "header white">
-<div class = "logo">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
-</div>
-<div class = "right">
-<BR><BR><BR>
+
+<div class = "center bgcontainer"><BR>
+<div class = "seventy">
+<div style= "height:80px;">
+<table class = "left-align">
+<tr><td width = "82%">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
+</td>
+<td width= "100%">
 <?php
-echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/login/"> BACK</a>';  
- echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;&nbsp;&nbsp;LOG OUT</a>';
  
+ echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ 
+ echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
 ?>
+</td></table>
 </div>
-</div>
+<BR><BR>
 
+<div class = "padding left-align border white">
 
-<div class = "center bgcontainer">
-<br>
-<div class = "seventy padding border white">
-
+<a class = "left-align condensed midsmall" href="<?php echo base_url().'index.php/Users/site/login/'?>"> &larr;&nbsp;BACK&nbsp;&nbsp;</a> <BR><BR>
 <?php
 $attributes = array('class' => 'updateform', 'id' => 'updateform','enctype' => 'multipart/form-data');
 echo form_open('Rooms/room/updateroominfo/',$attributes);
 ?>
-<BR>
 
 	<div id="div_show_error_message" name="div_show_error_message"></div>
 

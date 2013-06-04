@@ -14,13 +14,12 @@
 <div class = "right middle">
 <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
 <div class = "right_align inline middle padding_small"><BR>
-<ul class = "menu_bar medium dark_gray_text" id = "menu_bar">
-		<li class = "inline dark_gray_text medium condensed"> <a  class = "dark_gray_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
-			
-		<li class = "dark_gray_text medium condensed inline"> 1-888-978-3152</li>
-		<li class = "inline medium condensed"> <a class = "button2 dark_gray_text padding blue" href = <?php echo base_url('index.php/Users/site/whoweare');?>>Login </li></a>
-		</ul></div></div>
-</div>
+<ul class = "menu_bar midsmall white_text">
+	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
+				<li class = "inline midsmall condensed"> <a  class = "white_text" href = "#">1-888-978-3152</li></a>
+		<li class = "inline midsmall condensed"><a class = "button4 condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
+</ul>
+		</div>
 <div class = "horizontal light_gray"><br><br><BR>
 <p class = "padding_left paddingmob sanslight midlargeplus dark_gray_text left-align">
 How it works</p><br><BR><BR></div><BR><BR><BR>

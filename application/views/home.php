@@ -7,8 +7,8 @@
     <ul>  
         <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
         <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
-        <li><a href="#">1-888-978-3152</a></li>  
-      </ul>  
+      	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+		</ul>  
   
 </div>  
 
@@ -22,11 +22,9 @@
 <div class = "login_button_main right-align">
 <div class = "inline padding_small right-align">	
 	<ul class = "menu_bar midsmall white_text">
-	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>/
-		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>/
-			
-		<li class = "blue_text midsmall condensed inline"> 1-888-978-3152</li>
-		
+	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
+		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
+		<li class = "inline midsmall condensed"><a class = "button4 condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 	</div>
 	
 	

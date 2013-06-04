@@ -969,6 +969,23 @@ cursor: pointer;
 opacity: .8;
 }
 
+.button4{
+margin: 0;
+padding: 10px;
+display: inline-block;
+background-color: gray;
+background-clip: padding-box;
+color: white;
+-webkit-appearance: none;
+-moz-background-clip: padding;
+-webkit-background-clip: padding;
+ z-index:999;
+}
+.button3:hover{
+cursor: pointer;
+opacity: .8;
+}
+
 
 /* New Contest Form */
 .color{

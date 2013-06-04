@@ -10,7 +10,7 @@ Class Site extends CI_Controller {
 	$this->load->model('Users/picture_model');
 	$this->load->model('room_model');
 	$this->load->model('user_model');
-	
+	$this->load->model('admin_model');
 	}
 	
 	function index() {
@@ -53,5 +53,70 @@ Class Site extends CI_Controller {
 		$data['room_data']=$this->room_model->get_open_rooms();
 		$this->load->view('Admin/Open_rooms', $data);
 }
+
+function adminlogin()
+{
+   //$this->admin_model->create_table();
+    if(($this->session->userdata('adminid')!=""))
+     {
+      $data['privileges']=$this->session->userdata('privileges');
+      $this->load->view('Admin/adminview',$data);
+      return;
+    }
+
+    $this->load->library('form_validation');
+   $this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[100]|xss_clean');
+   $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+   if($this->form_validation->run() == FALSE)
+   {
+   $this->load->view('Admin/adminlogin');
+   }
+   else
+   {
+     $this->admin_model->authorize_user($this->input->post('password'),$this->input->post('username'));
+     if(($this->session->userdata('adminid')!=""))
+     {
+      $data['privileges']=$this->session->userdata('privileges');
+      $this->load->view('Admin/adminview',$data);
+     }
+     else
+     {
+      $data['error']="User name or password is incorrect!";
+      $this->load->view('Admin/adminlogin',$data);
+     }
+  }
+
+}
+function adminlogout()
+{
+    $newdata = array('adminid' =>'','name' =>'','privileges' => '');
+    $this->session->unset_userdata($newdata );
+    $this->session->sess_destroy();
+    $this->adminlogin();
+}
+function roomsadministrator($orderby=null,$ordertype=null)
+{
+      $condition="";
+      if($this->session->userdata('privileges')=="local") 
+      {  
+       $condition=" where designer.id=".$this->session->userdata('designerid');
+      }
+     if(!empty($orderby)&!empty($ordertype)) 
+      {  
+      $ordertype    = ($ordertype=="asc"?"desc":"asc");
+      $orderby=$condition." order by ".$orderby." ". $ordertype;
+      $data["adminrooms"]=$this->room_model->display_all_rooms($orderby);
+      
+      $data["filter"]=$ordertype;
+      }      
+      else
+      {      
+      $data["adminrooms"]=$this->room_model->display_all_rooms($condition);   
+      $data["filter"]="asc";
+      }
+      $this->load->view('Admin/roomsadministrator',$data);
+    
+}
+
 
 }

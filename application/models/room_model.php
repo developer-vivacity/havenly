@@ -25,8 +25,7 @@ $query=$this->db->insert_id();
 return $query;
 		
 		}
-		
-		
+	
 function get_open_rooms(){
 $this->db->where('status !=','closed');
 $this->db->order_by("status", "asc");
@@ -47,6 +46,8 @@ $update= array(
 $this->db->where('id',$room_id);
 $query=$this->db->update('user_rooms', $update);
 }
+
+
 // status Open or Called for login user
  function Check_user_rooms($id)
  { 
@@ -67,16 +68,47 @@ function updateroom_loginuser($id)
        $this->db->update("user_rooms",$data ); 
  }	
 			
+ 	// ---For create color_code table and insert data in this table.		
  function create_table()
  {
 	 
-	$this->db->query("CREATE TABLE color_code (id INT(10),color_code VARCHAR(100),PRIMARY KEY (id));");
+	$this->db->query("CREATE TABLE IF NOT EXISTS color_code (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  color_code varchar(100) DEFAULT NULL,
+  color_id int(10) NOT NULL,
+  PRIMARY KEY (id))") ;
+
+   $this->db->query("INSERT INTO color_code (id, color_code, color_id) VALUES
+(1, 'rgb(188,196,188);', 1),
+(2, 'rgb(255,243,196);', 2),
+(5, 'rgb(99, 121, 134);', 3),
+(6, 'rgb(255, 186, 180);', 4),
+(7, 'rgb(204, 199, 185);', 5),
+(8, 'rgb(241, 242, 235);', 6),
+(9, 'rgb(197, 222, 204);', 7),
+(10, 'rgb(190, 210, 213);', 8),
+(11, '#FF0055;', 9),
+(12, '#006FFF;', 10),
+(13, '#00FFF7;', 11),
+(14, '#00FF5E;', 12),
+(15, '#FFD500;', 13),
+(16, '#FF1100;', 14)");
  }
-	
+// for display color code.	
 function fetch_color_style_number() 
 {
    $query=$this->db->query("select color_id,color_code from color_code");
    return $query->result();
+}
+// for display all data of user_rooms table.	
+function display_all_rooms($orderby=null)
+{
+$query=$this->db->query("SELECT users.email AS username, user_rooms.id AS Order_number, user_rooms.room_type AS Room_type, user_rooms.status AS Order_status, designer.designer_name AS assigned_to
+FROM user_rooms
+INNER JOIN users ON user_rooms.user_id = users.id
+LEFT JOIN designer_mapping ON designer_mapping.user_id = user_rooms.user_id
+LEFT JOIN designer ON designer.id = designer_mapping.designer_id ".$orderby."");
+return $query->result();
+}
 
-}	
 }

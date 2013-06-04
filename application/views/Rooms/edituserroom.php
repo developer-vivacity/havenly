@@ -8,9 +8,11 @@
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
 <div class = "right">
-	
+<BR><BR><BR>
 <?php
- echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'index.php/Users/site/login/"> Accountinformation </a>';
+echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/login/"> BACK</a>';  
+ echo '<a class = "condensed medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;&nbsp;&nbsp;LOG OUT</a>';
+ 
 ?>
 </div>
 </div>
@@ -39,8 +41,10 @@ foreach($roomassociateduserid as $key)
    elseif($key->room_type=="LR")
    $LR="selected";
 ?>	
-<div class = "border padding_small">
-<p class = "medium left-align sanslight">Edit Your Room Information:</p>	<BR><BR>
+<div class = "padding_small">
+<p class = "medium left-align sanslight">Edit Your Room Information:</p>
+<hr class = "style">
+	
 <table class = "sanslight midsmall left-align dark_gray_text">
 <tr width="100%"><td width: "30%">Room Type:</td>
 	<td width= "60%">
@@ -80,8 +84,9 @@ foreach($roomassociateduserid as $key)
 ?>
 </div>
 <BR><BR>
-<div class = "padding_small border left-align">
-	<p class = "sanslight medium">Style Pics:</p><BR><BR>
+<div class = "padding_small left-align">
+	<p class = "sanslight medium">Style Pics:</p>
+	<hr class = "style">
 	<?php
 	foreach($userselectcolorstyle as $cskey)
 		{
@@ -149,8 +154,9 @@ foreach($roomassociateduserid as $key)
 		}	
 	 ?>
 	 </div>
-	 <div class = "border padding_small left-align">
-			<p class = "sanslight medium">Color Pics:</p><BR><BR>
+	 <div class = "padding_small left-align">
+			<p class = "sanslight medium">Color Pics:</p>
+			<hr class  = "style">
 		<?php 	
           foreach($colorstylenumber as $colorkey)
           {
@@ -169,7 +175,7 @@ foreach($roomassociateduserid as $key)
    </div>
 
 	<div ><BR>
-		<input type="button" value="update" id="update_room" class = "button3 medium condensed" name="update_room">	  
+		<input type="button" value="Update" id="update_room" class = "button3 third medium condensed" name="update_room">	  
 	    </div>
 <input type="hidden" id="holduserid" name="holduserid" value="<?php echo $userid; ?>"/>
 <input type="hidden" value="" id="holdstyle" name="holdstyle"/>

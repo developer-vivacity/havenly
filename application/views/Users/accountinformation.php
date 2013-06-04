@@ -1,25 +1,21 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<div class = "center bgcontainer"><BR>
-<div class = "seventy" style= "height:80px;">
-<table class = "left-align">
-<tr><td width = "82%">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
-</td>
-<td width= "100%">
-<?php
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
-?>
-</td></table>
+<div class = "header white">
+<div class = "logo">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
-<BR><BR>
+<div class = "right">
+	
+<?php
+ echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
+?>
+</div>
+</div>
 
-
-
+<div class = "center bgcontainer">
 <br>
-<div class = "seventy clear border white">
+<div class = "seventy border white">
 <div id = "tabs">
 <ul>
     <li><a href="#designer">DESIGNER</a></li>
@@ -47,11 +43,11 @@ if(isset($designerinformation))
 	  {
             echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
 			
-			 echo '<tr class = "horizontal"><td><p class= "medium sanslight">'.$key->designer_name.'</p></td></tr>';
+			 echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
 		      echo '<tr> <td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
-			  echo '<tr><td><p class = "sanslight small">'.$key->designer_phone_number.'<Br></p></td></tr>';
+			  echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
 			  echo '<tr><td><hr class = "third style"></td></tr>';
-		      echo '<tr><td><p class = "sanslight small ">'.$key->designer_email.'<br></p></td></tr>';
+		      echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
 	   }
 	  ?>
 	
@@ -66,11 +62,10 @@ if(isset($designerinformation))
 if(isset($userdetails))
 {
 ?>
-<div id = "user" >
-
-<p class = "left-align sanslight medium">Account Information</p>
-<hr class = "style">
-<div class = "left-align ">
+<div id = "user">
+<p class = "left-align sanslight medium">User Information:</p>
+<br>
+<div class = "left-align">
 <?php
 $userid="";
 foreach($userdetails as $key)
@@ -89,10 +84,11 @@ echo '<td>Phone Number:<br><br></td>';
 echo '<td>'.$key->phone.'<br><br></td></tr>';
 echo '<td>Zip Code:<br><br></td>';
 echo '<td>'.$key->zipcode.'<br><br></td></tr>';
-echo '<tr><td></td><td><a class = "button3 center white_text condensed midsmall" href = "'.base_url().'index.php/Users/site/UserEditInformation/">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a></td></tr>';
 echo '</table>';
 echo '<BR><BR>';
 
+echo '<a class = "light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a>';
+   
 }
 ?>
 </div>
@@ -107,7 +103,7 @@ if(isset($roomsassociated))
 ?>
 <div id = "rooms" class = "left-align">
 <p class = "left-align sanslight medium">User Room Information:</p>
-<hr class = "style">
+
 <br><BR>
 <?php
 
@@ -132,7 +128,7 @@ if($key->room_photo2=='not submitted')
 {echo '';}
 else{
 echo '<img class = "middle inactive inline" src="'.$key->room_photo2.'" height="100px"/></td>';}
-echo '<td><a class = "button3 condensed midsmall white_text" href="'.base_url().'index.php/Rooms/room/editroominfo/'.$key->id.'/'.$key->user_id.'">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>';
+echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
 
 }
 $roomtype=$key->room_type;
@@ -154,10 +150,11 @@ if(isset($userpreference))
 {
 ?>
 <div id= "preferences" class = "left-align" >
+<p class = "left-align medium sanslight" >User Preference Information:</p>
+<BR><BR>
 
-<p class = "medium left-align sanslight">Styles Chosen:</p>
-<hr class= "style left-align ">
-
+<p class = "midsmall left-align sanslight">Styles Chosen:</p>
+<hr class= "style left-align seventy">
 <table>
 <tr>
 <?php
@@ -190,9 +187,8 @@ foreach($userpreference as $key)
 </tr>
 </table>
 <br><br>
-<p class = "medium sanslight">Colors Chosen:</p>
-<hr class = "style">
-
+<p class = "midsmall sanslight">Colors Chosen:</p>
+<hr class = "seventy style">
 <table class = "center"><tr>
 
 <?php 
@@ -214,7 +210,7 @@ foreach ($userpreference as $key){
 
 <BR><BR>
 <?php
-echo '<a class = "button3 center midsmall condensed " href="'.base_url().'index.php/Rooms/room/editroominfo/'.$room_id.'/'.$user_id.'">&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;</a>';
+echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/room/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
 }
 ?>
 </div>

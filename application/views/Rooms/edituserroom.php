@@ -3,32 +3,28 @@
 ?>
 
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/user_validation.js")?>></script>
-
-<div class = "center bgcontainer"><BR>
-<div class = "seventy">
-<div style= "height:80px;">
-<table class = "left-align">
-<tr><td width = "82%">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
-</td>
-<td width= "100%">
-<?php
- 
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
- 
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
-?>
-</td></table>
+<div class = "header white">
+<div class = "logo">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
-<BR><BR>
+<div class = "right">
+	
+<?php
+ echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'index.php/Users/site/login/"> Accountinformation </a>';
+?>
+</div>
+</div>
 
-<div class = "padding left-align border white">
 
-<a class = "left-align condensed midsmall" href="<?php echo base_url().'index.php/Users/site/login/'?>"> &larr;&nbsp;BACK&nbsp;&nbsp;</a> <BR><BR>
+<div class = "center bgcontainer">
+<br>
+<div class = "seventy padding border white">
+
 <?php
 $attributes = array('class' => 'updateform', 'id' => 'updateform','enctype' => 'multipart/form-data');
-echo form_open('Rooms/room/updateroominfo/',$attributes);
+echo form_open('Rooms/site/updateroominfo/',$attributes);
 ?>
+<BR>
 
 	<div id="div_show_error_message" name="div_show_error_message"></div>
 
@@ -43,10 +39,8 @@ foreach($roomassociateduserid as $key)
    elseif($key->room_type=="LR")
    $LR="selected";
 ?>	
-<div class = "padding_small">
-<p class = "medium left-align sanslight">Edit Your Room Information:</p>
-<hr class = "style">
-	
+<div class = "border padding_small">
+<p class = "medium left-align sanslight">Edit Your Room Information:</p>	<BR><BR>
 <table class = "sanslight midsmall left-align dark_gray_text">
 <tr width="100%"><td width: "30%">Room Type:</td>
 	<td width= "60%">
@@ -86,9 +80,8 @@ foreach($roomassociateduserid as $key)
 ?>
 </div>
 <BR><BR>
-<div class = "padding_small left-align">
-	<p class = "sanslight medium">Style Pics:</p>
-	<hr class = "style">
+<div class = "padding_small border left-align">
+	<p class = "sanslight medium">Style Pics:</p><BR><BR>
 	<?php
 	foreach($userselectcolorstyle as $cskey)
 		{
@@ -107,7 +100,9 @@ foreach($roomassociateduserid as $key)
 				$roomfolder="LivingRoom";
 				
 			}
-	
+	?>
+<div style="width:800px;" id="select_room">
+<?php
 		
 		$i=1;
 		
@@ -130,8 +125,9 @@ foreach($roomassociateduserid as $key)
 		
 		}	
 		?>
+    </div>
 		</div>
-	<br><br>
+	<br/><br/>
 	 <div style="width:800px;float:left;display:none;" id="option_room">
 	 <?php
 	 if($roomfolder=="Bedroom")
@@ -156,9 +152,9 @@ foreach($roomassociateduserid as $key)
 		}	
 	 ?>
 	 </div>
-	 <div class = "padding_small left-align">
-			<p class = "sanslight medium">Color Pics:</p>
-			<hr class  = "style">
+<br/>
+	 <div class = "border padding_small left-align">
+			<p class = "sanslight medium">Color Pics:</p><BR><BR>
 		<?php 	
           foreach($colorstylenumber as $colorkey)
           {
@@ -177,7 +173,7 @@ foreach($roomassociateduserid as $key)
    </div>
 
 	<div ><BR>
-		<input type="button" value="Update" id="update_room" class = "button3 third medium condensed" name="update_room">	  
+		<input type="button" value="update" id="update_room" class = "button3 medium condensed" name="update_room">	  
 	    </div>
 <input type="hidden" id="holduserid" name="holduserid" value="<?php echo $userid; ?>"/>
 <input type="hidden" value="" id="holdstyle" name="holdstyle"/>

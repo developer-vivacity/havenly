@@ -528,13 +528,7 @@ if($this->form_validation->run() == FALSE)
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
            $message = $this->load->view('Users/sendmailmessage',$data,true);
-           $this->load->library('email');
-           $config=array(
-           'charset'=>'utf-8',
-           'wordwrap'=> TRUE,
-           'mailtype' => 'html'
-            );
-           $this->email->initialize($config);
+                   
            $this->email->from('lee@havenly.com','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);

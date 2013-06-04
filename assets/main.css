@@ -53,6 +53,7 @@ table {
 	border-spacing: 0;
 }
 
+
 /* end reset */
 body {
     background-attachment: scroll;
@@ -133,6 +134,8 @@ hr.style3 {
 background-image: url('Images/linen_bg.fw.png');
 position: relative;
 }
+
+
 
 
 .form p {text-align: center;}

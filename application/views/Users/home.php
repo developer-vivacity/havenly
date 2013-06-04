@@ -205,7 +205,7 @@
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
-		<input type="text" name="room_height" value="height" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
+		<input type="text" name="room_height" value="length" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
 		</td>
 		<td class = "center top half">
 			<p class = "medium condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
@@ -322,8 +322,9 @@
 	$("#loading-image").css("left",left);
 	
 $(" #file1, #file2, #BR, #LR, #second_photo, #loading, .continue, .login, .cbox, #later, #submit").hide();
- // $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
-$("#social .continue").show();
+  $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
+
+  $("#social .continue").show();
 	$("#introbutton").click(function(){
 	$("#intro").hide();
 	$("#style_pics").fadeIn();});
@@ -477,11 +478,11 @@ $("#room_photo2").change(function(){
 		if(numberRegex.test(str)){
 			var str = $("#room_height").val();
 				if(numberRegex.test(str)){
-				$(this).parent().parent().find('.continue').fadeIn();
+				$(this).parent().parent().parent().parent().parent().find('.continue').fadeIn();
 				
 				}
-				else {$(this).parent().parent().find('.continue').hide();}
-			} else {$(this).parent().parent().find('.continue').hide();}
+				else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
+			} else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
 			});
 		
 		

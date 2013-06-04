@@ -57,11 +57,12 @@ if(isset($designerinformation))
 ?>
 </div>
 
-<div id = "user">
+
 <?php
 if(isset($userdetails))
 {
 ?>
+<div id = "user">
 <p class = "left-align sanslight medium">User Information:</p>
 <br>
 <div class = "left-align">
@@ -70,7 +71,7 @@ $userid="";
 foreach($userdetails as $key)
 {
 
-echo '<table class = "sanslight seventy midsmall left-align dark_gray_text">';
+echo '<table class = "sanslight seventy midsmall left-align">';
 echo '<tr width= "100%"><td width = "50%">First Name:<br><br></td>';
 echo '<td width = "50%">'.$key->first_name.'<br><br></td></tr>';
 echo '<tr><td>Last Name:<br><br></td>';
@@ -86,7 +87,7 @@ echo '<td>'.$key->zipcode.'<br><br></td></tr>';
 echo '</table>';
 echo '<BR><BR>';
 
-echo '<a class = "light_pink button2 blue_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a>';
+echo '<a class = "light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a>';
    
 }
 ?>
@@ -95,52 +96,70 @@ echo '<a class = "light_pink button2 blue_text condensed medium" href = "'.base_
 }
 ?>
 </div>
-<div id = "rooms">
+
 <?php
 if(isset($roomsassociated))
 {
 ?>
-<p><h1>User Room Information:</h1></p>
-<table>
-<tr><td>&nbsp;Roomtype&nbsp;</td><td>&nbsp;Budget&nbsp;</td><td>&nbsp;Room Width/Height&nbsp;</td><td>&nbsp;Room Photo1&nbsp;</td><td>&nbsp;Room Photo1&nbsp;</td><td>&nbsp;</td></tr>
- <?php
+<div id = "rooms" class = "left-align">
+<p class = "left-align sanslight medium">User Room Information:</p>
 
-foreach($roomsassociated as $key)
-{
-   if($key->room_photo1=="not submitted")
-   $show_img_one="#";
-   else
-   $show_img_one=$key->room_photo1;
-   
-   if($key->room_photo2=="not submitted")
-   {
-   $show_img_two="#";
-   }
-   else
-   {
-   $show_img_two=$key->room_photo2;
-   }
-   echo '<tr><td>&nbsp;&nbsp;'.$key->room_type.'&nbsp;</td><td>&nbsp;&nbsp;'.$key->budget.'&nbsp;</td><td>&nbsp;&nbsp;'.$key->width.'/'.$key->height.'&nbsp;</td><td><img src="'.$key->room_photo1.'" width="100px" height="100px"/></td><td><img src="'.$key->room_photo2.'" width="100px" height="100px"/></td><td><a href="'.base_url().'index.php/Rooms/room/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a></td></tr>';
-  $roomtype= $key->room_type;
+<br><BR>
+<?php
+
+
+echo '<table width = "100%" class = "sanslight midsmall center dark_gray_text">';
+echo '<tr width= "100%">';
+echo '<td width= "15%">Room Type<Br><Br></td>';
+echo '<td width= "15%">Budget<Br><Br></td>';
+echo '<td width= "20%">Width/Length<Br><Br></td>';
+echo '<td width = "40%">Room Photos<Br><Br></td></tr>';
+foreach($roomsassociated as $key){
+echo '<tr class = "light_gray border"><td>'.$key->room_type.'</td>';
+echo '<td>'.$key->budget.'</td>';
+echo '<td>'.$key->width.'ft/ '.$key->height.'ft</td>';
+if ($key->room_photo1=='not submitted')
+{echo '';}
+else {
+echo '<td><img class = "middle inactive inline" src = "'.$key->room_photo1.'" width="100px">';}
+
+
+if($key->room_photo2=='not submitted')
+{echo '';}
+else{
+echo '<img class = "middle inactive inline" src="'.$key->room_photo2.'" height="100px"/></td>';}
+echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/room/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
 
 }
+$roomtype=$key->room_type;
+$user_id = $key->user_id;
+$room_id = $key->id;
 ?>
+
 </table>
+<br><BR>
+
+
 <?php
 }
 ?>
 </div>
-<div id= "preferences">
+
 <?php
 if(isset($userpreference))
 {
 ?>
-<p><h1>User Preference Information:</h1></p>
+<div id= "preferences" class = "left-align" >
+<p class = "left-align medium sanslight" >User Preference Information:</p>
+<BR><BR>
 
+<p class = "midsmall left-align sanslight">Styles Chosen:</p>
+<hr class= "style left-align seventy">
 <table>
-<tr><td>&nbsp;Style Pics:&nbsp;</td></tr>
+<tr>
 <?php
 $roomfolder;
+	
 	if($roomtype=="BR")
 			{
 				$roomfolder="Bedroom";
@@ -154,32 +173,44 @@ $roomfolder;
 foreach($userpreference as $key)
 {
 
-        echo '<tr style="width:800px;" id="select_room"><td >';
-		$i=1;	
-		while($i<10)
+       	$i=1;	
+		while($i<15)
 		{
-		if(in_array($i,explode(',',$key->style_pics)))
-		echo'<div style="float:left;">
-		<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=100em width=100em></div>';
+		if(in_array($i,explode(',',$key->style_pics))){
+		echo '<td>';
+		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
+		echo '</td>';
+		}
 		$i++;
 		}	
-		echo '</td></tr>';
-		echo'<tr><td>&nbsp;Color Pics:&nbsp;</td></tr>';
-	 	echo '<tr><td >';
+}?>
+</tr>
+</table>
+<br><br>
+<p class = "midsmall sanslight">Colors Chosen:</p>
+<hr class = "seventy style">
+<table class = "center"><tr>
+
+<?php 
+
+foreach ($userpreference as $key){
 	 	foreach($colorstylenumber as $keycolor)
 	 	{
 			
 			if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
-			echo'<div style="background-color:'.$keycolor->color_code.'height:100px;float:left;width:100px;">&nbsp;</div>';
-			
+			echo'<td><div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
+			echo '</td>';
 	    }
-	    echo'</td></tr>';
+	    echo'</tr>';
         
 
 }
 ?>
 </table>
+
+<BR><BR>
 <?php
+echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/room/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
 }
 ?>
 </div>

@@ -83,7 +83,12 @@ foreach($roomassociateduserid as $key)
 <div class = "padding_small border left-align">
 	<p class = "sanslight medium">Style Pics:</p><BR><BR>
 	<?php
-	foreach($userselectcolorstyle as $cskey)
+$colorpic=array();
+$stylepic=array();
+$roomtype="BR";
+$roomfolder="Bedroom";
+
+foreach($userselectcolorstyle as $cskey)
 		{
 		$colorpic=	explode(',',$cskey->color_pics);
 		$stylepic=	explode(',',$cskey->style_pics);
@@ -120,7 +125,7 @@ foreach($roomassociateduserid as $key)
 			
 	echo '<div class = "inline">';
 	echo '<input type="checkbox" name="style[]" id="style[]" value = '.$i.' class="cbox" '.$sel.'/>';
-	echo '<img class = '.$active.' src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height="150px"></div>';
+	echo '<img class = '.$active.' src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height="100px" width="100px"/></div>';
 	$i++;
 		
 		}	
@@ -146,7 +151,7 @@ foreach($roomassociateduserid as $key)
 		
 			echo'<div style="float:left;">
 		<input type="checkbox" name="optionstyle[]" id="optionstyle[]" value = '.$i.' class="cbox" />
-		<img class = "inactive" src ='.base_url('assets/Images/'.$optionroomfolder.'/'.$roomtype.''.$i.'.jpg').' height=100em width=100em></div>';
+		<img class = "inactive" src ='.base_url('assets/Images/'.$optionroomfolder.'/'.$roomtype.''.$i.'.jpg').' height="100px" width="100px"/></div>';
 			$i++;
 		
 		}	

@@ -16,7 +16,7 @@ Class site extends CI_Controller
   }
   function editroominfo($id=null,$userid=null)
   {
-    if(($this->session->userdata('first_name')!="") & $id!="" & $userid!="") 
+    if(($this->session->userdata('first_name')!="") & $id!="" & $userid!="" & (($this->session->userdata('id')==$userid))) 
     {
        $data["userid"]=$userid;
        $data["userselectcolorstyle"]=$this->preference_model->User_preference_information($userid);

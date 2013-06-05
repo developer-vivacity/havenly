@@ -11,7 +11,6 @@
   
 </div>  
 <div id = "abouttheteam">
-<div class = "padding_left padding_small left-align inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a></div>
 
 
 <div class = "right">
@@ -21,22 +20,28 @@
 		<ul class = "menu_bar midsmall white_text">
 		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
 		<li class = "inline midsmall condensed"> <a  class = "white_text" href = "#">1-888-978-3152</li></a>
-		<li class = "inline midsmall condensed"><a class = "button4 condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+		<li class = "inline midsmall condensed"><a class = "button4 pink white_text condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 		</ul>
-		</div></div>
+		</div>
+		</div>
 	
-<div id = "abouthero" class = "horizontal padding_small_top center">
-
-<p class = "cursive center white_text large">
-We've been there.  </p>
-<p class = "half condensed white_text middle medium">We were in the same shoes, not so long ago.  We know you're busy, we know you don't want to pay too much. Because we don't either.</p><br><br>
-<hr class = "style2 half"><br>
+<div class = "hero_text left-align">
+<div class = "padding paddingmob">
+<div class = "center">
+<div class = "inline center"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=140></a></div>
+<BR><BR></div>
+<p class = "center condensed black_text large">
+WE'VE BEEN THERE.  </p><BR><BR><BR>
+<p class = " sanslight black_text middle medium">We were in the same shoes, not so long ago.  We know you're busy, we know you don't want to pay too much. Because we don't either.</p><br><br>
+<div class = "center">
+<hr class = "style seventy"><br>
 <ul class = "menu_bar white_text">
-<a href = "#team"><li class = "inline white_text midsmall condensed">TEAM</li></a>
-<a href = "#careers"><li class = "inline white_text midsmall condensed">CAREERS</li></a>
-<a href = "#contact"><li class = "inline white_text midsmall condensed">CONTACT</li></a>
+<a href = "#team"><li class = "inline black_text midsmall condensed">TEAM</li></a>
+<a href = "#careers"><li class = "inline black_text midsmall condensed">CAREERS</li></a>
+<a href = "#contact"><li class = "inline black_text midsmall condensed">CONTACT</li></a>
 </ul><br>
-<hr class = "style half">
+<hr class = "style seventy"></div>
+</div>
 </div></div>
 <div class = "center" id = "team">
 

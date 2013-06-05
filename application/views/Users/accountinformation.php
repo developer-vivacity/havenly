@@ -10,7 +10,7 @@
 </td>
 <td width= "100%">
 <?php
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
  echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
 ?>
 </td></table>
@@ -176,6 +176,7 @@ $roomfolder;
 				$roomfolder="LivingRoom";
 				
 			}
+		echo '<td>';
 foreach($userpreference as $key)
 {
 
@@ -183,19 +184,19 @@ foreach($userpreference as $key)
 		while($i<15)
 		{
 		if(in_array($i,explode(',',$key->style_pics))){
-		echo '<td>';
+	
 		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
-		echo '</td>';
+		
 		}
 		$i++;
 		}	
 }?>
-</tr>
+</td></tr>
 </table>
 <br><br>
 <p class = "medium sanslight">Colors Chosen:</p>
 <hr class = "style">
-<table class = "center"><tr>
+<table class = "center"><tr><td>
 
 <?php 
 
@@ -204,10 +205,10 @@ foreach ($userpreference as $key){
 	 	{
 			
 			if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
-			echo'<td><div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
-			echo '</td>';
+			echo'<div class = "inline" style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
+			
 	    }
-	    echo'</tr>';
+	    echo'</td></tr>';
         
 
 }
@@ -216,7 +217,7 @@ foreach ($userpreference as $key){
 
 <BR><BR>
 <?php
-echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/room/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
+echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/site/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
 }
 ?>
 </div>

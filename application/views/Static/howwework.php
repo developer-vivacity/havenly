@@ -17,7 +17,7 @@
 <ul class = "menu_bar midsmall white_text">
 	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
 				<li class = "inline midsmall condensed"> <a  class = "black_text" href = "#">1-888-978-3152</li></a>
-		<li class = "inline midsmall condensed"><a class = "button4 pink white_text condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
+		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
 </ul>
 		</div>
 <div class = "horizontal trellis center"><br><br><BR>

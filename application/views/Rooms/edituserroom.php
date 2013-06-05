@@ -15,7 +15,7 @@
 <td width= "100%">
 <?php
  
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
  
  echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
 ?>
@@ -153,7 +153,7 @@ foreach($userselectcolorstyle as $cskey)
 	  $roomtype="BR";
 	 }
 	 $i=1;
-	  while($i<10)
+	  while($i<12)
 		{
 		
 			echo'<div style="float:left;">

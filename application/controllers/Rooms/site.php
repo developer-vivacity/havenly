@@ -2,7 +2,7 @@
 
 Class site extends CI_Controller 
 {
-	public $imagepath;
+   public $imagepath;
   function __construct() 
   {
       parent::__construct();
@@ -14,31 +14,30 @@ Class site extends CI_Controller
       $this->load->library('s3');
       $this->load->helper(array('form', 'url'));
   }
-   
- 
-  function editroominfo($id,$userid)
+  function editroominfo($id=null,$userid=null)
   {
-    if($id!="")
+    if(($this->session->userdata('first_name')!="") & $id!="" & $userid!="") 
     {
-        
-      $data["userid"]=$userid;
-      $data["userselectcolorstyle"]=$this->preference_model->User_preference_information($userid);
-      $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
-
-      $data["roomassociateduserid"]= $this->room_model->updateroom_loginuser($id);
-      $this->load->view('Rooms/edituserroom', $data); 
-    
-    }
- 
-  }
+       $data["userid"]=$userid;
+       $data["userselectcolorstyle"]=$this->preference_model->User_preference_information($userid);
+       $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
+       $data["roomassociateduserid"]= $this->room_model->updateroom_loginuser($id);
+       $this->load->view('Rooms/edituserroom', $data); 
+   }
+   else
+   {
+   $this->load->helper('url');
+   redirect('Users/site/login');
+   } 
+ }
 //...for upload image 
 function set_file_name()
 {
-$file_name= random_string('numeric',9);
-$exists=$this->picture_model->check_name($file_name);
-if ($exists){$file_name= 0;}
-else {$file_name = $file_name;}
-return $file_name;
+    $file_name= random_string('numeric',9);
+    $exists=$this->picture_model->check_name($file_name);
+    if ($exists){$file_name= 0;}
+    else {$file_name = $file_name;}
+    return $file_name;
 }	
  function roompicsuggestbyuser($name)
  {

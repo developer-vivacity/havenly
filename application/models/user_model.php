@@ -169,5 +169,13 @@ $this->db->insert('invite_requests',$insert);
    $query=$this->db->get("users");
    return $query->num_rows();
   }
-  
+
+function update_userstables()
+{
+  	$this->db->query("SELECT IF( (SELECT COUNT( * )
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'users'
+AND table_schema = 'emotayed_test'
+AND column_name = 'facebook' ) >0, 'SELECT 1', 'ALTER TABLE users ADD facebook VARCHAR(200)')");
+}
 }

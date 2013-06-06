@@ -1,24 +1,19 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-
-<div class = "center bgcontainer"><BR>
-<div class = "seventy" style= "height:80px;">
-<table class = "left-align">
-<tr><td width = "82%">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
-</td>
-<td width= "100%">
-<?php
- echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
- echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
-?>
-</td></table>
+<div class = "header white">
+<div class = "logo">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
-<BR><BR>
+<div class = "right">
+	
+<?php
+ echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
+?>
+</div>
+</div>
 
-
-<div class = "center">
+<div class = "center bgcontainer">
 <br>
 <div class = "seventy border white">
 <div id = "tabs">
@@ -69,7 +64,6 @@ if(isset($userdetails))
 ?>
 <div id = "user">
 <p class = "left-align sanslight medium">User Information:</p>
-<hr class = "style">
 <br>
 <div class = "left-align">
 <?php
@@ -86,10 +80,13 @@ echo '<tr><td>Email:<br><br></td>';
 echo '<td>'.$key->email.'<br><br></td></tr>';
 echo '<tr><td>Address:<br><br></td>';
 echo '<td>'.$key->address.'<br><br></td></tr>';
-echo '<td>Phone Number:<br><br></td>';
+echo '<tr><td>Phone Number:<br><br></td>';
 echo '<td>'.$key->phone.'<br><br></td></tr>';
-echo '<td>Zip Code:<br><br></td>';
+echo '<tr><td>Zip Code:<br><br></td>';
 echo '<td>'.$key->zipcode.'<br><br></td></tr>';
+echo '<tr><td>Pinterest/Facebook:<br><br></td>';
+echo '<td>'.$key->facebook.'<br><br></td></tr>';
+
 echo '</table>';
 echo '<BR><BR>';
 
@@ -109,7 +106,6 @@ if(isset($roomsassociated))
 ?>
 <div id = "rooms" class = "left-align">
 <p class = "left-align sanslight medium">User Room Information:</p>
-<hr class = "style">
 
 <br><BR>
 <?php
@@ -157,10 +153,11 @@ if(isset($userpreference))
 {
 ?>
 <div id= "preferences" class = "left-align" >
+<p class = "left-align medium sanslight" >User Preference Information:</p>
+<BR><BR>
 
-
-<p class = "medium left-align sanslight">Styles Chosen:</p>
-<hr class= "style left-align">
+<p class = "midsmall left-align sanslight">Styles Chosen:</p>
+<hr class= "style left-align seventy">
 <table>
 <tr>
 <?php
@@ -176,7 +173,6 @@ $roomfolder;
 				$roomfolder="LivingRoom";
 				
 			}
-		echo '<td>';
 foreach($userpreference as $key)
 {
 
@@ -184,19 +180,19 @@ foreach($userpreference as $key)
 		while($i<15)
 		{
 		if(in_array($i,explode(',',$key->style_pics))){
-	
+		echo '<td>';
 		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
-		
+		echo '</td>';
 		}
 		$i++;
 		}	
 }?>
-</td></tr>
+</tr>
 </table>
 <br><br>
-<p class = "medium sanslight">Colors Chosen:</p>
-<hr class = "style">
-<table class = "center"><tr><td>
+<p class = "midsmall sanslight">Colors Chosen:</p>
+<hr class = "seventy style">
+<table class = "center"><tr>
 
 <?php 
 
@@ -205,10 +201,10 @@ foreach ($userpreference as $key){
 	 	{
 			
 			if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
-			echo'<div class = "inline" style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
-			
+			echo'<td><div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
+			echo '</td>';
 	    }
-	    echo'</td></tr>';
+	    echo'</tr>';
         
 
 }

@@ -62,6 +62,10 @@ $data['pinterest']=$this->input->post('pinterest');
 if ($data['pinterest']=="Link to a pinterest board"){
 $data['pinterest']=NULL;
 }
+$data['instagram']=$this->input->post('instagram');
+if ($data['instagram']=="Link to a pinterest board"){
+$data['instagram']=NULL;
+}
 
 
 

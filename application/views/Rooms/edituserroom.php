@@ -3,23 +3,30 @@
 ?>
 
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/user_validation.js")?>></script>
-<div class = "header white">
-<div class = "logo">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
-</div>
-<div class = "right">
-	
+
+
+<div class = "center bgcontainer"><BR>
+<div class = "seventy">
+<div style= "height:80px;">
+<table class = "left-align">
+<tr><td width = "82%">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
+</td>
+<td width= "100%">
 <?php
- echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'index.php/Users/site/login/"> Accountinformation </a>';
+ 
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ 
+ echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
 ?>
+</td></table>
 </div>
-</div>
+<BR><BR>
 
 
-<div class = "center bgcontainer">
-<br>
-<div class = "seventy padding border white">
 
+<div class = "padding left-align border white">
+<a class = "left-align condensed midsmall" href="<?php echo base_url().'index.php/Users/site/login/'?>"> &larr;&nbsp;BACK&nbsp;&nbsp;</a> <BR><BR>
 <?php
 $attributes = array('class' => 'updateform', 'id' => 'updateform','enctype' => 'multipart/form-data');
 echo form_open('Rooms/site/updateroominfo/',$attributes);
@@ -39,8 +46,8 @@ foreach($roomassociateduserid as $key)
    elseif($key->room_type=="LR")
    $LR="selected";
 ?>	
-<div class = "border padding_small">
-<p class = "medium left-align sanslight">Edit Your Room Information:</p>	<BR><BR>
+<div class = "padding_small">
+<p class = "medium left-align sanslight">Edit Your Room Information:</p>	<hr class = "style">
 <table class = "sanslight midsmall left-align dark_gray_text">
 <tr width="100%"><td width: "30%">Room Type:</td>
 	<td width= "60%">
@@ -80,8 +87,8 @@ foreach($roomassociateduserid as $key)
 ?>
 </div>
 <BR><BR>
-<div class = "padding_small border left-align">
-	<p class = "sanslight medium">Style Pics:</p><BR><BR>
+<div class = "padding_small left-align">
+	<p class = "sanslight medium">Style Pics:</p><hr class = "style">
 	<?php
 $colorpic=array();
 $stylepic=array();
@@ -146,7 +153,7 @@ foreach($userselectcolorstyle as $cskey)
 	  $roomtype="BR";
 	 }
 	 $i=1;
-	  while($i<10)
+	  while($i<12)
 		{
 		
 			echo'<div style="float:left;">
@@ -158,8 +165,8 @@ foreach($userselectcolorstyle as $cskey)
 	 ?>
 	 </div>
 <br/>
-	 <div class = "border padding_small left-align">
-			<p class = "sanslight medium">Color Pics:</p><BR><BR>
+	 <div class = "padding_small left-align">
+			<p class = "sanslight medium">Color Pics:</p><hr class = "style">
 		<?php 	
           foreach($colorstylenumber as $colorkey)
           {
@@ -193,7 +200,7 @@ foreach($userselectcolorstyle as $cskey)
 <script>
  $(".cbox").hide();
 
-$(".inactive").click(function(){
+$(".inactive, .active").click(function(){
 $(this).toggleClass('active');
 var checkbox = $(this).parent().find('.cbox');
 		checkbox.prop('checked',!checkbox[0].checked);

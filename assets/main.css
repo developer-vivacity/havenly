@@ -27,7 +27,9 @@ color: gray;
 a:hover{
 cursor:pointer;
 opacity: .6;
+text-decoration: none !important;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -131,7 +133,7 @@ hr.style3 {
 
 
 .bgcontainer{
-background-image: url('Images/linen_bg.fw.png');
+background-image: url('Images/bluechevron.png');
 position: relative;
 }
 
@@ -411,14 +413,24 @@ display: none;
 
 
 
-.hero_text {
-	font-family: sans-serif;
+/* .hero_text {
+	
 	position: absolute; 
 	top: 150px;
 	width: 100%;
 	text-align: center;
-		}
-	
+		} */
+
+.hero_text{
+height: 100%;
+width: 42%;
+position: absolute;
+left: 130px;
+background-color: white;
+position: block;
+opacity: 0.8;
+}
+
 	
 
 
@@ -491,10 +503,13 @@ z-index: 999;
 vertical-align: middle;
 }
 
+.trellis{
+background-image:url('Images/chevron.jpg');
+}
 #overlay .boxoverlay{
 margin: auto;
 width: 50%;
-background-image:url('Images/linen_bg.fw.png');
+background-image:url('Images/chevron.jpg');
 text-align: center;
 vertical-align: middle;
 margin: 15px;
@@ -732,9 +747,9 @@ background-color: gray;}
 .light_gray{
 background-color:rgb(245, 245, 244) ;}
 .blue{
-background-color: #91c5c5;}
+background-color: #00CDBF;}
 .pink {
-background-color: #f9b199;
+background-color: #FF31B5;
 }
 .white{
 background-color: white;
@@ -756,9 +771,9 @@ color: gray;}
 .dark_gray_text{
 color: #505050 ;}
 .blue_text{
-color: #91c5c5}
+color: #00CDBF}
 .pink_text{
-color: #f9b199;}
+color: #F74D76;}
 .white_text{
 color: white;}
 
@@ -955,13 +970,13 @@ padding: 10px;
 -o-border-radius: 7px;
 border-radius: 7px;
 display: inline-block;
-background-color: #e78970;
+background-color: #F74D76;
 background-clip: padding-box;
 color: white;
 -webkit-appearance: none;
 -moz-background-clip: padding;
 -webkit-background-clip: padding;
- border: 7px solid rgba(249,177,153,0.4);
+ border: 7px solid rgba(247,77,118,0.2);
  z-index:999;
 }
 .button3:hover{
@@ -973,9 +988,7 @@ opacity: .8;
 margin: 0;
 padding: 10px;
 display: inline-block;
-background-color: gray;
 background-clip: padding-box;
-color: white;
 -webkit-appearance: none;
 -moz-background-clip: padding;
 -webkit-background-clip: padding;
@@ -1173,10 +1186,10 @@ cursor: pointer;
 /* How we work */
 
 #howwework{
-background-image:url('Images/MyLR2.jpg');
+background-image:none;
 background-repeat: none;
 width: 100%;
-height: 190px;
+height: 150px;
 position: relative;
 background-size: cover;
 

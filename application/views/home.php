@@ -24,32 +24,36 @@
 	<ul class = "menu_bar midsmall white_text">
 	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
 		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
-		<li class = "inline midsmall condensed"><a class = "button4 condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 	</div>
 	
 	
 	
 	</div>
-	
-<div class = "logo">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
-</div>
+
+
 </div>				
 
 	
 	
 	<div class="hero_text"><br><br>
-		<div class = "padding_small">
-		<p class = "midlargeplus dark_gray_text sanslight">
-			YOUR ROOM, DECORATED AND DELIVERED.</p>
-			<hr class = "seventy style1">
-		<p class = "extralarge dark_gray_text condensed">
-			YOUR PLACE JUST GOT BETTER.</p><br>
-			<br>
-		<a id = "startbutton" class = "button3">
-		<p class = "condensed bottom inline midlarge white_text">GET STARTED&nbsp;
-		<p class = "inline cursive bottom white_text midlarge">here</p></a>
+	<div class = "center">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=140></a>
+	
+		<div class = "padding">
+			<p class = "large condensed">
+			YOUR PLACE JUST GOT <p class = "extralarge condensed">BETTER.</p><br><BR>
 				
+			<p class = "medium space sanslight">
+			Your room, decorated and delivered.
+			</p><BR><br>
+			<div class = "center">
+		<a id = "startbutton" class = "button3 half sanslight medium inline white_text">
+		&nbsp;&nbsp;GET STARTED&nbsp;&nbsp;
+		</a>
+	
+		</div>
+				</div>
 	
 	
 </div>	</div></div>
@@ -62,46 +66,46 @@
 <div class = "horizontal"><br><br><br><br>
 <div id = "description" class = "paddingmob">
 <p class = "blue_text serif padding_left large">Your very own decorator.</p><br>
-<p class = "dark_gray_text sanslight medium space padding_right padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And if you like it, we deliver it all to you. No catch, really.</p>
+<p class = "sanslight medium space padding_right padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And, we deliver anything you like to you. For one very low flat fee. </p>
 <br><BR></div>
 <div class = "row center">
-<div class= "third top dark_gray_text center inline padding_left"> 
+<div class= "third top  center inline padding_left"> 
 	<img src= <?php echo base_url('assets/Images/Desc_1.png');?> height="105"><br><br>
-	<p class = "condensed medium dark_gray_text">TELL US ABOUT YOU</p>
+	<p class = "condensed medium ">TELL US ABOUT YOU</p>
 	<hr class = "style">
-	<p class = "sans-serif small dark_gray_text space">
+	<p class = "sanslight small space">
 		Get started by telling us a little about you and your room.  
 		<span>Snap a pic</span>, fill out the quick form, and we'll get to work.  We'll match you with a designer that shares your style.
 	</p>
 	</div>
 
-<div class = "third top gray_text center padding_small_sides inline">
+<div class = "third top center padding_small_sides inline">
 	<img src= <?php echo base_url('assets/Images/Desc_2.png');?> height="105px"><br><br>
-	<p class = "condensed medium dark_gray_text">BUY WHAT YOU LOVE</p>
+	<p class = "condensed medium">BUY WHAT YOU LOVE</p>
 	<hr class = "style">
-	<p class = "sans-serif small dark_gray_text space">Our professional designers decorate your place, and show you how your room would look with the <span>items they have picked</span>. You tell us what you'd like to buy (or rent!), and we send it to you as quickly as we can. </p>
+	<p class = "sanslight small  space">Our professional designers decorate your place, and show you how your room would look with the <span>items they have picked</span>. You tell us what you'd like to buy (or rent!), and we send it to you as quickly as we can. </p>
 	</div>
 
-<div class = "third top gray_text center inline padding_right">
+<div class = "third top center inline padding_right">
 <img src= <?php echo base_url('assets/Images/Desc_3.png');?> height="105px"><br><br>
-<p class = "condensed medium dark_gray_text">ENJOY YOUR ROOM</p>
+<p class = "condensed medium">ENJOY YOUR ROOM</p>
 	<hr class = "style">
-	<p class = "sans-serif small dark_gray_text space">
+	<p class = "sanslight small space">
 	We deliver everything you need.  Show off your new room! Check back in with us for more fun items, your designer will continue to find you items that you love.  You have <span>no commitment</span> to buy!
  </p>
  
 </div>
-  <br><br><br><br><br>	<p class = "serif midlarge dark_gray_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p><br><br><br>
+  <br><br><br><br><br>	<p class = "sanslight midlarge dark_gray_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p><br><br><br>
 
 </div></div>
-<div class = "horizontal center light_gray"><br><br><br><br>
+<div class = "horizontal center bgcontainer"><br><br><br><br>
 <div class = "half top inline">
 <BR><BR>
 <hr class = "seventy style3">
 <div class = "centerline">
-<span class = "light_gray small sans-serif dark_gray_text">HOW HAVENLY WORKS
+<span class = "white small sans-serif black_text">HOW HAVENLY WORKS
 </span></div>
-<p class = "seventy paddingmob midlargeplus serif dark_gray_text">
+<p class = "seventy paddingmob midlargeplus serif black_text">
 It's pretty easy.  You tell us a bit about you.  We do the work.</p></div>
 <div class = "half inline">
 <iframe id = "video" height="315" width = "500" src="http://www.youtube.com/embed/UxMgM_TCbPE" frameborder="0" allowfullscreen></iframe>
@@ -119,8 +123,7 @@ Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay">
 <div class = "boxoverlay"><div class = "paddingmob dark_gray_text padding_small">
 <a class = "close sanslight small paddingmob padding_small light_gray_text">X Close</a><BR><BR>
 <p class = "large condensed">YOU LIKE US!</p>
-<hr class = "seventy style3">
-<p class = "condensed midlarge">We're in like with you too.</p>
+<hr class = "seventy style">
 <p class = "condensed midsmall padding_small">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
 </p>
 <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
@@ -131,7 +134,7 @@ Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay">
 <div class = "horizontal">
 <label class = "half condensed midsmall middle inline" for="Zipcode">Zipcode:</label><br><br>
 <input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br><br>
-<a class = "button3 pink white_text serif" id = "requestinvite">Request</a><br><br>
+<a class = "button3 pink white_text condensed" id = "requestinvite">Request</a><br><br>
 </form>
 </div></div></div>
 
@@ -171,7 +174,7 @@ olark.identify('5800-712-10-4032');/*]]>*/</script><noscript><a href="https://ww
 <script>
 
 $("#titlerow").hide();
-$(".hero_text").hide();
+//$(".hero_text").hide();
 
 $(document).ready(function(){
 
@@ -200,7 +203,7 @@ function handleimage(){
 	var sWidth = $(window).width();
 	$(".coverimage").height(sHeight);
 	
-	$(".hero_text").show().animate({top:(sHeight/3)}, {duration: 2200, easing: 'easeInOutBack'});
+	//$(".hero_text").show().animate({top:(sHeight/3)}, {duration: 2200, easing: 'easeInOutBack'});
 	
 	if(sHeight>300){
 		$("#titlerow").css("position", "absolute");

@@ -81,6 +81,8 @@
 		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=270em></div>
+		<div><input type="checkbox" name="style[]" value = 11 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR11.jpg');?> height=270em></div>
 		</div>
 		
 		<div id = "LR" class = "padding_small">
@@ -99,6 +101,17 @@
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR6.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR7.jpg');?> height=270em>
+		</div>
+		<div><input type="checkbox" name="style[]" value = 8 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR8.jpg');?> height=270em>
+		</div><div><input type="checkbox" name="style[]" value = 9 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR9.jpg');?> height=270em>
+		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR10.jpg');?> height=270em>
+		</div><div><input type="checkbox" name="style[]" value = 11 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR11.jpg');?> height=270em>
+		</div><div><input type="checkbox" name="style[]" value = 12 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR12.jpg');?> height=270em>
 		</div>
 		</div>
 		

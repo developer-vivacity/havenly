@@ -48,7 +48,7 @@
 	<td class = "third middle right-align">
 	</td>
 	<td class = "half left-align">
-		<BR><input type="submit" class="button3 horizontal small condensed" value="Sign in" />
+		<BR><input type="submit" class="button3 horizontal small sanslight" value="SIGN IN" />
 	</td>
 	</tr>
 	</table>
@@ -80,7 +80,7 @@
 <div class = "horizontal">
    <div class = "third inline right-align bottom"></div>
 	<div class = "forty inline">
- <input type="submit" class="button3 small horizontal condensed" value="Sign in" /></div>
+ <input type="submit" class="button3 small horizontal sanslight" value="SIGN IN" /></div>
  <?php echo form_close(); ?>
 	
 </div>

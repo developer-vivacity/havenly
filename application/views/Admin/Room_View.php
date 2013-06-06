@@ -1,12 +1,33 @@
 <?php 
-	include(APPPATH.'/views/templates/header2.php');
+	include(APPPATH.'/views/templates/header.php');
 	
 ?>
-<br><br>
+
+
+<div class = "center bgcontainer"><BR>
+<div class = "seventy" style= "height:80px;">
+<table class = "left-align">
+<tr><td width = "82%">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
+</td>
+<td width= "100%">
+<?php
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;XXXX&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;XXXX</a>'; 
+?>
+</td></table>
+</div>
+<BR><BR>
+
+
+<div class = "center">
+<br>
+<div class = "seventy border white">
+
 <div class = "status_change padding_left">
 <form name="change_status" method="post" action=<?php echo base_url('index.php/Admin/site/change_status/'.$room_data[0]['id']);?>>
-<label for="status">Change Status To:</label>
-<select name="status" id="status">
+<label  class = "condensed medium" for="status">Change Status To:</label>
+<select class = "condensed medium" name="status" id="status">
 		
 		<option value="called" selected="selected">Called</option>
 		<option value="emailed" >Emailed Full Order</option>
@@ -14,15 +35,16 @@
 		<option value="closed" >Completed Order</option>
 	</select>
 
-<input type="submit" class = "button2 top midlarge teal" value="Submit" />
+<input type="submit" class = "button4 top medium pink white_text" value="Submit" />
 <br><br><br></div>
-<div class = "horizontal center gray">
-<p class = "white_text midlarge title padding_small">
+
+<div class = "horizontal center trellis">
+<p class = "black_text midlarge condensed padding_small">
 Room Details</p>
 </div><br>
 <div class = "inline padding_left padding_right">
-<p class = "title medium">Design Type:</p> 
-<p class = "text medium">
+<p class = "sans-serif  medium">Design Type:</p> 
+<p class = "sanslight dark_gray_text medium">
 <span>
 <?php echo $room_data[0]['type'];?><br>
 <?php echo date('m.d.y',strtotime($room_data[0]['Timestamp']));?><br>
@@ -30,40 +52,41 @@ Room Details</p>
 </span>
 </p>
 </div>
-
-<div class = "inline padding_left padding_right">
-<p class = "title medium">About:</p> 
-<p class = "text dark_gray_text medium"><?php echo $room_data[0]['about'];?></p>
+<BR><BR>
+<div class = "inline half padding_left padding_right">
+<p class = "sans-serif medium">About:</p> 
+<p class = "sanslight dark_gray_text medium"><?php echo $room_data[0]['about'];?></p>
 </div><br>
-
-<div class = "inline top padding_left padding_right">
-<p class = "title medium">Width:</p> 
-<p class = "text dark_gray_text medium"><?php echo $room_data[0]['width'];?></p>
-<p class = "title medium">Height:</p> 
-<p class = "text dark_gray_text medium"><?php echo $room_data[0]['height'];?></p>
+<BR><BR>
+<div class = "inline top third">
+<p class = "sanslight medium">Width:</p> 
+<p class = "sanslight dark_gray_text medium"><?php echo $room_data[0]['width'];?></p><BR><BR>
+<p class = "sanslight medium">Length:</p> 
+<p class = "sanslight dark_gray_text medium"><?php echo $room_data[0]['height'];?></p>
 </div>
 
 <div class = "inline padding_left padding_right">
-<P class = "medium dark_gray_text">Photo 1</p>
+<P class = "medium sans-serif  dark_gray_text">Photo 1</p>
 <img src = <?php echo $room_data[0]['room_photo1'];?> height = 300>
 </div>
-<div class = "inline padding_left padding_right">
+<div class = "inline  sanslight padding_left padding_right">
 <?php
 if (isset($room_data[0]['room_photo2'])){
-echo "<P class = 'medium dark_gray_text'>Photo 2</p>";
+if ($room_data[0]['room_photo2']<>"not submitted"&&$room_data[0]['room_photo2']<>""&&$room_data[0]['room_photo2']<>0){
+echo "<P class = 'medium  sans-serif dark_gray_text'>Photo 2</p>";
 echo "<img src ={$room_data[0]['room_photo2']} height = 300>";
-}
+}}
 ?>
 </div>
-</div>
+
 <br><br>
 <div class = "center">
-<div class = "horizontal center gray">
-<p class = "white_text midlarge title padding_small">
+<div class = "horizontal center trellis">
+<p class = "black_text midlarge condensed padding_small">
 User Preferences</p>
 </div><br>
 <div class = "inline padding_left padding_right">
-<p class = "medium dark_gray_text">
+<p class = "medium sans-serif  dark_gray_text">
 Photos Picked</p><br>
 <?php 
 	if ($user_prefs[0]['room_type']=='BR')
@@ -79,13 +102,14 @@ Photos Picked</p><br>
 	$pics = explode(',',$user_prefs[0]['style_pics']);
 	foreach ($pics as $pic)
 	{
+		if ($pic<>""){
 		$html = base_url('assets/Images/'.$room.'/'.$room_abbr.$pic.'.jpg');
 		echo "<img class = 'padding_small' src = {$html} height = 200>";
-		}
+		}}
 ?>
 </div><br><hr class = "half style"><br>
 <div class = "inline padding_left padding_right">
-<p class = "medium dark_gray_text">
+<p class = "medium sans-serif  dark_gray_text">
 Colors Picked</p><br>
 <?php 
 	
@@ -144,11 +168,11 @@ Colors Picked</p><br>
 ?><br>
 </div></div><br>
 <div class = "center">
-<div class = "horizontal center gray">
-<p class = "white_text midlarge title padding_small">
+<div class = "horizontal center trellis">
+<p class = "black_text midlarge condensed padding_small">
 User Details</p>
 </div><br>
-<p class = "dark_gray_text text">
+<p class = "dark_gray_text sans-serif  text">
 <?php 
 
 echo $user[0]['first_name'].' ';

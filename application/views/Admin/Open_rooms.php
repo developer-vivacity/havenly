@@ -1,6 +1,30 @@
 <?php 
-	include(APPPATH.'/views/templates/header2.php');
+	include(APPPATH.'/views/templates/header.php');
 ?>
+
+<?php 
+	include(APPPATH.'/views/templates/header.php');
+?>
+
+<div class = "center bgcontainer"><BR>
+<div class = "seventy" style= "height:80px;">
+<table class = "left-align">
+<tr><td width = "82%">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
+</td>
+<td width= "100%">
+<?php
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;XXXX&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;XXXX</a>'; 
+?>
+</td></table>
+</div>
+<BR><BR>
+
+
+<div class = "center">
+<br>
+<div class = "seventy border white">
 
 <?php 
 
@@ -14,7 +38,7 @@ echo "<div class = 'horizontal center'>";
 echo "<a href = {$html}>";
 echo "<img src = '{$room['room_photo1']}' height=150>";
 echo '<div class = "inline top padding_small">';
-echo '<p class = "title">';
+echo '<p class = "sanslight medium">';
 echo date('m.d.y',strtotime($room_data[0]['Timestamp'])).' '.$room['status'];
 echo '</p>';
 echo "</a>";
@@ -23,3 +47,12 @@ echo "</div></div></div>";
 echo "<br><br><br>";
 
 }
+?>
+</div>
+<div class = "push"> 
+</div>
+
+<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>
+</div>

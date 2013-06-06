@@ -1,19 +1,24 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<div class = "header white">
-<div class = "logo">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
-</div>
-<div class = "right">
-	
-<?php
- echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
-?>
-</div>
-</div>
 
-<div class = "center bgcontainer">
+<div class = "center bgcontainer"><BR>
+<div class = "seventy" style= "height:80px;">
+<table class = "left-align">
+<tr><td width = "82%">
+	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
+</td>
+<td width= "100%">
+<?php
+ echo '<a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a>';
+ echo '<a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a>'; 
+?>
+</td></table>
+</div>
+<BR><BR>
+
+
+<div class = "center">
 <br>
 <div class = "seventy border white">
 <div id = "tabs">
@@ -64,6 +69,7 @@ if(isset($userdetails))
 ?>
 <div id = "user">
 <p class = "left-align sanslight medium">User Information:</p>
+<hr class = "style">
 <br>
 <div class = "left-align">
 <?php
@@ -103,6 +109,7 @@ if(isset($roomsassociated))
 ?>
 <div id = "rooms" class = "left-align">
 <p class = "left-align sanslight medium">User Room Information:</p>
+<hr class = "style">
 
 <br><BR>
 <?php
@@ -150,11 +157,10 @@ if(isset($userpreference))
 {
 ?>
 <div id= "preferences" class = "left-align" >
-<p class = "left-align medium sanslight" >User Preference Information:</p>
-<BR><BR>
 
-<p class = "midsmall left-align sanslight">Styles Chosen:</p>
-<hr class= "style left-align seventy">
+
+<p class = "medium left-align sanslight">Styles Chosen:</p>
+<hr class= "style left-align">
 <table>
 <tr>
 <?php
@@ -170,6 +176,7 @@ $roomfolder;
 				$roomfolder="LivingRoom";
 				
 			}
+		echo '<td>';
 foreach($userpreference as $key)
 {
 
@@ -177,19 +184,19 @@ foreach($userpreference as $key)
 		while($i<15)
 		{
 		if(in_array($i,explode(',',$key->style_pics))){
-		echo '<td>';
+	
 		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
-		echo '</td>';
+		
 		}
 		$i++;
 		}	
 }?>
-</tr>
+</td></tr>
 </table>
 <br><br>
-<p class = "midsmall sanslight">Colors Chosen:</p>
-<hr class = "seventy style">
-<table class = "center"><tr>
+<p class = "medium sanslight">Colors Chosen:</p>
+<hr class = "style">
+<table class = "center"><tr><td>
 
 <?php 
 
@@ -198,10 +205,10 @@ foreach ($userpreference as $key){
 	 	{
 			
 			if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
-			echo'<td><div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
-			echo '</td>';
+			echo'<div class = "inline" style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
+			
 	    }
-	    echo'</tr>';
+	    echo'</td></tr>';
         
 
 }
@@ -210,7 +217,7 @@ foreach ($userpreference as $key){
 
 <BR><BR>
 <?php
-echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/room/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
+echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/site/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
 }
 ?>
 </div>

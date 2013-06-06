@@ -27,38 +27,38 @@ $(document).ready(function()
         $("#div_show_error_message").html("");
     if($("#update_name").val()=="")
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter name</p>'); 
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter name</p>'); 
         e_value=0;
     }
     if($("#update_last_name").val()=="")
     {
-		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter last name</p>'); 
+		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter last name</p>'); 
         e_value=0;
 	}
 	if($("#update_address").val()=="")
     {
-		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter address</p>'); 
+		 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter address</p>'); 
         e_value=0;
 	}
     if($("#update_email").val()=="")
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter email</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter email</p>');
         e_value=0;    
     }
    
 	 if(($("#update_phone").val()==""))
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter phone number</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter phone number</p>');
         e_value=0;    
 	}
 	if(($("#update_zip").val()=="") )
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter zip</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter zip</p>');
         e_value=0;    
 	}
 	 if(($("#update_password").val()=="") && ischack==true)
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter password</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter password</p>');
         e_value=0;    
 	}
 	if(($("#update_password").val()!="") && ischack==true)
@@ -67,18 +67,18 @@ $(document).ready(function()
 		if($.trim($("#update_password").val()).length<4)
         {
 		
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field must be at least 4 characters in length</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*The User password field must be at least 4 characters in length</p>');
         e_value=0;    
 	    }
 	    if($.trim($("#update_password").val()).length>32)
 	    {
-		$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field can not exceed 32 characters in length</p>');
+		$("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*The User password field can not exceed 32 characters in length</p>');
         e_value=0;	
 		}
 	}
     if(($("#update_email").val()!="") && (!emailReg.test($("#update_email").val()))) 
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid email address</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter valid email address</p>');
         e_value=0;    
     }
     if(e_value==1)
@@ -103,19 +103,15 @@ $("#update_room").click(function()
     var exts=new Array('jpg','png','gif','jpeg','pjpeg');
    $("#div_show_error_message").html(''); 
    e_value=1;
-  if($("#update_budget").val()=="")
-    {
-     $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room budget</p>'); 
-        e_value=0;
-    }
+  
     if($("#update_width").val()=="")
     {
-    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width</p>');
+    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room width</p>');
     e_value=0; 
     }
    if($("#update_height").val()=="")
     {
-    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room height</p>');
+    $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room height</p>');
     e_value=0;
     }
    
@@ -125,7 +121,7 @@ $("#update_room").click(function()
         var fileextension_one = file1.substr((file1.lastIndexOf('.') +1) );
     if ($.inArray (fileextension_one.toLowerCase(), exts ) < 0 )
         {
-         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room photo1 in correct format</p>');
+         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room photo1 in correct format</p>');
          e_value=0;
         } 
     }
@@ -137,23 +133,23 @@ $("#update_room").click(function()
          
         if($.inArray (fileextension_two.toLowerCase(), exts ) < 0 )
         {
-         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room photo2 in correct format</p>');
+         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room photo2 in correct format</p>');
          e_value=0;
         } 
     }
     if($("#update_height").val().trim()!="" && !$.isNumeric($("#update_height").val()))
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room height in numeric format</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room height in numeric format</p>');
         e_value=0;
     }
     if($("#update_width").val().trim()!="" && !$.isNumeric($("#update_width").val()))
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width in numeric format</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter room width in numeric format</p>');
         e_value=0;
     }
     if($("#update_budget").val()!="" && !$.isNumeric($("#update_budget").val()))
     {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter budget in numeric format</p>');
+        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Enter budget in numeric format</p>');
         e_value=0;
     }
    if(e_value==1)
@@ -161,7 +157,7 @@ $("#update_room").click(function()
     
     if($('input[name="color[]"]:checked').length<=0)
 	{
-	 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one color pic</p>');
+	 $("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Select at lest one color pic</p>');
 	 e_value=0;
 	}
 	else 
@@ -183,7 +179,7 @@ $("#update_room").click(function()
 
 	if($('input[name="style[]"]:checked').length<=0 && $("#select_room").is(':visible'))
 	{
-	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
+	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Select at lest one style pic</p>');
 	e_value=0;
 	}else if($("#select_room").is(':visible'))
 	{
@@ -204,7 +200,7 @@ $("#update_room").click(function()
 	if($('input[name="optionstyle[]"]:checked').length<=0 && $("#option_room").is(':visible'))
 	{
 
-	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one style pic</p>');
+	$("#div_show_error_message").html($("#div_show_error_message").html()+'<p class = "error">*Select at lest one style pic</p>');
 	e_value=0;
 	}else if($("#option_room").is(':visible'))
 	{

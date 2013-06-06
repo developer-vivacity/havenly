@@ -24,6 +24,7 @@ class user_model extends CI_Model
 			Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			facebook text NULL utf8_unicode_ci,
 			pinterest text NULL utf8_unicode_ci,
+			instagram text NULL utf8_unicode_ci,
 			PRIMARY KEY (id)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
   

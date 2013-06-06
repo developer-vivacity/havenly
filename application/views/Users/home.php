@@ -211,19 +211,19 @@
 	<div id = "sizes" class = "resize" >
 	<p class = "extralarge sanslight blue_text">THE ROOM QUESTIONS</p><br>
 		<p class = "serif medium dark_gray_text">Give us a little about your room. <span>And what you want for it</span></p><br><br>
-		<table class = "horizontal">
-		<tr>
-		<td class = "center top half">
+		<div class = "horizontal">
+		
+		<div class = "center top half">
 		<p class = "medium condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="length" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
-		</td>
-		<td class = "center top half">
+		</div>
+		<div class = "center top half">
 			<p class = "medium condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
 			<BR><textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
-	  </td></tr></table>
+	  </div></div>
 	  <br><br><br><br><br><br><br>
 	  <div class = "continue horizontal"><br>
 		<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'room_desc', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
@@ -270,8 +270,22 @@
 		<img src = <?php echo base_url('assets/Images/pinlarge.png');?> height = 80>
 		</div>
 		
+		
+		
 		<div class = "half middle inline">
 		<input type = "text" name = "pinterest" value = "Link to a pinterest board" id = "pinterest"
+		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
+		/>
+		</div></div><BR><BR>
+		<div class = "horizontal">
+		<div class = "third middle inline right-align">
+		<img src = <?php echo base_url('assets/Images/instaicon.png');?> height = 80>
+		</div>
+		
+		
+		
+		<div class = "half middle inline">
+		<input type = "text" name = "instagram" value = "Your Instagram Page" id = "instagram"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
 		</div></div>
@@ -317,7 +331,8 @@
 	</form>
 	</div>
 	</p>
-	
+	<div class = "push">
+	</div>
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>

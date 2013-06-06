@@ -18,11 +18,17 @@ Class site extends CI_Controller
   {
     if(($this->session->userdata('first_name')!="") & $id!="" & $userid!="" & (($this->session->userdata('id')==$userid))) 
     {
-       $data["userid"]=$userid;
-       $data["userselectcolorstyle"]=$this->preference_model->User_preference_information($userid);
-       $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
-       $data["roomassociateduserid"]= $this->room_model->updateroom_loginuser($id);
-       $this->load->view('Rooms/edituserroom', $data); 
+        $data["userid"]=$userid;
+        $data["userselectcolorstyle"]=$this->preference_model->User_preference_information($userid);
+        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
+        $data["roomassociateduserid"]= $this->room_model->updateroom_loginuser($id);
+        if(sizeof($data["roomassociateduserid"])>0)
+        $this->load->view('Rooms/edituserroom', $data);
+        else
+        {
+        $this->load->helper('url');
+        redirect('Users/site/login'); 
+        }
    }
    else
    {

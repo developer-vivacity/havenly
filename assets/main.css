@@ -463,7 +463,12 @@ font-size: 3em;
 font-family: 'Open Sans';
 font-size: 1.5em;
 }
-
+.circle{
+height: 150px;
+width: 150px;
+border-radius: 50%;
+display: inline-block;
+}
 
 
 
@@ -755,7 +760,7 @@ background-color: #FF31B5;
 background-color: white;
 }
 .green{
-background-color: #a7d283;}
+background-color: #483D8B;}
 .translucent{
 opacity: .5;
 }
@@ -858,6 +863,11 @@ padding-right: 100px;
 .margin_left{
 margin-left: 100px;
 }
+
+.margin_right{
+margin-left: 100px;
+}
+
 .cover{
 /* min-width: 1024; */
 padding: 0;

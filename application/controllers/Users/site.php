@@ -204,6 +204,12 @@ function whoweare()
 		$this->load->view('Static/whoweare');
 }
 
+function pricing()
+{
+	$this->load->view('Static/pricing');
+
+}
+
 function requestinvite()
 {
   $this->load->library('form_validation');

@@ -4,8 +4,8 @@
 <div class="navmenu">  
     <ul>  
         <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
-        <li><a href="#">1-888-978-3152</a></li>  
+        <li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li>  
+			<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
       </ul>  
   
 </div>  
@@ -16,23 +16,23 @@
 <div class = "right_align inline middle padding_small"><BR>
 <ul class = "menu_bar midsmall white_text">
 	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
-				<li class = "inline midsmall condensed"> <a  class = "black_text" href = "#">1-888-978-3152</li></a>
-		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
+	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
+		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
 </ul>
 		</div>
 <div class = "horizontal trellis center"><br><br><BR>
 <p class = "seventy paddingmob sanslight midlargeplus black_text center">
 IT TAKES A LOT OF WORK TO GET YOUR ROOM RIGHT.  WE CAN HELP.</p><br><BR><BR></div><BR><BR><BR>
 <div class = "center">
-<table class = "hwwtable horizontal dark_gray_text">
+<table class = "hwwtable horizontal">
 <tr class = "horizontal padding_small_top">
-<td class = "center middle right-align half"><BR><BR>
-<p class = "sanslight right-align midlarge">
-Customized for you.
+<td class = "center middle right-align half"><BR>
+<p class = "sanslight blue_text right-align midlarge">
+You tell us about you.
 </p><br><BR>
 <p class = "serif seventy midsmall right-align space center">
-You tell us about the styles you like, and what you'd like to keep or buy.  You even send us a picture of your room, so we know we can get it right.  
-
+We hear about what you like, don't like<br> and the things you need on our survey.<br><br>  
+Then, one of our decorators gives<br> you a call to hear a little bit more.
 </p>
 </td>
 <td class = "half center"><img src = <?php echo base_url('assets/Images/survey.jpg');?> height= 250>
@@ -41,17 +41,18 @@ You tell us about the styles you like, and what you'd like to keep or buy.  You 
 </table><BR><BR><BR>
 <hr class = "seventy style">
 </div><div class = "center">
-<table class = "hwwtable horizontal center dark_gray_text">
+<table class = "hwwtable horizontal center">
 <tr class = "horizontal padding_small_top">
 <BR><BR>
 <td class = "half center"><img src = <?php echo base_url('assets/Images/rendering.jpg');?> height= 300>
 </td>
-<td class = "left-align middle half"><BR><Br><BR>
-<p class = "sanslight left-align midlarge">
+<td class = "left-align middle half"><BR>
+<p class = "sanslight blue_text left-align midlarge">
 We do the hard work.
 </p><br><BR>
 <p class = "serif midsmall seventy space left-align">
-We take your preferences and put together a couple of proposals for you.  You choose the one you like, and then we get to work suggesting everything you need for a complete room.
+We put together proposals for you,<br> with different directions for your room.<br><br>
+You choose the one you like, and we design everything you need for your room.<br><br>
 Sure, technology helps us, but there's a real human to talk to, too!
 
 </p>
@@ -62,15 +63,15 @@ Sure, technology helps us, but there's a real human to talk to, too!
 <hr class = "seventy style">
 </div>
 <div class = "center">
-<table class = "hwwtable horizontal center dark_gray_text">
+<table class = "hwwtable horizontal center">
 <tr class = "horizontal padding_small_top">
 <td class = "right-align half middle half"><BR><BR>
-<p class = "sanslight right-align midlarge">
-We even send you everything
+<p class = "sanslight blue_text right-align midlarge">
+And send you everything
 </p><br><BR>
 <p class = "serif midsmall space right-align seventy">
-Log back in and select the items you love. We send it all to you with one click
-(No searching through different sites or entering your address 10 times).
+Select the items you love, and we send it all to you with one click, at the lowest price around.<BR><BR> 
+(You don't have to search through different sites or enter your address 10 times)
 
 </p>
 </td>

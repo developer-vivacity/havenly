@@ -6,7 +6,8 @@
 <div class="navmenu">  
     <ul>  
         <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
+        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li> 
+		<li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li> 		
       	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 		</ul>  
   
@@ -24,6 +25,7 @@
 	<ul class = "menu_bar midsmall white_text">
 	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
 		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
+		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
 		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 	</div>
 	

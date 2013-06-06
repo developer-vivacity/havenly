@@ -1,10 +1,10 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<<<<<<< HEAD
+
 
 <div class = "center bgcontainer"><BR>
-<div class = "seventy" style= "height:80px;">
+<div class = "seventy" style= "height:90px;">
 <table class = "left-align">
 <tr><td width = "78%">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
@@ -15,22 +15,7 @@
  echo '<td><a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a></td>'; 
 ?>
 </tr></table>
-=======
-<div class = "header white">
-<div class = "logo">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
-<div class = "right">
-	
-<?php
- echo '<a href="'.base_url().'index.php/Users/site/logout/">Log Out</a>'; 
-?>
->>>>>>> 45815985a241ea30af4f4fe9f7b677bb7c07498a
-</div>
-</div>
-
-<div class = "center bgcontainer">
-<br>
 <div class = "seventy border white">
 <div id = "tabs">
 <ul>

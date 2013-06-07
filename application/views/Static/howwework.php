@@ -30,7 +30,7 @@ IT TAKES A LOT OF WORK TO GET YOUR ROOM RIGHT.  WE CAN HELP.</p><br><BR><BR></di
 <p class = "sanslight blue_text right-align midlarge">
 You tell us about you.
 </p><br><BR>
-<p class = "serif seventy midsmall right-align space center">
+<p class = "sanslight seventy midsmall right-align space center">
 We hear about what you like, don't like<br> and the things you need on our survey.<br><br>  
 Then, one of our decorators gives<br> you a call to hear a little bit more.
 </p>
@@ -50,7 +50,7 @@ Then, one of our decorators gives<br> you a call to hear a little bit more.
 <p class = "sanslight blue_text left-align midlarge">
 We do the hard work.
 </p><br><BR>
-<p class = "serif midsmall seventy space left-align">
+<p class = "sanslight midsmall seventy space left-align">
 We put together proposals for you,<br> with different directions for your room.<br><br>
 You choose the one you like, and we design everything you need for your room.<br><br>
 Sure, technology helps us, but there's a real human to talk to, too!
@@ -69,7 +69,7 @@ Sure, technology helps us, but there's a real human to talk to, too!
 <p class = "sanslight blue_text right-align midlarge">
 And send you everything
 </p><br><BR>
-<p class = "serif midsmall space right-align seventy">
+<p class = "sanslight midsmall space right-align seventy">
 Select the items you love, and we send it all to you with one click, at the lowest price around.<BR><BR> 
 (You don't have to search through different sites or enter your address 10 times)
 

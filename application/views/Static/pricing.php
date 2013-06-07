@@ -32,15 +32,12 @@ You only pay after you see your design proposal "themeboard", so try us for free
 <div class = "third inline top border white center" style="height: 450px;"><BR><BR>
 <p class = "condensed midlargeplus black_text">Cotton</p><br>
 <p class = "condensed small black_text">Have most of your stuff?  Just need some flair?</p><BR>
-<div class  = "circle green" style= "line-height: 150px;" >
-<p class = "sans-serif white_text midlargeplus">$39</div><BR><BR>
+<img src = "<?php echo base_url().'assets/Images/cotton.png';?>" height="150px"><br><BR>
  <p class = "sans-serif pink_text inline midsmall">Selection of accessories & furnishings</p><p class = "sanslight inline midsmall black_text">to fit in with your current room</p>
 <br><BR> 
-<p class = "sans-serif pink_text inline midsmall">2</p><p class = "sanslight inline midsmall black_text">&nbsp;design proposals</p>
-<br><BR>
 <p class = "sans-serif pink_text inline midsmall">Unlimited</p><p class = "sanslight inline midsmall black_text">&nbsp;stylish support</p>
 <BR><BR>
-<p class="sans-serif pink_text inline midsmall">$10</p><p class = "sanslight inline midsmall black_text">&nbsp;credit towards furniture</p>
+<p class="sans-serif pink_text inline midsmall">$10</p><p class = "sanslight inline midsmall black_text">&nbsp;credit towards eligible furnishings</p>
 <br><br><br>
 </div>
 
@@ -48,17 +45,14 @@ You only pay after you see your design proposal "themeboard", so try us for free
 <div class = "third inline top border white center" style="height: 450px;"><BR><BR>
 <p class = "condensed midlargeplus black_text">Cashmere</p><br>
 <p class = "condensed small black_text">Need your full room done? Our more comprehensive design plan.</p><BR>
-<div class  = "circle green" style= "line-height: 150px;">
-<p class = "sans-serif white_text midlargeplus">$89</div><BR><BR>
+<img src = "<?php echo base_url().'assets/Images/cashmere.png';?>" height="150px"><br><BR>
  <p class = "sans-serif pink_text inline midsmall">Whole room</p><p class = "sanslight inline midsmall black_text">&nbsp;design plan</p>
-<br><BR>
- <p class = "sans-serif pink_text inline midsmall">Multiple</p><p class = "sanslight inline midsmall black_text">&nbsp;design proposals</p>
 <br><BR>
 <p class = "sans-serif pink_text inline midsmall">Custom</p><p class = "sanslight inline midsmall black_text">&nbsp;rendering (and one full revision)</p>
 <BR><BR>
 <p class = "sans-serif pink_text inline midsmall">Unlimited</p><p class = "sanslight inline midsmall black_text">&nbsp;stylish support</p>
 <BR><BR>
-<p class="sans-serif pink_text inline midsmall">$40</p><p class = "sanslight inline midsmall black_text">&nbsp;credit towards furniture</p>
+<p class="sans-serif pink_text inline midsmall">$40</p><p class = "sanslight inline midsmall black_text">&nbsp;credit towards eligible furnishings</p>
 <br>
 </div>
 

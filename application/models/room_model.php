@@ -22,6 +22,13 @@ $insert = array(
 
 $this->db->insert('user_rooms',$insert);
 $query=$this->db->insert_id();
+
+$insert = array(
+'designer_id'=>1,
+'user_id'=>$data['user_id']);
+
+$this->db->insert('designer_mapping',$insert);
+
 return $query;
 		
 		}

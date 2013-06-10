@@ -10,7 +10,7 @@
   
 </div>  
 <div>
-<div class = "padding_left padding_small left-align middle inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
+<div class = "padding_left left-align middle inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
 <div class = "right middle">
 <a class = "button1 right-align inline condensed margin black_text midlarge" id="pull"> &#9776; </a>  
 <div class = "right_align inline middle padding_small"><BR>

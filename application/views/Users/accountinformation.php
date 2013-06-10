@@ -72,6 +72,11 @@ $userid="";
 foreach($userdetails as $key)
 {
 
+if ($key->address ==0)
+{$address = 'Please add your address';}
+else {$address = $key->address;}
+
+
 echo '<table class = "sanslight seventy midsmall left-align">';
 echo '<tr width= "100%"><td width = "50%">First Name:<br><br></td>';
 echo '<td width = "50%">'.$key->first_name.'<br><br></td></tr>';
@@ -80,13 +85,16 @@ echo '<td>'.$key->last_name.'<br><br></td></tr>';
 echo '<tr><td>Email:<br><br></td>';
 echo '<td>'.$key->email.'<br><br></td></tr>';
 echo '<tr><td>Address:<br><br></td>';
-echo '<td>'.$key->address.'<br><br></td></tr>';
+echo '<td>'.$address.'<br><br></td></tr>';
 echo '<tr><td>Phone Number:<br><br></td>';
 echo '<td>'.$key->phone.'<br><br></td></tr>';
-echo '<tr><td>Zip Code:<br><br></td>';
-echo '<td>'.$key->zipcode.'<br><br></td></tr>';
-echo '<tr><td>Pinterest/Facebook:<br><br></td>';
+echo '<tr><td>Zip Code:<br><br><BR></td>';
+echo '<td>'.$key->zipcode.'<br><br><BR></td></tr>';
+echo '<tr><td>Facebook:<br><br></td>';
 echo '<td>'.$key->facebook.'<br><br></td></tr>';
+echo '<tr><td>Pinterest:<br><br></td>';
+echo '<td>'.$key->pinterest.'<br><br></td></tr>';
+
 
 echo '</table>';
 echo '<BR><BR>';

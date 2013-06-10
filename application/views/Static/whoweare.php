@@ -4,9 +4,9 @@
 
 <div class="navmenu">  
     <ul>  
-        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
-        <li><a href="#">1-888-978-3152</a></li>  
+              <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>
+		<li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li> 		
+        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
       </ul>  
   
 </div>  
@@ -19,8 +19,8 @@
 <div class = "right_align inline top padding_small"><ul class = "menu_bar dark_gray_text" id="menu_bar">
 		<ul class = "menu_bar midsmall white_text">
 		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
-		<li class = "inline midsmall condensed"> <a  class = "white_text" href = "#">1-888-978-3152</li></a>
-		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text condensed" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+			<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
+		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 		</ul>
 		</div>
 		</div>

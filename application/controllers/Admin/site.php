@@ -157,10 +157,32 @@ function additional_details_user_room($room_id=null)
 	}
 	else
 	{
-	   $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
-	   $data["roomid"]=$room_id;
-	   $this->load->view('Admin/userroomdetailsbyadmin',$data);
-       
+		
+      if($room_id!="") 
+      {  
+          
+          
+         $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
+         $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
+          if(sizeof($data["adminrooms"])>0)
+          {
+          $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
+	   
+	      $data["roomid"]=$room_id;
+	      $this->load->view('Admin/userroomdetailsbyadmin',$data);
+	      }
+	      else
+	      {
+			  $this->adminlogin();
+			  
+		  }
+
+      }
+		else
+		{
+	       $this->adminlogin();
+	       
+	    }
     }
 }
 

@@ -203,7 +203,10 @@ function update_userstables()
   	$this->db->query("SELECT IF( (SELECT COUNT( * )
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'users'
-AND table_schema = 'emotayed_test'
 AND column_name = 'facebook' ) >0, 'SELECT 1', 'ALTER TABLE users ADD facebook VARCHAR(200)')");
+$this->db->query("SELECT IF( (SELECT COUNT( * )
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'users'
+AND column_name = 'pinterest' ) >0, 'SELECT 1', 'ALTER TABLE users ADD pinterest VARCHAR(200)')");
 }
 }

@@ -204,12 +204,6 @@ function whoweare()
 		$this->load->view('Static/whoweare');
 }
 
-function pricing()
-{
-	$this->load->view('Static/pricing');
-
-}
-
 function requestinvite()
 {
   $this->load->library('form_validation');
@@ -309,6 +303,7 @@ function UserEditInformation()
  if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
      {
 	   $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+      
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
@@ -506,7 +501,8 @@ if($this->form_validation->run() == FALSE)
 	 'address'=>$this->input->post('update_address'),
 	 'zipcode'=>$this->input->post('update_zip'),
 	 'password'=>$this->input->post('update_password'),
-	 'facebook'=>$this->input->post('update_facebook')
+	 'facebook'=>$this->input->post('update_facebook'),
+	  'pinterest'=>$this->input->post('update_pinterest')
 	 
 	);
     }
@@ -517,7 +513,9 @@ if($this->form_validation->run() == FALSE)
 	 'email'=> $this->input->post('update_email'),
 	 'phone'=>$this->input->post('update_phone'),
 	 'address'=>$this->input->post('update_address'),
-	 'zipcode'=>$this->input->post('update_zip'), 'facebook'=>$this->input->post('update_facebook')
+	 'zipcode'=>$this->input->post('update_zip'), 
+	 'facebook'=>$this->input->post('update_facebook'),
+	 'pinterest'=>$this->input->post('update_pinterest')
 	 );
 	
     }

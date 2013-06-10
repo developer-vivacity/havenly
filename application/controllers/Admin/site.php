@@ -11,6 +11,7 @@ Class Site extends CI_Controller {
 	$this->load->model('room_model');
 	$this->load->model('user_model');
 	$this->load->model('admin_model');
+	$this->load->model('preference_model');
 	}
 	
 	function index() {
@@ -56,7 +57,7 @@ Class Site extends CI_Controller {
 
 function adminlogin()
 {
-   //$this->admin_model->create_table();
+    $this->admin_model->create_table();
     if(($this->session->userdata('adminid')!=""))
      {
       $data['privileges']=$this->session->userdata('privileges');
@@ -85,7 +86,6 @@ function adminlogin()
       $this->load->view('Admin/adminlogin',$data);
      }
   }
-
 }
 function adminlogout()
 {
@@ -96,10 +96,16 @@ function adminlogout()
 }
 function roomsadministrator($orderby=null,$ordertype=null)
 {
+      if(($this->session->userdata('adminid')==""))
+      {
+	  $this->adminlogin();
+	  return;
+	  
+	  }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
       {  
-       $condition=" where designer.id=".$this->session->userdata('designerid');
+       $condition=" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed'";
       }
      if(!empty($orderby)&!empty($ordertype)) 
       {  
@@ -114,9 +120,48 @@ function roomsadministrator($orderby=null,$ordertype=null)
       $data["adminrooms"]=$this->room_model->display_all_rooms($condition);   
       $data["filter"]="asc";
       }
+      $data['privileges']=$this->session->userdata('privileges');
       $this->load->view('Admin/roomsadministrator',$data);
-    
 }
-
+function currentroomwithuser($room_id)
+{
+	if(($this->session->userdata('adminid')!=""))
+     {
+	$data["roomwithuser"]=$this->room_model->displayusreinformationwithroom($room_id);
+	$data["colorstyle"]=$this->room_model->fetch_color_style_number();
+	if(sizeof($data["roomwithuser"])!=0)
+	$this->load->view('Admin/currentroomwithuser',$data);
+	else
+	$this->load->view('Admin/adminlogin',$data);
+    }
+    else
+    {
+		$this->load->view('Admin/adminlogin');
+	}
+}
+function update_room_status_by_admin()
+{
+	$data=array('room_type'=>$this->input->post('update_room_type'));
+	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$data);
+	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$data);
+	$this->roomsadministrator();
+}
+function additional_details_user_room($room_id=null)
+{
+	if($_POST)
+	{
+		$data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
+		$querytype=$this->input->post('querytype');
+		$this->admin_model->get_additional_details_user_room($this->input->post('roomid'),$data,$querytype);
+		$this->adminlogin();
+	}
+	else
+	{
+	   $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
+	   $data["roomid"]=$room_id;
+	   $this->load->view('Admin/userroomdetailsbyadmin',$data);
+       
+    }
+}
 
 }

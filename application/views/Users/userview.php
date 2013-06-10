@@ -1,5 +1,3 @@
-
-
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
@@ -53,7 +51,8 @@ echo'<tr><td>Phone:</td><td><input class = "midsmall dark_gray_text sanslight" t
 echo'<tr><td>Address:</td><td><input class = "midsmall dark_gray_text sanslight" type="textbox" value="'.$key->address.'" id="update_address" name="update_address" /></td></tr>';
 
 echo'<tr><td>Zip:<BR><BR></td><td><input class = "midsmall dark_gray_text sanslight" type="textbox" value="'.$key->zipcode.'" id="update_zip" name="update_zip" /></td></tr>';
-echo'<tr><td>Pinterest/Facebook:<BR><BR></td><td><input class = "midsmall dark_gray_text sanslight" type="textbox" value="'.$key->facebook.'" id="update_facebook" name="update_facebook" /><BR><BR></td></tr>';
+echo'<tr><td>Facebook:<BR><BR></td><td><input class = "midsmall dark_gray_text sanslight" type="textbox" value="'.$key->facebook.'" id="update_facebook" name="update_facebook" /><BR><BR></td></tr>';
+echo'<tr><td>Pinterest:<BR><BR></td><td><input class = "midsmall dark_gray_text sanslight" type="textbox" value="'.$key->pinterest.'" id="update_pinterest" name="update_pinterest" /><BR><BR></td></tr>';
 echo '<tr><td> </td></tr></table>';
 echo '</div><BR><BR>';
 

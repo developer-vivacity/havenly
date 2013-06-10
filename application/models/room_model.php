@@ -19,18 +19,11 @@ $insert = array(
 'room_photo2'=>$data['room_photo2'],
 'status'=>'open');
 
-$insert2=array(
-'designer_id'=>1,
-'user_id'=>$data['user_id']);
 
 $this->db->insert('user_rooms',$insert);
 $query=$this->db->insert_id();
-
-$this->db->insert('designer_mapping',$insert2);
-
 return $query;
-
-
+		
 		}
 	
 function get_open_rooms(){
@@ -117,5 +110,13 @@ LEFT JOIN designer_mapping ON designer_mapping.user_id = user_rooms.user_id
 LEFT JOIN designer ON designer.id = designer_mapping.designer_id ".$orderby."");
 return $query->result();
 }
+//
+function displayusreinformationwithroom($room_id)
+{
+
+$query=$this->db->query("Select user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_preferences.style_pics,user_preferences.color_pics from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
+return $query->result();	
+}
+
 
 }

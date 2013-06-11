@@ -14,15 +14,18 @@ Class Site extends CI_Controller {
 	$this->load->model('preference_model');
 	}
 	
-	function index() 
-	{
-			$this->load->view('Admin/home');
+	function index() {
+	
+		
+		$this->load->view('Admin/home');
+		
 	}
-	function open_contests() 
-	{
+	
+	
+	
+	function open_contests() {
 		$password = $this->input->post('password');
-		if($password =="stitch")
-		{
+		if($password =="stitch"){
 		$data['room_data']=$this->room_model->get_open_rooms();
 		$this->load->view('Admin/Open_rooms', $data);
 		}
@@ -106,7 +109,7 @@ function roomsadministrator($orderby=null,$ordertype=null)
       {  
        $condition=" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed'";
       }
-     if(!empty($orderby)&!empty($ordertype)) 
+     if((!empty($orderby)&!empty($ordertype))&(($orderby=='users.email')|($orderby=='user_rooms.id')|($orderby=='user_rooms.status')|($orderby=='user_rooms.room_type')|($orderby=='designer.designer_name'))&($ordertype=='asc' | $ordertype=='desc')) 
       {  
       $ordertype    = ($ordertype=="asc"?"desc":"asc");
       $orderby=$condition." order by ".$orderby." ". $ordertype;

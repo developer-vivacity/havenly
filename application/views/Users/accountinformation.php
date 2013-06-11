@@ -52,7 +52,7 @@ if(isset($designerinformation))
 	   }
 	  ?>
 	
-	 </table>
+	 </table><BR><BR>
 <?php
    }
 ?>

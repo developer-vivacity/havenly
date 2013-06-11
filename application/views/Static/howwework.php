@@ -23,6 +23,7 @@
 <div class = "horizontal trellis center"><br><br><BR>
 <p class = "seventy paddingmob sanslight midlargeplus black_text center">
 IT TAKES A LOT OF WORK TO GET YOUR ROOM RIGHT.  WE CAN HELP.</p><br><BR><BR></div><BR><BR><BR>
+<div id = "process">
 <div class = "center">
 <table class = "hwwtable horizontal">
 <tr class = "horizontal padding_small_top">
@@ -80,6 +81,7 @@ Select the items you love, and we send it all to you with one click, at the lowe
 </td>
 </tr>
 </table><BR><BR><BR>
+</div>
 </div>
 
 

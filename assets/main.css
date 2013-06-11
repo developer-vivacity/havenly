@@ -592,7 +592,7 @@ font-family: 'Open Sans', sans-serif;
 #tabs .ui-tabs-nav .ui-state-active a { 
     color: #91c5c5;
 	font-family: 'Open Sans Condensed',  sans-serif;
-		font-weight: 300;
+	font-weight: 300;
 	font-size: 1.2em;
 	}
 
@@ -612,6 +612,66 @@ display: inline-block;
     zoom: 1;
 padding: .6em;
 margin-top: .5em;
+}
+
+
+
+
+#tabs2 { 
+    background: transparent; 
+    border: none; 
+		} 
+
+#tabs2 .ui-tabs-nav{
+text-align: center; }
+
+#tabs2 .ui-widget-header { 
+    background: transparent; 
+    border: none; 
+ 	margin-bottom: 10px;
+	text-align: center;
+} 
+#tabs2 .ui-tabs-nav .ui-state-default { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs2 .ui-tabs-nav .ui-state-active { 
+     border: none; 
+	z-index:999;
+	} 
+#tabs2 .ui-tabs-nav .ui-state-default a { 
+    color: #c0c0c0; 
+	font-family: 'Open Sans Condensed',  sans-serif;
+	font-weight: 300;
+	font-size: 1.5em;
+	padding-bottom: 10px;
+	padding-top: 0px;
+} 
+#tabs2 .ui-tabs-nav .ui-state-active a { 
+    color: #00CDBF;
+	border-bottom: 1px solid #00CDBF;
+	font-family: 'Open Sans Condensed',  sans-serif;
+	font-weight: 300;
+	font-size: 1.5em;
+	padding-bottom: 10px;
+	padding-top: 0px;
+	
+	}
+
+#tabs2.ui-tabs .ui-state-disabled { 
+    display: none; /* disabled tabs don't show up */ 
+} 
+
+.ui-widget-content a{
+color: white;
+}
+
+#tabs2 .ui-tabs-nav li{ 
+ display: inline-block; 
+    float: none; 
+    top: 0px; 
+    margin: 0em; 
+	padding-bottom: 0px;
 }
 
 
@@ -706,7 +766,9 @@ font-size: 14px;
 line-height: 17px;
 }
 
-
+.strike{
+text-decoration: line-through;
+}
 
 
 .space{

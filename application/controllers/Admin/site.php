@@ -14,30 +14,27 @@ Class Site extends CI_Controller {
 	$this->load->model('preference_model');
 	}
 	
-	function index() {
-	
-		
-		$this->load->view('Admin/home');
-		
+	function index() 
+	{
+			$this->load->view('Admin/home');
 	}
-	
-	
-	
-	function open_contests() {
+	function open_contests() 
+	{
 		$password = $this->input->post('password');
-		if($password =="stitch"){
+		if($password =="stitch")
+		{
 		$data['room_data']=$this->room_model->get_open_rooms();
 		$this->load->view('Admin/Open_rooms', $data);
 		}
-		else{
+		else
+		{
 			$data['error']= 'Wrong Password';
 			$this->load->view('Admin/home', $data);
-			
-		
-	}
+		}
 	
 	}
-	function show_contest(){
+	function show_contest()
+	{
 		$room_id = $this->uri->segment (4);
 		$data['room_data']=$this->room_model->get_room($room_id);
 		$room_type = $data['room_data'][0]['room_type'];
@@ -45,19 +42,21 @@ Class Site extends CI_Controller {
 		$data['user_prefs']=$this->user_model->get_user_prefs($user_id, $room_type);
 		$data['user']=$this->user_model->get_user($user_id);
 		$this->load->view('Admin/Room_View', $data);
-}
+   }
 
-	function change_status(){
+	function change_status()
+	{
 		$room_id = $this->uri->segment(4);
 		$status = $this->input->post('status');
 		$this->room_model->change_status($room_id, $status);
 		$data['room_data']=$this->room_model->get_open_rooms();
 		$this->load->view('Admin/Open_rooms', $data);
-}
+   }
 
 function adminlogin()
 {
-    $this->admin_model->create_table();
+     $this->admin_model->create_table();
+    
     if(($this->session->userdata('adminid')!=""))
      {
       $data['privileges']=$this->session->userdata('privileges');
@@ -123,16 +122,21 @@ function roomsadministrator($orderby=null,$ordertype=null)
       $data['privileges']=$this->session->userdata('privileges');
       $this->load->view('Admin/roomsadministrator',$data);
 }
-function currentroomwithuser($room_id)
+function currentroomwithuser($room_id=null)
 {
-	if(($this->session->userdata('adminid')!=""))
+    if(($this->session->userdata('adminid')!=""))
      {
-	$data["roomwithuser"]=$this->room_model->displayusreinformationwithroom($room_id);
+	 
+	 $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
+	 $adminrooms=$this->room_model->display_all_rooms($condition);
+	
+	$data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	$data["colorstyle"]=$this->room_model->fetch_color_style_number();
-	if(sizeof($data["roomwithuser"])!=0)
+	$data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
+	if(sizeof($adminrooms)!=0)
 	$this->load->view('Admin/currentroomwithuser',$data);
 	else
-	$this->load->view('Admin/adminlogin',$data);
+	$this->adminlogin();
     }
     else
     {
@@ -148,8 +152,10 @@ function update_room_status_by_admin()
 }
 function additional_details_user_room($room_id=null)
 {
+	$room_id=intval($room_id);
 	if($_POST)
 	{
+		
 		$data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
 		$querytype=$this->input->post('querytype');
 		$this->admin_model->get_additional_details_user_room($this->input->post('roomid'),$data,$querytype);
@@ -160,12 +166,11 @@ function additional_details_user_room($room_id=null)
 		
       if($room_id!="") 
       {  
-          
-          
          $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
          $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
           if(sizeof($data["adminrooms"])>0)
           {
+			 
           $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
 	   
 	      $data["roomid"]=$room_id;
@@ -174,9 +179,8 @@ function additional_details_user_room($room_id=null)
 	      else
 	      {
 			  $this->adminlogin();
-			  
+		  
 		  }
-
       }
 		else
 		{

@@ -7,11 +7,8 @@ $(document).ready(function()
 		 $("p a").click(function()
 		 {
 			 $(".adminmain").hide();
-		    $("#"+(this.rel)).show();
-			 
-			 
-	     }
-		 
+		     $("#"+(this.rel)).show();
+		 }
 		 )
 		 $("#addroominfo").click(function()
 		 {
@@ -63,10 +60,25 @@ $(document).ready(function()
 	              {
 		            buyarea=buyarea+","+e.value;
 	              }
-				
+				  if(e.value==14)
+	              { 
+					   if($("#othervalue").val().trim()=="")
+					   {
+					     $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter value in other:</p>');  			
+			             e_value=0;
+				       }
+				       else
+				       {
+				           buyarea=buyarea+","+$("#othervalue").val();
+				           e_value=1;
+				       }
+			      }
 			    });
-			   $("#itemsbuy").val(buyarea);
-			   $("#updateform").submit();
+			    if(e_value==1)
+			    {
+			       $("#itemsbuy").val(buyarea);
+			       $("#updateform").submit();
+		       }
 	      }
 		 
 })

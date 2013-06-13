@@ -16,16 +16,26 @@
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
 <br>
-
 <div class="half border white center">
-<div id = "login">
-<div class="padding">
+	<div class="displayinfoerror">
 	<?php 
+    $display="none";
+    if($title=="Login")
+	{
+	$display="block";
 	echo validation_errors('<p class="error">');
-	
-	if (!empty($errors))
-	{echo '<p class = "error">'.$errors.'</p>';}
+    }
+	if (!empty($loginerrors))
+	{
+		$display="block";
+		echo '<p class = "error">'.$loginerrors.'</p>';}
 	?>
+	
+	</div>
+<div id = "login" style="display:<?php echo $display;?>">
+	
+	<div class="padding">
+	
    <?php echo form_open('Users/site/login/');?>
    <table class = "horizontal">
 	<tr class = "horizontal">
@@ -33,7 +43,7 @@
 		<label class = "medium condensed" for="email">Email:</label>
 	</td>
 	<td class = "seventy left-align middle">
-		<input type="text" id="enteremail" name="enteremail" value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail'];?>"/>
+		<input type="text" id="enterloginemail" name="enterloginemail" value="<?php if(isset($_POST['enterloginemail']))echo $_POST['enterloginemail'];?>"/>
 	</td>
 	</tr>
   
@@ -52,20 +62,34 @@
 	</td>
 	</tr>
 	</table>
+	<div class = "sanslight blue_text small"><br/>
+	<a id = "forgotbutton" class = "small sanslight blue_text" href = "#forgot">Forgot Password</a>
+</div>
  <?php echo form_close(); ?>
 </div>
-<div class = "sanslight blue_text small">
-	<a id = "forgotbutton" class = "small sanslight blue_text" href = "#forgot">Forgot Password</a>
-	</div>
+
 </div>	
-<div id = "forgot">
+<div class="displayinfoerror">
+    <?php 
+	$display="none";
+	if($title=="forgotpassword")
+    {
+	  $display="block";
+      echo validation_errors('<p class="error">');
+   
+    }
+    if (!empty($errors))
+	{
+		
+		$display="block";
+		echo '<p class = "error">'.$errors.'</p>';}
+	?>
+    
+    </div>
+<div id = "forgot" style="display:<?php echo $display; ?>">
 <div class = "padding">
-<?php 
-	if(!empty($register_info))
-    echo $register_info;
-    echo validation_errors('<p class="error">');
-    ?>
-	<div class="signin_form">
+	
+	<div class="signin_form" >
    <?php echo form_open('Users/site/validatemail/');?>
    <table class = "horizontal">
  <tr class = "middle horizontal">
@@ -81,14 +105,16 @@
    <div class = "third inline right-align bottom"></div>
 	<div class = "forty inline">
  <input type="submit" class="button3 small horizontal sanslight" value="SIGN IN" /></div>
+ <div class = "sanslight blue_text small"><br/>
+	<a id = "loginbutton" class = "small sanslight blue_text" href = "#login">Login</a>
+</div>
  <?php echo form_close(); ?>
 	
 </div>
 </div>
 </div>
-	
-	</div>
-	</div>
+</div>
+</div>
 <br><BR><BR><BR><div class = "push">
 </div>
 	</div>
@@ -99,10 +125,22 @@
 ?>
 
 <script>
-$("#forgot").hide();
+
 
 $("#forgotbutton").click(function(){
 $("#login").hide();
 $("#forgot").fadeIn();
+$("#enteremail").val("");
+$(".displayinfoerror").html("");
 });
+
+
+$("#loginbutton").click(function(){
+$("#login").fadeIn();
+$("#forgot").hide();
+$("#enterloginemail").val("");
+$("#enterpass").val("");
+$(".displayinfoerror").html("");
+});
+
 </script>

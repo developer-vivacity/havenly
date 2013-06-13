@@ -155,6 +155,12 @@ function update_room_status_by_admin()
 }
 function additional_details_user_room($room_id=null)
 {
+	if(($this->session->userdata('adminid')==""))
+	{
+		$this->load->view('Admin/adminlogin');
+		return;
+		
+	}
 	$room_id=intval($room_id);
 	if($_POST)
 	{

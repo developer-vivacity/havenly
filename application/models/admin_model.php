@@ -19,11 +19,13 @@ class Admin_model extends CI_Model
  (id int(10) NOT NULL AUTO_INCREMENT,room_id int(10) NOT NULL,Style_notes varchar(100) NOT NULL,
  Ceiling_Height int(10) NOT NULL,Hates varchar(100) NOT NULL,Likes varchar(100) NOT NULL,Keep varchar(100) 
  NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
+
  /*  
  $this->db->query("INSERT INTO admin (name, privileges,password,username,designerid) VALUES
 ('lee','global','12345678','lee',0),
 ('villi','local','87654321','villi',1)");
  */
+
  }  
 function authorize_user($password,$name)
 {
@@ -32,7 +34,10 @@ function authorize_user($password,$name)
        {
          foreach($query->result() as $rows)
          {
-          $newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
+      
+         if($rows->designerid=="")
+         $rows->designerid=0;
+ $newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
          }
         $this->session->set_userdata($newdata);
        }

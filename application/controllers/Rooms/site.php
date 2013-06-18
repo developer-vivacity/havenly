@@ -16,6 +16,8 @@ Class site extends CI_Controller
   }
   function editroominfo($id=null,$userid=null)
   {
+	  $id=intval($id);
+	  $userid=intval($userid);
     if(($this->session->userdata('first_name')!="") & $id!="" & $userid!="" & (($this->session->userdata('id')==$userid))) 
     {
         $data["userid"]=$userid;

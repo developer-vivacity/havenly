@@ -7,11 +7,17 @@
 <p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>|<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>|<a href="#currentref"  rel="currentref">Style Prefs</a>|<a href="#">Product and Design Response</a></p>
 
 <?php
+
+//print_r($userroomdetails);
+
 $style_pics="";
 $color_pics="";
 $roomtype="";
 $optionroomfolder="";
 $otherroom_type="";
+$choosebyitems="";
+$buyitems=array();
+$checktitems=array();
 //var_dump($roomwithuser);
 foreach($roomwithuser as $key)
 {
@@ -44,12 +50,51 @@ foreach($roomwithuser as $key)
     echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
     
     echo '<tr><td>Width/Height</td><td>'.$key->width.'ft/'.$key->height.'ft</td></tr>';
-    echo '</table>';
+  
     $style_pics=$key->style_pics;    
     $color_pics=$key->color_pics;    
-     echo form_close(); 
+    
 }
 ?>
+
+
+<?php
+
+$buyitems=array('1'=>'Couch','2'=>'Coffee Table','3'=>'Bed','4'=>'Bed Frame/Headboard','5'=>'Art','6'=>'Chair','7'=>'Dresser','8'=>'Décor items','9'=>'Linens/Sheets','10'=>'Pillows','11'=>'Media','12'=>'Side Tables/Console Tables','13'=>'Nightstands','14'=>'Other');
+
+if(isset($userroomdetails))
+foreach($userroomdetails as $key)
+{
+
+   echo'<tr><td>Style notes:</td><td>'.$key->Style_notes.'</td></tr>';	
+   echo'<tr><td>Ceiling Height:</td><td>'.$key->Ceiling_Height.'</td></tr>';	
+   echo'<tr><td>Hates:</td><td>'.$key->Hates.'</td></tr>';	
+   echo'<tr><td>Likes:</td><td>'.$key->Likes.'</td></tr>';		
+   echo'<tr><td>Keep:</td><td>'.$key->Keep.'</td></tr>';
+   echo'<tr><td valign="top">Buy:</td><td>';
+
+   $checktitems=explode(',',$key->Buy);
+   
+   foreach($buyitems  as $newkey=>$newvalue)
+   {
+	  if(in_array($newkey, $checktitems))
+	  { 
+	   $choosebyitems=($newkey==14?$checktitems[sizeof($checktitems)-1]:$newvalue);
+       echo '<div>'.$choosebyitems.'</div>';
+      }
+	   
+  }
+
+   echo '</td></tr>';	
+
+}
+echo '</table>';
+ echo form_close(); 
+?>
+
+
+
+
 <table id="currentref" class="adminmain">
 	
 	<tr><td>Style Pic:</td></tr>

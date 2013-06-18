@@ -26,7 +26,8 @@ $keep="";
 $buy="";
 $checked="";
 $sel="";
-$buyitems=array('1'=>'Couch','2'=>'Coffee Table','3'=>'Bed','4'=>'Bed Frame/Headboard','5'=>'Art','6'=>'Chair','7'=>'Dresser','8'=>'Décor items','9'=>'Linens/Sheets','10'=>'Pillows','11'=>'Media','12'=>'Side Tables/Console Tables','13'=>'Nightstands','14'=>'Other (should have a blank textbox next to this option)');
+$byarray=array();
+$buyitems=array('1'=>'Couch','2'=>'Coffee Table','3'=>'Bed','4'=>'Bed Frame/Headboard','5'=>'Art','6'=>'Chair','7'=>'Dresser','8'=>'Décor items','9'=>'Linens/Sheets','10'=>'Pillows','11'=>'Media','12'=>'Side Tables/Console Tables','13'=>'Nightstands','14'=>'Other');
 
 foreach($additionalroomdetails as $key)
 {
@@ -50,11 +51,16 @@ echo
 foreach($buyitems as $key=>$value)
 {
 $sel="";
-if(in_array($key,explode(',',$buy)))
+$byarray=explode(',',$buy);
+if(in_array($key,$byarray))
 $sel="checked";
-echo '<div>
-<input type="checkbox" name="buy[]"  value="'.$key.'" '.$sel.'/>'.$value.'
-</div>';
+  echo '<div>
+     <input type="checkbox" name="buy[]"  value="'.$key.'" '.$sel.'/>'.$value.'</div>';
+  if($key==14)
+  {
+  $othervalue=($sel=="checked"?$byarray[sizeof($byarray)-1]:"");
+  echo '<div><input type="textbox" name="othervalue"  value="'.$othervalue.'" display="hidden" id="othervalue"/></div>';
+  }
 }
 echo '</div>';
 echo'</td></tr><tr><td colspan="2"><input type="button" value="update" name="addroominfo" id="addroominfo"/></td></tr>';

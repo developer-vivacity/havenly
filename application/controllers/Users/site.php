@@ -310,15 +310,15 @@ function UserEditInformation()
   
  if(($this->session->userdata('first_name')!=""))
     {
- if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
-     {
+      if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
+      {
 	   $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
-      
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));  
-       $this->load->view('Users/accountinformation', $data); 
+       
+       $this->load->view('Users/accountinformation', $data);   
        return;
      }
      else
@@ -329,7 +329,7 @@ function UserEditInformation()
      }
 	}
    $this->load->library('form_validation');
-   $this->form_validation->set_rules('enteremail', 'User Email', 'trim|required|valid_email');
+   $this->form_validation->set_rules('enterloginemail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]'); 
    
 if($this->form_validation->run() == FALSE)
@@ -339,7 +339,8 @@ if($this->form_validation->run() == FALSE)
     $this->load->view('Users/login', $data);
     return;
    }
-    $email=$this->input->post('enteremail');
+    $email=$this->input->post('enterloginemail');
+   
     $this->input->post('enterpass');
     $password=$this->input->post('enterpass');
     $userinfoarray=$this->user_model->user_login($email,$password);
@@ -380,13 +381,15 @@ if($this->form_validation->run() == FALSE)
   //------- This function use for  display login form----------//
   function ForLogin()
   {
+   
+   
     if($this->session->userdata('first_name')!="") 
      {
 	    $this->Login();
 	    return;
      } 
     $data["title"]="Login"; 
-    $data["errors"]=$this->userlogin; 	
+    $data["loginerrors"]=$this->userlogin; 	
     $this->load->view('Users/login', $data); 
   }
   //-------For generate random password ----------//
@@ -412,8 +415,9 @@ if($this->form_validation->run() == FALSE)
   
      if($this->form_validation->run() == FALSE)
      {
-	        $this->load->view('Users/login'); 
-     }
+	        $data["title"]="forgotpassword";
+	        $this->load->view('Users/login',$data); 
+     } 
 	  else
 	  {
 	   $email=$this->input->post('enteremail');
@@ -456,7 +460,7 @@ if($this->form_validation->run() == FALSE)
 		elseif(!empty($email))
 		{
 	      $data["errors"]="Your are not a registered user!";
-		
+		  $data["title"]="forgotpassword";
 		  $this->load->view('Users/login', $data); 	
 		}
 	  }

@@ -208,6 +208,10 @@ function pricing()
 	{
 		$this->load->view('Static/pricing');
 }
+function products()
+	{
+		$this->load->view('Static/products');
+}
 
 
 function requestinvite()

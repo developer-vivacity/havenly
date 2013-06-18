@@ -3,11 +3,13 @@
 ?>
 
 <div class="navmenu">  
-    <ul>  
-              <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>
-		<li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li> 		
-        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+     <ul>  
+      <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How We Work</a></li>  
+            <li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li>  
+			<li><a href=<?php echo base_url('index.php/Users/site/products');?>>Goods</a></li>  
+        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>Log In</a></li>  
       </ul>  
+  
   
 </div>  
 <div id = "abouttheteam">
@@ -18,8 +20,9 @@
 <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
 <div class = "right_align inline top padding_small"><ul class = "menu_bar dark_gray_text" id="menu_bar">
 		<ul class = "menu_bar midsmall white_text">
-		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
-			<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
+		<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>how</li></a>
+			<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>price</li></a>
+			<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/products');?>>goods</li></a>
 		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 		</ul>
 		</div>
@@ -116,10 +119,14 @@ She hates sweating too much, and loves to pocket dial her parents at 3am.</p>
 ?>
 
 <script>
+
+$(window).on('load',function(){
+$(".hero_text").effect('bounce', {times:1, distance: 10}, 300);});
+
+
 function heroheight(){
 var viewportHeight = $(window).height();
 $("#abouttheteam").height(viewportHeight-20);
-$("#abouthero").show().animate({top:(viewportHeight/2-100)}, {duration: 2200, easing: 'easeInOutBack'});
 }
 
 $(document).ready(function(){

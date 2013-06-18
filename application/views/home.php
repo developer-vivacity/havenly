@@ -8,24 +8,23 @@
         <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
         <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li> 
 		<li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li> 		
-      	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+      	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>Log In</a></li>  
 		</ul>  
   
 </div>  
 
 
 <div class = "coverimage">
-<div class = "bgM horizontal right-align">
-	  <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
-</div>	
+
 
 <div class = "horizontal">
 <div class = "login_button_main right-align">
 <div class = "inline padding_small right-align">	
 	<ul class = "menu_bar midsmall white_text">
-	<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
-		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
-		<li class = "inline midsmall condensed"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
+		<li class = "inline midsmall sanslight"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>about</li></a>
+		<li class = "inline midsmall sanslight"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>how</li></a>
+		<li class = "inline midsmall sanslight"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>price</li></a>
+		<li class = "inline midsmall sanslight"> <a  class = "white_text" href = <?php echo base_url('index.php/Users/site/products');?>>goods</li></a>
 		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
 	</div>
 	
@@ -41,9 +40,11 @@
 	<div class="hero_text"><br><br>
 	<div class = "center">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=140></a>
-	
-		<div class = "padding">
-			<p class = "large condensed">
+	<div class = "bgM horizontal right-align">
+	  <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
+</div>	
+		<div class = "padding_small">
+			<p class = "large condensed"><BR>
 			YOUR PLACE JUST GOT <p class = "extralarge condensed">BETTER.</p><br><BR>
 				
 			<p class = "medium space sanslight">
@@ -66,56 +67,54 @@
 
 
 <div class = "horizontal"><br><br><br><br>
-<div id = "description" class = "paddingmob">
-<p class = "blue_text serif padding_left large">Your very own decorator.</p><br>
-<p class = "sanslight medium space padding_right padding_left">Let our decorators help you pull your room together. Whether you’re starting from scratch or you just need a little flair. We work around the room you already have to suggest items that will complete your style. And, we deliver anything you like to you. For one very low flat fee. </p>
-<br><BR></div>
+<div id = "description" class = "paddingmob"><BR><BR>
+<p class = "black_text serif center large">Your very own decorator.</p><br>
+<p class = "sanslight medium space center">Let our decorators help you pull your room together. For one very low flat fee. </p>
+<br><BR><BR></div>
 <div class = "row center">
 <div class= "third top  center inline padding_left"> 
-	<img src= <?php echo base_url('assets/Images/Desc_1.png');?> height="105"><br><br>
+	<img src= <?php echo base_url('assets/Images/Desc_1.png');?> height="125"><br><br>
 	<p class = "condensed medium ">TELL US ABOUT YOU</p>
-	<hr class = "style">
-	<p class = "sanslight small space">
+<BR>
+	<p class = "sanslight seventy midsmall space">
 		Get started by telling us a little about you and your room.  
-		<span>Snap a pic</span>, fill out the quick form, and we'll get to work.  We'll match you with a designer that shares your style.
-	</p>
+			</p>
 	</div>
 
 <div class = "third top center padding_small_sides inline">
-	<img src= <?php echo base_url('assets/Images/Desc_2.png');?> height="105px"><br><br>
+	<img src= <?php echo base_url('assets/Images/Desc_2.png');?> height="125px"><br><br>
 	<p class = "condensed medium">BUY WHAT YOU LOVE</p>
-	<hr class = "style">
-	<p class = "sanslight small  space">Our professional designers decorate your place, and show you how your room would look with the <span>items they have picked</span>. You tell us what you'd like to buy (or rent!), and we send it to you as quickly as we can. </p>
+<BR>
+	<p class = "sanslight seventy  midsmall  space">Our professional designers decorate your place, with your input. </p>
 	</div>
 
 <div class = "third top center inline padding_right">
-<img src= <?php echo base_url('assets/Images/Desc_3.png');?> height="105px"><br><br>
+<img src= <?php echo base_url('assets/Images/Desc_3.png');?> height="125px"><br><br>
 <p class = "condensed medium">ENJOY YOUR ROOM</p>
-	<hr class = "style">
-	<p class = "sanslight small space">
-	We deliver everything you need.  Show off your new room! Check back in with us for more fun items, your designer will continue to find you items that you love.  You have <span>no commitment</span> to buy!
- </p>
+<BR>
+	<p class = "sanslight seventy midsmall space">
+	We deliver everything you need.  Show off your new room!  </p>
  
 </div>
-  <br><br><br><br><br>	<p class = "sanslight midlarge dark_gray_text"><span> No minimums or commitments.</span>  Give us a try! (it's free)</p><br><br><br>
+  <br><br><br><br><br>	<p class = "serif midlarge black_text"><span> No minimums or commitments.</span>  Ever.</p><br><br><br><BR><BR>
 
 </div></div>
-<div class = "horizontal center bgcontainer"><br><br><br><br>
+<div class = "horizontal center blue"><br><br><br><br>
 <div class = "half top inline">
 <BR><BR>
-<hr class = "seventy style3">
+<hr class = "seventy style2">
 <div class = "centerline">
-<span class = "white small sans-serif black_text">HOW HAVENLY WORKS
+<span class = "blue small sans-serif white_text">HOW HAVENLY WORKS
 </span></div>
-<p class = "seventy paddingmob midlargeplus serif black_text">
+<p class = "seventy paddingmob midlargeplus serif white_text">
 It's pretty easy.  You tell us a bit about you.  We do the work.</p></div>
 <div class = "half inline">
-<iframe id = "video" height="315" width = "500" src="http://www.youtube.com/embed/UxMgM_TCbPE" frameborder="0" allowfullscreen></iframe>
+<iframe id = "video" src="http://player.vimeo.com/video/68198071" width="500" height = "315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
 </div>
 <BR><BR><BR><BR><BR>
 </div>
 
-<div class = "horizontal center padding_small_top white"><BR><BR>
+<div class = "horizontal center padding_small_top bgcontainer"><BR><BR>
 <p class = "seventy large center pink_text condensed">
 Try us out  <a class = "pink_text cursive" id ="startbutton2" href = "#overlay"> here &rarr;</a></p><br>
 <p class = "serif small pink_text">
@@ -176,43 +175,30 @@ olark.identify('5800-712-10-4032');/*]]>*/</script><noscript><a href="https://ww
 <script>
 
 $("#titlerow").hide();
-//$(".hero_text").hide();
 
 $(document).ready(function(){
+		
+$(window).on("load", function(){		
+handleimage();
 
 
-$(window).on("load", function(){
-		handleimage();
 });
-
-
-var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-if (isMobile)
-{
-	
-	}
-else{
-$("#titlerow").fadeIn(500);
 
 $(window).resize(function(){
 handleimage();
-});}
+});
 
-
+$(".coverimage").one("load", function(){
+alert('yay');
+});
 
 function handleimage(){
 	var sHeight = $(window).height();
-	var sWidth = $(window).width();
 	$(".coverimage").height(sHeight);
-	
-	//$(".hero_text").show().animate({top:(sHeight/3)}, {duration: 2200, easing: 'easeInOutBack'});
-	
-	if(sHeight>300){
-		$("#titlerow").css("position", "absolute");
-		$("#titlerow").css("top", sHeight-25);
-		}
 		}
 
+	
+		
 $("#startbutton, #startbutton2").click(function(){
 	$("#overlay").fadeIn(1000);
 });

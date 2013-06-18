@@ -398,17 +398,13 @@ padding-right: 1em;
 }
 
 
-.navmenu, #pull{
+.navmenu, #pull, #pull2{
 display: none;
 }
 
 
 .logo{
-	position: absolute;
-	top: 15px;
-	left: 20px;;
-	/* width:100%;
-	text-align: center; */
+
 	}
 
 
@@ -423,12 +419,11 @@ display: none;
 
 .hero_text{
 height: 100%;
-width: 42%;
+width: 38%;
 position: absolute;
-left: 130px;
+left: 110px;
 background-color: white;
 position: block;
-opacity: 0.8;
 }
 
 	
@@ -640,7 +635,7 @@ text-align: center; }
 	z-index:999;
 	} 
 #tabs2 .ui-tabs-nav .ui-state-default a { 
-    color: #c0c0c0; 
+    color: #gray; 
 	font-family: 'Open Sans Condensed',  sans-serif;
 	font-weight: 300;
 	font-size: 1.5em;
@@ -1006,7 +1001,7 @@ display: inline-block;
 .button1{
 padding: .3em;
 border-radius: .3em;
-color: #FFFFFF;
+/* color: #FFFFFF; */
 display: inline-block;
 *display: inline;
     zoom: 1;
@@ -1053,7 +1048,7 @@ color: white;
 }
 .button3:hover{
 cursor: pointer;
-opacity: .8;
+opacity: .6;
 }
 
 .button4{

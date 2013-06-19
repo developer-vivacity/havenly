@@ -6,8 +6,9 @@ class Admin_model extends CI_Model
 	   parent::__construct();
 
 	 }
-  function create_table()
+   function create_table()
   { 
+  
   $this->db->query("CREATE TABLE IF NOT EXISTS admin (
   id int(10) NOT NULL AUTO_INCREMENT,
   name varchar(100) DEFAULT NULL,
@@ -15,10 +16,12 @@ class Admin_model extends CI_Model
   password varchar(200) NOT NULL,
   username varchar(100) NOT NULL,
   designerid int(10),PRIMARY KEY (id))");
+  
   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_details
  (id int(10) NOT NULL AUTO_INCREMENT,room_id int(10) NOT NULL,Style_notes varchar(100) NOT NULL,
  Ceiling_Height int(10) NOT NULL,Hates varchar(100) NOT NULL,Likes varchar(100) NOT NULL,Keep varchar(100) 
  NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
+
 
  /*  
  $this->db->query("INSERT INTO admin (name, privileges,password,username,designerid) VALUES
@@ -27,8 +30,8 @@ class Admin_model extends CI_Model
  */
 
  }  
-function authorize_user($password,$name)
-{
+ function authorize_user($password,$name)
+ {
       $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and name='".$name."'");
        if($query->num_rows()!=0)
        {
@@ -41,24 +44,27 @@ function authorize_user($password,$name)
          }
         $this->session->set_userdata($newdata);
        }
-}
-function get_additional_details_user_room($room_id=null,$data=null,$querytype=null)
-{
+ }
+ function get_additional_details_user_room($room_id=null,$data=null,$querytype=null)
+ {
 
-	if($querytype=="insert")	
-	$this->db->insert('user_room_details',$data);
-    elseif($querytype=="update")
-	{
-	$this->db->where('room_id',$room_id);
-	$this->db->update('user_room_details', $data); 
-    }
+	 if($querytype=="insert")	
+	 $this->db->insert('user_room_details',$data);
+     elseif($querytype=="update")
+	 {
+	 $this->db->where('room_id',$room_id);
+	 $this->db->update('user_room_details', $data); 
+     }
 	else
 	{
 		$this->db->where('room_id',$room_id);
 	    $query=$this->db->get('user_room_details');
-	    return $query->result();; 
+	    return $query->result(); 
+	    
     }
-}
+ }
+ 
+
 }
 
 ?>

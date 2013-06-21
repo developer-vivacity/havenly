@@ -28,9 +28,8 @@ function __construct() {
 		
 	}
 	
-	
-	
-	function open_contests() {
+function open_contests() 
+{
 		$password = $this->input->post('password');
 		if($password =="stitch"){
 		$data['room_data']=$this->room_model->get_open_rooms();
@@ -42,9 +41,9 @@ function __construct() {
 			$this->load->view('Admin/home', $data);
 		}
 	
-	}
-	function show_contest()
-	{
+}
+function show_contest()
+{
 		$room_id = $this->uri->segment (4);
 		$data['room_data']=$this->room_model->get_room($room_id);
 		$room_type = $data['room_data'][0]['room_type'];
@@ -52,7 +51,7 @@ function __construct() {
 		$data['user_prefs']=$this->user_model->get_user_prefs($user_id, $room_type);
 		$data['user']=$this->user_model->get_user($user_id);
 		$this->load->view('Admin/Room_View', $data);
-   }
+ }
 
 	function change_status()
 	{
@@ -137,8 +136,6 @@ function currentroomwithuser($room_id=null)
 	$orderby="";
     if(($this->session->userdata('adminid')!=""))
      {
-		 
-	 
 	 $orderby=$this->input->post('ascproductid');
 	 
 	 $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
@@ -148,12 +145,18 @@ function currentroomwithuser($room_id=null)
 	 $data["colorstyle"]=$this->room_model->fetch_color_style_number();
 	 $data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
 	 $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
+	 $data["producttype"]=$this->product_model->product_type();
+	 if($this->input->post("hidproductsearch")!="search")
 	 $data["productdetails"]=$this->product_model->get_all_product($orderby);
-	 
-	 $data["productshow"]=($orderby!=""?"block":"none");
-	 if(sizeof($adminrooms)!=0 || $orderby!="")
+	 else
+	 {
+		 
+	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"));
+     }
+	 $data["productshow"]=($this->input->post("hidproductsearch")=="search"?"block":($this->input->post("hidproductsearch")=="sort"?"block":"none"));
+
+	 if(sizeof($adminrooms)!=0 || $data["productshow"]=="block")
      {
-	
      $this->load->view('Admin/currentroomwithuser',$data);
      }
 	 else
@@ -226,7 +229,7 @@ function upload_design_pic_by_admin($filename=null,$userroomid=null,$userid=null
      }
      else
      {
-         $this->product_model->upload_design_info_user_room_design($userid,$userroomid,$_FILES['uploadfile']['name'],'proposed');
+         $this->product_model->upload_design_info_user_room_design($userid,$userroomid,$this->_File_Location,'proposed');
          echo "success";
      }
 }
@@ -306,10 +309,10 @@ function for_pic_upload($filename=null)
 							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
 							if($s3result)
 							{
-								$this->_File_Location=$s3result;
-                              $insertdata=1;
-							 unlink ($file_location);
-                             //return $file_name;
+							   $this->_File_Location="https://s3.amazonaws.com/easableimages/".$file_name;
+                                                           $insertdata=1;
+							   unlink ($file_location);
+                  
 							}
 							else 
 							{
@@ -330,25 +333,42 @@ function set_file_name()
 		else {$file_name = $file_name;}
 		return $file_name;
 }
-function save_product()
+function assign_product()
 {
 	
-	if($this->input->post('ascproductid')!="")
+
+	if(($this->input->post("hidproductsearch")=="search")| ($this->input->post("hidproductsearch")=="sort"))
 	{
 	$this->currentroomwithuser($this->input->post("currentroomid"));
     return;
     }
+ 
     $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$this->input->post("productid"));	
 	$this->roomsadministrator();
 }
+
 function add_product()
 {
+	
+	
+	
+    
+	if(($this->session->userdata('adminid')==""))
+	{
+		$this->load->view('Admin/adminlogin');
+		return;
+		
+	}
+		
+		
 		if($_POST)
 		{
+			
 		$holdlinkuploadimg=array();	 
-     $i=0;
-	   while($i<=4)
-	   {
+        $i=0;
+	    
+	    while($i<=4)
+	    {
 	     if(!empty($_FILES['uploadproductpic'.$i]['name']))
          {
 			
@@ -357,51 +377,77 @@ function add_product()
 		     $holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->_File_Location;	 
 		 }
 		 $i++;
-	 }		
-		//die("888888ggg--->".sizeof($holdlinkuploadimg)); 
+	   }		
 		
 		$holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->input->post("productweblink");
+		 
+		 $typehiddenfilter=$this->input->post("typehiddenfilterid");
+		 $stylehiddenfilter=$this->input->post("stylehiddenfilterid");
+		 $colorhiddenfilter=$this->input->post("colorhiddenfilterid");
+		 $materialhiddenfilter=	$this->input->post("materialhiddenfilterid");
+	   
+	    if($this->input->post("typehiddenfilter")!="")
+	    {
+	      $arrayaddtypefilter=explode(',',$this->input->post("typehiddenfilter"));	    
+	      foreach($arrayaddtypefilter as $key=>$value)
+	       {
+		 
+			$data=array('type'=>$value);
+		   	$newtypeid=$this->product_model->insert_data_in_db('product_type',$data);
+			$typehiddenfilter=($typehiddenfilter==""?$newtypeid:$typehiddenfilter.','.$newtypeid);
 		
-		
-		 $stylehiddenfilter=$this->input->post("stylehiddenfilter");
-		 $colorhiddenfilter=$this->input->post("colorhiddenfilter");
-		 $materialhiddenfilter=	$this->input->post("materialhiddenfilter");
+		   }
+	    }
+	    
+		if($this->input->post("stylehiddenfilter")!="")
+	    {
+			 $arrayaddstylefilter=explode(',',$this->input->post("stylehiddenfilter"));
+		   foreach($arrayaddstylefilter as $key=>$value)
+		   {
+			 
+			$data =array('style'=>$value);
+	        $newstyleid=$this->product_model->insert_data_in_db('product_style',$data);		
+	        $stylehiddenfilter=($stylehiddenfilter==""?$newstyleid:$stylehiddenfilter.','.$newstyleid);
+		  }
+	   }
+	  if($this->input->post("colorhiddenfilter")!="")
+	  {
+		 $arrayaddcolorfilter=explode(',',$this->input->post("colorhiddenfilter"));
+		foreach($arrayaddcolorfilter as $key=>$value)
+		{
+			$data =array('color'=>$value);
+			$newcolorid=$this->product_model->insert_data_in_db('product_colors',$data);
+			$colorhiddenfilter=($colorhiddenfilter==""?$newcolorid:$colorhiddenfilter.','.$newcolorid);
+		}
+	}
 	
-		if($stylehiddenfilter=="yes")
+	if($this->input->post("materialhiddenfilter")!="")
+	 {
+		   $arrayaddmaterialfilter=explode(',',$this->input->post("materialhiddenfilter"));
+		foreach($arrayaddmaterialfilter as $key=>$value)
 		{
-			$data =array('style'=>$this->input->post("Stylefilter"));
-	        $stylehiddenfilter=$this->product_model->insert_data_in_db('product_style',$data);		
+			$data =array('material'=>$value);
+			$newmaterialid=$this->product_model->insert_data_in_db('product_material',$data);
+			$materialhiddenfilter=($materialhiddenfilter==""?$newmaterialid:$materialhiddenfilter.','.$newmaterialid);
 		}
-		if($colorhiddenfilter=="yes")
-		{
-			$data =array('color'=>$this->input->post("Colorfilter"));
-			$colorhiddenfilter=$this->product_model->insert_data_in_db('product_colors',$data);
-		}
-		if($materialhiddenfilter=="yes")
-		{
-			$data =array('material'=>$this->input->post("Materialfilter"));
-			$materialhiddenfilter=$this->product_model->insert_data_in_db('product_material',$data);
-		}
+	}	
+	 
+       $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
+'rent_price'=>$this->input->post("rentprise"),'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),'link'=>$holdlinkuploadimg[0],'product_type_id'=>$typehiddenfilter,'product_color_id'=>$colorhiddenfilter,'product_material_id'=>$materialhiddenfilter,'product_style_id'=>$stylehiddenfilter,'description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
 		
-	// die($this->input->post("vender").".......".$this->input->post("product_name")."......".$this->input->post("Price")."------".$this->input->post("ship_cost")."....".$this->input->post("qty_in_stock").".....".$this->input->post("description")."-------".$this->input->post("dimention")."........"
-	//.$this->input->post("productweblink")."-----".$this->input->post("rentprise").".......".$this->input->post("stylehiddenfilter").".......".$this->input->post("colorhiddenfilter")."......".$this->input->post("materialhiddenfilter"));
+	   $product_id=$this->product_model->insert_data_in_product_table($data);
 
-$data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
-'rent_price'=>$this->input->post("rentprise"),'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),'link'=>$holdlinkuploadimg[0],'product_type_id'=>'','product_color_id'=>$colorhiddenfilter,'product_material_id'=>$materialhiddenfilter,'product_style_id'=>$stylehiddenfilter,'description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
-		
-	$product_id=$this->product_model->insert_data_in_product_table($data);
-	
-	$this->product_model->insert_image_link_with_product_id($product_id,$holdlinkuploadimg);
-		
-		}
-		else
-		{
+	   $this->product_model->insert_image_link_with_product_id($product_id,$holdlinkuploadimg);
+		$data['message']="Product details has been saved";
+				}
+		$data['currentroomid']=$this->input->post('currentroomid');
 		$data['vendors']= $this->product_model->get_vendors_details();
 		$this->load->view('Admin/addproduct',$data);
-	    }
+	    
 }
 function search_text_for_ajax($text=null,$id=null)
 {
+
 	    $data['filtertext']=$this->product_model->product_search($text,$id);
         echo json_encode($data['filtertext']);
 	

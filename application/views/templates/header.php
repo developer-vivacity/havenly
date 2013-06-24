@@ -11,19 +11,29 @@
 	<link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
 	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 
-	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/main.css");?> />
-	<link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/media.css");?> />
+
+	<link href="<?php echo base_url('theme/css/bootstrap.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('theme/css/main.css');?>" rel="stylesheet">
+	<link rel='stylesheet' id='prettyphoto-css'  href="theme/css/prettyPhoto.css" type='text/css' media='all'>		
+	<link href="<?php echo base_url('theme/css/bootstrap-responsive.css');?>" rel="stylesheet">	
 	<link href='http://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,300|Open+Sans+Condensed:300|Arizonia' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+	   <script type="text/javascript" src="<?php echo base_url('theme/js/bootstrap.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('theme/js/jquery.prettyPhoto.js');?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('theme/js/theme.js');?>"></script>
+   
+   
+   <script type="text/javascript" charset="utf-8">
+	  $(document).ready(function(){
+	    $("a[rel^='prettyPhoto']").prettyPhoto();
+	  });
+	</script>
+
 	</head>
 
 <body>
 
-
-
-<div class = "full_wrapper">
-<div class = "inner_wrapper">
 					
 									
 									

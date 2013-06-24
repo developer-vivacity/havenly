@@ -1,22 +1,38 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<div class="navmenu">  
-    <ul>  
-        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
-        <li><a href="#">1-888-978-3152</a></li>  
-      </ul>  
-</div>  
-<div class = "bgM horizontal right-align">
-	  <a class = "button1 right-align inline condensed margin white_text midlarge" id="pull"> &#9776; </a>  
-</div>
-<div class = "center bgcontainer">
-<div class = "center padding_small_top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <div class="container"> 
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
+              <li><a id = "servlink" href="<?php echo base_url().'/#services';?>">Services</a></li>
+              <li><a id = "pricelink" href="<?php echo base_url().'/#price'; ?>">Cost</a></li>
+			      <li><a id = "goodslink" href="<?php echo base_url().'/#goods';?>">Goods</a></li>
+              <li><a id = "aboutlink" href="#">About</a></li>
+              <li><a <a id = "contlink"href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+	  </div>
+	  
+
+<div class = "chevron center"><BR><BR><BR><BR>
+
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
-</div>
+
 <br>
-<div class="half border white center">
+<div class = "container">
+<div class="span12 text-center">
+<BR><BR>
 	<div class="displayinfoerror">
 	<?php 
     $display="none";
@@ -32,33 +48,36 @@
 	?>
 	
 	</div>
-<div id = "login" style="display:<?php echo $display;?>">
+	<div id = "login" style="display:<?php echo $display;?>">
 	
-	<div class="padding">
-	
+
    <?php echo form_open('Users/site/login/');?>
-   <table class = "horizontal">
-	<tr class = "horizontal">
-	<td class = "third right-align middle">
+
+
+
+   <table class = "span5 table-center border white">
+ 
+	<tr>
+	<td class = "third right-align middle"><BR><BR><BR>
 		<label class = "medium condensed" for="email">Email:</label>
 	</td>
-	<td class = "seventy left-align middle">
+	<td class = "seventy left-align middle"><BR><BR><BR>
 		<input type="text" id="enterloginemail" name="enterloginemail" value="<?php if(isset($_POST['enterloginemail']))echo $_POST['enterloginemail'];?>"/>
 	</td>
 	</tr>
   
-	<tr class = "horizontal">
+	<tr>
 	<td class = "third middle right-align">
 		<label class = "medium condensed " for="password">Password:</label>
 	</td>
 	<td class = "seventy left-align middle">
 		<input type="password" id="enterpass" name="enterpass"  value="<?php if(isset($_POST['enterpass']))echo $_POST['enterpass'];?>"/>
 	</td></tr>
-	<tr class = "horizontal">
+	<tr>
 	<td class = "third middle right-align">
 	</td>
 	<td class = "half left-align">
-		<BR><input type="submit" class="button3 horizontal small sanslight" value="SIGN IN" />
+		<BR><input type="submit" class="button3 horizontal small sanslight" value="SIGN IN" /><BR><BR>
 	</td>
 	</tr>
 	</table>
@@ -91,20 +110,19 @@
 	
 	<div class="signin_form" >
    <?php echo form_open('Users/site/validatemail/');?>
-   <table class = "horizontal">
- <tr class = "middle horizontal">
-  <td class = "third right-align middle">
+   <table class = "white border span5 table-center">
+ <tr>
+  <td class = "middle"><BR><BR><BR>
   <label class = "medium condensed" for="enteremail">Email:</label>
   </td>
-  <td class = "forty">
+  <td><BR><BR><BR>
   <input type="text" id="enteremail" name="enteremail"  class = "middle"  value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail']; ?>"/>
   </td></tr>
+  <tr><td> </td>
+  <td>
+  <input type="submit" class="button3 small text-center sanslight" value="SIGN IN" /><BR><BR><BR></td></tr>
    </table>
-<BR><BR><BR>
-<div class = "horizontal">
-   <div class = "third inline right-align bottom"></div>
-	<div class = "forty inline">
- <input type="submit" class="button3 small horizontal sanslight" value="SIGN IN" /></div>
+
  <div class = "sanslight blue_text small"><br/>
 	<a id = "loginbutton" class = "small sanslight blue_text" href = "#login">Login</a>
 </div>
@@ -114,15 +132,16 @@
 </div>
 </div>
 </div>
-</div>
+
 <br><BR><BR><BR><div class = "push">
 </div>
-	</div>
-	
 
+	
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
+
+
 
 <script>
 

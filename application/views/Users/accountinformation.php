@@ -1,22 +1,38 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
+ <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <div class="container"> 
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
+              <li><a id = "servlink" href="<?php echo base_url('#services');?>">Services</a></li>
+              <li><a id = "pricelink" href="<?php echo base_url('#price');?>">Cost</a></li>
+			      <li><a id = "goodslink" href="<?php echo base_url('#goods');?>">Goods</a></li>
+              <li><a id = "aboutlink" href="<?php echo base_url('index.php/Users/site/whoweare');?>">About</a></li>
+              <li><a <a id = "contlink"href="<?php echo base_url('#contact');?>">Contact</a></li>
+            </ul>
+			<ul class = "nav pull-right white_text">
+			<li><a class = "white_text sanslight" href = "<?php echo base_url().'index.php/Users/site/logout/';?>">LOGOUT</a></li>
+			</ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+	  </div>
+	  
+<div class = "chevron">
+<BR><BR>
 
-
-<div class = "center bgcontainer"><BR>
-<div class = "seventy" style= "height:90px;">
-<table class = "left-align">
-<tr><td width = "78%">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
-</td>
-
-<?php
- echo '<td><a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a></td>';
- echo '<td><a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a></td>'; 
-?>
-</tr></table>
-</div>
-<div class = "seventy border white">
+<div class = "container text-center">
+<BR><BR>
+<div class = "white">
 <div id = "tabs">
 <ul>
     <li><a href="#designer">DESIGNER</a></li>
@@ -36,7 +52,7 @@ if(isset($message))
 if(isset($designerinformation))
     {
 ?>
-  <table class = "horizontal center">
+  <table class = "table-center span5">
  
 	 <?php
      $url = base_url('assets/Images');
@@ -64,14 +80,14 @@ if(isset($userdetails))
 {
 ?>
 <div id = "user">
-<p class = "left-align sanslight medium">User Information:</p>
-<hr class = "style">
+<p class = "sanslight medium">User Information</p>
+<hr class = "style text-center">
 <div class = "left-align">
 <?php
 foreach($userdetails as $key)
 {
 
-echo '<table class = "sanslight seventy midsmall left-align">';
+echo '<table class = "sanslight midsmall offset1 text-left">';
 echo '<tr width= "100%"><td width = "50%">First Name:<br><br></td>';
 echo '<td width = "50%">'.$key->first_name.'<br><br></td></tr>';
 echo '<tr><td>Last Name:<br><br></td>';
@@ -91,7 +107,7 @@ echo '<td>'.$key->pinterest.'<br><br></td></tr>';
 echo '</table>';
 echo '<BR><BR>';
 
-echo '<a class = "light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a>';
+echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
    
 }
 ?>
@@ -106,7 +122,7 @@ if(isset($roomsassociated))
 {
 ?>
 <div id = "rooms" class = "left-align">
-<p class = "left-align sanslight medium">User Room Information:</p>
+<p class = "left-align sanslight medium">User Room Information</p>
 <hr class = "style"><BR><BR>
 <?php
 
@@ -153,7 +169,7 @@ if(isset($userpreference))
 {
 ?>
 <div id= "preferences" class = "left-align" >
-<p class = "medium left-align sanslight">Styles Chosen:</p>
+<p class = "medium left-align sanslight">Styles Chosen</p>
 <hr class = "style">
 <table>
 <tr>
@@ -187,7 +203,7 @@ echo '<td>';
 </tr>
 </table>
 <br><br>
-<p class = "medium sanslight">Colors Chosen:</p>
+<p class = "medium sanslight">Colors Chosen</p>
 <hr class = "style">
 <table class = "center"><tr>
 <td>
@@ -221,11 +237,12 @@ echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms
 
 </div>
 <div class = "push"> 
-</div>
+</div><BR><BR><BR></div>
 <script>
 $("#tabs").tabs();
 </script>
 
-<?php 
+	<?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
+

@@ -12,11 +12,11 @@ class Product_model extends CI_Model
   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_designs(user_id int(10) NOT NULL,
 room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(100) NOT NULL)");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(20) NOT NULL,rent_price decimal(20) NOT NULL,ship_cost decimal(20) NOT NULL ,qty_in_stock link int(10) NOT NULL,
+$this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,link varchar(200) NOT NULL,
 product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_style_id varchar(100) NOT NULL,
 description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(100) NOT NULL,PRIMARY KEY(productid))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL AUTO_INCREMENT,filename varchar(50) NOT NULL,PRIMARY KEY(product_id))");
+$this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
 
 $this->db->query("CREATE TABLE IF NOT EXISTS product_type(type_id int(10) NOT NULL AUTO_INCREMENT,type varchar(50) NOT NULL,PRIMARY KEY(type_id))");
 
@@ -72,6 +72,7 @@ timestamp timestamp NOT NULL)");
 
 function save_product_associated_with_room($roomid=null,$productid=null)
 {
+	
       $this->db->where('room_id',$roomid);
       
       if($productid=="")
@@ -83,6 +84,7 @@ function save_product_associated_with_room($roomid=null,$productid=null)
     {
       if($this->db->count_all_results('product_room_mapping')==0)
       {
+      
        $data = array(
          'room_id' => $roomid ,
          'product_id' => $productid 
@@ -92,6 +94,7 @@ function save_product_associated_with_room($roomid=null,$productid=null)
      }
      else
      {
+	  
 	   $data = array(
     'product_id' => $productid 
         );
@@ -121,6 +124,12 @@ function product_search($text=null,$id=null)
 		$this->db->like('material', $text);	
         $query = $this->db->get('product_material');
 	}
+	elseif($id==4)
+	{
+		$this->db->select('type_id,type');
+		$this->db->like('type', $text);	
+        $query = $this->db->get('product_type');
+	}
     return $query->result(); 	
 }
 function get_vendors_details()
@@ -138,15 +147,86 @@ function insert_data_in_db($tablename,$data)
 }
 function insert_data_in_product_table($data)
 {
-	
 	$this->db->insert("products", $data);    
-	return $this->db->insert_id();
+	return  $this->db->insert_id();
 	
 }
 function insert_image_link_with_product_id($product_id,$link_array)
 {
+	$i=0;
+	while($i<sizeof($link_array))
+	{
+	  if($link_array[$i]!="")
+	  {
+	  $data=array('product_id'=>$product_id,'filename'=>$link_array[$i]);	
+	  $this->db->insert("product_image", $data);    
+      }
+	 $i=$i+1;
+	}
+
+}
+function search_product($product_name=null,$search_type=null,$search_price=null)
+{
 	
-	//die($link_array[0]);
+	if($search_type!="")
+	{
+	  $this->db->like('product_type_id',$search_type);
+    }
+   
+		  //Here 1 is High price 2 is Moderate price 3 is Low price.
+         //High price(>=1000) Moderate price(>=500 and <1000) Low price(<100)
+         
+	$this->db->like('product_name', $product_name); 
+	switch ($search_price) 
+	{
+         case "1,2,3":
+         $num=0;
+         $this->db->where('price','>'.$num); 
+         break;
+         case "1,2":
+         $num=500.00;
+         $this->db->where('price','>='.$num); 
+         break;
+         case "2,3":
+         $num=500;
+         $this->db->where('price','<'.$num); 
+         break;
+         case "1,3":
+         $num=100;
+         $this->db->where('price','<'.$num);
+         $num=1000;
+         $this->db->where('price','>='.$num); 
+         break;
+         case "1":
+         $num=1000.00;
+         $this->db->where('price','>='.$num);
+         
+         break;
+         case "2":
+         $num=500;
+         $this->db->where('price','>='.$num);
+          $num=1000;
+         $this->db->where('price','<'.$num);
+         break;
+         case "3":
+         $num=100;
+         $this->db->where('price','<'.$num);
+         break;
+}
+	    
+	    
+	    
+	   
+	
+	
+	$query=$this->db->get('products');
+	return $query->result();
+	
+}
+function product_type()
+{
+    $query=$this->db->get('product_type');
+	return $query->result();
 	
 }
 

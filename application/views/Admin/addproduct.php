@@ -2,10 +2,21 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <?php
 $attributes = array('class' => 'addproductform', 'id' => 'addproductform','enctype'=>'multipart/form-data','method'=>'post');
-echo form_open('Admin/site/add_product/',$attributes);
-?>
+echo form_open('Admin/site/add_product',$attributes);
 
-<div id="producterrormessage">
+?>
+<p><?php 
+
+ echo '<a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="history.back();">Back</a>';
+?></p>
+<div id="producterrormessage" style="font-family:Times New Roman, Times, serif;font-size:15px;margin-left:500px;">
+	<?php
+	if(isset($message))
+	echo $message;
+	?>
+	
+</div>	
+<div id="producterrormessageforuploadimage">
 </div>	
 <div style="width:100%">
 <div style="float:left;width:500px;">
@@ -34,28 +45,44 @@ echo form_open('Admin/site/add_product/',$attributes);
 <tr><td colspan="2"><input type="button" name="SaveCurrentProduct" value="Save Product" id="savecurrentproduct"/></td></tr>
 </table>
 </div><div style="float:left;width:600px;"><br/><br/><table><tr><td>Retail option</td><td><input type="radio" name="retail_option" value="on" >On<input type="radio" name="retail_option" value="off" checked>Off</td><td>Rent Price</td><td><input type="textbox"  name="rentprise" value="" id="rentprise"  readonly /></td></tr></table></div>
-
 <div style="float:left;width:300px;"><br/><br/>
 <table>
 <tr>
-<td>Style</td>
-<td><input type="textbox" id="Stylefilter"  name="Stylefilter"/>
+<td valign="top">Type</td><td>
+<div id="selecttypefilter"></div>	
+<input type="textbox" id="Typefilter"  name="Typefilter"/>
+<ul id="ShowTypefilter"></ul>
+<input type="hidden" name="typehiddenfilter" id="typehiddenfilter"/>
+<input type="hidden" name="typehiddenfilterid" id="typehiddenfilterid"/>
+</td>
+</tr>
+<tr>
+<td valign="top">Style</td>
+<td>
+<div id="selectstylefilter"></div>
+<input type="textbox" id="Stylefilter"  name="Stylefilter"/>
 <ul id="ShowStylefilter"></ul>
-<input type="hidden" name="stylehiddenfilter" id="stylehiddenfilter">
+<input type="hidden" name="stylehiddenfilter" id="stylehiddenfilter"/>
+<input type="hidden" name="stylehiddenfilterid" id="stylehiddenfilterid"/>
 </td>
 </tr>
 <tr>
-<td>Color</td>
-<td><input type="textbox" id="Colorfilter" name="Colorfilter"/>
+<td valign="top">Color</td>
+<td>
+<div id="selectcolorfilter"></div>
+<input type="textbox" id="Colorfilter" name="Colorfilter"/>
 <ul id="ShowColorfilter"></ul>
-<input type="hidden" name="colorhiddenfilter" id="colorhiddenfilter">
+<input type="hidden" name="colorhiddenfilter" id="colorhiddenfilter"/>
+<input type="hidden" name="colorhiddenfilterid" id="colorhiddenfilterid"/>
 </td>
 </tr>
 <tr>
-<td>Material</td>
-<td><input type="textbox" id="Materialfilter" name="Materialfilter"/>
+<td valign="top">Material</td>
+<td><div id="selectmaterialfilter"></div>
+	<input type="textbox" id="Materialfilter" name="Materialfilter"/>
 <ul id="ShowMaterialfilter"></ul>
 <input type="hidden" name="materialhiddenfilter" id="materialhiddenfilter">
+<input type="hidden" name="materialhiddenfilterid" id="materialhiddenfilterid"/>
 </td>
 </tr>
 </table>
@@ -64,4 +91,30 @@ echo form_open('Admin/site/add_product/',$attributes);
  ?>
 </div>
 </div>
+<script type="text/javascript">
+$('input[name="uploadproductpic0"]').change(function()
+{
+        $("#producterrormessageforuploadimage").html('');
+	    var exts=new Array("jpg","jpeg","gif","png","JPG");
+    	var file1=$("#uploadproductpic").val();
+        var fileextension_one = file1.substr((file1.lastIndexOf('.') +1) );
+        if($.inArray (fileextension_one.toLowerCase(), exts ) < 0 )
+        {
+         $("#producterrormessageforuploadimage").append('<p>*Upload product pic in jpg,png,gif,jpeg format</p>');
+         
+         $(".imageappend").remove();
+         total=1;
+         $fileupload_value=0;
+         $("#adduploadproductpic").hide();	
+        } 
+        else
+        {
+		$("#adduploadproductpic").show();	
+		$fileupload_value=1;
+		}
+	
+}
+);
+
+</script>
 <?php echo form_close(); ?>

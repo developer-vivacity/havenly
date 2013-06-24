@@ -1,11 +1,11 @@
 <?php
-class User_model extends CI_Model 
-{ 
-	function __construct() {
-	 parent::__construct();
+class User_model extends CI_Model
+{
+function __construct() {
+parent::__construct();
 
-	 }
-	
+}
+
 function save_user($data){
 $this->db->where("email",$data['email']);
 $query=$this->db->get("users");
@@ -47,11 +47,11 @@ $query = $this->db->get('users');
 
 foreach( $query->result_array() as $row)
 {return $row['id'];}
-		}
-		
-		}
-		
-		
+}
+
+}
+
+
 function save_preferences($data){
 
 $insert = array(
@@ -61,16 +61,16 @@ $insert = array(
 'room_type'=>$data['room_type']);
 
 $this->db->insert('user_preferences',$insert);
-		
-		}
-		
+
+}
+
 function get_user_prefs($user_id, $room_type){
 $this->db->where('user_id',$user_id);
 $this->db->where('room_type',$room_type);
 $query = $this->db->get('user_preferences');
 return $query->result_array();
 
-}		
+}	
 
 function get_user($user_id){
 $this->db->where('id',$user_id);
@@ -83,35 +83,35 @@ function invite_request($data){
 $insert=array(
 'email'=>$data['email'],
 'zipcode'=>$data['zipcode']);
-	
+
 $this->db->insert('invite_requests',$insert);
 
-		}
-		
-		// For inser user informetion---------
+}
+
+// For inser user informetion---------
    function insert_user_info($data,$email)
    {
-	   
-	 
-	    $this->db->where("email",$email);
-	    $query=$this->db->get("users");
+
+
+$this->db->where("email",$email);
+$query=$this->db->get("users");
        if($query->num_rows()==0)
        {
          
          $this->db->insert('users',$data);
         
-	     $id=mysql_insert_id();
-         $newdata =array('id'=>$id,'first_name'=>  $data["first_name"],'last_name'=> $data["last_name"],'email'=> $data["email"],'phone'=>$data["phone"],'address'=>$data["address"],'zipcode'=>$data["zipcode"]);   
+$id=mysql_insert_id();
+         $newdata =array('id'=>$id,'first_name'=> $data["first_name"],'last_name'=> $data["last_name"],'email'=> $data["email"],'phone'=>$data["phone"],'address'=>$data["address"],'zipcode'=>$data["zipcode"]);
          
          $this->session->set_userdata($newdata);
          return $id;
         
        }
-	   else
-	   {
-         return -1;   
-	   }
-		   
+else
+{
+         return -1;
+}
+
    }
 //---For user login and create session.......
   public function user_login($email,$password)
@@ -126,7 +126,7 @@ $this->db->insert('invite_requests',$insert);
 
     foreach($query->result() as $rows)
     {
-      $newdata =array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode);   
+      $newdata =array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode);
     }
     $this->session->set_userdata($newdata);
     
@@ -146,8 +146,8 @@ $this->db->insert('invite_requests',$insert);
    //----For check user mail id.......
    public function check_mail($email)
    {
-	   $this->db->where("email",$email);
-	   $query=$this->db->get("users");
+$this->db->where("email",$email);
+$query=$this->db->get("users");
       if($query->num_rows()>0)
       {
          $receivername=$query->row_array();
@@ -155,28 +155,28 @@ $this->db->insert('invite_requests',$insert);
       }
      else
      {
-				return "";
-		 }     
+return "";
+}
    }
    
    // For update user informetion
    public function update_user_info($data,$id)
    {
-	   
+
 
        $this->db->where("id",$id);
        
-       $this->db->update("users", $data); 
-	 
+       $this->db->update("users", $data);
+
    }
    // For update Password
    public function update_password($email,$password)
    {
-	   $data = array('password' => $password);
+$data = array('password' => $password);
 
        $this->db->where("email",$email);
        
-       $this->db->update("users", $data); 
+       $this->db->update("users", $data);
    }
    // For count total rows
   public function total_rows()
@@ -197,16 +197,5 @@ $this->db->insert('invite_requests',$insert);
    $query=$this->db->get("users");
    return $query->num_rows();
   }
-
-function update_userstables()
-{
-  	$this->db->query("SELECT IF( (SELECT COUNT( * )
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE table_name = 'users'
-AND column_name = 'facebook' ) >0, 'SELECT 1', 'ALTER TABLE users ADD facebook VARCHAR(200)')");
-$this->db->query("SELECT IF( (SELECT COUNT( * )
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE table_name = 'users'
-AND column_name = 'pinterest' ) >0, 'SELECT 1', 'ALTER TABLE users ADD pinterest VARCHAR(200)')");
 }
-}
+?>

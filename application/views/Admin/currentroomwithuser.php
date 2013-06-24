@@ -1,6 +1,76 @@
 
+
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
+<!-----<script type="text/javascript" src="<?php //echo base_url()?>assets/Scripts/Ajaxfileupload-jquery-1.3.2.js" ></script>--->
+<script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+
+<style  type="text/css">
+	
+#upload{
+	margin:18px 3px 0px 3px; padding:2px 2px 2px 6px;
+	font-weight:bold; font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	text-decoration:underline;
+	background:#f2f2f2;
+	color:#730707;
+	border:1px solid #ccc;
+	width:180px;
+	
+	}
+.styleall{
+	margin:18px 3px 0px 3px; padding:2px 2px 2px 6px;
+	font-weight:bold; font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:left;
+	text-decoration:underline;
+	
+}
+
+</style>
+<script type="text/javascript">
+ $(function(){
+		var btnUpload=$('#me');
+		var mestatus=$('#mestatus');
+		var files=$('#files');
+		new AjaxUpload(btnUpload, {
+			action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#userroomid").val()+'/'+$("#userid").val(),
+			name: 'uploadfile',
+			roomid:$("#userroomid").val(),
+			userid:$("#userid").val(),
+			onSubmit: function(file, ext){
+				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                    mestatus.text('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');
+			},
+			onComplete: function(file, response)
+			{
+				
+				//On completion clear the status
+				files.html('');
+				//Add uploaded file to list
+				if(response==="success"){
+					mestatus.text('Photo Uploaded Sucessfully!');
+				} else{
+					mestatus.text('file uploded is failed!')
+				}
+			}
+		});
+		
+		
+		
+		
+	});
+
+
+</script>
+>>>>>>> 05a3e5aa67dafb3ee20bffa4c3c599c79f030100
 <?php 
  echo '<a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>';
 ?>
@@ -133,3 +203,89 @@ endforeach;
 </td>
 </tr>
 </table>
+
+
+<div id="productdesign" class="adminmain" style="display:<?php echo $productshow; ?>">
+<?php
+	$attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
+    echo form_open('Admin/site/assign_product/',$attributes);
+    ?>
+<table width="800px">
+<tr><td width="300px">Upload Design Overview</td>
+<td width="500px">
+	
+	<div id="me" class="styleall" style="height:10px;width:190px;">
+	<span style="font-family:Verdana, Geneva, sans-serif; font-size:12px;">Click Here To Upload Photo</span></div>
+	<span id="mestatus" ></span><br/>
+	<div id="files" style="list-style-type: none;">
+              <li class="success" >
+              </li>
+              </div>
+</td></tr>
+
+</table>
+<table  width="1000px" border="1">
+<tr><td width="300px">
+Select Product Below:
+</td><td align="right"><input type="button" value="Add Product" id="AddProduct" name="AddProduct"/><input type="button" value="Save Selected" id="SaveSelected"/>
+</td></tr>
+<tr>
+<td><input type="textbox" name="productsearchbyname" id="productsearchbyname"/><input type="button" value="Search" id="searchproductname"/>
+<input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
+<input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
+<input type="hidden"  name="searchoptionforprice" id="searchoptionforprice" />
+</td>
+<td>Sortable by:<br/>
+<input type="checkbox" value="product_type_id" name="productcheck[]"/>product type<input type="checkbox" value="product_color_id" name="productcheck[]"/> product color <input type="checkbox" value="product_material_id" name="productcheck[]"/>product material <input type="checkbox" value="product_style_id" name="productcheck[]"/>product style
+<input type="button" value="go" id="ascproduct"/>
+</td>
+</tr>
+<tr>
+<td valign="top"><table width="300px">
+<tr><td>Price</td><td>Type</td></tr>
+<tr><td valign="top">
+<div><input type="checkbox" id="High" name="searchprice[]" value="1"/>High</div>
+<div><input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>Moderate</div>
+<div><input type="checkbox" id="Low" name="searchprice[]" value="3"/>Low</div>
+</td>
+<td>
+<?php
+foreach($producttype as $key)
+{
+    echo '<div><input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>'.$key->type.'</div>';	
+}
+?>
+</td>
+</tr>
+</table>
+</td>
+<td><div style="border:solid 1px;height:300px;overflow-y:scroll;">
+	<?php
+	$selectproductid="";
+	if(isset($selectproduct))
+	{
+	    foreach($selectproduct as $key)	
+		$selectproductid=$key->product_id;
+		
+	}
+	foreach($productdetails as $key)
+	{	
+		  $ischecked="";
+		  if(in_array($key->productid,explode(',',$selectproductid)))
+		  $ischecked="checked";
+		  echo'<div style="float:left;">
+		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage[]" '.$ischecked.'/>
+		 <img class = "inactive" src ='.$key->link.' height="100px" width="100px" /></div>';
+	}
+	if(sizeof($productdetails)==0)
+	echo "No products found!";
+	?>
+</div>
+</td>
+</tr>
+</table>
+<input type="hidden" value="" id="ascproductid" name="ascproductid"/>
+<input type="hidden" value="" id="productid" name="productid"/>
+<input type="hidden" value="<?php echo $currentroomid;?>" id="currentroomid" name="currentroomid">
+<?php echo form_close(); ?>
+</div>

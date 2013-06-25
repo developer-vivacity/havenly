@@ -1,13 +1,17 @@
+<<<<<<< HEAD
 
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+=======
+<?php 
+	include(APPPATH.'/views/templates/header.php');
+	?>
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
-<!-----<script type="text/javascript" src="<?php //echo base_url()?>assets/Scripts/Ajaxfileupload-jquery-1.3.2.js" ></script>--->
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
-
 <style  type="text/css">
 	
 #upload{
@@ -51,10 +55,7 @@
 			},
 			onComplete: function(file, response)
 			{
-				
-				//On completion clear the status
 				files.html('');
-				//Add uploaded file to list
 				if(response==="success"){
 					mestatus.text('Photo Uploaded Sucessfully!');
 				} else{
@@ -72,10 +73,20 @@
 </script>
 >>>>>>> 05a3e5aa67dafb3ee20bffa4c3c599c79f030100
 <?php 
+<<<<<<< HEAD
  echo '<a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>';
 ?>
 <p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>|<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>|<a href="#currentref"  rel="currentref">Style Prefs</a>|<a href="#">Product and Design Response</a></p>
+=======
+ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
+echo '<br/>';
+echo '<br/>';
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
+?>
+<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>
+<br/>
+<br/>
 <?php
 
 //print_r($userroomdetails);
@@ -111,6 +122,11 @@ foreach($roomwithuser as $key)
 	echo '</table>';
 	$attributes = array('class' => 'updateform', 'id' => 'updateform');
     echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
+<<<<<<< HEAD
+=======
+    echo '<input type="hidden" name="currentdisplay" id="currentdisplay" value="'.$productshow.'"/>';
+    echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
     echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
     echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
     echo '<table id="CurrentRoom" class="adminmain">';
@@ -149,8 +165,8 @@ foreach($userroomdetails as $key)
    {
 	  if(in_array($newkey, $checktitems))
 	  { 
-	   $choosebyitems=($newkey==14?$checktitems[sizeof($checktitems)-1]:$newvalue);
-       echo '<div>'.$choosebyitems.'</div>';
+	    $choosebyitems=($newkey==14?$checktitems[sizeof($checktitems)-1]:$newvalue);
+        echo '<div>'.$choosebyitems.'</div>';
       }
 	   
   }
@@ -166,10 +182,8 @@ echo '</table>';
 
 
 <table id="currentref" class="adminmain">
-	
-	<tr><td>Style Pic:</td></tr>
+<tr><td>Style Pic:</td></tr>
 <tr>
-	
 <td >
 	<?php 
 	$style_pics= explode(',',$style_pics);
@@ -206,6 +220,7 @@ endforeach;
 
 
 <div id="productdesign" class="adminmain" style="display:<?php echo $productshow; ?>">
+<div id="div_show_error_message"></div>
 <?php
 	$attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
@@ -218,35 +233,99 @@ endforeach;
 	<span style="font-family:Verdana, Geneva, sans-serif; font-size:12px;">Click Here To Upload Photo</span></div>
 	<span id="mestatus" ></span><br/>
 	<div id="files" style="list-style-type: none;">
-              <li class="success" >
-              </li>
-              </div>
+    <li class="success" >
+    </li>
+    </div>
 </td></tr>
-
 </table>
 <table  width="1000px" border="1">
-<tr><td width="300px">
+<tr><td width="300px" >
 Select Product Below:
+<br/>
 </td><td align="right"><input type="button" value="Add Product" id="AddProduct" name="AddProduct"/><input type="button" value="Save Selected" id="SaveSelected"/>
 </td></tr>
+<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
 <tr>
-<td><input type="textbox" name="productsearchbyname" id="productsearchbyname"/><input type="button" value="Search" id="searchproductname"/>
-<input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
-<input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
-<input type="hidden"  name="searchoptionforprice" id="searchoptionforprice" />
+<td colspan="2">
+<div>
+<b>Sortable by:</b>
+<table>
+<tr><td width="200px;">
+Product Type:
+</td><td>
+<div>
+<?php
+foreach($producttype as $key)
+echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" value="'.$key->type_id.'">'.$key->type.'</div>';
+?>
+</div>
 </td>
-<td>Sortable by:<br/>
-<input type="checkbox" value="product_type_id" name="productcheck[]"/>product type<input type="checkbox" value="product_color_id" name="productcheck[]"/> product color <input type="checkbox" value="product_material_id" name="productcheck[]"/>product material <input type="checkbox" value="product_style_id" name="productcheck[]"/>product style
+</tr>
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>Product Color:
+	</td>
+     <td>
+<div>
+<?php
+foreach($productcolortype as $key)
+echo '<div style="float:left;"><input type="checkbox" name="productcolortypecheck[]" value="'.$key->color_id.'">'.$key->color.'</div>';?>
+</div>     
+</td>
+</tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+<tr><td>Product Material:</td>
+	<td>
+<?php
+foreach($productmaterialtype as $key)
+echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypecheck[]" value="'.$key->material_id.'">'.$key->material.'</div>';?>
+	
+</td>
+
+</tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+
+<tr><td>Product Style:</td>
+<td>
+<?php
+foreach($productstyle as $key)
+echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]" value="'.$key->style_id.'">'.$key->style.'</div>';
+?>&nbsp;&nbsp;
 <input type="button" value="go" id="ascproduct"/>
 </td>
 </tr>
+</table>
+
+<input type="hidden" name="hidproducttypecheck" id="hidproducttypecheck"/>
+<input type="hidden" name="hidproductcolortypecheck" id="hidproductcolortypecheck"/>
+<input type="hidden" name="hidproductmaterialtypecheck" id="hidproductmaterialtypecheck"/>
+<input type="hidden" name="hidproductstylecheck" id="hidproductstylecheck"/>
+
+</div>
+
+</td>
+</tr>
+<tr><td colspan="2">&nbsp;&nbsp;
+
+</td></tr>
 <tr>
-<td valign="top"><table width="300px">
-<tr><td>Price</td><td>Type</td></tr>
-<tr><td valign="top">
-<div><input type="checkbox" id="High" name="searchprice[]" value="1"/>High</div>
-<div><input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>Moderate</div>
-<div><input type="checkbox" id="Low" name="searchprice[]" value="3"/>Low</div>
+	
+<td valign="top">
+	
+<table width="300px;">
+<tr><td colspan="2">
+<input type="textbox" name="productsearchbyname" id="productsearchbyname"/>
+<input type="button" value="Search" id="searchproductname"/>
+<input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
+<input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
+<input type="hidden"  name="searchoptionforprice" id="searchoptionforprice" />
+</td></tr>
+<tr><td><b>Price</b></td><td><b>Type</b></td></tr>
+<tr><td  style="vertical-align:top;">
+<input type="checkbox" id="High" name="searchprice[]" value="1"/>High<br/>
+<input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>Moderate<br/>
+<input type="checkbox" id="Low" name="searchprice[]" value="3"/>Low<br/>
 </td>
 <td>
 <?php
@@ -254,12 +333,8 @@ foreach($producttype as $key)
 {
     echo '<div><input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>'.$key->type.'</div>';	
 }
-?>
-</td>
-</tr>
-</table>
-</td>
-<td><div style="border:solid 1px;height:300px;overflow-y:scroll;">
+?></td></tr></table></td><td>
+<div style="border:solid 1px;height:300px;overflow-y:scroll;">
 	<?php
 	$selectproductid="";
 	if(isset($selectproduct))
@@ -268,14 +343,19 @@ foreach($producttype as $key)
 		$selectproductid=$key->product_id;
 		
 	}
+
 	foreach($productdetails as $key)
 	{	
 		  $ischecked="";
+		  $active = "inactive";
 		  if(in_array($key->productid,explode(',',$selectproductid)))
-		  $ischecked="checked";
+		   {
+		   $ischecked="checked";
+		   $active = "active";
+		   }
 		  echo'<div style="float:left;">
 		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage[]" '.$ischecked.'/>
-		 <img class = "inactive" src ='.$key->link.' height="100px" width="100px" /></div>';
+		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" />&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "No products found!";
@@ -289,3 +369,12 @@ foreach($producttype as $key)
 <input type="hidden" value="<?php echo $currentroomid;?>" id="currentroomid" name="currentroomid">
 <?php echo form_close(); ?>
 </div>
+<script>
+ $(".cbox").hide();
+
+$(".inactive, .active").click(function(){
+$(this).toggleClass('active');
+var checkbox = $(this).parent().find('.cbox');
+		checkbox.prop('checked',!checkbox[0].checked);
+});
+</script>

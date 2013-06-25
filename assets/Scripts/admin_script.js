@@ -132,9 +132,6 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
                       $("#ShowMaterialfilter").append('<li id="' + val.material_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.material+'\','+filterid+','+val.material_id+')">' + val.material + '</li>');
                       else if(filterid==4)
                       $("#ShowTypefilter").append('<li id="' + val.type_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.type+'\','+filterid+','+val.type_id+')">' + val.type + '</li>');
-                      
-                      
-		  
               
               }); 
                       if(data=="")
@@ -179,21 +176,20 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
 	  
 	 if(productimage=="")
 	 {
+		
 		 
 		  $("#div_show_error_message").html('<p>*Select at least one product:</p>');
 	 }  
 	 else
 	 {
+		   $("#hidproductsearch").val("SaveSelected");
 		   $("#productid").val(productimage);
 	       $("#saveproduct").submit();
      }
   });
   $("#searchproductname").click(function()
   {
-	  	 /* $("#ascproductid").val(" where product_name like '%"+$("#productsearchbyname").val()+"%'");
-          $("#saveproduct").submit();
-         */
- $("#hidproductsearch").val("search");
+   $("#hidproductsearch").val("search");
    
    var producttypeid="";
    var productprice="";
@@ -224,35 +220,64 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
   })
   
   $("#ascproduct").click(function(){
-	  
-	           var buyarea ="";
-	
-	            $('input[name="productcheck[]"]:checked').each(function(i,e)
-	            {
-                  
-                  if(buyarea=="")
-                  {
-		            buyarea=e.value;
-		    
-	              }
-	              else
-	              {
-		            buyarea=buyarea+","+e.value;
-	              }
-			  })
-           if(buyarea!="")
+ var is_sort=false;
+  var ascproducttypecheck="";
+  var ascproductcolortypecheck="";
+  var ascproductmaterialtypecheck="";
+  var ascproductstylecheck="";
+           $('input[name="producttypecheck[]"]:checked').each(function(i,e)
            {
-			  buyarea=" order by "+buyarea+" asc";
-	         $("#ascproductid").val(buyarea);
-	         $("#hidproductsearch").val("sort");         
-	         $("#saveproduct").submit();
-	       
-           }
-  
+			  is_sort=true;
+			  if(ascproducttypecheck=="")
+			   ascproducttypecheck=e.value;
+			   else
+			   ascproducttypecheck=ascproducttypecheck+','+e.value;
+			   
+		   })
+           $('input[name="productcolortypecheck[]"]:checked').each(function(i,e)
+           {
+               is_sort=true;
+               if(ascproductcolortypecheck=="")
+			   ascproductcolortypecheck=e.value;
+			   else
+			   ascproductcolortypecheck=ascproductcolortypecheck+','+e.value;
+			   
+			   
+			   
+		   })
+		   $('input[name="productmaterialtypecheck[]"]:checked').each(function(i,e)
+           {
+			   is_sort=true;
+               if(ascproductmaterialtypecheck=="")
+			   ascproductmaterialtypecheck=e.value;
+			   else
+			   ascproductmaterialtypecheck=ascproductmaterialtypecheck+','+e.value;
+		 })
+		   $('input[name="productstylecheck[]"]:checked').each(function(i,e)
+           {
+			   is_sort=true;
+			   if(ascproductstylecheck=="")
+			   ascproductstylecheck=e.value;
+			   else
+			   ascproductstylecheck=ascproductstylecheck+','+e.value;
+			   
+			   
+		   })
+		
+		$("#hidproducttypecheck").val(ascproducttypecheck);
+		$("#hidproductcolortypecheck").val(ascproductcolortypecheck);
+		$("#hidproductmaterialtypecheck").val(ascproductmaterialtypecheck);
+		$("#hidproductstylecheck").val(ascproductstylecheck);
+		
+		  if(is_sort)
+		  { 
+		  $("#hidproductsearch").val("sort");
+          $("#saveproduct").submit();
+          }
   
 });
-
-$("#savecurrentproduct").click(function(){
+$("#savecurrentproduct").click(function()
+{
 	
 	$("#producterrormessage").html("");
     $(".showerror").remove();

@@ -22,6 +22,10 @@
               <li><a id = "aboutlink" href="#">About</a></li>
               <li><a <a id = "contlink"href="#contact">Contact</a></li>
             </ul>
+			<ul class = "nav pull-right white_text">
+			
+			<li><a class = "white_text sanslight" href = "<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a></li>
+			</ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>

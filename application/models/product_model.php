@@ -12,25 +12,25 @@ class Product_model extends CI_Model
   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_designs(user_id int(10) NOT NULL,
 room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(100) NOT NULL)");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,link varchar(200) NOT NULL,
+  $this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,link varchar(200) NOT NULL,
 product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_style_id varchar(100) NOT NULL,
 description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(100) NOT NULL,PRIMARY KEY(productid))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
+  $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_type(type_id int(10) NOT NULL AUTO_INCREMENT,type varchar(50) NOT NULL,PRIMARY KEY(type_id))");
+  $this->db->query("CREATE TABLE IF NOT EXISTS product_type(type_id int(10) NOT NULL AUTO_INCREMENT,type varchar(50) NOT NULL,PRIMARY KEY(type_id))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_colors(color_id int(10) NOT NULL AUTO_INCREMENT,color varchar(50) NOT NULL,PRIMARY KEY(color_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_colors(color_id int(10) NOT NULL AUTO_INCREMENT,color varchar(50) NOT NULL,PRIMARY KEY(color_id))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_material(material_id int(10) NOT NULL AUTO_INCREMENT,material varchar(100) NOT NULL,PRIMARY KEY(material_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_material(material_id int(10) NOT NULL AUTO_INCREMENT,material varchar(100) NOT NULL,PRIMARY KEY(material_id))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_style(style_id int(10) NOT NULL AUTO_INCREMENT,style varchar(100) NOT NULL,PRIMARY KEY(style_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_style(style_id int(10) NOT NULL AUTO_INCREMENT,style varchar(100) NOT NULL,PRIMARY KEY(style_id))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NOT NULL,
+ $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NOT NULL,
 phone_number varchar(50) NOT NULL,
 contact varchar(100) NOT NULL,website_link varchar(100) NOT NULL, PRIMARY KEY(vendor_id))");
 
-$this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
 
 
@@ -39,6 +39,7 @@ timestamp timestamp NOT NULL)");
  //-----For Product Details 
  function get_all_product($orderby=null)
   {	    
+	
 		$query=$this->db->query("select *from products ".$orderby."");
 		return $query->result();; 
   }
@@ -167,60 +168,154 @@ function insert_image_link_with_product_id($product_id,$link_array)
 }
 function search_product($product_name=null,$search_type=null,$search_price=null)
 {
-	
-	if($search_type!="")
+	$search_type=trim($search_type);
+	if(!empty($search_type))
 	{
-	  $this->db->like('product_type_id',$search_type);
-    }
-   
-		  //Here 1 is High price 2 is Moderate price 3 is Low price.
-         //High price(>=1000) Moderate price(>=500 and <1000) Low price(<100)
-         
+	   $search_type=explode(',',$search_type);
+	   $search_type_id="";
+	  foreach($search_type as $key=>$value)
+	  {
+	    $value=$value.',';
+	    if($search_type_id=="")	
+	    {
+	    $this->db->like('product_type_id',$value);
+        $search_type_id=1;
+        }
+	    else
+	    {
+	    $this->db->or_like('product_type_id', $value);
+        }
+	  }
+   }    
 	$this->db->like('product_name', $product_name); 
 	switch ($search_price) 
 	{
          case "1,2,3":
          $num=0;
-         $this->db->where('price','>'.$num); 
+         $this->db->where('price >',$num); 
          break;
          case "1,2":
          $num=500.00;
-         $this->db->where('price','>='.$num); 
+         $this->db->where('price >=',$num); 
          break;
          case "2,3":
          $num=500;
-         $this->db->where('price','<'.$num); 
+         $this->db->where('price <',$num); 
          break;
          case "1,3":
          $num=100;
-         $this->db->where('price','<'.$num);
+         $this->db->where('price <',$num);
          $num=1000;
-         $this->db->where('price','>='.$num); 
+         $this->db->or_where('price >=',$num); 
          break;
          case "1":
          $num=1000.00;
-         $this->db->where('price','>='.$num);
+         $this->db->where('price >=',$num);
          
          break;
          case "2":
          $num=500;
-         $this->db->where('price','>='.$num);
-          $num=1000;
-         $this->db->where('price','<'.$num);
+         $this->db->where('price >=',$num);
+         $num=1000;
+         $this->db->where('price <',$num);
          break;
          case "3":
          $num=100;
-         $this->db->where('price','<'.$num);
+         $this->db->where('price <',$num);
          break;
 }
-	    
-	    
-	    
-	   
-	
-	
 	$query=$this->db->get('products');
+	//echo $this->db->last_query();
+	//die();
 	return $query->result();
+}
+
+function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck)
+{
+	$_like="";
+	$_not_like="";
+	if(!empty($producttypecheck))
+	{
+		$producttypecheck=explode(',',$producttypecheck);
+	   foreach($producttypecheck as $key=>$value)	
+		{
+			$value=$value.',';
+			if($_like=="")
+			{
+			$_like=" product_type_id like '%".$value."%'";
+		    $_not_like=" product_type_id not like '%".$value."%'";
+		    }
+			else
+			{
+			$_like=$_like." or product_style_id like '%".$value."%'";
+		    $_not_like=$_not_like." or product_style_id not like '%".$value."%'";
+		    }
+		}
+		
+	}
+	if(!empty($productstylecheck))
+	{
+		
+		  $productstylecheck=explode(',',$productstylecheck);
+	   foreach($productstylecheck as $key=>$value)	
+		{
+			$value=$value.',';
+			if($_like=="")
+			{
+			$_like=" product_style_id like '%".$value."%'";
+		    $_not_like=" product_style_id not like '%".$value."%'";
+		    }
+			else
+			{
+			$_like=$_like." or product_style_id like '%".$value."%'";
+		    $_not_like=$_not_like." or product_style_id not like '%".$value."%'";
+		    }
+		}
+	}
+	if(!empty($productmaterialtypecheck))
+	{
+		
+		  $productmaterialtypecheck=explode(',',$productmaterialtypecheck);
+	   foreach($productmaterialtypecheck as $key=>$value)	
+		{
+			$value=$value.',';
+			if($_like=="")
+			{
+			$_like=" product_material_id like '%".$value."%'";
+		    $_not_like=" product_material_id not like '%".$value."%'";
+		    }
+			else
+			{
+			$_like=$_like." or product_material_id like '%".$value."%'";
+		    $_not_like=$_not_like." or product_material_id not like '%".$value."%'";
+		    }
+		}
+	}
+	if(!empty($productcolortypecheck))
+	{
+
+	   $productcolortypecheck=explode(',',$productcolortypecheck);
+	   foreach($productcolortypecheck as $key=>$value)	
+		{
+			$value=$value.',';
+			if($_like=="")
+			{
+		
+			$_like=" product_color_id like '%".$value."%'";
+		    $_not_like=" product_color_id not like '%".$value."%'";
+		    }
+			else
+			{
+			$_like=$_like." or product_color_id like '%".$value."%'";
+		    $_not_like=$_not_like." or product_color_id like '%".$value."%'";
+		    }
+		}
+	}
+$query=$this->db->query("select *from products where ".$_like." 
+union
+select *from products where ".$_not_like."");	
+
+return $query->result();	
 	
 }
 function product_type()
@@ -229,7 +324,24 @@ function product_type()
 	return $query->result();
 	
 }
-
+function color_type()
+{
+    $query=$this->db->get('product_colors');
+	return $query->result();
+	
+}
+function product_material()
+{
+    $query=$this->db->get('product_material');
+	return $query->result();
+	
+}
+function product_style()
+{
+    $query=$this->db->get('product_style');
+	return $query->result();
+	
+}
 }
 
 ?>

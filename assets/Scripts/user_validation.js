@@ -56,16 +56,16 @@ $(document).ready(function()
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter zip:</p>');
         e_value=0;    
 	}
-	if(($("#update_facebook").val()==""))
-    {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Facebook:</p>');
-        e_value=0;    
-	}
-	if(($("#update_pinterest").val()==""))
-    {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Pinterest:</p>');
-        e_value=0;    
-	}
+	// if(($("#update_facebook").val()==""))
+    // {
+        // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Facebook:</p>');
+        // e_value=0;    
+	// }
+	// if(($("#update_pinterest").val()==""))
+    // {
+        // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Pinterest:</p>');
+        // e_value=0;    
+	// }
 	 if(($("#update_password").val()=="") && ischack==true)
     {
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter password:</p>');
@@ -92,16 +92,16 @@ $(document).ready(function()
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid email address:</p>');
         e_value=0;    
     }
-    if(($("#update_facebook").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#update_facebook").val()))==false)
-    {
-       $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid Url in facebook:</p>');
-       e_value=0;
-	}
-	if(($("#update_pinterest").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#update_pinterest").val()))==false)
-    {
-       $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid Url in pinterest:</p>');
-       e_value=0;
-	}
+    // if(($("#update_facebook").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#update_facebook").val()))==false)
+    // {
+       // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid Url in facebook:</p>');
+       // e_value=0;
+	// }
+	// if(($("#update_pinterest").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#update_pinterest").val()))==false)
+    // {
+       // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid Url in pinterest:</p>');
+       // e_value=0;
+	// }
     if(e_value==1)
     {
 
@@ -128,11 +128,11 @@ $("#update_room").click(function()
     var exts=new Array('jpg','png','gif','jpeg','pjpeg');
    $("#div_show_error_message").html(''); 
    e_value=1;
-  if($("#update_budget").val().trim()=="")
-    {
-     $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room budget:</p>'); 
-        e_value=0;
-    }
+  // if($("#update_budget").val().trim()=="")
+    // {
+     // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room budget:</p>'); 
+        // e_value=0;
+    // }
     if($("#update_width").val().trim()=="")
     {
     $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width:</p>');
@@ -176,11 +176,11 @@ $("#update_room").click(function()
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter room width in numeric format:</p>');
         e_value=0;
     }
-    if($("#update_budget").val().trim()!="" && !$.isNumeric($("#update_budget").val()))
-    {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter budget in numeric format:</p>');
-        e_value=0;
-    }
+    // if($("#update_budget").val().trim()!="" && !$.isNumeric($("#update_budget").val()))
+    // {
+        // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter budget in numeric format:</p>');
+        // e_value=0;
+    // }
    if(e_value==1)
    { 
     

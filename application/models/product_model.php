@@ -68,40 +68,39 @@ timestamp timestamp NOT NULL)");
       'filename'=>$filename
       );
       $this->db->update('user_room_designs', $data);    
-   }
+
+ }
  }
 
 function save_product_associated_with_room($roomid=null,$productid=null)
 {
 	
-      $this->db->where('room_id',$roomid);
       
-      if($productid=="")
-      {
-        $query=$this->db->get('product_room_mapping');
+   if($productid=="")
+   {
+  $this->db->select('GROUP_CONCAT(product_id) as product_id');        
+  $this->db->where('room_id',$roomid);  
+ $query=$this->db->get('product_room_mapping');
 	    return $query->result();
-      }
-    else
-    {
-      if($this->db->count_all_results('product_room_mapping')==0)
+   }
+   else
+   {
+     
+      $this->db->where('room_id',$roomid);
+      if($this->db->count_all_results('product_room_mapping')!=0)
       {
-      
-       $data = array(
+      $this->db->delete('product_room_mapping', array('room_id' => $roomid)); 
+       
+      }
+      foreach(explode(',',$productid) as $key=>$value)
+       {
+        $data = array(
          'room_id' => $roomid ,
-         'product_id' => $productid 
+         'product_id' => $value 
         );
         
          $this->db->insert('product_room_mapping', $data);    
-     }
-     else
-     {
-	  
-	   $data = array(
-    'product_id' => $productid 
-        );
-	   
-	   $this->db->update('product_room_mapping', $data);    
-    }
+       } 
   }
 	
 } 
@@ -166,29 +165,39 @@ function insert_image_link_with_product_id($product_id,$link_array)
 	}
 
 }
-function search_product($product_name=null,$search_type=null,$search_price=null)
+
+
+function search_product($product_name=null,$search_type=null,$search_price=null,$search_color=null,$search_style=null,$search_material=null)
 {
-	$search_type=trim($search_type);
+	
 	if(!empty($search_type))
 	{
-	   $search_type=explode(',',$search_type);
-	   $search_type_id="";
-	  foreach($search_type as $key=>$value)
-	  {
-	    $value=$value.',';
-	    if($search_type_id=="")	
-	    {
-	    $this->db->like('product_type_id',$value);
-        $search_type_id=1;
+		$search_type=','.$search_type.',';
+		$this->db->like("concat(',',product_type_id)",$search_type);
+	}
+
+       	
+	if(!empty($search_style))
+	{
+	   $search_style=','.$search_style.',';
+	   $this->db->like("concat(',',product_style_id)",$search_style);
         }
-	    else
-	    {
-	    $this->db->or_like('product_type_id', $value);
+
+        if(!empty($search_material))
+	{
+	  $search_material=','.$search_material.',';
+	  $this->db->like("concat(',',product_material_id)",$search_material);
+	  
         }
-	  }
-   }    
-	$this->db->like('product_name', $product_name); 
-	switch ($search_price) 
+        if(!empty($search_color))
+	{
+	  $search_color=','.$search_color.',';
+	  $this->db->like("concat(',',product_color_id)",$search_color);
+	}
+     
+    $this->db->like('product_name', $product_name); 
+	
+      switch ($search_price) 
 	{
          case "1,2,3":
          $num=0;
@@ -211,7 +220,6 @@ function search_product($product_name=null,$search_type=null,$search_price=null)
          case "1":
          $num=1000.00;
          $this->db->where('price >=',$num);
-         
          break;
          case "2":
          $num=500;
@@ -224,97 +232,100 @@ function search_product($product_name=null,$search_type=null,$search_price=null)
          $this->db->where('price <',$num);
          break;
 }
-	$query=$this->db->get('products');
-	//echo $this->db->last_query();
-	//die();
-	return $query->result();
+       $this->db->distinct();
+	
+       $query=$this->db->from('products','product_room_mapping');
+	
+       $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id');
+       
+       $this->db->group_by('product_room_mapping.product_id');
+       
+       $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
+       
+       $query = $this->db->get();	
+ 
+       return $query->result();
 }
 
-function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck)
+
+function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
 {
-	$_like="";
-	$_not_like="";
+	$_like='';
+	
+         $_typelike='';
+	
+	$_stylelike='';
+	
+	$_materiallike='';
+	
+	$_colorlike='';
+	
+         $_likeprice='';
+    
+	
 	if(!empty($producttypecheck))
 	{
-		$producttypecheck=explode(',',$producttypecheck);
-	   foreach($producttypecheck as $key=>$value)	
-		{
-			$value=$value.',';
-			if($_like=="")
-			{
-			$_like=" product_type_id like '%".$value."%'";
-		    $_not_like=" product_type_id not like '%".$value."%'";
-		    }
-			else
-			{
-			$_like=$_like." or product_style_id like '%".$value."%'";
-		    $_not_like=$_not_like." or product_style_id not like '%".$value."%'";
-		    }
-		}
 		
+           if($_like=='')
+           {        
+           $_typelike=" concat(',',product_type_id) like '%".$producttypecheck."%'";	 
+           $_like=1;
+           }
 	}
 	if(!empty($productstylecheck))
 	{
 		
-		  $productstylecheck=explode(',',$productstylecheck);
-	   foreach($productstylecheck as $key=>$value)	
-		{
-			$value=$value.',';
-			if($_like=="")
-			{
-			$_like=" product_style_id like '%".$value."%'";
-		    $_not_like=" product_style_id not like '%".$value."%'";
-		    }
-			else
-			{
-			$_like=$_like." or product_style_id like '%".$value."%'";
-		    $_not_like=$_not_like." or product_style_id not like '%".$value."%'";
-		    }
-		}
+           $_stylelike=($_like==""?" concat(',',product_style_id) like '%".$productstylecheck."%'":" and concat(',',product_style_id) like '%".$productstylecheck."%'");
+ 
 	}
 	if(!empty($productmaterialtypecheck))
 	{
 		
-		  $productmaterialtypecheck=explode(',',$productmaterialtypecheck);
-	   foreach($productmaterialtypecheck as $key=>$value)	
-		{
-			$value=$value.',';
-			if($_like=="")
-			{
-			$_like=" product_material_id like '%".$value."%'";
-		    $_not_like=" product_material_id not like '%".$value."%'";
-		    }
-			else
-			{
-			$_like=$_like." or product_material_id like '%".$value."%'";
-		    $_not_like=$_not_like." or product_material_id not like '%".$value."%'";
-		    }
-		}
+	$_materiallike=($_like==""?" concat(',',product_material_id) like '%".$productmaterialtypecheck."%'":" and concat(',',product_material_id) like '%".$productmaterialtypecheck."%'");
+		 
 	}
 	if(!empty($productcolortypecheck))
 	{
 
-	   $productcolortypecheck=explode(',',$productcolortypecheck);
-	   foreach($productcolortypecheck as $key=>$value)	
-		{
-			$value=$value.',';
-			if($_like=="")
-			{
-		
-			$_like=" product_color_id like '%".$value."%'";
-		    $_not_like=" product_color_id not like '%".$value."%'";
-		    }
-			else
-			{
-			$_like=$_like." or product_color_id like '%".$value."%'";
-		    $_not_like=$_not_like." or product_color_id like '%".$value."%'";
-		    }
-		}
-	}
-$query=$this->db->query("select *from products where ".$_like." 
-union
-select *from products where ".$_not_like."");	
+$_colorlike=($_like==""?" concat(',',product_color_id) like '%".$productcolortypecheck."%'":" and concat(',',product_color_id) like '%".$productcolortypecheck."%'");
 
+	}
+	
+	switch ($searchoptionforprice) 
+	{
+         case "1,2,3":
+         $num=0;
+         $_likeprice=   ($_like==""? " price>".$num."":" and price>".$num."");
+         break;
+         case "1,2":
+         $num=500.00;
+         $_likeprice=   ($_like==""? " price>=".$num."":" and price>=".$num."");
+         break;
+         case "2,3":
+         $num=500;
+         $_likeprice=   ($_like==""? " price<".$num."":" and price<".$num."");
+         break;
+         case "1,3":
+         $_likeprice=   ($_like==""? " price<100 and price>=1000":" and price<100 and price>=1000");
+         break;
+         case "1":
+         $_likeprice=   ($_like==""? "  price>=1000":" and price>=1000");
+         break;
+         case "2":
+         $_likeprice=   ($_like==""? " price>=500 and price<1000":" and price>=500 and price<1000");
+         break;
+         case "3":
+         $_likeprice=   ($_like==""? " price<100 ":" and price<100");
+         break;
+     }
+	
+ 
+
+$query=$this->db->query("select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
+UNION
+select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where productid not in (select concat(',',productid)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
+
+	
 return $query->result();	
 	
 }
@@ -341,6 +352,13 @@ function product_style()
     $query=$this->db->get('product_style');
 	return $query->result();
 	
+}
+function product_details_by_id($id)
+{
+	
+	$this->db->where('productid',$id);
+	$query=$this->db->get('products');
+	return $query->result();
 }
 }
 

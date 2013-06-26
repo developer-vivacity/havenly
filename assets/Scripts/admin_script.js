@@ -4,7 +4,7 @@ var $p_value=1;
 $(document).ready(function()
 {
 
-    $(".adminmain").hide();
+   $(".adminmain").hide();
 	if($("#currentdisplay").val()=="none")
 	 $("#CurrentUser").show();
 	 else
@@ -100,56 +100,55 @@ $('input[name$="retail_option"]').click(function()
 		    $('#rentprise').removeAttr('readonly')
 		    }
 		})
+
+
+$("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keypress(function(event)
+{
+                                      $("#ShowStylefilter").html("");
+				      $("#ShowColorfilter").html("");
+				      $("#ShowMaterialfilter").html("");
+				      $("#ShowTypefilter").html("");	 
+});
+
 		
  var globalkey; 
 $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event)
 {
 	
-	$("#"+this.id+"_error").remove();
-	
-	 globalkey=-1;
-	
+	   $("#"+this.id+"_error").remove();
+	   $("#ShowStylefilter").html("");
+     
+     
+ var filterid= (this.id=="Stylefilter" ? 1 :(this.id=="Colorfilter"?2:(this.id=="Materialfilter"?3:(this.id=="Typefilter"?4:0))));
+
+if(this.value.trim()!="")
+var flage= (filterid==1?$("#ShowStylefilter").append('<li style="list-style-type: none;" id="styleimgajax"><img src="../../../assets/Images/ajax-loader.gif"/></li>'):(filterid==2? $("#ShowColorfilter").append('<li style="list-style-type: none;" id="colorimgajax"><img src="../../../assets/Images/ajax-loader.gif"/></li>'):(filterid==3?$("#ShowMaterialfilter").append('<li style="list-style-type: none;" id="materialimgajax"><img src="../../../assets/Images/ajax-loader.gif"/></li>'):(filterid==4?$("#ShowTypefilter").append('<li style="list-style-type: none;" id="typeimgajax"><img src="../../../assets/Images/ajax-loader.gif"/></li>'):"")))); 
+
+ if(this.value.trim()!="")
+ $.getJSON($("#siteurl").val()+'index.php/Admin/site/search_text_for_ajax/'+this.value+'/'+filterid, function(data) {
+		
+
 				      $("#ShowStylefilter").html("");
 				      $("#ShowColorfilter").html("");
 				      $("#ShowMaterialfilter").html("");
-				      $("#ShowTypefilter").html("");	  
+				      $("#ShowTypefilter").html("");	 
+
+   
 	 
-	  $("#ShowStylefilter").html("");
-      var filterid= (this.id=="Stylefilter" ? 1 :(this.id=="Colorfilter"?2:(this.id=="Materialfilter"?3:(this.id=="Typefilter"?4:0))));
-     
-      $.getJSON($("#siteurl").val()+'index.php/Admin/site/search_text_for_ajax/'+this.value+'/'+filterid, function(data) {
-		
-	  if(globalkey==-1)
       $.each(data, function(key, val) 
 			  {
-				 
-			          globalkey=key;
-                      if(filterid==1)    
-                      $("#ShowStylefilter").append('<li id="' + val.style_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.style+'\','+filterid+','+val.style_id+')">' + val.style + '</li>');
-                      else if(filterid==2)				     
-                      $("#ShowColorfilter").append('<li id="' + val.color_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.color+'\','+filterid+','+val.color_id+')">' + val.color + '</li>');
-                      else if(filterid==3)
-                      $("#ShowMaterialfilter").append('<li id="' + val.material_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.material+'\','+filterid+','+val.material_id+')">' + val.material + '</li>');
-                      else if(filterid==4)
-                      $("#ShowTypefilter").append('<li id="' + val.type_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.type+'\','+filterid+','+val.type_id+')">' + val.type + '</li>');
+			 
+		       globalkey=key;
+                    
+var flage= (filterid==1?$("#ShowStylefilter").append('<li id="' + val.style_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.style+'\','+filterid+','+val.style_id+')">' + val.style + '</li>'):(filterid==2? $("#ShowColorfilter").append('<li id="' + val.color_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.color+'\','+filterid+','+val.color_id+')">' + val.color + '</li>'):(filterid==3?$("#ShowMaterialfilter").append('<li id="' + val.material_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.material+'\','+filterid+','+val.material_id+')">' + val.material + '</li>'):(filterid==4?$("#ShowTypefilter").append('<li id="' + val.type_id + '"  style="list-style-type: none;" onclick="filtercheck(\''+val.type+'\','+filterid+','+val.type_id+')">' + val.type + '</li>'):"")))); 
               
               }); 
                       if(data=="")
                       {
-					 
-					  $("#ShowStylefilter").html("");
-				      $("#ShowColorfilter").html("");
-				      $("#ShowMaterialfilter").html("");
-				      $("#ShowTypefilter").html("");	 
-                      if(filterid==1)    
-                      $("#ShowStylefilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>');		  
-				      else if(filterid==2)
-				      $("#ShowColorfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>');		  
-				      else if(filterid==3)
-				      $("#ShowMaterialfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>');
-				      else if(filterid==4)
-				      $("#ShowTypefilter").append('<li  style="list-style-type: none;"> The type does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>');
-				      }
+			   
+var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==2? $("#ShowColorfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==3?$("#ShowMaterialfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==4?$("#ShowTypefilter").append('<li  style="list-style-type: none;"> The type does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):""))));                       
+
+                 }
 			  })
 
   
@@ -193,7 +192,10 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
    
    var producttypeid="";
    var productprice="";
-    
+   var productcolor="";
+   var productstyle="";
+   var productmaterial=""; 
+
   $('input[name="searchproducttype[]"]:checked').each(function(i,e)
   {
 	  if(producttypeid=="")
@@ -214,7 +216,37 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
       productprice=productprice+','+e.value;
   });
   $("#searchoptionforprice").val(productprice);
-  
+ 
+ 
+ $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
+  {
+	  if(productstyle=="")
+	  productstyle=e.value;
+      else
+      productstyle=productstyle+','+e.value;
+  });
+  $("#searchoptionforstyle").val(productstyle);
+
+$('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
+  {
+	  if(productmaterial=="")
+	  productmaterial=e.value;
+      else
+      productmaterial=productmaterial+','+e.value;
+  });
+
+ $("#searchoptionformaterial").val(productmaterial);
+ 
+
+$('input[name="searchproductcolor[]"]:checked').each(function(i,e)
+  {
+	  if(productcolor=="")
+	  productcolor=e.value;
+      else
+      productcolor=productcolor+','+e.value;
+  });
+  $("#searchoptionforcolor").val(productcolor);
+
   $("#saveproduct").submit();
   
   })
@@ -225,6 +257,7 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
   var ascproductcolortypecheck="";
   var ascproductmaterialtypecheck="";
   var ascproductstylecheck="";
+  var ascproductpricecheck="";
            $('input[name="producttypecheck[]"]:checked').each(function(i,e)
            {
 			  is_sort=true;
@@ -263,7 +296,21 @@ $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keyup(function(event
 			   
 			   
 		   })
-		
+		   //
+		   
+		   
+		   $('input[name="ascprice[]"]:checked').each(function(i,e)
+           {
+			   is_sort=true;
+			   if(ascproductpricecheck=="")
+			   ascproductpricecheck=e.value;
+			   else
+			   ascproductpricecheck=ascproductpricecheck+','+e.value;
+			   
+			   
+		   })
+		   
+		$("#searchoptionforprice").val(ascproductpricecheck);
 		$("#hidproducttypecheck").val(ascproducttypecheck);
 		$("#hidproductcolortypecheck").val(ascproductcolortypecheck);
 		$("#hidproductmaterialtypecheck").val(ascproductmaterialtypecheck);
@@ -595,4 +642,40 @@ function removenewitem(stridforremove,id,holdvalue,matchvalue)
     
 	$("#"+holdvalue).val(IdArray.toString());
 	$("#"+stridforremove+id).remove();
+}
+function display_div(id)
+{
+	var globalkey="yes";
+	
+	$(".productdetailsdiv").html(" ");
+	
+	$(".productdetailsdiv").remove();
+
+	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 150px"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
+
+ $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
+  {
+	  
+	     if(globalkey=="yes")
+           {	  
+               $.each(data, function(key, val) 
+			   {
+$("#productdetailsdiv_"+id+"").html(" ");
+			    
+			    $("#productdetailsdiv_"+id+"").append('<p>Name:'+val.product_name+'</p><p>Price:'+val.price+'</p><p>Dimensions:'+val.dimensions+'</p>');	  
+				globalkey="no";	  
+			   })
+$(".productdetailsdiv").show();
+     }
+   })
+	
+}
+
+function remove_display_div()
+{
+	$(".productdetailsdiv").html(" ");
+	$(".productdetailsdiv").hide();
+	$(".productdetailsdiv").remove();
+	
+	
 }

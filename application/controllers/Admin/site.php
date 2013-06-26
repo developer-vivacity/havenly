@@ -157,12 +157,12 @@ function currentroomwithuser($room_id=null)
 	 
 	 $data["productstyle"]=$this->product_model->product_style();
 	 
-	
+	//alert("color=="+$("#searchoptionforcolor").val()+"--type---"+ $("#searchoptionfortype").val()+"===price====="+$("#searchoptionforprice").val()+"---style---"+$("#searchoptionforstyle").val()+"===material===="+$("#searchoptionformaterial").val());
 	 
 	 if($this->input->post("hidproductsearch")=="search")
-	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"));
+	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
      else if($this->input->post("hidproductsearch")=="sort")
-     $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"));
+     $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"),$this->input->post("searchoptionforprice"));
 	 else
 	 $data["productdetails"]=$this->product_model->get_all_product($orderby);
 	 
@@ -350,7 +350,7 @@ function assign_product()
 {
 	
  
-    $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$this->input->post("productid"));	
+        $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$this->input->post("productid"));	
 	$this->currentroomwithuser($this->input->post("currentroomid"));
 	
 }
@@ -457,5 +457,13 @@ function search_text_for_ajax($text=null,$id=null)
         echo json_encode($data['filtertext']);
 	
 }
+
+function product_details_on_hover($id=null)
+{
+   	$data['filtertext']=$this->product_model->product_details_by_id($id);
+   	echo json_encode($data['filtertext']);
+	
+}
+
 
 }

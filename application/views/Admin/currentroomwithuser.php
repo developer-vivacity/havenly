@@ -84,6 +84,8 @@ $choosebyitems="";
 $buyitems=array();
 $checktitems=array();
 $currentroomid="";
+$otherlinkshow=($productshow=='block'?'none':'block');
+
 foreach($roomwithuser as $key)
 {
     
@@ -100,7 +102,7 @@ foreach($roomwithuser as $key)
 	
 	
 	
-	echo '<table id="CurrentUser" class="adminmain">';
+	echo '<table id="CurrentUser" class="adminmain" style="display:'.$otherlinkshow.'">';
 	
 	echo '<tr><td>User Name</td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 	
@@ -200,7 +202,7 @@ endforeach;
 	$attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
     ?>
-<table width="800px">
+<table width="800px" style="font-size:14px;">
 <tr><td width="300px">Upload Design Overview</td>
 <td width="500px">
 	
@@ -213,7 +215,7 @@ endforeach;
     </div>
 </td></tr>
 </table>
-<table  width="1000px" border="1">
+<table  width="100%" border="0" style="font-size:13px;">
 <tr><td width="300px" >
 Select Product Below:
 <br/>
@@ -226,7 +228,7 @@ Select Product Below:
 <b>Sortable by:</b>
 <table>
 <tr><td width="200px;">
-Product Type:
+&nbsp;&nbsp;Product Type:
 </td><td>
 <div>
 <?php
@@ -234,10 +236,11 @@ foreach($producttype as $key)
 echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" value="'.$key->type_id.'">'.$key->type.'</div>';
 ?>
 </div>
+
 </td>
 </tr>
-<tr><td colspan="2"><hr/></td></tr>
-<tr><td>Product Color:
+<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;Product Color:
 	</td>
      <td>
 <div>
@@ -248,8 +251,8 @@ echo '<div style="float:left;"><input type="checkbox" name="productcolortypechec
 </td>
 </tr>
 
-<tr><td colspan="2"><hr/></td></tr>
-<tr><td>Product Material:</td>
+<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;Product Material:</td>
 	<td>
 <?php
 foreach($productmaterialtype as $key)
@@ -259,9 +262,21 @@ echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypec
 
 </tr>
 
-<tr><td colspan="2"><hr/></td></tr>
+<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
 
-<tr><td>Product Style:</td>
+<tr><td>&nbsp;&nbsp;Product Price:</td><td>
+<div style="float:left;">
+<input type="checkbox" id="High1" name="ascprice[]" value="1"/>High</div>
+<div style="float:left;">
+<input type="checkbox" id="Moderate1" name="ascprice[]" value="2"/>Moderate</div>
+<div style="float:left;">
+<input type="checkbox" id="Low1" name="ascprice[]" value="3"/>Low
+</div>
+
+</td></tr>
+
+<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;Product Style:</td>
 <td>
 <?php
 foreach($productstyle as $key)
@@ -281,32 +296,55 @@ echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]"
 
 </td>
 </tr>
-<tr><td colspan="2">&nbsp;&nbsp;
-
+<tr>
+	<td colspan="2">&nbsp;&nbsp;
 </td></tr>
 <tr>
-	
-<td valign="top">
-	
-<table width="300px;">
-<tr><td colspan="2">
+<td valign="top" width="550px;">
+<table width="100%">
+<tr><td colspan="5" style="vertical-align:top;">
 <input type="textbox" name="productsearchbyname" id="productsearchbyname"/>
 <input type="button" value="Search" id="searchproductname"/>
+
 <input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
+
 <input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
 <input type="hidden"  name="searchoptionforprice" id="searchoptionforprice" />
+<input type="hidden"  name="searchoptionforstyle" id="searchoptionforstyle" />
+<input type="hidden"  name="searchoptionforcolor" id="searchoptionforcolor" />
+<input type="hidden"  name="searchoptionformaterial" id="searchoptionformaterial" />
+<br/>
 </td></tr>
-<tr><td><b>Price</b></td><td><b>Type</b></td></tr>
+<tr><td width="100px">
+<h5>Price</h5></td><td width="100px"><h5>Type</h5></td><td width="100px"><h5>Product Style</h5></td><td width="100px"><h5>Product Color</h5></td><td width="100px"><h5>Product Material</h5></td></tr>
 <tr><td  style="vertical-align:top;">
 <input type="checkbox" id="High" name="searchprice[]" value="1"/>High<br/>
 <input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>Moderate<br/>
 <input type="checkbox" id="Low" name="searchprice[]" value="3"/>Low<br/>
 </td>
-<td>
+<td >
 <?php
 foreach($producttype as $key)
 {
     echo '<div><input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>'.$key->type.'</div>';	
+}
+?></td><td style="vertical-align:top;">
+<?php
+foreach($productstyle as $key)
+{
+    echo '<div><input type="checkbox" id="'.$key->style_id.'" name="searchproductstyle[]" value="'.$key->style_id.'"/>'.$key->style.'</div>';	
+}
+?>
+
+</td><td style="vertical-align:top;"><?php
+foreach($productcolortype as $key)
+{
+    echo '<div><input type="checkbox" id="'.$key->color_id.'" name="searchproductcolor[]" value="'.$key->color_id.'"/>'.$key->color.'</div>';	
+}
+?></td><td style="vertical-align:top;"><?php
+foreach($productmaterialtype as $key)
+{
+    echo '<div><input type="checkbox" id="'.$key->material_id.'" name="searchproductmaterial[]" value="'.$key->material_id.'"/>'.$key->material.'</div>';	
 }
 ?></td></tr></table></td><td>
 <div style="border:solid 1px;height:300px;overflow-y:scroll;">
@@ -328,9 +366,9 @@ foreach($producttype as $key)
 		   $ischecked="checked";
 		   $active = "active";
 		   }
-		  echo'<div style="float:left;">
-		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage[]" '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" />&nbsp;&nbsp;</div>';
+		  echo'<div style="float:left;width:150px;height:150px;">
+		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
+		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();"/>&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "No products found!";
@@ -342,6 +380,7 @@ foreach($producttype as $key)
 <input type="hidden" value="" id="ascproductid" name="ascproductid"/>
 <input type="hidden" value="" id="productid" name="productid"/>
 <input type="hidden" value="<?php echo $currentroomid;?>" id="currentroomid" name="currentroomid">
+
 <?php echo form_close(); ?>
 </div>
 <script>

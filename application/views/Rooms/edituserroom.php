@@ -5,27 +5,39 @@
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/user_validation.js")?>></script>
 
 
-<div class = "center bgcontainer"><BR>
-<div class = "seventy">
-<div style= "height:90px;">
-<table class = "left-align">
-<tr><td width = "78%">
-	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=90></a>
-</td>
-<?php
- 
- echo '<td><a class = "condensed black_text medium" href="#">&nbsp;&nbsp;DESIGNS&nbsp;&nbsp;</a></td>';
- 
- echo '<td><a class = "condensed black_text medium" href="'.base_url().'index.php/Users/site/logout/">&nbsp;&nbsp;LOG OUT</a></td>'; 
-?>
-</tr></table>
-</div>
-<BR><BR>
+<div class = "center chevron"><BR>
+<div class = "container">
 
+ <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <div class="container"> 
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
+              <li><a id = "servlink" href="<?php echo base_url().'/#services';?>">Services</a></li>
+              <li><a id = "pricelink" href="<?php echo base_url().'/#price'; ?>">Cost</a></li>
+			      <li><a id = "goodslink" href="<?php echo base_url().'/#goods';?>">Goods</a></li>
+              <li><a id = "aboutlink" href="#">About</a></li>
+              <li><a <a id = "contlink"href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+	  </div>
 
+<BR><BR><BR><BR>
 
-<div class = "padding left-align border white">
-<a class = "left-align condensed midsmall" href="<?php echo base_url().'index.php/Users/site/login/'?>"> &larr;&nbsp;BACK&nbsp;&nbsp;</a> <BR><BR>
+<div class = "span10 offset1 white border">
+<div class = "text-left offset1"><BR><BR>
+<a class = "condensed midsmall" href="<?php echo base_url().'index.php/Users/site/login/'?>"> &larr;&nbsp;BACK&nbsp;&nbsp;</a> <BR><BR></div>
+
+<div class = "span8 offset1">
 <?php
 $attributes = array('class' => 'updateform', 'id' => 'updateform','enctype' => 'multipart/form-data');
 echo form_open('Rooms/site/updateroominfo/',$attributes);
@@ -45,9 +57,9 @@ foreach($roomassociateduserid as $key)
    elseif($key->room_type=="LR")
    $LR="selected";
 ?>	
-<div class = "padding_small">
+
 <p class = "medium left-align sanslight">Edit Your Room Information:</p>	<hr class = "style">
-<table class = "sanslight midsmall left-align dark_gray_text">
+<table class = "sanslight midsmall text-left dark_gray_text">
 <tr width="100%"><td width: "30%">Room Type:</td>
 	<td width= "60%">
 
@@ -59,7 +71,7 @@ foreach($roomassociateduserid as $key)
 	
    
 	<tr><td>Budget:</td>
-	<td><input class = "sanslight small" type="textbox" value="<?php echo $key->budget;?>" id="update_budget" name="update_budget"/>
+	<td><input type="text" value="<?php echo $key->budget;?>" id="update_budget" name="update_budget"/>
 	</td></tr>
 	<tr><td>
 	Room Photo1:</td>
@@ -72,10 +84,10 @@ foreach($roomassociateduserid as $key)
 	
    <tr><td>
 			Width:</td>
-		  <td><input class = "sanslight small"  type="textbox" value="<?php echo $key->width;?>" name="update_width" id="update_width"/>
+		  <td><input class = "sanslight small"  type="text" value="<?php echo $key->width;?>" name="update_width" id="update_width"/>
 		  </td></tr>
 		  <tr><td>Height:</td>
-		  <td><input class = "sanslight small" type="textbox" value="<?php echo $key->height;?>" name="update_height" id="update_height"/>
+		  <td><input class = "sanslight small" type="text" value="<?php echo $key->height;?>" name="update_height" id="update_height"/>
 		  </td></tr>
 		  </table>
 	   
@@ -84,9 +96,9 @@ foreach($roomassociateduserid as $key)
 	}
 	
 ?>
-</div>
+
 <BR><BR>
-<div class = "padding_small left-align">
+
 	<p class = "sanslight medium">Style Pics:</p><hr class = "style">
 	<?php
 $colorpic=array();
@@ -137,7 +149,7 @@ foreach($userselectcolorstyle as $cskey)
 		}	
 		?>
     </div>
-		</div>
+	
 	<br/><br/>
 	 <div style="width:800px;float:left;display:none;" id="option_room">
 	 <?php
@@ -182,7 +194,7 @@ foreach($userselectcolorstyle as $cskey)
 		 }	
 	   ?>
    </div>
-
+<BR><BR>
 	<div ><BR>
 		<input type="button" value="update" id="update_room" class = "button3 medium condensed" name="update_room">	  
 	    </div>
@@ -191,9 +203,10 @@ foreach($userselectcolorstyle as $cskey)
 <input type="hidden" value="" id="holdcolor" name="holdcolor"/>
 	<?php echo form_close(); ?>
 		</div>
-	<div class = "push"></div>	
+	<div class = "push"><BR><BR></div>	
+
+	</div>		
 	</div>	
-		
 </form>		
 
 <script>
@@ -205,3 +218,6 @@ var checkbox = $(this).parent().find('.cbox');
 		checkbox.prop('checked',!checkbox[0].checked);
 });
 </script>
+	<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>	

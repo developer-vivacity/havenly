@@ -333,10 +333,7 @@
 	</p>
 	<div class = "push">
 	</div>
-<?php 
-	include(APPPATH.'/views/templates/footer.php');
-?>
-	
+
 	
 	<script>
 

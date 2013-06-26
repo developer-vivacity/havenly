@@ -3,20 +3,22 @@
 ?>
 <div class="navmenu">  
     <ul>  
-        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li>  
-			<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+      <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
+            <li><a href=<?php echo base_url('index.php/Users/site/pricing');?>>Pricing</a></li>  
+			<li><a href=<?php echo base_url('index.php/Users/site/products');?>>Goods</a></li>  
+        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>Log In</a></li>  
       </ul>  
   
 </div>  
 <div id = "howwework">
-<div class = "padding_left padding_small left-align middle inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
+<div class = "padding_left padding_small left-align middle inline logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
 <div class = "right middle">
-<a class = "button1 right-align inline condensed margin black_text midlarge" id="pull"> &#9776; </a>  
+<a class = "button1 right-align inline condensed margin black_text midlarge" id="pull2"> &#9776; </a>  
 <div class = "right_align inline middle padding_small"><BR>
 <ul class = "menu_bar midsmall white_text">
-	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
-	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>PRICING</li></a>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>about</li></a>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/pricing');?>>price</li></a>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/products');?>>goods</li></a>
 		<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
 </ul>
 		</div>
@@ -32,8 +34,8 @@ IT TAKES A LOT OF WORK TO GET YOUR ROOM RIGHT.  WE CAN HELP.</p><br><BR><BR></di
 You tell us about you.
 </p><br><BR>
 <p class = "sanslight seventy midsmall right-align space center">
-We hear about what you like, don't like<br> and the things you need on our survey.<br><br>  
-Then, one of our decorators gives<br> you a call to hear a little bit more.
+We hear about what you like, don't like and the things you need on our survey.<br><br>  
+Then, one of our decorators gives you a call to hear a little bit more.
 </p>
 </td>
 <td class = "half center"><img src = <?php echo base_url('assets/Images/survey.jpg');?> height= 250>
@@ -85,6 +87,8 @@ Select the items you love, and we send it all to you with one click, at the lowe
 </div>
 
 
+
+
 <div class = "horizontal center padding_small_top light_gray"><BR><BR>
 <p class = "seventy large center pink_text condensed">
 Try us out  <a class = "pink_text cursive" id= "startbutton2" href="#overlay"> here &rarr;</a></p><br>
@@ -115,7 +119,7 @@ Try us out  <a class = "pink_text cursive" id= "startbutton2" href="#overlay"> h
 <script>
 	
 $(document).ready(function(){
- $("#pull").on('click', function(){
+ $("#pull2").on('click', function(){
 	$(".navmenu ul").slideToggle();
 	
  

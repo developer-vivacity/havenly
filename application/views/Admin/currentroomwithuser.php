@@ -1,6 +1,13 @@
+<<<<<<< HEAD
+
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+=======
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 	?>
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
@@ -64,16 +71,25 @@
 
 
 </script>
+>>>>>>> 05a3e5aa67dafb3ee20bffa4c3c599c79f030100
 <?php 
+<<<<<<< HEAD
+ echo '<a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>';
+?>
+<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>|<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>|<a href="#currentref"  rel="currentref">Style Prefs</a>|<a href="#">Product and Design Response</a></p>
+=======
  echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
 echo '<br/>';
 echo '<br/>';
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
 ?>
 <p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>
 <br/>
 <br/>
 <?php
+
+//print_r($userroomdetails);
 
 $style_pics="";
 $color_pics="";
@@ -83,13 +99,15 @@ $otherroom_type="";
 $choosebyitems="";
 $buyitems=array();
 $checktitems=array();
+<<<<<<< HEAD
 $currentroomid="";
 $otherlinkshow=($productshow=='block'?'none':'block');
 
+=======
+//var_dump($roomwithuser);
+>>>>>>> a8fdfe8c5852bcd0edcdfc98fb38a9c797f86e1a
 foreach($roomwithuser as $key)
 {
-    
-    $currentroomid=$key->id;
     $roomtype=$key->room_type;	
 	
 	$key->room_type = ($key->room_type=="BR"?"Bedroom":"Living Room");
@@ -97,12 +115,15 @@ foreach($roomwithuser as $key)
 	$optionroomfolder=$key->room_type;
 	
 	$otherroom_type=($roomtype=="BR"?"LR":"BR");
-	
 	$otherroom_folder=($optionroomfolder=="Living Room"?"Bedroom":"Living Room");
+<<<<<<< HEAD
 	
 	
 	
 	echo '<table id="CurrentUser" class="adminmain" style="display:'.$otherlinkshow.'">';
+=======
+	echo '<table id="CurrentUser" class="adminmain">';
+>>>>>>> a8fdfe8c5852bcd0edcdfc98fb38a9c797f86e1a
 	
 	echo '<tr><td>User Name</td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 	
@@ -114,20 +135,25 @@ foreach($roomwithuser as $key)
 	echo '</table>';
 	$attributes = array('class' => 'updateform', 'id' => 'updateform');
     echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
+<<<<<<< HEAD
+=======
     echo '<input type="hidden" name="currentdisplay" id="currentdisplay" value="'.$productshow.'"/>';
     echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
+>>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
     echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
     echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
     echo '<table id="CurrentRoom" class="adminmain">';
 	echo '<tr><td>Update Room Status</td><td><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select><input type="submit" value="Update"></td></tr>';
 	echo '<tr><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td></tr>';
+    
     echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
     
     echo '<tr><td>Width/Height</td><td>'.$key->width.'ft/'.$key->height.'ft</td></tr>';
   
     $style_pics=$key->style_pics;    
     $color_pics=$key->color_pics;    
- }
+    
+}
 ?>
 
 
@@ -157,12 +183,17 @@ foreach($userroomdetails as $key)
       }
 	   
   }
-echo '</td></tr>';	
+
+   echo '</td></tr>';	
 
 }
 echo '</table>';
  echo form_close(); 
 ?>
+
+
+
+
 <table id="currentref" class="adminmain">
 <tr><td>Style Pic:</td></tr>
 <tr>
@@ -185,10 +216,13 @@ echo '</table>';
 <tr>
 <td>
 <?php
+
 $color_pics=explode(',',$color_pics);
 foreach($colorstyle as $key):
 if(in_array($key->color_id,$color_pics))
+
 echo'<div style ="height:100px;float:left;width:100px;background-color:'.$key->color_code.';">&nbsp;&nbsp;&nbsp;&nbsp;</div>';
+
 ?>
 <?php
 endforeach;
@@ -196,6 +230,8 @@ endforeach;
 </td>
 </tr>
 </table>
+
+
 <div id="productdesign" class="adminmain" style="display:<?php echo $productshow; ?>">
 <div id="div_show_error_message"></div>
 <?php

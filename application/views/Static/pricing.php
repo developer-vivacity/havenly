@@ -3,29 +3,29 @@
 ?>
 <div class="navmenu">  
     <ul>  
-        <li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
-        <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
-        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  
+			<li><a href=<?php echo base_url('index.php/Users/site/whoweare');?>>About</a></li>  
+            <li><a href=<?php echo base_url('index.php/Users/site/howwework');?>>How we work</a></li>  
+			<li><a href=<?php echo base_url('index.php/Users/site/products');?>>Goods</a></li>  
+        	<li><a href=<?php echo base_url('index.php/Users/site/login');?>>Log In</a></li>  
       </ul>  
   
 </div>  
-<div>
-<div class = "padding_left left-align middle inline" id = "logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
+
+<div class = "trellis">
+<div class = "padding_left padding_small left-align middle inline logo"><a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=100></a></div>
 <div class = "right middle">
-<a class = "button1 right-align inline condensed margin black_text midlarge" id="pull"> &#9776; </a>  
+<a class = "right-align inline button1 condensed margin black_text midlarge" id="pull2"> &#9776; </a>  
 <div class = "right_align inline middle padding_small"><BR>
 <ul class = "menu_bar midsmall white_text">
-	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li></a>
-	<li class = "inline midsmall condensed"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>HOW WE WORK</li></a>
-			<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div></div>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>about</li></a>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/howwework');?>>how</li></a>
+	<li class = "inline midsmall sanslight"> <a  class = "black_text" href = <?php echo base_url('index.php/Users/site/products');?>>goods</li></a>
+	<li class = "inline midsmall sanslight"><a class = "button4 pink white_text sanslight" href=<?php echo base_url('index.php/Users/site/login');?>>LOG IN</a></li>  </div>
+	</div>
 </ul>
 		</div>
 		
-<div id = "tabs2">
-<ul>
-    <li><a href="#designer">DESIGN FEE</a></li>
-    <li><a href="#products">PRODUCTS</a></li>
-  </ul>
+
 <div id = "designer">
 <div class = "trellis center"><BR><BR>
 <p class = "paddingmob sanslight midlargeplus blue_text center">
@@ -63,50 +63,12 @@ You only pay after you see your design proposal "themeboard", so try us for free
 </div>
 
 <BR><BR></div></div>
-<div id = "products">
-<div class = "bgcontainer center"><BR><BR>
-<div class = "seventy border white"><BR><BR>
-<p class = "pink_text sanslight midlargeplus">OUR PRODUCTS</p><br>
-<p class = "medium sanslight">We work with well known retailers and our own suppliers<br> to find what you're looking for.</p><BR>
-<BR><BR>
-<img src = <?php echo base_url('assets/Images/rendering2.jpg');?> height= 200><BR><BR>
-<BR><BR>
-<p class = "sanslight midlargeplus">Here's how expensive things usually are</p><br>
-<p class = "sanslight dark_gray_text midsmall">Obviously, it all depends on your taste, budget, and how much you need</p>
-<BR><BR>
-<table class = "half center inline top">
-<tr><td width = "50%">
-<img src = <?php echo base_url('assets/Images/sofa.png');?> height="50px"><BR><BR></td>
-<td><p class = "sanslight medium">$1,200-$5,000</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/chair.png');?> height="70px"><BR><BR></td>
-<td><p class = "sanslight medium">$250-$1,000</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/table.png');?> height="60px"><BR><BR></td>
-<td><p class = "sanslight medium">$250-$3,000</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/rug.png');?> height="60px"><BR><BR></td>
-<td><p class = "sanslight medium">$150-$1,000</p><BR><BR></td></tr>
-</table>
-
-<table class = "half center inline top">
-<tr><td width = "50%">
-<img src = <?php echo base_url('assets/Images/bed.png');?> height="50px"><BR><BR></td>
-<td><p class = "sanslight medium">$350-$2,000</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/lamp.png');?> height="70px"><BR><BR></td>
-<td><p class = "sanslight medium">$30-$400</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/pillow.png');?> height="60px"><BR><BR></td>
-<td><p class = "sanslight medium">$30-$100</p><BR><BR></td></tr>
-<tr><td><img src = <?php echo base_url('assets/Images/art.png');?> height="60px"><BR><BR></td>
-<td><p class = "sanslight medium">$100-$3000</p><BR><BR></td></tr>
-
-</table>
-</div>
-<Br><BR><BR><BR></div></div>
-</div>
 <script>
 	
 $(document).ready(function(){
 
-$("#tabs2").tabs();
- $("#pull").on('click', function(){
+
+ $("#pull2").on('click', function(){
 	$(".navmenu ul").slideToggle();
 	
  

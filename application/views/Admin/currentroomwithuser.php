@@ -199,7 +199,7 @@ endforeach;
 </td>
 </tr>
 </table>
-<<<<<<< HEAD
+
 <?php
 echo '<div id="productdesign" class="adminmain" style="display:'.$productshow.'">';
 
@@ -256,9 +256,9 @@ echo '<div style="display:'.$productdisplay.'" id="allproductdisplay">';
 
 
 
-=======
+
 <div id="productdesign" class="adminmain" style="display:<?php echo $productshow; ?>">
->>>>>>> 614c340a43742e15052f7ee83e692b1f968400d2
+
 <div id="div_show_error_message"></div>
 <?php
 	$attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');

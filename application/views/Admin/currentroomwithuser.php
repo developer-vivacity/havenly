@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-
-
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
-=======
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 	?>
->>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
@@ -71,25 +64,16 @@
 
 
 </script>
->>>>>>> 05a3e5aa67dafb3ee20bffa4c3c599c79f030100
 <?php 
-<<<<<<< HEAD
- echo '<a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>';
-?>
-<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>|<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>|<a href="#currentref"  rel="currentref">Style Prefs</a>|<a href="#">Product and Design Response</a></p>
-=======
  echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
 echo '<br/>';
 echo '<br/>';
->>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
 
 ?>
 <p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>
 <br/>
 <br/>
 <?php
-
-//print_r($userroomdetails);
 
 $style_pics="";
 $color_pics="";
@@ -99,15 +83,13 @@ $otherroom_type="";
 $choosebyitems="";
 $buyitems=array();
 $checktitems=array();
-<<<<<<< HEAD
 $currentroomid="";
 $otherlinkshow=($productshow=='block'?'none':'block');
 
-=======
-//var_dump($roomwithuser);
->>>>>>> a8fdfe8c5852bcd0edcdfc98fb38a9c797f86e1a
 foreach($roomwithuser as $key)
 {
+    
+    $currentroomid=$key->id;
     $roomtype=$key->room_type;	
 	
 	$key->room_type = ($key->room_type=="BR"?"Bedroom":"Living Room");
@@ -115,15 +97,12 @@ foreach($roomwithuser as $key)
 	$optionroomfolder=$key->room_type;
 	
 	$otherroom_type=($roomtype=="BR"?"LR":"BR");
+	
 	$otherroom_folder=($optionroomfolder=="Living Room"?"Bedroom":"Living Room");
-<<<<<<< HEAD
 	
 	
 	
 	echo '<table id="CurrentUser" class="adminmain" style="display:'.$otherlinkshow.'">';
-=======
-	echo '<table id="CurrentUser" class="adminmain">';
->>>>>>> a8fdfe8c5852bcd0edcdfc98fb38a9c797f86e1a
 	
 	echo '<tr><td>User Name</td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 	
@@ -135,25 +114,20 @@ foreach($roomwithuser as $key)
 	echo '</table>';
 	$attributes = array('class' => 'updateform', 'id' => 'updateform');
     echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
-<<<<<<< HEAD
-=======
     echo '<input type="hidden" name="currentdisplay" id="currentdisplay" value="'.$productshow.'"/>';
     echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
->>>>>>> 7b8a97a50a7bccad5ce78138d82f6940cd3dcdbd
     echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
     echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
     echo '<table id="CurrentRoom" class="adminmain">';
 	echo '<tr><td>Update Room Status</td><td><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select><input type="submit" value="Update"></td></tr>';
 	echo '<tr><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td></tr>';
-    
     echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
     
     echo '<tr><td>Width/Height</td><td>'.$key->width.'ft/'.$key->height.'ft</td></tr>';
   
     $style_pics=$key->style_pics;    
     $color_pics=$key->color_pics;    
-    
-}
+ }
 ?>
 
 
@@ -183,17 +157,12 @@ foreach($userroomdetails as $key)
       }
 	   
   }
-
-   echo '</td></tr>';	
+echo '</td></tr>';	
 
 }
 echo '</table>';
  echo form_close(); 
 ?>
-
-
-
-
 <table id="currentref" class="adminmain">
 <tr><td>Style Pic:</td></tr>
 <tr>
@@ -216,29 +185,83 @@ echo '</table>';
 <tr>
 <td>
 <?php
-
 $color_pics=explode(',',$color_pics);
 foreach($colorstyle as $key):
 if(in_array($key->color_id,$color_pics))
-
 echo'<div style ="height:100px;float:left;width:100px;background-color:'.$key->color_code.';">&nbsp;&nbsp;&nbsp;&nbsp;</div>';
-
 ?>
+
+
 <?php
 endforeach;
 ?>
+
 </td>
 </tr>
 </table>
+<?php
+echo '<div id="productdesign" class="adminmain" style="display:'.$productshow.'">';
+
+ 
+$selectproductid="";
+
+   if(!empty($selectproduct))
+	 {
+		
+	    foreach($selectproduct as $key)	
+	    {
+		$selectproductid=$key->product_id;
+		
+
+            }
+	  
+	 }
+
+$display=($productshow=='none' ? ($selectproductid==""? 'none': 'block'): 'none');
+$show_section=($selectproductid==""? 2: 1);
+$productdisplay=($display=='block'?'none':'block');
+echo '<input type="hidden" value="'.$show_section.'" id="select_section"/>'
+?>
+  
+	<?php
+	 
+	 echo '<div style="display:'.$display.'" id="select_products_for_room">';
+
+	
+	   echo '<table><tr><td>Product Name</td><td>&nbsp;&nbsp;Images</td><td>Details</td></tr><tr><td colspan="3">&nbsp;</td></tr>';	
+   
+if(!empty($selectproductid))
+	 {
+
+	foreach($productdetails as $key)
+	{
+		 if(in_array($key->productid,explode(',',$selectproductid)))
+		   {
+			
+			   echo '<tr><td>'.$key->product_name.'</td><td><div style="width:110px;height:110px;border:solid 1px white;"><img src="'.$key->link.'" height="100px" width="100px"/></div></td><td><div style="height:110px;width:110px;border:solid 2px white;"><a href="#" onclick="show_product_details();">Details</a></div></td></tr>';
+			
+		   }
+		
+	}
+
+	
+ }
+
+echo '</table>';
+echo '</div>';
+echo '<div style="display:'.$productdisplay.'" id="allproductdisplay">';
+
+?>
 
 
-<div id="productdesign" class="adminmain" style="display:<?php echo $productshow; ?>">
+
 <div id="div_show_error_message"></div>
 <?php
 	$attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
     ?>
-<table width="800px" style="font-size:14px;">
+    
+<table width="800px" style='font-size:14px;'>
 <tr><td width="300px">Upload Design Overview</td>
 <td width="500px">
 	
@@ -335,6 +358,22 @@ echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]"
 <tr>
 	<td colspan="2">&nbsp;&nbsp;
 </td></tr>
+<tr><td>&nbsp;</td><td>
+<div id="showselectedproductimage"> 
+	<?php
+	 
+	foreach($productdetails as $key)
+	{
+		 if(in_array($key->productid,explode(',',$selectproductid)))
+		   {
+			   echo'<div id="select_img_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/></div>';
+			   
+		   }
+		
+	}
+	?>
+	
+	</div></td></tr>
 <tr>
 <td valign="top" width="550px;">
 <table width="100%">
@@ -382,16 +421,13 @@ foreach($productmaterialtype as $key)
 {
     echo '<div><input type="checkbox" id="'.$key->material_id.'" name="searchproductmaterial[]" value="'.$key->material_id.'"/>'.$key->material.'</div>';	
 }
-?></td></tr></table></td><td>
-<div style="border:solid 1px;height:300px;overflow-y:scroll;">
+?></td></tr></table></td>
+<td>
+	
+	
+<div style="border:solid 1px;height:300px;overflow-y:scroll;" id="productlist">
 	<?php
-	$selectproductid="";
-	if(isset($selectproduct))
-	{
-	    foreach($selectproduct as $key)	
-		$selectproductid=$key->product_id;
-		
-	}
+	
 
 	foreach($productdetails as $key)
 	{	
@@ -402,9 +438,9 @@ foreach($productmaterialtype as $key)
 		   $ischecked="checked";
 		   $active = "active";
 		   }
-		  echo'<div style="float:left;width:150px;height:150px;">
+		  echo'<div style="float:left;width:150px;height:150px;cursor:pointer;">
 		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();"/>&nbsp;&nbsp;</div>';
+		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);"/>&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "No products found!";
@@ -419,12 +455,51 @@ foreach($productmaterialtype as $key)
 
 <?php echo form_close(); ?>
 </div>
+</div>
 <script>
  $(".cbox").hide();
 
-$(".inactive, .active").click(function(){
-$(this).toggleClass('active');
-var checkbox = $(this).parent().find('.cbox');
+$(".inactive, .active").click(function()
+{
+	
+  $(this).toggleClass('active');
+  var checkbox = $(this).parent().find('.cbox');
+		
 		checkbox.prop('checked',!checkbox[0].checked);
 });
+var global_prodct_id;
+var global_image_path;
+var object;
+function selectedproductimage(productid,productimagepath,refobject)
+{
+	
+	global_prodct_id=productid;
+	global_image_path=productimagepath;
+	object=refobject;
+	if($("#productimage_"+productid+"").is(':checked')==false)
+	$("#productlist").append("<div style='width:100%;height:300px;border:solid 1px;transparent;position: absolute;background-color:black;opacity:0.8;' id='popup'><div style='background:white;border-radius: 5px ;content: attr(title);padding: 5px 5px;z-index: 98;width: 300px;height:100px;margin-left:300px;margin-top:100px;border:solid 1px;cursor:pointer;'> <p><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;' onclick='distory_popup();'/></p><br/><br/><br/><span style='margin-lop:150px;margin-left:105px;border:solid 1px #ccc;bacground-color:red;cursor:pointer;' onclick='addselectimg();'>Add To Design</span></div></div>");
+	else
+	$("#select_img_"+productid).remove();
+}
+function distory_popup()
+{
+	
+	$("#popup").remove();
+	$("#productimage_"+global_prodct_id).removeAttr('checked');
+	$(object).toggleClass('active');
+
+}
+function addselectimg()
+{
+	
+  	$("#showselectedproductimage").append('<div id="select_img_'+global_prodct_id+'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'+global_image_path+'" width="75px;" height="75px;"/></div>');
+  	$("#popup").remove();
+}
+function show_product_details()
+{
+
+            $("#select_products_for_room").hide();
+  	    $("#allproductdisplay").show();
+	
+}
 </script>

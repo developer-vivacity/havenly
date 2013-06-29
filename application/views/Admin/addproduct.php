@@ -30,9 +30,7 @@ echo form_open('Admin/site/add_product',$attributes);
 	echo '<option id="'.$key->vendor_id.'" value="'.$key->vendor_id.'">'.$key->vendor_name.'</option>';		
 	}
 	?>
-	
 </select></td></tr>
-
 <tr><td>SKU</td><td><input type="textbox" id="product_name" name="product_name"/></td></tr>
 <tr><td>Price</td><td><input type="textbox" id="Price" name="Price"/></td></tr>
 <tr><td>Ship Cost</td><td><input type="textbox" id="ship_cost" name="ship_cost"/></td></tr>
@@ -40,7 +38,7 @@ echo form_open('Admin/site/add_product',$attributes);
 <tr><td>Description</td><td><input type="textbox" id="description" name="description"/></td></tr>
 <tr><td>Dimention</td><td><input type="textbox" id="dimention" name="dimention"/></td></tr>
 <tr><td>Upload Picture</td><td>
-	 <div id="appenduploadphoto"><input type="file" name="uploadproductpic0" id="uploadproductpic"/><input type="button" value="Add" style="display:none;" id="adduploadproductpic"></div></td></tr>
+<div id="appenduploadphoto"><input type="file" name="uploadproductpic0" id="uploadproductpic"/><input type="button" value="Add" style="display:none;" id="adduploadproductpic"></div></td></tr>
  <tr><td>or,Weblink</td><td><input type="textbox" id="productweblink" name="productweblink"/></td></tr>
 <tr><td colspan="2"><input type="button" name="SaveCurrentProduct" value="Save Product" id="savecurrentproduct"/></td></tr>
 </table>
@@ -95,7 +93,7 @@ echo form_open('Admin/site/add_product',$attributes);
 $('input[name="uploadproductpic0"]').change(function()
 {
         $("#producterrormessageforuploadimage").html('');
-	    var exts=new Array("jpg","jpeg","gif","png","JPG");
+	var exts=new Array("jpg","jpeg","gif","png","JPG");
     	var file1=$("#uploadproductpic").val();
         var fileextension_one = file1.substr((file1.lastIndexOf('.') +1) );
         if($.inArray (fileextension_one.toLowerCase(), exts ) < 0 )
@@ -104,14 +102,15 @@ $('input[name="uploadproductpic0"]').change(function()
          
          $(".imageappend").remove();
          total=1;
-         $fileupload_value=0;
+         fileupload_value=0;
          $("#adduploadproductpic").hide();	
         } 
         else
         {
 		$("#adduploadproductpic").show();	
-		$fileupload_value=1;
-		}
+		fileupload_value=1;
+
+	}
 	
 }
 );

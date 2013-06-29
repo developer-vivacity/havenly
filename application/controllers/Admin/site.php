@@ -436,7 +436,23 @@ function add_product()
 			$materialhiddenfilter=($materialhiddenfilter==""?$newmaterialid:$materialhiddenfilter.','.$newmaterialid);
 		}
 	}	
-	 
+	 $typehiddenfilter=explode(',',$typehiddenfilter);
+          sort($typehiddenfilter);
+          $typehiddenfilter=implode(',',$typehiddenfilter);
+
+          $stylehiddenfilter=explode(',',$stylehiddenfilter);
+          sort($stylehiddenfilter);
+          $stylehiddenfilter=implode(',',$stylehiddenfilter);
+
+          $colorhiddenfilter=explode(',',$colorhiddenfilter);
+          sort($colorhiddenfilter);
+          $colorhiddenfilter=implode(',',$colorhiddenfilter);
+
+          $materialhiddenfilter=explode(',',$materialhiddenfilter);
+          sort($materialhiddenfilter);
+          $materialhiddenfilter=implode(',',$materialhiddenfilter);
+
+
        $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
 'rent_price'=>$this->input->post("rentprise"),'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),'link'=>$holdlinkuploadimg[0],'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',','product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
 		

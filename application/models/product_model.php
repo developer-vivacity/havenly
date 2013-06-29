@@ -39,9 +39,9 @@ timestamp timestamp NOT NULL)");
  //-----For Product Details 
  function get_all_product($orderby=null)
   {	    
-	
-		$query=$this->db->query("select *from products ".$orderby."");
-		return $query->result();; 
+	$query=$this->db->query("select productid,product_name,link from products ".$orderby."");
+		
+        return $query->result();; 
   }
  //-------
  function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null)
@@ -236,13 +236,14 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 	
        $query=$this->db->from('products','product_room_mapping');
 	
-       $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id');
+       $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id','left');
        
        $this->db->group_by('product_room_mapping.product_id');
        
        $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
        
        $query = $this->db->get();	
+
  
        return $query->result();
 }
@@ -265,7 +266,11 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
 	
 	if(!empty($producttypecheck))
 	{
-		
+	  
+             $producttypecheck=explode(',',$producttypecheck);
+             sort($producttypecheck);
+             $producttypecheck=(implode(',',$producttypecheck));          
+            $producttypecheck=','.$producttypecheck.',';
            if($_like=='')
            {        
            $_typelike=" concat(',',product_type_id) like '%".$producttypecheck."%'";	 
@@ -274,21 +279,39 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
 	}
 	if(!empty($productstylecheck))
 	{
-		
-           $_stylelike=($_like==""?" concat(',',product_style_id) like '%".$productstylecheck."%'":" and concat(',',product_style_id) like '%".$productstylecheck."%'");
- 
+                
+
+             $productstylecheck=explode(',',$productstylecheck);
+             sort($productstylecheck);
+             $productstylecheck=(implode(',',$productstylecheck));
+
+
+		$productstylecheck=','.$productstylecheck.',';
+                $_stylelike=($_like==""?" concat(',',product_style_id) like '%".$productstylecheck."%'":" and concat(',',product_style_id) like '%".$productstylecheck."%'");
+ $_like=1;
 	}
 	if(!empty($productmaterialtypecheck))
 	{
-		
-	$_materiallike=($_like==""?" concat(',',product_material_id) like '%".$productmaterialtypecheck."%'":" and concat(',',product_material_id) like '%".$productmaterialtypecheck."%'");
-		 
+             $productmaterialtypecheck=explode(',',$productmaterialtypecheck);
+             sort($productmaterialtypecheck);
+             $productmaterialtypecheck=(implode(',',$productmaterialtypecheck));
+                              
+
+		$productmaterialtypecheck=','.$productmaterialtypecheck.',';
+	        $_materiallike=($_like==""?" concat(',',product_material_id) like '%".$productmaterialtypecheck."%'":" and concat(',',product_material_id) like '%".$productmaterialtypecheck."%'");
+	        $_like=1;	 
 	}
 	if(!empty($productcolortypecheck))
 	{
+        
 
-$_colorlike=($_like==""?" concat(',',product_color_id) like '%".$productcolortypecheck."%'":" and concat(',',product_color_id) like '%".$productcolortypecheck."%'");
+             $productcolortypecheck=explode(',',$productcolortypecheck);
+             sort($productcolortypecheck);
+             $productcolortypecheck=(implode(',',$productcolortypecheck));
 
+          $productcolortypecheck=','.$productcolortypecheck.',';
+          $_colorlike=($_like==""?" concat(',',product_color_id) like '%".$productcolortypecheck."%'":" and concat(',',product_color_id) like '%".$productcolortypecheck."%'");
+          $_like=1;
 	}
 	
 	switch ($searchoptionforprice) 
@@ -325,7 +348,8 @@ $query=$this->db->query("select productid,product_name,vendor_id,price,rent_pric
 UNION
 select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where productid not in (select concat(',',productid)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
 
-	
+
+
 return $query->result();	
 	
 }

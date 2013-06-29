@@ -1,6 +1,6 @@
 var total=1;
-var $fileupload_value=1;
-var $p_value=1;
+var fileupload_value=0;
+
 $(document).ready(function()
 {
 
@@ -12,8 +12,20 @@ $(document).ready(function()
 	 
 		 $("p a").click(function()
 		 {
-			 $(".adminmain").hide();
+
+		     $(".adminmain").hide();
 		     $("#"+(this.rel)).show();
+	
+        if($("#select_section").val()==1)
+        {
+            $("#select_products_for_room").show();
+  	    $("#allproductdisplay").hide();
+         }
+        else
+        {
+        $("#select_products_for_room").hide();
+        $("#allproductdisplay").show();
+        }
 		 }
 		 )
 		 $("#addroominfo").click(function()
@@ -278,7 +290,7 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
 			   
 			   
 		   })
-		   $('input[name="productmaterialtypecheck[]"]:checked').each(function(i,e)
+	 $('input[name="productmaterialtypecheck[]"]:checked').each(function(i,e)
            {
 			   is_sort=true;
                if(ascproductmaterialtypecheck=="")
@@ -286,7 +298,7 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
 			   else
 			   ascproductmaterialtypecheck=ascproductmaterialtypecheck+','+e.value;
 		 })
-		   $('input[name="productstylecheck[]"]:checked').each(function(i,e)
+	$('input[name="productstylecheck[]"]:checked').each(function(i,e)
            {
 			   is_sort=true;
 			   if(ascproductstylecheck=="")
@@ -296,11 +308,8 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
 			   
 			   
 		   })
-		   //
-		   
-		   
-		   $('input[name="ascprice[]"]:checked').each(function(i,e)
-           {
+         $('input[name="ascprice[]"]:checked').each(function(i,e)
+                   {
 			   is_sort=true;
 			   if(ascproductpricecheck=="")
 			   ascproductpricecheck=e.value;
@@ -325,107 +334,108 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
 });
 $("#savecurrentproduct").click(function()
 {
-	
+	var p_value=1;
 	$("#producterrormessage").html("");
-    $(".showerror").remove();
+        $(".showerror").remove();
 	if($("#product_name").val().trim()=="")
 	{
 	   $("#product_name").before("<p class='showerror' id='product_name_error'>*Enter product name</p>");	
-	   $p_value=0;	
+	   p_value=0;	
 	}
 	if($("#Price").val().trim()=="")
 	{
 	   $("#Price").before("<p class='showerror' id='Price_error'>*Enter product price</p>");	
-	   $p_value=0;	
+	   p_value=0;	
 	}
 	if($("#ship_cost").val().trim()=="")
 	{
 	   $("#ship_cost").before("<p class='showerror' id='ship_cost_error'>*Enter ship cost</p>");	
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#qty_in_stock").val().trim()=="")
 	{
 	  $("#qty_in_stock").before("<p class='showerror' id='qty_in_stock_error'>*Enter qty in stock</p>");	
-	  $p_value=0;
+	  p_value=0;
 	}
 	if($("#description").val().trim()=="")
 	{
 	  $("#description").before("<p class='showerror' id='description_error'>*Enter Description</p>");	
-	  $p_value=0;
+	  p_value=0;
 	}
 	if($("#dimention").val().trim()=="")
 	{
 	   $("#dimention").before("<p class='showerror' id='dimention_error'>*Enter Dimention</p>");	
-	   $p_value=0;		
+	   p_value=0;		
 	}
 	
 	if($('input[name$="retail_option"]:checked ').val()=="on" && $("#rentprise").val().trim()=="")
 	{
 	   $("#rentprise").before("<p class='showerror' id='rentprise_error'>*Enter Rent Prise</p>");	
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#selecttypefilter").html().trim()=="")
 	{
 	   $("#selecttypefilter").before("<p class='showerror' id='Typefilter_error'>*Enter Type</p>");		
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#selectstylefilter").html().trim()=="")
 	{
 	   $("#selectstylefilter").before("<p class='showerror' id='Stylefilter_error'>*Enter Style</p>");		
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#selectcolorfilter").html().trim()=="")
 	{
 	   $("#selectcolorfilter").before("<p class='showerror' id='Colorfilter_error'>*Enter Color</p>");		
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#selectmaterialfilter").html().trim()=="")
 	{
 	   $("#selectmaterialfilter").before("<p class='showerror' id='Materialfilter_error'>*Enter Material</p>");	
-	   $p_value=0;	
+	   p_value=0;	
 	}
 	if($("#uploadproductpic").val().trim()=="" && $("#productweblink").val().trim()=="")
 	{
 	   $("#productweblink").before("<p class='showerror'>*Upload picture or weblink</p>");		
-	   $p_value=0;
+	   p_value=0;
 	}
 	if($("#Price").val().trim()!="" && !$.isNumeric($("#Price").val()))
-    {
+       {
 		$("#Price").before("<p class='showerror' id='Price_error'>*Enter price in numeric format</p>");	
-		$p_value=0;	
+		p_value=0;	
 	}
 	if($("#ship_cost").val().trim()!="" && !$.isNumeric($("#ship_cost").val()))
-    {
+        {
 		$("#ship_cost").before("<p class='showerror' id='ship_cost_error'>*Enter ship cost in numeric format</p>");	
-		$p_value=0;
+		p_value=0;
 	}
 
 	if($("#qty_in_stock").val().trim()!="" && !$.isNumeric($("#qty_in_stock").val()))
 	{
 	   $("#qty_in_stock").before("<p class='showerror' id='qty_in_stock_error'>*Enter ship cost in numeric format</p>");	
-	   $p_value=0;
+	   p_value=0;
     }
     if($('input[name$="retail_option"]:checked ').val()=="on" && $("#rentprise").val().trim()!="" && !$.isNumeric($("#rentprise").val()) )
 	{
 	    $("#rentprise").before("<p class='showerror' id='rentprise_error'>*Enter rentprise in numeric format</p>");	
-	    $p_value=0;
+	    p_value=0;
     }
-	if(($("#productweblink").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
+   if(($("#productweblink").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
     {
         $("#productweblink").before("<p class='showerror' id='productweblink_error'>*Enter valid Url</p>");	
-        $p_value=0;
+        p_value=0;
     }
-    if($fileupload_value==0)
+    if(fileupload_value==0)
     {
 		
-		 $p_value=0;
+		 p_value=0;
 	}
-    else if($p_value==1)
-    {
+     else if(p_value==1)
+       {
 		
 	  $("#addproductform").submit();	
 	}
 	})
+
 $("#adduploadproductpic").click(function()
 {
 	
@@ -433,13 +443,13 @@ $("#adduploadproductpic").click(function()
 	{
 	$("#appenduploadphoto").append('<p id="uploadproductpic_'+total+'" class="imageappend"><input type="file" name="uploadproductpic'+total+'" class="uploadproductpic" onchange="typechackfileupload('+total+');"/><input type="button" value="remove" onclick="removeuploadpic('+total+')"></p>');
     total++;	
-    }
+        }
 });
 
 
 $('input[type="textbox"]').keypress(function()
 {
-	                  $("#ShowStylefilter").html("");
+	                              $("#ShowStylefilter").html("");
 				      $("#ShowColorfilter").html("");
 				      $("#ShowMaterialfilter").html("");
 				      $("#ShowTypefilter").html("");	  
@@ -612,15 +622,16 @@ function typechackfileupload(total)
         var fileextension_one = file1.substr((file1.lastIndexOf('.') +1) );
         if($.inArray (fileextension_one.toLowerCase(), exts ) < 0 )
         {
+           
            $("#producterrormessageforuploadimage").append('<p>*Upload product pic in jpg,png,gif,jpeg format</p>');
            total=1;
-           $fileupload_value=0; 
+           fileupload_value=0; 
         } 
         else
         {
 		   $("#adduploadproductpic").show();	
-		   $fileupload_value=1;
-		}
+		   fileupload_value=1;
+        }
 }
 function removedisplay(strid,id,holdid)
 {
@@ -637,8 +648,8 @@ function removenewitem(stridforremove,id,holdvalue,matchvalue)
 	
 	 var IdArray = $("#"+holdvalue).val().split(',');
 	 var IdArray = jQuery.grep(IdArray, function(value) {
-    return value != matchvalue;
-    });
+          return value != matchvalue;
+        });
     
 	$("#"+holdvalue).val(IdArray.toString());
 	$("#"+stridforremove+id).remove();
@@ -651,21 +662,21 @@ function display_div(id)
 	
 	$(".productdetailsdiv").remove();
 
-	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 150px"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
+	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 120px"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
 
  $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
   {
 	  
-	     if(globalkey=="yes")
+	   if(globalkey=="yes")
            {	  
                $.each(data, function(key, val) 
 			   {
-$("#productdetailsdiv_"+id+"").html(" ");
+                             $("#productdetailsdiv_"+id+"").html(" ");
 			    
 			    $("#productdetailsdiv_"+id+"").append('<p>Name:'+val.product_name+'</p><p>Price:'+val.price+'</p><p>Dimensions:'+val.dimensions+'</p>');	  
 				globalkey="no";	  
 			   })
-$(".productdetailsdiv").show();
+                  $(".productdetailsdiv").show();
      }
    })
 	

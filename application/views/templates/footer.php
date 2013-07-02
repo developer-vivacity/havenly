@@ -3,12 +3,24 @@
 			<div class="container">
 			<br>
 				<div class="row">
-					<div class="span5">
-						<h3 class = "pink_text">Useful Stuff</h3><BR><BR>
+				
+				<div class="span6 offset3">
+						
 						<ul class = "inline">
-							<li> <a class= "medium condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
-								<li> <a class= "medium condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>TERMS</li>
-							<li><a class= "medium condensed white_text"href = "http://blog.havenly.com">BLOG</a></li>
+					<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
+					<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
+					<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
+						</ul>
+						
+					</div><!-- span4 -->
+				
+					<div class="span6 offset3">
+						
+						<ul class = "inline">
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare/#contact');?>>CONTACT</li>
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>TERMS</li>
+							<li><a class= "midsmall condensed white_text"href = "http://blog.havenly.com">BLOG</a></li>
 
 					</div><!-- span4 -->
 					
@@ -22,15 +34,7 @@
 						<h4>Update by @WrapBootstrap</h4>-->
 					<!-- span4 -->
 					
-					<div class="span5 offset1">
-						<h3 class = "pink_text">Say Hey</h3><BR><BR>
-						<ul class = "inline">
-					<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
-					<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
-					<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
-						</ul>
-						
-					</div><!-- span4 -->
+					
 
 				</div><!-- row -->
 			</div><!-- container -->

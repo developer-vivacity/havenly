@@ -157,7 +157,7 @@
 	                	<div class="pricing-table row-fluid">
 		                    <ul class="pricing-column span5 ">
 		                        <li class="pricing-title"><BR>Cotton<BR><BR>
-							<p class = "midsmall sanslight">Have most of your stuff? Just want some help?</p></li>
+							<p class = "midsmall sanslight">Have most of your stuff?<BR> Just want some help?</p></li>
 		                        <li class="pricing-price"><img src = "<?php echo base_url().'assets/Images/cotton.png';?>" height="100px"> </span>
 		                        </li>
 		                        <li>Selection of furnishings to coordinate with your current room</li>
@@ -168,7 +168,7 @@
 	                    
 		                    <ul class="pricing-column span5 offset1">
 		                        <li class="pricing-title"><BR>Cashmere<BR><BR>
-							<p class = "midsmall sanslight">Our comprehensive design plan.</p></li>
+							<p class = "midsmall sanslight">Want the full deal? <br>Our comprehensive design plan.</p></li>
 		                          <li class="pricing-price"><img src = "<?php echo base_url().'assets/Images/cashmere.png';?>" height="100px"> </span>
 		                        </li>
 								
@@ -257,16 +257,13 @@
 		<div id="footerwrap">
 			<div class="container">
 			<br>
-			<h2 class = "large sanslight">Get In Touch</h2>
-				<div class="row">
-					<div class="span5">
-						<h3 class = "pink_text">Where in the world are we?</h3>
-						<h4><a class = "white_text" href = "http://www.gavanize.it">Galvanize</a></h4>
+					<div class="row">
+					<div class="span6 offset3">
 						<h4>1062 Delaware St.</h4>
 						<h4>Denver, CO</h4>
-						<h4>hello@havenly.com</h4>
+						<h4><a href="mailto:hello@havenly.com">hello@havenly.com</h4>
 					</div><!-- span4 -->
-					
+					</div>
 					<!--<div class="span4">
 						<img src="assets/img/twitter.png" alt="">
  						<div id="jstwitter" class="clearfix">
@@ -277,19 +274,30 @@
 						<h4>Update by @WrapBootstrap</h4>-->
 					<!-- span4 -->
 					
-					<div class="span5 offset1">
-						<h3 class = "pink_text">Say Hey</h3><BR><BR>
+					<div class="row">
+				
+				<div class="span6 offset3">
+						<BR><BR><BR>
 						<ul class = "inline">
 					<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
 					<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
 					<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
 						</ul>
-						<h4><a class = "blue_text" href = "http://www.blog.havenly.com/">Our Most Interesting Thoughts on the Blog</a></h4>
+						
 					</div><!-- span4 -->
+				
+					<div class="span6 offset3">
+						
+						<ul class = "inline">
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>TERMS</li>
+							<li><a class= "midsmall condensed white_text"href = "http://blog.havenly.com">BLOG</a></li>
 
-				</div><!-- row -->
+					</div><!-- span4 -->
+				</div>
 			</div><!-- container -->
 		</div><!-- footerwrap -->
+</div>
 
 	<!-- Bottom Map -->
 		<div id="map">
@@ -303,19 +311,19 @@
 <div id = "overlay">
 <div class = "boxoverlay"><div class = "paddingmob dark_gray_text padding_small">
 <a class = "close sanslight small light_gray_text">X Close</a><BR><BR>
-<div class = "span5 offset1">
+<div class = "horizontal seventy">
 <p class = "large condensed">YOU LIKE US!</p>
 <p class = "condensed midsmall">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll hit you back.<br><br>
 </p><br></div>
 <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
-<div class = "horizontal span5 offset1">
+<div class = "horizontal seventy">
 <label class = "half condensed midsmall middle inline" for="Email">Email Address:</label><br>
 <input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/><br><br>
 </div>
-<div class = "horizontal span5 offset1">
+<div class = "horizontal seventy">
 <label class = "half condensed midsmall middle inline" for="Zipcode">Zipcode:</label><br>
 <input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30" /></div><br>
-<div class = "span5 offset1">
+<div class = "horizontal seventy">
 <a class = "button3 pink white_text condensed" id = "requestinvite">Request</a><br><br>
 </form>
 </div></div></div>

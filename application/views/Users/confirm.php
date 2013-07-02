@@ -55,9 +55,6 @@ var google_conversion_value = 0;
 </div>
 </noscript>
 
-<?php 
-	include(APPPATH.'/views/templates/footer.php');
-?>
 
 
 

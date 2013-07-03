@@ -38,5 +38,70 @@ class Designer_model extends CI_Model
       return $query->result();
 	  	  
    }
+   
+   function availability($data)
+   {
+	
+	//$data['user_id']=$this->session->userdata('id');
+	
+	
+	 // $userid = $data['user_id'];
+		
+	 // $query = $this->db->query("SELECT designer_id FROM designer_mapping WHERE user_id=".$userid."");
+	 // $id=$query->result_array();
+		
+	 // foreach ($id as $des){
+			 // $id=$des['designer_id'];
+			 // }
+		
+		$id = 1;
+		
+	 $date=$data['date'];
+	 $startdate= date('y-m-d', strtotime($date));
+	 $enddate=date("y-m-d h:i", strtotime("$date +24 hours"));
+		 $query = $this->db->query("SELECT * from designer_availability 
+		 WHERE designer_id = ".$id." AND status = 'available' AND time >= '".$startdate."' AND time <= '".$enddate."'");
+		
+		if ($query->num_rows()==0)
+		{return 0;}
+		else{
+		 return $query->result_array();		}
+   
+      }
+	  
+function book($data)
+   {
+	
+	$data['user_id']=$this->session->userdata('id');
+	
+	
+	 $userid = $data['user_id'];
+		
+	 // $query = $this->db->query("SELECT designer_id FROM designer_mapping WHERE user_id=".$userid."");
+	 // $id=$query->result_array();
+		
+	 // foreach ($id as $des){
+			 // $id=$des['designer_id'];
+			 // }
+		
+	$id = 1;
+	$date=$data['date'];
+		$timefind = date('y-m-d h:i:s', strtotime($date));
+	$insert=array(
+	'user_id'=>$userid,
+	'time'=>$timefind);
+	
+	$update=array(
+	'status'=>'busy');
+	
+	
+	$this->db->insert('designer_calls', $insert);
+	
+	$this->db->where('time',$timefind);
+	$this->db->update('designer_availability',$update);
+		
+		   
+      }
+	  
 }
 ?>

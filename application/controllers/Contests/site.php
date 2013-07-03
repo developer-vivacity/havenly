@@ -10,6 +10,7 @@ function __construct() {
 	$this->load->model('user_model');
 	$this->load->model('room_model');
 	$this->load->model('Users/picture_model');
+	$this->load->model('designer_model');
 		
 	}
 
@@ -128,17 +129,65 @@ function confirm($data)
 		
 			$this->email->message("New room to design from {$data['first_name']}");
 		$this->email->send();
+		
+		
+		
 	
 	$this->load->view('Users/confirm', $data);
 }
 
 
+function availability(){
+
+$this->load->view('Users/availability');
+// $data['user_id']=$this->session->userdata('id');
+// $data['query']=$this->designer_model->availability($data);
+// $this->load->view('test', $data);
+
 
 }
 
+function check(){
+
+$data['user_id']=$this->session->userdata('id');
+
+$data['date']=$this->input->post('datecheck');
+ $return = "<BR><BR><BR><BR><table class = 'table text-center'>";
+if ($data['date']=="")
+{	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr></table>'; }
+ $data=$this->designer_model->availability($data);
+ // $this->load->view('test',$data);
+ 
+
+ if ($data==0){
+	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr></table>'; 
+ }
+ 
+ else{
+  foreach ($data as $time){
+ 
+ $time = $time['time'];
+ // $time = str_replace("/", "-", $time['time']);
+ $timeformat = date("M, d Y h:i a", strtotime($time));
+ $return.= '<tr><td class = "medium"><input class = "top" type="radio" name="time" id="time" value = "'.$time.'" />&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';
+ }
+ 
+ $return .= '<tr><td><a class = "btn" id="select">Book This Time</a></td><td><a class = "btn" id="skip">Just Email Me</a></td></tr></table>';}
+echo $return;
+}
 
 
+function book_time(){
 
+$data['user_id']=$this->session->userdata('id');
+
+$data['date']=$this->input->post('datepick');
+ $data=$this->designer_model->book($data);
+
+echo "<p class = 'large sanslight'> Thanks!  We'll give you a call then.</p>	";
+
+}
+}
 	
 		
 	

@@ -76,7 +76,7 @@
 				                
 <p class = "sanslight small dark_gray_text">
 Lee is a Denver resident who misses the East Coast. 
-She was formerly a VP at Bankrate, a consultant at Bain, and worked in strategy and corporate development at Canon, Inc. 
+She was formerly a VP at Bankrate, a consultant at Bain, and worked in strategy and corporate development at Canon. 
 <br><br>Lee has an MBA from Harvard Business School and a B.S. from Columbia University.<br><br>
 She loves cows and has most recenly learned to ski.  Ask her about her collection of speeding tickets.</p>
 							</div>
@@ -142,3 +142,4 @@ She loves cows and has most recenly learned to ski.  Ask her about her collectio
 				</div><!-- row -->
 			</div><!-- container -->
 		</div><!-- footerwrap -->
+		</div>

@@ -290,7 +290,7 @@
 						
 						<ul class = "inline">
 							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
-							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>TERMS</li>
+							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/terms');?>>TERMS</li>
 							<li><a class= "midsmall condensed white_text"href = "http://blog.havenly.com">BLOG</a></li>
 
 					</div><!-- span4 -->

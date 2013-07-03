@@ -212,6 +212,10 @@ function products()
 	{
 		$this->load->view('Static/products');
 }
+function terms()
+	{
+		$this->load->view('Static/terms');
+}
 
 
 function requestinvite()

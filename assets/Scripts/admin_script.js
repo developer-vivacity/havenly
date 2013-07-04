@@ -5,27 +5,15 @@ $(document).ready(function()
 {
 
    $(".adminmain").hide();
-	if($("#currentdisplay").val()=="none")
-	 $("#CurrentUser").show();
-	 else
-	 $("#productdesign").show();
-	 
+   $("#CurrentUser").show();
+  
 		 $("p a").click(function()
 		 {
 
 		     $(".adminmain").hide();
 		     $("#"+(this.rel)).show();
 	
-        if($("#select_section").val()==1)
-        {
-            $("#select_products_for_room").show();
-  	    $("#allproductdisplay").hide();
-         }
-        else
-        {
-        $("#select_products_for_room").hide();
-        $("#allproductdisplay").show();
-        }
+      
 		 }
 		 )
 		 $("#addroominfo").click(function()
@@ -177,19 +165,10 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   {
 	  var productimage="";
 	  $("#div_show_error_message").html('');
-	   $('input[name="productimage[]"]:checked').each(function(i,e)
-	  {
-		  if(productimage=="")
-		  productimage=e.value;
-		  else
-		  productimage=productimage+','+e.value;	  
-	  });
-	  
-	 if(productimage=="")
+	
+	 if($("#showselectedproductimage").html().trim()=="")
 	 {
-		
-		 
-		  $("#div_show_error_message").html('<p>*Select at least one product:</p>');
+	 $("#div_show_error_message").html('<p>*Select at least one product:</p>');
 	 }  
 	 else
 	 {
@@ -218,8 +197,6 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   });
  
   $("#searchoptionfortype").val(producttypeid);
-
-
   $('input[name="searchprice[]"]:checked').each(function(i,e)
   {
 	  if(productprice=="")
@@ -228,9 +205,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       productprice=productprice+','+e.value;
   });
   $("#searchoptionforprice").val(productprice);
- 
- 
- $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
+  $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
   {
 	  if(productstyle=="")
 	  productstyle=e.value;
@@ -238,19 +213,15 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       productstyle=productstyle+','+e.value;
   });
   $("#searchoptionforstyle").val(productstyle);
-
-$('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
+  $('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
   {
 	  if(productmaterial=="")
 	  productmaterial=e.value;
       else
       productmaterial=productmaterial+','+e.value;
   });
-
- $("#searchoptionformaterial").val(productmaterial);
- 
-
-$('input[name="searchproductcolor[]"]:checked').each(function(i,e)
+  $("#searchoptionformaterial").val(productmaterial);
+  $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
   {
 	  if(productcolor=="")
 	  productcolor=e.value;
@@ -264,7 +235,7 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
   })
   
   $("#ascproduct").click(function(){
- var is_sort=false;
+  var is_sort=false;
   var ascproducttypecheck="";
   var ascproductcolortypecheck="";
   var ascproductmaterialtypecheck="";
@@ -281,11 +252,11 @@ $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
 		   })
            $('input[name="productcolortypecheck[]"]:checked').each(function(i,e)
            {
-               is_sort=true;
-               if(ascproductcolortypecheck=="")
-			   ascproductcolortypecheck=e.value;
-			   else
-			   ascproductcolortypecheck=ascproductcolortypecheck+','+e.value;
+                            is_sort=true;
+                            if(ascproductcolortypecheck=="")
+			    ascproductcolortypecheck=e.value;
+			    else
+			    ascproductcolortypecheck=ascproductcolortypecheck+','+e.value;
 			   
 			   
 			   
@@ -656,6 +627,7 @@ function removenewitem(stridforremove,id,holdvalue,matchvalue)
 }
 function display_div(id)
 {
+	
 	var globalkey="yes";
 	
 	$(".productdetailsdiv").html(" ");
@@ -671,6 +643,7 @@ function display_div(id)
            {	  
                $.each(data, function(key, val) 
 			   {
+				   
                              $("#productdetailsdiv_"+id+"").html(" ");
 			    
 			    $("#productdetailsdiv_"+id+"").append('<p>Name:'+val.product_name+'</p><p>Price:'+val.price+'</p><p>Dimensions:'+val.dimensions+'</p>');	  

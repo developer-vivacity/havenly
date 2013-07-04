@@ -33,85 +33,106 @@ contact varchar(100) NOT NULL,website_link varchar(100) NOT NULL, PRIMARY KEY(ve
  $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
 
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_design(design_id int(10) NOT NULL,room_id int(10) NOT NULL,design_name varchar(100) NOT NULL)");
+ 
+  $this->db->query("CREATE TABLE IF NOT EXISTS design_product_mapping(design_id int(10) NOT NULL,product_id int(10) NOT NULL)");
+  
 
  }  
 
  //-----For Product Details 
- function get_all_product($orderby=null)
-  {	    
-	$query=$this->db->query("select productid,product_name,link from products ".$orderby."");
+ function get_all_product($pid=null)
+  {	
+	
+	
+	  $this->db->select('productid,product_name,link');
+	  $this->db->from('products');
+	  if($pid!="")   
+	  $this->db->where('productid',$pid);
 		
-        return $query->result();; 
+          return $this->db->get()->result(); 
   }
  //-------
- function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null)
+ function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null,$designid=null)
  {
-   $this->db->where('user_id',$userid);
-   $this->db->where('room_id',$roomid);
-   
-   if($this->db->count_all('user_room_designs')=="")
-   {
-	
-	$data = array(
+  	$data = array(
    'user_id' => $userid ,
    'room_id' => $roomid ,
+   'design_id'=> $designid ,
    'design_status' => $design_status,
    'filename'=>$filename
      );
 
    $this->db->insert('user_room_designs', $data);    
-   }
-   else
-   {
-	  $data = array(
-      'design_status' => $design_status,
-      'filename'=>$filename
-      );
-      $this->db->update('user_room_designs', $data);    
-
- }
+   
+  
  }
 
-function save_product_associated_with_room($roomid=null,$productid=null)
+function save_product_associated_with_room($roomid=null,$productid=null,$product_design_plan=null,$design_id=null)
 {
 	
-      
    if($productid=="")
    {
-  $this->db->select('GROUP_CONCAT(product_id) as product_id');        
-  $this->db->where('room_id',$roomid);  
- $query=$this->db->get('product_room_mapping');
-	    return $query->result();
+    $this->db->from('products','product_room_mapping');
+   
+    $this->db->select('productid,product_name,link,Design_Plan'); 
+   
+    $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id');     
+   
+    $this->db->where('room_id',$roomid);  
+    $this->db->distinct();
+    $query=$this->db->get();
+  
+    return $query->result();
+
    }
    else
    {
      
-      $this->db->where('room_id',$roomid);
-      if($this->db->count_all_results('product_room_mapping')!=0)
-      {
-      $this->db->delete('product_room_mapping', array('room_id' => $roomid)); 
-       
-      }
-      foreach(explode(',',$productid) as $key=>$value)
-       {
-        $data = array(
-         'room_id' => $roomid ,
-         'product_id' => $value 
-        );
-        
-         $this->db->insert('product_room_mapping', $data);    
-       } 
-  }
+               $this->db->where('design_id IN (Select design_id from `user_design` where room_id='.$roomid.')');
+	       if($this->db->count_all_results('design_product_mapping')!=0)
+               {
+            $this->db->where('product_id IN (Select product_id from design_product_mapping where design_id='.$design_id.' and product_id not in(select product_id from `design_product_mapping` where design_id in(Select design_id from `user_design` where room_id='.$roomid.' and design_id!='.$design_id.') ) )');	       	       
+                   $this->db->delete('product_room_mapping');
+          
+                   $this->db->delete('design_product_mapping',array('design_id'=>$design_id));      
+              
+               }
+             else
+              {
+
+                 $this->db->delete('product_room_mapping', array('room_id' => $roomid));
+
+               }
+             
+               foreach(explode(',',$productid) as $key=>$value)
+               {
+                $this->db->where('room_id',$roomid);
+                $this->db->where('product_id',$value);          
+                if($this->db->count_all_results('product_room_mapping')==0)
+                {
+                 
+                $data = array('room_id' => $roomid ,'product_id' => $value,'Design_Plan'=> $product_design_plan);
+                $this->db->insert('product_room_mapping', $data);    
+                }         
+               if(!empty($design_id))
+               {
+               $data = array('design_id' => $design_id ,'product_id' => $value);
+               $this->db->insert('design_product_mapping', $data); 
+              }
+             } 
+  
+}
 	
 } 
 function product_search($text=null,$id=null)
 {
 	if($id==1)
 	{
-       $this->db->select('style_id,style');
-       $this->db->like('style', $text);	
-       $query = $this->db->get('product_style');
-    }
+          $this->db->select('style_id,style');
+          $this->db->like('style', $text);	
+          $query = $this->db->get('product_style');
+       }
     elseif($id==2)
     {
 	   $this->db->select('color_id,color');
@@ -238,8 +259,9 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 	
        $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id','left');
        
-       $this->db->group_by('product_room_mapping.product_id');
+       //$this->db->group_by('product_room_mapping.product_id');
        
+       $this->db->group_by('products.productid');
        $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
        
        $query = $this->db->get();	
@@ -342,47 +364,72 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
          break;
      }
 	
- 
-
 $query=$this->db->query("select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
 UNION
 select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where productid not in (select concat(',',productid)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
-
-
 
 return $query->result();	
 	
 }
 function product_type()
 {
-    $query=$this->db->get('product_type');
+         $query=$this->db->get('product_type');
 	return $query->result();
 	
 }
 function color_type()
 {
-    $query=$this->db->get('product_colors');
+         $query=$this->db->get('product_colors');
 	return $query->result();
 	
 }
 function product_material()
 {
-    $query=$this->db->get('product_material');
+         $query=$this->db->get('product_material');
 	return $query->result();
 	
 }
 function product_style()
 {
-    $query=$this->db->get('product_style');
+         $query=$this->db->get('product_style');
 	return $query->result();
 	
 }
 function product_details_by_id($id)
 {
-	
 	$this->db->where('productid',$id);
 	$query=$this->db->get('products');
 	return $query->result();
+}
+function userdesign($room_id)
+{
+         $this->db->select('design_id,design_name'); 
+         $this->db->where('room_id',$room_id);	
+	$query=$this->db->get('user_design');
+	return $query->result();
+}
+function display_design_associated_products($design_id)
+{
+	$this->db->from('design_product_mapping','products');
+	$this->db->select('products.product_name,products.link');
+	$this->db->join('products','design_product_mapping.product_id=products.productid');
+	
+	 $this->db->where('design_product_mapping.design_id',$design_id);
+	
+	$query = $this->db->get();	
+         
+         return $query->result();
+}
+function  design_image_for_rooms($room_id,$designid)
+{
+	 $this->db->where('room_id',$room_id);
+         $this->db->where('design_id',$designid);
+	 $this->db->from('user_room_designs');
+	 $this->db->select('filename');
+         $query = $this->db->get();	
+	 return $query->result();
+	
+	
 }
 }
 

@@ -165,17 +165,17 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   {
 	  var productimage="";
 	  $("#div_show_error_message").html('');
-	
-	 if($("#showselectedproductimage").html().trim()=="")
-	 {
-	 $("#div_show_error_message").html('<p>*Select at least one product:</p>');
-	 }  
-	 else
-	 {
+          var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());
+          if($("#designproductid_"+designid).val().trim()=="")
+	  {
+	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
+	  }  
+	  else
+	  {
 		   $("#hidproductsearch").val("SaveSelected");
 		   $("#productid").val(productimage);
-	       $("#saveproduct").submit();
-     }
+	           $("#saveproduct").submit();
+          }
   });
   $("#searchproductname").click(function()
   {
@@ -279,7 +279,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 			   
 			   
 		   })
-         $('input[name="ascprice[]"]:checked').each(function(i,e)
+              $('input[name="ascprice[]"]:checked').each(function(i,e)
                    {
 			   is_sort=true;
 			   if(ascproductpricecheck=="")

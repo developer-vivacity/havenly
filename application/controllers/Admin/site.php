@@ -169,22 +169,24 @@ function productdetails($room_id=null,$user_id=null)
      {
 	 if($room_id!="")
 	 {
-	 $data["roomid"]=$room_id;
-         $data["userid"]=$user_id;
-          $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
+	   $data["roomid"]=$room_id;
+           $data["userid"]=$user_id;
+           
+           $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
          
-          $data["producttype"]=$this->product_model->product_type();
+           $data["producttype"]=$this->product_model->product_type();
 	 
-	 $data["productcolortype"]=$this->product_model->color_type();
+	   $data["productcolortype"]=$this->product_model->color_type();
 	 
-	 $data["productmaterialtype"]=$this->product_model->product_material();
+	   $data["productmaterialtype"]=$this->product_model->product_material();
 	 
-	 $data["productstyle"]=$this->product_model->product_style();
+	   $data["productstyle"]=$this->product_model->product_style();
 	 
-	 $data["userdesign"]=$this->product_model->userdesign(intval($room_id));
-	 
-	
-	  
+	   $data["userdesign"]=$this->product_model->userdesign(intval($room_id));
+	   
+
+          $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id));
+
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
           else if($this->input->post("hidproductsearch")=="sort")
@@ -377,10 +379,21 @@ function set_file_name()
 }
 function assign_product()
 {	
-	 if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
-	 $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),implode(',',$this->input->post("assign")),$this->input->post("Design_Plan"),$this->input->post("userdesign"));	
-	
-	 $this->productdetails($this->input->post("currentroomid"));
+    if($this->input->post("holddesignidforroom")!="")
+    {
+        $holddesignidforroom= split(",",$this->input->post("holddesignidforroom"));
+        $assing_product=array();
+        if(sizeof($holddesignidforroom)>0)
+        {
+        foreach($holddesignidforroom as $key=>$value)
+        $assing_product[$value]=$this->input->post("assign_".$value);
+        }
+    }
+    else
+   $assing_product["product"]=$this->input->post("assign_7u7");
+   if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
+   $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assing_product,$this->input->post("Design_Plan"),$this->input->post("userdesign"));	
+   $this->productdetails($this->input->post("currentroomid"));
 }
 
 function add_product()
@@ -391,10 +404,7 @@ function add_product()
 		$this->load->view('Admin/adminlogin');
 		return;
 		
-	}
-		
-		
-		if($_POST)
+	}if($_POST)
 		{
 			
 		$holdlinkuploadimg=array();	 
@@ -403,14 +413,14 @@ function add_product()
 	    while($i<=4)
 	    {
 	     if(!empty($_FILES['uploadproductpic'.$i]['name']))
-         {
+             {
 			
 			 $this->for_pic_upload('uploadproductpic'.$i);
 			 
 		     $holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->_File_Location;	 
 		 }
 		 $i++;
-	   }		
+	     }		
 		
 		$holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->input->post("productweblink");
 		 
@@ -479,6 +489,7 @@ function add_product()
           $materialhiddenfilter=explode(',',$materialhiddenfilter);
           sort($materialhiddenfilter);
           $materialhiddenfilter=implode(',',$materialhiddenfilter);
+
           $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
 'rent_price'=>$this->input->post("rentprise"),'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),'link'=>$holdlinkuploadimg[0],'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',','product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
 		
@@ -519,7 +530,8 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 		
 	}
 	$data['roomid']=$room_id;
-	$data['designname']=$designname;
+
+	$data['designname']=urldecode($designname);
 	$data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	$data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
 	$this->load->view('Admin/assignproductdesign',$data);

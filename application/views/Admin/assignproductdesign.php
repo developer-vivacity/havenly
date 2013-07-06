@@ -6,7 +6,7 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 <table>
 	<tr>
 	<td>
-		 Product for <?php echo $designname;?> 
+		 Product for <?php echo $designname;?>: 
 	</td>
 	
 	</tr>
@@ -26,9 +26,13 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 
 </td>
 </tr>
-
 <tr>
+<td>&nbsp;</td></tr>
+<tr>
+
 <td>Design Images:</td></tr>
+
+
 <tr>
 <td>
 

@@ -8,15 +8,12 @@
  echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
  echo '<br/>';
  echo '<br/>';
-
 if(sizeof($selectproduct)==0)
 echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;
 <a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'" rel="productdesign">Product and Design Response</a></p>';
 else
 echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>';
-
 echo'<p>&nbsp;</p>';
-
 $style_pics="";
 $color_pics="";
 $roomtype="";
@@ -44,7 +41,7 @@ foreach($roomwithuser as $key)
 	
 	$otherroom_folder=($optionroomfolder=="Living Room"?"Bedroom":"Living Room");
 	
-	echo '<table id="CurrentUser" class="adminmain" >';
+	echo '<table id="CurrentUser" class="adminmain" style="display:block;">';
 	
 	echo '<tr><td>User Name</td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 	
@@ -60,7 +57,7 @@ foreach($roomwithuser as $key)
          echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
          echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
          echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
-         echo '<table id="CurrentRoom" class="adminmain">';
+         echo '<table id="CurrentRoom" class="adminmain" style="display:none;">';
 	echo '<tr><td>Update Room Status</td><td><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select><input type="submit" value="Update"></td></tr>';
 	echo '<tr><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td></tr>';
          echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
@@ -105,7 +102,7 @@ echo '</td></tr>';
 echo '</table>';
  echo form_close(); 
 ?>
-<table id="currentref" class="adminmain">
+<table id="currentref" class="adminmain" style="display:none;">
 <tr><td>Style Pic:</td></tr>
 <tr>
 <td >
@@ -142,7 +139,7 @@ endforeach;
 </tr>
 </table>
 <?php
-echo '<div id="productdesign" class="adminmain">';
+echo '<div id="productdesign" class="adminmain" style="display:none;">';
 ?>
 
 	<?php
@@ -155,7 +152,7 @@ if(sizeof($selectproduct)>0)
 <tr><td>&nbsp;Product Name:</td></tr>
 <tr><td>&nbsp;</td></tr>
 <tr>
-<td><div style="width:700px;">
+<td><div style="width:800px;height:100px;">
 
 
 

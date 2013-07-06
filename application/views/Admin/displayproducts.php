@@ -4,6 +4,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/product_design.js"></script>
 <style  type="text/css">
 	
 #upload{
@@ -28,46 +29,8 @@
 }
 
 </style>
-<script type="text/javascript">
 
- $(function(){
-		var btnUpload=$('#me');
-		var mestatus=$('#mestatus');
-		var files=$('#files');
-		new AjaxUpload(btnUpload, {
-			
-action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
-			name: 'uploadfile',
-			roomid:$("#currentroomid").val(),
-			userid:$("#currentuserid").val(),
-                        designid:$("#userdesign").val(),
-			onSubmit: function(file, ext){
-				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
-                    mestatus.text('Only JPG, PNG or GIF files are allowed');
-					return false;
-				}
-				mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');
-			},
-			onComplete: function(file, response)
-			{
-				files.html('');
-
-
-				if(response==="success"){
-					mestatus.text('Photo Uploaded Sucessfully!');
-				} else{
-					mestatus.text('file uploded is failed!')
-				}
-			}
-		});
-		
-		
-		
-		
-	});
-
-
-</script>
+<body>
 <?php
 echo'<p>&nbsp;</p>';
 echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'/index.php/Admin/site/currentroomwithuser/'.$roomid.'">Back</a></p>';
@@ -82,19 +45,24 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 ?>
 <table width="800px" style='font-size:14px;'>
  <?php
+        $designidforroom="";
         if(sizeof($userdesign)): 
         ?>
        <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
        <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design</div><div style="float:left;width:100px">
-	       
- <select name="userdesign" id="userdesign">
+	
+ <select name="userdesign" id="userdesign" onchange="display_design();">
    <?php
 
          foreach($userdesign as $key)
 	{
-	 echo '<option id="'.$key->design_id.'" value="'.$key->design_id.'">'.$key->design_name.'</option>';		
-	}
-   
+
+	$selected=($key->design_id==$productwithdesign[0]->design_id ? "selected":"");
+        
+         echo '<option id="'.$key->design_id.'" value="'.$key->design_id.'" '.$selected.'>'.$key->design_name.'</option>';		
+         $designidforroom=($designidforroom==""?$key->design_id:$designidforroom.','.$key->design_id);	
+}
+   echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designidforroom.'"/>';
 ?>
 </select>
 <?php
@@ -223,19 +191,75 @@ echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]"
 </td></tr>
 <tr><td>&nbsp;</td><td>
 <div id="showselectedproductimage"> 
-	<?php
-	$selectproductid="";
-	foreach($selectproduct as $key)
-	{
+
+	
+<?php
+        $design_id="";
+        $selectproductid="";
+        $productidhold="";
+        $count=0;
+if(sizeof($productwithdesign)>0)
+{
+       
+   foreach($productwithdesign as $key2)
+   {
+      if($design_id!=$key2->design_id & $design_id=="" )        
+       { $productidhold="";     
+         $count=$count+1;
+         echo '<div style="width:100%" id="showselectedproductimage'.$key2->design_id.'" class="designname">';
+       }
+      elseif($design_id!=$key2->design_id)
+      {  
+         
+        if($count==1)
+        $selectproductid=$productidhold;                     
+       
+         echo "<input type='hidden' id='designproductid_".$design_id."' value='".$productidhold."'/>";
+         echo '</div>';
+         echo '<div style="width:100%;float:left;display:none;" id="showselectedproductimage'.$key2->design_id.'" class="designname">';
+         $productidhold="";
+$count=$count+1;      
+        } 
+    
+     foreach($selectproduct as $key)
+     {
+   
+      if(($key2->product_id==$key->productid))
+      {
+         echo'<div id="select_img_'.$key2->design_id.'_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->productid.'" /></div>';
+    
+         $productidhold=($productidhold==""?$key->productid:$productidhold.','.$key->productid);	
+ 
+            
+       }
+
+     }
+    
+   $design_id=$key2->design_id;
+   }
+
+if($count==1)
+$selectproductid=$productidhold;
+  
+echo "<input type='hidden' id='designproductid_".$design_id."' value='".$productidhold."'/>";
+echo '</div>';
+}
+elseif(sizeof($userdesign)==0)
+{
+   
+  
+  foreach($selectproduct as $key)
+	   {
 		 
-	  echo'<div id="select_img_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/><input type="hidden" name="assign[]" value="'.$key->productid.'" /></div>';
+	  echo'<div id="select_img_7u7_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->productid.'" /></div>';
 	  if($selectproductid=="")
 	  $selectproductid=$key->productid;
 	  else
 	  $selectproductid=$selectproductid.','.$key->productid;
 	}
-	
-	?>
+  echo "<input type='hidden' id='designproductid_7u7' value='".$selectproductid."' name='designproductid_7u7'/>";
+}
+?>
 	
 	</div></td></tr>
 <tr>
@@ -304,10 +328,10 @@ foreach($productmaterialtype as $key)
 		   }
 		  echo'<div style="float:left;width:150px;height:150px;cursor:pointer;">
 		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);"/>&nbsp;&nbsp;</div>';
+		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);" id="product_img'.$key->productid.'"/>&nbsp;&nbsp;</div>';
 	}
-	if(sizeof($productdetails)==0)
-	echo "No products found!";
+	  if(sizeof($productdetails)==0)
+	  echo "No products found!";
 	
 	?>
 </div>
@@ -319,56 +343,20 @@ foreach($productmaterialtype as $key)
 <input type="hidden" value="<?php echo $roomid;?>" id="currentroomid" name="currentroomid"/>
 <input type="hidden" value="<?php echo $userid;?>" id="currentuserid" name="currentuserid"/>
  
-
 <?php 
 
 echo form_close(); ?>
 </div>
-
+</body>
 <script>
- $(".cbox").hide();
+$(".cbox").hide();
 
 $(".inactive, .active").click(function()
 {
 	
-  $(this).toggleClass('active');
-  var checkbox = $(this).parent().find('.cbox');
-		
-		checkbox.prop('checked',!checkbox[0].checked);
+                 $(this).toggleClass('active');
+                 var checkbox = $(this).parent().find('.cbox');
+		 checkbox.prop('checked',!checkbox[0].checked);
 });
-var global_prodct_id;
-var global_image_path;
-var object;
-function selectedproductimage(productid,productimagepath,refobject)
-{
-	
-	global_prodct_id=productid;
-	global_image_path=productimagepath;
-	object=refobject;
-	if($("#productimage_"+productid+"").is(':checked')==false)
-	$("#productlist").append("<div style='width:100%;height:300px;border:solid 1px;transparent;position: absolute;background-color:black;opacity:0.8;' id='popup'><div style='background:white;border-radius: 5px ;content: attr(title);padding: 5px 5px;z-index: 98;width: 300px;height:100px;margin-left:300px;margin-top:100px;border:solid 1px;cursor:pointer;'> <p><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;' onclick='distory_popup();'/></p><br/><br/><br/><span style='margin-lop:150px;margin-left:105px;border:solid 1px #ccc;bacground-color:red;cursor:pointer;' onclick='addselectimg();'>Add To Design</span></div></div>");
-	else
-	$("#select_img_"+productid).remove();
-}
-function distory_popup()
-{
-	
-	$("#popup").remove();
-	$("#productimage_"+global_prodct_id).removeAttr('checked');
-	$(object).toggleClass('active');
-
-}
-function addselectimg()
-{
-	
-  	$("#showselectedproductimage").append('<div id="select_img_'+global_prodct_id+'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'+global_image_path+'" width="75px;" height="75px;"/><input type="hidden" name="assign[]" value="'+global_prodct_id+'" class="cbox"/></div>');
-  	$("#popup").remove();
-}
-function show_product_details()
-{
-
-            $("#select_products_for_room").hide();
-  	    $("#allproductdisplay").show();
-	
-}
 </script>
+

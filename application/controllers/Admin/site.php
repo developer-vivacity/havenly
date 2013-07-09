@@ -521,7 +521,7 @@ function product_details_on_hover($id=null)
 	
 }
 
-function display_product_name_associate_with_design($design_id=null,$designname=null,$room_id=null)
+function display_product_name_associate_with_design($design_id=null,$designname=null,$room_id=null,$current_user_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
 	{
@@ -534,6 +534,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 	$data['designname']=urldecode($designname);
 	$data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	$data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
-	$this->load->view('Admin/assignproductdesign',$data);
+        $data['currentuserid']=$current_user_id;	
+$this->load->view('Admin/assignproductdesign',$data);
 }
 }

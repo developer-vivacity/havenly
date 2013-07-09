@@ -8,7 +8,7 @@
  echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
  echo '<br/>';
  echo '<br/>';
-if(sizeof($selectproduct)==0)
+if(sizeof($designassociaterooms)==0)
 echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;
 <a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'" rel="productdesign">Product and Design Response</a></p>';
 else
@@ -144,29 +144,12 @@ echo '<div id="productdesign" class="adminmain" style="display:none;">';
 
 	<?php
 	
-if(sizeof($selectproduct)>0)
+if(sizeof($designassociaterooms)>0)
 	 {
 ?>
 
 <table>
-<tr><td>&nbsp;Product Name:</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr>
-<td><div style="width:800px;height:100px;">
 
-
-
-<?php
-
-	foreach($selectproduct as $key)
-	{
-	echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
-			
-	}
-?>
-</div>
-</td>
-</tr>
 <tr><td>&nbsp;</td></tr>
 
 <tr>
@@ -184,7 +167,7 @@ Design Name:
 foreach($designassociaterooms as $key)
 {
 	
-  echo '<div>&nbsp;&nbsp;<a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'">'.$key->design_name.'</a></div>';
+  echo '<div>&nbsp;&nbsp;<a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">'.$key->design_name.'</a></div>';
 	
 }
 ?>

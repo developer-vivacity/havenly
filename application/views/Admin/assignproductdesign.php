@@ -6,23 +6,27 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 <table>
 	<tr>
 	<td>
-		 Product for <?php echo $designname;?>: 
+	Design Images:	 
 	</td>
 	
 	</tr>
 <tr>
 	
 <td>
-	
 	<?php
-	if(sizeof($productassign)==0)
-	echo "NO PRODUCT ASSIGN";
-        foreach($productassign as $key)
-	{
-	echo '<div style="float:left;width:110px;"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></div>';
-			
-	}
-	?>
+if(sizeof($designimage)==0)
+echo "NO DESIGN IMAGE";
+foreach($designimage as $key)
+{
+	
+echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'"><img src="'.$key->filename.'" height="100px" width="100px"/></a></div>';
+	
+	
+}
+
+
+?>
+	
 
 </td>
 </tr>
@@ -30,25 +34,24 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 <td>&nbsp;</td></tr>
 <tr>
 
-<td>Design Images:</td></tr>
+<td>
+
+ Product for <?php echo $designname;?>:
+</td></tr>
 
 
 <tr>
 <td>
 
 <?php
-if(sizeof($designimage)==0)
-echo "NO DESIGN IMAGE";
-foreach($designimage as $key)
-{
-	
-echo '<div style="float:left;width:110px;"><img src="'.$key->filename.'" height="100px" width="100px"/></div>';
-	
-	
-}
-
-
-?>
+	if(sizeof($productassign)==0)
+	echo "NO PRODUCT ASSIGN";
+        foreach($productassign as $key)
+	{
+	echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
+			
+	}
+	?>
 
 </td>
 

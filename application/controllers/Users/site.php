@@ -361,7 +361,7 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     else
     {
      $data["message"]="No Rooms found";
-     $this->load->view('Users/accountinformation', $data);
+     $this->load->view('Users/home', $data);
      return;
     }
 }

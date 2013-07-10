@@ -326,7 +326,7 @@
 <div class = "horizontal seventy">
 <a class = "button3 pink white_text condensed" id = "requestinvite">Request</a><br><br>
 </form>
-</div></div></div>
+</div></div></div></div>
 
 <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){

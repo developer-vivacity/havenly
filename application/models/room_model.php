@@ -110,7 +110,7 @@ function fetch_color_style_number()
 // for display all data of user_rooms table.	
 function display_all_rooms($orderby=null)
 {
-$query=$this->db->query("SELECT users.email AS username, user_rooms.id AS Order_number, user_rooms.room_type AS Room_type, user_rooms.status AS Order_status, designer.designer_name AS assigned_to
+$query=$this->db->query("SELECT distinct users.email AS username, user_rooms.id AS Order_number, user_rooms.room_type AS Room_type, user_rooms.status AS Order_status, designer.designer_name AS assigned_to
 FROM user_rooms
 INNER JOIN users ON user_rooms.user_id = users.id
 LEFT JOIN designer_mapping ON designer_mapping.user_id = user_rooms.user_id

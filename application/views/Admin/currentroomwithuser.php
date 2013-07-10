@@ -8,10 +8,7 @@
  echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
  echo '<br/>';
  echo '<br/>';
-if(sizeof($designassociaterooms)==0)
-echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;
-<a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'" rel="productdesign">Product and Design Response</a></p>';
-else
+
 echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>';
 echo'<p>&nbsp;</p>';
 $style_pics="";
@@ -174,9 +171,53 @@ foreach($designassociaterooms as $key)
 
 </td>
 </tr>
-</table>
-
 <?php
 }
 ?>
+<tr><td>&nbsp;
+	<?php
+        $data = array(
+              'name'        => 'AddDesigntext',
+              'id'          => 'AddDesigntext',
+              'value'       => '',
+              'maxlength'   => '100',
+              'size'        => '20'
+            );
+        echo form_input($data);
+
+      ?>
+	
+	</td></tr>
+	<tr><td>&nbsp;
+    <?php
+	 $data = array(
+	     'type'=>'button',
+              'name'        => 'NewDesign',
+              'id'          => 'NewDesign',
+              'value'       => 'Add New Design',
+              'onClick'    =>  'show_add_design('.$roomid.')'
+            );
+
+          echo form_input($data);
+
+      ?></td></tr>
+
+</table>
+
+
 </div>
+<script>
+function show_add_design(roomid)
+{	
+	 $("#enterdesign").remove();
+	 if($("#AddDesigntext").val().trim()=="")
+          $("#AddDesigntext").before('<p id="enterdesign">*Enter Desigen Name</p>');
+          else
+          {
+           location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim();		  
+          }
+	
+	
+}
+
+</script>

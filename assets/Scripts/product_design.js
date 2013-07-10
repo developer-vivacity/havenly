@@ -54,14 +54,16 @@ var global_image_path;
 var object;
 function selectedproductimage(productid,productimagepath,refobject)
 {
-     var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());	
-
+    // var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());	
+var designid=$("#holddesignidforroom").val();
 global_prodct_id=productid;
 	global_image_path=productimagepath;
 	object=refobject;
 if($("#productimage_"+productid+"").is(':checked')==false)
 {
-        $("#productlist").append("<div style='width:100%;height:300px;border:solid 1px;transparent;position: absolute;background-color:black;opacity:0.8;' id='popup'><div style='background:white;border-radius: 5px ;content: attr(title);padding: 5px 5px;z-index: 98;width: 300px;height:100px;margin-left:300px;margin-top:100px;border:solid 1px;cursor:pointer;'> <p><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;' onclick='distory_popup();'/></p><br/><br/><br/><span style='margin-lop:150px;margin-left:105px;border:solid 1px #ccc;bacground-color:red;cursor:pointer;' onclick='addselectimg();'>Add To Design</span></div></div>");
+      $("#productlist").append("<div style='width:100%;height:100%;border:solid 1px;transparent;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background:white;border-radius: 5px ;content: attr(title);padding: 5px 5px;z-index: 98;width: 300px;height:100px;border:solid 1px;cursor:pointer; position:absolute; top:50px; left:120px;'> <p><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;' onclick='distory_popup();'/></p><br/><br/><br/><span style='margin-lop:150px;margin-left:105px;border:solid 1px #ccc;bacground-color:red;cursor:pointer;' onclick='addselectimg();'>Add To Design</span></div></div>");
+     
+     $("#productlist").css('overflow','hidden');
 }       
  else
 {
@@ -81,7 +83,7 @@ $("#select_img_"+designid+"_"+productid).remove();
 }
 function distory_popup()
 {
-	
+	$("#productlist").css('overflow-y', 'scroll');
 	$("#popup").remove();
 	$("#productimage_"+global_prodct_id).removeAttr('checked');
 	$(object).toggleClass('active');
@@ -90,8 +92,9 @@ function distory_popup()
 function addselectimg()
 {
       
-     var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());
-     
+     //var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());
+      
+      var designid=$("#holddesignidforroom").val();
       var forappend= (designid=="7u7"?"":designid);
 
     if($("#designproductid_"+designid).length==0)

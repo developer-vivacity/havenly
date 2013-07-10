@@ -46,29 +46,17 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 <table width="800px" style='font-size:14px;'>
  <?php
         $designidforroom="";
-        if(sizeof($userdesign)): 
+        
         ?>
        <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-       <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design</div><div style="float:left;width:100px">
-	
- <select name="userdesign" id="userdesign" onchange="display_design();">
-   <?php
+       <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design Name:</div><div style="float:left;width:100px">
+   
+     <?php
+           echo $userdesign[0]->design_name;
+           echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
+     ?>
 
-         foreach($userdesign as $key)
-	{
-
-	$selected=($key->design_id==$productwithdesign[0]->design_id ? "selected":"");
-        
-         echo '<option id="'.$key->design_id.'" value="'.$key->design_id.'" '.$selected.'>'.$key->design_name.'</option>';		
-         $designidforroom=($designidforroom==""?$key->design_id:$designidforroom.','.$key->design_id);	
-}
-   echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designidforroom.'"/>';
-?>
-</select>
-<?php
-     endif;
-?>
-	       </div></td></tr>
+</div></td></tr>
 <tr><td width="300px">&nbsp;Upload Design Overview</td>
 <td width="500px">
 	<div id="me" class="styleall" style="height:10px;width:190px;">
@@ -88,26 +76,10 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
 </td><td align="right">
 <input type="button" value="Add Product" id="AddProduct" name="AddProduct"/><input type="button" value="Save Selected" id="SaveSelected"/>
 </td></tr>
-<tr><td colspan="2"><div style="float:left;width:200px">Design Plan</div><div style="float:left;width:100px">
-	<?php
-	$name_of_design_plan=array("1"=>"Modern","2"=>"Contemporary");
+<tr><td colspan="2">
 	
-	$Design_Plan=current($selectproduct);
-    
-    echo '<select style="float:left;" name="Design_Plan" id="Design_Plan">';
-    
-    foreach($name_of_design_plan as $plan_key=>$plan_value)
-    {
-	 $isselect=($plan_value==$Design_Plan->Design_Plan?'selected':'');
-	 echo '<option value="'.$plan_value.'" '.$isselect.'>'.$plan_value.'</option>';	
-    }
-    
-    echo '</select>';
-?>
-	
-	
-                  
-                  </div></td></tr>
+	<input type="hidden" name="Design_Plan" id="Design_Plan" value="Modern"/>
+</td></tr>
       
                   
 <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
@@ -198,8 +170,9 @@ echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]"
         $selectproductid="";
         $productidhold="";
         $count=0;
-if(sizeof($productwithdesign)>0)
-{
+       
+  if(sizeof($productwithdesign)>0)
+  {
        
    foreach($productwithdesign as $key2)
    {

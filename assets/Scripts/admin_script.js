@@ -165,7 +165,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   {
 	  var productimage="";
 	  $("#div_show_error_message").html('');
-          var designid=($("#userdesign").length==0?"7u7":$("#userdesign").val());
+          var designid=$("#holddesignidforroom").val();
           if($("#designproductid_"+designid).val().trim()=="")
 	  {
 	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
@@ -634,7 +634,7 @@ function display_div(id)
 	
 	$(".productdetailsdiv").remove();
 
-	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 120px"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
+	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 120px;font-size:10px !important;height:50px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
 
  $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
   {

@@ -67,6 +67,7 @@ timestamp timestamp NOT NULL)");
  }
 function save_product_associated_with_room($roomid=null,$productid=null,$product_design_plan=null,$design_id=null)
 {
+ // die(var_dump($productid));
    if($productid=="")
    {
     $this->db->from('products','product_room_mapping');
@@ -83,7 +84,7 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
    else
    {
            $product_id_have=array();
-          foreach($productid as $designkey=>$designvalue)          
+           foreach($productid as $designkey=>$designvalue)          
           {    
                if($designkey!="product")
                {               
@@ -394,14 +395,16 @@ function product_details_by_id($id)
 	$query=$this->db->get('products');
 	return $query->result();
 }
-function userdesign($room_id)
+function userdesign($room_id=null,$design_id=null)
 {
          $this->db->select('design_id,design_name'); 
-         $this->db->where('room_id',$room_id);	
+         $this->db->where('room_id',$room_id);
+         if($design_id!=null)
+         $this->db->where('design_id',$design_id);	
 	 $query=$this->db->get('user_design');
 	 return $query->result();
 }
-function productassociatewithdesign($room_id)
+function productassociatewithdesign($room_id,$designid)
 {
        $this->db->from('design_product_mapping','user_design');
       
@@ -410,7 +413,7 @@ function productassociatewithdesign($room_id)
        $this->db->join('user_design','design_product_mapping.design_id=user_design.design_id');
        
        $this->db->where('user_design.room_id',$room_id);
-       
+       $this->db->where('user_design.design_id',$designid);
        $this->db->order_by('user_design.design_id', 'asc');
       
       $query=$this->db->get();
@@ -437,6 +440,16 @@ function  design_image_for_rooms($room_id,$designid)
 	 $this->db->select('filename');
          $query = $this->db->get();	
 	 return $query->result();
+}
+function Add_Design_For_Room($room_id,$design_name,$design_id)
+{
+	if($design_id=="" & $design_name!="not submitted")
+	{
+	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
+	   $this->db->insert('user_design',$data);
+         }
+	
+	
 }
 }
 

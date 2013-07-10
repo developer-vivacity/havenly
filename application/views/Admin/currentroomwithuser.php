@@ -30,13 +30,13 @@ foreach($roomwithuser as $key)
          
          $roomtype=$key->room_type;	
 	
-	 $key->room_type = ($key->room_type=="BR"?"Bedroom":"Living Room");
+	 $key->room_type = ($key->room_type=="BR"?"Bedroom":"LivingRoom");
 	
 	$optionroomfolder=$key->room_type;
 	
 	$otherroom_type=($roomtype=="BR"?"LR":"BR");
 	
-	$otherroom_folder=($optionroomfolder=="Living Room"?"Bedroom":"Living Room");
+	$otherroom_folder=($optionroomfolder=="LivingRoom"?"Bedroom":"LivingRoom");
 	
 	echo '<table id="CurrentUser" class="adminmain" style="display:block;">';
 	

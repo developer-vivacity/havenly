@@ -21,34 +21,30 @@
               <li><a id = "aboutlink" href="<?php echo base_url('index.php/Users/site/whoweare');?>">About</a></li>
               <li><a <a id = "contlink"href="#contact">Contact</a></li>
             </ul>
-			<ul class = "nav pull-right white_text">
 			
-			<li><a class = "white_text sanslight" href = "<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a></li>
-			</ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
 	  </div>
 
 
+
+<div class = "container">
+<BR><BR><BR>
 <?php if (isset($error))
-{echo '<div class = "error">';
+{echo '<div class = "alert alert-error">';
+echo ' <button type="button" class="close" data-dismiss="alert">&times;</button>';
 echo $error;
 echo '</div>';}
 echo validation_errors('<p class="error">');
 ?>
 <br/>
-<br/>
-<br/>
-<br/>
-
-<div class = "container">
 <div class = "span6 offset3">
-<BR><BR><BR><BR><BR>
+<BR><BR>
 <form name="login" method="post" action=<?php echo base_url('index.php/Admin/site/adminlogin');?>>
 <p><label class = "sanslight">Username:</label><input type="text" name="username" id="username" size="20" maxlength="30" value="<?php if(isset($_POST['username'])) echo $_POST['username'];?>" /></p>
 <p><label class = "sanslight">Password:</label><input type="password" name="password" id="password" size="20" maxlength="30" value="<?php if(isset($_POST['password'])) echo $_POST['password'];?>"/></p>
-<p><input type="submit" class = "pink button3" value="Submit" /></p>
+<p><input type="submit" class = "pink condensed button3" value="Submit" /></p>
 </form>
 </div>
 </div>

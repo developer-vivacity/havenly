@@ -4,13 +4,37 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
-<?php 
- echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a></p>';
- echo '<br/>';
- echo '<br/>';
 
-echo '<p><a href="#CurrentUser"  rel="CurrentUser">Current User</a>&nbsp;|&nbsp;<a href="#CurrentRoom"  rel="CurrentRoom">Current Room</a>&nbsp;|&nbsp;<a href="#currentref"  rel="currentref">Style Prefs</a>&nbsp;|&nbsp;<a href="#productdesign" rel="productdesign">Product and Design Response</a></p>';
-echo'<p>&nbsp;</p>';
+ <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <div class="container"> 
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+		<a class="brand" href="#">Havenly</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>
+              <li><a>Designs</a></li>
+			               </ul>
+			<ul class = "nav pull-right black_text">
+			
+			<li><a class = "black_text sanslight" href = "<?php echo base_url('index.php/Admin/site/adminlogout');?>">LOGOUT</a></li>
+			</ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+	  </div>
+	  <div class = "white">
+	  
+	  
+	  
+<div class = "container">
+<BR><BR><BR>
+<?php
 $style_pics="";
 $color_pics="";
 $roomtype="";
@@ -24,21 +48,36 @@ $currentuserid="";
 foreach($roomwithuser as $key)
 {
     
-         $currentroomid=$key->id;
+    $currentroomid=$key->id;
          
-         $currentuserid= $key->user_id;        
+    $currentuserid= $key->user_id;        
          
-         $roomtype=$key->room_type;	
+    $roomtype=$key->room_type;	
 	
-	 $key->room_type = ($key->room_type=="BR"?"Bedroom":"LivingRoom");
+	$key->room_type = ($key->room_type=="BR"?"Bedroom":"LivingRoom");
 	
 	$optionroomfolder=$key->room_type;
 	
 	$otherroom_type=($roomtype=="BR"?"LR":"BR");
 	
 	$otherroom_folder=($optionroomfolder=="LivingRoom"?"Bedroom":"LivingRoom");
+}	
+
+	echo '<div class = "row sanslight"><div class = "span2 bottom">Update Room Status</div><div class = "span8"><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select>&nbsp;<input type="submit" class = "btn small" value="Update"></div></div><BR><BR><BR>';
+?>
+
+
+<ul id = "bstabs" class = "nav nav-pills sanslight ">
+<li ><a class = "pink white_text" href="#CurrentUser"  rel="CurrentUser">User Information</a></li>
+<li><a class = "pink white_text" href="#CurrentRoom"  rel="CurrentRoom">Room Information</a></li>
+<li><a class = "pink white_text" href="#currentref"  rel="currentref">Style Selections</a></li>
+<li><a class = "pink white_text" href="#productdesign" rel="productdesign">View/Add Design Responses</a></li>
+</ul>
+<BR>
+<?php
+foreach($roomwithuser as $key){
 	
-	echo '<table id="CurrentUser" class="adminmain" style="display:block;">';
+	echo '<table id="CurrentUser" class="adminmain table" >';
 	
 	echo '<tr><td>User Name</td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 	
@@ -47,18 +86,31 @@ foreach($roomwithuser as $key)
 	echo '<tr><td>User Email</td><td>'.$key->email.'</td></tr>';
 	
 	echo '<tr><td>User Address</td><td>'.$key->address.'</td></tr>';
+	
+	echo '<tr><td>Zipcode</td><td>'.$key->zipcode.'</td></tr>';
+	echo '<tr><td>Instagram</td><td>'.$key->instagram.'</td></tr>';
+	echo '<tr><td>Facebook</td><td>'.$key->facebook.'</td></tr>';
+		echo '<tr><td>Pinterest</td><td>'.$key->pinterest.'</td></tr>';
 	echo '</table>';
+	
+	
 	$attributes = array('class' => 'updateform', 'id' => 'updateform');
-         echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
+    
+	
+	echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
         
          echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
          echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
          echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
-         echo '<table id="CurrentRoom" class="adminmain" style="display:none;">';
-	echo '<tr><td>Update Room Status</td><td><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select><input type="submit" value="Update"></td></tr>';
-	echo '<tr><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td></tr>';
-         echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
     
+	echo '<table id="CurrentRoom" class="adminmain">';
+	
+	echo '<tr><td><img src="'.$key->room_photo1.'" height="300px" /></td><td><img src="'.$key->room_photo2.'" height="300px" /></td></tr>';
+          echo '<tr><td>&nbsp;</td></tr>';
+		    echo '<tr><td>&nbsp;</td></tr>';
+		  
+		echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
+		   echo '<tr><td>&nbsp;</td></tr>';
          echo '<tr><td>Width/Height</td><td>'.$key->width.'ft/'.$key->height.'ft</td></tr>';
   
         $style_pics=$key->style_pics;    
@@ -99,10 +151,10 @@ echo '</td></tr>';
 echo '</table>';
  echo form_close(); 
 ?>
-<table id="currentref" class="adminmain" style="display:none;">
+<table id="currentref" class="adminmain table" style="display:none;">
 <tr><td>Style Pic:</td></tr>
 <tr>
-<td >
+<td>
 	<?php 
 	$style_pics= explode(',',$style_pics);
 	$i=0;
@@ -114,8 +166,7 @@ echo '</table>';
          $i=$i+1;
 	    endwhile;
     ?>
-	</td>
-
+</td>
 </tr>
 <tr><td>Color pics:</td></tr>
 <tr>
@@ -147,16 +198,8 @@ if(sizeof($designassociaterooms)>0)
 
 <table>
 
-<tr><td>&nbsp;</td></tr>
 
-<tr>
-<td>&nbsp;
-Design Name:
-</td>
-</tr>
-<tr><td>
-&nbsp;
-</td></tr>
+
 <tr>
 <td>
 <?php
@@ -164,13 +207,13 @@ Design Name:
 foreach($designassociaterooms as $key)
 {
 	
-  echo '<div>&nbsp;&nbsp;<a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">'.$key->design_name.'</a></div>';
+  echo '<div>&nbsp;&nbsp;<a class = "sanslight" href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">'.$key->design_name.'</a></div>';
 	
 }
 ?>
 
 </td>
-</tr>
+</tr><tr><td>&nbsp;</td></tr>
 <?php
 }
 ?>
@@ -187,11 +230,12 @@ foreach($designassociaterooms as $key)
 
       ?>
 	
-	</td></tr>
-	<tr><td>&nbsp;
+	</td>
+	<td>&nbsp;
     <?php
 	 $data = array(
 	     'type'=>'button',
+		 'class'=>'btn',	
               'name'        => 'NewDesign',
               'id'          => 'NewDesign',
               'value'       => 'Add New Design',
@@ -206,12 +250,14 @@ foreach($designassociaterooms as $key)
 
 
 </div>
+<BR><BR><BR><BR><BR><BR><BR>
+</div>
 <script>
 function show_add_design(roomid)
 {	
 	 $("#enterdesign").remove();
 	 if($("#AddDesigntext").val().trim()=="")
-          $("#AddDesigntext").before('<p id="enterdesign">*Enter Desigen Name</p>');
+          $("#AddDesigntext").before('<p id="enterdesign">Design Name</p>');
           else
           {
            location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim();		  
@@ -221,3 +267,6 @@ function show_add_design(roomid)
 }
 
 </script>
+<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>

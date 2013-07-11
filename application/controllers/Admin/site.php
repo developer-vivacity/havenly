@@ -20,13 +20,7 @@ function __construct()
 	$this->load->model('product_model');	
 }
 	
-	function index() 
-	{
-	
-		
-		$this->load->view('Admin/home');
-		
-	}
+
 	
 function open_contests() 
 {
@@ -140,7 +134,7 @@ function currentroomwithuser($room_id=null)
 	   $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
 	   $adminrooms=$this->room_model->display_all_rooms($condition);
 	   $data["roomid"]=$room_id;
-	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
+	   $data["roomwithuser"]=$this->room_model->displayuserinformationwithroom(intval($room_id));
 	 
 	   $data["colorstyle"]=$this->room_model->fetch_color_style_number();
 	 

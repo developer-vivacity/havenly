@@ -628,16 +628,18 @@ function removenewitem(stridforremove,id,holdvalue,matchvalue)
 function display_div(id)
 {
 	
-	var globalkey="yes";
+     var globalkey="yes";
 	
-	$(".productdetailsdiv").html(" ");
+     $(".productdetailsdiv").html(" ");
 	
-	$(".productdetailsdiv").remove();
+     $(".productdetailsdiv").remove();
 
-	$('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position: absolute;z-index: 98;width: 120px;font-size:10px !important;height:50px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id)
-
- $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
-  {
+     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
+     
+    
+     
+    $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
+     {
 	  
 	   if(globalkey=="yes")
            {	  
@@ -646,7 +648,7 @@ function display_div(id)
 				   
                              $("#productdetailsdiv_"+id+"").html(" ");
 			    
-			    $("#productdetailsdiv_"+id+"").append('<p>Name:'+val.product_name+'</p><p>Price:'+val.price+'</p><p>Dimensions:'+val.dimensions+'</p>');	  
+			    $("#productdetailsdiv_"+id+"").append('<div>Name:'+val.product_name+'</div><div>Price:'+val.price+'</div><div>Dimensions:'+val.dimensions+'</div>');	  
 				globalkey="no";	  
 			   })
                   $(".productdetailsdiv").show();

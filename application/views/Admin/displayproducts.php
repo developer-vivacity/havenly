@@ -49,7 +49,7 @@ echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&n
         
         ?>
        <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-       <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design Name:</div><div style="float:left;width:100px">
+       <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design Name:</div><div style="float:left;width:200px">
    
      <?php
            echo $userdesign[0]->design_name;

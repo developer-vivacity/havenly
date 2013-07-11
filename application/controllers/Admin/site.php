@@ -212,9 +212,10 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 
 function update_room_status_by_admin()
 {
-	$data=array('room_type'=>$this->input->post('update_room_type'));
-	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$data);
-	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$data);
+	$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
+	$preferencedata=array('room_type'=>$this->input->post('update_room_type'));
+	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$roomdata);
+	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$preferencedata);
 	$this->roomsadministrator();
 }
 function additional_details_user_room($room_id=null)
@@ -527,7 +528,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 		
 	}
 	$data['roomid']=$room_id;
-$data['designid']=$design_id;
+         $data['designid']=$design_id;
 	$data['designname']=urldecode($designname);
 	$data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	$data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
@@ -536,6 +537,7 @@ $this->load->view('Admin/assignproductdesign',$data);
 }
 function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null)
 {
+	 
 	  $this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id);
 	  
 	  $this->currentroomwithuser($room_id);

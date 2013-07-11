@@ -45,6 +45,7 @@ $buyitems=array();
 $checktitems=array();
 $currentroomid="";
 $currentuserid="";
+
 foreach($roomwithuser as $key)
 {
     
@@ -95,6 +96,7 @@ foreach($roomwithuser as $key){
 	
 	
 	$attributes = array('class' => 'updateform', 'id' => 'updateform');
+<<<<<<< HEAD
     
 	
 	echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
@@ -102,6 +104,30 @@ foreach($roomwithuser as $key){
          echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
          echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
          echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
+=======
+         echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
+         
+         $roomstatus=array("Open" , "Called", "Design", "Moodboard Review", "Final Design", "Order", "Closed");
+         
+         echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
+         echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$key->id.'"/>';
+         echo '<input type="hidden" name="userid" id="userid" value="'.$key->user_id.'"/>';
+         echo '<table id="CurrentRoom" class="adminmain" style="display:none;">';
+	echo '<tr><td>Room Type</td><td><select name="update_room_type" id="update_room_type"><option value="'.$roomtype.'">'.$optionroomfolder.'</option><option value="'.$otherroom_type.'">'.$otherroom_folder.'</option></select><input type="submit" value="Update"></td></tr>';
+	echo '<tr><td>Update Room Status</td><td><select name="update_room_status" id="update_room_status">';
+	
+	foreach($roomstatus as $statuskey=>$statusvalue)
+	{
+	   $select=($key->status==$statusvalue?"selected":"");
+	   echo '<option value="'.$statusvalue.'" '.$select.'>'.$statusvalue.'</option>';
+		
+	}
+	
+	echo'</select><input type="submit" value="Update"></td></tr>';
+	
+	echo '<tr><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td><td><img src="'.$key->room_photo1.'" height="100px" weight="100px"/></td></tr>';
+         echo '<tr><td>Room Type</td><td>'.$key->room_type.'</td></tr>';
+>>>>>>> 888815f33b4d9de6fa61b9a12f90725e1ef8c112
     
 	echo '<table id="CurrentRoom" class="adminmain">';
 	
@@ -156,6 +182,7 @@ echo '</table>';
 <tr>
 <td>
 	<?php 
+	
 	$style_pics= explode(',',$style_pics);
 	$i=0;
 	while($i<sizeof($style_pics)-1):
@@ -207,8 +234,13 @@ if(sizeof($designassociaterooms)>0)
 foreach($designassociaterooms as $key)
 {
 	
+<<<<<<< HEAD
   echo '<div>&nbsp;&nbsp;<a class = "sanslight" href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">'.$key->design_name.'</a></div>';
 	
+=======
+  echo '<div id="displaydesignname_'.$key->design_id.'"><div style="float:left;width:200px;"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div><div style="float:left;width:100px;"><a href="#" onclick="displayeditdesign(\'displaydesignname_'.$key->design_id.'\',\'modifydesignname_'.$key->design_id.'\',\''.$key->design_name.'\');">Edit</a></div></div>';
+  echo '<div id="modifydesignname_'.$key->design_id.'" style="display:none;"><div style="float:left;width:300px;"><input type="text" value="'.$key->design_name.'" name="designtext'.$key->design_id.'" id="designtext'.$key->design_id.'"/></div><div style="float:left;width:100px;"><a href="#" onclick="Updatedesign(\'designtext'.$key->design_id.'\','.$key->design_id.','.$roomid.');">Update</a>&nbsp;&nbsp;<a href="#" onclick="displayeditdesign(\'displaydesignname_'.$key->design_id.'\',\'modifydesignname_'.$key->design_id.'\');">Close</a></div></div>' ;	
+>>>>>>> 888815f33b4d9de6fa61b9a12f90725e1ef8c112
 }
 ?>
 
@@ -217,6 +249,11 @@ foreach($designassociaterooms as $key)
 <?php
 }
 ?>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;Add New Design:</td></tr>
+<tr><td>
+&nbsp;
+</td></tr>
 <tr><td>&nbsp;
 	<?php
         $data = array(
@@ -224,27 +261,33 @@ foreach($designassociaterooms as $key)
               'id'          => 'AddDesigntext',
               'value'       => '',
               'maxlength'   => '100',
-              'size'        => '20'
+              'size'        => '10'
             );
         echo form_input($data);
 
+<<<<<<< HEAD
       ?>
 	
 	</td>
 	<td>&nbsp;
     <?php
+=======
+      ?> <?php
+>>>>>>> 888815f33b4d9de6fa61b9a12f90725e1ef8c112
 	 $data = array(
 	     'type'=>'button',
 		 'class'=>'btn',	
               'name'        => 'NewDesign',
               'id'          => 'NewDesign',
-              'value'       => 'Add New Design',
+              'value'       => 'Save',
               'onClick'    =>  'show_add_design('.$roomid.')'
             );
 
           echo form_input($data);
 
-      ?></td></tr>
+      ?>
+	
+	</td>
 
 </table>
 
@@ -264,6 +307,33 @@ function show_add_design(roomid)
           }
 	
 	
+}
+function displayeditdesign(displaydesign,editdesign)
+{
+	$("#designname").remove();
+	
+	if($("#"+displaydesign).is(':visible'))
+	{
+	  $("#"+displaydesign).hide();
+	  $("#"+editdesign).show();
+         }
+        else 
+         {
+		
+          $("#"+displaydesign).show();
+	 $("#"+editdesign).hide();
+		
+		
+	}
+	
+}
+function Updatedesign(designtext,designid,roomid)
+{
+	
+	if($("#"+designtext).val().trim()=="")
+	$("#"+designtext).before('<p id="designname">*Enter Design Name</p>');
+	else
+	location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#"+designtext).val().trim()+"/"+designid;		  
 }
 
 </script>

@@ -265,6 +265,7 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 }
 
 
+
 function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
 {
 	$_like='';
@@ -448,6 +449,13 @@ function Add_Design_For_Room($room_id,$design_name,$design_id)
 	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
 	   $this->db->insert('user_design',$data);
          }
+         elseif($design_id!="")
+         {
+	$this->db->where('room_id',$room_id);
+         $this->db->where('design_id',$design_id);	
+         $data=array('design_name'=>$design_name);
+         $this->db->update('user_design',$data);
+	}
 	
 	
 }

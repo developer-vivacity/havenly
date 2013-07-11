@@ -121,7 +121,12 @@ return $query->result();
 function displayuserinformationwithroom($room_id)
 {
 
+<<<<<<< HEAD
 $query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
+=======
+$query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.status,user_rooms.room_type,user_preferences.style_pics,user_preferences.color_pics from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
+
+>>>>>>> 888815f33b4d9de6fa61b9a12f90725e1ef8c112
 return $query->result();	
 }
 

@@ -73,7 +73,7 @@
 <div class = "row">
 
 
-<input class= "btn" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>
+
 
 <!--<div>
 <b>Sortable by:</b>
@@ -148,12 +148,7 @@
 
 </div>-->
 
-</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;&nbsp;
-</td></tr>
-<tr><td>&nbsp;</td><td>
+
 <div id="showselectedproductimage"> 
 
 	
@@ -225,14 +220,12 @@ elseif(sizeof($userdesign)==0)
   echo "<input type='hidden' id='designproductid_7u7' value='".$selectproductid."' name='designproductid_7u7'/>";
 }
 ?>
-	
-	</div></td></tr>
-<tr>
-<td  width="550px;" style="vertical-align:top !important;">
-<table width="100%">
-<tr><td colspan="5" >
-<input type="textbox" name="productsearchbyname" id="productsearchbyname"/>
-<input type="button" value="Search" id="searchproductname"/>
+
+<div class = "span12"><div class = "well">
+
+<p class = "sanslight medium">Search for a product: &nbsp; &nbsp;
+<input class = "search-query" type="textbox" name="productsearchbyname" id="productsearchbyname"/>
+<input class = "btn" type="button" value="Search" id="searchproductname"/></p>
 
 <input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
 
@@ -242,41 +235,81 @@ elseif(sizeof($userdesign)==0)
 <input type="hidden"  name="searchoptionforcolor" id="searchoptionforcolor" />
 <input type="hidden"  name="searchoptionformaterial" id="searchoptionformaterial" />
 <br/>
-</td></tr>
-<tr><td width="100px">
-<h5>Price</h5></td><td width="100px"><h5>Type</h5></td><td width="100px"><h5>Product Style</h5></td><td width="100px"><h5>Product Color</h5></td><td width="100px"><h5>Product Material</h5></td></tr>
-<tr><td  style="vertical-align:top;">
-<input type="checkbox" id="High" name="searchprice[]" value="1"/>High<br/>
-<input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>Moderate<br/>
-<input type="checkbox" id="Low" name="searchprice[]" value="3"/>Low<br/>
-</td>
-<td >
-<?php
-foreach($producttype as $key)
-{
-    echo '<div><input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>'.$key->type.'</div>';	
-}
-?></td><td style="vertical-align:top;">
+<div class = "row">
+<div class = "span2">
+<div class="btn-group">
+  <button class="btn">Product Type</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+&nbsp;&nbsp;<input type="checkbox" id="High" name="searchprice[]" value="1"/>&nbsp;&nbsp;High<br/>
+&nbsp;&nbsp;<input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>&nbsp;&nbsp;Moderate<br/>
+&nbsp;&nbsp;<input type="checkbox" id="Low" name="searchprice[]" value="3"/>&nbsp;&nbsp;Low<br/>
+</ul></div></div>
+<div class = "span2">
+<div class="btn-group">
+  <button class="btn">Product Type</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+  <?php
+	foreach($producttype as $key)
+	{
+		echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>&nbsp;&nbsp;'.$key->type.'</div>';	
+	}
+?>
+  </ul>
+</div></div>
+
+<div class = "span2">
+
+
+<div class="btn-group">
+  <button class="btn">Style</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
 <?php
 foreach($productstyle as $key)
 {
-    echo '<div><input type="checkbox" id="'.$key->style_id.'" name="searchproductstyle[]" value="'.$key->style_id.'"/>'.$key->style.'</div>';	
+    echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->style_id.'" name="searchproductstyle[]" value="'.$key->style_id.'"/>&nbsp;&nbsp;'.$key->style.'</div>';	
 }
-?>
-
-</td><td style="vertical-align:top;"><?php
+?></ul>
+</div></div>
+<div class = "span2">
+<div class="btn-group">
+  <button class="btn">Color</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+<?php
 foreach($productcolortype as $key)
 {
-    echo '<div><input type="checkbox" id="'.$key->color_id.'" name="searchproductcolor[]" value="'.$key->color_id.'"/>'.$key->color.'</div>';	
+    echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->color_id.'" name="searchproductcolor[]" value="'.$key->color_id.'"/>&nbsp;&nbsp;'.$key->color.'</div>';	
 }
-?></td><td style="vertical-align:top;"><?php
+?></ul>
+</div></div>
+<div class = "span2">
+<div class="btn-group">
+  <button class="btn">Material</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+<?php
 foreach($productmaterialtype as $key)
 {
-    echo '<div><input type="checkbox" id="'.$key->material_id.'" name="searchproductmaterial[]" value="'.$key->material_id.'"/>'.$key->material.'</div>';	
+    echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->material_id.'" name="searchproductmaterial[]" value="'.$key->material_id.'"/>&nbsp;&nbsp;'.$key->material.'</div>';	
 }
-?></td></tr></table></td>
-<td>
-	
+?>
+</div></div>
+</div>
+
+<input class= "btn" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>	
 	
 <div style="border:solid 1px;height:300px;overflow-y:scroll;" id="productlist">
 	<?php
@@ -307,7 +340,7 @@ foreach($productmaterialtype as $key)
 <input type="hidden" value="" id="productid" name="productid"/>
 <input type="hidden" value="<?php echo $roomid;?>" id="currentroomid" name="currentroomid"/>
 <input type="hidden" value="<?php echo $userid;?>" id="currentuserid" name="currentuserid"/>
- 
+
 <?php 
 
 echo form_close(); ?>

@@ -32,16 +32,22 @@
 
 <div class = "container text-center">
 <BR><BR>
+
+
+<div class="navbar">
+  <div class="navbar-inner">
+       <ul class="nav" id = "usernav">
+	<li><a href="#designer" rel = "designer">DESIGNER</a></li>
+    <li><a href="#user" rel = "user">PROFILE</a></li>
+	<li><a href="#preferences" rel = "preferences">PREFERENCES</a></li>
+    <li><a href="#rooms" rel = "rooms">ROOMS</a></li>
+    </ul>
+  </div>
+</div>
 <div class = "white">
-<div id = "tabs">
-<ul>
-    <li><a href="#designer">DESIGNER</a></li>
-    <li><a href="#user">PROFILE</a></li>
-	<li><a href="#preferences">PREFERENCES</a></li>
-    <li><a href="#rooms">ROOMS</a></li>
-  </ul>
+<BR><BR><BR>
   
- <div id = "designer">
+ <div id = "designer" class = "container usermain">
 <?php
 if(isset($message))
 {
@@ -79,35 +85,38 @@ if(isset($designerinformation))
 if(isset($userdetails))
 {
 ?>
-<div id = "user">
-<p class = "sanslight medium">User Information</p>
-<hr class = "style text-center">
+<div id = "user" class = "container usermain">
+
 <div class = "left-align">
 <?php
 foreach($userdetails as $key)
 {
 
-echo '<table class = "sanslight midsmall offset1 text-left">';
-echo '<tr width= "100%"><td width = "50%">First Name:<br><br></td>';
-echo '<td width = "50%">'.$key->first_name.'<br><br></td></tr>';
-echo '<tr><td>Last Name:<br><br></td>';
-echo '<td>'.$key->last_name.'<br><br></td></tr>';
-echo '<tr><td>Email:<br><br></td>';
-echo '<td>'.$key->email.'<br><br></td></tr>';
-echo '<tr><td>Address:<br><br></td>';
-echo '<td>'.$key->address.'<br><br></td></tr>';
-echo '<tr><td>Phone Number:<br><br></td>';
-echo '<td>'.$key->phone.'<br><br></td></tr>';
-echo '<tr><td>Zip Code:<br><br></td>';
-echo '<td>'.$key->zipcode.'<br><br></td></tr>';
-echo '<tr><td>Facebook:<br><br></td>';
-echo '<td>'.$key->facebook.'<br><br></td></tr>';
-echo '<tr><td>Pinterest:<br><br></td>';
-echo '<td>'.$key->pinterest.'<br><br></td></tr>';
+echo '<table class = "midsmall offset1 text-left">';
+echo '<tr width= "100%"><td class = "sans-serif" width = "50%">First Name:<br><br></td>';
+echo '<td class = "dark_gray_text sanslight" width = "50%">&nbsp;&nbsp;'.$key->first_name.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif">Last Name:<br><br></td>';
+echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->last_name.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif" >Email:<br><br></td>';
+echo '<td class="sanslight dark_gray_text">&nbsp;&nbsp;'.$key->email.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif" >Address:<br><br></td>';
+
+if ($key->address ==0){echo '<td class = "sanslight dark_gray_text"> &nbsp;<BR><BR></td>';}
+else{
+	echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->address.'<br><br></td></tr>';
+	}
+echo '<tr><td class = "sans-serif" >Phone Number:<br><br></td>';
+echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->phone.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif" >Zip Code:<br><br></td>';
+echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->zipcode.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif" >Facebook:<br><br></td>';
+echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->facebook.'<br><br></td></tr>';
+echo '<tr><td class = "sans-serif" >Pinterest:<br><br></td>';
+echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->pinterest.'<br><br></td></tr>';
 echo '</table>';
 echo '<BR><BR>';
 
-echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
+echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 white_text condensed midsmall" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
    
 }
 ?>
@@ -121,9 +130,8 @@ echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 
 if(isset($roomsassociated))
 {
 ?>
-<div id = "rooms" class = "left-align">
-<p class = "left-align sanslight medium">User Room Information</p>
-<hr class = "style"><BR><BR>
+<div id = "rooms" class = "left-align container usermain">
+
 <?php
 
 
@@ -168,7 +176,7 @@ $room_id = $key->id;
 if(isset($userpreference))
 {
 ?>
-<div id= "preferences" class = "left-align" >
+<div id= "preferences" class = "left-align usermain" >
 <p class = "medium left-align sanslight">Styles Chosen</p>
 <hr class = "style">
 <table>
@@ -239,7 +247,16 @@ echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms
 <div class = "push"> 
 </div><BR><BR><BR></div>
 <script>
-$("#tabs").tabs();
+$(".usermain").hide();
+$("#designer").show();
+$("#usernav a").click(function(){
+
+  		     $(".usermain").hide();
+		     $("#"+(this.rel)).show();
+	     
+		} );
+
+
 </script>
 
 	<?php 

@@ -33,21 +33,25 @@
 <div class = "container">
 <div class="span12 text-center">
 <BR><BR>
+<div class = "span5 offset3">
 	<div class="displayinfoerror">
 	<?php 
     $display="none";
     if($title=="Login")
 	{
 	$display="block";
-	echo validation_errors('<p class="error">');
+	echo '<div class = "alert alert-error">';
+	echo validation_errors();
+	echo '</div>';
     }
 	if (!empty($loginerrors))
 	{
 		$display="block";
-		echo '<p class = "error">'.$loginerrors.'</p>';}
+		echo '<div class="alert alert-error">'.$loginerrors.'</div>';
+		}
 	?>
 	
-	</div>
+	</div></div>
 	<div id = "login" style="display:<?php echo $display;?>">
 	
 
@@ -68,7 +72,7 @@
   
 	<tr>
 	<td class = "third middle right-align">
-		<label class = "medium condensed " for="password">Password:</label>
+		<label class = "medium condensed" for="password">Password:</label>
 	</td>
 	<td class = "seventy left-align middle">
 		<input type="password" id="enterpass" name="enterpass"  value="<?php if(isset($_POST['enterpass']))echo $_POST['enterpass'];?>"/>
@@ -88,26 +92,27 @@
 </div>
 
 </div>	
-<div class="displayinfoerror">
+	<div class="displayinfoerror">
+<div class = "row">
+<div class = "span8 offset3">
     <?php 
 	$display="none";
 	if($title=="forgotpassword")
     {
 	  $display="block";
-      echo validation_errors('<p class="error">');
+      echo validation_errors('<div class="alert alert-error">');
    
     }
     if (!empty($errors))
 	{
 		
 		$display="block";
-		echo '<p class = "error">'.$errors.'</p>';}
+		echo '<div class = "alert alert-error">'.$errors.'</div>';}
 	?>
-    
-    </div>
-<div id = "forgot" style="display:<?php echo $display; ?>">
-<div class = "padding">
+  </div></div></div>
 	
+<div id = "forgot" style="display:<?php echo $display; ?>">
+
 	<div class="signin_form" >
    <?php echo form_open('Users/site/validatemail/');?>
    <table class = "white border span5 table-center">
@@ -130,10 +135,8 @@
 	
 </div>
 </div>
-</div>
-</div>
 
-<br><BR><BR><BR><div class = "push">
+<br><BR><BR><BR><BR><BR><BR>
 </div>
 
 	
@@ -142,7 +145,7 @@
 ?>
 
 
-
+</div>
 <script>
 
 

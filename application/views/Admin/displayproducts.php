@@ -333,9 +333,7 @@ foreach($productmaterialtype as $key)
 	
 	?>
 </div>
-</td>
-</tr>
-</table>
+
 <input type="hidden" value="" id="ascproductid" name="ascproductid"/>
 <input type="hidden" value="" id="productid" name="productid"/>
 <input type="hidden" value="<?php echo $roomid;?>" id="currentroomid" name="currentroomid"/>

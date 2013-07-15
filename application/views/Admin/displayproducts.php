@@ -5,97 +5,87 @@
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/product_design.js"></script>
-<style  type="text/css">
-	
-#upload{
-	margin:18px 3px 0px 3px; padding:2px 2px 2px 6px;
-	font-weight:bold; font-size:12px;
-	font-family:Arial, Helvetica, sans-serif;
-	text-align:left;
-	text-decoration:underline;
-	background:#f2f2f2;
-	color:#730707;
-	border:1px solid #ccc;
-	width:180px;
-	
-	}
-.styleall{
-	margin:18px 3px 0px 3px; padding:2px 2px 2px 6px;
-	font-weight:bold; font-size:12px;
-	font-family:Arial, Helvetica, sans-serif;
-	text-align:left;
-	text-decoration:underline;
-	
-}
 
-</style>
 
-<body>
-<?php
-echo'<p>&nbsp;</p>';
-echo '<p><a href="'.base_url('index.php/Admin/site/adminlogout').'">LogOut</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url('index.php/Admin/site/adminlogin').'">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="'.base_url().'/index.php/Admin/site/currentroomwithuser/'.$roomid.'">Back</a></p>';
-  echo '<div>';
- 
-?>
- <div id="div_show_error_message"></div>
-<?php
-    
+ <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+        <div class="container"> 
+		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+		<a class="brand" href="#">Havenly</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="<?php echo base_url('/index.php/Admin/site/currentroomwithuser/'.$roomid);?>">Back</a></li>
+              <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>
+              <li><a>Designs</a></li>
+			               </ul>
+			<ul class = "nav pull-right black_text">
+			
+			<li><a class = "black_text sanslight" href = "<?php echo base_url('index.php/Admin/site/adminlogout');?>">LOGOUT</a></li>
+			</ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+	  </div>
+
+<div class = "white">
+<div class = "container">
+
+<BR><BR><BR><BR><BR>
+ <div class = "warning" id="div_show_error_message"></div>
+
+ <?php
+   //form open
    $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
 ?>
-<table width="800px" style='font-size:14px;'>
  <?php
         $designidforroom="";
         
         ?>
-       <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-       <tr><td colspan="2"><div style="float:left;width:200px">&nbsp;User Design Name:</div><div style="float:left;width:200px">
-   
+
+<div class = "row large text-center condensed">
+
      <?php
            echo $userdesign[0]->design_name;
            echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
-     ?>
+     ?>&nbsp;
+<input class = "btn condensed" type="button" value="Save Selected" id="SaveSelected"/>
+<p class = "midsmall sanslight">  Edit user design and add products to complete user design.</p>
 
-</div></td></tr>
-<tr><td width="300px">&nbsp;Upload Design Overview</td>
-<td width="500px">
+</div>
+<BR>
+<div class = "well text-center">
+<p class = "condensed text-center medium">Upload Design Images</p>
 	<div id="me" class="styleall" style="height:10px;width:190px;">
-	<span style="font-family:Verdana, Geneva, sans-serif; font-size:12px;">Click Here To Upload Photo</span></div>
+	<span class = "btn">Click Here To Upload Photo</span></div>
+	
 	<span id="mestatus" ></span><br/>
 	<div id="files" style="list-style-type: none;">
- <li class="success" >
+<li class="success" >
 </li>
-    </div>
-</td>
-</tr>
-</table>
-<table  width="100%" border="0" style="font-size:13px;">
-<tr><td>&nbsp;
- <h1>&nbsp;Select Product Below:</h1>
-<br/>
-</td><td align="right">
-<input type="button" value="Add Product" id="AddProduct" name="AddProduct"/><input type="button" value="Save Selected" id="SaveSelected"/>
-</td></tr>
-<tr><td colspan="2">
-	
-	<input type="hidden" name="Design_Plan" id="Design_Plan" value="Modern"/>
-</td></tr>
-      
-                  
-<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-<tr>
-<td colspan="2">
-<div>
+</div>
+</div>	
+<br/><br/><br/>
+<div class = "row">
+
+
+<input class= "btn" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>
+
+<!--<div>
 <b>Sortable by:</b>
 <table>
 <tr><td width="200px;">
 &nbsp;&nbsp;Product Type:
 </td><td>
 <div>
-<?php
-foreach($producttype as $key)
-echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" value="'.$key->type_id.'">'.$key->type.'</div>';
-?>
+// <?php
+// foreach($producttype as $key)
+// echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" value="'.$key->type_id.'">'.$key->type.'</div>';
+// ?>
 </div>
 
 </td>
@@ -105,9 +95,9 @@ echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" 
 	</td>
      <td>
 <div>
-<?php
-foreach($productcolortype as $key)
-echo '<div style="float:left;"><input type="checkbox" name="productcolortypecheck[]" value="'.$key->color_id.'">'.$key->color.'</div>';?>
+// <?php
+// foreach($productcolortype as $key)
+// echo '<div style="float:left;"><input type="checkbox" name="productcolortypecheck[]" value="'.$key->color_id.'">'.$key->color.'</div>';?>
 </div>     
 </td>
 </tr>
@@ -115,9 +105,9 @@ echo '<div style="float:left;"><input type="checkbox" name="productcolortypechec
 <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
 <tr><td>&nbsp;&nbsp;Product Material:</td>
 	<td>
-<?php
-foreach($productmaterialtype as $key)
-echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypecheck[]" value="'.$key->material_id.'">'.$key->material.'</div>';?>
+// <?php
+// foreach($productmaterialtype as $key)
+// echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypecheck[]" value="'.$key->material_id.'">'.$key->material.'</div>';?>
 	
 </td>
 
@@ -139,11 +129,13 @@ echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypec
 <tr><td colspan="2">&nbsp;&nbsp;</td></tr>
 <tr><td>&nbsp;&nbsp;Product Style:</td>
 <td>
-<?php
-echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
-foreach($productstyle as $key)
-echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]" value="'.$key->style_id.'">'.$key->style.'</div>';
-?>&nbsp;&nbsp;
+// <?php
+// echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
+// foreach($productstyle as $key)
+// echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]" value="'.$key->style_id.'">'.$key->style.'</div>';
+// ?>
+
+&nbsp;&nbsp;
 <input type="button" value="go" id="ascproduct"/>
 </td>
 </tr>
@@ -154,7 +146,7 @@ echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]"
 <input type="hidden" name="hidproductmaterialtypecheck" id="hidproductmaterialtypecheck"/>
 <input type="hidden" name="hidproductstylecheck" id="hidproductstylecheck"/>
 
-</div>
+</div>-->
 
 </td>
 </tr>

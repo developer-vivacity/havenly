@@ -14,6 +14,7 @@ $this->load->model('user_model');
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
+    $this->load->model('cart_model');
 
 $this->load->model('Users/picture_model');
 
@@ -239,65 +240,7 @@ $this->user_model->invite_request($data);
 echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
 
 }}
-//----This Function used to display registration Form-------//
-  // function registration()
-  // {
-    // if($this->session->userdata('first_name')!="")
-    // {
-       // $this->login();
-       // return;
-     // }
-  // $data["title"]="Registration";
-    // $this->load->view('Users/userregistration', $data);
-  // }
- //------- This function used to save register form data----------//
-  // function add()
-  // {
-// if(($this->session->userdata('first_name')!=""))
-    // {
-// $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
-          // $this->load->view('Users/accountconfirmation', $data);
-// return;
-// }
-   // $this->load->library('form_validation');
-   // $this->form_validation->set_rules('first_name', 'First Name', 'trim|required|max_length[40]|xss_clean');
-   // $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|max_length[40]|xss_clean');
-   // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-   // $this->form_validation->set_rules('phone', 'Phone', 'trim|required|max_length[20]|xss_clean');
-   // $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[100]|xss_clean');
-   // $this->form_validation->set_rules('zipcode', 'Zip', 'trim|required|is_natural|numeric|max_length[50]|xss_clean');
-   // $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
-   // $this->form_validation->set_rules('compassword', 'Confirm password', 'trim|required|matches[password]');
-  // if($this->form_validation->run() == FALSE)
-  // {
-    // $this->registration();
-  // }
-  // else
-  // {
 
-// $user_email=$this->input->post('email');
-     // $user_password=md5($this->input->post('password'));
-     // $phone=$this->input->post('phone');
-     // $zip=$this->input->post('zipcode');
-     
-     // $data=array(
-    // 'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'email'=>$this->input->post('email'),'phone'=>$phone,'address'=>$this->input->post('address'),'password'=>$user_password,'zipcode'=>$zip);
-     // $cur_id=$this->user_model->insert_user_info( $data,$this->input->post('email'));
-    // if($cur_id==-1)
-    // {
-
-    // $data["email"]= "email already exists";
-    // $data["accountinfo"]="";
-    // $this->load->view('Users/userregistration', $data);
-    // }
-   // else
-   // {
-    // $data["email"]="";
-    // $data["accountinfo"]="Wecome ".$this->session->userdata('first_name');
-    // $this->load->view('Users/accountconfirmation', $data);
-  // }
-  // }
- // }
 //--For User edit information
 function UserEditInformation()
 {
@@ -312,14 +255,15 @@ function UserEditInformation()
 
  if(($this->session->userdata('first_name')!=""))
     {
+  
       if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
       {
-$data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+       $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
-       $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
-       
+      // $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       $data["designforloginuser"]=$this->cart_model->get_design_login_user();
        $this->load->view('Users/accountinformation', $data);
        return;
      }
@@ -327,7 +271,7 @@ $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id
      {
      $data["message"]="No Rooms found";
      $this->load->view('Users/accountinformation', $data);
-return;
+     return;
      }
 }
    $this->load->library('form_validation');
@@ -349,19 +293,21 @@ $data["title"]="Login";
   
   if($this->session->userdata('first_name')!="")
    {
+	   
 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
         $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
-       $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       //$data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       $data["designforloginuser"]=$this->cart_model->get_design_login_user();
        $this->load->view('Users/accountinformation',$data);
     }
     else
     {
      $data["message"]="No Rooms found";
-     $this->load->view('Users/home', $data);
+     $this->load->view('Users/accountinformation', $data);
      return;
     }
 }

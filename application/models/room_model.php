@@ -58,7 +58,12 @@ $query=$this->db->update('user_rooms', $update);
 // status Open or Called for login user
  function Check_user_rooms($id)
  { 
- $query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
+ //$query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
+    
+       $this->db->select('user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2');
+       $this->db->where('user_id',$id);
+        $query=$this->db->get('user_rooms');
+   
  return $query->result();
  }
 //	
@@ -118,12 +123,12 @@ LEFT JOIN designer ON designer.id = designer_mapping.designer_id ".$orderby."");
 return $query->result();
 }
 //
-function displayuserinformationwithroom($room_id)
+function displayusreinformationwithroom($room_id)
 {
 
 $query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
 
-return $query->result();	
+return $query->result();
 }
 
 

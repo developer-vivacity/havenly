@@ -40,9 +40,10 @@
     if($title=="Login")
 	{
 	$display="block";
+	if(validation_errors()!=false){
 	echo '<div class = "alert alert-error">';
 	echo validation_errors();
-	echo '</div>';
+	echo '</div>';}
     }
 	if (!empty($loginerrors))
 	{

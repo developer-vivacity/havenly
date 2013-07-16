@@ -93,22 +93,22 @@ foreach($userdetails as $key)
 {
 
 echo '<table class = "midsmall offset1 text-left">';
-echo '<tr width= "100%"><td class = "sans-serif" width = "50%">First Name:<br><br></td>';
-echo '<td class = "dark_gray_text sanslight" width = "50%">&nbsp;&nbsp;'.$key->first_name.'<br><br></td></tr>';
-echo '<tr><td class = "sans-serif">Last Name:<br><br></td>';
-echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->last_name.'<br><br></td></tr>';
-echo '<tr><td class = "sans-serif" >Email:<br><br></td>';
-echo '<td class="sanslight dark_gray_text">&nbsp;&nbsp;'.$key->email.'<br><br></td></tr>';
-echo '<tr><td class = "sans-serif" >Address:<br><br></td>';
+echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><i class = "icon-user"></i>';
+echo '&nbsp;&nbsp;'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
 
-if ($key->address ==0){echo '<td class = "sanslight dark_gray_text"> &nbsp;<BR><BR></td>';}
+echo '<tr><td class="sanslight dark_gray_text"><i class = "icon-envelope"></i>';
+echo '&nbsp;&nbsp;'.$key->email.'</td></tr>';
+echo '<tr>';
+echo '<td class = "sanslight dark_gray_text"><i class = "icon-comment"></i>&nbsp;&nbsp;'.$key->phone.'<br><br></td></tr>';
+
+echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i><br><br>';
+
+if ($key->address ==0){echo '&nbsp;	</td>';}
 else{
-	echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->address.'<br><br></td></tr>';
+	echo '&nbsp;&nbsp;'.$key->address.'&nbsp;'.$key->zipcode.'<br><br></td></tr>';
 	}
-echo '<tr><td class = "sans-serif" >Phone Number:<br><br></td>';
-echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->phone.'<br><br></td></tr>';
-echo '<tr><td class = "sans-serif" >Zip Code:<br><br></td>';
-echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->zipcode.'<br><br></td></tr>';
+
+
 echo '<tr><td class = "sans-serif" >Facebook:<br><br></td>';
 echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->facebook.'<br><br></td></tr>';
 echo '<tr><td class = "sans-serif" >Pinterest:<br><br></td>';

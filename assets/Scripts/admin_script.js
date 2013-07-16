@@ -637,7 +637,7 @@ function display_div(id)
 	
      $(".productdetailsdiv").remove();
 
-     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
+     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:Arial,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
      
     
      

@@ -75,7 +75,11 @@ Class Site extends CI_Controller
 	redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
 	}
   }
-  
+  function delete_assign_design($user_id,$room_id,$design_id)
+  {
+	$this->cart_model->delete_user_assign_design($user_id,$room_id,$design_id);  
+	redirect('/Users/site/login', 'refresh');
+  }
   
 }
 

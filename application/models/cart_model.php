@@ -7,7 +7,7 @@ class  Cart_model extends CI_Model
 function crate_table()
 {
 
-  $this->db->query("CREATE TABLE IF NOT EXISTS  shoppingcart(id int(10) NOT NULL,user_id int(10),room_id int(10),
+ $this->db->query("CREATE TABLE IF NOT EXISTS  shoppingcart(id int(10) NOT NULL,user_id int(10),room_id int(10),
 product_id int(10),design_id int(10),Qty int(10),PRIMARY KEY(id))");	
 	
 }
@@ -17,18 +17,21 @@ product_id int(10),design_id int(10),Qty int(10),PRIMARY KEY(id))");
 function get_design_login_user($productid=null)
 {
 	
-   $this->db->from('user_room_designs','design_product_mapping');
+   $this->db->from('user_room_designs','design_product_mapping','user_design');
+   $this->db->select('user_room_designs.user_id,user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id,user_design.status,user_design.design_name');
    $this->db->select('user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id');
    $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id');
+   $this->db->join('user_design','user_room_designs.design_id = user_design.design_id');
    $this->db->where('user_room_designs.user_id',$this->session->userdata('id'));
-   
+  
+   $this->db->where('user_design.status','submitted');
    if($productid!="")
    $this->db->where('design_product_mapping.product_id',$productid);
    
    $this->db->distinct();	
    $this->db->group_by('user_room_designs.design_id');
    $query=$this->db->get();
-   //die($this->db->last_query());
+  
    return $query->result();
 	
 }
@@ -135,6 +138,17 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 			  $this->db->update("shoppingcart",$data);  
 		  } 
 	
+}
+
+function delete_user_assign_design($user_id,$room_id,$design_id)
+{
+	//die($user_id."=========".$room_id."=========".$design_id);
+	$this->db->delete('user_design', array('design_id' => $design_id,'room_id' => $room_id));
+	
+	$this->db->delete('user_room_designs', array('user_id' => $user_id,'room_id' => $room_id,'design_id'=>$design_id));
+	
+	$this->db->delete('design_product_mapping', array('design_id' => $design_id)); 
+
 }
 
 }

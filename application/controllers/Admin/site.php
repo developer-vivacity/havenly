@@ -20,7 +20,13 @@ function __construct()
 	$this->load->model('product_model');	
 }
 	
-
+	function index() 
+	{
+	
+		
+		$this->load->view('Admin/home');
+		
+	}
 	
 function open_contests() 
 {
@@ -134,7 +140,7 @@ function currentroomwithuser($room_id=null)
 	   $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
 	   $adminrooms=$this->room_model->display_all_rooms($condition);
 	   $data["roomid"]=$room_id;
-	   $data["roomwithuser"]=$this->room_model->displayuserinformationwithroom(intval($room_id));
+	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	 
 	   $data["colorstyle"]=$this->room_model->fetch_color_style_number();
 	 
@@ -258,29 +264,34 @@ function additional_details_user_room($room_id=null)
 }
 function upload_design_pic_by_admin($filename=null,$userroomid=null,$userid=null,$designid=null)
 {
+
+     $return_data=array();
      $name="uploadfile";
      $message= $this->for_pic_upload($name);
+     
      if($this->insertdata==0)
      {
-        echo "error";
-     }
+         
+         $return_data["success"]="error";       
+         $return_data["images"]=$this->_File_Location;
+    }
      else
      {
-
          $this->product_model->upload_design_info_user_room_design($userid,$userroomid,$this->_File_Location,'proposed',$designid);
-       
-       echo "success";
+         $return_data["success"]="success";       
+         $return_data["images"]= $this->_File_Location;
      }
+     echo json_encode($return_data);
 }
 
 
 function for_pic_upload($filename=null)
 {
-                              $this->insertdata=1;
-                              $this->image_path= realpath(APPPATH.'/images');
-		              $name=$filename;
-                              $allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
-		              $extension = end(explode(".", $_FILES[$name]["name"]));
+                                 $this->insertdata=1;
+                                 $this->image_path= realpath(APPPATH.'/images');
+		               $name=$filename;
+                                 $allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
+		               $extension = end(explode(".", $_FILES[$name]["name"]));
 				if ((($_FILES[$name]["type"] == "image/gif")
 				|| ($_FILES[$name]["type"] == "image/jpeg")
 				|| ($_FILES[$name]["type"] == "image/png")
@@ -290,73 +301,36 @@ function for_pic_upload($filename=null)
 				&& in_array($extension, $allowedExts))
 				{
 					
-                            if ($_FILES[$name]["error"] > 0)
+                                     if ($_FILES[$name]["error"] > 0)
 							{
-                            $this->insertdata=0;								
-                            $error ='error loading file';
-							return json_encode ($error);
+                                                    $this->insertdata=0;								
+                                                    $error ='error loading file';
+				                return json_encode ($error);
 								
                                                              
                                                            }
 					else {
 					
-						$file_location = $_FILES[$name]['tmp_name'];
-						if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
-							{		
-								$this->image_path= realpath(APPPATH.'/images');
-
-									$exif=@exif_read_data($_FILES[$name]['tmp_name']);
-									if(isset($exif['Orientation']))
-									{$orientation = $exif['Orientation'];}
-
-									$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
-
-									if(!empty($orientation)){
-
-									switch($orientation){
-											case 8:
-												$image = imagerotate($image,90,0);
-												break;
-											case 3:
-												$image = imagerotate($image,180,0);
-												break;
-											case 6:
-												$image = imagerotate($image,-90,0);
-												break;
-									}
-
-									}
-
-									$file_name = $this->set_file_name();
-
-									if ($file_name==0) {$file_name = $this->set_file_name();}
-
-
-									else{
-									$file_location = $this->image_path.'/'.$file_name.'.jpg';
-									imagejpeg($image,$file_location);
+						      $file_location = $_FILES[$name]['tmp_name'];
 										
-								       }
-							}				
 						
 							$file_name = $this->set_file_name();
 							if ($file_name==0) {$file_name = $this->set_file_name();}
 							else
 							{
-						    $file_name = $file_name.'.'.$extension;
+						         $file_name = $file_name.'.'.$extension;
 							$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
 							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
 							if($s3result)
 							{
 							   $this->_File_Location="https://s3.amazonaws.com/easableimages/".$file_name;
-                                                           $insertdata=1;
+                                                                  $insertdata=1;
 							   unlink ($file_location);
-                  
 							}
 							else 
 							{
-                            $this->insertdata=0;
-							return 'Sorry!  Try again';
+                                                                  $this->insertdata=0;
+							   return 'Sorry!  Try again';
 							}
 							}
 		
@@ -431,7 +405,7 @@ function add_product()
 		   	$newtypeid=$this->product_model->insert_data_in_db('product_type',$data);
 			$typehiddenfilter=($typehiddenfilter==""?$newtypeid:$typehiddenfilter.','.$newtypeid);
 		
-		   }
+	       }
 	    }
 	    
 		if($this->input->post("stylehiddenfilter")!="")
@@ -521,21 +495,27 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 		return;
 		
 	}
+	
 	$data['roomid']=$room_id;
          $data['designid']=$design_id;
 	$data['designname']=urldecode($designname);
+         $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
+     
 	$data['productassign']=$this->product_model->display_design_associated_products($design_id);
+	    
 	$data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
-        $data['currentuserid']=$current_user_id;	
-$this->load->view('Admin/assignproductdesign',$data);
+         
+         $data['currentuserid']=$current_user_id;
+         
+         $this->load->view('Admin/assignproductdesign',$data);
+         
 }
-function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null)
+function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$user_id=null,$design_status=null)
 {
-	 
-	  $this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id);
-	  
-	  $this->currentroomwithuser($room_id);
 	
+	    $design_id=($design_status==null?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,"null",$design_id,$design_status));
+	   ($user_id==null?redirect('/Admin/site/currentroomwithuser/'.$room_id.'','refresh'):($user_id=="null"?redirect('/Admin/site/currentroomwithuser/'.$room_id.'','refresh'):redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh')));
+           
 }
 
 }

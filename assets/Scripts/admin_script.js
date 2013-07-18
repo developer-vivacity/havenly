@@ -152,7 +152,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li id="' + val.style_id +
 var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==2? $("#ShowColorfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==3?$("#ShowMaterialfilter").append('<li  style="list-style-type: none;"> The style does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):(filterid==4?$("#ShowTypefilter").append('<li  style="list-style-type: none;"> The type does not exist. Do you want add it in db <lable style="cursor:pointer" onclick="filteryes('+filterid+');">Yes</lable>|<lable style="cursor:pointer" onclick="filterno('+filterid+');">No</lable></li>'):""))));                       
 
                  }
-			  })
+		})
 
   
 }
@@ -180,23 +180,31 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	           $("#saveproduct").submit();
           }
   });
+  
   $("#searchproductname").click(function()
   {
-   $("#hidproductsearch").val("search");
-   
-   var producttypeid="";
-   var productprice="";
-   var productcolor="";
-   var productstyle="";
-   var productmaterial=""; 
+     $("#hidproductsearch").val("search");
+     $("#saveproduct").submit();
+  
+  })
+  
+  $("#filterproduct").click(function()
+  {
+	 
+    var is_filter=false;
+    var producttypeid="";
+    var productprice="";
+    var productcolor="";
+    var productstyle="";
+    var productmaterial=""; 
 
   $('input[name="searchproducttype[]"]:checked').each(function(i,e)
   {
 	  if(producttypeid=="")
 	  producttypeid=e.value;
-      else
-      producttypeid=producttypeid+','+e.value;
-      
+           else
+           producttypeid=producttypeid+','+e.value;
+      is_filter=true;
   });
  
   $("#searchoptionfortype").val(producttypeid);
@@ -206,6 +214,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  productprice=e.value;
       else
       productprice=productprice+','+e.value;
+      is_filter=true;
   });
   $("#searchoptionforprice").val(productprice);
   $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
@@ -214,6 +223,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  productstyle=e.value;
       else
       productstyle=productstyle+','+e.value;
+      is_filter=true;
   });
   $("#searchoptionforstyle").val(productstyle);
   $('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
@@ -222,6 +232,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  productmaterial=e.value;
       else
       productmaterial=productmaterial+','+e.value;
+      is_filter=true;
   });
   $("#searchoptionformaterial").val(productmaterial);
   $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
@@ -230,12 +241,19 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  productcolor=e.value;
       else
       productcolor=productcolor+','+e.value;
+      is_filter=true;
   });
-  $("#searchoptionforcolor").val(productcolor);
-
-  $("#saveproduct").submit();
-  
-  })
+    
+    $("#searchoptionforcolor").val(productcolor);
+    if(is_filter==true)
+    {
+	$("#productsearchbyname").val("");  
+	  
+	$("#hidproductsearch").val("search");
+   
+        $("#saveproduct").submit();
+   }
+})
   
   $("#ascproduct").click(function(){
   var is_sort=false;
@@ -637,9 +655,9 @@ function display_div(id)
 	
      $(".productdetailsdiv").remove();
 
-     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:Arial,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
+     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
      
-    
+  
      
     $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
      {

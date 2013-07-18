@@ -1,6 +1,10 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
+<!---add script by kbs-------->
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js">
+</script>
+<!---------------------------->
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
@@ -28,9 +32,7 @@
 	  </div>
 	  
 <div class = "chevron">
-	
 <BR><BR>
-
 <div class = "container text-center">
 <BR><BR>
 <div class = "white">
@@ -51,19 +53,28 @@ if(isset($message))
 ?>
 <?php
 //-----update code by kbs for user design ready----------------------//
+echo '<input type="hidden" id="sitepath" value="'.base_url().'" name="sitepath"/>';
 if(sizeof($designforloginuser)>0)
     {
 	   
 ?>
-  <table class = "table-center span5">
+  <table class = "table-center span5" id="designer_table">
  
 	 <?php
-           $url = base_url('assets/Images');
-           echo '<tr><td> You have a design ready.</td></tr>';
+              
+              $url = base_url('assets/Images');
+              echo '<tr><td colspan="4"> You have a design ready.</td></tr>';
 	  foreach($designforloginuser as $key)
 	  {
-		  
-            echo '<tr><td><a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'"><img src="'.$key->filename.'" width="100px" height="100px"/></a></td></tr>';
+              echo '<tr>
+              <td>'.$key->design_name.'</td>
+              <td><a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">
+              <img src="'.$key->filename.'" width="100px" height="100px"/></a></td>
+              <td>'.$key->status.'</td>
+              <td><a href="#"  onclick="delete_design('.$key->user_id.','.$key->design_id.','.$key->room_id.');">
+              <img src="'.$url.'/delicon.fw.png" width="50px" height="50px"/></a>
+              </td>
+              </tr>';
 	  }
 	  ?>
 	
@@ -124,6 +135,7 @@ echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 
 </div>
 
 <?php
+
 if(isset($roomsassociated))
 {
 ?>
@@ -156,6 +168,7 @@ echo '<img class = "middle inactive inline" src="'.$key->room_photo2.'" height="
 echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
 
 }
+
 $roomtype=$key->room_type;
 $user_id = $key->user_id;
 $room_id = $key->id;
@@ -180,12 +193,11 @@ if(isset($userpreference))
 <table>
 <tr>
 <?php
-$roomfolder;
+                          $roomfolder="";
 	
-	if($roomtype=="BR")
+	                  if($roomtype=="BR")
 			{
 				$roomfolder="Bedroom";
-				
 			}
 			elseif($roomtype=="LR")
 			{
@@ -198,10 +210,11 @@ echo '<td>';
        	$i=1;	
 		while($i<15)
 		{
-		if(in_array($i,explode(',',$key->style_pics))){
+		if(in_array($i,explode(',',$key->style_pics)))
+		{
 	
 		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
-				}
+		}
 		$i++;
 		}	
 }?>

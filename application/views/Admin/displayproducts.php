@@ -72,9 +72,6 @@
 <br/><br/><br/>
 <div class = "row">
 
-
-
-
 <!--<div>
 <b>Sortable by:</b>
 <table>
@@ -307,6 +304,13 @@ foreach($productmaterialtype as $key)
 }
 ?>
 </div></div>
+
+<!----Add code by kbs------>
+<div>
+<input type="button" id="filterproduct" name="filterproduct" value="Filter" />
+</div>
+<!----------------->
+
 </div>
 
 <input class= "btn" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>	
@@ -338,7 +342,10 @@ foreach($productmaterialtype as $key)
 <input type="hidden" value="" id="productid" name="productid"/>
 <input type="hidden" value="<?php echo $roomid;?>" id="currentroomid" name="currentroomid"/>
 <input type="hidden" value="<?php echo $userid;?>" id="currentuserid" name="currentuserid"/>
-
+<!---add hidden variable by kbs--->
+<input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url();?>"/>
+ <input type="hidden" value="<?php echo $userid;?>" id="userdesign" name="userdesign"/>
+ <!-------------->
 <?php 
 
 echo form_close(); ?>

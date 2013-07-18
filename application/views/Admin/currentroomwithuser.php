@@ -222,12 +222,7 @@ echo '<div class = "well midsmall">';
 foreach($designassociaterooms as $key)
 {
 	
-
- 
-	
-
-  echo '<div id="displaydesignname_'.$key->design_id.'"><div style="float:left;width:200px;"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div><div style="float:left;width:100px;"><a href="#" class = "small" onclick="displayeditdesign(\'displaydesignname_'.$key->design_id.'\',\'modifydesignname_'.$key->design_id.'\',\''.$key->design_name.'\');">Edit Name</a></div></div>';
-  echo '<div id="modifydesignname_'.$key->design_id.'" style="display:none;"><div style="float:left;width:300px;"><input type="text" value="'.$key->design_name.'" name="designtext'.$key->design_id.'" id="designtext'.$key->design_id.'"/></div><div style="float:left;width:100px;"><a href="#" onclick="Updatedesign(\'designtext'.$key->design_id.'\','.$key->design_id.','.$roomid.');">Update</a>&nbsp;&nbsp;<a href="#" onclick="displayeditdesign(\'displaydesignname_'.$key->design_id.'\',\'modifydesignname_'.$key->design_id.'\');">Close</a></div></div>' ;	
+echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div></div>';
 	echo '<BR>';
 }
 ?>
@@ -278,46 +273,20 @@ foreach($designassociaterooms as $key)
 <BR><BR><BR><BR><BR><BR><BR>
 </div>
 <script>
+
 function show_add_design(roomid)
 {	
-	 $("#enterdesign").remove();
-	 if($("#AddDesigntext").val().trim()=="")
-          $("#AddDesigntext").before('<p id="enterdesign">Design Name</p>');
-          else
-          {
-           location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim();		  
-          }
+	     $("#enterdesign").remove();
+	     if($("#AddDesigntext").val().trim()=="" || $("#AddDesigntext").val().trim()=="Design Name")
+             $("#AddDesigntext").before('<p id="enterdesign" style="margin-left:100px;">*Enter Design Name</p>');
+             else
+             {
+	      var designid="null"; 
+              location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim()+"/"+designid+"/"+$("#userid").val();		  
+             }
 	
 	
 }
-function displayeditdesign(displaydesign,editdesign)
-{
-	$("#designname").remove();
-	
-	if($("#"+displaydesign).is(':visible'))
-	{
-	  $("#"+displaydesign).hide();
-	  $("#"+editdesign).show();
-         }
-        else 
-         {
-		
-          $("#"+displaydesign).show();
-	 $("#"+editdesign).hide();
-		
-		
-	}
-	
-}
-function Updatedesign(designtext,designid,roomid)
-{
-	
-	if($("#"+designtext).val().trim()=="")
-	$("#"+designtext).before('<p id="designname">*Enter Design Name</p>');
-	else
-	location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#"+designtext).val().trim()+"/"+designid;		  
-}
-
 </script>
 <BR><BR><BR>
 <?php 

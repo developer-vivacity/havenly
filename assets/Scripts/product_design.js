@@ -6,29 +6,42 @@ $(function(){
 		var files=$('#files');
 
 		new AjaxUpload(btnUpload, {
-			
+		
 action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
 			name: 'uploadfile',
 			roomid:$("#currentroomid").val(),
 			userid:$("#currentuserid").val(),
                         designid:$("#userdesign").val(),
 			onSubmit: function(file, ext){
-				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
-                    mestatus.text('Only JPG, PNG or GIF files are allowed');
-					return false;
+		   if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                     mestatus.text('Only JPG, PNG or GIF files are allowed');
+		   return false;
 				}
 				mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');
 			},
 			onComplete: function(file, response)
 			{
-				files.html('');
-
-
-				if(response==="success"){
-					mestatus.text('Photo Uploaded Sucessfully!');
-				} else{
+				  files.html('');
+				
+			           var obj=$.parseJSON(response);	
+			           
+			           if(obj.success==="success")
+                                	  {
+				   mestatus.text('Photo Uploaded Sucessfully!');
+				  
+				   if($("#designimageassignproduct").length!=0)
+				   {
+				            $("#messagefordesign").remove();	   
+					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" width="100%" height="100px"/></div>');
+					   
+			            }
+				  } else
+				  {
 					mestatus.text('file uploded is failed!')
-				}
+				  }
+			
+				
+				
 			}
 		});
 		
@@ -36,11 +49,6 @@ action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'
 		
 		
 	});
-
-
-
-
-
 
 $(".inactive, .active").click(function()
 {

@@ -266,7 +266,11 @@ function UserEditInformation()
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
       // $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       
        $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+       
+       //die(var_dump($data["designforloginuser"]));
+       
        $this->load->view('Users/accountinformation', $data);
        return;
      }

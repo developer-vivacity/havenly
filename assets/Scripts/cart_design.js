@@ -13,12 +13,13 @@
 }
 
 )
-$(".productimg").mouseout(function(){
+$(".productimg").mouseout(function()
+{
 	
 	 //$(".addcart").remove();
 
 	
-	});
+});
 	
 $("#addallproduct").click(function()
 {
@@ -34,9 +35,18 @@ $(".designproduct").click(function()
 	document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"";
 	
 })
+
+
 }
 
 )
+
+function delete_design(user_id,design_id,room_id)
+{
+	$("#message_design_div").remove();
+         $("body").before("<div style='z-index:100;position:absolute;background-color:#787274;width:100%;height:100%;opacity:0.9' id='message_design_div'><div style='width:450px;height:150px;margin-top:200px;margin-left:550px;background-color:white;text-align:center'><br/><br/><div>Delete Design?</div><br/><br/><div><span><input type='button' name='yes' value='yes' onclick='removedesigndiv("+user_id+","+design_id+","+room_id+")'/></span>&nbsp;&nbsp;<span><input type='button' name='no' value='no' onclick='removedesigndiv();'/></span></div></div></div>");
+
+}
 function addcheckboxforaddcart(id,appendid)
 {
     $("#"+appendid).after('<input type="checkbox" onclick="removecheckbox(\'designproductcheck'+id+'\','+id+')" id="designproductcheck'+id+'" name="designproductcheck[]" value="'+id+'" checked/>');
@@ -79,5 +89,14 @@ function submitcartvalue()
 	{
 		$("#productdetails").submit();
 	}
+	
+}
+function removedesigndiv(user_id=null,design_id=null,room_id=null)
+{
+	
+	$("#message_design_div").remove();
+	if((user_id!=null) && (design_id!=null) && (room_id!=null))
+	location.href=$("#sitepath").val()+'index.php/Cart/site/delete_assign_design/'+user_id+'/'+room_id+'/'+design_id+''
+	
 	
 }

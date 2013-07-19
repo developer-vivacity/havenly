@@ -78,7 +78,7 @@
 Lee is a Denver resident who misses the East Coast. 
 She was formerly a VP at Bankrate, a consultant at Bain, and worked in strategy and corporate development at Canon. 
 <br><br>Lee has an MBA from Harvard Business School and a B.S. from Columbia University.<br><br>
-She loves cows and has most recenly learned to ski.  Ask her about her collection of speeding tickets.</p>
+She loves cows and has most recently learned to ski.  Ask her about her collection of speeding tickets.</p>
 							</div>
 						</div><!-- about_item -->
 					</div><!-- span4 -->
@@ -90,7 +90,7 @@ She loves cows and has most recenly learned to ski.  Ask her about her collectio
 								<div class="clear"></div>
 				                <h3>Emily Motayed</h3>
 				                <p class = "sanslight small dark_gray_text">Emily is a DC gal at heart, but is currenly a nomad traveling between Denver, Chicago and NYC.
-								She was formerly in marketing at American Express, and a consultant for Huron Consulting.
+								She was formerly at American Express, and a consultant for Huron Consulting.
 							<br><br>Emily has a B.A. from Vanderbilt University.<br><br><br>
 							She hates working out, and has strayed quite far from her childhood ambition to be a grocery store baker.</p>
 							</div>

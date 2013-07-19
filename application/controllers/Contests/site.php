@@ -16,15 +16,6 @@ function __construct() {
 
 
 function room_submit(){
-if($this->input->post('room_file1')){
-$data['room_photo1']=$this->input->post('room_file1');}
-else {$data['room_photo1']="not submitted";}
-
-
-if($this->input->post('room_file2'))
-{$data['room_photo2']=$this->input->post('room_file2');}
-
-else {$data['room_photo2']="not submitted";}
 
 $data['about']=$this->input->post('about');
 $data['room_width']=$this->input->post('room_width');
@@ -75,17 +66,44 @@ $data['type']=$this->input->post('type');
 
 $data['user_id']=$this->user_model->save_user($data);
 
+if($this->input->post('room_file1')){
+$data['photo']=$this->input->post('room_file1');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
+
+if($this->input->post('room_file2'))
+{$data['photo']=$this->input->post('room_file2');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
+
+
+if($this->input->post('room_file3'))
+{$data['photo']=$this->input->post('room_file3');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
+
+if($this->input->post('room_file4'))
+{$data['photo']=$this->input->post('room_file4');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
+
+
 $data['room_id']=$this->room_model->save_room($data);
 $this->user_model->save_preferences($data);
 
 
 $this->session->set_userdata('id',$data['user_id']);
 $this->session->set_userdata('first_name',$data['first_name']);
-$this->confirm($data);
+$this->session->set_userdata('email',$data['email']);
+$this->availability($data);
 
 }
 
-function confirm($data)
+function confirm()
 {
 
 	$config = array(
@@ -97,6 +115,9 @@ function confirm($data)
 			'smtp_pass'=>'Motayed123');
 			
 	$this->load->library('email',$config);
+	
+	$data['email'] = $this->session->userdata('email');
+	$data['first_name'] = $this->session->userdata('first_name');
 			$this->email->set_newline("\r\n");
 		
 			$this->email->from('lee@havenly.com','Lee from Havenly');
@@ -154,13 +175,13 @@ $data['user_id']=$this->session->userdata('id');
 $data['date']=$this->input->post('datecheck');
  $return = "<BR><BR><BR><BR><table class = 'table text-center'>";
 if ($data['date']=="")
-{	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr></table>'; }
+{	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr><Tr><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm').'">Just Email Me</a></td></tr></table>'; }
  $data=$this->designer_model->availability($data);
  // $this->load->view('test',$data);
  
 
  if ($data==0){
-	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr></table>'; 
+	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr><Tr><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm').'">Just Email Me</a></td></tr></table>';
  }
  
  else{
@@ -172,7 +193,7 @@ if ($data['date']=="")
  $return.= '<tr><td class = "medium"><input class = "top" type="radio" name="time" id="time" value = "'.$time.'" />&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';
  }
  
- $return .= '<tr><td><a class = "btn" id="select">Book This Time</a></td><td><a class = "btn" id="skip">Just Email Me</a></td></tr></table>';}
+ $return .= '<tr><td><a class = "btn" id="select" href = "'.base_url('index.php/Contests/site/book_time').'">Book This Time</a></td><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm').'">Just Email Me</a></td></tr></table>';}
 echo $return;
 }
 
@@ -183,8 +204,8 @@ $data['user_id']=$this->session->userdata('id');
 
 $data['date']=$this->input->post('datepick');
  $data=$this->designer_model->book($data);
-
-echo "<p class = 'large sanslight'> Thanks!  We'll give you a call then.</p>	";
+ 
+$this->confirm($data);
 
 }
 }

@@ -23,6 +23,9 @@ $this->load->model('Users/picture_model');
  {
 $this->load->view('Users/home');
  }
+ 
+ 
+ 
 function upload_room_pic(){
 $this->image_path= realpath(APPPATH.'/images');
 

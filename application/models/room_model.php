@@ -15,8 +15,6 @@ $insert = array(
 'width'=>$data['room_width'],
 'height'=>$data['room_height'],
 'room_type'=>$data['room_type'],
-'room_photo1'=>$data['room_photo1'],
-'room_photo2'=>$data['room_photo2'],
 'status'=>'open');
 
 
@@ -32,6 +30,15 @@ $this->db->insert('designer_mapping',$insert);
 return $query;
 		
 		}
+		
+function save_photo($data){
+
+$insert=array(
+'user_id'=>$data['user_id'],
+'filename'=>$data['photo']);
+
+$this->db->insert('user_room_pictures', $insert);
+}
 	
 function get_open_rooms(){
 $this->db->where('status !=','closed');
@@ -130,6 +137,5 @@ $query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.
 
 return $query->result();
 }
-
 
 }

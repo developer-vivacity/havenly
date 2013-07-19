@@ -1102,9 +1102,7 @@ display: inline-block;
 *display: inline;
     zoom: 1;
 vertical-align: top;
-padding-left: 2em;
-padding-right: 2em;
-padding-bottom: 2em;}
+}
 
 
 .error {

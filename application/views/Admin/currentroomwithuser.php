@@ -46,6 +46,7 @@ $checktitems=array();
 $currentroomid="";
 $currentuserid="";
 
+
 foreach($roomwithuser as $key)
 {
     
@@ -196,7 +197,6 @@ echo '</table>';
 <tr>
 <td>
 	<?php 
-	
 	$style_pics= explode(',',$style_pics);
 	$i=0;
 	while($i<sizeof($style_pics)-1):
@@ -218,12 +218,9 @@ foreach($colorstyle as $key):
 if(in_array($key->color_id,$color_pics))
 echo'<div style ="height:100px;float:left;width:100px;background-color:'.$key->color_code.';">&nbsp;&nbsp;&nbsp;&nbsp;</div>';
 ?>
-
-
 <?php
 endforeach;
 ?>
-
 </td>
 </tr>
 </table>
@@ -236,12 +233,6 @@ echo '<div id="productdesign" class="adminmain" style="display:none;">';
 if(sizeof($designassociaterooms)>0)
 	 {
 ?>
-
-
-
-
-
-
 <?php
 echo '<div class = "well midsmall">';
 foreach($designassociaterooms as $key)
@@ -256,12 +247,11 @@ echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url()
 <?php
 }
 ?>
-<tr><td>&nbsp;</td></tr>
-<tr><td class = "sanslight" >&nbsp;Add a New Design Plan:&nbsp;</td></tr>
-
-<tr><td>
+<table>
+<tr><td colspan="4" id="textmessage">&nbsp;</td></tr>
+<tr><td class = "sanslight" colspan="4">&nbsp;Add a New Design &nbsp;</td><td>
 	<?php
-        $data = array(
+               $data = array(
               'name'        => 'AddDesigntext',
               'id'          => 'AddDesigntext',
               'value'       => 'Design Name',
@@ -289,7 +279,7 @@ echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url()
 
       ?>
 	
-	</td>
+	</td></tr>
 
 </table>
 
@@ -298,13 +288,25 @@ echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url()
 <BR><BR><BR><BR><BR><BR><BR>
 </div>
 <script>
-
+	
+$("#AddDesigntext").click(function(){
+	
+$("#AddDesigntext").val("");	
+	})
+$("#AddDesigntext").blur(function()
+{
+    if($("#AddDesigntext").val()=="")
+    $("#AddDesigntext").val("Design Name");		
+	
+	})	
 function show_add_design(roomid)
 {	
+	
 	     $("#enterdesign").remove();
-	     if($("#AddDesigntext").val().trim()=="" || $("#AddDesigntext").val().trim()=="Design Name")
-             $("#AddDesigntext").before('<p id="enterdesign" style="margin-left:100px;">*Enter Design Name</p>');
-             else
+	    if($("#AddDesigntext").val().trim()=="" || $("#AddDesigntext").val().trim()=="Design Name")
+{             
+$("#textmessage").html('<p id="enterdesign" style="margin-left:50px;width:150px;float:right;">*Enter Design Name</p>');
+ }            else
              {
 	      var designid="null"; 
               location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim()+"/"+designid+"/"+$("#userid").val();		  

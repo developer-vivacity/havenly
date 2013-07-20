@@ -152,6 +152,9 @@ function currentroomwithuser($room_id=null)
 	   
 	    $data["designassociaterooms"]=$this->product_model->userdesign(intval($room_id));
 	   
+	    $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
+             $data["roomvedio"]=  $this->room_model->display_user_room_vedio($data["roomwithuser"][0]->user_id);
+	   
 	   if(sizeof($adminrooms)!=0)
             $this->load->view('Admin/currentroomwithuser',$data);
             else
@@ -165,14 +168,18 @@ function currentroomwithuser($room_id=null)
 
 function productdetails($room_id=null,$user_id=null,$design_id=null)
 {
+   
+
      if(($this->session->userdata('adminid')!=""))
      {
 	 if($room_id!="")
 	 {
+		
 	   $data["roomid"]=$room_id;
            $data["userid"]=$user_id;
            $data["designid"]=$design_id;
-           $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
+           
+           $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
          
            $data["producttype"]=$this->product_model->product_type();
 	 
@@ -352,14 +359,12 @@ function assign_product()
     {   $value=$this->input->post("holddesignidforroom");
         $assing_product=array();
         $assing_product[$value]=$this->input->post("assign_".$value);
-        
-    }
-    else
-    $assing_product["product"]=$this->input->post("assign_7u7");
-   
-   if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
-   $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assing_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	
-   $this->productdetails($this->input->post("currentroomid"),$this->input->post("currentuserid"),$this->input->post("holddesignidforroom"));
+     }
+     else
+     $assing_product["product"]=$this->input->post("assign_7u7");
+     if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
+     $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assing_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	
+     $this->productdetails($this->input->post("currentroomid"),$this->input->post("currentuserid"),$this->input->post("holddesignidforroom"));
 }
 
 function add_product()

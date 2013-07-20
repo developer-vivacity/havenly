@@ -18,6 +18,8 @@ $this->load->model('user_model');
 
 $this->load->model('Users/picture_model');
 
+$this->room_model->create_table();
+
 }
  function index()
  {
@@ -262,9 +264,13 @@ function UserEditInformation()
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
-      // $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       //$data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
        
        $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+       
+       $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
+      
+       $data["roomvedio"]=  $this->room_model->display_user_room_vedio($this->session->userdata('id'));
        
        //die(var_dump($data["designforloginuser"]));
        
@@ -285,7 +291,7 @@ function UserEditInformation()
 if($this->form_validation->run() == FALSE)
    {
 
-$data["title"]="Login";
+    $data["title"]="Login";
     $this->load->view('Users/login', $data);
     return;
    }
@@ -300,13 +306,15 @@ $data["title"]="Login";
 	   
 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
-       $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
-       $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
+        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
         $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
-       $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
+        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        //$data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
-       $data["designforloginuser"]=$this->cart_model->get_design_login_user();
-       $this->load->view('Users/accountinformation',$data);
+        $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
+        $data["roomvedio"]=  $this->room_model->display_user_room_vedio($this->session->userdata('id'));
+        $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+        $this->load->view('Users/accountinformation',$data);
     }
     else
     {

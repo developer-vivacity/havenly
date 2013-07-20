@@ -1,22 +1,21 @@
  $(document).ready(function() 
  {
- $(".designproduct").hover(function()
+ $(".designproduct").mouseenter(function()
  {
   
    var id_get=(this.id).split('_');
    
   if($("#designproductcheck"+id_get[1]).length==0)
   {
-	  
-  $("#"+this.id).before('<div class="addcart" style="position:absolute;width:70px;height:60px;background-color:#E8AA1A;opacity:0.7; cursor: pointer;" onclick="addcheckboxforaddcart('+id_get[1]+',\''+this.id+'\');"><img src="../../../../assets/Images/Tick-icon.png" height="25px" width="25px"/><br/><div>Add to cart</div></div>');	
+	  $("#"+this.id).before('<div  class="addcart" style="position:absolute;float:left;width:70px;height:60px;background-color:#E8AA1A;opacity:0.7; cursor: pointer;" onclick="addcheckboxforaddcart('+id_get[1]+',\''+this.id+'\');"><img src="../../../../assets/Images/Tick-icon.png" height="25px" width="25px"/><br/><div>Add to cart</div></div>');	
   }	
 }
 
 )
-$(".productimg").mouseout(function()
+$(".productimg").mouseleave(function()
 {
 	
-	 //$(".addcart").remove();
+	 $(".addcart").remove();
 
 	
 });

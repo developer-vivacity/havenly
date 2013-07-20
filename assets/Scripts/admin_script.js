@@ -188,9 +188,9 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   
   })
   
-  $("#filterproduct").click(function()
+  $("#filterproduct,.btn.rip").click(function()
   {
-	 
+	
     var is_filter=false;
     var producttypeid="";
     var productprice="";
@@ -204,7 +204,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  producttypeid=e.value;
            else
            producttypeid=producttypeid+','+e.value;
-      is_filter=true;
+           is_filter=true;
   });
  
   $("#searchoptionfortype").val(producttypeid);
@@ -320,8 +320,8 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 		  if(is_sort)
 		  { 
 		  $("#hidproductsearch").val("sort");
-          $("#saveproduct").submit();
-          }
+                    $("#saveproduct").submit();
+                    }
   
 });
 $("#savecurrentproduct").click(function()

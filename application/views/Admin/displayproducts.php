@@ -235,7 +235,7 @@ elseif(sizeof($userdesign)==0)
 <div class = "row">
 <div class = "span2">
 <div class="btn-group">
-  <button class="btn">Product Type</button>
+  <button class="btn rip">Product Type</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
@@ -246,7 +246,8 @@ elseif(sizeof($userdesign)==0)
 </ul></div></div>
 <div class = "span2">
 <div class="btn-group">
-  <button class="btn">Product Type</button>
+ <!-------add rip class for jquery by kbs------->
+  <button class="btn rip">Product Type</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
@@ -264,7 +265,8 @@ elseif(sizeof($userdesign)==0)
 
 
 <div class="btn-group">
-  <button class="btn">Style</button>
+	<!-------add rip class for jquery by kbs------->
+  <button class="btn rip">Style</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
@@ -278,7 +280,8 @@ foreach($productstyle as $key)
 </div></div>
 <div class = "span2">
 <div class="btn-group">
-  <button class="btn">Color</button>
+	<!-------add rip class for jquery by kbs------->
+  <button class="btn rip">Color</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
@@ -292,7 +295,8 @@ foreach($productcolortype as $key)
 </div></div>
 <div class = "span2">
 <div class="btn-group">
-  <button class="btn">Material</button>
+	<!-------add rip class for jquery by kbs------->
+  <button class="btn rip">Material</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
@@ -360,6 +364,11 @@ $(".inactive, .active").click(function()
                  $(this).toggleClass('active');
                  var checkbox = $(this).parent().find('.cbox');
 		 checkbox.prop('checked',!checkbox[0].checked);
+});
+
+$(".btn.rip").click(function()
+{
+$("#hidproductsearch").val("search");	
 });
 </script>
 

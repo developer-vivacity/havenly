@@ -89,7 +89,7 @@ function updateroom_loginuser($id)
   color_code varchar(100) DEFAULT NULL,
   color_id int(10) NOT NULL,
   PRIMARY KEY (id))") ;
-
+/*
    $this->db->query("INSERT INTO color_code (id, color_code, color_id) VALUES
 (1, 'rgb(188,196,188);', 1),
 (2, 'rgb(255,243,196);', 2),
@@ -105,6 +105,19 @@ function updateroom_loginuser($id)
 (14, '#00FF5E;', 12),
 (15, '#FFD500;', 13),
 (16, '#FF1100;', 14)");
+*/
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_videos (
+   id int(10) NOT NULL AUTO_INCREMENT,
+   user_id int(10) DEFAULT NULL,
+   filename varchar(100) NOT NULL,
+   PRIMARY KEY (id))") ;
+  
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_room_pictures (
+   id int(10) NOT NULL AUTO_INCREMENT,
+   user_id int(10) DEFAULT NULL,
+   filename varchar(100) NOT NULL,
+   PRIMARY KEY (id))") ;
+  
  }
 // for display color code.	
 function fetch_color_style_number() 
@@ -126,10 +139,25 @@ return $query->result();
 function displayusreinformationwithroom($room_id)
 {
 
-$query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
+$query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics,user_rooms.status from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
 
 return $query->result();
 }
-
-
+//---this function display user room pic........
+function display_user_room_pic($user_id)
+{
+	 $this->db->where('user_id',$user_id);
+	 $query=$this->db->get('user_room_pictures');
+	 return $query->result();
+}
+// ----- this function display room vedio------
+function display_user_room_vedio($user_id)
+{
+	
+          $this->db->where('user_id',$user_id);
+	 
+	  $query=$this->db->get('user_videos');
+	 return $query->result();
+	
+}
 }

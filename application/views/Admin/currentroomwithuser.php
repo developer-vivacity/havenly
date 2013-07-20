@@ -116,16 +116,41 @@ foreach($roomwithuser as $key){
 	
 	echo '<table id="CurrentRoom" class="adminmain" style="display:none;">';
 	echo '<tr><td class = "sanslight medium">Room Type:</td><td class = "sanslight medium">'.$key->room_type.'</td></tr>';
-    echo '<tr><td>&nbsp;</td></tr>';
+         echo '<tr><td>&nbsp;</td></tr>';
 	echo '<tr><td class = "sanslight medium">Width/Height:</td><td class = "sanslight medium">'.$key->width.'ft/'.$key->height.'ft</td></tr>';
-	echo '<tr><td>&nbsp;</td></tr>';
+	echo '<tr><td colspan="2">&nbsp;</td></tr>';
 	echo '<tr class = "top"><td class = "sanslight medium">About the Room:</td><td class = "sanslight small">'.$key->about.'</td></tr>';
 	
-	echo '<tr><td>&nbsp;</td></tr>';
-	echo '<tr><td><img src="'.$key->room_photo1.'" height="300px" /></td>';
+	echo '<tr><td colspan="2">&nbsp;</td></tr>';
+	echo '<tr><td ><img src="'.$key->room_photo1.'" height="300px" /></td>';
 	echo '<td><img src="'.$key->room_photo2.'" height="300px" /></td></tr>';
-
-	echo '<tr><td>&nbsp;</td></tr></table></div>';
+        
+        //-------embded vedio and picture ------------> 
+	echo '<tr><td colspan="2">&nbsp;</td></tr>';
+	
+	echo '<tr><td class = "sanslight medium">Room Pictures:</td><td class = "sanslight medium">User Videos:</td></tr>';
+	echo  '<tr><td  style="vertical-align:top;">';
+	foreach($roompicture as $roompickey)
+	{
+	  echo '<div><img src="'.$roompickey->filename.'" height="200px" width="300px"/></div>';	
+		
+	}
+	if(sizeof($roompicture)==0)
+	echo "No Room Pictures Uploaded By User";
+	echo'</td><td>';
+	foreach($roomvedio as $roomvediokey)
+	{
+	 echo '<div style="width:600px;float:right;">
+	     <iframe id="video" width="100%" height="315" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="'.$roomvediokey->filename.'">
+	     </iframe>
+	   </div>';
+	 }
+	 if(sizeof($roomvedio)==0)
+	echo "No Room Vedio Uploaded By User";
+	 echo'</td></tr>';
+	//=======end embded vedio and picture=============//
+	echo '</table>
+         </div>';
   
   
         $style_pics=$key->style_pics;    

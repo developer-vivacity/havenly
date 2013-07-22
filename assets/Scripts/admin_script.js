@@ -655,9 +655,7 @@ function display_div(id)
 	
      $(".productdetailsdiv").remove();
 
-     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background:white;border-radius: 5px;content: attr(title);padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;height:55px;font-family:airal,Georgia,Serif;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
-     
-  
+    $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background-color:white;border-radius: 5px;padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;font-family:airal,Georgia,Serif;font-size:12px !important;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
      
     $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
      {

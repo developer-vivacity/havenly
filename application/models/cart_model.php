@@ -134,6 +134,13 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 		  }
 		  else
 		  {
+		  	
+                             $this->db->where("user_id",$this->session->userdata("id"));
+		             $this->db->where("room_id",$room_id);
+		             $this->db->where("design_id",$design_id);
+		             $this->db->where("product_id",$product_id);
+		  	
+		  	
 			  $data=array("qty"=>$product_qty);
 			  $this->db->update("shoppingcart",$data);  
 		  } 

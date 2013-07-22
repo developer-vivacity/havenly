@@ -101,6 +101,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 </ul>
 <BR>
 <?php
+
 foreach($roomwithuser as $key){
 	echo '<div class = "span10">';
 	echo '<table id="CurrentUser" class="adminmain table" >';
@@ -125,8 +126,38 @@ foreach($roomwithuser as $key){
 	echo '<tr><td colspan="2">&nbsp;</td></tr>';
 	echo '<tr><td ><img src="'.$key->room_photo1.'" height="300px" /></td>';
 	echo '<td><img src="'.$key->room_photo2.'" height="300px" /></td></tr>';
+	
+	$buyitems=array('1'=>'Couch','2'=>'Coffee Table','3'=>'Bed','4'=>'Bed Frame/Headboard','5'=>'Art','6'=>'Chair','7'=>'Dresser','8'=>'Décor items','9'=>'Linens/Sheets','10'=>'Pillows','11'=>'Media','12'=>'Side Tables/Console Tables','13'=>'Nightstands','14'=>'Other');
+        $style_pics=$key->style_pics;    
+        $color_pics=$key->color_pics; 
+
+       if(isset($userroomdetails))
+      foreach($userroomdetails as $key)
+     {
+
+        echo'<tr><td>Style notes:</td><td>'.$key->Style_notes.'</td></tr>';	
+        echo'<tr><td>Ceiling Height:</td><td>'.$key->Ceiling_Height.'</td></tr>';	
+        echo'<tr><td>Hates:</td><td>'.$key->Hates.'</td></tr>';	
+        echo'<tr><td>Likes:</td><td>'.$key->Likes.'</td></tr>';		
+        echo'<tr><td>Keep:</td><td>'.$key->Keep.'</td></tr>';
+        echo'<tr><td valign="top">Buy:</td><td>';
+
+        $checktitems=explode(',',$key->Buy);
+      foreach($buyitems  as $newkey=>$newvalue)
+      {
+	  if(in_array($newkey, $checktitems))
+	  { 
+	    $choosebyitems=($newkey==14?$checktitems[sizeof($checktitems)-1]:$newvalue);
+             echo '<div>'.$choosebyitems.'</div>';
+           }
+	   
+      }
+echo '</td></tr>';	
+          
+}
+	
         
-        //-------embded vedio and picture ------------> 
+        //-------embded vedio and picture by kbs------------> 
 	echo '<tr><td colspan="2">&nbsp;</td></tr>';
 	
 	echo '<tr><td class = "sanslight medium">Room Pictures:</td><td class = "sanslight medium">User Videos:</td></tr>';
@@ -149,49 +180,18 @@ foreach($roomwithuser as $key){
 	 if(sizeof($roomvedio)==0)
 	echo "No Room Vedio Uploaded By User";
 	 echo'</td></tr>';
-	//=======end embded vedio and picture=============//
+	//=======end embded vedio and picture by kbs=============//
 	echo '</table>
          </div>';
   
   
-        $style_pics=$key->style_pics;    
-        $color_pics=$key->color_pics;    
+       
  }
 ?>
-
-
 <?php
-
-$buyitems=array('1'=>'Couch','2'=>'Coffee Table','3'=>'Bed','4'=>'Bed Frame/Headboard','5'=>'Art','6'=>'Chair','7'=>'Dresser','8'=>'Décor items','9'=>'Linens/Sheets','10'=>'Pillows','11'=>'Media','12'=>'Side Tables/Console Tables','13'=>'Nightstands','14'=>'Other');
-
-if(isset($userroomdetails))
-foreach($userroomdetails as $key)
-{
-
-   echo'<tr><td>Style notes:</td><td>'.$key->Style_notes.'</td></tr>';	
-   echo'<tr><td>Ceiling Height:</td><td>'.$key->Ceiling_Height.'</td></tr>';	
-   echo'<tr><td>Hates:</td><td>'.$key->Hates.'</td></tr>';	
-   echo'<tr><td>Likes:</td><td>'.$key->Likes.'</td></tr>';		
-   echo'<tr><td>Keep:</td><td>'.$key->Keep.'</td></tr>';
-   echo'<tr><td valign="top">Buy:</td><td>';
-
-   $checktitems=explode(',',$key->Buy);
-   
-   foreach($buyitems  as $newkey=>$newvalue)
-   {
-	  if(in_array($newkey, $checktitems))
-	  { 
-	    $choosebyitems=($newkey==14?$checktitems[sizeof($checktitems)-1]:$newvalue);
-             echo '<div>'.$choosebyitems.'</div>';
-      }
-	   
-  }
-echo '</td></tr>';	
-
-}
-echo '</table>';
  echo form_close(); 
 ?>
+
 <table id="currentref" class="adminmain table" style="display:none;">
 <tr><td>Style Pictures:</td></tr>
 <tr>

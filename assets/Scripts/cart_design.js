@@ -90,7 +90,7 @@ function submitcartvalue()
 	}
 	
 }
-function removedesigndiv(user_id=null,design_id=null,room_id=null)
+function removedesigndiv(user_id,design_id,room_id)
 {
 	
 	$("#message_design_div").remove();

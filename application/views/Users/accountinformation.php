@@ -42,6 +42,8 @@
     <li><a href="#user">PROFILE</a></li>
 	<li><a href="#preferences">PREFERENCES</a></li>
     <li><a href="#rooms">ROOMS</a></li>
+	<?php if(sizeof($designforloginuser)>0)
+    {echo '<li><a href="#designs">DESIGNS</a></li>';}?>
   </ul>
   
  <div id = "designer">
@@ -51,6 +53,34 @@ if(isset($message))
 	echo '<p>'.$message.'</p>';
 }
 ?>
+
+<?php
+if(isset($designerinformation))
+    {
+?>
+  <table class = "table-center span5">
+ 
+	 <?php
+     $url = base_url('assets/Images');
+	  foreach($designerinformation as $key)
+	  {
+            echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
+			
+			 echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
+		      echo '<tr> <td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
+			  echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
+			  echo '<tr><td><hr class = "third style"></td></tr>';
+		      echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
+	   }
+	  ?>
+	
+	 </table><BR><BR>
+<?php
+   }
+?>
+</div>
+
+<div id = "designs">
 <?php
 //-----update code by kbs for user design ready----------------------//
 echo '<input type="hidden" id="sitepath" value="'.base_url().'" name="sitepath"/>';

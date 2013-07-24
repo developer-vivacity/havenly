@@ -15,36 +15,18 @@ function __construct() {
 	}
 
 
-<<<<<<< HEAD
-function room_submit(){
 
-$data['about']=$this->input->post('about');
-$data['room_width']=$this->input->post('room_width');
-$data['room_height']=$this->input->post('room_height');
-$data['room_type']=$this->input->post('room_type');
-=======
+
 function room_submit()
 {
    if($_POST)
    {
-     if($this->input->post('room_file1'))
-     {
-     $data['room_photo1']=$this->input->post('room_file1');
-     }
-     else 
-     {
-	     $data['room_photo1']="not submitted";
-     }
-   if($this->input->post('room_file2'))
-   {$data['room_photo2']=$this->input->post('room_file2');}
-
-  else {$data['room_photo2']="not submitted";}
 
   $data['about']=$this->input->post('about');
   $data['room_width']=$this->input->post('room_width');
   $data['room_height']=$this->input->post('room_height');
   $data['room_type']=$this->input->post('room_type');
->>>>>>> c743099e0dc46a79c17aeda042fc19f1ff508a93
+
 
 
 $data['styles'] = $this->input->post('style');
@@ -85,68 +67,48 @@ $data['instagram']=NULL;
   $data['about']=$this->input->post('about');
   $data['type']=$this->input->post('type');
   $data['user_id']=$this->user_model->save_user($data);
+  
+  
   $data['room_id']=$this->room_model->save_room($data);
+  
+  
+
+		if($this->input->post('room_file1')){
+		$data['photo']=$this->input->post('room_file1');
+		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+		$this->room_model->save_photo($data);}
+		}
+
+		if($this->input->post('room_file2'))
+		{$data['photo']=$this->input->post('room_file2');
+		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+		$this->room_model->save_photo($data);}
+		}
+
+
+		if($this->input->post('room_file3'))
+		{$data['photo']=$this->input->post('room_file3');
+		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+		$this->room_model->save_photo($data);}
+		}
+
+		if($this->input->post('room_file4'))
+		{$data['photo']=$this->input->post('room_file4');
+		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+		$this->room_model->save_photo($data);}
+		}
+
+  
+   
   $this->user_model->save_preferences($data);
-
-  $this->session->set_userdata('id',$data['user_id']);
-  $this->session->set_userdata('first_name',$data['first_name']);
-  $this->confirm($data);
-}
-
-<<<<<<< HEAD
-
-
-$data['about']=$this->input->post('about');
-$data['type']=$this->input->post('type');
-
-$data['user_id']=$this->user_model->save_user($data);
-
-if($this->input->post('room_file1')){
-$data['photo']=$this->input->post('room_file1');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-$this->room_model->save_photo($data);}
-}
-
-if($this->input->post('room_file2'))
-{$data['photo']=$this->input->post('room_file2');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-$this->room_model->save_photo($data);}
-}
-
-
-if($this->input->post('room_file3'))
-{$data['photo']=$this->input->post('room_file3');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-$this->room_model->save_photo($data);}
-}
-
-if($this->input->post('room_file4'))
-{$data['photo']=$this->input->post('room_file4');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-$this->room_model->save_photo($data);}
-}
-
-
-$data['room_id']=$this->room_model->save_room($data);
-$this->user_model->save_preferences($data);
-
 
 $this->session->set_userdata('id',$data['user_id']);
 $this->session->set_userdata('first_name',$data['first_name']);
 $this->session->set_userdata('email',$data['email']);
-$this->availability($data);
-=======
- $data['id']=$this->session->userdata('id');
- $data['first_name']=$this->session->userdata('first_name');
- $data['last_name']=$this->session->userdata('last_name');
- $data['email']=$this->session->userdata('email');
- $data['phone']=$this->session->userdata('phone');
- $data['address']=$this->session->userdata('address');
- $data['zipcode']=$this->session->userdata('zipcode');
- $this->load->view('Users/confirm',$data);
->>>>>>> c743099e0dc46a79c17aeda042fc19f1ff508a93
 
-}
+$this->availability($data);
+
+}}
 
 function confirm()
 {

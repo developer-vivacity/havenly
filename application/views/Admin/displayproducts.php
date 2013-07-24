@@ -348,7 +348,7 @@ foreach($productmaterialtype as $key)
 <input type="hidden" value="<?php echo $userid;?>" id="currentuserid" name="currentuserid"/>
 <!---add hidden variable by kbs--->
 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url();?>"/>
- <input type="hidden" value="<?php echo $userid;?>" id="userdesign" name="userdesign"/>
+ <input type="hidden" value="<?php echo $designid;?>" id="userdesign" name="userdesign"/>
  <!-------------->
 <?php 
 

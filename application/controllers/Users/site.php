@@ -494,11 +494,9 @@ $data =array('first_name'=> $this->input->post('update_name'),
 
     }
      $this->user_model->update_user_info($data,$this->input->post('hold_id'));
-     
      if($this->input->post('radio_value')=="true")
      {
-           
-          
+
           $config = array(
 'protocol'=>'smtp',
 'smtp_host'=>'ssl://smtp.googlemail.com',
@@ -507,21 +505,21 @@ $data =array('first_name'=> $this->input->post('update_name'),
 'smtp_user'=>'lee@havenly.com',
 'smtp_pass'=>'Motayed123');
 
-$this->load->library('email',$config);
-$subject="Account Information From Havenly";
+   $this->load->library('email',$config);
+   $this->email->set_newline("\r\n");
+   $subject="Account Information From Havenly";
            $to =$this->input->post('update_email');
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
            $message = $this->load->view('Users/sendmailmessage',$data,true);
-                   
+          
            $this->email->from('lee@havenly.com','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
            $this->email->send();
-
-     }
-     $this->login();
+          }
+    $this->login();
  }
 
 }

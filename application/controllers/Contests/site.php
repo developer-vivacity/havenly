@@ -15,21 +15,27 @@ function __construct() {
 	}
 
 
-function room_submit(){
-if($this->input->post('room_file1')){
-$data['room_photo1']=$this->input->post('room_file1');}
-else {$data['room_photo1']="not submitted";}
+function room_submit()
+{
+   if($_POST)
+   {
+     if($this->input->post('room_file1'))
+     {
+     $data['room_photo1']=$this->input->post('room_file1');
+     }
+     else 
+     {
+	     $data['room_photo1']="not submitted";
+     }
+   if($this->input->post('room_file2'))
+   {$data['room_photo2']=$this->input->post('room_file2');}
 
+  else {$data['room_photo2']="not submitted";}
 
-if($this->input->post('room_file2'))
-{$data['room_photo2']=$this->input->post('room_file2');}
-
-else {$data['room_photo2']="not submitted";}
-
-$data['about']=$this->input->post('about');
-$data['room_width']=$this->input->post('room_width');
-$data['room_height']=$this->input->post('room_height');
-$data['room_type']=$this->input->post('room_type');
+  $data['about']=$this->input->post('about');
+  $data['room_width']=$this->input->post('room_width');
+  $data['room_height']=$this->input->post('room_height');
+  $data['room_type']=$this->input->post('room_type');
 
 
 $data['styles'] = $this->input->post('style');
@@ -39,10 +45,10 @@ $data['style'].=$style.",";
 }
 
 
-$data['colors'] = $this->input->post('color');
-$data['color']="";
-foreach ($data['colors'] as $color){
-$data['color'].=$color.",";
+  $data['colors'] = $this->input->post('color');
+  $data['color']="";
+  foreach ($data['colors'] as $color){
+  $data['color'].=$color.",";
 }
 
 
@@ -67,21 +73,25 @@ $data['instagram']=$this->input->post('instagram');
 if ($data['instagram']=="Link to a pinterest board"){
 $data['instagram']=NULL;
 }
+  $data['about']=$this->input->post('about');
+  $data['type']=$this->input->post('type');
+  $data['user_id']=$this->user_model->save_user($data);
+  $data['room_id']=$this->room_model->save_room($data);
+  $this->user_model->save_preferences($data);
 
+  $this->session->set_userdata('id',$data['user_id']);
+  $this->session->set_userdata('first_name',$data['first_name']);
+  $this->confirm($data);
+}
 
-
-$data['about']=$this->input->post('about');
-$data['type']=$this->input->post('type');
-
-$data['user_id']=$this->user_model->save_user($data);
-
-$data['room_id']=$this->room_model->save_room($data);
-$this->user_model->save_preferences($data);
-
-
-$this->session->set_userdata('id',$data['user_id']);
-$this->session->set_userdata('first_name',$data['first_name']);
-$this->confirm($data);
+ $data['id']=$this->session->userdata('id');
+ $data['first_name']=$this->session->userdata('first_name');
+ $data['last_name']=$this->session->userdata('last_name');
+ $data['email']=$this->session->userdata('email');
+ $data['phone']=$this->session->userdata('phone');
+ $data['address']=$this->session->userdata('address');
+ $data['zipcode']=$this->session->userdata('zipcode');
+ $this->load->view('Users/confirm',$data);
 
 }
 

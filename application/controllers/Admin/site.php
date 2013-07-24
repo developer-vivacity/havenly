@@ -147,13 +147,18 @@ function currentroomwithuser($room_id=null)
 	   $data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
 	 
 	   $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
-	 
-	  
+	   $data["designassociaterooms"]=$this->product_model->userdesign(intval($room_id));
 	   
-	    $data["designassociaterooms"]=$this->product_model->userdesign(intval($room_id));
-	   
-	    $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
-             $data["roomvedio"]=  $this->room_model->display_user_room_vedio($data["roomwithuser"][0]->user_id);
+	    if(sizeof($data["designassociaterooms"])>0)
+	    {
+	         $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
+                  $data["roomvedio"]=  $this->room_model->display_user_room_vedio($data["roomwithuser"][0]->user_id);
+	    }
+	    else
+	    {
+	        $data["roompicture"]=array();
+                 $data["roomvedio"]=  array();  
+	    }
 	   
 	   if(sizeof($adminrooms)!=0)
             $this->load->view('Admin/currentroomwithuser',$data);
@@ -162,7 +167,7 @@ function currentroomwithuser($room_id=null)
      }
      else
      {
-	$this->load->view('Admin/adminlogin');
+	  $this->load->view('Admin/adminlogin');
      }
 }
 

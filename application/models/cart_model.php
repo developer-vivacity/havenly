@@ -65,7 +65,6 @@ function room_color()
 // update shoppingcart...........
 function updateshoppingcart($productid,$roomid,$designid,$type)
 {
-	
 	if($type=="insert")
 	{
 	$data=array("user_id"=>$this->session->userdata('id'),"room_id"=>$roomid,"design_id"=>$designid,"product_id"=>$productid);	
@@ -121,7 +120,8 @@ function insert_product_for_design($productid,$roomid,$designid)
 
 function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$design_id=null)
 {
-	           $this->db->where("user_id",$this->session->userdata("id"));
+
+                    $this->db->where("user_id",$this->session->userdata("id"));
 		  $this->db->where("room_id",$room_id);
 		  $this->db->where("design_id",$design_id);
 		  $this->db->where("product_id",$product_id);
@@ -129,36 +129,40 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
                     $count = $query->num_rows(); 
                     if($count==0)
 		  {
+
 		   $data=array("user_id"=>$this->session->userdata("id"),"room_id"=>$room_id,"design_id"=>$design_id,"product_id"=>$product_id,"qty"=>$product_qty);	
 	            $this->db->insert("shoppingcart",$data);	  
 		  }
 		  else
 		  {
-		  	
-                             $this->db->where("user_id",$this->session->userdata("id"));
-		             $this->db->where("room_id",$room_id);
-		             $this->db->where("design_id",$design_id);
-		             $this->db->where("product_id",$product_id);
-		  	
-		  	
-			  $data=array("qty"=>$product_qty);
-			  $this->db->update("shoppingcart",$data);  
+                    $this->db->where("user_id",$this->session->userdata("id"));
+		  $this->db->where("room_id",$room_id);
+		  $this->db->where("design_id",$design_id);
+		  $this->db->where("product_id",$product_id);
+		  $data=array("qty"=>$product_qty);
+		  $this->db->update("shoppingcart",$data);  
 		  } 
 	
 }
 
 function delete_user_assign_design($user_id,$room_id,$design_id)
 {
- 	
-	$this->db->delete('user_design', array('design_id' => $design_id,'room_id' => $room_id));
-	
+	$this->db->delete('user_design', array('design_id' =>$design_id,'room_id'=>$room_id));
+
 	$this->db->delete('user_room_designs', array('user_id' => $user_id,'room_id' => $room_id,'design_id'=>$design_id));
 	
 	$this->db->delete('design_product_mapping', array('design_id' => $design_id)); 
-        
-        $this->db->delete('user_design',array('design_id'=>$design_id,'room_id'=>$room_id));
 
 }
+// This function get the quantity of shopping card.
+function get_product_qty($product_id)
+{        
+	$this->db->select('qty');
+	$this->db->where('product_id',$product_id);
+	$query=$this->db->get('shoppingcart');	
+         return $query->result();
+}
+
 
 }
 

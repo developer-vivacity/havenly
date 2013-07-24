@@ -1,8 +1,9 @@
  $(document).ready(function() 
  {
+	
  $(".designproduct").mouseenter(function()
  {
-  
+
    var id_get=(this.id).split('_');
    
   if($("#designproductcheck"+id_get[1]).length==0)
@@ -73,21 +74,21 @@ function removecheckbox(id,productid)
 function submitcartvalue()
 {
 	 var issubmit=true;
-	$(".error").remove();
-         if($("#totalvalueadd").val().trim()=="")
-	{
-         $("#productamount").before('<div class="error" style="float:right;height:20px;">*Enter number!</div>');	
-	issubmit=false;
-	}
-	if($("#totalvalueadd").val().trim()!="" && !$.isNumeric($("#totalvalueadd").val()))
-	{
-	$("#productamount").before('<div class="error" style="float:right;height:20px;">*Enter value in numeric format:</div>');	
-	issubmit=false;
-	}
-	if(issubmit==true)
-	{
-		$("#productdetails").submit();
-	}
+	 $(".error").remove();
+          if($("#totalvalueadd").val().trim()=="")
+	 {
+          $("#productamount").before('<div class="error" style="float:right;height:20px;margin-top:20px;">*Enter number!</div>');	
+	 issubmit=false;
+	 }
+	 if($("#totalvalueadd").val().trim()!="" && !$.isNumeric($("#totalvalueadd").val()))
+	 {
+	 $("#productamount").before('<div class="error" style="float:right;height:20px;margin-top:20px;">*Enter value in numeric format:</div>');	
+	 issubmit=false;
+	 }
+	 if(issubmit==true)
+	 {
+          $("#productdetails").submit();
+	 }
 	
 }
 function removedesigndiv(user_id,design_id,room_id)
@@ -99,3 +100,5 @@ function removedesigndiv(user_id,design_id,room_id)
 	
 	
 }
+
+

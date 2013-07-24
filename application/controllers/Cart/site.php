@@ -26,7 +26,6 @@ Class Site extends CI_Controller
 		 
 		  $this->cart_model->insert_product_for_design($_POST["holdproductidfordesign"],$_POST["holdroomid"],$design_id);
 	     }
-     	 
      	   $data["productname"]=$this->product_model->display_design_associated_products($design_id);
 	   $data["designimage"]=$this->product_model->design_image_for_rooms(null,$design_id);
 	   $data["room_type"]=$this->cart_model->Check_user_rooms();
@@ -34,10 +33,8 @@ Class Site extends CI_Controller
 	   $data["colorcode"]=$this->cart_model->room_color();
 	   $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
 	   $data["designid"]=$design_id;
-	
 	   $this->load->view('Cart/shoppingcart', $data);
-	 
-         }
+	 }
          else
          {
 	 $data["title"]="Login";
@@ -45,19 +42,17 @@ Class Site extends CI_Controller
 	}
 	  
    }
-
   function add_or_update_cart()
   {
-	
 	$this->cart_model->updateshoppingcart($_POST["productid"],$_POST["roomid"],$_POST["designid"],$_POST["type"]);
   }
   function product_details_of_design($productid)
   {
 	 $data["productid"]=$productid;
 	 $data["productdetails"]=$this->product_model->get_all_product($productid);
+          $data["qty"]=$this->cart_model->get_product_qty($productid);
 	 $this->load->view('Cart/productdetails', $data);
-  
-  }  
+   }  
   function update_or_insert_qty()
   {
 	if($this->session->userdata('first_name')=="")
@@ -66,7 +61,6 @@ Class Site extends CI_Controller
           $this->load->view('Users/login', $data);	
           return;
 	}
-	
 	if($_POST)  
 	{
 	$data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  

@@ -162,25 +162,52 @@ echo '<td><img class = "middle inactive inline" src = "'.$key->room_photo1.'" wi
 
 
 if($key->room_photo2=='not submitted')
-{echo '';}
-else{
+{
+	echo '';
+}
+else
+{
 echo '<img class = "middle inactive inline" src="'.$key->room_photo2.'" height="100px"/></td>';}
 echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
-
 }
-
 $roomtype=$key->room_type;
 $user_id = $key->user_id;
 $room_id = $key->id;
 ?>
 
+
 </table>
 <br><BR><br><BR>
-
-
 <?php
 }
 ?>
+<!-------embded vedio and picture ------------> 
+<p class = "left-align sanslight medium">User Room Pictures & User Videos</p>
+<hr class = "style"><BR><BR>
+	<table  width = "100%" class = "sanslight midsmall center dark_gray_text">
+         <tr><td>Room Pictures</td><td>User Videos</td></tr>
+	<tr><td>
+	<?php
+	foreach($roompicture as $key)
+	{
+	  echo '<div><img src="'.$key->filename.'" height="200px" width="300px"/></div>';	
+		
+	}
+	?>
+	</td><td>
+	<?php
+	foreach($roomvedio as $key)
+	{
+	 echo '<div style="width:600px;float:right;">
+	     <iframe id="video" width="100%" height="315" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="'.$key->filename.'">
+	     </iframe>
+	   </div>';
+	 
+	}
+	?>
+	</td></tr>
+	</table>
+<!--------------------------------------------------->
 </div>
 
 <?php

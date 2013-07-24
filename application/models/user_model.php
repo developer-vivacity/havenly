@@ -10,22 +10,26 @@ function save_user($data){
 $this->db->where("email",$data['email']);
 $query=$this->db->get("users");
  
- if($query->num_rows()==0){
-$insert = array(
-'first_name'=>$data['first_name'],
-'last_name'=>$data['last_name'],
-'email'=>$data['email'],
-'address'=>$data['address'],
-'phone'=>$data['phone'],
-'zipcode'=>$data['zipcode'],
-'password'=>$data['password'],
-'pinterest'=>$data['pinterest'],
-'instagram'=>$data['instagram'],
-'facebook'=>$data['facebook']);
+   if($query->num_rows()==0)
+   {
+    $insert = array(
+   'first_name'=>$data['first_name'],
+   'last_name'=>$data['last_name'],
+   'email'=>$data['email'],
+   'address'=>$data['address'],
+   'phone'=>$data['phone'],
+   'zipcode'=>$data['zipcode'],
+   'password'=>$data['password'],
+   'pinterest'=>$data['pinterest'],
+   'instagram'=>$data['instagram'],
+   'facebook'=>$data['facebook']);
 
-$this->db->insert('users',$insert);
-$id=$this->db->insert_id();
-return $id;}
+    $this->db->insert('users',$insert);
+    $id=$this->db->insert_id();
+    $newdata =array('id'=>$id,'first_name'=> $data['first_name'],'last_name'=> $data['last_name'],'email'=> $data['email'],'phone'=>$data['phone'],'address'=>$data['address'],'zipcode'=>$data['zipcode']);
+    $this->session->set_userdata($newdata);
+    return $id;
+  }
 
 else {
 $update=array('first_name'=>$data['first_name'],
@@ -39,6 +43,7 @@ $update=array('first_name'=>$data['first_name'],
 'facebook'=>$data['facebook']);
 
 $this->db->where('email',$data['email']);
+
 $this->db->update('users',$update);
 
 $this->db->where('email', $data['email']);
@@ -46,7 +51,8 @@ $this->db->select('id');
 $query = $this->db->get('users');
 
 foreach( $query->result_array() as $row)
-{return $row['id'];}
+{return $row['id'];
+}
 }
 
 }
@@ -100,7 +106,7 @@ $query=$this->db->get("users");
          
          $this->db->insert('users',$data);
         
-$id=mysql_insert_id();
+         $id=mysql_insert_id();
          $newdata =array('id'=>$id,'first_name'=> $data["first_name"],'last_name'=> $data["last_name"],'email'=> $data["email"],'phone'=>$data["phone"],'address'=>$data["address"],'zipcode'=>$data["zipcode"]);
          
          $this->session->set_userdata($newdata);

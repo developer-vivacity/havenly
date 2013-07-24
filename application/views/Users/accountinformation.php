@@ -181,7 +181,7 @@ $room_id = $key->id;
 <?php
 }
 ?>
-<!-------embded vedio and picture ------------> 
+<!-------embded video and picture ------------> 
 <p class = "left-align sanslight medium">User Room Pictures & User Videos</p>
 <hr class = "style"><BR><BR>
 	<table  width = "100%" class = "sanslight midsmall center dark_gray_text">
@@ -196,7 +196,7 @@ $room_id = $key->id;
 	?>
 	</td><td>
 	<?php
-	foreach($roomvedio as $key)
+	foreach($roomvideo as $key)
 	{
 	 echo '<div style="width:600px;float:right;">
 	     <iframe id="video" width="100%" height="315" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="'.$key->filename.'">

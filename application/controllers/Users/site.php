@@ -309,7 +309,7 @@ function UserEditInformation()
        
        $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
       
-       $data["roomvedio"]=  $this->room_model->display_user_room_vedio($this->session->userdata('id'));
+       $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
        
        //die(var_dump($data["designforloginuser"]));
        
@@ -351,7 +351,7 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        //$data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
         $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
-        $data["roomvedio"]=  $this->room_model->display_user_room_vedio($this->session->userdata('id'));
+        $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
         $this->load->view('Users/accountinformation',$data);
     }
@@ -453,7 +453,7 @@ $subject="Account Information from Havenly";
            $this->email->message($message);
            $this->email->send();
            $data["accountinfo"]="update";
-           $this->load->view('Users/updateinfo', $data);
+           $this->load->view('Users/passwordconfirm', $data);
   
 }
 elseif(!empty($email))
@@ -473,7 +473,7 @@ $this->load->view('Users/login', $data);
      $data['mailmessage']=$this->mailmessage;
      $data['query']=$this->user_model->user_getall($id);
     
-     $this->load->view('Users/userview', $data);
+     $this->load->view('Users/edituserinfo', $data);
      
   
  }
@@ -550,7 +550,7 @@ $data =array('first_name'=> $this->input->post('update_name'),
            $to =$this->input->post('update_email');
            $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
            $data["randompassword"]=$this->input->post('update_password');
-           $message = $this->load->view('Users/sendmailmessage',$data,true);
+           $message = $this->load->view('Users/resetpasswordemail',$data,true);
           
            $this->email->from('lee@havenly.com','Havenly');
            $this->email->to($to);

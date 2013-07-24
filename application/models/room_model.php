@@ -150,9 +150,8 @@ $query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.
 
 return $query->result();
 }
-<<<<<<< HEAD
 
-=======
+
 //---this function display user room pic........
 function display_user_room_pic($user_id)
 {
@@ -160,8 +159,8 @@ function display_user_room_pic($user_id)
 	 $query=$this->db->get('user_room_pictures');
 	 return $query->result();
 }
-// ----- this function display room vedio------
-function display_user_room_vedio($user_id)
+// ----- this function display room video------
+function display_user_room_video($user_id)
 {
 	
           $this->db->where('user_id',$user_id);
@@ -170,5 +169,5 @@ function display_user_room_vedio($user_id)
 	 return $query->result();
 	
 }
->>>>>>> c743099e0dc46a79c17aeda042fc19f1ff508a93
+
 }

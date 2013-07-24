@@ -240,7 +240,43 @@ $data['email'] = $this->input->post('email');
 $data['zipcode'] = $this->input->post('zipcode');
 
 $this->user_model->invite_request($data);
-echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "large blue_text serif"> Welcome! </p> <hr class = "seventy style"><p class = "condensed black_text medium"> We\'ll get back to you in a hot second</p></div>';
+
+
+	$config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	$this->load->library('email',$config);
+	
+
+
+			$this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this ->email->to($data['email']);
+			$this->email->subject('Hello from Havenly');
+		
+			$this->email->message($this->load->view('Users/invite_email', $data, true));
+			
+				
+			
+		if($this->email->send()) {
+			$data['message']= 'thank you';
+			}
+			else {
+			ob_start();
+			$this->email->print_debugger();
+			$error = ob_end_clean();
+			$errors[] = $error;
+			
+			}
+
+
+echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "midlarge blue_text serif"> <BR><BR>Thank You For Signing Up! </p><p class = "condensed black_text medium"> We\'re working hard to get the site ready for you.  Look for an invitation in your inbox in upcoming weeks!</p><BR><BR><BR><BR></div>';
 
 }}
 

@@ -34,7 +34,7 @@ if($privileges=='global'):?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
-	  </div>
+   </div>
 
 <?php else:?>
 
@@ -51,7 +51,7 @@ if($privileges=='global'):?>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="'.base_url('index.php/Admin/site/roomsadministrator').'">Rooms</a></li>
+              <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator');?>">Rooms</a></li>
               <li><a>Designs</a></li>
 			               </ul>
 			<ul class = "nav pull-right white_text">

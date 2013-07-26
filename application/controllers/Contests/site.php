@@ -2,17 +2,17 @@
 Class Site extends CI_Controller {
 
 function __construct() {
-	
-	parent::__construct();
-	$this->load->library('s3');
-	$this->load->library('session');
-	$this->load->library('form_validation');
-	$this->load->model('user_model');
-	$this->load->model('room_model');
-	$this->load->model('Users/picture_model');
-	$this->load->model('designer_model');
-		
-	}
+
+parent::__construct();
+$this->load->library('s3');
+$this->load->library('session');
+$this->load->library('form_validation');
+$this->load->model('user_model');
+$this->load->model('room_model');
+$this->load->model('Users/picture_model');
+$this->load->model('designer_model');
+
+}
 
 
 
@@ -73,30 +73,30 @@ $data['instagram']=NULL;
   
   
 
-		if($this->input->post('room_file1')){
-		$data['photo']=$this->input->post('room_file1');
-		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-		$this->room_model->save_photo($data);}
-		}
+if($this->input->post('room_file1')){
+$data['photo']=$this->input->post('room_file1');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
 
-		if($this->input->post('room_file2'))
-		{$data['photo']=$this->input->post('room_file2');
-		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-		$this->room_model->save_photo($data);}
-		}
+if($this->input->post('room_file2'))
+{$data['photo']=$this->input->post('room_file2');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
 
 
-		if($this->input->post('room_file3'))
-		{$data['photo']=$this->input->post('room_file3');
-		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-		$this->room_model->save_photo($data);}
-		}
+if($this->input->post('room_file3'))
+{$data['photo']=$this->input->post('room_file3');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
 
-		if($this->input->post('room_file4'))
-		{$data['photo']=$this->input->post('room_file4');
-		if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
-		$this->room_model->save_photo($data);}
-		}
+if($this->input->post('room_file4'))
+{$data['photo']=$this->input->post('room_file4');
+if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+$this->room_model->save_photo($data);}
+}
 
   
    
@@ -108,60 +108,72 @@ $this->session->set_userdata('email',$data['email']);
 
 $this->availability($data);
 
-}}
+}
+ $data['id']=$this->session->userdata('id');
+ $data['first_name']=$this->session->userdata('first_name');
+ $data['last_name']=$this->session->userdata('last_name');
+ $data['email']=$this->session->userdata('email');
+ $data['phone']=$this->session->userdata('phone');
+ $data['address']=$this->session->userdata('address');
+ $data['zipcode']=$this->session->userdata('zipcode');
+ $this->availability($data);
 
+
+
+
+}
 function confirm()
 {
 
-	$config = array(
-			'protocol'=>'smtp',
-			'smtp_host'=>'ssl://smtp.googlemail.com',
-			'smtp_port'=> 465,
-			'mailtype' => 'html',
-			'smtp_user'=>'lee@havenly.com',
-			'smtp_pass'=>'Motayed123');
-			
-	$this->load->library('email',$config);
-	
-	$data['email'] = $this->session->userdata('email');
-	$data['first_name'] = $this->session->userdata('first_name');
-			$this->email->set_newline("\r\n");
-		
-			$this->email->from('lee@havenly.com','Lee from Havenly');
-			$this ->email->to($data['email']);
-			$this->email->subject('Hello from Havenly');
-		
-			$this->email->message($this->load->view('Users/confirm_email', $data, true));
-			
-				
-			
-		if($this->email->send()) {
-			$data['message']= 'thank you';
-			}
-			else {
-			ob_start();
-			$this->email->print_debugger();
-			$error = ob_end_clean();
-			$errors[] = $error;
-			
-			}
-		
-	
-	
-	$this->load->library('email',$config);
-			$this->email->set_newline("\r\n");
-		
-			$this->email->from('lee@havenly.com','Lee from Havenly');
-			$this ->email->to('hello@havenly.com');
-			$this->email->subject('New Room to Design');
-		
-			$this->email->message("New room to design from {$data['first_name']}");
-		$this->email->send();
-		
-		
-		
-	
-	$this->load->view('Users/confirm', $data);
+$config = array(
+'protocol'=>'smtp',
+'smtp_host'=>'ssl://smtp.googlemail.com',
+'smtp_port'=> 465,
+'mailtype' => 'html',
+'smtp_user'=>'lee@havenly.com',
+'smtp_pass'=>'Motayed123');
+
+$this->load->library('email',$config);
+
+$data['email'] = $this->session->userdata('email');
+$data['first_name'] = $this->session->userdata('first_name');
+$this->email->set_newline("\r\n");
+
+$this->email->from('lee@havenly.com','Lee from Havenly');
+$this ->email->to($data['email']);
+$this->email->subject('Hello from Havenly');
+
+$this->email->message($this->load->view('Users/confirm_email', $data, true));
+
+
+
+if($this->email->send()) {
+$data['message']= 'thank you';
+}
+else {
+ob_start();
+$this->email->print_debugger();
+$error = ob_end_clean();
+$errors[] = $error;
+
+}
+
+
+
+$this->load->library('email',$config);
+$this->email->set_newline("\r\n");
+
+$this->email->from('lee@havenly.com','Lee from Havenly');
+$this ->email->to('hello@havenly.com');
+$this->email->subject('New Room to Design');
+
+$this->email->message("New room to design from {$data['first_name']}");
+$this->email->send();
+
+
+
+
+$this->load->view('Users/confirm', $data);
 }
 
 
@@ -188,7 +200,7 @@ if ($data['date']=="")
  
 
  if ($data==0){
-	$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr><Tr><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm').'">Just Email Me</a></td></tr></table>';
+$return .='<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr><Tr><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm').'">Just Email Me</a></td></tr></table>';
  }
  
  else{
@@ -216,9 +228,5 @@ $this->confirm($data);
 
 }
 }
-	
-		
-	
-	
 
-
+?>

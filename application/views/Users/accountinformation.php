@@ -2,7 +2,8 @@
 	include(APPPATH.'/views/templates/header.php');
 ?>
 <!---add script by kbs-------->
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js">
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
 <!---------------------------->
  <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,34 +32,36 @@
       </div>
 	  </div>
 	  
-<div class = "chevron">
+<div class = "white">
 <BR><BR>
 <div class = "container text-center">
 <BR><BR>
 <div class = "white">
-<div id = "tabs">
-<ul>
-    <li><a href="#designer">DESIGNER</a></li>
-    <li><a href="#user">PROFILE</a></li>
-	<li><a href="#preferences">PREFERENCES</a></li>
-    <li><a href="#rooms">ROOMS</a></li>
-	<?php if(sizeof($designforloginuser)>0)
-    {echo '<li><a href="#designs">DESIGNS</a></li>';}?>
-  </ul>
-  
- <div id = "designer">
+
+  <div class = "text-center">
+ <ul id = "bstabs" class = "nav nav-pills sanslight ">
+<li ><a class = "pink white_text" href="#designer"  rel="designer">Your Account</a></li>
+<li><a class = "pink white_text" href="#preferences"  rel="preferences">Your Preferences</a></li>
+<li><a class = "pink white_text" href="#rooms"  rel="rooms">Your Rooms</a></li>
+<?php if(sizeof($designforloginuser)>0){
+echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
+}?>
+</ul></div>
+ 
+<div class = "usermain text-center" id = "designer"> <BR><BR>
 <?php
 if(isset($message))
 {
 	echo '<p>'.$message.'</p>';
 }
 ?>
-
+<div class = "row">
 <?php
 if(isset($designerinformation))
     {
 ?>
-  <table class = "table-center span5">
+<div class = "span5">
+  <table class = "table-center >
  
 	 <?php
      $url = base_url('assets/Images');
@@ -74,13 +77,73 @@ if(isset($designerinformation))
 	   }
 	  ?>
 	
-	 </table><BR><BR>
+	 </table></div><BR><BR>
 <?php
    }
 ?>
+<div class = "span5 offset1 left-align">
+
+<?php
+if(isset($userdetails))
+{
+?>
+<?php
+
+$attributes = array('class' => 'updateform', 'id' => 'updateform');
+echo form_open('Users/site/updatedata/',$attributes);
+?>
+
+<?php
+if(isset($mailmessage)){
+echo '<div id="div_show_error_message" class="alert-error"> ';
+echo $mailmessage.'</div>';}
+?>
+
+<?php
+foreach($userdetails as $key)
+{
+echo '<table class = "midsmall table-center">';
+echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><i class = "icon-user"></i>';
+echo '&nbsp;&nbsp;<input id = "update_name" name = "update_name" class = "sanslight" type = "text" value ="'.$key->first_name.'&nbsp;'.$key->last_name.'"></td></tr>';
+
+echo '<tr><td class="sanslight dark_gray_text"><i class = "icon-envelope"></i>';
+echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_email" id = "update_email" type = "text" value = '.$key->email.'></td></tr>';
+echo '<tr>';
+echo '<td class = "sanslight dark_gray_text"><i class = "icon-comment"></i>';
+echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_phone" id = "update_phone" type = "text" value ='.$key->phone.'><br><br></td></tr>';
+
+echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i>';
+
+if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Your Address">&nbsp;<BR><i class = "icon-home"></i>&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
+else{
+	echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><i class = "icon-home"></i> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+	}
+
+
+echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/fblarge.png').'" height="15">';
+echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->facebook.'></td></tr>';
+echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/pinlarge.png').'" height="15">';
+echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->pinterest.'></td></tr>';
+echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/instaicon.png').'" height="15">';
+echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->instagram.'"></td></tr>';
+
+echo '</table>';
+echo '<BR><BR>';
+
+echo '<div class = "text-center"><a class = "text-left light_pink button3 white_text third condensed midsmall" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
+   
+}
+?>
+</div>
+<?php
+}
+?>
+</div>
+<?php echo form_close(); ?>
+
 </div>
 
-<div id = "designs">
+<div class = "usermain" id = "designs"> <BR><BR>
 <?php
 //-----update code by kbs for user design ready----------------------//
 echo '<input type="hidden" id="sitepath" value="'.base_url().'" name="sitepath"/>';
@@ -116,88 +179,33 @@ if(sizeof($designforloginuser)>0)
 </div>
 
 
-<?php
-if(isset($userdetails))
-{
-?>
-<div id = "user">
-<p class = "sanslight medium">User Information</p>
-<hr class = "style text-center">
-<div class = "left-align">
-<?php
-foreach($userdetails as $key)
-{
-
-
-echo '<table class = "midsmall offset1 text-left">';
-echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><i class = "icon-user"></i>';
-echo '&nbsp;&nbsp;'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
-
-echo '<tr><td class="sanslight dark_gray_text"><i class = "icon-envelope"></i>';
-echo '&nbsp;&nbsp;'.$key->email.'</td></tr>';
-echo '<tr>';
-echo '<td class = "sanslight dark_gray_text"><i class = "icon-comment"></i>&nbsp;&nbsp;'.$key->phone.'<br><br></td></tr>';
-
-echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i><br><br>';
-
-if ($key->address ==0){echo '&nbsp;	</td>';}
-else{
-	echo '&nbsp;&nbsp;'.$key->address.'&nbsp;'.$key->zipcode.'<br><br></td></tr>';
-	}
-
-
-echo '<tr><td class = "sans-serif" >Facebook:<br><br></td>';
-echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->facebook.'<br><br></td></tr>';
-echo '<tr><td class = "sans-serif" >Pinterest:<br><br></td>';
-echo '<td class = "sanslight dark_gray_text">&nbsp;&nbsp;'.$key->pinterest.'<br><br></td></tr>';
-
-echo '</table>';
-echo '<BR><BR>';
-
-echo '<div class = "text-left offset1"><a class = "text-left light_pink button3 white_text condensed medium" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
-   
-}
-?>
-</div>
-<?php
-}
-?>
-</div>
 
 <?php
 
 if(isset($roomsassociated))
 {
 ?>
-<div id = "rooms" class = "left-align">
-<p class = "left-align sanslight medium">User Room Information</p>
-<hr class = "style"><BR><BR>
+<div id = "rooms" class = "usermain left-align"> <BR><BR>
+
 <?php
 
 
-echo '<table width = "100%" class = "sanslight midsmall center dark_gray_text">';
-echo '<tr width= "100%">';
-echo '<td width= "15%">Room Type<Br><Br></td>';
-echo '<td width= "15%">Budget<Br><Br></td>';
-echo '<td width= "20%">Width/Length<Br><Br></td>';
-echo '<td width = "40%">Room Photos<Br><Br></td></tr>';
+echo '<table class = "table">';
+echo '<tr width = 80%>';
+echo '<td>Room Type</td>';
+echo '<td>Budget</td>';
+echo '<td>Width/Length</td>';
+echo '<td>&nbsp;</td></tr>';
+
 foreach($roomsassociated as $key){
-echo '<tr class = "light_gray border"><td>'.$key->room_type.'</td>';
-echo '<td>'.$key->budget.'</td>';
+echo '<tr><td>'.$key->room_type.'</td>';
+
+if ($key->budget==0){
+echo '<td>&nbsp;</td>';} else{
+echo '<td>'.$key->budget.'</td>';}
 echo '<td>'.$key->width.'ft/ '.$key->height.'ft</td>';
-if ($key->room_photo1=='not submitted')
-{echo '<td> </td>';}
-else {
-echo '<td><img class = "middle inactive inline" src = "'.$key->room_photo1.'" width="100px">';}
 
 
-if($key->room_photo2=='not submitted')
-{
-	echo '';
-}
-else
-{
-echo '<img class = "middle inactive inline" src="'.$key->room_photo2.'" height="100px"/></td>';}
 echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
 }
 $roomtype=$key->room_type;
@@ -212,15 +220,13 @@ $room_id = $key->id;
 }
 ?>
 <!-------embded video and picture ------------> 
-<p class = "left-align sanslight medium">User Room Pictures & User Videos</p>
-<hr class = "style"><BR><BR>
-	<table  width = "100%" class = "sanslight midsmall center dark_gray_text">
-         <tr><td>Room Pictures</td><td>User Videos</td></tr>
-	<tr><td>
+<hr class = "style">
+<p class = "condensed midsmall">Pictures</p>
+<hr class = "style">
 	<?php
 	foreach($roompicture as $key)
 	{
-	  echo '<div><img src="'.$key->filename.'" height="200px" width="300px"/></div>';	
+	  echo '<div class = "padding left-align inline"><img src="'.$key->filename.'" height="200px" width="300px"/></div>';	
 		
 	}
 	?>
@@ -244,11 +250,14 @@ $room_id = $key->id;
 if(isset($userpreference))
 {
 ?>
-<div id= "preferences" class = "left-align" >
-<p class = "medium left-align sanslight">Styles Chosen</p>
+<div id= "preferences" class = "left-align usermain"  > <BR><BR>
+
+
 <hr class = "style">
-<table>
-<tr>
+<p class = "text-left condensed midsmall">&nbsp;Style Selections</p>
+<hr class = "style">
+<table class = "center">
+<tr class = "center">
 <?php
                           $roomfolder="";
 	
@@ -263,23 +272,23 @@ if(isset($userpreference))
 			}
 foreach($userpreference as $key)
 {
-echo '<td>';
+echo '<td class = "center">';
        	$i=1;	
 		while($i<15)
 		{
 		if(in_array($i,explode(',',$key->style_pics)))
 		{
 	
-		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em ></div>';
+		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em >';
 		}
 		$i++;
 		}	
 }?>
 </td>
 </tr>
-</table>
-<br><br>
-<p class = "medium sanslight">Colors Chosen</p>
+</table><BR><BR>
+<hr class = "style">
+<p class = "condensed text-left midsmall">&nbsp;Color Selections</p>
 <hr class = "style">
 <table class = "center"><tr>
 <td>
@@ -315,7 +324,23 @@ echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms
 <div class = "push"> 
 </div><BR><BR><BR></div>
 <script>
-$("#tabs").tabs();
+$(document).ready(function(){
+
+   $(".usermain").hide();
+   $("#designer").show();
+  
+		 $("#bstabs a").click(function()
+		 {
+
+		     $(".usermain").hide();
+		     $("#"+(this.rel)).show();
+	
+      
+		 });
+		 
+		 });
+
+
 </script>
 
 	<?php 

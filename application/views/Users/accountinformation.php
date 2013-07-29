@@ -56,31 +56,28 @@ if(isset($message))
 }
 ?>
 <div class = "row">
-<?php
-if(isset($designerinformation))
-    {
-?>
+
 <div class = "span5">
   <table class = "table-center >
- 
-	 <?php
-     $url = base_url('assets/Images');
+ <?php
+if(isset($designerinformation))
+    {
+	
+	   $url = base_url('assets/Images');
 	  foreach($designerinformation as $key)
 	  {
             echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
-			
 			 echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
 		      echo '<tr> <td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
 			  echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
 			  echo '<tr><td><hr class = "third style"></td></tr>';
 		      echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
-	   }
-	  ?>
+	   }}
+	   
+	?>
 	
-	 </table></div><BR><BR>
-<?php
-   }
-?>
+	 </table><BR><BR></div>
+
 <div class = "span5 offset1 left-align">
 
 <?php

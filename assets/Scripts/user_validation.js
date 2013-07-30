@@ -22,6 +22,7 @@ $(document).ready(function()
   });
   $("#update_update").click(function()
    {
+	 
         var e_value=1;
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         $("#div_show_error_message").html("");
@@ -66,27 +67,31 @@ $(document).ready(function()
         // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter Pinterest:</p>');
         // e_value=0;    
 	// }
-	 if(($("#update_password").val()=="") && ischack==true)
-    {
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter password:</p>');
-        e_value=0;    
-	}
+if(($("#update_password").length>0))
+{
+		
+           if(($("#update_password").val()=="") && (ischack==true))
+           {
+           $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter password:</p>');
+           e_value=0;    
+           }
 	
-	if(($("#update_password").val().trim()!="") && ischack==true)
-	{
+	  if(($("#update_password").val().trim()!="") && (ischack==true))
+	  {
 		
-		if($.trim($("#update_password").val()).length<4)
-        {
+            if($.trim($("#update_password").val()).length<4)
+            {
 		
-        $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field must be at least 4 characters in length:</p>');
-        e_value=0;    
+            $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field must be at least 4 characters in length:</p>');
+            e_value=0;    
 	    }
-	    if($.trim($("#update_password").val()).length>32)
+	    if(($.trim($("#update_password").val()).length>32))
 	    {
-		$("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field can not exceed 32 characters in length:</p>');
-        e_value=0;	
-		}
-	}
+	      $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*The User password field can not exceed 32 characters in length:</p>');
+               e_value=0;	
+	   }
+           }
+ }
     if(($("#update_email").val().trim()!="") && (!emailReg.test($("#update_email").val()))) 
     {
         $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter valid email address:</p>');

@@ -91,9 +91,8 @@ echo form_open('Users/site/updatedata/',$attributes);
 ?>
 
 <?php
-if(isset($mailmessage)){
-echo '<div id="div_show_error_message" class="alert-error"> ';
-echo $mailmessage.'</div>';}
+echo '<div id="div_show_error_message" class="alert-error"> 
+</div>';
 ?>
 
 <?php
@@ -101,7 +100,7 @@ foreach($userdetails as $key)
 {
 echo '<table class = "midsmall table-center">';
 echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><i class = "icon-user"></i>';
-echo '&nbsp;&nbsp;<input id = "update_name" name = "update_name" class = "sanslight" type = "text" value ="'.$key->first_name.'&nbsp;'.$key->last_name.'"></td></tr>';
+echo '&nbsp;&nbsp;<input id = "update_name" name = "update_name" class = "sanslight" type = "text" value ="'.$key->first_name.'" style="width:100px;"/><input class = "sanslight" type="text" value="'.$key->last_name.'" id="update_last_name" name="update_last_name" style="width:100px;"/></td></tr>';
 
 echo '<tr><td class="sanslight dark_gray_text"><i class = "icon-envelope"></i>';
 echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_email" id = "update_email" type = "text" value = '.$key->email.'></td></tr>';
@@ -127,7 +126,7 @@ echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->inst
 echo '</table>';
 echo '<BR><BR>';
 
-echo '<div class = "text-center"><a class = "text-left light_pink button3 white_text third condensed midsmall" href = "'.base_url().'index.php/Users/site/UserEditInformation/">Edit</a></div>';
+echo '<div class = "text-center"><input class = "button3 seventy midsmall condensed" type="button" value="Edit" id="update_update"></div>';
    
 }
 ?>

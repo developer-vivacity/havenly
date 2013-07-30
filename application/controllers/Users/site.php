@@ -502,16 +502,19 @@ $this->load->view('Users/login', $data);
  //------For update user informetion---------
  public function updatedata()
  {
+	
    if($this->input->post('update_email'))
    {
       $this->mailmessage="User information has been updated";
-      if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->input->post('hold_id')))
+      if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->session->userdata('id')))
       {
+	     
        $this->mailmessage=$this->input->post('update_email')."&nbsp;email already exists";
        $this->login();
        return;
     }
    }
+   
 if($this->input->post('radio_value')=="true")
 {
 $data =array('first_name'=> $this->input->post('update_name'),
@@ -528,6 +531,7 @@ $data =array('first_name'=> $this->input->post('update_name'),
     }
     else
     {
+
     $data =array('first_name'=> $this->input->post('update_name'),
 'last_name'=> $this->input->post('update_last_name'),
 'email'=> $this->input->post('update_email'),
@@ -539,7 +543,8 @@ $data =array('first_name'=> $this->input->post('update_name'),
 );
 
     }
-     $this->user_model->update_user_info($data,$this->input->post('hold_id'));
+   $this->user_model->update_user_info($data,$this->session->userdata('id'));
+     
      if($this->input->post('radio_value')=="true")
      {
 
@@ -565,7 +570,9 @@ $data =array('first_name'=> $this->input->post('update_name'),
            $this->email->message($message);
            $this->email->send();
           }
-    $this->login();
+    
+    redirect('/Users/site/login/','refresh');
+
  }
 
 }

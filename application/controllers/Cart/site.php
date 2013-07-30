@@ -12,15 +12,16 @@ Class Site extends CI_Controller
     $this->load->library('session');
     $this->load->model('cart_model');
     $this->load->model('product_model');
-     $this->cart_model-> crate_table();
+    
     }
     
    //--product display which associate with design.....................
    function products_associate_design($design_id=null)
    {
+
      	if($this->session->userdata('first_name')!="")
      	{
-     	  
+     	   
      	     if($_POST & isset($_POST["holdproductidfordesign"]) & isset($_POST["holdroomid"]))
      	     {
 		 
@@ -33,6 +34,7 @@ Class Site extends CI_Controller
 	   $data["colorcode"]=$this->cart_model->room_color();
 	   $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
 	   $data["designid"]=$design_id;
+	
 	   $this->load->view('Cart/shoppingcart', $data);
 	 }
          else

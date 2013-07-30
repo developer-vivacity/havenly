@@ -5,6 +5,27 @@ function __construct() {
 parent::__construct();
 
 }
+ function create_table()
+ {
+	 
+	$this->db->query("CREATE TABLE users (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  last_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  email varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  phone varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  address varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  zipcode int(10) NOT NULL,
+  password varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  facebook text COLLATE utf8_unicode_ci,
+  pinterest text COLLATE utf8_unicode_ci,
+  instagram text COLLATE utf8_unicode_ci,
+  Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY id (id),
+  KEY email (email)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=116") ;
+}
 
 function save_user($data){
 $this->db->where("email",$data['email']);

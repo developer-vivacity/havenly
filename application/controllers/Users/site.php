@@ -356,7 +356,7 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
         $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
         $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
-       //$data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
         $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
         $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();

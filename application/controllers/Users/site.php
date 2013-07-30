@@ -6,24 +6,31 @@ public $userlogin;
 public $mailmessage;
 function __construct()
 {
-parent::__construct();
-$this->load->library('s3');
-$this->load->library('session');
+   parent::__construct();
+   
+   $this->load->library('s3');
+   $this->load->library('session');
 
-$this->load->model('user_model');
+   $this->load->model('user_model');
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
-    $this->load->model('cart_model');
+   $this->load->model('cart_model');
 
-$this->load->model('Users/picture_model');
+   $this->load->model('Users/picture_model');
 
-$this->room_model->create_table();
+   
 
 }
  function index()
  {
-$this->load->view('Users/home');
+  $this->load->view('Users/home');
+  
+  $this->room_model->create_table();
+  $this->user_model->create_table();
+  $this->preference_model->create_table();
+  $this->designer_model->create_table();
+  $this->cart_model->create_table();
  }
  
  

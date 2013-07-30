@@ -17,14 +17,15 @@ function __construct()
 	$this->load->model('user_model');
 	$this->load->model('admin_model');
 	$this->load->model('preference_model');
-	$this->load->model('product_model');	
+	$this->load->model('product_model');
+		
 }
 	
 	function index() 
 	{
 	
 		
-		$this->load->view('Admin/home');
+		 $this->load->view('Admin/home');
 		
 	}
 	
@@ -64,9 +65,11 @@ function show_contest()
 
 function adminlogin()
 {
-     //$this->product_model->create_table();
-    
-    if(($this->session->userdata('adminid')!=""))
+   
+     $this->product_model->create_table();
+     $this->admin_model->create_table();
+   
+   if(($this->session->userdata('adminid')!=""))
      {
       $data['privileges']=$this->session->userdata('privileges');
       $this->load->view('Admin/adminview',$data);

@@ -1,14 +1,26 @@
 <?php
-class  Cart_model extends CI_Model
-{
+class  Cart_model extends CI_Model 
+{ 
+	
+	 function __construct() 
+	 {
+	   parent::__construct();
 
+	 }
 
 //---create table
-function crate_table()
+function create_table()
 {
 
- $this->db->query("CREATE TABLE IF NOT EXISTS  shoppingcart(id int(10) NOT NULL,user_id int(10),room_id int(10),
-product_id int(10),design_id int(10),Qty int(10),PRIMARY KEY(id))");	
+ $this->db->query("CREATE TABLE IF NOT EXISTS shoppingcart (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  user_id int(10) DEFAULT NULL,
+  room_id int(10) DEFAULT NULL,
+  product_id int(10) DEFAULT NULL,
+  design_id int(10) DEFAULT NULL,
+  qty int(10) DEFAULT 1,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=167");	
 	
 }
 

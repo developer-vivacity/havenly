@@ -8,7 +8,7 @@ parent::__construct();
  function create_table()
  {
 	 
-	$this->db->query("CREATE TABLE users (
+  $this->db->query("CREATE TABLE IF NOT EXISTS users (
   id int(11) NOT NULL AUTO_INCREMENT,
   first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   last_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -25,7 +25,45 @@ parent::__construct();
   KEY id (id),
   KEY email (email)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=116") ;
+
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_rooms (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  user_id int(11) NOT NULL,
+  type varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  room_type varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  budget int(50) DEFAULT NULL,
+  status varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  about text COLLATE utf8_unicode_ci NOT NULL,
+  room_photo1 varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  room_photo2 varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  width float NOT NULL,
+  height float NOT NULL,
+  PRIMARY KEY (id),
+  KEY user_id (user_id),
+  KEY room_type (room_type),
+  KEY status (status)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=81");
+
+
+  $this->db->query("CREATE TABLE IF NOT EXISTS signup (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  email varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  first_name varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39");
+
+  $this->db->query("CREATE TABLE IF NOT EXISTS invite_requests (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  email varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  zipcode int(5) NOT NULL,
+  Timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45");
+
 }
+
 
 function save_user($data){
 $this->db->where("email",$data['email']);

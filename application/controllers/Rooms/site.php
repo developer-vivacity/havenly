@@ -135,6 +135,13 @@ function roompicsuggestbyuser($filename)
     redirect('Users/site/login');
   }
  
+ // Update Room status.......
+ function update_current_room_status($room_status,$room_id)
+ {
+	 
+	 $this->room_model->change_status($room_id,$room_status); 
+	 redirect('/Users/site/login/','refresh');
+ }
   
 }
 ?>

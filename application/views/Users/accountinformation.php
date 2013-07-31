@@ -46,6 +46,7 @@
 <?php if(sizeof($designforloginuser)>0){
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
 }?>
+<li><a class = "pink white_text" href="#status"  rel="status">Status</a></li>
 </ul></div>
  
 <div class = "usermain text-center" id = "designer"> <BR><BR>
@@ -96,6 +97,7 @@ echo '<div id="div_show_error_message" class="alert-error">
 ?>
 
 <?php
+
 foreach($userdetails as $key)
 {
 echo '<table class = "midsmall table-center">';
@@ -112,8 +114,8 @@ echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i>';
 
 if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Your Address">&nbsp;<BR><i class = "icon-home"></i>&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 else{
-	echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><i class = "icon-home"></i> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
-	}
+echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><i class = "icon-home"></i> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+}
 
 
 echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/fblarge.png').'" height="15">';
@@ -125,10 +127,8 @@ echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->inst
 
 echo '</table>';
 echo '<BR><BR>';
-
 echo '<div class = "text-center"><input class = "button3 seventy midsmall condensed" type="button" value="Edit" id="update_update"></div>';
-   
-}
+ }
 ?>
 </div>
 <?php
@@ -177,7 +177,7 @@ if(sizeof($designforloginuser)>0)
 
 
 <?php
-
+//var_dump($roomsassociated);
 if(isset($roomsassociated))
 {
 ?>
@@ -207,6 +207,7 @@ echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.ph
 $roomtype=$key->room_type;
 $user_id = $key->user_id;
 $room_id = $key->id;
+$room_status=$key->status;
 ?>
 
 
@@ -313,7 +314,24 @@ echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms
 }
 ?>
 </div>
-
+<!----For user status--------->
+<div id ="status" class="usermain">
+<?php $Updatestatus=array('Open Room','Scheduling Initial Call','Concept Board','Concept Board Review','Final Concept Board','Final Design','Order Needed','Order Placed','Closed','Closed - Unpurchased'); ?>
+<div style="float:left;" id="currentroomstatus"><b>Room Status:</b><?php echo  urldecode($room_status); ?>&nbsp;&nbsp;<a class = "button3 condensed white_text" href="#" rel="editroomstatus" id="currentroomstatusedit">Edit</a></div>
+<br/>
+<br/>
+<div style="float:left;" id="editroomstatus">
+<b>Update Room Status:</b>
+<select id="selectupdatestatus">
+<?php 
+foreach($Updatestatus as $key=>$value)
+echo '<option value="'.$value.'">'.$value.'</option>';
+?>
+</select><a class = "button3 condensed white_text" href="#" id="updatecurrentroomstatus">Update</a><a class = "button3 condensed white_text" href="#" id="canclecurrentroomstatus" rel="editroomstatus">Cancle</a>
+</div>
+</div>
+<!----------------------------->
+<input type="hidden" id="hold_cur_room_id" value="<?php echo $room_id;?>">
 </div>
 
 </div>
@@ -324,6 +342,7 @@ $(document).ready(function(){
 
    $(".usermain").hide();
    $("#designer").show();
+   $("#editroomstatus").hide();
   
 		 $("#bstabs a").click(function()
 		 {
@@ -333,7 +352,27 @@ $(document).ready(function(){
 	
       
 		 });
-		 
+		 $("#currentroomstatusedit").click(function()
+		 {
+			 $("#currentroomstatus").hide();
+			 $("#"+(this.rel)).show(); 
+		 })
+		
+		$("#updatecurrentroomstatus").click(function()
+		{
+			
+			
+		window.location.href=$("#sitepath").val()+"/index.php/Rooms/site/update_current_room_status/"+$("#selectupdatestatus").val()+"/"+$("#hold_cur_room_id").val();
+			
+		})
+		$("#canclecurrentroomstatus").click(function()
+		{
+			
+			 $("#"+(this.rel)).hide();
+			$("#currentroomstatus").show();
+		}
+		
+		)
 		 });
 
 

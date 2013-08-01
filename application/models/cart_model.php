@@ -75,14 +75,14 @@ function room_color()
 	
 }
 // update shoppingcart...........
-function updateshoppingcart($productid,$roomid,$designid,$type)
+function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=null)
 {
 	if($type=="insert")
 	{
 	$data=array("user_id"=>$this->session->userdata('id'),"room_id"=>$roomid,"design_id"=>$designid,"product_id"=>$productid);	
 	$this->db->insert("shoppingcart",$data);
 	}
-	else
+	elseif($type=="delete")
 	{
 		$this->db->where("user_id",$this->session->userdata('id'));
 		$this->db->where("room_id",$roomid);
@@ -91,6 +91,12 @@ function updateshoppingcart($productid,$roomid,$designid,$type)
 		$this->db->delete("shoppingcart");
 	}
 	
+	  $this->db->select('sum(qty) as total_qty');
+	  $this->db->where("user_id",$this->session->userdata('id'));
+	  $this->db->group_by("user_id");
+	  $query=$this->db->get("shoppingcart");
+	 
+	  return $query->result(); 
 }
 // get product id which are on the shopping card.................
 function getproductinshoppingcard($designid)
@@ -167,12 +173,26 @@ function delete_user_assign_design($user_id,$room_id,$design_id)
 
 }
 // This function get the quantity of shopping card.
-function get_product_qty($product_id)
+function get_product_qty($product_id,$design_id)
 {        
 	$this->db->select('qty');
 	$this->db->where('product_id',$product_id);
+	$this->db->where('design_id',$design_id);
 	$query=$this->db->get('shoppingcart');	
          return $query->result();
+}
+function product_details_with_design()
+{
+   $this->db->from('shoppingcart','user_design','products');
+   $this->db->select('user_design.design_name,products.product_name,products.price,products.rent_price,products.ship_cost,shoppingcart.qty');
+   $this->db->join('user_design','user_design.design_id = shoppingcart.design_id');
+   $this->db->join('products','products.productid = shoppingcart.product_id');
+   $this->db->where('shoppingcart.user_id',$this->session->userdata('id'));
+   $query=$this->db->get();
+  
+   return $query->result();
+     
+	
 }
 
 

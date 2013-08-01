@@ -30,12 +30,9 @@ $("#shoppingcartform").submit();
 
 $(".designproduct").click(function()
 {
-
-	var id_get=(this.id).split('_');
-	document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"";
-	
+var id_get=(this.id).split('_');
+document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"/"+$("#holddesignid").val()+"";
 })
-
 
 }
 
@@ -53,8 +50,8 @@ function addcheckboxforaddcart(id,appendid)
     $.post($("#basepath").val()+"index.php/Cart/site/add_or_update_cart", {productid :id,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"insert"}, function(data){
     if(data.length>0)
     { 
-       
-    } 
+       $("#total_items_in_cart").html(data);
+      } 
     }) 
     
 	
@@ -65,7 +62,7 @@ function removecheckbox(id,productid)
    $.post($("#basepath").val()+"index.php/Cart/site/add_or_update_cart", {productid :productid,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"delete"}, function(data){
     if(data.length>0)
     { 
-       
+        $("#total_items_in_cart").html(data);
     } 
     })
    $("#"+id).remove();

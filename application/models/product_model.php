@@ -33,7 +33,15 @@ contact varchar(100) NOT NULL,website_link varchar(100) NOT NULL, PRIMARY KEY(ve
  $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
 
-  $this->db->query("CREATE TABLE IF NOT EXISTS user_design(design_id int(10) NOT NULL,room_id int(10) NOT NULL,design_name varchar(100) NOT NULL)");
+
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_design (
+  design_id int(10) NOT NULL AUTO_INCREMENT,
+  room_id int(10) NOT NULL,
+  design_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  status varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'draft',
+  designer_notes varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (design_id)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=134");
  
   $this->db->query("CREATE TABLE IF NOT EXISTS design_product_mapping(design_id int(10) NOT NULL,product_id int(10) NOT NULL)");
   
@@ -43,9 +51,7 @@ timestamp timestamp NOT NULL)");
  //-----For Product Details 
  function get_all_product($pid=null)
   {	
-	
-	
-	  
+	 
 	  $this->db->select('productid,product_name,link,dimensions,description,ship_cost,ship_cost,price,rent_price');
 	  $this->db->from('products');
 	  if($pid!="")   
@@ -123,7 +129,7 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
 } 
 function product_search($text=null,$id=null)
 {
-	if($id==1)
+   if($id==1)
 	{
           $this->db->select('style_id,style');
           $this->db->like('style', $text);	
@@ -132,20 +138,20 @@ function product_search($text=null,$id=null)
     elseif($id==2)
     {
 	   $this->db->select('color_id,color');
-       $this->db->like('color', $text);	
-       $query = $this->db->get('product_colors');
-	}
+            $this->db->like('color', $text);	
+            $query = $this->db->get('product_colors');
+     }
 	elseif($id==3)
 	{
 		$this->db->select('material_id,material');
 		$this->db->like('material', $text);	
-        $query = $this->db->get('product_material');
+                  $query = $this->db->get('product_material');
 	}
 	elseif($id==4)
 	{
 		$this->db->select('type_id,type');
 		$this->db->like('type', $text);	
-        $query = $this->db->get('product_type');
+                  $query = $this->db->get('product_type');
 	}
     return $query->result(); 	
 }
@@ -157,7 +163,6 @@ function get_vendors_details()
 }
 function insert_data_in_db($tablename,$data)
 {
-	
 	 $this->db->insert($tablename, $data);    
 	 return $this->db->insert_id();
 	
@@ -177,8 +182,8 @@ function insert_image_link_with_product_id($product_id,$link_array)
 	  {
 	  $data=array('product_id'=>$product_id,'filename'=>$link_array[$i]);	
 	  $this->db->insert("product_image", $data);    
-      }
-	 $i=$i+1;
+           }
+	  $i=$i+1;
 	}
 
 }
@@ -192,8 +197,7 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 		$search_type=','.$search_type.',';
 		$this->db->like("concat(',',product_type_id)",$search_type);
 	}
-
-       	
+      	
 	if(!empty($search_style))
 	{
 	   $search_style=','.$search_style.',';
@@ -212,9 +216,9 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 	  $this->db->like("concat(',',product_color_id)",$search_color);
 	}
      
-    $this->db->like('product_name', $product_name); 
+       $this->db->like('product_name', $product_name); 
 	
-      switch ($search_price) 
+       switch ($search_price) 
 	{
          case "1,2,3":
          $num=0;
@@ -255,14 +259,10 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 	
        $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id','left');
        
-     
-       
        $this->db->group_by('products.productid');
        $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
        
        $query = $this->db->get();	
-
- 
        return $query->result();
 }
 
@@ -400,7 +400,7 @@ function product_details_by_id($id)
 }
 function userdesign($room_id=null,$design_id=null)
 {
-         $this->db->select('design_id,design_name,status'); 
+         $this->db->select('design_id,design_name,status,designer_notes'); 
          $this->db->where('room_id',$room_id);
          if($design_id!=null)
          $this->db->where('design_id',$design_id);	
@@ -464,6 +464,34 @@ function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=nul
 	}
 	
 	
+}
+
+function paint_color_delete($design_id)
+{
+	$this->db->where('design_id',$design_id);
+	$this->db->delete('paint_colors');
+	
+}
+function paint_colors_for_design($design_id,$color_code,$description)
+{
+	
+	$data=array('design_id'=>$design_id,'color'=>$color_code,'description'=>$description);
+	$this->db->insert('paint_colors',$data);
+}
+
+function update_designer_notes($design_id,$designernotes)
+{
+	$this->db->where('design_id',$design_id);
+	$data=array('designer_notes'=>$designernotes);
+	$this->db->update('user_design',$data);
+	
+	
+}
+function get_paint_color($design_id)
+{
+	$this->db->where('design_id',$design_id);
+	$query=$this->db->get('paint_colors');
+         return $query->result();
 }
 }
 

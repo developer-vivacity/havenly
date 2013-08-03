@@ -54,17 +54,21 @@
 
 </td></tr>
 <tr><td>
-	<div>Paint Color:</div>
-	<div style="650px">
+<?php if(sizeof($design_color)>0):?>
+<div>Paint Color:</div>
+<div style="650px">
 <?php
-foreach($colorcode as $keycolor)
-{
-  if(in_array($keycolor->color_id,explode(',',$choose_room_color[0]->color_pics)))
-  echo '<div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;float:left;">&nbsp;</div>';
+ foreach($design_color as $keycolor)
+ {
+  
+  echo '<div style="background-color:'.$keycolor->color.'height:100px;width:100px;float:left;">&nbsp;</div>';
 
-}
+ }
 ?>
 </div>
+<?php
+  endif;
+?>
 </td></tr>
 
 </table>

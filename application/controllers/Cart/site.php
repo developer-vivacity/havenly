@@ -30,8 +30,8 @@ Class Site extends CI_Controller
      	   $data["productname"]=$this->product_model->display_design_associated_products($design_id);
 	   $data["designimage"]=$this->product_model->design_image_for_rooms(null,$design_id);
 	   $data["room_type"]=$this->cart_model->Check_user_rooms();
-	   $data["choose_room_color"]=$this->cart_model->color_pic_login_user();
-	   $data["colorcode"]=$this->cart_model->room_color();
+	   $data["design_color"]=$this->cart_model->paint_colors_for_design($design_id);
+	  
 	   $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
 	   $data["designid"]=$design_id;
 	   $data["totalitemincart"]=$this->cart_model->updateshoppingcart();

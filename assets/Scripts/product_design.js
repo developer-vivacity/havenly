@@ -1,41 +1,41 @@
 $(".cbox").hide();
-
 $(function(){
 		var btnUpload=$('#me');
 		var mestatus=$('#mestatus');
 		var files=$('#files');
 
 		new AjaxUpload(btnUpload, {
-		
-action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
+		action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
 			name: 'uploadfile',
 			roomid:$("#currentroomid").val(),
 			userid:$("#currentuserid").val(),
                         designid:$("#userdesign").val(),
-			onSubmit: function(file, ext){
-		   if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
-                     mestatus.text('Only JPG, PNG or GIF files are allowed');
-		   return false;
-				}
-				mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');
-			},
+		      onSubmit: function(file, ext){
+		      $("#me").hide();
+		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
+		      { 
+                        mestatus.text('Only JPG, PNG or GIF files are allowed');
+		      return false;
+		      }
+		        mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');
+		  },
 			onComplete: function(file, response)
 			{
-				  files.html('');
-				
+				  files.html('');	
 			           var obj=$.parseJSON(response);	
-			           
 			           if(obj.success==="success")
                                 	  {
-				   mestatus.text('Photo Uploaded Sucessfully!');
-				  
-				   if($("#designimageassignproduct").length!=0)
-				   {
+				       mestatus.text('Photo Uploaded Sucessfully!');
+				       
+				       $("#mestatus").after('<div id="uploadmoreimg"><a href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload more image</a></div>');
+				       
+				       if($("#designimageassignproduct").length!=0)
+				       {
 				            $("#messagefordesign").remove();	   
 					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" width="100%" height="100px"/></div>');
-					   
-			            }
-				  } else
+			                }
+				  } 
+				  else
 				  {
 					mestatus.text('file uploded is failed!')
 				  }
@@ -45,32 +45,36 @@ action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'
 			}
 		});
 		
-		
-		
-		
 	});
 
 $(".inactive, .active").click(function()
 {
-	
-                 $(this).toggleClass('active');
+	        $(this).toggleClass('active');
                  var checkbox = $(this).parent().find('.cbox');
-		 checkbox.prop('checked',!checkbox[0].checked);
+	        checkbox.prop('checked',!checkbox[0].checked);
 });
+function show_upload_more_img()
+{
+             $("#uploadmoreimg").remove();	
+	    $("#me").show();
+	    $("#me").focus();
+	    $("#mestatus").text('');
+}
+
 var global_prodct_id;
 var global_image_path;
 var object;
 function selectedproductimage(productid,productimagepath,refobject)
 {
    	
-       var designid=$("#holddesignidforroom").val();
-       global_prodct_id=productid;
+         var designid=$("#holddesignidforroom").val();
+         global_prodct_id=productid;
 	global_image_path=productimagepath;
 	object=refobject;
 if($("#productimage_"+productid+"").is(':checked')==false)
 {
       $("#productlist").css('overflow','hidden');
-     // $("#productlist").append("<div style='width:100%;height:1000%;border:solid 1px;transparent;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background:white;border-radius: 5px ;content: attr(title);padding: 5px 5px;z-index: 98;width: 300px;height:100px;border:solid 1px;cursor:pointer; position:absolute; margin-top:150px; left:120px;'> <p><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;' onclick='distory_popup();'/></p><br/><br/><br/><span style='margin-lop:150px;margin-left:105px;border:solid 1px #ccc;bacground-color:red;cursor:pointer;' onclick='addselectimg();'>Add To Design</span></div></div>");
+    
       $("#productlist").append("<div style='width:100%;height:1000%;border:solid 1px;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background-color:white;border-radius: 5px;padding: 5px 5px;border:solid 1px; opacity:1.0; margin-top:150px; margin-left:350px;margin-right:200px;height:100px;'><div ><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='distory_popup();'/></div><div style='margin-top:50px;'><span onclick='addselectimg();' style='margin-left:240px;margin-right:200px;cursor:pointer;'>Add To Design</span></div></div></div>");   
 
 }       
@@ -149,3 +153,8 @@ function display_design()
 
 
 }
+
+
+
+
+

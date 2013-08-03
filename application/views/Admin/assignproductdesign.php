@@ -15,7 +15,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="#">Havenly</a>
+	<a class="brand" href="#">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url('/index.php/Admin/site/currentroomwithuser/'.$roomid);?>">Back</a></li>
@@ -34,17 +34,15 @@
 <div class = "white">
 <div class = "container">
 <BR><BR><BR><BR><BR>
-	  
 <table>
-
 <tr><td class = "midlarge"><?php echo $designname;?></td><td>
 
 	&nbsp;&nbsp;<a class = "btn" href = <?php echo base_url('index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid);?>>Edit Design</a>
 	</td></tr>
 	
-	<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><p>Design Images</p></td></tr>
 <tr>
-	
 <td>
 
 <?php
@@ -65,7 +63,7 @@ echo '<div>';
 <tr>
 <td>&nbsp;</td></tr>
 
-
+<tr><td><p>Product Images</p></td></tr>
 
 <tr>
 <td>
@@ -112,23 +110,40 @@ Design Status <select name="DesignStatus" id="DesignStatus"><option value="draft
 <tr><td>
 <div>
 <p>Upload Design Images</p>
-
-
- <div id="me" class="styleall" style=" cursor:pointer;">
+<div id="me" class="styleall" style=" cursor:pointer;">
+	
   <span style=" cursor:pointer; font-family:Verdana, Geneva, sans-serif; font-size:9px;">
-  <span style=" cursor:pointer;">Click Here To Upload Profile Photo</span></span></div><span id="mestatus" ></span>        
-         
-         <div id="files" style="list-style-type: none;">
-    <li class="success" >
-</li>
-
-
-
+  <span style=" cursor:pointer;">Click Here To Upload Profile Photo</span></span></div>
+  <span id="mestatus" ></span>        
+  <div id="files" style="list-style-type: none;">
+  <li class="success" >
+  </li>
 </div>
 
 </td></tr>
+<tr><td>&nbsp;&nbsp;</td></tr>
 <!---end add code by kbs code----->
+<tr><td>
+	<?php
+	
+$attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
+echo form_open('Admin/site/paint_colors_for_design/',$attributes);
+?>
+<table border="0">
+<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td></td><td><div style="float:right;"></div></td></tr>	
+<tr id="rgbtablerow1"><td>Enter RGB</td><td><input type="text" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone1" maxlength="3"/></td><td><input type="text" size="2" class="txtrgb" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo1" maxlength="3"/></td><td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree1" maxlength="3"/></td><td>Description</td><td><textarea name="comment[]" id="comment1"></textarea></td><td><a href="#" id="addmorergb">Add more</a></td><td><div id="rgberror1" class="error_show"></div></td></tr>
 
+
+<tr><td colspan="7"><div style="float:left;"><a href="#" onclick="insert_color();">Submit</a></div></td></tr>
+
+</table>
+<?php echo '<input type="hidden" name="desinerholdid" id="desinerholdid" value="'.$designid.'">';
+
+echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value="'.$roomid.'">';
+?>
+<?php  echo form_close(); ?>
+</td>
+</tr>
 </table>
 </body>
 <!----start add code by kbs-------->
@@ -149,8 +164,106 @@ function Updatedesign(designid,roomid,type)
 	}
 }
 
+$('.txtrgb').keydown(
+function(event)
+{
+	
+	if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+		 
+                event.preventDefault(); 
+            }   
+        }	
+	
+});
 
 
+var error_flage=true;
+function display_error()
+{
+	error_flage=true;
+	$(".error_show").html("");
+	for(k=1;k<=zi;k++)
+	{
+	   if(($("#rgbone"+k+"").val().trim()=="")||($("#rgbtwo"+k+"").val().trim()=="")||($("#rgbthree"+k+"").val()=="")||($("#comment"+k+"").val().trim()==""))
+     	   {  
+	   error_flage=false;
+	   $("#rgberror"+k+"").html("Fill all value!");	
+	   return false;	
+	   }
+	  else
+	  {
+	     if($("#rgbone"+k+"").val().length<3)	
+	     {
+	    error_flage=false;
+	     $("#rgberror"+k+"").html("Enter three digit for red!");	
+               return false;	
+              }
+	     if($("#rgbtwo"+k+"").val().length<3)	
+	     {
+		     error_flage=false;
+	     $("#rgberror"+k+"").html("Enter three digit for green!");
+              return false;	
+              }
+	     if($("#rgbthree"+k+"").val().length<3)	
+	     {
+		     error_flage=false;
+	     $("#rgberror"+k+"").html("Enter three digit for blue!");	
+              return false;	
+              }
+	
+	}
+}
+	
+}
+
+var zi=1;
+$("#addmorergb").click(function()
+{
+	
+	
+	display_error();
+	
+	if(error_flage)
+	{
+	if(zi<5)
+	{
+		
+	  zi= ++zi;
+	  $("#rgberror"+(zi-1)+"").html("");
+	  
+	  $("#rgbtablerow"+(zi-1)+"").after('<tr id="rgbtablerow'+zi+'"><td>&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" /></td><td><input type="text" maxlength="3" class=txtrgb size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'"/></td><td><input type="text" maxlength="3" class=txtrgb name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')">close</a></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
+	
+         }
+        }
+        })
+
+
+function removergbrow(id)
+{
+	$("#"+id).remove();
+	zi= --zi;
+}
+function insert_color()
+{
+         display_error();	
+        
+	if(error_flage)
+	{
+	  $("#insertrgb").submit();	
+         }	
+		
+	
+}
 </script>
 
 <!----end add code by kbs------->

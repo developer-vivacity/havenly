@@ -496,6 +496,7 @@ function product_details_on_hover($id=null)
 
 function display_product_name_associate_with_design($design_id=null,$designname=null,$room_id=null,$current_user_id=null)
 {
+	
 	if(($this->session->userdata('adminid')==""))
 	{
 		$this->load->view('Admin/adminlogin');
@@ -507,13 +508,14 @@ function display_product_name_associate_with_design($design_id=null,$designname=
          $data['designid']=$design_id;
 	$data['designname']=urldecode($designname);
          $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
-     
-	$data['productassign']=$this->product_model->display_design_associated_products($design_id);
+         
+         //$data['paintcolor']=$this->product_model->get_paint_color($design_id);
+         $data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	    
 	$data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
          
          $data['currentuserid']=$current_user_id;
-         
+
          $this->load->view('Admin/assignproductdesign',$data);
          
 }
@@ -523,6 +525,28 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 	    $design_id=($design_status==null?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,"null",$design_id,$design_status));
 	   ($user_id==null?redirect('/Admin/site/currentroomwithuser/'.$room_id.'','refresh'):($user_id=="null"?redirect('/Admin/site/currentroomwithuser/'.$room_id.'','refresh'):redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh')));
            
+}
+
+function paint_colors_for_design()
+{
+	if($_POST)
+	{
+		$rgbfirst=$_POST['txtrgbfirst'];
+		$rgbsecond=$_POST['txtrgbsecond'];
+		$rgbthird=$_POST['txtrgbthird'];
+		$rgbcomment=$_POST['comment'];
+		$this->product_model->paint_color_delete($_POST['desinerholdid']);
+		
+		if(!empty($_POST['designer_notes']))
+		$this->product_model->update_designer_notes($_POST['desinerholdid'],$_POST['designer_notes']);
+            for($i=0;$i<sizeof($rgbfirst);$i++)
+            {
+	        $color_code='rgb('.$rgbfirst[$i].','.$rgbsecond[$i].','.$rgbthird[$i].');';
+	
+	       $this->product_model->paint_colors_for_design($_POST['desinerholdid'],$color_code,$rgbcomment[$i]);
+            }
+            redirect('/Admin/site/currentroomwithuser/'.$_POST['desinerholdroomid'].'','refresh');
+         }
 }
 
 }

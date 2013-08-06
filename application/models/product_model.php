@@ -403,7 +403,8 @@ function userdesign($room_id=null,$design_id=null)
          $this->db->select('design_id,design_name,status,designer_notes'); 
          $this->db->where('room_id',$room_id);
          if($design_id!=null)
-         $this->db->where('design_id',$design_id);	
+         $this->db->where('design_id',$design_id);
+         $this->db->where('status !=','close');	
 	 $query=$this->db->get('user_design');
 	 return $query->result();
 }
@@ -449,6 +450,7 @@ function  design_image_for_rooms($room_id=null,$designid=null)
 }
 function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null)
 {
+	
 	if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	{
 	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
@@ -457,15 +459,15 @@ function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=nul
          }
          elseif($design_id!="")
          {
-	$this->db->where('room_id',$room_id);
-         $this->db->where('design_id',$design_id);
-         $data=($design_name=="null"?array('status'=>$design_status):array('design_name'=>$design_name));	
-         $this->db->update('user_design',$data);
+	 $this->db->where('room_id',$room_id);
+          $this->db->where('design_id',$design_id);
+         
+          $data=array('status'=>$design_status,'design_name'=>$design_name);
+          $this->db->update('user_design',$data);
+          return $design_id;
 	}
-	
-	
-}
 
+}
 function paint_color_delete($design_id)
 {
 	$this->db->where('design_id',$design_id);

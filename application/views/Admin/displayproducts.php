@@ -52,6 +52,8 @@
      <?php
            echo $userdesign[0]->design_name;
            echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
+           // this hidden variable store design name.
+           echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
      ?>&nbsp;
 <input class = "btn condensed" type="button" value="Save Selected" id="SaveSelected"/>
 <p class = "midsmall sanslight">  Edit user design and add products to complete user design.</p>
@@ -216,6 +218,7 @@ elseif(sizeof($userdesign)==0)
 	}
   echo "<input type='hidden' id='designproductid_7u7' value='".$selectproductid."' name='designproductid_7u7'/>";
 }
+
 ?>
 
 <div class = "span12"><div class = "well">
@@ -253,6 +256,7 @@ elseif(sizeof($userdesign)==0)
   </button>
   <ul class="dropdown-menu">
   <?php
+
 	foreach($producttype as $key)
 	{
 		echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>&nbsp;&nbsp;'.$key->type.'</div>';	
@@ -272,6 +276,7 @@ elseif(sizeof($userdesign)==0)
   </button>
   <ul class="dropdown-menu">
 <?php
+
 foreach($productstyle as $key)
 {
     echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->style_id.'" name="searchproductstyle[]" value="'.$key->style_id.'"/>&nbsp;&nbsp;'.$key->style.'</div>';	
@@ -340,6 +345,8 @@ foreach($productmaterialtype as $key)
 	  echo "No products found!";
 	
 	?>
+
+
 </div>
 
 <input type="hidden" value="" id="ascproductid" name="ascproductid"/>
@@ -348,8 +355,9 @@ foreach($productmaterialtype as $key)
 <input type="hidden" value="<?php echo $userid;?>" id="currentuserid" name="currentuserid"/>
 <!---add hidden variable by kbs--->
 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url();?>"/>
- <input type="hidden" value="<?php echo $designid;?>" id="userdesign" name="userdesign"/>
- <!-------------->
+<input type="hidden"  id="product_status" name="product_status"/>
+<input type="hidden" value="<?php echo $designid;?>" id="userdesign" name="userdesign"/>
+<!-------------->
 <?php 
 
 echo form_close(); ?>

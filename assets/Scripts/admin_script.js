@@ -168,22 +168,36 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   {
 	  var productimage="";
 	  $("#div_show_error_message").html('');
-          var designid=$("#holddesignidforroom").val();
-          if($("#designproductid_"+designid).val().trim()=="")
+           var designid=$("#holddesignidforroom").val();
+           
+           var value_length=$("#designproductid_"+designid).length;
+           
+           if((value_length==0)||($("#designproductid_"+designid).val().trim()==""))
 	  {
 	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
 	  }  
 	  else
 	  {
-		   $("#hidproductsearch").val("SaveSelected");
-		   $("#productid").val(productimage);
-	           $("#saveproduct").submit();
+	   
+	   $("#hidproductsearch").val("SaveSelected");
+	   $("#productid").val(productimage);
+	   $("#saveproduct").before('<div style="width:100%;height:100%;border:solid 1px;position:absolute;background-color:black;opacity:0.9;z-index:100"><div style="width:450px;margin-left:450px;margin-top:310px;"><div style="color:white;">Select Design Status&nbsp;</div><div style="margin-top:10px;"><select name="design_status" id="design_status"><option value="draft">draft</option><option value="submitted">submitted</option></select></div><div style="margin-top:10px;padding-left:160px;"><input type="button" value="submit" onclick="saveproductdetailsofdesign();"/></div></div></div>');
+	   
           }
   });
+  
+   /*$("#product_details_for_design").click(function()
+   {
+	  alert("welcome!");
+	  $("#saveproduct").submit();
+	  
+   })
+  */
   
   $("#searchproductname").click(function()
   {
      $("#hidproductsearch").val("search");
+     
      $("#saveproduct").submit();
   
   })

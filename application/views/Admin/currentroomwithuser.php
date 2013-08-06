@@ -156,7 +156,6 @@ echo '</td></tr>';
           
 }
 	
-        
         //-------embded vedio and picture by kbs------------> 
 	echo '<tr><td colspan="2">&nbsp;</td></tr>';
 	
@@ -196,7 +195,7 @@ echo '</td></tr>';
 <tr><td>Style Pictures:</td></tr>
 <tr>
 <td>
-	<?php 
+<?php 
 	$style_pics= explode(',',$style_pics);
 	$i=0;
 	while($i<sizeof($style_pics)-1):
@@ -227,18 +226,15 @@ endforeach;
 <?php
 echo '<div id="productdesign" class="adminmain" style="display:none;">';
 ?>
-
-	<?php
-	
+<?php
 if(sizeof($designassociaterooms)>0)
-	 {
+ {
 ?>
 <?php
 echo '<div class = "well midsmall">';
 foreach($designassociaterooms as $key)
 {
-	
-echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div></div>';
+	echo '<div id="displaydesignname_'.$key->design_id.'"><div style="float:left;"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div><div style="float:left;margin-left:100px;"><a href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></div></div>';
 	echo '<BR>';
 }
 ?>
@@ -251,17 +247,13 @@ echo '<div id="displaydesignname_'.$key->design_id.'"><div><a href="'.base_url()
 <tr><td colspan="4" id="textmessage">&nbsp;</td></tr>
 <tr><td class = "sanslight" colspan="4">&nbsp;Add a New Design &nbsp;</td><td>
 	<?php
-               $data = array(
-              'name'        => 'AddDesigntext',
-              'id'          => 'AddDesigntext',
+             $data = array('name' => 'AddDesigntext','id'  => 'AddDesigntext',
               'value'       => 'Design Name',
               'maxlength'   => '100',
               'size'        => '10'
             );
-        echo form_input($data);
-
-
-      ?>
+         echo form_input($data);
+?>
 	
 	</td>
 	<td>
@@ -309,7 +301,8 @@ $("#textmessage").html('<p id="enterdesign" style="margin-left:50px;width:150px;
  }            else
              {
 	      var designid="null"; 
-              location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim()+"/"+designid+"/"+$("#userid").val();		  
+	      
+              location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim()+"/"+designid+"/"+$("#userid").val()+"/"+null;		  
              }
 	
 	

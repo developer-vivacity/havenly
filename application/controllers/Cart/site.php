@@ -73,10 +73,14 @@ Class Site extends CI_Controller
 	redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
 	}
   }
-  function delete_assign_design($user_id,$room_id,$design_id)
+  function delete_assign_design($user_id,$room_id,$design_id,$type=null)
   {
-	$this->cart_model->delete_user_assign_design($user_id,$room_id,$design_id);  
-	redirect('/Users/site/login', 'refresh');
+	 $this->cart_model->delete_user_assign_design($user_id,$room_id,$design_id);  
+	
+	 if($type==null)
+	 redirect('/Users/site/login', 'refresh');
+	 else
+	 redirect('/Admin/site/currentroomwithuser/'.$room_id.'', 'refresh');
   }
   function products_in_cart($design_id)
   {

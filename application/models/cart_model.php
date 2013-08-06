@@ -167,7 +167,7 @@ function delete_user_assign_design($user_id,$room_id,$design_id)
 	
 	$this->db->where('design_id',$design_id);
 	$this->db->where('room_id',$room_id);
-	 $data=array('status'=>'draft');
+	 $data=array('status'=>'close');
 	$this->db->update('user_design',$data);
 	
 	/*

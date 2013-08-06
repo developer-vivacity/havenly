@@ -78,7 +78,8 @@ echo '<div>';
 			
 	}
 
-//add hidden variable by kbs---------------------------	
+//add hidden variable by kbs---------------------------
+	
 echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
 echo '<input type="hidden" value="'.$roomid.'" id="currentroomid" name="currentroomid"/>';
 echo '<input type="hidden" value="'.$currentuserid.'" id="currentuserid" name="currentuserid"/>';
@@ -150,17 +151,21 @@ echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value
 <script>
 function Updatedesign(designid,roomid,type)
 {
+	
 	$(".error").remove();
 	if(type=="name")
 	{
 	if($("#designtext").val().trim()=="")
 	$("#updatedesign").before('<p  style="margin-left:200px;" class="error">*Enter Design Name</p>');
 	else
-	location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#designtext").val().trim()+"/"+designid;		  
+location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#designtext").val().trim()+"/"+designid+"/"+$("#currentuserid").val()+"/"+$("#DesignStatus").val()+"/"+1;		  
+
+		  
          }
          else
          {
-	location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/null/"+designid+"/null/"+$("#DesignStatus").val();		  
+	location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#designtext").val().trim()+"/"+designid+"/"+$("#currentuserid").val()+"/"+$("#DesignStatus").val()+"/"+1;		  	
+			  
 	}
 }
 

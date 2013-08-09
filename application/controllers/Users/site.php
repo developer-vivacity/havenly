@@ -574,19 +574,66 @@ $data =array('first_name'=> $this->input->post('update_name'),
  }
  function display_designer_vailability()
  {
-	 
+    
+     
+     if($this->session->userdata('first_name')!="")
+     {
+	  
 	   date_default_timezone_set('America/New_York');
- 
-         $data["currentyear"]=date('Y');
-	$data["currentday"]=date('d');
-	$data["currentmonth"]=date('m');
-	
-	$data["userid"]=$this->session->userdata('id');
-	
-	$data["selectdate"]=$this->designer_model->designer_time_for_user(date('m'),date('Y'));
-	$data["designforloginuser"]=$this->cart_model->get_design_login_user();
-	  $this->load->view('Users/designeravailabilityforuser',$data);
+            $data["currentyear"]=date('Y');
+	   $data["currentday"]=date('d');
+	   $data["currentmonth"]=date('m');
+	   $data["userid"]=$this->session->userdata('id');
+	   $data["aftermail"]="";
+	   $data["selectdate"]=$this->designer_model->designer_time_for_user(date('m'),date('Y'));
+	   $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+	   
+            if($_POST)
+	   {
+	         $config = array(
+'protocol'=>'smtp',
+'smtp_host'=>'ssl://smtp.googlemail.com',
+'smtp_port'=> 465,
+'mailtype' => 'html',
+'smtp_user'=>'lee@havenly.com',
+'smtp_pass'=>'Motayed123');
+
+   $this->load->library('email',$config);
+   
+   $this->email->set_newline("\r\n");
+   
+   $subject="Designer schedule calls";
+   
+   $data["designerinfo"]= $this->designer_model->designer_information($this->session->userdata('id'));
+  
+   $data["userinfo"]=$this->user_model->get_user($this->session->userdata('id'));
+           
+   $to =$data["designerinfo"][0]->designer_email;
+     
+   $data["receivername"]=$data["designerinfo"][0]->designer_name;
+   
+   $sendername=  $data["userinfo"][0]["first_name"]."&nbsp;".$data["userinfo"][0]["last_name"];        
+   
+    $message=       "Hello&nbsp;".$data["designerinfo"][0]->designer_name."<br/>";
+    $message=$message.$sendername."&nbsp;has contacted to you for designing schedule";
+  
+           $this->email->from('lee@havenly.com','Havenly');
+           $this->email->to($to);
+           $this->email->subject($subject);
+           $this->email->message($message);
+           $this->email->send();	   
+	  $data["aftermail"]="message has been send";
+	  	   
+	  }
+	   
+	   $this->load->view('Users/designeravailabilityforuser',$data);
   }
+  else
+  {
+            $data["title"]="Login";
+            $this->load->view('Users/login', $data);
+  }
+}
 
 }
 ?>

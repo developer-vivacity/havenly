@@ -12,19 +12,20 @@ border-collapse:collapse;
 border:1px solid #858283;
 text-align:center;
 }
-table td{
+table td
+{
 border:1px solid #858283;
 }
 </style>
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+	<a class="brand" href="<?php echo base_url();?>">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
@@ -64,6 +65,11 @@ echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/sit
 </ul>
 </div>
 </div>
+
+<?php
+if(sizeof($selectdate)>0):
+?>
+
 <?php
 
 
@@ -92,7 +98,7 @@ echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/sit
 		 ?>
 		 <table width="700px" height="200px" >
 		<tr><td colspan="5" ><div id="curyear"><?php echo $currentyear;?></div></td><td colspan="5" ><div id="curmonth"><?php echo $currentmonth;?></div></td></tr>
-		 <tr><td width="50px">&nbsp;</td><td><div style="width:77px;">Time</div></td><td width="87px">Sun</td><td width="87px">Mon</td><td width="87px">Tue</td><td width="87px">Wed</td><td width="87px">Thur</td><td width="87px">Fri</td><td width="87px">Sat</td><td width="50px">&nbsp;</td></tr>
+		 <tr><td width="50px">&nbsp;</td><td><div style="width:77px;">Time</div></td><td width="87px">Sun</td><td width="87px">Mon</td><td width="87px">Tue</td><td width="87px">Wed</td><td width="87px">Thu</td><td width="87px">Fri</td><td width="87px">Sat</td><td width="50px">&nbsp;</td></tr>
 		  <tr><td>&nbsp</td>
 		  <td colspan="8" id="design_day" width="600px" height="275px"><table  width="100%" height="100%">
 		  <?php
@@ -157,10 +163,22 @@ $displaytime=($displaytime==""?'<div id=di_ti'.$displaytimeid.'>'.$key->start_ti
 		 </tr>
 		 </table>
 
-
-
-
-
-
+<?php
+endif;
+?>
+<?php 
+if(sizeof($selectdate)==0)
+{ 
+?>
+<form action="<?php echo base_url();?>index.php/Users/site/display_designer_vailability"  name="designercall" method="post"  id="designercall">
+<div id="tweetsend" class="padding_small third border auto light_gray">
+<div><?php echo $aftermail; ?></div>
+<input name="hasemail" id="hasemail" value="yes" type="hidden"/>
+<p class="medium teal_text condensed inline"><a href="#" onclick="document.getElementById('designercall').submit();">just email me.</a></p>
+</div>
+</form>
+<?php 
+}
+?>
 </div>
 </div>

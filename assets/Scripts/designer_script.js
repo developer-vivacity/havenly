@@ -28,7 +28,10 @@ var hold_end_time=new Array();
        
             
             }
+               // alert($("#start_month").val())
+		 
 		 var start_month= ($("#start_month").val()==1?7:$("#start_month").val()-1);
+		// alert(start_month)
 		 if((cur_year)%4)
 		  {
 		  array_num_in_month=new Array(31,28,31,30,31,30,31,31,30,31,30,31);	  
@@ -39,6 +42,10 @@ var hold_end_time=new Array();
 		  }
 		 var week_day=new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
 		 var start_for=array_num_in_month[cur_month-1]%7;
+                  
+                   if(start_for==0)
+                   start_month=start_month+1;
+		
 		 while(start_for>1)
 		 {
 		       if(start_month==1)
@@ -54,26 +61,26 @@ var hold_end_time=new Array();
 		for(z=1;z<=(31+start_month);z++)
 		   {
                         num=z-(start_month-1); 
-						
-	var time_flage=(hold_start_time[num]==null?false:true);
-			if(time_flage)
-	                      {
+		      var time_flage=(hold_start_time[num]==null?false:true);
+		      if(time_flage)
+	               {
                            
-					displaytimeid=num.toString()+cur_month.toString()+cur_year.toString();
+			displaytimeid=num.toString()+cur_month.toString()+cur_year.toString();
 							
-				        displaytime=(displaytime==""?'<div id=di_ti'+displaytimeid+' style="font-size:12px;">'+hold_start_time[num]+'&nbsp;to&nbsp;'+hold_end_time[num]+'</div>':displaytime+'<div id=di_ti'+displaytimeid+'>'+hold_start_time[num]+'to'+hold_end_time[num]+'</div>');
+		         displaytime=(displaytime==""?'<div id=di_ti'+displaytimeid+' style="font-size:12px;">'+hold_start_time[num]+'&nbsp;to&nbsp;'+hold_end_time[num]+'</div>':displaytime+'<div id=di_ti'+displaytimeid+'>'+hold_start_time[num]+'to'+hold_end_time[num]+'</div>');
 							
 						  }		
 						
 						
 						if(z%7==1)
-                          {
-                           dd=0;
-                           var a_z=z;
-						   cal_table= cal_table +'<tr><td width="75px" valing="top"><div style="width:5px;font-size:15px;" id="designertime'+a_z+'">&nbsp;</div></td>';
+                                                       {
+                                                        dd=0;
+                                                        var a_z=z;
+                                                        
+                 cal_table= cal_table +'<tr><td width="75px" valing="top"><div style="width:5px;font-size:15px;" id="designertime'+a_z+'">&nbsp;</div></td>';
 						   
 						 
-	                      }
+	                                             } 
                           if(z>=start_month)
                           {
 			               
@@ -84,7 +91,10 @@ var hold_end_time=new Array();
                             {
 			     
                      dd=dd+1;
-                         
+                     
+                     if(num==array_num_in_month[cur_month-1])
+                     var nextmonth=dd;
+                   
                  var makeid=num.toString()+dd.toString()+cur_year.toString()+cur_month.toString();
                     
                                if(flage)
@@ -128,7 +138,7 @@ var hold_end_time=new Array();
 		
 		
 		$("#design_day").html(cal_table);
-		$("#forNextday").val(dd);
+		$("#forNextday").val(nextmonth);
 		 $("#start_month").val(start_month);
 		 $("#currentyear").val(cur_year);
 		 $("#currentmonth").val(cur_month);
@@ -137,6 +147,7 @@ var hold_end_time=new Array();
 
 		for(ik=0;ik<rowidsave.length;ik++)
 		{
+			
 			$("#designertime"+rowidsave[ik]).append(timesave[rowidsave[ik]]);
 			
 		}

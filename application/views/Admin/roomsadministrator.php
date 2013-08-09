@@ -68,22 +68,29 @@ if($privileges=='global'):?>
 
 
 <table class = "table table-hover" >
-	<tr class = "medium black_text"><td>Email Address<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/users.email/'.$filter.''; ?>">&nbsp; &darr;</a></td>
+	<tr class = "medium black_text">
+	<td>Email Address<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/users.email/'.$filter.''; ?>">&nbsp; &darr;</a></td>
 	<td>Order #<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.id/'.$filter.''; ?>">&nbsp; &darr; </a></td>
 	<td>Status<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.status/'.$filter.''; ?>">&nbsp; &darr;</a></td>
 	<td>Room Type<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.room_type/'.$filter.'';?>">&nbsp; &darr;</a></td>
 	<td>Designer<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/designer.designer_name/'.$filter.'';?>">&nbsp; &darr;</a></td>
 	<td>&nbsp;</td>
-	<td>&nbsp;</td></tr>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	</tr>
 <?php
 foreach($adminrooms as $key)
 {
-    $key->Room_type=($key->Room_type=="BR"?"Bedroom":"Living room");
-    echo'<tr style="text-align:left;"><td>'.$key->username.'</td>';
-	echo '<td>'.$key->Order_number.'</td><td>'.$key->Order_status.'</td>';
-	echo '<td>'.$key->Room_type.'</td><td>'.$key->assigned_to.'</td>';
+         $key->Room_type=($key->Room_type=="BR"?"Bedroom":"Living room");
+         echo'<tr style="text-align:left;">
+         <td>'.$key->username.'</td>';
+	echo '<td>'.$key->Order_number.'</td>
+	<td>'.$key->Order_status.'</td>';
+	echo '<td>'.$key->Room_type.'</td>
+	<td>'.$key->assigned_to.'</td>';
 	echo '<td><a href="'.base_url().'index.php/Admin/site/currentroomwithuser/'.$key->Order_number.'">View Details</a></td>';
-	echo '<td><a href="'.base_url().'index.php/Admin/site/additional_details_user_room/'.$key->Order_number.'">Add More Information</a></td></tr>';
+	echo '<td><a href="'.base_url().'index.php/Admin/site/additional_details_user_room/'.$key->Order_number.'">Add More Information</a></td>
+	<td><a href="'.base_url().'index.php/Admin/site/designer_availability/'.$key->user_id.'/'.$key->designer_id.'">Designer  availability</a></a></td></tr>';
 }
 ?>
 </table>

@@ -14,13 +14,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+	<a class="brand" href="<?php echo base_url();?>">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
               <li><a id = "servlink" href="<?php echo base_url('#services');?>">Services</a></li>
               <li><a id = "pricelink" href="<?php echo base_url('#price');?>">Cost</a></li>
-			      <li><a id = "goodslink" href="<?php echo base_url('#goods');?>">Goods</a></li>
+              <li><a id = "goodslink" href="<?php echo base_url('#goods');?>">Goods</a></li>
               <li><a id = "aboutlink" href="<?php echo base_url('index.php/Users/site/whoweare');?>">About</a></li>
               <li><a <a id = "contlink"href="<?php echo base_url('#contact');?>">Contact</a></li>
             </ul>
@@ -37,7 +37,11 @@
 <div class = "container text-center">
 <BR><BR>
 <div class = "white">
-
+	<!----add new hidden variable to store current page---->
+	<?php
+	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
+	?>
+	<!----------------------------------------------------->
   <div class = "text-center">
  <ul id = "bstabs" class = "nav nav-pills sanslight ">
 <li ><a class = "pink white_text" href="#designer"  rel="designer">Your Account</a></li>
@@ -47,6 +51,7 @@
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
 }?>
 <li><a class = "pink white_text" href="#status"  rel="status">Status</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/display_designer_vailability/"  rel="designer">Designer Availability</a></li>
 </ul></div>
  
 <div class = "usermain text-center" id = "designer"> <BR><BR>
@@ -339,9 +344,8 @@ echo '<option value="'.$value.'">'.$value.'</option>';
 </div><BR><BR><BR></div>
 <script>
 $(document).ready(function(){
-
    $(".usermain").hide();
-   $("#designer").show();
+   $("#"+$("#currentpage").val()).show();
    $("#editroomstatus").hide();
   
 		 $("#bstabs a").click(function()

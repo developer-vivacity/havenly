@@ -19,20 +19,32 @@ class Designer_model extends CI_Model
 			PRIMARY KEY (id)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
 			
-			$query=$this->db->query('CREATE TABLE IF NOT EXISTS designer_mapping (
+	$query=$this->db->query('CREATE TABLE IF NOT EXISTS designer_mapping (
 				designer_id int(11) NOT NULL,
 				user_id int(11) NOT NULL			
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69') ;
 			
-			$query=$this->db->query('CREATE TABLE IF NOT EXISTS paint_colors (
+         $query=$this->db->query('CREATE TABLE IF NOT EXISTS paint_colors (
   id int(10) NOT NULL AUTO_INCREMENT,
   design_id varchar(30) NOT NULL,
   color varchar(30) NOT NULL,
   description varchar(1000) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24');
-  
-   }
+
+  $query=$this->db->query('CREATE TABLE IF NOT EXISTS designer_availability (
+  designer_id int(11) NOT NULL,
+  user_id int(11) NOT NULL,
+  day int(10) NOT NULL,
+  week_day int(11) NOT NULL,
+  week_number int(10) NOT NULL,
+  month int(10) NOT NULL,
+  year int(10) NOT NULL,
+  start_time time NOT NULL,
+  end_time time NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+');
+}
   
   
   // For Designer informetion
@@ -110,6 +122,71 @@ function book($data)
 		
 		   
       }
+       function insert_designer_availability($userid,$designerid,$date,$day,$currentyear,$currentmonth,$shour,$sminute,$ehour,$eminute,$weeknumber,$type)
+      {
+              
+              if($type=='insert')
+              {
+                   $this->db->where('designer_id',$designerid);
+		 $this->db->where('user_id',$userid);
+		 $this->db->where('month',$currentmonth);
+		 $this->db->where('year',$currentyear);
+                   $this->db->where('week_number',$weeknumber);
+                   
+                   $query=$this->db->get('designer_availability');
+                   $weektime=$query->result();
+                   
+                   
+                   $this->db->where('designer_id',$designerid);
+		 $this->db->where('user_id',$userid);
+		 $this->db->where('month',$currentmonth);
+		 $this->db->where('year',$currentyear);
+                   $this->db->where('week_number',$weeknumber);
+                   $this->db->delete('designer_availability');              
+              
+                   $starttime=$shour.":".$sminute;
+                   $endtime=$ehour.":".$eminute;
+	      
+	      $data=array('designer_id'=>$designerid,'user_id'=>$userid,'day'=>$date,'week_day'=>$day,'week_number'=>$weeknumber,'month'=>$currentmonth,'year'=>$currentyear,'start_time'=>$starttime,'end_time'=>$endtime);
+	      $this->db->insert('designer_availability',$data);
+	      return $weektime;
+	 }
+	 elseif($type=='delete')
+	 {
+		 $this->db->where('designer_id',$designerid);
+		 $this->db->where('user_id',$userid);
+		 $this->db->where('day',$date);
+		 $this->db->where('week_day',$day);
+		 $this->db->where('month',$currentmonth);
+		 $this->db->where('year',$currentyear);
+		 $this->db->delete('designer_availability');
+	 }
+	 else
+	 {
+		 $this->db->where('designer_id',$designerid);
+		 $this->db->where('user_id',$userid);
+		 $this->db->where('month',$currentmonth);
+		 $this->db->where('year',$currentyear);
+		 $query=$this->db->get('designer_availability');
+	         
+	         
+	          return $query->result();
+
+		 
+	  }
+      }
+      function designer_time_for_user($currentmonth,$currentyear)
+      {
+	      
+	          $this->db->where('user_id',$this->session->userdata('id'));
+		 $this->db->where('month',$currentmonth);
+		 $this->db->where('year',$currentyear);
+		  $query=$this->db->get('designer_availability');
+	         
+	         
+	          return $query->result();
+      }
+
 	  
 }
 ?>

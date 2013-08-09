@@ -18,6 +18,7 @@ function __construct()
 	$this->load->model('admin_model');
 	$this->load->model('preference_model');
 	$this->load->model('product_model');
+	$this->load->model('designer_model');
 		
 }
 	
@@ -548,5 +549,55 @@ function paint_colors_for_design()
             redirect('/Admin/site/currentroomwithuser/'.$_POST['desinerholdroomid'].'','refresh');
          }
 }
+
+function designer_availability($user_id=null,$designer_id=null)
+{
+    if(($this->session->userdata('adminid')!=""))
+     {
+	$this->designer_model->create_table();
+	
+         date_default_timezone_set('America/New_York');
+ 
+         $data["currentyear"]=date('Y');
+	$data["currentday"]=date('d');
+	
+	$data["currentmonth"]=date('m');
+	$data["userid"]=$user_id;
+	$data["designerid"]=$designer_id;
+	$data["selectdate"]=$this->designer_model->insert_designer_availability($user_id,$designer_id,null,null,date('Y'),date('m'),null,null,null,null,null,'select');
+	
+	$this->load->view('Admin/designer_availability.php',$data);
+    }
+   else
+    {
+	$this->load->view('Admin/adminlogin');
+	
+    }
+	
+}
+function assign_date_time_user()
+{
+         
+          if($_POST['type']=='insert')
+          {
+		
+		 
+           $data["weektime"]= $this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],$_POST['udate'],$_POST['uday'],$_POST['uyear'],$_POST['umonth'],$_POST['ushour'],$_POST['usminute'],$_POST['uehour'],$_POST['ueminute'],$_POST['weekrow'],$_POST['type']);	
+           
+           echo json_encode($data["weektime"]); 
+          }
+          elseif($_POST['type']=='delete')
+          {
+            $this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],$_POST['udate'],$_POST['uday'],$_POST['uyear'],$_POST['umonth'],null,null,null,null,null,$_POST['type']);	        
+            echo "data has been deleted!";
+          }
+          elseif($_POST['type']=='select')
+          {
+            $select_design_date['date']=$this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],null,null,$_POST['uyear'],$_POST['umonth'],null,null,null,null,null,$_POST['type']);	        
+            echo json_encode($select_design_date['date']);
+          }
+          
+}
+
 
 }

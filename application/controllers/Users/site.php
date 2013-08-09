@@ -311,9 +311,7 @@ function UserEditInformation()
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
-       
        $data["designforloginuser"]=$this->cart_model->get_design_login_user();
-       
        $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
       
        $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
@@ -391,8 +389,8 @@ else
    
     if($this->session->userdata('first_name')!="")
      {
-$this->Login();
-return;
+      $this->Login();
+      return;
      }
     $data["title"]="Login";
     $data["loginerrors"]=$this->userlogin;
@@ -574,6 +572,21 @@ $data =array('first_name'=> $this->input->post('update_name'),
     redirect('/Users/site/login/','refresh');
 
  }
+ function display_designer_vailability()
+ {
+	 
+	   date_default_timezone_set('America/New_York');
+ 
+         $data["currentyear"]=date('Y');
+	$data["currentday"]=date('d');
+	$data["currentmonth"]=date('m');
+	
+	$data["userid"]=$this->session->userdata('id');
+	
+	$data["selectdate"]=$this->designer_model->designer_time_for_user(date('m'),date('Y'));
+	$data["designforloginuser"]=$this->cart_model->get_design_login_user();
+	  $this->load->view('Users/designeravailabilityforuser',$data);
+  }
 
 }
 ?>

@@ -1,13 +1,12 @@
 <?php
-class Admin_model extends CI_Model 
-{ 
-	 function __construct() 
-	 {
-	   parent::__construct();
+class Admin_model extends CI_Model
+{
+function __construct() {
+parent::__construct();
 
-	 }
-   function create_table()
-  { 
+}
+ function create_table()
+ {
   
   $this->db->query("CREATE TABLE IF NOT EXISTS admin (
   id int(10) NOT NULL AUTO_INCREMENT,
@@ -23,11 +22,7 @@ class Admin_model extends CI_Model
  NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
 
 
- /*  
- $this->db->query("INSERT INTO admin (name, privileges,password,username,designerid) VALUES
-('lee','global','12345678','lee',0),
-('villi','local','87654321','villi',1)");
- */
+ 
 
  }  
  function authorize_user($password,$name)
@@ -50,18 +45,29 @@ class Admin_model extends CI_Model
 
 	 if($querytype=="insert")	
 	 $this->db->insert('user_room_details',$data);
-     elseif($querytype=="update")
+          elseif($querytype=="update")
 	 {
 	 $this->db->where('room_id',$room_id);
 	 $this->db->update('user_room_details', $data); 
-     }
+          }
 	else
 	{
 		$this->db->where('room_id',$room_id);
 	    $query=$this->db->get('user_room_details');
 	    return $query->result(); 
-	    
-    }
+	 }
+ }
+ function is_valid_user($design_id,$room_id,$current_user_id)
+ {
+	 
+            $this->db->from('user_rooms','user_design');
+            $this->db->join('user_design','user_rooms.id=user_design.room_id');
+            $this->db->where('user_design.design_id',$design_id);
+            $this->db->where('user_rooms.id',$room_id);
+            $this->db->where('user_rooms.user_id',$current_user_id);
+	   $query = $this->db->get();	
+	   return $query->num_rows();
+	   
  }
  
 

@@ -3,6 +3,7 @@ var fileupload_value=0;
 
 $(document).ready(function()
 {
+ 
 
    $(".adminmain").hide();
    $("#CurrentUser").show();
@@ -178,10 +179,10 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  }  
 	  else
 	  {
-	   
+	  
 	   $("#hidproductsearch").val("SaveSelected");
 	   $("#productid").val(productimage);
-	   $("#saveproduct").before('<div style="width:100%;height:100%;border:solid 1px;position:absolute;background-color:black;opacity:0.9;z-index:100"><div style="width:450px;margin-left:450px;margin-top:310px;"><div style="color:white;">Select Design Status&nbsp;</div><div style="margin-top:10px;"><select name="design_status" id="design_status"><option value="draft">draft</option><option value="submitted">submitted</option></select></div><div style="margin-top:10px;padding-left:160px;"><input type="button" value="submit" onclick="saveproductdetailsofdesign();"/></div></div></div>');
+	   $("#saveproduct").before('<div style="width:100%;height:100%;position:absolute;z-index:100;"><div style="width:450px;margin-left:450px;margin-top:50px;background-color:#A1D2E6;border:solid 2px #ADB1B3;"><div style="color:white;margin-left:70px;">&nbsp;<b>Select Design Status</b>&nbsp;</div><div style="margin-left:70px;"><select name="design_status" id="design_status"><option value="draft">draft</option><option value="submitted">submitted</option></select></div><div style="margin-top:10px;padding-left:160px;"><input type="button" value="submit" onclick="saveproductdetailsofdesign();"/></div></div></div>');
 	   
           }
   });

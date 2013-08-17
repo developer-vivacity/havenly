@@ -5,8 +5,6 @@
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/product_design.js"></script>
-
-
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
@@ -21,7 +19,7 @@
               <li class="active"><a href="<?php echo base_url('/index.php/Admin/site/currentroomwithuser/'.$roomid);?>">Back</a></li>
               <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>
               <li><a>Designs</a></li>
-			               </ul>
+	  </ul>
 			<ul class = "nav pull-right black_text">
 			
 			<li><a class = "black_text sanslight" href = "<?php echo base_url('index.php/Admin/site/adminlogout');?>">LOGOUT</a></li>
@@ -38,8 +36,7 @@
  <div class = "warning" id="div_show_error_message"></div>
 
  <?php
-   //form open
-   $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
+    $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
 ?>
  <?php
@@ -56,11 +53,24 @@
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
      ?>&nbsp;
 <input class = "btn condensed" type="button" value="Save Selected" id="SaveSelected"/>
+
 <p class = "midsmall sanslight">  Edit user design and add products to complete user design.</p>
 
 </div>
+<div id="displaydesignimages">
+<?php
+foreach($designimage as $key)
+{
+echo '<div  style="width:90px;border:solid 2px white;float:left;"><img src="'.$key->filename.'" width="80px" height="80px"></div>';
+}
+?>
+</div>
 <BR>
+<BR>
+<BR>
+<BR>	
 <div class = "well text-center">
+	
 <p class = "condensed text-center medium">Upload Design Images</p>
 	<div id="me" class="styleall" style="height:10px;width:190px;">
 	<span class = "btn">Click Here To Upload Photo</span></div>
@@ -146,17 +156,12 @@
 <input type="hidden" name="hidproductstylecheck" id="hidproductstylecheck"/>
 
 </div>-->
-
-
 <div id="showselectedproductimage"> 
-
-	
 <?php
         $design_id="";
         $selectproductid="";
         $productidhold="";
         $count=0;
-       
   if(sizeof($productwithdesign)>0)
   {
        
@@ -326,8 +331,6 @@ foreach($productmaterialtype as $key)
 	
 <div style="border:solid 1px;height:300px;overflow-y:scroll;" id="productlist">
 	<?php
-	
-
 	foreach($productdetails as $key)
 	{	
 		  $ischecked="";
@@ -341,10 +344,9 @@ foreach($productmaterialtype as $key)
 		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
 		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);" id="product_img'.$key->productid.'"/>&nbsp;&nbsp;</div>';
 	}
-	  if(sizeof($productdetails)==0)
-	  echo "No products found!";
-	
-	?>
+	if(sizeof($productdetails)==0)
+	echo "No products found!";
+        ?>
 
 
 </div>

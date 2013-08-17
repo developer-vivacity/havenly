@@ -10,7 +10,7 @@
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -52,8 +52,7 @@ echo "<span id='messagefordesign'>No Image</span>";
 echo '<div id="designimageassignproduct">';
 foreach($designimage as $key)
 {
-//echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'"><img src="'.$key->filename.'" width="100%"/></a></div>';
-echo '<div style="float:left;width:110px;"><img src="'.$key->filename.'" width="100%" height="100px"/></div>';
+echo '<div style="float:left;width:110px;"><img src="'.$key->filename.'" width="100px" height="100px"/></div>';
 }
 echo '<div>';	
 //---end add div tag.......
@@ -114,7 +113,7 @@ Design Status <select name="DesignStatus" id="DesignStatus"><option value="draft
 <div id="me" class="styleall" style=" cursor:pointer;">
 	
   <span style=" cursor:pointer; font-family:Verdana, Geneva, sans-serif; font-size:9px;">
-  <span style=" cursor:pointer;">Click Here To Upload Profile Photo</span></span></div>
+  <span style=" cursor:pointer;">Click Here To Upload Design Images</span></span></div>
   <span id="mestatus" ></span>        
   <div id="files" style="list-style-type: none;">
   <li class="success" >
@@ -131,11 +130,11 @@ $attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
 echo form_open('Admin/site/paint_colors_for_design/',$attributes);
 ?>
 <table border="0">
-<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td></td><td><div style="float:right;"></div></td></tr>	
+<tr><td>Designer Notes</td><td colspan="4"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="error_show"></td><td><a href="#" onclick="insert_color('comment');">Update</a></td><td><div style="float:right;"></div></td></tr>	
 <tr id="rgbtablerow1"><td>Enter RGB</td><td><input type="text" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone1" maxlength="3"/></td><td><input type="text" size="2" class="txtrgb" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo1" maxlength="3"/></td><td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree1" maxlength="3"/></td><td>Description</td><td><textarea name="comment[]" id="comment1"></textarea></td><td><a href="#" id="addmorergb">Add more</a></td><td><div id="rgberror1" class="error_show"></div></td></tr>
 
 
-<tr><td colspan="7"><div style="float:left;"><a href="#" onclick="insert_color();">Submit</a></div></td></tr>
+<tr><td colspan="7"><div style="float:left;"><a href="#" onclick="insert_color('color');">Submit</a></div></td></tr>
 
 </table>
 <?php echo '<input type="hidden" name="desinerholdid" id="desinerholdid" value="'.$designid.'">';
@@ -149,6 +148,16 @@ echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value
 </body>
 <!----start add code by kbs-------->
 <script>
+function handle_key(event)
+{
+        var k = event.keyCode ? event.keyCode : event.charCode
+        if((k>=97 && k<=122)||(k>=35 && k<=38)||(k>=40 && k<=45))
+        {
+        return false;        
+        }
+
+}
+	
 function Updatedesign(designid,roomid,type)
 {
 	
@@ -234,19 +243,14 @@ function display_error()
 var zi=1;
 $("#addmorergb").click(function()
 {
-	
-	
 	display_error();
-	
 	if(error_flage)
 	{
 	if(zi<5)
 	{
-		
 	  zi= ++zi;
 	  $("#rgberror"+(zi-1)+"").html("");
-	  
-	  $("#rgbtablerow"+(zi-1)+"").after('<tr id="rgbtablerow'+zi+'"><td>&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" /></td><td><input type="text" maxlength="3" class=txtrgb size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'"/></td><td><input type="text" maxlength="3" class=txtrgb name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')">close</a></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
+	  $("#rgbtablerow"+(zi-1)+"").after('<tr id="rgbtablerow'+zi+'"><td>&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" onkeypress="return handle_key(event);"/></td><td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'" onkeypress="return handle_key(event);"/></td><td><input type="text" maxlength="3" class=txtrgb name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'" onkeypress="return handle_key(event);"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')">close</a></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
 	
          }
         }
@@ -258,10 +262,25 @@ function removergbrow(id)
 	$("#"+id).remove();
 	zi= --zi;
 }
-function insert_color()
-{
+function insert_color(type)
+{    
+	
+         
+         if(type=="color")
          display_error();	
-        
+         else if(type="comment")
+	{
+		if($("#designer_notes").val().trim()=="")
+		{
+		$("#designercommenterror").html("Enter Designer Notes!");
+		$("#designercommenterror").focus();
+	         error_flage=false;
+	         }
+	         else
+	         {
+	          error_flage=true;
+                  }
+         }
 	if(error_flage)
 	{
 	  $("#insertrgb").submit();	

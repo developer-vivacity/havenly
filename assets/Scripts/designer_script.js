@@ -28,10 +28,10 @@ var hold_end_time=new Array();
        
             
             }
-               // alert($("#start_month").val())
+              
 		 
 		 var start_month= ($("#start_month").val()==1?7:$("#start_month").val()-1);
-		// alert(start_month)
+		
 		 if((cur_year)%4)
 		  {
 		  array_num_in_month=new Array(31,28,31,30,31,30,31,31,30,31,30,31);	  
@@ -186,7 +186,10 @@ var hold_end_time=new Array();
        
             }
 			
+			// alert($("#forNextday").val())
 			 var start_month= ($("#forNextday").val()==7?1:parseInt($("#forNextday").val())+1);
+		
+		  
 		
 		 if((cur_year)%4)
 		  {
@@ -224,11 +227,12 @@ var hold_end_time=new Array();
 							
 						  }		
 						
-
 						  
-						  if(z%7==1)
+		        if(z%7==1)
                           {
-		        dd=0;var a_z=z;
+			        		        
+		        var a_z=z;
+		        dd=((num<array_num_in_month[cur_month-1])?0:dd);
                           cal_table= cal_table +'<tr><td width="75px" valing="top"><div style="width:5px;font-size:15px;" id="designertime'+a_z+'">&nbsp;</div></td>';
 						  
 	                 }
@@ -266,7 +270,9 @@ var hold_end_time=new Array();
 	                 }
                           if(z%7==0)
                           {
-			 cal_table=cal_table+'</tr>';
+			       
+			      
+			        cal_table=cal_table+'</tr>';
 					if(displaytime!="")
 						{
 						 rowidsave[rowidsave.length]=a_z;
@@ -434,4 +440,5 @@ function check_date(curyear,curmonth,curday)
        return false;	
    }
 }
+
 

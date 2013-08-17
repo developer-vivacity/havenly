@@ -31,8 +31,9 @@
 <br/>
 <br/>
 <br/>
-<table>
+
 	<form method="post"  action="<?php echo base_url('index.php/Cart/site/update_or_insert_qty');?>" id="productdetails">
+	<table>
 	<tr><td colspan="2"><?php echo '<div style="float:right;"><a href="#" onclick="history.back();">Back</a></div>';
 ?></td></tr>
 <tr>
@@ -60,8 +61,9 @@
 <?php
 echo '<input type="hidden" name="holdproductid" id="holdproductid" value="'.$productid.'"/>';
 ?>
-</form>
 </table>
+</form>
+
 
 <?php 
 	include(APPPATH.'/views/templates/footer.php');

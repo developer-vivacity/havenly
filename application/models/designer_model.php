@@ -50,7 +50,7 @@ class Designer_model extends CI_Model
   // For Designer informetion
   function designer_information($id)
   {
-	  $query=$this->db->query("SELECT designer.designer_name,designer.designer_email,designer.designer_email,
+	  $query=$this->db->query("SELECT designer.designer_name,designer.designer_email,
 	  designer.designer_picture,designer.designer_phone_number 
 	  FROM designer inner join designer_mapping 
 	  on designer.id=designer_mapping.designer_id 

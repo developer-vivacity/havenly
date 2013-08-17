@@ -29,6 +29,12 @@ $(function(){
 				       
 				       $("#mestatus").after('<div id="uploadmoreimg"><a href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload more image</a></div>');
 				       
+				       if($("#displaydesignimages").length!=0)
+				       {
+					       //$("#messagefordesign").remove();	   
+					       $("#displaydesignimages").append('<div style="width:90px;border:solid 2px white;float:left;"><img src="'+obj.images+'" width="80px" height="80px"/></div>');
+					       
+				       }
 				       if($("#designimageassignproduct").length!=0)
 				       {
 				            $("#messagefordesign").remove();	   
@@ -123,8 +129,7 @@ function addselectimg()
 }
 function show_product_details()
 {
-
-            $("#select_products_for_room").hide();
+             $("#select_products_for_room").hide();
   	    $("#allproductdisplay").show();
 	
 }
@@ -156,7 +161,6 @@ function display_design()
 
 function saveproductdetailsofdesign()
 {
-	
 	
 	$("#product_status").val($("#design_status").val());
 

@@ -84,16 +84,22 @@ if(sizeof($selectdate)>0):
 		 $array_week_day=array('1'=>'Sun','2'=>'Mon','3'=>'Tue','4'=>'Wed','5'=>'Thu','6'=>'Fri','7'=>'Sat');
 		 $array_num_day=array('Sun'=>'1','Mon'=>'2','Tue'=>'3','Wed'=>'4','Thu'=>'5','Fri'=>'6','Sat'=>'7');
 		
-		 
-		if($currentday>7)
+		
+		if((int)$currentday>7)
+		{
 		$currentday=$currentday%7;
-		elseif($currentday==7)
+	         $day=$array_num_day[date('D')]+(7-$currentday)+1;
+	         }
+	         elseif((int)$currentday==7)
 	         {
 		$currentday=0;	
+		$day=$array_num_day[date('D')]+(7-$currentday)+1;
 		}
-		elseif($currentday!=1)
-		$currentday=$currentday-($currentday-1);
-		$day=$array_num_day[date('D')]-($currentday-1);
+		elseif((int)$currentday<7)
+		{
+		$day=$array_num_day[date('D')]+(7-$currentday)+1;
+		}
+		
 		echo '<input type="hidden" id="start_month" name="start_month" value="'.$day.'"/>';
 		 ?>
 		 <table width="700px" height="200px" >

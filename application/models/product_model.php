@@ -448,14 +448,15 @@ function  design_image_for_rooms($room_id=null,$designid=null)
           $query = $this->db->get();
          return $query->result();
 }
-function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null)
+function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null,$designer_comment=null)
 {
-	
 	if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	{
-	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
+	   $data=array("room_id"=>$room_id,"design_name"=>$design_name,"designer_notes"=>$designer_comment);
 	   $this->db->insert('user_design',$data);
+	 
 	   return $this->db->insert_id();
+	   
          }
          elseif($design_id!="")
          {

@@ -16,7 +16,7 @@ function __construct()
    $this->load->model('preference_model');
    $this->load->model('designer_model');
    $this->load->model('cart_model');
-
+$this->load->model('concept_model');
    $this->load->model('Users/picture_model');
 
    
@@ -316,7 +316,10 @@ function UserEditInformation()
       
        $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
        
-       //die(var_dump($data["designforloginuser"]));
+        #........ConceptBoardModule==========
+       $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
+        #.......ConceptBoardModule==========
+       
        
        $this->load->view('Users/accountinformation', $data);
        return;
@@ -357,6 +360,11 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
         $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
         $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
+       #........ConceptBoardModule==========
+        $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
+
+ 
+        #.......ConceptBoardModule==========
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
         $this->load->view('Users/accountinformation',$data);
     }

@@ -47,6 +47,13 @@
 <li ><a class = "pink white_text" href="#designer"  rel="designer">Your Account</a></li>
 <li><a class = "pink white_text" href="#preferences"  rel="preferences">Your Preferences</a></li>
 <li><a class = "pink white_text" href="#rooms"  rel="rooms">Your Rooms</a></li>
+
+<?php
+if($conceptboard[0]->total!=0):
+?>
+<li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+<?endif;?>
+
 <?php if(sizeof($designforloginuser)>0){
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
 }?>
@@ -141,7 +148,6 @@ echo '<div class = "text-center"><input class = "button3 seventy midsmall conden
 ?>
 </div>
 <?php echo form_close(); ?>
-
 </div>
 
 <div class = "usermain" id = "designs"> <BR><BR>
@@ -150,20 +156,19 @@ echo '<div class = "text-center"><input class = "button3 seventy midsmall conden
 echo '<input type="hidden" id="sitepath" value="'.base_url().'" name="sitepath"/>';
 if(sizeof($designforloginuser)>0)
     {
-	   
 ?>
   <table class = "table-center span5" id="designer_table">
- 
-	 <?php
-              
-              $url = base_url('assets/Images');
-              echo '<tr><td colspan="4"> You have a design ready.</td></tr>';
+ <?php
+           $url = base_url('assets/Images');
+           echo '<tr><td colspan="5"> You have a design ready.</td></tr>';
+           echo '<tr><td><h4>Design Name</h4></td><td><h4>Design Image</h4></td><td><h4>Design Comment</h4></td><td><h4>Design Status</h4></td><td>&nbsp;</td></tr>';
 	  foreach($designforloginuser as $key)
 	  {
+		  
               echo '<tr>
               <td>'.$key->design_name.'</td>
               <td><a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">
-              <img src="'.$key->filename.'" width="100px" height="100px"/></a></td>
+              <img src="'.$key->filename.'" width="100px" height="100px"/></a></td><td>'.wordwrap($key->designer_notes,25,'<br/>').'</td>
               <td>'.$key->status.'</td>
               <td><a href="#"  onclick="delete_design('.$key->user_id.','.$key->design_id.','.$key->room_id.');">
               <img src="'.$url.'/delicon.fw.png" width="50px" height="50px"/></a>
@@ -182,7 +187,7 @@ if(sizeof($designforloginuser)>0)
 
 
 <?php
-//var_dump($roomsassociated);
+
 if(isset($roomsassociated))
 {
 ?>

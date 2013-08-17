@@ -1,9 +1,10 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>/assets/Scripts/concept_board.js" ></script>
 
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
@@ -97,6 +98,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 <li ><a class = "pink white_text" href="#CurrentUser"  rel="CurrentUser">User Information</a></li>
 <li><a class = "pink white_text" href="#CurrentRoom"  rel="CurrentRoom">Room Information</a></li>
 <li><a class = "pink white_text" href="#currentref"  rel="currentref">Style Selections</a></li>
+<li><a class = "pink white_text" href="#conceptboard"  rel="conceptboard">Initial Concepts</a></li>
 <li><a class = "pink white_text" href="#productdesign" rel="productdesign">View/Add Design Responses</a></li>
 </ul>
 <BR>
@@ -182,20 +184,17 @@ echo '</td></tr>';
 	//=======end embded vedio and picture by kbs=============//
 	echo '</table>
          </div>';
-  
-  
        
  }
 ?>
 <?php
  echo form_close(); 
 ?>
-
 <table id="currentref" class="adminmain table" style="display:none;">
 <tr><td>Style Pictures:</td></tr>
 <tr>
 <td>
-<?php 
+         <?php 
 	$style_pics= explode(',',$style_pics);
 	$i=0;
 	while($i<sizeof($style_pics)-1):
@@ -204,8 +203,8 @@ echo '</td></tr>';
 	<div style="float:left;"><img src="<?php echo $imgurl;?>" height="200px"/></div>
 	<?php
          $i=$i+1;
-	    endwhile;
-    ?>
+	endwhile;
+         ?>
 </td>
 </tr>
 <tr><td>Color Pictures:</td></tr>
@@ -223,19 +222,42 @@ endforeach;
 </td>
 </tr>
 </table>
+<!--------Concept Board Module---------->
+<form   enctype="multipart/form-data" method="post" id="conceptboard" class="adminmain table">
+   <table  class="table" id="displayconceptimg">
+ <tr><td width="10px">Upload Files</td>
+ <td width="50px"><input type="file" name="imageUpload" id="imageUpload" /><div id="mestatus"></div></td><td>&nbsp;</td>
+ </tr>
+ <?php
+
+  foreach($conceptboard as $conceptkey)
+ {
+
+   $comment=($conceptkey->comments!=""?$conceptkey->comments:'&nbsp;');
+   if((string)$conceptkey->status!="0") 
+   echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><img src="'.$conceptkey->filename.'" height="100px" width="100px"></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" value="Delete" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td><td>'.  wordwrap($comment,20,'<br/>').'</td></tr>';	 
+ }
+ ?>
+ </table>
+</form>
+
+<!-------------------------------------->
 <?php
-echo '<div id="productdesign" class="adminmain" style="display:none;">';
+
+     echo '<div id="productdesign" class="adminmain" style="display:none;">';
+     $attributes = array( 'id' => 'designeform','method'=>'post');
+     echo form_open('Admin/site/Add_Design_For_Room/',$attributes);
 ?>
 <?php
 if(sizeof($designassociaterooms)>0)
  {
 ?>
 <?php
-echo '<div class = "well midsmall">';
+echo '<div class = "well midsmall" >';
 foreach($designassociaterooms as $key)
 {
 	echo '<div id="displaydesignname_'.$key->design_id.'"><div style="float:left;"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></div><div style="float:left;margin-left:100px;"><a href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></div></div>';
-	echo '<BR>';
+	echo '<br>';
 }
 ?>
 
@@ -243,7 +265,7 @@ foreach($designassociaterooms as $key)
 <?php
 }
 ?>
-<table>
+<table id="roomdesignname">
 <tr><td colspan="4" id="textmessage">&nbsp;</td></tr>
 <tr><td class = "sanslight" colspan="4">&nbsp;Add a New Design &nbsp;</td><td>
 	<?php
@@ -260,21 +282,21 @@ foreach($designassociaterooms as $key)
    <?php
 	 $data = array(
 	     'type'=>'button',
-		 'class'=>'btn',	
+	     'class'=>'btn',	
               'name'        => 'NewDesign',
               'id'          => 'NewDesign',
               'value'       => 'Go',
               'onClick'    =>  'show_add_design('.$roomid.')'
             );
 
-          echo form_input($data);
-
-      ?>
+          echo form_input($data);?>
 	
 	</td></tr>
 
 </table>
-
+<?php
+echo form_close();
+?>
 
 </div>
 <BR><BR><BR><BR><BR><BR><BR>
@@ -290,23 +312,33 @@ $("#AddDesigntext").blur(function()
     if($("#AddDesigntext").val()=="")
     $("#AddDesigntext").val("Design Name");		
 	
-	})	
+})	
 function show_add_design(roomid)
 {	
+	    $("#enterdesign").remove();
 	
-	     $("#enterdesign").remove();
 	    if($("#AddDesigntext").val().trim()=="" || $("#AddDesigntext").val().trim()=="Design Name")
-{             
-$("#textmessage").html('<p id="enterdesign" style="margin-left:50px;width:150px;float:right;">*Enter Design Name</p>');
- }            else
+             {             
+             $("#textmessage").html('<p id="enterdesign" style="margin-left:50px;width:150px;float:right;">*Enter Design Name</p>');
+             }            
+             else
              {
-	      var designid="null"; 
-	      
-              location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#AddDesigntext").val().trim()+"/"+designid+"/"+$("#userid").val()+"/"+null;		  
+             var designid="null"; 
+	    if($("#roomdesignname").length!=0)
+	    $("#roomdesignname").before('<div style="position:absolute;width:450px;height:200px;z-index:100;background-color:black;opacity:0.9;"><div style="margin-top:20px;margin-left:60px;color:white;" id="inputcomment"><div style="float:left;">Enter Designer comments:&nbsp;</div><div style="float:left;"><textarea name="designer_notes" id="designer_notes"></textarea></div><br/><br/><br/><br/><br/><div style="float:right;"><input type="button" value="submit" onclick="submit_designer_comment();"/></div><input type="hidden" name="designroomid" value="'+roomid+'"><input type="hidden" name="designuserid" value="'+$("#userid").val()+'"></div>');
+            
              }
-	
-	
+
 }
+function submit_designer_comment()
+{
+	   $(".error").remove();
+	   if($("#designer_notes").val().trim()=="")
+	   $("#inputcomment").before("<div style='float:right;color:white;' class='error'>Enter Comment!</div>");
+	   else
+	   $("#designeform").submit();
+}
+
 </script>
 <BR><BR><BR>
 <?php 

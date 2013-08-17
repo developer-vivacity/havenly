@@ -4,13 +4,15 @@
  <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/designer_script.js"></script>
 <style type="text/css" media="screen">
-table{
-border-collapse:collapse;
-border:1px solid #858283;
-text-align:center;
+table
+{
+   border-collapse:collapse;
+   border:1px solid #858283;
+   text-align:center;
 }
-table td{
-border:1px solid #858283;
+table td
+{
+   border:1px solid #858283;
 }
 </style>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,7 +29,7 @@ border:1px solid #858283;
               <li class="active"><a href="#">Home</a></li>
               <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>
               <li><a>Designs</a></li>
-			               </ul>
+	 </ul>
 			<ul class = "nav pull-right black_text">
 			
 			<li><a class = "black_text sanslight" href = "<?php echo base_url('index.php/Admin/site/adminlogout');?>">LOGOUT</a></li>
@@ -36,17 +38,14 @@ border:1px solid #858283;
         </div>
       </div>
 </div>
-
- <div class = "white">
-	 <br/>
+<div class = "white">
 <br/>
 <br/>
 <br/>
-
-	 <div class = "container">
-	<div style="position:absolute;background-color:#F2EDEF;opacity:0.9;width:850px;height:300px;display:none;z-index:1000" id="availability_time">
-         		
-	<div style="float:right;"><img src="../../../../../assets/Images/delicon.fw.png" onclick="hide_div('availability_time',<?php echo $userid ?>,<?php echo $designerid; ?>)"/></div>	 
+<br/>
+<div class = "container">
+<div style="position:absolute;background-color:#F2EDEF;opacity:0.9;width:800px;height:320px;display:none;z-index:1000;margin-top:30px;" id="availability_time">
+         		<div style="float:right;"><img src="../../../../../assets/Images/delicon.fw.png" onclick="hide_div('availability_time',<?php echo $userid ?>,<?php echo $designerid; ?>)"/></div>	 
 	<table style="margin-left:150px;margin-top:100px;">
 	<tr><td colspan="3"><div id="date_time_error"></div></td></tr>
 		<tr><td>&nbsp;</td><td>Hour</td><td>Minute</td></tr>
@@ -54,7 +53,6 @@ border:1px solid #858283;
 	<?php
 	for($h=1;$h<=24;$h++)
 	{
-		
 		echo '<option  value="'.$h.'">'.$h.'</option>';
 	}
 	?>
@@ -62,14 +60,13 @@ border:1px solid #858283;
 	</td><td><select id="startdesignerminute" name="startdesignerminute">
 	<?php
 	for($m=1;$m<=59;$m++)
-	{
-		
-		echo '<option value="'.$m.'">'.$m.'</option>';
+	{echo '<option value="'.$m.'">'.$m.'</option>';
 	}
 	?>
 	</select>
 </td></tr>
-<tr><td>End Time:</td><td><select id="enddesignerhour" name="enddesignerhour">
+<tr><td>End Time:</td><td>
+<select id="enddesignerhour" name="enddesignerhour">
 	<?php
 	for($h=1;$h<=24;$h++)
 	{
@@ -80,23 +77,17 @@ border:1px solid #858283;
 </td><td><select id="enddesignerminute" name="enddesignerminute">
 	<?php
 	for($m=1;$m<=59;$m++)
-	{
-		
-		echo '<option value="'.$m.'">'.$m.'</option>';
+	{echo '<option value="'.$m.'">'.$m.'</option>';
 	}
 	?>
 	</select></td></tr>
-		<tr><td colspan="3"><a href="#" onclick="availability_with_time(<?php echo $userid; ?>,<?php echo $designerid; ?>);">Submit</a></tr>
+	<tr><td colspan="3"><a href="#" onclick="availability_with_time(<?php echo $userid; ?>,<?php echo $designerid; ?>);">Submit</a></tr>
 	</table>
 	
 	</div>
 		 <?php
-		 
-		  //$data["currentyear"]=date('Y');
-	//$data["currentday"]=date('d');
-	
-	//$data["currentmonth"]=date('m');
-	
+		
+		
 echo'<input type="hidden" value="'.(int)$currentyear.'" name="presentyear" id="presentyear">';
 echo '<input type="hidden" value="'.(int)$currentmonth.'" name="monthofyear" id="monthofyear">';
 echo '<input type="hidden" value="'.(int)$currentday.'" name="dayofmonth" id="dayofmonth">';
@@ -119,24 +110,25 @@ echo '<input type="hidden" value="'.(int)$currentday.'" name="dayofmonth" id="da
 		if((int)$currentday>7)
 		{
 		$currentday=$currentday%7;
-	         
+	         $day=$array_num_day[date('D')]+(7-$currentday)+1;
 	         }
-	         elseif($currentday==7)
+	         elseif((int)$currentday==7)
 	         {
 		$currentday=0;	
+		$day=$array_num_day[date('D')]+(7-$currentday)+1;
 		}
-		elseif($currentday!=1)
+		elseif((int)$currentday<7)
 		{
-		$currentday=$currentday-($currentday-1);
-                  }
-		$day=$array_num_day[date('D')]-($currentday-1);
 		
+		$day=$array_num_day[date('D')]+(7-$currentday)+1;
+		}
+                  
 		echo '<input type="hidden" id="start_month" name="start_month" value="'.$day.'"/>';
 		 ?>
 		 <p><b>Designer availability</b></p>
 		 <table width="800px" height="200px" >
 		<tr><td colspan="5" ><div id="curyear"><?php echo $currentyear;?></div></td><td colspan="5" ><div id="curmonth"><?php echo $currentmonth;?></div></td></tr>
-		 <tr><td width="50px"><a href="#" id="Prev_dis">Prev&nbsp;&nbsp;</a></td><td><div style="width:77px;">Time</div></td><td width="87px">Sun</td><td width="87px">Mon</td><td width="87px">Tue</td><td width="87px">Wed</td><td width="87px">Thur</td><td width="87px">Fri</td><td width="87px">Sat</td><td width="50px"><a href="#" id="Next_dis">Next</a></td></tr>
+		 <tr><td width="50px"><a href="#" id="Prev_dis">Prev&nbsp;&nbsp;</a></td><td><div style="width:77px;">Time</div></td><td width="87px">Sun</td><td width="87px">Mon</td><td width="87px">Tue</td><td width="87px">Wed</td><td width="87px">Thu</td><td width="87px">Fri</td><td width="87px">Sat</td><td width="50px"><a href="#" id="Next_dis">Next</a></td></tr>
 		  <tr><td>&nbsp</td>
 		  <td colspan="8" id="design_day" width="600px" height="275px"><table  width="100%" height="100%">
 		  <?php
@@ -145,6 +137,7 @@ echo '<input type="hidden" value="'.(int)$currentday.'" name="dayofmonth" id="da
 		 for($z=1;$z<=(31+$day);$z++)
 		 {
                                                         $num=$z-($day-1);  
+                                                       
 						  foreach($selectdate as $key)
 	                                                 {
                                                           if($key->day==$num)

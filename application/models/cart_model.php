@@ -30,7 +30,7 @@ function get_design_login_user($productid=null)
 {
 	
    $this->db->from('user_room_designs','design_product_mapping','user_design');
-   $this->db->select('user_room_designs.user_id,user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id,user_design.status,user_design.design_name');
+   $this->db->select('user_room_designs.user_id,user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id,user_design.status,user_design.design_name,user_design.designer_notes');
    $this->db->select('user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id');
    $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id');
    $this->db->join('user_design','user_room_designs.design_id = user_design.design_id');

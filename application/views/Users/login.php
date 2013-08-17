@@ -105,9 +105,7 @@
    
     }
     if (!empty($errors))
-	{
-		
-		$display="block";
+	{        $display="block";
 		echo '<div class = "alert alert-error">'.$errors.'</div>';}
 	?>
   </div></div></div>

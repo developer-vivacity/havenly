@@ -20,6 +20,7 @@ function __construct()
 	$this->load->model('preference_model');
 	$this->load->model('product_model');
 	$this->load->model('designer_model');
+	$this->load->model('concept_model');
 		
 }
 	function index() 
@@ -66,7 +67,7 @@ function adminlogin()
    
      $this->product_model->create_table();
      $this->admin_model->create_table();
-   
+    $this->concept_model->create_table();
    if(($this->session->userdata('adminid')!=""))
      {
       $data['privileges']=$this->session->userdata('privileges');
@@ -142,12 +143,13 @@ function currentroomwithuser($room_id=null)
 	   $adminrooms=$this->room_model->display_all_rooms($condition);
 	   $data["roomid"]=$room_id;
 	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
-	
-	   $data["colorstyle"]=$this->room_model->fetch_color_style_number();
-	
+	   
+	   $data["conceptboard"]=$this->concept_model->admin_display($room_id);
+            $data["colorstyle"]=$this->room_model->fetch_color_style_number();
 	   $data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
 	 
 	   $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
+	 
 	   $data["designassociaterooms"]=$this->product_model->userdesign(intval($room_id));
 	   
 	   $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
@@ -184,7 +186,8 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	  $data["productstyle"]=$this->product_model->product_style();
 	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	   
-
+           $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
+          
           $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
 
 	 if($this->input->post("hidproductsearch")=="search")
@@ -408,8 +411,7 @@ function add_product()
 	      $arrayaddtypefilter=explode(',',$this->input->post("typehiddenfilter"));	    
 	      foreach($arrayaddtypefilter as $key=>$value)
 	       {
-		 
-			$data=array('type'=>$value);
+		         $data=array('type'=>$value);
 		   	$newtypeid=$this->product_model->insert_data_in_db('product_type',$data);
 			$typehiddenfilter=($typehiddenfilter==""?$newtypeid:$typehiddenfilter.','.$newtypeid);
 		
@@ -513,6 +515,8 @@ function display_product_name_associate_with_design($design_id=null,$designname=
                $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
          
                $data['productassign']=$this->product_model->display_design_associated_products($design_id);
+	      
+	     
 	      $data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
                $data['currentuserid']=$current_user_id;
          
@@ -527,8 +531,21 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$user_id=null,$design_status=null,$product_details=null)
 {
 
-         if($this->_add_new_design!=1)
-         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status));
+     
+ $designer_notes=null;
+         if(isset($_POST["designroomid"])|isset($_POST["AddDesigntext"])|isset($_POST["designuserid"])|isset($_POST["designer_notes"]))
+         {
+	 
+	 $room_id=$_POST["designroomid"];
+	 $design_name=$_POST["AddDesigntext"];	
+	 $user_id=$_POST["designuserid"];
+	 $designer_notes=$_POST["designer_notes"];	
+	 $design_status=null;
+	}
+         
+       // die($design_status);
+        // if($this->_add_new_design!=1)
+         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status,$designer_notes));
 	
 	($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
 	
@@ -570,6 +587,7 @@ function designer_availability($user_id=null,$designer_id=null)
 	$data["currentday"]=date('d');
 	
 	$data["currentmonth"]=date('m');
+	
 	$data["userid"]=$user_id;
 	$data["designerid"]=$designer_id;
 	$data["selectdate"]=$this->designer_model->insert_designer_availability($user_id,$designer_id,null,null,date('Y'),date('m'),null,null,null,null,null,'select');
@@ -588,8 +606,7 @@ function assign_date_time_user()
          
           if($_POST['type']=='insert')
           {
-		
-		 
+	 
            $data["weektime"]= $this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],$_POST['udate'],$_POST['uday'],$_POST['uyear'],$_POST['umonth'],$_POST['ushour'],$_POST['usminute'],$_POST['uehour'],$_POST['ueminute'],$_POST['weekrow'],$_POST['type']);	
            
            echo json_encode($data["weektime"]); 
@@ -606,6 +623,27 @@ function assign_date_time_user()
           }
           
 }
-
-
+function upload_image_for_concept_board($filename=null,$roomid=null)
+{
+	
+       $this->for_pic_upload($filename);
+       if($this->insertdata==0)
+       {
+       $return_data["success"]="error";       
+       }
+       else
+       {
+	$return_data["insertid"]=$this->concept_model->save_image_info($roomid,$this->_File_Location);
+         $return_data["success"]="success";       
+         $return_data["imagespath"]= $this->_File_Location;
+       }
+       echo json_encode($return_data);
+}
+function update_concept_board()
+{
+	
+      	$this->concept_model->update_concept_board_status($_POST["roomid"],$_POST["conceptid"],$_POST["status"]);
+      	echo "success";
+	
+}
 }

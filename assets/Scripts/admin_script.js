@@ -172,12 +172,18 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
            var designid=$("#holddesignidforroom").val();
            
            var value_length=$("#designproductid_"+designid).length;
-           
-           if((value_length==0)||($("#designproductid_"+designid).val().trim()==""))
+          
+          if((value_length==0)||($("#designproductid_"+designid).val().trim()==""))
 	  {
 	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
-	  }  
-	  else
+	  }
+	  else if($("#displaydesignimages").html().trim()=="")
+	  {
+		  
+		$("#div_show_error_message").html('<p>*Upload at lest one design images:</p>');  
+		  
+	  }
+	  else 
 	  {
 	  
 	   $("#hidproductsearch").val("SaveSelected");
@@ -187,13 +193,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
           }
   });
   
-   /*$("#product_details_for_design").click(function()
-   {
-	  alert("welcome!");
-	  $("#saveproduct").submit();
-	  
-   })
-  */
+   
   
   $("#searchproductname").click(function()
   {
@@ -697,5 +697,39 @@ function remove_display_div()
 	$(".productdetailsdiv").hide();
 	$(".productdetailsdiv").remove();
 	
+	
+}
+function save_comment(input_id,conceptid,roomid,form_id)
+        {
+	      
+	        $(".error").remove();
+	        if($("#"+input_id).val().trim()=="")
+	        {
+		        
+		       $("#"+input_id).after("<div class='error'>Enter comment!</div>");    
+		       $("#"+input_id).focus();
+	        }
+	        else
+	        {
+
+                        $("#holdcomment").val($("#"+input_id).val());
+                        $("#holdconceptid").val(conceptid);        
+		      $("#holdroomid").val(roomid);
+		      $("#"+form_id).submit();
+	        }
+	        
+        }
+function removetext(id,isreset)
+{
+         $(".error").remove();
+         if(isreset==1)
+	$("#"+id).html(" ")
+
+}
+function resettest(id)
+{
+	$(".error").remove();
+         if($("#"+id).val().trim()==" ")
+	$("#"+id).html("Enter comment");
 	
 }

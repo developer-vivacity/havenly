@@ -1130,6 +1130,7 @@ display: inline;
 
 #sizes input[type=text]{
 font-family: 'Open Sans';
+font-weight: 300;
 margin: .5em;
 font-size: 1.5em;
 color: lightgray;
@@ -1139,6 +1140,7 @@ border-radius: .2em;
 
 #information input[type=text] , #information input[type=password]{
 font-family: 'Open Sans';
+font-weight: 300;
 font-size: 1.1em;
 color: lightgray;
 margin-bottom: .5em;
@@ -1156,6 +1158,7 @@ width: 40%;
 #about{
 vertical-align: top;
 font-family: 'Open Sans';
+font-weight: 300;
 font-size: 1.5em;
 margin-top: .3em;
 color: lightgray;
@@ -1166,8 +1169,8 @@ text-align: center;
 }
 
 #style_pics, #room_type, #style_pics label {
-font-family: 'Open Sans Condensed', sans-serif;
-font-size: 1.3em;
+font-family: 'Open Sans', sans-serif;
+font-size: 1em;
 font-weight: 300;
 color: #505050;
 vertical-align: middle;
@@ -1288,3 +1291,28 @@ span.qq-drop-processing{
 display: none;
 }
 
+
+.survey_step{
+list-style-type: none;
+text-align: center;
+position: relative;
+}
+
+ul.survey_step li  {
+display: inline-block;
+color: #ccc;
+border: solid 1px #ccc;
+border-radius: 32px;
+height: 32px;
+width: 32px;
+font-size: 20px;
+line-height: 32px;
+}
+
+.survey_step .active{
+color: white;
+background-color: gray}
+
+.browsable {
+cursor: pointer;
+}

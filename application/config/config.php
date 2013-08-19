@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']= 'http://localhost/ellemot1';
+$config['base_url']= 'http://localhost/test/design3';
 
 /*
 |--------------------------------------------------------------------------

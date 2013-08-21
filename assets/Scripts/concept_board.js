@@ -46,7 +46,7 @@ $(function(){
 		var dismessage=(conf==1?"Do you want to archive this image":"Do you want to delete this image");
 
 	
-		$("#conceptcol"+for_div).append("<div style='position:absolute;z-index:100;width:350px;background-color:#A1D2E6;border:solid 2px #ADB1B3;' id='confirmation_div'><div>"+dismessage+"</div><div><input type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input type='button' value='No' onclick='remove_confirmation_box();'/></div></div>");
+		$("#conceptcol"+for_div).append("<div style='position:absolute;z-index:100;width:350px;background-color:gray;' id='confirmation_div'><div>"+dismessage+"</div><div><input class = 'button2 pink white_text' type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input class = 'button2 white_text pink' type='button' value='No' onclick='remove_confirmation_box();'/></div></div>");
 		
 	}
 	

@@ -10,7 +10,8 @@ $(document).ready(function()
   
 		 $("#bstabs a").click(function()
 		 {
-
+			$('#bstabs a').removeClass('pink_text');
+			$(this).addClass('pink_text');
 		     $(".adminmain").hide();
 		     $("#"+(this.rel)).show();
 	
@@ -19,78 +20,48 @@ $(document).ready(function()
 		 )
 		 
 		 
-		 // $("#addroominfo").click(function()
-		 // {
-			// $("#div_show_error_message").html(""); 	
-			// e_value=1;
+		 $("#addroominfo").click(function()
+		  {
+			 $("#div_show_error_message").html(""); 	
+			 e_value=1;
 			 
-             // // if($("#stylenotes").val().trim()=="")
-             // // {
-                // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter style notes:</p>'); 
-                // // e_value=0;
-            // // }
-			// // if($("#ceilingheight").val().trim()=="")
-             // // {
-                // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter ceiling height:</p>'); 
-                // // e_value=0;
-            // // }
-            // // if($("#hates").val().trim()=="")
-             // // {
-                // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter hates:</p>'); 
-                // // e_value=0;
-            // // }
-            // // if($("#keep").val().trim()=="")
-             // // {
-                // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter keep:</p>'); 
-                // // e_value=0;
-            // // }
-            // // if($("#ceilingheight").val().trim()!="" && !$.isNumeric($("#ceilingheight").val()))
-             // // {
-                // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter ceiling height in numeric format:</p>'); 
-                // // e_value=0;
-            // // }
-			// // if($('input[name="buy[]"]:checked').length<=0)
-			// // {
-				// // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Select at lest one Checkboxes:</p>'); 
-                // // e_value=0;
-				
-			// // }
-			// // if(e_value==1)
-			// // {
-	            // // var buyarea ="";
-	            // // $('input[name="buy[]"]:checked').each(function(i,e)
-	            // // {
-                  // // if(buyarea=="")
-                  // // {
-		            // // buyarea=e.value;
+             
+			if(e_value==1)
+			 {
+	           var buyarea ="";
+	            $('input[name="buy[]"]:checked').each(function(i,e)
+	            {
+                  if(buyarea=="")
+                   {
+		             buyarea= 1 ;
 		    
-	              // // }
-	              // // else
-	              // // {
-		            // // buyarea=buyarea+","+e.value;
-	              // // }
-				  // // if(e.value==14)
-	              // // { 
-					   // // if($("#othervalue").val().trim()=="")
-					   // // {
-					     // // $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter value in other:</p>');  			
-			             // // e_value=0;
-				       // // }
-				       // // else
-				       // // {
-				           // // buyarea=buyarea+","+$("#othervalue").val();
-				           // // e_value=1;
-				       // // }
-			      // // }
-			    // // });
-			    // // if(e_value==1)
-			    // // {
-			       // // $("#itemsbuy").val(buyarea);
-			       // // $("#updateform").submit();
-		       // // }
-	      // // }
+	               }
+	              else
+	              {
+		           buyarea=buyarea+","+e.value;
+	               }
+				  if(e.value==14)
+	              { 
+					   if($("#othervalue").val().trim()=="")
+					   {
+					      $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter value in other:</p>');  			
+			              e_value=0;
+				       }
+				       else
+				      {
+				            buyarea=buyarea+","+$("#othervalue").val();
+				            e_value=1;
+				        }
+			      }
+			    });
+			    if(e_value==1)
+			    {
+			       $("#itemsbuy").val(buyarea);
+			      $("#updateform").submit();
+		      }
+	      }
 		 
-// })
+ })
 
 $('input[name$="retail_option"]').click(function()
 		{

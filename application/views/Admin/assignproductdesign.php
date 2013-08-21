@@ -15,7 +15,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-	<a class="brand" href="#">Havenly</a>
+	<a class="brand" href="<?php echo base_url();?>">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url('/index.php/Admin/site/currentroomwithuser/'.$roomid);?>">Back</a></li>

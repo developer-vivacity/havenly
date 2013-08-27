@@ -18,10 +18,10 @@ if($privileges=='global'):?>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="#">Havenly</a>
+		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="<?php echo base_url();?>">Home</a></li>
               <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>
               <li><a>Designs</a></li>
 			   <li><a href="#">Order Tracker</a></li>

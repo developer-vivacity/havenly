@@ -40,7 +40,7 @@
 			</p>
 			<br><br><br>
 			<p class = "medium space half condensed dark_gray_text">
-			We're going to ask you just 5 questions to get a sense of your style and your needs.  There are no wrong answers.  And don't worry, our designer will call you to talk a little further.
+			We're going to ask you just a few questions to get a sense of your style and your needs.  There are no wrong answers.  And don't worry, our designer will call you to talk a little further.
 			</p><BR><BR><BR><BR><BR>
 			
 			<a class = "button2 pink midsmall white_text" id = "introbutton">
@@ -48,41 +48,68 @@
 </div>
 
 	<div id = "style_pics" class = "resize">
+	<ul class = "survey_step">
+<li class = "circle_survey condensed browsable active clickstyle_picks">1</li>
+<li class = "circle_survey condensed">2</li>
+<li class = "circle_survey condensed">3</li>
+<li class = "circle_survey condensed">4</li>
+<li class = "circle_survey condensed">5</li>
+<li class = "circle_survey condensed">6</li>
+</ul>
+<BR><BR>
 		<p class = "extralarge sans-serif blue_text">THE STYLE QUESTION </p><br>
-		<p class = "condensed medium dark_gray_text"> 
-		Pick a few. This helps us match you up with the <span>perfect designer.</span></p>
+		<p class = "sanslight medium dark_gray_text"> 
+		Pick a few pictures you love. This helps us match you up with the <span>perfect designer.</span></p>
 		<br><br>
-		<label for="room_type">Which Room Type?</label>
+		<label class = "sanslight" for="room_type">Which room are we decorating?</label>
 		<select name="room_type" id="room_type">
 			<option value = "none"></option>
 			<option value="BR" >Bedroom</option>
-			<option value="LR">Living Room</option>
+			<option value="LR">Living/Dining</option>
 	</select><br><br>
 		
 	<div id = "BR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=270em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=170em></div>
 		<div><input type="checkbox" name="style[]" value = 2 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=270em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=170em></div>
 		<div><input type="checkbox" name="style[]" value = 3 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=270em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=170em></div>
 		<div><input type="checkbox" name="style[]" value = 4 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=270em> 
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=170em> 
 		</div><div><input type="checkbox" name="style[]" value = 5 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=270em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=170em>
 		</div><div><input type="checkbox" name="style[]" value = 6 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=270em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=170em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=270em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=170em>
 		</div><div><input type="checkbox" name="style[]" value = 8 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=270em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=170em>
 		</div><div><input type="checkbox" name="style[]" value = 9 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=270em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=170em>
 		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=270em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=170em></div>
 		<div><input type="checkbox" name="style[]" value = 11 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR11.jpg');?> height=270em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR11.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 12 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR12.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 13 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR13.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 14 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR14.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 15 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR15.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 16 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR16.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 17 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR17.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 18 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR18.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 19 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR19.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 20 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR20.jpg');?> height=170em></div>
 		</div>
 		
 		<div id = "LR" class = "padding_small">
@@ -113,7 +140,24 @@
 		</div><div><input type="checkbox" name="style[]" value = 12 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR12.jpg');?> height=270em>
 		</div>
+		<div><input type="checkbox" name="style[]" value = 13 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR13.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 14 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR14.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 15 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR15.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 16 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR16.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 17 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR17.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 18 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR18.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 19 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR19.jpg');?> height=170em></div>
+		<div><input type="checkbox" name="style[]" value = 20 class='cbox' />
+		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR20.jpg');?> height=170em></div>
 		</div>
+		
 		
 		<br>
 <hr class = "style half"/><br><br><br><br><br><div class = "continue horizontal"><br>
@@ -125,8 +169,19 @@
 
 
 	<div id = "colors" class = "resize">
+	
+<ul class = "survey_step">
+<li class = "circle_survey browsable browsable condensed clickstyle_pics">1</li>
+<li class = "circle_survey browsable condensed active clickcolors">2</li>
+<li class = "circle_survey condensed">3</li>
+<li class = "circle_survey condensed">4</li>
+<li class = "circle_survey condensed">5</li>
+<li class = "circle_survey condensed">6</li>
+</ul>
+<BR><BR>
+	
 	<p class = "extralarge sanslight blue_text">THE COLOR QUESTION</p><br>
-		<p class = "condensed medium dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
+		<p class = "sanslight medium dark_gray_text"> Which <span>appeal to you</span> most for your room?</p><br><br>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(188,196,188);"></div>
 		<input type="checkbox" name="color[]" value = 1 class='cbox' /></div>
 		<div class = "inline"><div class = "color" style = "background-color: rgb(255,243,196);"></div>
@@ -166,58 +221,76 @@
 </div>	
 
 <div id = "room_pics" class = "resize" ><br>
+
+	<ul class = "survey_step">
+<li class = "circle_survey condensed browsable clickstyle_pics">1</li>
+<li class = "circle_survey condensed browsable clickcolors">2</li>
+<li class = "circle_survey condensed active clickroom_pics">3</li>
+<li class = "circle_survey condensed" >4</li>
+<li class = "circle_survey condensed">5</li>
+<li class = "circle_survey condensed" >6</li>
+</ul>
+<BR><BR>
+
+
 	<p class = "extralarge sanslight blue_text">THE PICTURE SECTION </p><br>
-	<p class = "medium condensed dark_gray_text"> Only your designer sees this, so you don't have to be too embarrassed about your spaceship sheets. </span></p>
+	<p class = "medium sanslight dark_gray_text"> Only your designer sees this, so you don't have to be too embarrassed about your spaceship sheets. </span></p>
 	<br><br>
 <div class = "padding">
 <div style = "display: table-row">
-<div class = "half inline border" style = "display:table-cell; width:40%">
-<p class = "sanslight medium">Option 1:  Upload photos of your room</p>
-<p class = "condensed midsmall">Take pictures of all four walls of your room, if you can</p>
-<div id = "first_photo" class= "inline"> 
+<div class = "inline gray" style = "display:table-cell; width:40%"><BR><BR>
+<p class = "sanslight white_text midlarge"> Upload photos of your room</p><BR>
+<p class = "sanslight white_text midsmall">Take pictures of all four walls of your room, if you can</p><BR><BR>
+<div id = "first_photo" class= "padding inline"> 
 
 	<div>
 		<div id="uploader1">.</div>
 		<input type="hidden" name="room_file1" id="room_file1" />
 		<div id = "file1">
 			<a id = "room_button1" onclick = '$("#room_photo1").click();'>
-				<img src = <?php echo base_url('assets/Images/imagepng.jpg');?> height="200">
+				<img src = <?php echo base_url('assets/Images/uploadpng.png');?> height="150">
 			</a>
 			<input type = "file" name = "room_photo1" id = "room_photo1"/>
 			<div id = "image1"></div>
 		</div>	
 	</div>
 </div>
-<div id = "second_photo" class= "inline">
+<div id = "second_photo" class= "padding inline">
 
 	<div>
 		<div id="uploader2">.</div>
 		<input type="hidden" name="room_file2" id="room_file2" />
 		<div id = "file2">
-			<a class = "button2 midsmall pink" id = "room_button2" onclick = '$("#room_photo2").click();'>Browse</a>
+			<a id = "room_button2" onclick = '$("#room_photo2").click();'>
+				<img src = <?php echo base_url('assets/Images/uploadpng.png');?> height="150">
+			</a>
 			<input type = "file" name = "room_photo2" id = "room_photo2"/>
 			<div id = "image2"></div>
 		</div>	
 	</div>
 </div>
-<div id = "third_photo" class= "inline">
+<div id = "third_photo" class= "padding inline">
 
 	<div>
 		<div id="uploader3">.</div>
 		<input type="hidden" name="room_file3" id="room_file3" />
 		<div id = "file3">
-			<a class = "button2 midsmall pink" id = "room_button2" onclick = '$("#room_photo3").click();'>Browse</a>
+			<a id = "room_button3" onclick = '$("#room_photo3").click();'>
+				<img src = <?php echo base_url('assets/Images/uploadpng.png');?> height="150">
+			</a>
 			<input type = "file" name = "room_photo3" id = "room_photo3"/>
 			<div id = "image3"></div>
 		</div>	
 	</div>
 </div>
-<div id = "fourth_photo" class = "inline">
+<div id = "fourth_photo" class = "padding inline">
 	<div>
 		<div id="uploader4">.</div>
 		<input type="hidden" name="room_file4" id="room_file4" />
 		<div id = "file4">
-			<a class = "button2 midsmall pink" id = "room_button2" onclick = '$("#room_photo4").click();'>Browse</a>
+		<a id = "room_button4" onclick = '$("#room_photo4").click();'>
+				<img src = <?php echo base_url('assets/Images/uploadpng.png');?> height="150">
+			</a>
 			<input type = "file" name = "room_photo4" id = "room_photo4"/>
 			<div id = "image4"></div>
 		</div>	
@@ -227,13 +300,7 @@
 
 
 </div>
-<div class = "half inline border" style = "display:table-cell; width: 40%;">
-<p class = "sanslight medium">Option 2:  Upload a short video</p>
-<p class = "condensed midsmall">Take a 30 second 360&deg; video.  Start at the main entryway.</p> 
-<BR><BR><BR><BR><BR>
-<a class = "button2 midsmall pink" id = "vid_button2" onclick = '$("#room_video").click();'>Browse</a>
-<input type = "file" name = "room_video" id = "room_video"/> 
-</div>
+
 
 
 
@@ -256,19 +323,29 @@
 	
 
 	<div id = "sizes" class = "resize" >
+	<ul class = "survey_step">
+<li class = "circle_survey condensed browsable clickstyle_pics">1</li>
+<li class = "circle_survey condensed browsable clickcolors">2</li>
+<li class = "circle_survey condensed browsable clickroom_pics">3</li>
+<li class = "circle_survey condensed active">4</li>
+<li class = "circle_survey condensed">5</li>
+<li class = "circle_survey condensed">6</li>
+</ul>
+<BR><BR>
+	
 	<p class = "extralarge sanslight blue_text">THE ROOM QUESTIONS</p><br>
-		<p class = "condensed medium dark_gray_text">Tell us a little about your room. <span>And what you're looking for.</span></p><br><br>
+		<p class = "sanslight medium dark_gray_text">Tell us a little about your room. <span>And what you're looking for.</span></p><br><br>
 		<div class = "horizontal">
 		
 		<div class = "center top half">
-		<p class = "medium condensed center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
+		<p class = "midsmall sanslight center dark_gray_text">Rough room dimensions:<p class = "small condensed dark_gray_text"> (in feet)</span></p><br>
 		<input type="text" name="room_width" value="width" id = "room_width" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/> 
 			<br>
 		x  <br>
 		<input type="text" name="room_height" value="length" id = "room_height" maxlength="6" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/>
 		</div>
 		<div class = "center top half">
-			<p class = "medium condensed center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
+			<p class = "midsmall sanslight center dark_gray_text ">A bit about what you want, want to keep, want to buy:</p><br>
 			<BR><textarea name="about" id="about" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};">I like the couch, but need your help with everything else, including a new coffee table</textarea>
 	  </div></div>
 	  <br><br><br><br><br><br><br>
@@ -278,8 +355,18 @@
 
 
 	  <div id = "type" class = "resize">
+	  	<ul class = "survey_step">
+<li class = "circle_survey condensed browsable clickstyle_pics">1</li>
+<li class = "circle_survey condensed browsable clickcolors">2</li>
+<li class = "circle_survey condensed browsable clickroom_pics">3</li>
+<li class = "circle_survey condensed browsable clicksizes">4</li>
+<li class = "circle_survey condensed active clicktype">5</li>
+<li class = "circle_survey condensed" >6</li>
+</ul>
+<BR><BR>
+	  
 	  <p class ="extralarge sanslight blue_text">THE NEEDS QUESTION</p><br>
-	  <p class = "medium condensed dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
+	  <p class = "medium sanslight dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
@@ -297,10 +384,19 @@
 		
 	</div>
 	<div id = "social" class = "resize">
+		  	<ul class = "survey_step">
+<li class = "circle_survey condensed browsable clickstyle_pics">1</li>
+<li class = "circle_survey condensed browsable clickcolors">2</li>
+<li class = "circle_survey condensed browsable clickoom_pics">3</li>
+<li class = "circle_survey condensed browsable clicksizes">4</li>
+<li class = "circle_survey condensed browsable clicktype">5</li>
+<li class = "circle_survey condensed active clicksocial">6</li>
+</ul>
+	
 	<p class ="extralarge sanslight blue_text">THE GET TO KNOW YOU PART</p><br>
-	<p class = "medium seventy sans-serif space dark_gray_text">
+	<p class = "medium seventy sanslight space dark_gray_text">
 		OPTIONAL:  If you feel comfortable, let us see some of your social media profiles.</p>  <br><BR>
-		<P class = "small seventy space blue_text condensed">We won't use this for anything other than to decorate.  <br>
+		<P class = "small seventy space blue_text sanslight">We won't use this for anything other than to decorate.  <br>
 		(Please note, we can only view them if they are public)</p>
 		<br><br><br><br>
 		<div class = "horizontal">
@@ -347,7 +443,7 @@
 	
 	<div id = "information" class = "resize">
 		<p class = "extralarge sanslight blue_text">CREATE YOUR ACCOUNT</p><br>
-		<p class = "medium condensed dark_gray_text">We'll be in <span>touch.</span></p><br><br>
+		<p class = "medium sanslight dark_gray_text">We'll be in <span>touch.</span></p><br><br>
 	
 		<div class = "horizontal">
 			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="first_name">First Name:</label>
@@ -415,7 +511,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 				
 				},
 				text: {
-				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/imagepng.jpg');?>" height="200"></a>'
+				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/uploadpng.png');?>" height="120"></a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -439,7 +535,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 				
 				},
 				text: {
-				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/imagepng.jpg');?>" height="200"></a>'
+				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/uploadpng.png');?>" height="120"></a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -463,7 +559,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 				
 				},
 				text: {
-				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/imagepng.jpg');?>" height="200"></a>'
+				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/uploadpng.png');?>" height="120"></a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -487,7 +583,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 				
 				},
 				text: {
-				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/imagepng.jpg');?>" height="200"></a>'
+				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/uploadpng.png');?>" height="120"></a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
 				if (responseJSON.success) {
@@ -513,7 +609,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 	fileElementId :'room_photo1',
 	data: {'id':'room_photo1'},
 	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=150em>";
 	$("#image1").html(newimage);
 	$("#image1").show();
 	$("#loading").hide();
@@ -536,7 +632,7 @@ $("#room_photo2").change(function(){
 	fileElementId :'room_photo2',
 	data: {'id':'room_photo2'},
 	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=150em>";
 	$("#image2").html(newimage);
 	$("#image2").show();
 	$("#loading").hide();
@@ -560,7 +656,7 @@ $("#room_photo3").change(function(){
 	fileElementId :'room_photo3',
 	data: {'id':'room_photo3'},
 	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=150em>";
 	$("#image3").html(newimage);
 	$("#image3").show();
 	$("#loading").hide();
@@ -583,7 +679,7 @@ $("#room_photo4").change(function(){
 	fileElementId :'room_photo3',
 	data: {'id':'room_photo3'},
 	success: function (data){
-	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=200em>";
+	var newimage = "<img src ='https://s3.amazonaws.com/easableimages/"+data+"' height=150em>";
 	$("#image4").html(newimage);
 	$("#image4").show();
 	$("#loading").hide();
@@ -608,8 +704,7 @@ $("#room_pics .continue").show();
 			var filename4 =$("#fourth_photo img").attr('src');
 			$("#room_file4").val(filename4);
 			
-			alert(filename2+filename3);
-		});
+					});
  
 		
 	
@@ -648,13 +743,11 @@ $("#room_pics .continue").show();
 		
 		
 		$("#sizes input").keyup(function(){
-		var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
-		var str = $("#room_width").val();
-		if(numberRegex.test(str)){
-			var str = $("#room_height").val();
-				if(numberRegex.test(str)){
+		if ( $("#room_width").val()!=''){
+	
+			if($("#room_height").val()!='')
+				{
 				$(this).parent().parent().parent().parent().parent().find('.continue').fadeIn();
-				
 				}
 				else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
 			} else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
@@ -768,6 +861,37 @@ $("#submit").click(function(){
 	$(".user_form").submit();});
 
 	});
+	
+	$(".clickstyle_pics").click(function(){
+	$(".resize").hide();
+	$("#style_pics").fadeIn();
+	});
+	
+	$(".clickcolors").click(function(){
+	$(".resize").hide();
+	$("#colors").fadeIn();
+	});
+	
+	$(".clickroom_pics").click(function(){
+	$(".resize").hide();
+	$("#room_pics").fadeIn();
+	});
+	
+	$(".clicksizes").click(function(){
+	$(".resize").hide();
+	$("#sizes").fadeIn();
+	});
+	
+	$(".clicktype").click(function(){
+	$(".resize").hide();
+	$("#type").fadeIn();
+	});
+	$(".clicksocial").click(function(){
+	$(".resize").hide();
+	$("#social").fadeIn();
+	});
+	
+
 
 	
 	</script>

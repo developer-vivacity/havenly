@@ -26,11 +26,11 @@ $(function(){
                                 	  {
 					  
 				   mestatus.text('Photo Uploaded Sucessfully!');
-				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'" height="100px" width="100px"></td><td id="conceptcol'+obj.insertid+'"><input type="button" value="Archive" onclick="concept_confirmation(1,'+$("#userroomid").val()+','+obj.insertid+');"/><input type="button" value="Delete" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
+				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'"  width="200px"></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation(1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
 		                    } 
 				  else
 				  {
-					mestatus.text('file uploded is failed!')
+					mestatus.text('File upload failed!')
 				  }
 			
 				
@@ -43,10 +43,10 @@ $(function(){
 	function concept_confirmation(conf,roomid,for_div)
 	{
 		$("#confirmation_div").remove();
-		var dismessage=(conf==1?"do you want archive this image":"do you want delete this image");
+		var dismessage=(conf==1?"Do you want to archive this image":"Do you want to delete this image");
 
 	
-		$("#conceptcol"+for_div).append("<div style='position:absolute;z-index:100;width:350px;background-color:#A1D2E6;border:solid 2px #ADB1B3;' id='confirmation_div'><div>"+dismessage+"</div><div><input type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input type='button' value='No' onclick='remove_confirmation_box();'/></div></div>");
+		$("#conceptcol"+for_div).append("<div style='position:absolute;z-index:100;width:350px;background-color:gray;' id='confirmation_div'><div>"+dismessage+"</div><div><input class = 'button2 pink white_text' type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input class = 'button2 white_text pink' type='button' value='No' onclick='remove_confirmation_box();'/></div></div>");
 		
 	}
 	

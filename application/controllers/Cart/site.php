@@ -27,21 +27,44 @@ Class Site extends CI_Controller
 		 
 		  $this->cart_model->insert_product_for_design($_POST["holdproductidfordesign"],$_POST["holdroomid"],$design_id);
 	     }
-     	   $data["productname"]=$this->product_model->display_design_associated_products($design_id);
-	   $data["designimage"]=$this->product_model->design_image_for_rooms(null,$design_id);
-	   $data["room_type"]=$this->cart_model->Check_user_rooms();
-	   $data["design_color"]=$this->cart_model->paint_colors_for_design($design_id);
+	    
+     	   $data["productname"]=$this->product_model->display_design_associated_products($design_id,'submitted');
+	   
+	   if(sizeof($data["productname"])===0)
+	   {
+	     
+		   $designInfo=$this->cart_model->get_design_info_by_id($design_id);
+		   
+		   $designdata=array('designinfo'=>$designInfo[0]['design_name']);
+		   
+		   $this->session->set_userdata($designdata);
+		   
+		   redirect('/Users/site/login?a=designs', 'refresh');
+            }
+            else
+            {
+		
+		$data["designimage"]=$this->product_model->design_image_for_rooms(null,$design_id);
+	         $data["room_type"]=$this->cart_model->Check_user_rooms();
+	         $data["design_color"]=$this->cart_model->paint_colors_for_design($design_id);
 	  
-	   $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
-	   $data["designid"]=$design_id;
-	   $data["totalitemincart"]=$this->cart_model->updateshoppingcart();
-	   $data["totalitemincart"]=(sizeof($data["totalitemincart"])==0?0:$data["totalitemincart"][0]->total_qty);
-	   $this->load->view('Cart/shoppingcart', $data);
+	         $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
+	         $data["designid"]=$design_id;
+	           
+	           
+	     
+	     $data["totalitemincart"]=$this->cart_model->updateshoppingcart(null,null,$design_id,null);
+	     $data["totalitemincart"]=(sizeof($data["totalitemincart"])==0?0:$data["totalitemincart"][0]->total_qty);
+		  
+	    }
+            
+              
+	     $this->load->view('Cart/shoppingcart', $data);
 	 }
          else
          {
-	 $data["title"]="Login";
-          $this->load->view('Users/login', $data);	
+	    $data["title"]="Login";
+             $this->load->view('Users/login', $data);	
 	}
 	  
    }
@@ -53,6 +76,7 @@ Class Site extends CI_Controller
   function product_details_of_design($productid,$designid)
   {
 	 $data["productid"]=$productid;
+$data["designid"]=$designid;
 	 $data["productdetails"]=$this->product_model->get_all_product($productid);
           $data["qty"]=$this->cart_model->get_product_qty($productid,$designid);
 	 $this->load->view('Cart/productdetails', $data);
@@ -67,9 +91,11 @@ Class Site extends CI_Controller
 	}
 	if($_POST)  
 	{
+
 	$data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
-	$this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
-	$this->products_associate_design($_POST["holdproductid"]);
+
+$this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
+	$this->products_associate_design($_POST["holddesignid"]);
 	redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
 	}
   }
@@ -84,6 +110,7 @@ Class Site extends CI_Controller
   }
   function products_in_cart($design_id)
   {
+	  
        $data["designid"]=$design_id;
        $data["productincart"]=$this->cart_model->product_details_with_design();	  
        $this->load->view('Cart/productsincart',$data);  

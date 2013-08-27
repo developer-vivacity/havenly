@@ -33,7 +33,7 @@
 <div class = "container">
 
 <BR><BR><BR><BR><BR>
- <div class = "warning" id="div_show_error_message"></div>
+ <div class = "alert alert-error" id="div_show_error_message"></div>
 
  <?php
     $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
@@ -44,7 +44,7 @@
         
         ?>
 
-<div class = "row large text-center condensed">
+<div class = "row midlarge text-center sanslight">
 
      <?php
            echo $userdesign[0]->design_name;
@@ -52,35 +52,35 @@
            // this hidden variable store design name.
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
      ?>&nbsp;
-<input class = "btn condensed" type="button" value="Save Selected" id="SaveSelected"/>
+<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
 
-<p class = "midsmall sanslight">  Edit user design and add products to complete user design.</p>
+<p class = "midsmall sanslight">Edit user design and add products to complete user design.</p>
 
+</div>
+
+<BR>
+<BR>	
+<div class = "well trellis" style="height: 110px;">
+<div class = "span5 text-center middle" style = "display:table-cell; vertical-align: middle;" >
+	
+<p class = "sanslight text-center midsmall">Upload Design Image</p>
+	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
+		<span id="mestatus" ></span><br/></div>
+		
+<div class = "span5 ">
+	<div id="files"  style="list-style-type: none;">
+		<li class="success" >
+		</li>
 </div>
 <div id="displaydesignimages">
 <?php
 foreach($designimage as $key)
 {
-echo '<div  style="width:90px;border:solid 2px white;float:left;"><img src="'.$key->filename.'" width="80px" height="80px"></div>';
+echo '<div style="float:left;"><img src="'.$key->filename.'" height="100px"></div>';
 }
 ?>
 </div>
-<BR>
-<BR>
-<BR>
-<BR>	
-<div class = "well text-center">
-	
-<p class = "condensed text-center medium">Upload Design Images</p>
-	<div id="me" class="styleall" style="height:10px;width:190px;">
-	<span class = "btn">Click Here To Upload Photo</span></div>
-	
-	<span id="mestatus" ></span><br/>
-	<div id="files" style="list-style-type: none;">
-<li class="success" >
-</li>
-</div>
-</div>	
+</div></div>
 <br/><br/><br/>
 <div class = "row">
 

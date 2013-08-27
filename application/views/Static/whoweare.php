@@ -70,7 +70,7 @@
 					<div class="span4">
 						<div class="about_item">
 							<div class="about_item_center">
-								<img class = "translucent img-circle" src = <?php echo base_url('assets/Images/Lee.jpg');?> height=150><br><br>
+								<img class = "img-circle" src = <?php echo base_url('assets/Images/Lee2.jpg');?> height=150><br><br>
 								<div class="clear"></div>
 				                <h3>Lee Mayer</h3>
 				                
@@ -86,7 +86,7 @@ She loves cows and has most recently learned to ski.  Ask her about her collecti
 					<div class="span4">
 						<div class="about_item">
 							<div class="about_item_center">
-							<img class = "translucent img-circle" src = <?php echo base_url('assets/Images/Emily.jpg');?> height=150><br><br>
+							<img class = "img-circle" src = <?php echo base_url('assets/Images/Emily2.jpg');?> height=150><br><br>
 								<div class="clear"></div>
 				                <h3>Emily Motayed</h3>
 				                <p class = "sanslight small dark_gray_text">Emily is a DC gal at heart, but is currenly a nomad traveling between Denver, Chicago and NYC.

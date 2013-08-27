@@ -58,7 +58,7 @@ if($conceptboard[0]->total!=0):
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
 }?>
 <li><a class = "pink white_text" href="#status"  rel="status">Status</a></li>
-<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/display_designer_vailability/"  rel="designer">Designer Availability</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/"  rel="designer">Designer Availability</a></li>
 </ul></div>
  
 <div class = "usermain text-center" id = "designer"> <BR><BR>
@@ -160,7 +160,11 @@ if(sizeof($designforloginuser)>0)
   <table class = "table-center span5" id="designer_table">
  <?php
            $url = base_url('assets/Images');
-           echo '<tr><td colspan="5"> You have a design ready.</td></tr>';
+           if(isset($deletedesigninfo))
+           {
+           echo '<tr><td colspan="5"><p style="color:#F50727;font-size:100%">'.$deletedesigninfo.'</p></td></tr>';
+           }
+           echo '<tr><td colspan="5"><p style="font-size:200%"> You have a design ready.</p></td></tr>';
            echo '<tr><td><h4>Design Name</h4></td><td><h4>Design Image</h4></td><td><h4>Design Comment</h4></td><td><h4>Design Status</h4></td><td>&nbsp;</td></tr>';
 	  foreach($designforloginuser as $key)
 	  {

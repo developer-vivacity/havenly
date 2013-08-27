@@ -14,7 +14,9 @@ $(function(){
 		      $("#me").hide();
 		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
 		      { 
+			      
                         mestatus.text('Only JPG, PNG or GIF files are allowed');
+                        $("#me").show()
 		      return false;
 		      }
 		        mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');

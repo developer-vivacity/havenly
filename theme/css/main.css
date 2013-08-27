@@ -34,7 +34,18 @@ p{
 a{text-decoration:none}
 a:hover{text-decoration:none}
 h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{margin-left:12px;font-size:15px;font-style:italic;color:#000;line-height:5px;letter-spacing:0}
+label {font-family: 'Open Sans';
+font-weight: 300;
+}
 
+textarea {
+width: 60%;
+display: table-cell;
+vertical-align: top;
+margin-bottom: 2em;
+margin-left: 2em;
+
+}
 
 /********** BOOTSTRAP MODIFICATIONS **********/
 /* Navbar Tweaks */
@@ -45,17 +56,20 @@ h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{margin-left:12px;font-size
 	border-color: transparent;
 	background-image: none;
 	opacity: 0.6;
+	font-family: 'Open Sans';
+	font-weight: 300;
 }
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
   color: white;
   text-shadow: none;
-  text-transform:uppercase;
-  font-weight:500;
+/*   text-transform:uppercase; */
+  font-weight:300;
+  font-size: .8em;
 }
 
-.nav>li>a{
+.navbar-inverse .nav>li>a{
 color: white;
 }
 
@@ -118,6 +132,8 @@ color: white;
 hr.style {
   border: 0;
   border-bottom: 1px solid #bfbfbf;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
 }
 
@@ -127,7 +143,7 @@ hr.style2 { border: 0; height: 0; border-bottom: 1.5px solid white; }
 /********** HEADER WRAP **********/
 #headerwrap {
     width: 100%;
-    background: url(../../assets/Images/flowerbg.jpg) no-repeat center center fixed; 
+    background: url(../../assets/Images/markbg.jpg) no-repeat center center fixed; 
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
@@ -143,8 +159,7 @@ hr.style2 { border: 0; height: 0; border-bottom: 1.5px solid white; }
 	font-weight:400;
 	font-size:120px;
 	line-height: 110px;
-	color:white;
-	
+	color: white;
 }
 
 /********** WELCOME WRAP **********/
@@ -541,6 +556,23 @@ color: black;}
 
 
 
+.button1{
+padding: .3em;
+border-radius: .3em;
+/* color: #FFFFFF; */
+display: inline-block;
+*display: inline;
+    zoom: 1;
+*display: inline;
+    zoom: 1;
+text-align: center;
+vertical-align: middle;}
+.button1:hover{
+opacity:.4;
+color: #fff;
+}
+
+
 .button3{
 margin: 0;
 padding: 10px;
@@ -560,6 +592,29 @@ color: white;
  z-index:999;
 }
 .button3:hover{
+cursor: pointer;
+opacity: .6;
+}
+
+.button2{
+margin: 0;
+padding: 10px;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+-ms-border-radius: 7px;
+-o-border-radius: 7px;
+border-radius: 7px;
+display: inline-block;
+background-color: #F74D76;
+color: white;
+ z-index:999;
+ box-shadow: none;
+ border: none;
+ width: 40px;
+ margin: 5px;
+ font-family: 'Open Sans';
+}
+.button2:hover{
 cursor: pointer;
 opacity: .6;
 }
@@ -674,6 +729,14 @@ background-image:url('../../assets/Images/chevron.jpg');
 background-image:url('../../assets/Images/bluechevron.png');
 }
 
+.canvas{
+background-image: url('../../assets/Images/bgcanvas.jpg');}
+
+.boxshadow{
+box-shadow: 2px 2px 2px #CCC;}
+
+.boxshadowleft{
+box-shadow: -2px 2px 2px 1px #CCC;}
 
 .centerline { 
 	position: relative;
@@ -901,8 +964,35 @@ width: 70%;
 width: 100%;
 }
 
+.padding{
+padding: .5em;}
 
+.text-center{
+text-align: center;
+}
 
+.top{
+vertical-align: top;
+}
+
+#bstabs {
+color: gray;
+font-family: 'Open Sans Condensed';
+font-size: 1.2em;
+}
+
+#bstabs li {
+padding: .7em;
+}
+
+.adminmain{
+font-family: 'Open Sans';
+font-weight: 300;
+margin-left: 3em;
+width: 80%;
+}
+.adminmain td{
+padding: .2em;
 
 
 /********** MEDIA QUIERIES **********/

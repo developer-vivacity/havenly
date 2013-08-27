@@ -300,10 +300,15 @@ function UserEditInformation()
 //----This function used for when user login...............//
  function login()
  {
-
+  
  if(($this->session->userdata('first_name')!=""))
     {
-  
+      if($this->session->userdata('designinfo'))
+       {
+          $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
+          $designdata=array('designinfo'=>'');
+          $this->session->unset_userdata($designdata);
+        }
       if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
       {
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
@@ -353,6 +358,14 @@ if($this->form_validation->run() == FALSE)
 	   
 if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
     {
+	   if($this->session->userdata('designinfo'))
+            {
+	    $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
+             $designdata=array('designinfo'=>'');
+             $this->session->unset_userdata($designdata);
+            
+            }
+            
         $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
         $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
         $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
@@ -580,6 +593,7 @@ $data =array('first_name'=> $this->input->post('update_name'),
     redirect('/Users/site/login/','refresh');
 
  }
+ /*
  function display_designer_vailability()
  {
     
@@ -641,7 +655,7 @@ $data =array('first_name'=> $this->input->post('update_name'),
             $data["title"]="Login";
             $this->load->view('Users/login', $data);
   }
-}
+}*/
 
 }
 ?>

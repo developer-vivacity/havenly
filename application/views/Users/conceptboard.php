@@ -41,15 +41,18 @@
 <li ><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
 <li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
 <li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
+
 <li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+
 <?php 
-/*
+
 if(sizeof($designforloginuser)>0)
 {
 echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
-}*/
+}
 ?>
-<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/display_designer_vailability/"  rel="designer">Designer Availability</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=status" rel="status">Status</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/"  rel="designer">Designer Availability</a></li>
 </ul>
 </div>
 <?php

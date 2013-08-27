@@ -35,9 +35,9 @@
 
 <table border="0">
 	<tr><td colspan="2">
-		<div style="float:right;"><div id="total_items_in_cart"><?php echo $totalitemincart;?></div>
-	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>"><img src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div></td></tr>
-	<tr><td colspan="2"><?php echo '<div style="float:right;"><a href="'.base_url().'/index.php/Users/site/login">Back</a></div>';
+		<div style="float:right;">Total products in cart.<div id="total_items_in_cart"><?php echo $totalitemincart;?></div>
+	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>" id="cart_details"><img src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div></td></tr>
+	<tr><td colspan="2"><?php echo '<div style="float:right;"><a href="'.base_url().'/index.php/Users/site/login?a=designs">Back</a></div>';
 ?></td></tr>
 <tr><td>
 <table>
@@ -76,6 +76,7 @@
 <table>
 <tr><td ><div style="450px">
 <?php
+
 foreach($productname as $key=>$value)
 {
 echo'<div style="width:150px;float:left;" >

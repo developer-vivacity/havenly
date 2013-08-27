@@ -44,7 +44,8 @@ $(document).ready(function()
 					   if($("#othervalue").val().trim()=="")
 					   {
 					      
-			                         $("#othervalue").before('<p>*Enter value in other:</p>');
+					         $(".error").remove();
+			                         $("#othervalue").before('<p class="error">*Enter value in other:</p>');
 			                         e_value=0;
 				             }
 				             else

@@ -71,7 +71,7 @@ $query=$this->db->query('CREATE TABLE IF NOT EXISTS designer_calls (
 	
 	 $startdate= date('Y-m-d', strtotime($date));
           
-          $enddate=date("Y-m-d h:i", strtotime("$date +24 hours"));
+          $enddate=date("Y-m-d H:i", strtotime("$date +24 hours"));
 	 
 	$query=(isset($data['display'])?$this->db->query("SELECT * from designer_availability 
 		 WHERE designer_id = ".$id." AND  time >= '".$startdate."' AND time <= '".$enddate."'"):$this->db->query("SELECT * from designer_availability 

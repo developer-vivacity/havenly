@@ -52,7 +52,7 @@
 if($conceptboard[0]->total!=0):
 ?>
 <li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-<?php endif;?>
+<?endif;?>
 
 <?php if(sizeof($designforloginuser)>0){
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';

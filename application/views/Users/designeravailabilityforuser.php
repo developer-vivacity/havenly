@@ -68,7 +68,7 @@ echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/sit
 }
 ?>
 <li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Users/site/login?a=status"   rel="status">Status</a></li>
-<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/"  >Designer Availability</a></li>
 </ul>
 </div>
 </div>
@@ -91,14 +91,14 @@ echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/sit
      {
       $attach_div= '<div style="position:absolute;" id="radiocircle"><img src="../../../../../assets/Images/l.png" height="30px;" width="30px;"/></div>';
       $is_check=   'checked';   
-      $checktimeformat = date("M, d Y h:i a", strtotime($designercall[0]["time"]));
-      echo '<tr><td class = "medium">'.$attach_div.'<input class = "top" type="radio" name="time" id="time'.$radio_id.'" value = "'.$designercall[0]["time"].'" onclick="display_circle(\'time'.$radio_id.'\');" '.$is_check.'/>&nbsp; &nbsp;'.$checktimeformat.'<BR></td></tr>';	
+      $timeformat = date("M, d Y h:i a", strtotime($designercall[0]["time"]));
+      echo '<tr><td class = "medium">'.$attach_div.'<input class = "top" type="radio" name="time" id="time'.$radio_id.'" value = "'.$designercall[0]["time"].'" onclick="display_circle(\'time'.$radio_id.'\');" '.$is_check.'/>&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';	
       $radio_id=++$radio_id;
      }
- 
+  
   foreach($designeravailability as $designkey=>$designvalue)
-  {       
-$timeformat = date("M, d Y h:i a", strtotime($designvalue["time"]));
+  {
+     $timeformat = date("M, d Y h:i a", strtotime($designvalue["time"]));
      echo '<tr><td class = "medium"><input class = "top" type="radio" name="time" id="time'.$radio_id.'" value = "'.$designvalue["time"].'" onclick="display_circle(\'time'.$radio_id.'\');" />&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';	
      $radio_id=++$radio_id;	
   }

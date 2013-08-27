@@ -9,7 +9,7 @@ $(function(){
 			name: 'uploadfile',
 			roomid:$("#currentroomid").val(),
 			userid:$("#currentuserid").val(),
-            designid:$("#userdesign").val(),
+                        designid:$("#userdesign").val(),
 		      onSubmit: function(file, ext){
 		      $("#me").hide();
 		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
@@ -29,23 +29,23 @@ $(function(){
                                 	  {
 				       mestatus.text('Photo Uploaded Sucessfully!');
 				       
-				       $("#mestatus").after('<div id="uploadmoreimg"><a class = "sanslight gray_text" href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload another image</a></div>');
+				       $("#mestatus").after('<div id="uploadmoreimg"><a href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload more image</a></div>');
 				       
 				       if($("#displaydesignimages").length!=0)
 				       {
 					       //$("#messagefordesign").remove();	   
-					       $("#displaydesignimages").append('<div style="width:90px;float:left;"><img src="'+obj.images+'" height="80px"/></div>');
+					       $("#displaydesignimages").append('<div style="width:90px;border:solid 2px white;float:left;"><img src="'+obj.images+'" width="80px" height="80px"/></div>');
 					       
 				       }
 				       if($("#designimageassignproduct").length!=0)
 				       {
 				            $("#messagefordesign").remove();	   
-					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" height="100px"/></div>');
+					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" width="100%" height="100px"/></div>');
 			                }
 				  } 
 				  else
 				  {
-					mestatus.text('file upload failed!')
+					mestatus.text('file uploded is failed!')
 				  }
 			
 				

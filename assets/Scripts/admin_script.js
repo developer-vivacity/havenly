@@ -11,13 +11,8 @@ $(document).ready(function()
 		 {
 			$('#bstabs a').removeClass('pink_text');
 			$(this).addClass('pink_text');
-<<<<<<< HEAD
 		         $(".adminmain").hide();
 		         $("#"+(this.rel)).show();
-=======
-		     $(".adminmain").hide();
-		     $("#"+(this.rel)).show();
->>>>>>> 56f086e5874a1ea2dc1e56b63899108d207a3ef7
 	
       
 		 }
@@ -32,19 +27,11 @@ $(document).ready(function()
              
 			if(e_value==1)
 			 {
-<<<<<<< HEAD
 	            var buyarea ="";
 	            $('input[name="buy[]"]:checked').each(function(i,e)
 	            {
                         if(buyarea=="")
                         {
-=======
-	           var buyarea ="";
-	            $('input[name="buy[]"]:checked').each(function(i,e)
-	            {
-                  if(buyarea=="")
-                   {
->>>>>>> 56f086e5874a1ea2dc1e56b63899108d207a3ef7
 		             buyarea= 1 ;
 		    
 	               }
@@ -52,7 +39,6 @@ $(document).ready(function()
 	              {
 		           buyarea=buyarea+","+e.value;
 	               }
-<<<<<<< HEAD
 		                 if(e.value==14)
 	                          {  
 					   if($("#othervalue").val().trim()=="")
@@ -67,21 +53,6 @@ $(document).ready(function()
 				                 e_value=1;
 				             }
 			          }
-=======
-				  if(e.value==14)
-	              { 
-					   if($("#othervalue").val().trim()=="")
-					   {
-					      $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter value in other:</p>');  			
-			              e_value=0;
-				       }
-				       else
-				      {
-				            buyarea=buyarea+","+$("#othervalue").val();
-				            e_value=1;
-				        }
-			      }
->>>>>>> 56f086e5874a1ea2dc1e56b63899108d207a3ef7
 			    });
 			    if(e_value==1)
 			    {

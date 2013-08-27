@@ -541,13 +541,12 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 	 $design_status=null;
 	}
          
-         // die($design_status);
-         // if($this->_add_new_design!=1)
+         
          $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status,$designer_notes));
 	
 	($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
 	
-	//($product_details==null?$this->productdetails($room_id,$user_id,$design_id):($product_details==""?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
+	
 	
 }
 
@@ -590,9 +589,9 @@ function designer_availability($user_id=null,$designer_id=null)
 	
 	 $data['startdate']=date("h");
           $data['dateformat']=date("A");
-	  $data['display']='admin';
-	 $data['enddate']=date("H",strtotime("$date +24 hours"));
 	
+	 $data['enddate']=date("H",strtotime("$date +24 hours"));
+	 $data['display']='admin';
 	 $data['selectdate']=$this->designer_model->availability($data);
           
           $data['currentday']=date('d');

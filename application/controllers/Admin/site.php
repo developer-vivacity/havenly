@@ -108,8 +108,9 @@ function roomsadministrator($orderby=null,$ordertype=null)
 {
       if(($this->session->userdata('adminid')==""))
       {
-	  $this->adminlogin();
-	  return;
+	  //$this->adminlogin();
+	  redirect('/Admin/site/adminlogin', 'refresh');
+	  //return;
      }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
@@ -164,7 +165,8 @@ function currentroomwithuser($room_id=null)
      }
      else
      {
-	  $this->load->view('Admin/adminlogin');
+	  
+	  redirect('/Admin/site/adminlogin', 'refresh');
      }
 }
 
@@ -210,8 +212,8 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
    }
    else
    {
-	$this->load->view('Admin/adminlogin');
-	
+	//$this->load->view('Admin/adminlogin');
+	redirect('/Admin/site/adminlogin', 'refresh');
     }
 }
 
@@ -227,8 +229,9 @@ function additional_details_user_room($room_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		//$this->load->view('Admin/adminlogin');
+		//return;
+		redirect('/Admin/site/adminlogin', 'refresh');
 		
 	}
 	$room_id=intval($room_id);
@@ -377,8 +380,8 @@ function add_product()
 	
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		
+		redirect('/Admin/site/adminlogin', 'refresh');
 		
 	}if($_POST)
 		{
@@ -500,8 +503,8 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 	
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		
+		redirect('/Admin/site/adminlogin', 'refresh');
 	}
 	$isvalid=  $this->admin_model->is_valid_user($design_id,$room_id,$current_user_id);
         
@@ -530,7 +533,7 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 {
 
      
- $designer_notes=null;
+         $designer_notes=null;
          if(isset($_POST["designroomid"])|isset($_POST["AddDesigntext"])|isset($_POST["designuserid"])|isset($_POST["designer_notes"]))
          {
 	 
@@ -576,12 +579,12 @@ function designer_availability($user_id=null,$designer_id=null)
 {
     if(($this->session->userdata('adminid')!=""))
      { 
-	if(is_null($user_id) || is_null($designer_id))
-	{
+	 if(is_null($user_id) || is_null($designer_id))
+	 {
 	 redirect('/Admin/site/roomsadministrator','refresh');
-         }
+          }
 	
-	$this->designer_model->create_table();
+	 $this->designer_model->create_table();
 	
 	 $date=date("Y-m-d h:i:s");
 	
@@ -609,7 +612,8 @@ function designer_availability($user_id=null,$designer_id=null)
     }
    else
     {
-	 $this->load->view('Admin/adminlogin');
+	
+	redirect('/Admin/site/adminlogin', 'refresh');
 	
     }
 	
@@ -620,7 +624,7 @@ function assign_date_time_user()
           $datetime=$_POST['designtime'];
           
           $designerid=$_POST['designerid'];
-          
+         
           $datetime=date('Y:m:d H:i:s',strtotime($datetime));
           
           if(!is_null($designerid))

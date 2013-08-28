@@ -63,8 +63,8 @@ Class Site extends CI_Controller
 	 }
          else
          {
-	    $data["title"]="Login";
-             $this->load->view('Users/login', $data);	
+	
+             redirect('/Users/site/login', 'refresh');
 	}
 	  
    }
@@ -85,18 +85,15 @@ $data["designid"]=$designid;
   {
 	if($this->session->userdata('first_name')=="")
      	{
-	 $data["title"]="Login";
-          $this->load->view('Users/login', $data);	
-          return;
+	 redirect('/Users/site/login', 'refresh');
 	}
 	if($_POST)  
 	{
 
-	$data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
-
-$this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
-	$this->products_associate_design($_POST["holddesignid"]);
-	redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
+	 $data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
+          $this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
+	 $this->products_associate_design($_POST["holddesignid"]);
+	 redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
 	}
   }
   function delete_assign_design($user_id,$room_id,$design_id,$type=null)

@@ -238,6 +238,8 @@ function book_time($is_login=null)
       $this->designer_model->update_designer_call();
       
       $data['user_id']=$this->session->userdata('id');
+      //die($this->input->post('datepick'));
+      
       $data['date']=$this->input->post('datepick');
       $data=$this->designer_model->book($data);
       

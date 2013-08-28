@@ -71,7 +71,7 @@ $query=$this->db->query('CREATE TABLE IF NOT EXISTS designer_calls (
 	
 	 $startdate= date('Y-m-d', strtotime($date));
           
-          $enddate=date("Y-m-d h:i", strtotime("$date +24 hours"));
+          $enddate=date("Y-m-d H:i", strtotime("$date +24 hours"));
 	 
 	$query=(isset($data['display'])?$this->db->query("SELECT * from designer_availability 
 		 WHERE designer_id = ".$id." AND  time >= '".$startdate."' AND time <= '".$enddate."'"):$this->db->query("SELECT * from designer_availability 
@@ -121,8 +121,10 @@ function book($data)
       function insert_designer_availability($datetime,$designerid)
       {
 	     $this->db->query("delete from designer_availability where DATE_FORMAT(time,'%Y-%m-%d %H') like '".date('Y-m-d H',strtotime($datetime))."%'");
+            
              $data=array('designer_id'=>$designerid,'time'=>$datetime,'status'=>'available');
 	    $this->db->insert('designer_availability',$data); 
+	   
       }
       function designer_time_for_user($currentmonth,$currentyear)
       {

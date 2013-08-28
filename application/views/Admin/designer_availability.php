@@ -56,7 +56,8 @@ table td
       $flage=0;
       if((($dr%12)==0)&($_z!=0)) 
        {
-         $dateformat=($dateformat=="AM"?"PM":"AM"); 
+	       
+         $dateformat=($dateformat=="AM"?"PM":"AM");
          $currentday=($dateformat=="AM"?($currentday===$maxdays?1:++$currentday):$currentday);
          $weekday=($dateformat=="AM"?($numday==7?$dayofweek[1]:$dayofweek[++$numday]):$dayofweek[$numday]);
          $currentmonth=($currentday==1?($currentmonth==12?1:++$currentmonth):$currentmonth);
@@ -68,7 +69,7 @@ table td
 	      $matchtime=($dateformat=="PM"?((int)$displaytime+12):$displaytime);
 	      if($matchtime==date('H',strtotime($z_value["time"])))  
                {
-	      echo '<td><div><span id="d_'.$dr.'">'.$currentday.'</span><span id="m_'.$dr.'">'.$month[(int)$currentmonth].'</span><br/><span id="y_'.$dr.'">'.$fullyear.'</span><br/><span id="w_'.$dr.'">'.$weekday.'</span></div><div ><img src="'.base_url().'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'.$dr.'" /><a href="#" id="hour'.$displaytime.''.$dateformat.'" onclick="designer_call(\''.$displaytime.'\',\''.$dateformat.'\',\'hour'.$displaytime.''.$dateformat.'\','.$dr.')" >'.date('H:i:s A',strtotime($z_value["time"])).'</a></div></td><td>&nbsp;&nbsp;</td>';	   
+	      echo '<td><div><span id="d_'.$dr.'">'.$currentday.'</span><span id="m_'.$dr.'">'.$month[(int)$currentmonth].'</span><br/><span id="y_'.$dr.'">'.$fullyear.'</span><br/><span id="w_'.$dr.'">'.$weekday.'</span></div><div ><img src="'.base_url().'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'.$dr.'" /><a href="#" id="hour'.$displaytime.''.$dateformat.'" onclick="designer_call(\''.$displaytime.'\',\''.$dateformat.'\',\'hour'.$displaytime.''.$dateformat.'\','.$dr.')" >'.date('h:i:s A',strtotime($z_value["time"])).'</a></div></td><td>&nbsp;&nbsp;</td>';	   
                $flage=1;
                }
        }

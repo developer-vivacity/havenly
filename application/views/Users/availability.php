@@ -46,7 +46,14 @@ $.ajax({
     success: function(data) {
 	$("#list").html(data);
  $("#select").click(function(){
-		var datepick = $("#time").val();
+		
+		var selected=$("input[type='radio']:checked");
+		if(selected.length>0)
+		{
+		
+		var datepick=selected.val();
+		
+		}
 			$.ajax({
 				type: "POST",
 				url: "../site/book_time",

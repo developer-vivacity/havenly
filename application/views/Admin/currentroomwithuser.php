@@ -241,7 +241,7 @@ endforeach;
 
    $comment=($conceptkey->comments!=""?$conceptkey->comments:'&nbsp;');
    if((string)$conceptkey->status!="0") 
-   echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><img src="'.$conceptkey->filename.'" height="100px" width="100px"></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
+   echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><img src="'.$conceptkey->filename.'" height="100px" width="100px"></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr id="conceptcomment'.$conceptkey->concept_id.'"><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
  }
  ?>
  </table>

@@ -10,8 +10,7 @@ $(function(){
 		    
 		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
 		      { 
-			      alert($("#siteurl").val());
-                        mestatus.text('Only JPG, PNG or GIF files are allowed');
+		      mestatus.text('Only JPG, PNG or GIF files are allowed');
 		      return false;
 		      }
 		        mestatus.html('<img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" height="16" width="16">');

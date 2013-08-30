@@ -25,7 +25,7 @@ $(function(){
 			           if(obj.success==="success")
                                 	  {
 					  
-				   mestatus.text('Photo Uploaded Sucessfully!');
+				   mestatus.text('');
 				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'"  width="200px"></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation(1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
 		                    } 
 				  else
@@ -43,10 +43,10 @@ $(function(){
 	function concept_confirmation(conf,roomid,for_div)
 	{
 		$("#confirmation_div").remove();
-		var dismessage=(conf==1?"Do you want to archive this image":"Do you want to delete this image");
+		var dismessage=(conf==1?"Sure?":"Sure?");
 
 	
-		$("#conceptcol"+for_div).append("<div style='position:absolute;z-index:100;width:350px;background-color:gray;' id='confirmation_div'><div>"+dismessage+"</div><div><input class = 'button2 pink white_text' type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input class = 'button2 white_text pink' type='button' value='No' onclick='remove_confirmation_box();'/></div></div>");
+		$("#conceptcol"+for_div).append("<div class = 'white_text padding' style='position:absolute;z-index:100; background-color:lightgray;' id='confirmation_div'><div>"+dismessage+"</div><div><input class = 'button2 pink white_text' type='button' value='Yes' onclick='update_confirmation("+roomid+","+for_div+","+conf+");'/><input class = 'button2 white_text pink' type='button' value='No &nbsp;' onclick='remove_confirmation_box();'/></div></div>");
 		
 	}
 	
@@ -66,6 +66,7 @@ $(function(){
               if(status==0)
               {
               $("#conceptrow"+conceptid).remove();
+			   $("#conceptcomment"+conceptid).remove();
               }
           } 
     }) 

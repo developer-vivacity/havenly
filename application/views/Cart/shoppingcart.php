@@ -27,27 +27,28 @@
         </div>
       </div>
    </div>
+
+<div class = "white">
+<div class = "container">
 <br/>
 <br/>
 <br/>
 <br/>
 <form method ="post" action="<?php echo base_url('index.php/Cart/site/products_associate_design/'.$designid.'');?>" id="shoppingcartform">
 
-<table border="0">
-	<tr><td colspan="2">
-		<div style="float:right;"><div id="total_items_in_cart"><?php echo $totalitemincart;?></div>
-	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>"><img src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div></td></tr>
-	<tr><td colspan="2"><?php echo '<div style="float:right;"><a href="'.base_url().'/index.php/Users/site/login">Back</a></div>';
-?></td></tr>
-<tr><td>
-<table>
-<tr><td>
+<div id = "cartcircle" class="blue circle1 white_text small sanslight text-center midsmall">
+<div id="total_items_in_cart"><?php echo $totalitemincart;?> items
+</div></div>
+
+
+	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>">
+	<img src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div>
+	
+	
+
 <?php
-    echo'
-    <div style="position:absolute;margin-top:240px;opacity:0.7;"><div style="background-color:#A8A2A4;color:white;">&nbsp;
-     &nbsp;Your '.($room_type[0]->room_type=="LR"?"Living Room":"Bed Room").' Design
-     </div>
-     <div  style="background-color:#D18630;color:white;border:solid 1px;cursor:pointer;" id="addallproduct">&nbsp;&nbsp;Add All to cart</div></div>
+ echo '
+     <div style="background-color:#D18630;color:white;border:solid 1px;cursor:pointer;" id="addallproduct">&nbsp;&nbsp;Add All to cart</div></div>
     <div><img src="'.$designimage[0]->filename.'" height="300px" width="400px"/>
     </div>';
 ?>

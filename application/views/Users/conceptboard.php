@@ -56,18 +56,41 @@ echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/sit
      $attributes = array('class' =>'conceptboardform','id' => 'conceptboardform');
      echo form_open('Concept/site/save_comment_concept_bord/',$attributes);
 ?>
-<table class = "table-center span5" id="designer_table">
-<?php
 
+
+<div class = "carousel slider" id = "myCarousel2">
+<div class = "carousel-inner">
+<?php
+$number = sizeof($conceptboard);
+
+echo '<div class = "well trellis sanslight">';
+echo '<p class = "medium">Welcome!  You have '.$number.' concept boards for your review</p>';
+echo '<p class = "midsmall">Take a look, and provide some feedback for your designer</p>';
+echo '</div>';
+
+$i=1;
 foreach($conceptboard as $key)
 {
-	$comment=($key->comments!=""?$key->comments:"Enter Comment");
-         $reset=  ($key->comments!=""?0:1);
-    if($key->status!=1)
-    echo '<tr><td><img src="'.$key->filename.'" width="100px" height="100px"/></td><td><textarea id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" value="save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/></td></tr>';
-}
+	$comment=($key->comments!=""?$key->comments:"Provide some feedback for your designer");
+    $reset=  ($key->comments!=""?0:1);
+	
+	if ($i==1){
+	echo '<div class = "item active">';}
+	else {echo '<div class = "item">';}
+    
+	if($key->status!=1)
+   
+	
+   echo '<img src="'.$key->filename.'" width="100%"/><BR><BR>';
+   echo '<textarea width = "20%" rows = "3" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button2 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
+	$i++;
+	echo '</div>';
+	}
 ?>
-</table>
+</div>
+<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+	<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+	</div>
 <input type="hidden" value="" id="holdcomment" name="holdcomment"/>
 <input type="hidden" value="" id="holdconceptid" name="holdconceptid"/>
 <input type="hidden" value="" id="holdroomid" name="holdroomid"/>

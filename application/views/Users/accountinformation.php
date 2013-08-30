@@ -76,17 +76,20 @@ if(isset($message))
 if(isset($designerinformation))
     {
 	
-	   $url = base_url('assets/Images');
-	  foreach($designerinformation as $key)
-	  {
-            echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
-			 echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
-		      echo '<tr> <td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
-			  echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
-			  echo '<tr><td><hr class = "third style"></td></tr>';
-		      echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
-	   }}
-	   
+	$i =1;
+	$url = base_url('assets/Images');
+	foreach ($designerinformation as $key)
+	  {if ($i==1){
+			echo '<tr class = "horizontal"><td><img src="'.$url.'/'.$key->designer_picture.'" height="150px"><br><BR></td></tr>';
+			echo '<tr class = "horizontal"><td><p class= "medium sanslight dark_gray_text">'.$key->designer_name.'</p></td></tr>';
+			echo '<tr><td><p class="small sanslight dark_gray_text">YOUR PERSONAL DECORATOR</p><br><BR></td></tr>';
+			echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_phone_number.'<Br></p></td></tr>';
+			echo '<tr><td><hr class = "third style"></td></tr>';
+		    echo '<tr><td><p class = "sanslight small dark_gray_text">'.$key->designer_email.'<br></p></td></tr>';
+	   }
+	   else {echo '';}
+	   $i++;}
+	   }
 	?>
 	
 	 </table><BR><BR></div>
@@ -157,27 +160,36 @@ echo '<input type="hidden" id="sitepath" value="'.base_url().'" name="sitepath"/
 if(sizeof($designforloginuser)>0)
     {
 ?>
-  <table class = "table-center span5" id="designer_table">
+<?php
+if (sizeof($designforloginuser>1)){
+echo '<div class = "carousel" id = "myCarousel2">';
+echo '<div class = "carousel-inner text-center">';}?>
+
  <?php
            $url = base_url('assets/Images');
-           echo '<tr><td colspan="5"> You have a design ready.</td></tr>';
-           echo '<tr><td><h4>Design Name</h4></td><td><h4>Design Image</h4></td><td><h4>Design Comment</h4></td><td><h4>Design Status</h4></td><td>&nbsp;</td></tr>';
+         	$i=1;
 	  foreach($designforloginuser as $key)
 	  {
-		  
-              echo '<tr>
-              <td>'.$key->design_name.'</td>
-              <td><a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">
-              <img src="'.$key->filename.'" width="100px" height="100px"/></a></td><td>'.wordwrap($key->designer_notes,25,'<br/>').'</td>
-              <td>'.$key->status.'</td>
-              <td><a href="#"  onclick="delete_design('.$key->user_id.','.$key->design_id.','.$key->room_id.');">
-              <img src="'.$url.'/delicon.fw.png" width="50px" height="50px"/></a>
-              </td>
-              </tr>';
+	  
+		
+		if ($i==1){
+		   echo '<div class = "item active">';}
+		   else {echo '<div class = "item">';}
+              // echo 
+             // $key->design_name
+             echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
+             echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a>';
+             echo '</div>'; 
+		   $i++;
 	  }
 	  ?>
+</div>
+<?php if (sizeof($designforloginuser>1)){
+echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>';
+echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>';}?>
 	
-	 </table><BR><BR>
+</div>
+
 <?php
    }
 //------------end update code-----------//
@@ -326,18 +338,27 @@ echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms
 </div>
 <!----For user status--------->
 <div id ="status" class="usermain">
-<?php $Updatestatus=array('Open Room','Scheduling Initial Call','Concept Board','Concept Board Review','Final Concept Board','Final Design','Order Needed','Order Placed','Closed','Closed - Unpurchased'); ?>
-<div style="float:left;" id="currentroomstatus"><b>Room Status:</b><?php echo  urldecode($room_status); ?>&nbsp;&nbsp;<a class = "button3 condensed white_text" href="#" rel="editroomstatus" id="currentroomstatusedit">Edit</a></div>
-<br/>
-<br/>
-<div style="float:left;" id="editroomstatus">
-<b>Update Room Status:</b>
-<select id="selectupdatestatus">
+<div>
+
 <?php 
-foreach($Updatestatus as $key=>$value)
-echo '<option value="'.$value.'">'.$value.'</option>';
+
+$value = urldecode($room_status);
+
+if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
+echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
+
+elseif ($value =='DESIGN'|| $value =='MOODBOARD REVIEW'){
+echo '<img src = "'.base_url('assets/Images/Process2.jpg').'" width="60%">';}
+
+elseif ($value =='FINAL DESIGN'|| $value =='ORDER'){
+echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="60%">';}
+
+else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
+
+
+
+
 ?>
-</select><a class = "button3 condensed white_text" href="#" id="updatecurrentroomstatus">Update</a><a class = "button3 condensed white_text" href="#" id="canclecurrentroomstatus" rel="editroomstatus">Cancle</a>
 </div>
 </div>
 <!----------------------------->
@@ -349,6 +370,8 @@ echo '<option value="'.$value.'">'.$value.'</option>';
 </div><BR><BR><BR></div>
 <script>
 $(document).ready(function(){
+
+	 $('.carousel').carousel();
    $(".usermain").hide();
    $("#"+$("#currentpage").val()).show();
    $("#editroomstatus").hide();
@@ -383,6 +406,8 @@ $(document).ready(function(){
 		
 		)
 		 });
+		 
+		
 
 
 </script>

@@ -52,7 +52,7 @@
 if($conceptboard[0]->total!=0):
 ?>
 <li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-<?endif;?>
+<?php endif; ?>
 
 <?php if(sizeof($designforloginuser)>0){
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
@@ -163,7 +163,9 @@ if(sizeof($designforloginuser)>0)
 <?php
 if (sizeof($designforloginuser>1)){
 echo '<div class = "carousel" id = "myCarousel2">';
-echo '<div class = "carousel-inner text-center">';}?>
+echo '<div class = "carousel-inner text-center">';}
+
+?>
 
  <?php
            $url = base_url('assets/Images');

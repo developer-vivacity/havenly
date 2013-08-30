@@ -424,16 +424,21 @@ function productassociatewithdesign($room_id,$designid)
    
        return $query->result();
 }
-function display_design_associated_products($design_id)
+function display_design_associated_products($design_id,$status=null)
 {
-	$this->db->from('design_product_mapping','products');
+	
+	($status==null?$this->db->from('design_product_mapping','products'):$this->db->from('design_product_mapping','products','user_design'));
 	
 	$this->db->join('products','design_product_mapping.product_id=products.productid');
 	
-	 $this->db->where('design_product_mapping.design_id',$design_id);
+	if($status!=null)
+	{
+	  $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');	
+	  $this->db->where('user_design.status',$status);
+	}
 	
+	$this->db->where('design_product_mapping.design_id',$design_id);
 	$query = $this->db->get();	
-         
          return $query->result();
 }
 function  design_image_for_rooms($room_id=null,$designid=null)

@@ -110,12 +110,12 @@ foreach($additionalroomdetails as $key)
 <?php 
 foreach($buyitems as $key=>$value)
 {
-$sel="";
-$byarray=explode(',',$buy);
-if(in_array($key,$byarray))
-$sel="checked";
+  $sel="";
+  $byarray=explode(',',$buy);
+  if(in_array($key,$byarray))
+  $sel="checked";
   echo '<div class = "sanslight">
-     <input type="checkbox" class = "padding" name="buy[]"  value="'.$key.'" '.$sel.'/>&nbsp;'.$value.'</div>';
+  <input type="checkbox" class = "padding" name="buy[]"  value="'.$key.'" '.$sel.'/>&nbsp;'.$value.'</div>';
   if($key==14)
   {
   $othervalue=($sel=="checked"?$byarray[sizeof($byarray)-1]:"");

@@ -4,16 +4,15 @@ var fileupload_value=0;
 $(document).ready(function()
 {
  
-
-   $(".adminmain").hide();
+    $(".adminmain").hide();
    $("#CurrentUser").show();
   
 		 $("#bstabs a").click(function()
 		 {
 			$('#bstabs a').removeClass('pink_text');
 			$(this).addClass('pink_text');
-		     $(".adminmain").hide();
-		     $("#"+(this.rel)).show();
+		         $(".adminmain").hide();
+		         $("#"+(this.rel)).show();
 	
       
 		 }
@@ -28,11 +27,11 @@ $(document).ready(function()
              
 			if(e_value==1)
 			 {
-	           var buyarea ="";
+	            var buyarea ="";
 	            $('input[name="buy[]"]:checked').each(function(i,e)
 	            {
-                  if(buyarea=="")
-                   {
+                        if(buyarea=="")
+                        {
 		             buyarea= 1 ;
 		    
 	               }
@@ -40,19 +39,21 @@ $(document).ready(function()
 	              {
 		           buyarea=buyarea+","+e.value;
 	               }
-				  if(e.value==14)
-	              { 
+		                 if(e.value==14)
+	                          {  
 					   if($("#othervalue").val().trim()=="")
 					   {
-					      $("#div_show_error_message").html($("#div_show_error_message").html()+'<p>*Enter value in other:</p>');  			
-			              e_value=0;
-				       }
-				       else
-				      {
-				            buyarea=buyarea+","+$("#othervalue").val();
-				            e_value=1;
-				        }
-			      }
+					      
+					         $(".error").remove();
+			                         $("#othervalue").before('<p class="error">*Enter value in other:</p>');
+			                         e_value=0;
+				             }
+				             else
+				             {
+				                 buyarea=buyarea+","+$("#othervalue").val();
+				                 e_value=1;
+				             }
+			          }
 			    });
 			    if(e_value==1)
 			    {
@@ -406,12 +407,12 @@ $("#savecurrentproduct").click(function()
     {
 		
 		 p_value=0;
-	}
-     else if(p_value==1)
-       {
+    }
+    else if(p_value==1)
+    {
 		
 	  $("#addproductform").submit();	
-	}
+    }
 	})
 
 $("#adduploadproductpic").click(function()

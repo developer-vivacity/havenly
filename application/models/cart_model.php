@@ -77,6 +77,7 @@ function room_color()
 // update shoppingcart...........
 function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=null)
 {
+	
 	if($type=="insert")
 	{
 	$data=array("user_id"=>$this->session->userdata('id'),"room_id"=>$roomid,"design_id"=>$designid,"product_id"=>$productid);	
@@ -91,11 +92,11 @@ function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=nu
 		$this->db->delete("shoppingcart");
 	}
 	
-	  $this->db->select('sum(qty) as total_qty');
-	  $this->db->where("user_id",$this->session->userdata('id'));
-	  $this->db->group_by("user_id");
+	  //$this->db->select('sum(qty) as total_qty');
+	  $this->db->select('count(*) as total_qty');
+	  $this->db->where('user_id',$this->session->userdata('id'));
+	  $this->db->where('design_id',$designid);
 	  $query=$this->db->get("shoppingcart");
-	 
 	  return $query->result(); 
 }
 // get product id which are on the shopping card.................
@@ -104,9 +105,9 @@ function getproductinshoppingcard($designid)
 	
 	$this->db->select('GROUP_CONCAT(product_id) as product_id');
 	$this->db->where("user_id",$this->session->userdata('id'));
-	
 	$this->db->where("design_id",$designid);
 	$query=$this->db->get('shoppingcart');
+        
          return $query->result();
 	
 }
@@ -143,22 +144,16 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 		  $this->db->where("room_id",$room_id);
 		  $this->db->where("design_id",$design_id);
 		  $this->db->where("product_id",$product_id);
-		  $query=$this->db->get("shoppingcart");
-                    $count = $query->num_rows(); 
-                    if($count==0)
+	                    
+                    $this->db->delete("shoppingcart");
+                    
+                    if($product_qty!=0)
 		  {
+			  
 		   $data=array("user_id"=>$this->session->userdata("id"),"room_id"=>$room_id,"design_id"=>$design_id,"product_id"=>$product_id,"qty"=>$product_qty);	
 	            $this->db->insert("shoppingcart",$data);	  
 		  }
-		  else
-		  {
-                    $this->db->where("user_id",$this->session->userdata("id"));
-		  $this->db->where("room_id",$room_id);
-		  $this->db->where("design_id",$design_id);
-		  $this->db->where("product_id",$product_id);
-		  $data=array("qty"=>$product_qty);
-		  $this->db->update("shoppingcart",$data);  
-		  } 
+		  
 	
 }
 
@@ -170,14 +165,7 @@ function delete_user_assign_design($user_id,$room_id,$design_id)
 	 $data=array('status'=>'close');
 	$this->db->update('user_design',$data);
 	
-	/*
-	$this->db->delete('user_design', array('design_id' =>$design_id,'room_id'=>$room_id));
-
-	$this->db->delete('user_room_designs', array('user_id' => $user_id,'room_id' => $room_id,'design_id'=>$design_id));
 	
-	$this->db->delete('design_product_mapping', array('design_id' => $design_id));
-	 
-	$this->db->delete('paint_colors', array('design_id' => $design_id)); */
 	
          
 }
@@ -197,8 +185,10 @@ function product_details_with_design()
    $this->db->join('user_design','user_design.design_id = shoppingcart.design_id');
    $this->db->join('products','products.productid = shoppingcart.product_id');
    $this->db->where('shoppingcart.user_id',$this->session->userdata('id'));
+   $this->db->where('user_design.status','submitted');
    $query=$this->db->get();
-  
+   
+   
    return $query->result();
      
 	
@@ -211,7 +201,15 @@ function paint_colors_for_design($design_id)
 	return $query->result();
 	
 }
-
+//-------------------------------------
+function get_design_info_by_id($design_id)
+{
+	$this->db->where('design_id',$design_id);
+	$query=$this->db->get('user_design');
+	
+	return $query->result_array();
+	
+}
 }
 
 ?>

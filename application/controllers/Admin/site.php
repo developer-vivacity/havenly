@@ -108,8 +108,9 @@ function roomsadministrator($orderby=null,$ordertype=null)
 {
       if(($this->session->userdata('adminid')==""))
       {
-	  $this->adminlogin();
-	  return;
+	  //$this->adminlogin();
+	  redirect('/Admin/site/adminlogin', 'refresh');
+	  //return;
      }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
@@ -139,6 +140,7 @@ function currentroomwithuser($room_id=null)
      {
 	   
 	   $orderby=$this->input->post('ascproductid');
+	   
 	   $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
 	   $adminrooms=$this->room_model->display_all_rooms($condition);
 	   $data["roomid"]=$room_id;
@@ -163,7 +165,8 @@ function currentroomwithuser($room_id=null)
      }
      else
      {
-	  $this->load->view('Admin/adminlogin');
+	  
+	  redirect('/Admin/site/adminlogin', 'refresh');
      }
 }
 
@@ -184,11 +187,10 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	  $data["productcolortype"]=$this->product_model->color_type();
 	  $data["productmaterialtype"]=$this->product_model->product_material();
 	  $data["productstyle"]=$this->product_model->product_style();
+	  
 	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
-	   
-           $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
-          
-          $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
+	  $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
+           $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
 
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
@@ -210,8 +212,8 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
    }
    else
    {
-	$this->load->view('Admin/adminlogin');
-	
+	//$this->load->view('Admin/adminlogin');
+	redirect('/Admin/site/adminlogin', 'refresh');
     }
 }
 
@@ -227,30 +229,29 @@ function additional_details_user_room($room_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		//$this->load->view('Admin/adminlogin');
+		//return;
+		redirect('/Admin/site/adminlogin', 'refresh');
 		
 	}
 	$room_id=intval($room_id);
 	if($_POST)
 	{
-		
-		$data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
+	         $data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
 		$querytype=$this->input->post('querytype');
 		$this->admin_model->get_additional_details_user_room($this->input->post('roomid'),$data,$querytype);
-		$this->adminlogin();
+		redirect('/Admin/site/additional_details_user_room/'.$this->input->post('roomid').'', 'refresh');
 	}
 	else
 	{
 		
       if($room_id!="") 
       {  
-         $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
-         $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
-          if(sizeof($data["adminrooms"])>0)
-          {
-			 
-               $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
+             $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
+             $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
+            if(sizeof($data["adminrooms"])>0)
+            {
+	      $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
 	   
 	      $data["roomid"]=$room_id;
 	      $this->load->view('Admin/userroomdetailsbyadmin',$data);
@@ -379,8 +380,8 @@ function add_product()
 	
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		
+		redirect('/Admin/site/adminlogin', 'refresh');
 		
 	}if($_POST)
 		{
@@ -502,8 +503,8 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 	
 	if(($this->session->userdata('adminid')==""))
 	{
-		$this->load->view('Admin/adminlogin');
-		return;
+		
+		redirect('/Admin/site/adminlogin', 'refresh');
 	}
 	$isvalid=  $this->admin_model->is_valid_user($design_id,$room_id,$current_user_id);
         
@@ -532,7 +533,7 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 {
 
      
- $designer_notes=null;
+         $designer_notes=null;
          if(isset($_POST["designroomid"])|isset($_POST["AddDesigntext"])|isset($_POST["designuserid"])|isset($_POST["designer_notes"]))
          {
 	 
@@ -543,13 +544,12 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 	 $design_status=null;
 	}
          
-       // die($design_status);
-        // if($this->_add_new_design!=1)
+         
          $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status,$designer_notes));
 	
 	($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
 	
-	//($product_details==null?$this->productdetails($room_id,$user_id,$design_id):($product_details==""?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
+	
 	
 }
 
@@ -578,49 +578,62 @@ function paint_colors_for_design()
 function designer_availability($user_id=null,$designer_id=null)
 {
     if(($this->session->userdata('adminid')!=""))
-     {
-	$this->designer_model->create_table();
+     { 
+	 if(is_null($user_id) || is_null($designer_id))
+	 {
+	 redirect('/Admin/site/roomsadministrator','refresh');
+          }
 	
-         date_default_timezone_set('America/New_York');
- 
-         $data["currentyear"]=date('Y');
-	$data["currentday"]=date('d');
+	 $this->designer_model->create_table();
 	
-	$data["currentmonth"]=date('m');
+	 $date=date("Y-m-d h:i:s");
 	
-	$data["userid"]=$user_id;
-	$data["designerid"]=$designer_id;
-	$data["selectdate"]=$this->designer_model->insert_designer_availability($user_id,$designer_id,null,null,date('Y'),date('m'),null,null,null,null,null,'select');
+	 $data['date']=date("Y-m-d h:i:s a");
 	
-	$this->load->view('Admin/designer_availability.php',$data);
+	 $data['startdate']=date("h");
+          $data['dateformat']=date("A");
+	
+	 $data['enddate']=date("H",strtotime("$date +24 hours"));
+	 $data['display']='admin';
+	 $data['selectdate']=$this->designer_model->availability($data);
+          
+          $data['currentday']=date('d');
+	 
+	 $data['weekday']=date('D');
+	 $data['numday']=date('w');
+	 $data['maxdays']=date('t');
+	 $data['currentmonth']=date('m');
+	 $data['sortyear']=date('y');
+	 $data['fullyear']=date('Y');
+	 $data['designerid']=$designer_id;
+	
+	
+	 $this->load->view('Admin/designer_availability.php',$data);
     }
    else
     {
-	$this->load->view('Admin/adminlogin');
+	
+	redirect('/Admin/site/adminlogin', 'refresh');
 	
     }
 	
 }
 function assign_date_time_user()
 {
+	
+          $datetime=$_POST['designtime'];
+          
+          $designerid=$_POST['designerid'];
          
-          if($_POST['type']=='insert')
+          $datetime=date('Y:m:d H:i:s',strtotime($datetime));
+          
+          if(!is_null($designerid))
           {
-	 
-           $data["weektime"]= $this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],$_POST['udate'],$_POST['uday'],$_POST['uyear'],$_POST['umonth'],$_POST['ushour'],$_POST['usminute'],$_POST['uehour'],$_POST['ueminute'],$_POST['weekrow'],$_POST['type']);	
+            $this->designer_model->insert_designer_availability($datetime,$designerid);	
+            echo "success";
+          }
            
-           echo json_encode($data["weektime"]); 
-          }
-          elseif($_POST['type']=='delete')
-          {
-            $this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],$_POST['udate'],$_POST['uday'],$_POST['uyear'],$_POST['umonth'],null,null,null,null,null,$_POST['type']);	        
-            echo "data has been deleted!";
-          }
-          elseif($_POST['type']=='select')
-          {
-            $select_design_date['date']=$this->designer_model->insert_designer_availability($_POST['userid'],$_POST['designerid'],null,null,$_POST['uyear'],$_POST['umonth'],null,null,null,null,null,$_POST['type']);	        
-            echo json_encode($select_design_date['date']);
-          }
+          
           
 }
 function upload_image_for_concept_board($filename=null,$roomid=null)

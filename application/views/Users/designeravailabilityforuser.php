@@ -1,9 +1,11 @@
 <?php 
+
 	include(APPPATH.'/views/templates/header.php');
+	
 ?>
 <!---add script by kbs-------->
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/designer_script.js">
 </script>
 <!---------------------------->
 <style type="text/css" media="screen">
@@ -54,137 +56,64 @@ border:1px solid #858283;
 <li ><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
 <li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
 <li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
+<?php
+if($conceptboard[0]->total!=0):
+?>
+<li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+<?endif;?>
 <?php 
-
 if(sizeof($designforloginuser)>0)
 {
 echo '<li><a class = "pink white_text"  href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
 }
 ?>
-<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/display_designer_vailability/"  rel="designer">Designer Availability</a></li>
+<li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Users/site/login?a=status"   rel="status">Status</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/"  >Designer Availability</a></li>
 </ul>
 </div>
 </div>
 
+
+<form action="<?php echo base_url();?>index.php/Contests/site/book_time/no"  name="designercall" method="post"  id="designercall">
+<input type="hidden" name="baseurl" id="baseurl" value="<?php echo base_url();?>"/>
+<div class="error"></div>
+<table class = "table text-center" >
 <?php
-if(sizeof($selectdate)>0):
-?>
+ $radio_id=1;
 
-<?php
-
-
-		  if($currentyear%4)
-		  {
-		  $array_num_in_month=array('1'=>'31','2'=>'28','3'=>'31','4'=>'30','5'=>'31','6'=>'30','7'=>'31','8'=>'31','9'=>'30','10'=>'31','11'=>'30','12'=>'30');	  
-		  }
-		  else
-		  {  
-		  $array_num_in_month=array('1'=>'31','2'=>'29','3'=>'31','4'=>'30','5'=>'31','6'=>'30','7'=>'31','8'=>'31','9'=>'30','10'=>'31','11'=>'30','12'=>'30');
-		  }
-		 $array_week_day=array('1'=>'Sun','2'=>'Mon','3'=>'Tue','4'=>'Wed','5'=>'Thu','6'=>'Fri','7'=>'Sat');
-		 $array_num_day=array('Sun'=>'1','Mon'=>'2','Tue'=>'3','Wed'=>'4','Thu'=>'5','Fri'=>'6','Sat'=>'7');
-		
-		
-		if((int)$currentday>7)
-		{
-		$currentday=$currentday%7;
-	         $day=$array_num_day[date('D')]+(7-$currentday)+1;
-	         }
-	         elseif((int)$currentday==7)
-	         {
-		$currentday=0;	
-		$day=$array_num_day[date('D')]+(7-$currentday)+1;
-		}
-		elseif((int)$currentday<7)
-		{
-		$day=$array_num_day[date('D')]+(7-$currentday)+1;
-		}
-		
-		echo '<input type="hidden" id="start_month" name="start_month" value="'.$day.'"/>';
-		 ?>
-		 <table width="700px" height="200px" >
-		<tr><td colspan="5" ><div id="curyear"><?php echo $currentyear;?></div></td><td colspan="5" ><div id="curmonth"><?php echo $currentmonth;?></div></td></tr>
-		 <tr><td width="50px">&nbsp;</td><td><div style="width:77px;">Time</div></td><td width="87px">Sun</td><td width="87px">Mon</td><td width="87px">Tue</td><td width="87px">Wed</td><td width="87px">Thu</td><td width="87px">Fri</td><td width="87px">Sat</td><td width="50px">&nbsp;</td></tr>
-		  <tr><td>&nbsp</td>
-		  <td colspan="8" id="design_day" width="600px" height="275px"><table  width="100%" height="100%">
-		  <?php
-		 $displaytime="";		
-		 $flage=false;
-		 for($z=1;$z<=(31+$day);$z++)
-		 {
-
-                          $num=$z-($day-1);
-                          
-						  foreach($selectdate as $key)
-	                                                 {
-                                                     if($key->day==$num)
-						    {						
-						    $flage=true;
-							
-							$displaytimeid=(int)$num.(int)$currentmonth.(int)$currentyear;
-
-$displaytime=($displaytime==""?'<div id=di_ti'.$displaytimeid.'>'.$key->start_time.'&nbsp;to&nbsp;'.$key->end_time.' </div>':$displaytime.'<div id=di_ti'.$displaytimeid.'>'.$array_week_day[$key->week_day].':'.$key->start_time.'</div>');
+ if(!empty($designeravailability))
+ {
+	 $attach_div="";
+	 $is_check="";
 	
-	
-							break;
-						    }
-						    else
-						    $flage=false;
-						  }		
-						  if($z%7==1)
-                                                        {$dd=0;
-                                                        $a_z=$z;
-		     echo'<tr><td width="75px" valing="top"><div style="width:5px;font-size:12px;" id="designertime'.$a_z.'">&nbsp;</div></td>';
-	                                               }
-                                                       if($z>=$day)
-                                                      {
-		                
-		                                      $currentmonth=(int)$currentmonth;
-                          if($num<=$array_num_in_month[$currentmonth])
-                          {
-                          $dd=$dd+1;
-                          $makeid=$num.$dd.$currentyear.$currentmonth;
-                          echo($flage==true?'<td style="background-color:#5AC92E;"><div style="width:60px;height:33px;position:absolute;margin-top:-8px;" id="showcheck'.$makeid.'"><img src="../../../../../assets/Images/l.png" height="30px;" width="30px;"/></div><span href="#"  id="checkdate'.$num.$dd.$currentyear.$currentmonth.'">'.$num.'</span></td>':'<td id="lol'.$num.'"><span href="#"  id="checkdate'.$num.$dd.$currentyear.$currentmonth.'">'.$num.'</span></td>');
-						  
-						  
-	                 }
-                     else
-                     echo'<td></td>';
-	                 }
-                     else
-                          {
-                          echo'<td></td>';
-	                      }
-                          if($z%7==0)
-                          {
-						  echo '</tr>';
-						 echo'<script>
-						 
-	 document.getElementById("designertime'.$a_z.'").innerHTML="'.$displaytime.'"</script>';
-						 $displaytime="";
-						  }
-		}
-		
-		 ?></table></td><td></td>
-		 </tr>
-		 </table>
 
-<?php
-endif;
+     if(sizeof($designercall)>0)
+     {
+      $attach_div= '<div style="position:absolute;" id="radiocircle"><img src="../../../../../assets/Images/l.png" height="30px;" width="30px;"/></div>';
+      $is_check=   'checked';   
+      $timeformat = date("M, d Y h:i a", strtotime($designercall[0]["time"]));
+      echo '<tr><td class = "medium">'.$attach_div.'<input class = "top" type="radio" name="time" id="time'.$radio_id.'" value = "'.$designercall[0]["time"].'" onclick="display_circle(\'time'.$radio_id.'\');" '.$is_check.'/>&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';	
+      $radio_id=++$radio_id;
+     }
+  
+  foreach($designeravailability as $designkey=>$designvalue)
+  {
+     $timeformat = date("M, d Y h:i a", strtotime($designvalue["time"]));
+     echo '<tr><td class = "medium"><input class = "top" type="radio" name="time" id="time'.$radio_id.'" value = "'.$designvalue["time"].'" onclick="display_circle(\'time'.$radio_id.'\');" />&nbsp; &nbsp;'.$timeformat.'<BR></td></tr>';	
+     $radio_id=++$radio_id;	
+  }
+  echo'<tr><td><a class = "btn" id="selecttime" href="#" onclick="booktime();">Book This Time</a><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm/no').'">Just Email Me</a></td></tr>';
+ }
+ else
+ {
+  echo'<tr><td>Oops, no availability on that day - select another or just let our designer email you.</td></tr><Tr><td><a class = "btn" id="skip" href = "'.base_url('index.php/Contests/site/confirm/no').'">Just Email Me</a></td></tr>';	
+	
+ }
 ?>
-<?php 
-if(sizeof($selectdate)==0)
-{ 
-?>
-<form action="<?php echo base_url();?>index.php/Users/site/display_designer_vailability"  name="designercall" method="post"  id="designercall">
-<div id="tweetsend" class="padding_small third border auto light_gray">
-<div><?php echo $aftermail; ?></div>
-<input name="hasemail" id="hasemail" value="yes" type="hidden"/>
-<p class="medium teal_text condensed inline"><a href="#" onclick="document.getElementById('designercall').submit();">just email me.</a></p>
-</div>
+</table>
+<input type="hidden" id="datepick" name="datepick"/>
+
 </form>
-<?php 
-}
-?>
+
 </div>
 </div>

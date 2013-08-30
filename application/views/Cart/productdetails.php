@@ -60,6 +60,8 @@
 </tr>
 <?php
 echo '<input type="hidden" name="holdproductid" id="holdproductid" value="'.$productid.'"/>';
+echo '<input type="hidden" name="holddesignid" id="holddesignid" value="'.$designid.'"/>';
+
 ?>
 </table>
 </form>

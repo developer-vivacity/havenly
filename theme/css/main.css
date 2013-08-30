@@ -918,6 +918,12 @@ padding:0;
 margin:0;
 }
 
+.circle1{
+height:70px;
+width: 70px;
+border-radius: 70px;
+line-height: 70px;
+}
 
 /* Photo Selection Page	 */
 img.inactive, img.inactive_one {
@@ -993,7 +999,7 @@ width: 80%;
 }
 .adminmain td{
 padding: .2em;
-
+}
 
 /********** MEDIA QUIERIES **********/
 

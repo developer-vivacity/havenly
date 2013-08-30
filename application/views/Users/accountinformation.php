@@ -52,13 +52,13 @@
 if($conceptboard[0]->total!=0):
 ?>
 <li><a class = "pink white_text"  href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-<?php endif;?>
+<?endif;?>
 
 <?php if(sizeof($designforloginuser)>0){
 echo '<li><a class = "pink white_text" href="#designs" rel="designs">YOUR DESIGNS</a></li>';
 }?>
 <li><a class = "pink white_text" href="#status"  rel="status">Status</a></li>
-<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Users/site/display_designer_vailability/"  rel="designer">Designer Availability</a></li>
+<li><a class = "pink white_text" href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/"  rel="designer">Designer Availability</a></li>
 </ul></div>
  
 <div class = "usermain text-center" id = "designer"> <BR><BR>
@@ -167,7 +167,16 @@ echo '<div class = "carousel-inner text-center">';}?>
 
  <?php
            $url = base_url('assets/Images');
+
          	$i=1;
+
+           if(isset($deletedesigninfo))
+           {
+           echo '<tr><td colspan="5"><p style="color:#F50727;font-size:100%">'.$deletedesigninfo.'</p></td></tr>';
+           }
+          
+         
+
 	  foreach($designforloginuser as $key)
 	  {
 	  

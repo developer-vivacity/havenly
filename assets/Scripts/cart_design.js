@@ -34,6 +34,15 @@ var id_get=(this.id).split('_');
 document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"/"+$("#holddesignid").val()+"";
 })
 
+
+$("#cart_details").hover(function(){
+	$("#productdetails").remove();
+	$("#cart_details").after('<div id="productdetails" style="color:white;background-color:#1BAFE0;position:absolute;border:solid 2px white;">Click here to display details.</div>');
+	});
+$("#cart_details").mouseout(function()
+          {
+	$("#productdetails").remove();
+	});
 }
 
 )

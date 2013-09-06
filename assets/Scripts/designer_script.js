@@ -1,5 +1,5 @@
 
-function availability_with_time()
+function availability_with_time(h_id)
 {
      var starthour= ($("#timeformat").html()=="PM"?(parseInt($("#starthour").html())+12):(parseInt($("#starthour").html())==12?(parseInt($("#starthour").html())+12):parseInt($("#starthour").html())));
      
@@ -16,8 +16,10 @@ function availability_with_time()
             {
 
 		$("#"+havetimeid).html(displaydesigntime);
-		$("#haveimg"+$("#starthour").html()+"").remove();
-		$("#"+havetimeid).before('<img src="'+$("#baseurl").val()+'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'+$("#starthour").html()+'"/>');        
+		if($('#haveimg'+h_id).length>0)
+                $('#haveimg'+h_id).remove();	
+
+$("#"+havetimeid).before('<img src="'+$("#baseurl").val()+'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'+$("#starthour").html()+'" />');        
 		$("#updatetime").remove();
 		
              }
@@ -100,13 +102,11 @@ function display_circle(id)
 	}
 function booktime()
 {
-		
-
-                           var selected = $("input[type='radio']:checked");
-                           if (selected.length == 0)
-                           {
+              var selected = $("input[type='radio']:checked");
+              if (selected.length == 0)
+              {
 				$(".error").html("Select at lest on time!");
-		         }
+	       }
 		         else
 		         {
 				
@@ -158,7 +158,7 @@ function designer_call(time,timeformat,id,in_id)
 		
 	}
 	minute+='</select>';
-	$("#designercall").before("<div id='updatetime' style='position:absolute;width:300px;background-color:#65ABAA;color:white;border:solid 2px white;'><div style='width:300px;'><b>&nbsp;Enter Time Between "+starttime+" to "+endtime+"</b></div><div><div style='float:left;width:20px' id='starthour'>"+starthour+"</div><div style='float:left;width:80px'>"+minute+"</div><div style='float:left;width:110px;' id='timeformat'>"+timeformat+"</div></div><div style='width:100px;float:right;'><input type='button' value='submit' onclick='availability_with_time();'/></div></div>");
+	$("#designercall").before("<div id='updatetime' style='position:absolute;width:300px;background-color:#65ABAA;color:white;border:solid 2px white;'><div style='width:300px;'><b>&nbsp;Enter Time Between "+starttime+" to "+endtime+"</b></div><div><div style='float:left;width:20px' id='starthour'>"+starthour+"</div><div style='float:left;width:80px'>"+minute+"</div><div style='float:left;width:110px;' id='timeformat'>"+timeformat+"</div></div><div style='width:100px;float:right;'><input type='button' value='submit' onclick='availability_with_time("+in_id+");'/></div></div>");
 	
 	
 }

@@ -107,10 +107,24 @@ $data["designid"]=$designid;
   }
   function products_in_cart($design_id)
   {
-	  
        $data["designid"]=$design_id;
        $data["productincart"]=$this->cart_model->product_details_with_design();	  
        $this->load->view('Cart/productsincart',$data);  
+  }
+  function  promotion_code()
+  {
+	
+	  $checkpromotioncode=$this->cart_model->valid_promotion_code($_POST['promotioncode'],$_POST['type']);	
+	  
+	  if(sizeof($checkpromotioncode)>0)
+	  { 
+		     if($checkpromotioncode[0]['status']==='active')
+	              echo "1-@-".$checkpromotioncode[0]['design_fee_id'];
+                       else
+                       echo "0-@-"."Design status inactive"; 
+                      
+             }
+  
   }
   
 }

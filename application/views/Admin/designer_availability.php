@@ -49,6 +49,7 @@ table td
 <table style="height:150px;font:8px;vertical-align:text-top;" id="designercall">
 	
 <?php
+
    $dayofweek=array('1'=>'Mon','2'=>'Tue','3'=>'Wed','4'=>'Thu','5'=>'Fri','6'=>'Sat','7'=>'Sun');
    $month=array('1'=>'Jan','2'=>'Feb','3'=>'Mar','4'=>'Apr','5'=>'May','6'=>'Jun','7'=>'Jul','8'=>'Aug','9'=>'Sep','10'=>'Oct','11'=>'Nov','12'=>'Dec');
   for($dr=$startdate,$displaytime=$startdate,$_z=0;$dr<($startdate+24);$dr++,$displaytime++,$_z=1)
@@ -67,9 +68,10 @@ table td
        foreach($selectdate as $z_key=>$z_value)
        {
 	      $matchtime=($dateformat=="PM"?((int)$displaytime+12):$displaytime);
-	      if($matchtime==date('H',strtotime($z_value["time"])))  
+
+     if($matchtime==date('H',strtotime($z_value["time"])) & ((int)$currentday==(int)date('d',strtotime($z_value["time"]))))  
                {
-	      echo '<td><div><span id="d_'.$dr.'">'.$currentday.'</span><span id="m_'.$dr.'">'.$month[(int)$currentmonth].'</span><br/><span id="y_'.$dr.'">'.$fullyear.'</span><br/><span id="w_'.$dr.'">'.$weekday.'</span></div><div ><img src="'.base_url().'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'.$dr.'" /><a href="#" id="hour'.$displaytime.''.$dateformat.'" onclick="designer_call(\''.$displaytime.'\',\''.$dateformat.'\',\'hour'.$displaytime.''.$dateformat.'\','.$dr.')" >'.date('h:i:s A',strtotime($z_value["time"])).'</a></div></td><td>&nbsp;&nbsp;</td>';	   
+	       echo '<td><div><span id="d_'.$dr.'">'.$currentday.'</span><span id="m_'.$dr.'">'.$month[(int)$currentmonth].'</span><br/><span id="y_'.$dr.'">'.$fullyear.'</span><br/><span id="w_'.$dr.'">'.$weekday.'</span></div><div ><img src="'.base_url().'assets/Images/l.png" height="30px;" width="30px;" id="haveimg'.$dr.'" /><a href="#" id="hour'.$displaytime.''.$dateformat.'" onclick="designer_call(\''.$displaytime.'\',\''.$dateformat.'\',\'hour'.$displaytime.''.$dateformat.'\','.$dr.')" >'.date('h:i:s A',strtotime($z_value["time"])).'</a></div></td><td>&nbsp;&nbsp;</td>';	   
                $flage=1;
                }
        }

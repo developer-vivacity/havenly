@@ -570,6 +570,7 @@
           $.post($("#basepath").val()+"index.php/Cart/site/promotion_code", {promotioncode :$("#promotioncode").val(),type:$("#designtype").val()}, 
           function(data)
           {
+
 		 $("#imgspan").remove();
 		 $(".error").remove();
 		 $("#designtypeerrorimg").remove();

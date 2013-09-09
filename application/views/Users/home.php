@@ -5,8 +5,75 @@
 <div class = "center"><br><br><br>
 </div>
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
-
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
+
+<!------------for stripe integration--------------->
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/stripe-debug.js">
+</script>
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/">
+</script>
+
+<script type="text/javascript">
+ // This identifies your website in the createToken call below
+ 
+ 
+ Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5');
+// ...
+
+ jQuery(function($) {
+    $('#SecurCode').click(function(event) 
+    {
+	
+$('.payment-errors').html("<img src='"+$("#basepath").val()+"/assets/Images/ajax-loader.gif' width='25px' height='25px'>");    
+     
+$("#SecurCode").prop('disabled', true);
+     Stripe.card.createToken({
+     name: $('#card-name').val(),
+     number: $('#cardnumber').val(),
+     cvc: $('#CVC').val(),
+     exp_month: $('#cart_month').val(),
+     exp_year: $("#cart_year").val()
+     }, stripeResponseHandler);
+
+    // Prevent the form from submitting with the default action
+    return false;
+
+  });
+});
+  var stripeResponseHandler = function(status, response) 
+  {
+ 
+  var $form = $('#payment-form');
+  //alert(status+"----"+response.id);
+  if(response.error) 
+  {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } 
+  else if(status==200) 
+  {
+
+    // token contains id, last4, and card type
+    var token = response.id;
+    $form.find('.payment-errors').text(token);
+    $form.find('button').prop('disabled', false);
+     //$('.payment-errors').append($('<input type="hidden" name="stripeToken" id="stripeToken">'));
+    //$("#stripeToken").val(token);
+   // Insert the token into the form so it gets submitted to the server
+   //$form.append($('<input type="hidden" name="stripeToken">').val(token));
+// and submit
+   // $form.get(0).submit();
+  }
+};
+</script>
+
+<!-----------------------------$$$$$$$$$$$$$$$$-------------------------------------->
+
 <br>
 <noscript>
 <style type="text/css">
@@ -461,6 +528,9 @@
 		<input type="text" name="password" value="Password (min 6 chars.)" id="password" class = "forminput pwd" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 		</div>
 		
+		
+		
+		
 		<!-------------------------------------Add Design Fee----------------------------------------------------->
 		<div class= "horizontal"><span  id="designfeepart"></span></div>
 		<div class= "horizontal" >
@@ -480,7 +550,7 @@
 		</div>
 		<br/>
 		<div class="horizontal"><label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select design type: </label>
-		<div class="labels" ><select style="width:280px;float:left;margin-left:5px;" name="designtype" id="designtype">
+		<div class="labels" ><select style="width:280px;float:left;margin-left:27px;;" name="designtype" id="designtype">
 		<option value="0">
 		   Select design type
 		</option>
@@ -495,37 +565,92 @@
 		<br/>
 		<div class="horizontal" id="codepromotion">
 		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="zipcode">Promotion code: </label>	
-		<input type="text" name="promotioncode" value="Promotion code(6 alphanumeric characters)" id="promotioncode" class = "forminput"  maxlength="6"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:550px;"/>
+		<input type="text" name="promotioncode" value="Promotion code(6 alphanumeric characters)" id="promotioncode" class = "forminput"  maxlength="6"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:35%"/>
 		<input type="button" name="Apply" value="Apply" id="designApply"/>
 		</div>
+		<br/>
+		<div id="payment-form">
+		   <span class="payment-errors"></span>
 		<div class="horizontal">
-		  <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
-		  <div class="labels" > <select id="carttype" style="width:280px;float:left;margin-left:5px;">
-		        <option value="0">
-			cardit cart type
-		       </option>
-                        <option value="visa card">
+		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
+		  <div class="labels" > 
+                   <!----<select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		        <option value="Visa">
 			 visa card
 		      </option>
-		     <option value="master card">
+		     <option value="Mastercard">
 			 master card
 		     </option>
-		</select></div>
-		</div><br/>
+		     <option value="AmericanExpress">
+		     American Express
+		     </option>
+		     <option value="Discover">
+		     Discover
+		     </option>
+		     <option value="Diner's Club">
+		     Diner's Club
+		     </option>
+		     <option value="JCB">
+		     JCB
+		     </option>
+		    </select>---->
+ <select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		        <option value="4242424242424242">
+			 visa card
+		      </option>
+		     <option value="5555555555554444">
+			 master card
+		     </option>
+		     <option value="378282246310005">
+		     American Express
+		     </option>
+		     <option value="6011111111111117">
+		     Discover
+		     </option>
+		     <option value="30569309025904">
+		     Diner's Club
+		     </option>
+		     <option value="3530111333300000">
+		     JCB
+		     </option>
+		    </select>
+		</div>
+		</div>
 		<div class="horizontal">
 		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardnumber">Enter card number: </label>
-		<input type="text" name="cardnumber" value="credit card number" id="cardnumber" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+		<input type="text" data-stripe="CVC" id="CVC" value="CVC" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:9%" maxlength="4"/><input type="text" data-stripe="cardnumber" value="credit card number" id="cardnumber" class = "forminput"  maxlength="16"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:30%"/>
 		</div>
 		<div class="horizontal">
-			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardnumber">Enter expiration date: </label>
-		<input type="text" name="expiration" value="expiration date" id="expiration_date" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
-		
-		</div>
-		<div class="horizontal">
-			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardnumber">Enter security code: </label>
-		        <input type="text" name="securitycode" id="securitycode" value="security code" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
-		</div>
-<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
+<div style="margin-left:350px;" >
+<div  for="cardnumber" style="float:left;text-align:left;" class = "labels inline forty middle midlarge sanslight dark_gray_text">Enter expiration date: </div>
+			
+<div  style="width:10%;float:left;">
+<select data-stripe="exp-month" id="cart_month">
+<?php
+
+   for($i=1;$i<=12;$i++)
+   {
+       echo '<option value='.$i.'>'.$i.'</option>';	
+   }
+?>	
+</select>
+</div>
+<div  style="width:10%;float:left;">
+<select data-stripe="exp-year" id="cart_year">
+  <?php
+   for($year=2013;$year<=2020;$year++)
+   {
+    echo '<option value='.$year.'>'.$year.'</option>';	
+    }
+?>	
+</select> 
+</div>
+	<div style="width:10%;float:left;">
+	<button type="button" id="SecurCode">SecurCode</button>
+	</div>	
+	</div>	</div></div>
+<br/>
+		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
 <br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
 	</form>
@@ -566,27 +691,25 @@
 	       $("#designtype").after('<span class="error" id="designtypeerror">Select Design Type</span>');
 	       return false;
 	 }
-         $("#designtype").after('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"/></span>')
+         $("#designtype").after('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"></span>')
           $.post($("#basepath").val()+"index.php/Cart/site/promotion_code", {promotioncode :$("#promotioncode").val(),type:$("#designtype").val()}, 
           function(data)
           {
-
 		 $("#imgspan").remove();
 		 $(".error").remove();
 		 $("#designtypeerrorimg").remove();
 		 
             if(data.length>0)
             { 
-		 var data= data.split('-@-');
-		 $promotion_code=data[0];
-		 $("#designfeeid").val(data[1]); 
+		   var data= data.split('-@-');
+		   $promotion_code=data[0];
+		   $("#designfeeid").val(data[1]); 
                    $("#hidpromotioncode").val($("#promotioncode").val());  
-                 if($promotion_code==1)
-	        $("#designtype").after('<span class = "error" id="designtypeerror">it\'s valid!</span>')
-                 else
-                 $("#designtype").after('<span class = "error" id="designtypeerror">'+data[1]+'</span>')
-                 
-                 return false; 
+                   if($promotion_code==1)
+	           $("#designtype").after('<span class = "error" id="designtypeerror">it\'s valid!</span>')
+                   else
+                   $("#designtype").after('<span class = "error" id="designtypeerror">'+data[1]+'</span>')
+               return false; 
            }
            else
            {
@@ -923,7 +1046,7 @@ if (isMobile)
                $(this).css("color","gray");
  });
 
-$("#designtype,#carttype").change(
+$("#designtype").change(
 function()
 {
 	
@@ -943,21 +1066,7 @@ function()
   ||
   $("#phone").val()==''
   ||
-  $("#cardnumber").val()=='credit card number'
-  ||
-  $("#cardnumber").val()==''
-  ||
-  $("#expiration_date").val()==''
-  ||
-  $("#expiration_date").val()=='expiration date'
-  ||
-  $("#securitycode").val()==''
-  ||
-  $("#securitycode").val()=='security code'
-  ||
   $("#designtype").val()=="0"
-  ||
-  $("#carttype").val()=="0"
   ||
   (($("#promotioncode").val()!="Promotion code(6 alphanumeric characters)")&&($("#promotioncode").val().trim()!="")&&($("#promotioncode").val().length<6))
   ||
@@ -979,7 +1088,6 @@ function()
 	
 })
 
-
 $("#information input:text, #information input:password").keyup(function(){
 $(this).css("color","gray");
 if ($("#first_name").val()=="Holly"||
@@ -996,21 +1104,7 @@ $("#phone").val()=="phone"
 ||
 $("#phone").val()==''
 ||
-$("#cardnumber").val()=='credit card number'
-||
-$("#cardnumber").val()==''
-||
-$("#expiration_date").val()==''
-||
-$("#expiration_date").val()=='expiration date'
-||
-$("#securitycode").val()==''
-||
-$("#securitycode").val()=='security code'
-||
 $("#designtype").val()=="0"
-||
-$("#carttype").val()=="0"
 ||
 (($("#promotioncode").val()!="Promotion code(6 alphanumeric characters)")&&($("#promotioncode").val().trim()!="")&&($("#promotioncode").val().length<6))
 ||
@@ -1073,13 +1167,7 @@ $("#submit").click(function(){
 	        //$("#codepromotion").append('<label class = "error labels" id="promotionerror" style="width:100px;">Check Promotion Code!</label>');
 	        return false;
           }
-          if(Date.parse(nowdate)>Date.parse($("#expiration_date").val()))
-	 {$(".error").remove();
-	       
-	       $("#designtype").after('<span class = "error" id="designtypeerror">Expiration Date gatter then current date</span>')
-	        //$("#expiration_date").before('<label class="error" id="error">Expiration Date gatter then current date</label>');
-	        return false;
-	 }
+          
 	    $("#error").remove();
 	    $("#loading").show();
 	    $(".user_form").submit();
@@ -1125,7 +1213,27 @@ $("#submit").click(function(){
             });  
       });
       
-    
+    $('#CVC,#cardnumber').keydown(
+    function(event)
+    {
+	
+	if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+		 
+                event.preventDefault(); 
+            }   
+        }	
+	
+});
 
 	
 	</script>

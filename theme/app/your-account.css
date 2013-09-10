@@ -1,7 +1,7 @@
 #designer {
   width: 100%;
   min-height: 40em;
-  background: url(../Images/white-cover.png) no-repeat center center fixed; 
+  /* background: url(../Images/white-cover.png) no-repeat center center fixed;  */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -9,7 +9,7 @@
 }
 
 .welcome-page {
-  width: 53em;
+  width: 100%;
   margin: 0 auto;
   padding-top: 55px;
 }
@@ -18,7 +18,7 @@
   float: left;
   text-align: center;
   display: inline;
-  width: 444px;
+  width: 40%;
   margin-top: -20px;
   border-bottom-left-radius:2em;
 }
@@ -41,23 +41,35 @@
 
 .designer-name {
   font-family: 'Open Sans', serif;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #fff;
   padding-top: .8em;
   margin-top: 48px;
+  font-weight: 300;
 }
 
 .designer-contact {
   font-family: 'Open Sans', serif;
   font-size: .8rem;
   color: #fff;
+   font-weight: 300;
 }
 
 .user-information {
   float: left;
-  margin-left: 72px;
-  margin-top: 32px;
+  margin-left: 152px;
+/*   margin-top: 22px; */
+  width: 40%;
 }
+
+.user-information input {
+width: 80%;
+}
+
+#update-name, .small-input, #update_last_name{
+width: 38% !important;
+}
+
 
 .edit-account-info {
   color: #fff;
@@ -76,6 +88,7 @@
   font-weight: 1000;
   opacity: 1;
 }
+
 
 /* ---------------------------------------------------------------------- */
 /*	Media Queries

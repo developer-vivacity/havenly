@@ -1,46 +1,30 @@
 
-	<div id="footerwrap">
-			<div class="container">
-			<br>
-				<div class="row">
-				
-				<div class="span6 offset3">
-						
-						<ul class = "inline">
-					<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
-					<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
-					<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
-					<li><a href = "http://www.instagram.com/thehavenly"><img src = <?php echo base_url("assets/Images/instaicon.png")?> align="middle"> </a></li>
-						</ul>
-						
-					</div><!-- span4 -->
-				
-					<div class="span6 offset3">
-						
-						<ul class = "inline">
-							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare');?>>ABOUT</li>
-							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/whoweare/#contact');?>>CONTACT</li>
-							<li> <a class= "midsmall condensed white_text" href = <?php echo base_url('index.php/Users/site/terms');?>>TERMS</li>
-							<li><a class= "midsmall condensed white_text"href = "http://blog.havenly.com">BLOG</a></li>
-
-					</div><!-- span4 -->
-					
-					<!--<div class="span4">
-						<img src="assets/img/twitter.png" alt="">
- 						<div id="jstwitter" class="clearfix">
-						<p id="twitter_update_list"></p>
-						</div>
-						<script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script><!-- Script Needed to load the Tweets -->
-						<!--<script type="text/javascript" src="http://api.twitter.com/1/statuses/user_timeline/wrapbootstrap.json?callback=twitterCallback2&count=1"></script>
-						<h4>Update by @WrapBootstrap</h4>-->
-					<!-- span4 -->
-					
-					
-
-				</div><!-- row -->
-			</div><!-- container -->
-		</div><!-- footerwrap -->
-</div>
-
+	   <div id="footerwrap">
+      <div class="contain">
+     
+        <div class="social-media">
+          <ul class="inline">
+            <li><a href="http://www.facebook.com/thehavenly" target="_blank"><img src=<?php echo base_url("assets/Images/fbicon.png")?> align="middle" height="40"></a></li>
+            <li><a href="http://www.twitter.com/thehavenly" target="_blank"><img src=<?php echo base_url("assets/Images/twicon.png")?> align="middle" height="40"></a></li>
+            <li><a href="http://www.pinterest.com/thehavenly" target="_blank"><img src=<?php echo base_url("assets/Images/pinicon.png")?> align="middle" height="40"></a></li>
+<li><a href = "http://www.instagram.com/thehavenly" target = "_blank"><img src = <?php echo base_url("assets/Images/instaround.png")?> align="middle" height="40"> </a></li>         
+		 </ul>
+        </div><!-- social-media -->
+        <div class="footer-links">
+          <ul class="inline">
+            <li class="about-nav"><a href = <?php echo base_url('/#about');?> class="midsmall sanslight white_text">about</li>
+            <li><a class="midsmall sanslight white_text" href=<?php echo base_url('index.php/Users/site/terms');?>>terms</li>
+            <li><a class="midsmall sanslight white_text" href="http://blog.havenly.com" target="_blank">blog</a></li>
+          </ul>
+        </div><!-- footer-links -->
+		
+		  <div id="addressEmail">
+        
+          <a class = "small sanslight white-text" href="mailto:hello@havenly.com">hello@havenly.com</a>
+       		<p class = "small serif white_text"> Designed with love in beautiful colorado. <BR> &copy; Havenly, Inc  2013</p>
+		
+		</div><!-- addressEmail -->
+      </div><!-- contain -->
+    </div><!-- footerwrap -->
 </body>
 </html>

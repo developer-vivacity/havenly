@@ -1,10 +1,10 @@
 .account-nav {
   width: 100%;
   height: 4.575em;
-  background-color: rgba(50,191,183,.8);
-  background:-webkit-linear-gradient(bottom,rgba(50,191,183,.8) 80%, rgba(50,191,183,.8) 80%);
-  background:-o-linear-gradient(bottom,rgba(50,191,183,.8) 80%, rgba(50,191,183,.8) 80%);
-  background:-moz-linear-gradient(bottom,rgba(50,191,183,.8) 80%, rgba(50,191,183,.8) 80%);
+  background-color: rgba(0,0,0,.8);
+  background:-webkit-linear-gradient(bottom,rgba(0,0,0,.8) 80%, rgba(0,0,0,.8) 80%);
+  background:-o-linear-gradient(bottom,rgba(0,0,0,.8) 80%, rgba(0,0,0,.8) 80%);
+  background:-moz-linear-gradient(bottom,rgba(0,0,0,.8) 80%, rgba(0,0,0,.8) 80%);
   vertical-align: middle;
   position: fixed;
   z-index: 10;
@@ -19,12 +19,7 @@
 
 .account-nav-logo a {
   display: inline-block;
-  color: #fff;
-  font-family: 'Museo Sans',sans-serif;
-  text-transform: uppercase;
-  font-size: 2rem;
-  margin-left: .8em;
-  padding-top: .9em;
+  margin-left: 20px;
 }
 
 .account-nav-logo a:hover {
@@ -36,27 +31,29 @@
 .account-nav ul li {
   text-decoration: none;
   display: inline-block;
-  font-family: 'Open Sans Condensed',sans-serif;
-  font-size: 1.2rem;
+  font-family: 'Open Sans',sans-serif;
+  font-size: .9rem;
   text-transform: uppercase;
   margin-right: 1.2em;
-  font-weight: 1000;
+  font-weight: 300;
+  vertical-align: top;
 }
 
 .account-nav ul li a {
   color: #fff;
 }
 
-.account-nav ul li:nth-of-type(5){
+.account-nav ul li:nth-of-type(6){
   margin-right: 0;
 }
 
 .account-nav-left {
-  float: left;
+ display: inline=block;
+  
 }
-
+ 
 .account-nav-left ul {
-  margin: -16px 0 0 145px !important;
+  margin: -70px 0px 0 125px !important;
 }
 
 .account-nav-left ul li {
@@ -80,15 +77,16 @@
   padding: 10px;
   border-radius: 7px;
   display: inline-block;
-  background-color: #ff9933;
+  background-color: #f74d76;
   background-clip: padding-box;
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
-  width: 3.2em;
-  font-family: 'Open Sans Condensed',sans-serif;
+  width: 4.3em;
+  font-family: 'Open Sans',sans-serif;
   text-transform: uppercase;
-  font-size: 1.2rem;
-  font-weight: 1000;
+  font-size: .9rem;
+  font-weight: 300;
+  
 }
 
 .account-nav-right a {

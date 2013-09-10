@@ -71,14 +71,12 @@ echo '<div>';
 
 	if(sizeof($productassign)==0)
 	echo "No Products Uploaded";
-        foreach($productassign as $key)
+         foreach($productassign as $key)
 	{
 	echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
-			
 	}
 
 //add hidden variable by kbs---------------------------
-	
 echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
 echo '<input type="hidden" value="'.$roomid.'" id="currentroomid" name="currentroomid"/>';
 echo '<input type="hidden" value="'.$currentuserid.'" id="currentuserid" name="currentuserid"/>';
@@ -130,13 +128,54 @@ $attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
 echo form_open('Admin/site/paint_colors_for_design/',$attributes);
 ?>
 <table border="0">
-<tr><td>Designer Notes</td><td colspan="4"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="error_show"></td><td><a href="#" onclick="insert_color('comment');">Update</a></td><td><div style="float:right;"></div></td></tr>	
-<tr id="rgbtablerow1"><td>Enter RGB</td><td><input type="text" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone1" maxlength="3"/></td><td><input type="text" size="2" class="txtrgb" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo1" maxlength="3"/></td><td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree1" maxlength="3"/></td><td>Description</td><td><textarea name="comment[]" id="comment1"></textarea></td><td><a href="#" id="addmorergb">Add more</a></td><td><div id="rgberror1" class="error_show"></div></td></tr>
-
-
-<tr><td colspan="7"><div style="float:left;"><a href="#" onclick="insert_color('color');">Submit</a></div></td></tr>
-
+<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="error_show"></td><td><a href="#" onclick="insert_color('comment');">Update</a></td><td><div style="float:right;"></div></td></tr>	
+<tr ><td colspan="8" ><div style="margin-left:200px;"><h4>Design color</h4></div></td></tr>
+<?php
+$r=0;
+$name="";
+$addmore='';
+$display='none';
+foreach($designcolor as $designer_key)
+{        
+	         
+          $designcolor= explode(',',str_replace("rgb(","",str_replace(");","",$designer_key->color)));
+          ++$r;
+          echo'<tr id="rgbtablerow'.$r.'">
+          <td>'.$name.'</td>
+          <td id="colorpic'.$r.'"><div style="background-color:'.$designer_key->color.';width:50px;height:50px;">&nbsp;</div></td>
+          <td><input type="text" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'.$r.'" maxlength="3" value="'.$designcolor[0].'" onblur="color_pic('.$r.');"/></td>
+          <td><input type="text" size="2" class="txtrgb" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'.$r.'" maxlength="3" value="'.$designcolor[1].'"/></td>
+          <td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" maxlength="3" value="'.$designcolor[2].'"/></td>
+          <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'">'.$designer_key->description.'</textarea></td>
+          <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></a></td>
+          <td><div id="rgberror'.$r.'" class="error_show"></div></td>
+          </tr>';
+	
+}
+   
+   if($r<5)
+   {
+   $display='block';
+   }
+   if($r==0)
+   {
+    $r=$r+1;
+    echo '<tr id="rgbtablerow'.$r.'">
+    <td>Enter RGB</td><td id="colorpic'.$r.'">&nbsp;</td>
+    <td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
+    <td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'.$r.'" 
+    onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
+    <td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
+    <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'"></textarea></td>
+    <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td>
+    <td><div id="rgberror'.$r.'" class="error_show"></div></td></tr>';
+   }
+echo '<input type="hidden" id="totalrgb" value="'.$r.'" name="totalrgb"/>';
+echo '<tr id="rgbtablerow"><td colspan="8"><div style="margin-left:200px;display:'.$display.'" id="d_color"><a href="#" id="addmorergb">Add Color</a></div></td></tr>';
+?>
+<tr><td colspan="8"><div style="float:left;margin-left:200px;" id="sub_color"><a href="#" onclick="insert_color('color');">Submit</a></div></td></tr>
 </table>
+
 <?php echo '<input type="hidden" name="desinerholdid" id="desinerholdid" value="'.$designid.'">';
 
 echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value="'.$roomid.'">';
@@ -168,8 +207,7 @@ function Updatedesign(designid,roomid,type)
 	$("#updatedesign").before('<p  style="margin-left:200px;" class="error">*Enter Design Name</p>');
 	else
 location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#designtext").val().trim()+"/"+designid+"/"+$("#currentuserid").val()+"/"+$("#DesignStatus").val()+"/"+1;		  
-
-		  
+	  
          }
          else
          {
@@ -201,70 +239,85 @@ function(event)
 });
 
 
+function color_pic(text_id)
+{
+	
+	
+  if(($("#rgbone"+text_id+"").val().trim()!="")&&($("#rgbtwo"+text_id+"").val().trim()!="")&&($("#rgbthree"+text_id+"").val().trim()!=""))
+  {
+	  
+     var colortype=$("#rgbone"+text_id+"").val()+","+$("#rgbtwo"+text_id+"").val()+","+$("#rgbthree"+text_id+"").val();
+     var colorpic="rgb("+colortype+");";
+     $("#colorpic"+text_id+"").html('<div style="background-color:'+colorpic+';width:50px;height:50px;">&nbsp;</div>')
+  }	
+	
+}
 var error_flage=true;
 function display_error()
 {
 	error_flage=true;
 	$(".error_show").html("");
+	
 	for(k=1;k<=zi;k++)
 	{
+	   if($("#rgbone"+k+"").length>0)
 	   if(($("#rgbone"+k+"").val().trim()=="")||($("#rgbtwo"+k+"").val().trim()=="")||($("#rgbthree"+k+"").val()=="")||($("#comment"+k+"").val().trim()==""))
      	   {  
 	   error_flage=false;
 	   $("#rgberror"+k+"").html("Fill all value!");	
 	   return false;	
 	   }
-	  else
-	  {
-	     if($("#rgbone"+k+"").val().length<3)	
-	     {
-	    error_flage=false;
-	     $("#rgberror"+k+"").html("Enter three digit for red!");	
-               return false;	
-              }
-	     if($("#rgbtwo"+k+"").val().length<3)	
-	     {
-		     error_flage=false;
-	     $("#rgberror"+k+"").html("Enter three digit for green!");
-              return false;	
-              }
-	     if($("#rgbthree"+k+"").val().length<3)	
-	     {
-		     error_flage=false;
-	     $("#rgberror"+k+"").html("Enter three digit for blue!");	
-              return false;	
-              }
-	
-	}
-}
+	  }
 	
 }
 
 var zi=1;
 $("#addmorergb").click(function()
 {
-	display_error();
-	if(error_flage)
-	{
-	if(zi<5)
-	{
-	  zi= ++zi;
-	  $("#rgberror"+(zi-1)+"").html("");
-	  $("#rgbtablerow"+(zi-1)+"").after('<tr id="rgbtablerow'+zi+'"><td>&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" onkeypress="return handle_key(event);"/></td><td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'" onkeypress="return handle_key(event);"/></td><td><input type="text" maxlength="3" class=txtrgb name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'" onkeypress="return handle_key(event);"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')">close</a></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
 	
-         }
+	if($("#totalrgb").val()!=0)
+	{
+	   zi=$("#totalrgb").val();
+	   $("#totalrgb").val(0)
+	 }
+    	display_error();
+        
+        if(error_flage)
+	{
+	 if(zi<5)
+	 {
+	   zi= ++zi;
+	   $("#rgberror"+(zi-1)+"").html("");
+	   $("#rgbtablerow").before('<tr id="rgbtablerow'+zi+'"><td>Enter RGB</td><td id="colorpic'+zi+'">&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')"><img src="'+$("#siteurl").val()+'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
+	   $("#sub_color").show();
+	}
+	if(zi>=5)
+	$("#d_color").hide();
         }
         })
-
-
 function removergbrow(id)
 {
+	
+	if($("#totalrgb").val()!=0)
+	{
+	   zi=$("#totalrgb").val();
+	   $("#totalrgb").val(0)
+	}
+	
 	$("#"+id).remove();
 	zi= --zi;
+	
+	if(zi==0)
+	{
+	    $("#sub_color").hide()
+         }
+	
+	$("#d_color").show();
+	$("#totalrgb").val(zi);
 }
 function insert_color(type)
 {    
-	
+	zi=($("#totalrgb").val()!=0?$("#totalrgb").val():zi);
          
          if(type=="color")
          display_error();	

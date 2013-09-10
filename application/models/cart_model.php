@@ -208,8 +208,34 @@ function get_design_info_by_id($design_id)
 	$query=$this->db->get('user_design');
 	
 	return $query->result_array();
+
+}
+function valid_promotion_code($promotioncode,$designtype)
+{
 	
+	$this->db->select('design_fee_id,status');
+	
+	$this->db->where('promotion_code',$promotioncode);
+	
+	$this->db->where('design_type',$designtype);
+	
+	$query=$this->db->get('design_fee');
+
+	return $query->result_array();
+}
+function add_designfee($data)
+{
+ if($data==0)
+ {
+ $this->db->query('update  users set design_fee_id=(select design_fee_id from design_fee where promotion_code= "null" and status="active") where id='.$this->session->userdata("id").'');
+
+ }
+ else
+ {
+ $this->db->query('update users set design_fee_id='.$data.' where id='.$this->session->userdata("id").'');
+ }
 }
 }
+
 
 ?>

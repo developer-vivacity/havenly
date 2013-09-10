@@ -14,8 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']= 'http://localhost/test/design3';
-
+$config['base_url']= 'http://www.havenly.com/testsite/';
 /*
 |--------------------------------------------------------------------------
 | Index File

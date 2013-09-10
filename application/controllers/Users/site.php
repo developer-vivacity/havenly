@@ -10,27 +10,23 @@ function __construct()
    
    $this->load->library('s3');
    $this->load->library('session');
-
    $this->load->model('user_model');
    $this->load->model('room_model');
    $this->load->model('preference_model');
    $this->load->model('designer_model');
    $this->load->model('cart_model');
-$this->load->model('concept_model');
+   $this->load->model('concept_model');
    $this->load->model('Users/picture_model');
-
-   
 
 }
  function index()
  {
-  $this->load->view('Users/home');
-  
-  $this->room_model->create_table();
-  $this->user_model->create_table();
-  $this->preference_model->create_table();
-  $this->designer_model->create_table();
-  $this->cart_model->create_table();
+   $this->load->view('Users/home');
+   $this->room_model->create_table();
+   $this->user_model->create_table();
+   $this->preference_model->create_table();
+   $this->designer_model->create_table();
+   $this->cart_model->create_table();
  }
  
  
@@ -311,6 +307,7 @@ function UserEditInformation()
         }
       if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
       {
+	      
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
@@ -325,6 +322,7 @@ function UserEditInformation()
        $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
         #.......ConceptBoardModule==========
        
+      
        
        $this->load->view('Users/accountinformation', $data);
        return;

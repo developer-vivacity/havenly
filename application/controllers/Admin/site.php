@@ -514,13 +514,10 @@ function display_product_name_associate_with_design($design_id=null,$designname=
                $data['designid']=$design_id;
 	      $data['designname']=urldecode($designname);
                $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
-         
                $data['productassign']=$this->product_model->display_design_associated_products($design_id);
-	      
-	     
 	      $data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
+               $data['designcolor']= $this->product_model->get_paint_color($design_id);
                $data['currentuserid']=$current_user_id;
-         
                $this->load->view('Admin/assignproductdesign',$data);
         }
         else
@@ -567,9 +564,14 @@ function paint_colors_for_design()
 		$this->product_model->update_designer_notes($_POST['desinerholdid'],$_POST['designer_notes']);
             for($i=0;$i<sizeof($rgbfirst);$i++)
             {
-	        $color_code='rgb('.$rgbfirst[$i].','.$rgbsecond[$i].','.$rgbthird[$i].');';
-	
-	       $this->product_model->paint_colors_for_design($_POST['desinerholdid'],$color_code,$rgbcomment[$i]);
+	        
+	         $color_code='rgb('.$rgbfirst[$i].','.$rgbsecond[$i].','.$rgbthird[$i].');';
+	        
+	         if(($rgbfirst[$i]=="")||($rgbsecond[$i]=="")||($rgbthird[$i]==""))
+	         continue;
+                 
+                  $this->product_model->paint_colors_for_design($_POST['desinerholdid'],$color_code,$rgbcomment[$i]);
+            
             }
             redirect('/Admin/site/currentroomwithuser/'.$_POST['desinerholdroomid'].'','refresh');
          }

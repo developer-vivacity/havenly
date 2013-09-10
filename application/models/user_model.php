@@ -8,6 +8,26 @@ parent::__construct();
  function create_table()
  {
 	 
+	 $this->db->query("CREATE TABLE IF NOT EXISTS design_fee (
+  user_id int(10) NOT NULL,
+  design_type varchar(100) NOT NULL,
+  promotion_code varchar(50) DEFAULT NULL,
+  status varchar(100) NOT NULL,
+  fee varchar(200) NOT NULL,
+  credit_amount decimal(10,0) NOT NULL,
+  PRIMARY KEY (user_id)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1");
+	 
+
+$this->db->query("CREATE TABLE IF NOT EXISTS promotion_code (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  promotion_code varchar(100) DEFAULT NULL,
+  design_fee varchar(500) NOT NULL,
+  designtype enum('complete','incomplete') NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3");
+	 
+	 
   $this->db->query("CREATE TABLE IF NOT EXISTS users (
   id int(11) NOT NULL AUTO_INCREMENT,
   first_name varchar(100) COLLATE utf8_unicode_ci NOT NULL,

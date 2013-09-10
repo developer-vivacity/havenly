@@ -5,17 +5,82 @@
 <div class = "center"><br><br><br>
 </div>
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
-
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
+
+<!------------for stripe integration--------------->
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/stripe-debug.js">
+</script>
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/">
+</script>
+
+<script type="text/javascript">
+ // This identifies your website in the createToken call below
+ 
+ 
+ Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5');
+// ...
+
+ jQuery(function($) {
+    $('#SecurCode').click(function(event) 
+    {
+	
+$('.payment-errors').html("<img src='"+$("#basepath").val()+"/assets/Images/ajax-loader.gif' width='25px' height='25px'>");    
+     
+$("#SecurCode").prop('disabled', true);
+     Stripe.card.createToken({
+     name: $('#card-name').val(),
+     number: $('#cardnumber').val(),
+     cvc: $('#CVC').val(),
+     exp_month: $('#cart_month').val(),
+     exp_year: $("#cart_year").val()
+     }, stripeResponseHandler);
+
+    // Prevent the form from submitting with the default action
+    return false;
+
+  });
+});
+  var stripeResponseHandler = function(status, response) 
+  {
+ 
+  var $form = $('#payment-form');
+  //alert(status+"----"+response.id);
+  if(response.error) 
+  {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+  } 
+  else if(status==200) 
+  {
+
+    // token contains id, last4, and card type
+    var token = response.id;
+    $form.find('.payment-errors').text(token);
+    $form.find('button').prop('disabled', false);
+     //$('.payment-errors').append($('<input type="hidden" name="stripeToken" id="stripeToken">'));
+    //$("#stripeToken").val(token);
+   // Insert the token into the form so it gets submitted to the server
+   //$form.append($('<input type="hidden" name="stripeToken">').val(token));
+// and submit
+   // $form.get(0).submit();
+  }
+};
+</script>
+
+<!-----------------------------$$$$$$$$$$$$$$$$-------------------------------------->
+
 <br>
-
-
-
 <noscript>
 <style type="text/css">
         .form_container {display:none;}
-  </style>
-<br><br>
+</style>
+<br>
+<br>
 <div class = "noscript"><p class = "text2">You Should Enable Javascript.  It is, after all, 2013!</p>
 		
 	<p class = "text">Don't know how?<br><br>
@@ -32,10 +97,9 @@
 </div>
 
 <form class = "user_form" name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
-	
+<input type="hidden" name="basepath" id="basepath" value="<?php echo base_url();?>">	
 	<div id = "intro" class = "resize">
-	
-		<p class = "extralarge sans-serif blue_text">
+	<p class = "extralarge sans-serif blue_text">
 			IT'S NICE TO MEET YOU.
 			</p>
 			<br><br><br>
@@ -113,7 +177,7 @@
 		</div>
 		
 		<div id = "LR" class = "padding_small">
-	<div>
+	        <div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
 		<img class = "inactive" src = <?php echo base_url('assets/Images/LivingRoom/LR1.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 2 class='cbox' />
@@ -231,11 +295,9 @@
 <li class = "circle_survey condensed" >6</li>
 </ul>
 <BR><BR>
-
-
-	<p class = "extralarge sanslight blue_text">THE PICTURE SECTION </p><br>
-	<p class = "medium sanslight dark_gray_text"> Only your designer sees this, so you don't have to be too embarrassed about your spaceship sheets. </span></p>
-	<br><br>
+<p class = "extralarge sanslight blue_text">THE PICTURE SECTION </p><br>
+<p class = "medium sanslight dark_gray_text"> Only your designer sees this, so you don't have to be too embarrassed about your spaceship sheets. </span></p>
+<br><br>
 <div class = "padding">
 <div style = "display: table-row">
 <div class = "inline gray" style = "display:table-cell; width:40%"><BR><BR>
@@ -412,9 +474,6 @@
 		<div class = "third middle inline right-align">
 		<img src = <?php echo base_url('assets/Images/pinlarge.png');?> height = 80>
 		</div>
-		
-		
-		
 		<div class = "half middle inline">
 		<input type = "text" name = "pinterest" value = "Link to a pinterest board" id = "pinterest"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
@@ -440,12 +499,11 @@
 			<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'social', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
 	</div>
 	</div>
-	
+	<!-------------------------@@@@@@@@@@@@@@@@@@@@@----------------------------------->
 	<div id = "information" class = "resize">
 		<p class = "extralarge sanslight blue_text">CREATE YOUR ACCOUNT</p><br>
 		<p class = "medium sanslight dark_gray_text">We'll be in <span>touch.</span></p><br><br>
-	
-		<div class = "horizontal">
+	<div class = "horizontal">
 			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="first_name">First Name:</label>
 			<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput inline" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 			
@@ -471,7 +529,129 @@
 		</div>
 		
 		
-		<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
+		
+		
+		<!-------------------------------------Add Design Fee----------------------------------------------------->
+		<div class= "horizontal"><span  id="designfeepart"></span></div>
+		<div class= "horizontal" >
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text">Design Fee:</label>
+		<span class = "labels" style="text-align:center;">$149.00</span>
+		
+		<!-----------design fee hidden variables------->
+		
+		<input type="hidden" value="$149.00" name="designfeeid" id="designfeeid"/>
+		
+		<!---<input type="hidden" value="inactive" name="feestatus" id="feestatus"/>---->
+		
+		<input type="hidden" value="active" name="feestatus" id="feestatus"/>
+		
+		<input type="hidden" value="null" name="hidpromotioncode" id="hidpromotioncode">
+		<!----------end design fee hidden variables------>
+		</div>
+		<br/>
+		<div class="horizontal"><label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select design type: </label>
+		<div class="labels" ><select style="width:280px;float:left;margin-left:27px;;" name="designtype" id="designtype">
+		<option value="0">
+		   Select design type
+		</option>
+		<option value="complete">
+		   Complete
+		</option>
+		<option value="incomplete">
+		  InComplete
+		</option>
+		</select></div>
+		</div>
+		<br/>
+		<div class="horizontal" id="codepromotion">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="zipcode">Promotion code: </label>	
+		<input type="text" name="promotioncode" value="Promotion code(6 alphanumeric characters)" id="promotioncode" class = "forminput"  maxlength="6"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:35%"/>
+		<input type="button" name="Apply" value="Apply" id="designApply"/>
+		</div>
+		<br/>
+		<div id="payment-form">
+		   <span class="payment-errors"></span>
+		<div class="horizontal">
+		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
+		  <div class="labels" > 
+                   <!----<select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		        <option value="Visa">
+			 visa card
+		      </option>
+		     <option value="Mastercard">
+			 master card
+		     </option>
+		     <option value="AmericanExpress">
+		     American Express
+		     </option>
+		     <option value="Discover">
+		     Discover
+		     </option>
+		     <option value="Diner's Club">
+		     Diner's Club
+		     </option>
+		     <option value="JCB">
+		     JCB
+		     </option>
+		    </select>---->
+ <select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		        <option value="4242424242424242">
+			 visa card
+		      </option>
+		     <option value="5555555555554444">
+			 master card
+		     </option>
+		     <option value="378282246310005">
+		     American Express
+		     </option>
+		     <option value="6011111111111117">
+		     Discover
+		     </option>
+		     <option value="30569309025904">
+		     Diner's Club
+		     </option>
+		     <option value="3530111333300000">
+		     JCB
+		     </option>
+		    </select>
+		</div>
+		</div>
+		<div class="horizontal">
+		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardnumber">Enter card number: </label>
+		<input type="text" data-stripe="CVC" id="CVC" value="CVC" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:9%" maxlength="4"/><input type="text" data-stripe="cardnumber" value="credit card number" id="cardnumber" class = "forminput"  maxlength="16"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:30%"/>
+		</div>
+		<div class="horizontal">
+<div style="margin-left:350px;" >
+<div  for="cardnumber" style="float:left;text-align:left;" class = "labels inline forty middle midlarge sanslight dark_gray_text">Enter expiration date: </div>
+			
+<div  style="width:10%;float:left;">
+<select data-stripe="exp-month" id="cart_month">
+<?php
+
+   for($i=1;$i<=12;$i++)
+   {
+       echo '<option value='.$i.'>'.$i.'</option>';	
+   }
+?>	
+</select>
+</div>
+<div  style="width:10%;float:left;">
+<select data-stripe="exp-year" id="cart_year">
+  <?php
+   for($year=2013;$year<=2020;$year++)
+   {
+    echo '<option value='.$year.'>'.$year.'</option>';	
+    }
+?>	
+</select> 
+</div>
+	<div style="width:10%;float:left;">
+	<button type="button" id="SecurCode">SecurCode</button>
+	</div>	
+	</div>	</div></div>
+<br/>
+		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
+<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
 	</form>
 	</div>
@@ -481,10 +661,66 @@
 
 	
 	<script>
-
+  $(document).ready(function(){	  
 	
 	
-$(document).ready(function(){	  
+	 var $promotion_code=0;
+     $("#designApply").click(function()
+     {
+	  
+	 $(".error").remove();
+	 $("#promotionerror").remove();
+	 $(".designtypeerror").remove();
+	 var str="Promotion code(6 alphanumeric characters)";
+	 if($("#promotioncode").val().trim()==str)
+	 {
+                //$("#codepromotion").append('<label class = "error labels" id="promotionerror" style="width:100px;">Enter Promotion Code </label>');
+                 if($("#designtypeerror").length==0)	 
+	        $("#designtype").after('<span class = "error" id="designtypeerror">Enter Promotion Code</span>')
+                 return false;
+          }
+          if($("#feestatus").val()!="active")
+          {
+	        if($("#designtypeerror").length==0)	 
+	        $("#designtype").after('<span class = "error" id="designtypeerror">choose active design fee!</span>')
+                 return false;	 
+          }
+          if($("#designtype").val()==0)
+	 {     
+	       if($("#designtypeerror").length==0)
+	       $("#designtype").after('<span class="error" id="designtypeerror">Select Design Type</span>');
+	       return false;
+	 }
+         $("#designtype").after('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"></span>')
+          $.post($("#basepath").val()+"index.php/Cart/site/promotion_code", {promotioncode :$("#promotioncode").val(),type:$("#designtype").val()}, 
+          function(data)
+          {
+		 $("#imgspan").remove();
+		 $(".error").remove();
+		 $("#designtypeerrorimg").remove();
+		 
+            if(data.length>0)
+            { 
+		   var data= data.split('-@-');
+		   $promotion_code=data[0];
+		   $("#designfeeid").val(data[1]); 
+                   $("#hidpromotioncode").val($("#promotioncode").val());  
+                   if($promotion_code==1)
+	           $("#designtype").after('<span class = "error" id="designtypeerror">it\'s valid!</span>')
+                   else
+                   $("#designtype").after('<span class = "error" id="designtypeerror">'+data[1]+'</span>')
+               return false; 
+           }
+           else
+           {
+		   $promotion_code=0;
+	            $("#designtype").after('<span class = "error" id="designtypeerror">This Promotion Code Doest Not Exit!</span>')
+            } 
+          })
+	
+	
+	});
+	
 	
 	$("#intro").fadeIn("slow");
 
@@ -496,12 +732,11 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 
   $("#social .continue").show();
 	$("#introbutton").click(function(){
-	$("#intro").hide();
-	$("#style_pics").fadeIn();});
-	
-	
-		 $('#uploader1').fineUploader({
-				request: {
+	                 
+	                 $("#intro").hide();
+	                 $("#style_pics").fadeIn();});
+		        $('#uploader1').fineUploader({
+		        request: {
 				endpoint: 'site/upload_room_pic'
 				},
 				debug:true,
@@ -614,7 +849,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 	$("#image1").show();
 	$("#loading").hide();
 	$("#room_button1").hide();
-	// $(".login").show();
+	
 }
 });
 $("#room_pics .continue").show();
@@ -789,7 +1024,7 @@ if (isMobile)
 	$(".forminput").css("font-size","4em");
 	$("#submit").css("font-size","3em")
 	$(".labels").hide();
-		$(".forminput").css("margin", "1em%");
+	$(".forminput").css("margin", "1em%");
 	$(".forminput").css("width","80%");
 	$(".inputs").css("width","80%");
 	$(".inputs").css("text-align","center")
@@ -804,16 +1039,57 @@ if (isMobile)
 	$(".forminput").on("click", function(){
 		$(this).val("");
 		});
-		
-
-	
 }
 
- $("#sizes input:text").keyup(function(){
- $(this).css("color","gray");});
- 
- $("#information input:text, #information input:password").keyup(function(){
- $(this).css("color","gray");
+ $("#sizes input:text").keyup(function()
+ {
+               $(this).css("color","gray");
+ });
+
+$("#designtype").change(
+function()
+{
+	
+   $promotion_code=0;
+  $(this).css("color","gray");
+  if ($("#first_name").val()=="Holly"||
+  $("#first_name").val()==''||
+  $("#first_name").val()=='First Name'||
+  $("#last_name").val()=="Golightly"||
+  $("#last_name").val()==''||
+  $("#last_name").val()=="Last Name"||
+  $("#email").val()==''||
+  $("#email").val()=="cat@gmail.com"||
+  $("#email").val()=="email"||
+  $("#phone").val()=="867-5309"||
+  $("#phone").val()=="phone"
+  ||
+  $("#phone").val()==''
+  ||
+  $("#designtype").val()=="0"
+  ||
+  (($("#promotioncode").val()!="Promotion code(6 alphanumeric characters)")&&($("#promotioncode").val().trim()!="")&&($("#promotioncode").val().length<6))
+  ||
+  $("#password").val()=="Password"
+  ||
+  $("#password").val()=="Password (min 6 chars.)"
+  ||
+  $("#password").val()==''
+  ||
+  $("#password").val().length < 6)
+  {
+   $("#submit").hide();
+  }  
+  else 
+  {
+   $("#submit").fadeIn();
+  }
+    	
+	
+})
+
+$("#information input:text, #information input:password").keyup(function(){
+$(this).css("color","gray");
 if ($("#first_name").val()=="Holly"||
 $("#first_name").val()==''||
 $("#first_name").val()=='First Name'||
@@ -824,22 +1100,31 @@ $("#email").val()==''||
 $("#email").val()=="cat@gmail.com"||
 $("#email").val()=="email"||
 $("#phone").val()=="867-5309"||
-$("#phone").val()=="phone"||
-$("#phone").val()==''||
-$("#password").val()=="Password"||
-$("#password").val()=="Password (min 6 chars.)"||
-$("#password").val()==''||
+$("#phone").val()=="phone"
+||
+$("#phone").val()==''
+||
+$("#designtype").val()=="0"
+||
+(($("#promotioncode").val()!="Promotion code(6 alphanumeric characters)")&&($("#promotioncode").val().trim()!="")&&($("#promotioncode").val().length<6))
+||
+$("#password").val()=="Password"
+||
+$("#password").val()=="Password (min 6 chars.)"
+||
+$("#password").val()==''
+||
 $("#password").val().length < 6)
 {
-$("#submit").hide();
+   $("#submit").hide();
 }
-else {
-$("#submit").fadeIn();
+else 
+{
+   $("#submit").fadeIn();
 }
-
 });
-
-$("#tweetsend").click(function(){
+$("#tweetsend").click(function()
+{
 var check = $(this).find('#later');
 
 check.prop('checked',!check[0].checked);
@@ -854,11 +1139,39 @@ if (check.prop('checked')==true)
 	}
 
 });
-
-
 $("#submit").click(function(){
-	$("#loading").show();
-	$(".user_form").submit();});
+	
+	var d = new Date();
+         var curr_date = d.getDate();
+         var curr_month = d.getMonth()+1 ; //Months are zero based
+         var curr_year = d.getFullYear();
+         var nowdate=curr_month+"/"+curr_date+"/"+curr_year;
+	 
+	 if($("#feestatus").val()!="active")
+          { $(".error").remove();
+	 $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">choose active design fee!</label>');	 
+	  return false;	 
+          }
+	
+	 if($("#designtype").val()==0 )
+	 {     $(".error").remove();
+	       if($("#designtypeerror").length==0)
+	       $("#designtype").after('<span class="error" id="designtypeerror">Select Design Type</span>');
+	       return false;
+	 }
+	 if(($promotion_code==0)&&($("#promotioncode").val()!="Promotion code(6 alphanumeric characters)")&&($("#promotioncode").val().trim()!=""))
+	 {
+		 $(".error").remove();
+	        if($("#designtypeerror").length==0)	 
+	        $("#designtype").after('<span class = "error" id="designtypeerror">Check Promotion Code!</span>')
+	        //$("#codepromotion").append('<label class = "error labels" id="promotionerror" style="width:100px;">Check Promotion Code!</label>');
+	        return false;
+          }
+          
+	    $("#error").remove();
+	    $("#loading").show();
+	    $(".user_form").submit();
+	});
 
 	});
 	
@@ -891,7 +1204,36 @@ $("#submit").click(function(){
 	$("#social").fadeIn();
 	});
 	
-
+       $(function() 
+       {
+	   $('#expiration_date').datepicker({  
+            inline: true,  
+            showOtherMonths: true,  
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],  
+            });  
+      });
+      
+    $('#CVC,#cardnumber').keydown(
+    function(event)
+    {
+	
+	if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+		 
+                event.preventDefault(); 
+            }   
+        }	
+	
+});
 
 	
 	</script>

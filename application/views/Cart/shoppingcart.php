@@ -41,10 +41,11 @@
 <div id="total_items_in_cart"><?php echo $totalitemincart;?> items
 </div></div>
 
-
+<div style = "position: relative;">
 	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>">
-	<img src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div>
-	
+	<img class = "border img-circle" src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a></div>
+	<div style = "position:absolute;"><?php echo $totalitemincart;?></div>
+	</div>
 	
 
 

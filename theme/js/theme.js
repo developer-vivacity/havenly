@@ -1,14 +1,29 @@
+/* custom script */
 
-    // carousel demo
+//nav-right background
+var scrollTopNavRight;
 
-!function ($) {
+$(window).scroll(function () {
+  scrollTopNavRight = $(window).scrollTop();
+  setNavBackground();
+});
 
-    $('#myCarousel').carousel()
-    
-}(window.jQuery)
+function setNavBackground() {
+  if(scrollTopNavRight > 73){
+    $(".nav-right").addClass("nav-background");
+  }else{
+    $(".nav-right").removeClass("nav-background");
+  }
+}
 
-!function ($) {
 
-    $('#myCarousel2').carousel()
-    
-}(window.jQuery)
+//accordion menu
+$(function(){
+  $('#list-pages-accordion').dcAccordion({
+		eventType: 'click',
+		autoClose: false,
+		saveState: false,
+		disableLink: true,
+		speed: 'fast'
+	});
+});

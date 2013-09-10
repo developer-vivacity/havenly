@@ -1,0 +1,100 @@
+.goods-picture {
+  width: 100%;
+  background: url(../Images/carrie.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+  height: 30em;
+  text-align:center;
+  margin-top: -.6875em;
+}
+
+.goods-picture h1 {
+  background-color: rgba(255, 255, 255,.7);
+  background:-webkit-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  background:-o-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  background:-moz-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  font-family: 'Merriweather', serif;
+  font-size: 3rem;
+  padding: .7em 0 .7em 0;
+  color: #232121;
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-top: 7em;
+}
+
+.goods {
+  height: 71em;
+  text-align: center;
+  background-color: #32bfb7;
+  color: #fff;
+}
+
+.goods h2,
+.goods h3 {
+  color: #fff;
+  margin: 0 auto;
+  }
+
+.goods h2 {
+  margin-top: 2em;
+  font-size: 2rem;
+  max-width: 26em;
+  color: #fff;
+  font-family: 'Merriweather', serif;
+}
+
+.goods h3 {
+  padding-top: .2em;
+  font-size: 1rem;
+  max-width: 55em;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.price-column {
+  padding-top: 2em;
+}
+
+.price-column img:hover {
+margin-top: 5px;}
+
+.left-price {
+  padding-right: 4em;
+}
+
+.price-range{
+  margin-top: .25em;
+}
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 568px) {
+  .goods {
+    height: 58em;
+  }
+  .goods-picture {
+    display: none;
+  }
+  .goods h2 {
+    margin-top: 0;
+    padding: 10px;
+  }
+  .goods h3 {
+    line-height: 1.5;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .price-column {
+    padding-top: 0;
+  }
+  .left-price {
+    padding-right: 0;
+  }
+}
+

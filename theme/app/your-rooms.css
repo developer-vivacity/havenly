@@ -1,0 +1,124 @@
+#rooms {
+  width: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.edit-room-button {
+  top: 18px !important;
+  right: 150px !important;
+  font-size: 1.3rem !important;
+  padding: 10px !important;
+  text-align: center;
+  margin-left: -229px;
+  opacity: 1;
+}
+
+.edit-room-button:hover{
+  color: #fff;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.room-picture {
+  margin: 0 auto;
+  width: 42em;
+  position: relative;
+  z-index: 0;
+}
+
+
+.table th, .table td {
+  text-align: center !important;
+}
+
+#rooms .table {
+  border: none !important;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: -100px;
+  width: 650px;
+  background-color: rgba(255,255,255, 0.8) !important;
+  background:-webkit-linear-gradient(bottom,rgba(255,255,255, 0.8) 80%, rgba(255,255,255, 0.8) 80%);
+  background:-o-linear-gradient(bottom,rgba(255,255,255, 0.8) 80%, rgba(255,255,255, 0.8) 80%);
+  background:-moz-linear-gradient(bottom,rgba(255,255,255, 0.8) 80%, rgba(255,255,255, 0.8) 80%);
+  z-index: 20;
+}
+
+.table td {
+  border: none !important;
+  font-family: 'Merriweather', serif;
+  font-size: 1.3rem;
+  color: #000000;
+  padding: 0.6em 0;  
+}
+
+
+#room-details {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+#main-edit-room-info {
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#chevron-edit-room {
+  height: 90em;
+}
+
+#chevron-edit-room .container {
+  width: 970px !important;
+}
+
+#edit-account-info {
+  padding-top: 30px;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 900px) {
+  .edit-room-button {
+    font-size: 1rem !important;
+    padding: 10px 5px !important;
+    right: 110px !important;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .edit-room-button {
+    right: 70px !important;
+  }
+
+  .room-picture {
+    width: 748px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #rooms .table {
+    width: 460px;
+  }
+
+  .room-picture {
+    width: 460px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #rooms .table {
+    width: 300px;
+    margin-top: -150px;
+  }
+
+  .room-picture {
+    width: 320px;
+  }
+}

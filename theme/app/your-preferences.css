@@ -1,0 +1,104 @@
+#preferences {
+  width: 64em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#preferences h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 1.3rem;
+  color: #232121;
+  padding-top: 1.2em;
+}
+
+.style-selections {
+  width: 63em;
+  margin: 0 auto;
+}
+
+
+.color-selections {
+  margin: 0 auto;
+  width: 60em;
+}
+
+.color-selections div {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.preferences-edit {
+  top: 18px !important;
+  right: 150px !important;
+  font-size: 1.3rem !important;
+  padding: 10px !important;
+  margin-left: 478px !important;
+  z-index: 10;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 900px) {
+  .preferences-edit {
+    font-size: 1rem !important;
+    padding: 10px 5px !important;
+    right: 110px !important;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .preferences-edit {
+    right: 70px !important;
+  }
+
+  #preferences {
+    width: 768px;
+  }
+
+  .style-selections {
+    width: 768px;
+  }
+
+  .color-selections {
+    width: 768px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #preferences {
+    width: 480px;
+  }
+
+  .style-selections {
+    width: 480px;
+  }
+
+  .color-selections {
+    width: 480px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #preferences {
+    width: 320px;
+  }
+
+  .style-selections {
+    width: 320px;
+  }
+
+  .color-selections {
+    width: 320px;
+  }
+
+  img.style-selections {
+    width: 320px;
+  }
+
+  div.color-selections {
+    width: 320px;
+  }
+}

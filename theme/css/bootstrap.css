@@ -212,8 +212,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
@@ -796,12 +795,6 @@ h4 small {
   padding-bottom: 9px;
   margin: 20px 0 30px;
   border-bottom: 1px solid #eeeeee;
-}
-
-ul,
-ol {
-  padding: 0;
-  margin: 0 0 10px 25px;
 }
 
 ul ul,
@@ -1921,7 +1914,6 @@ legend + .control-group {
 
 table {
   max-width: 100%;
-  background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -1938,6 +1930,7 @@ table {
   text-align: left;
   /* vertical-align: top; */
   border-top: 1px solid #dddddd;
+  background-color: white;
 }
 
 .table th {

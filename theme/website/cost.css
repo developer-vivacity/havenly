@@ -1,0 +1,93 @@
+.pricing-table-wrapper {
+  width: 100%;
+}
+
+.cost-options,
+.chevron {
+  margin-top: -.8em;
+  height: 64em;
+  text-align: center;
+}
+
+.cost-options h1 {
+  padding-top: 1.2em;
+  font-size: 3rem;
+  font-family: 'Merriweather', serif;
+  line-height: 40px;
+}
+
+.cost-options h2 {
+  font-size: 1.8rem;
+  line-height: 1em !important;
+  padding-top: .2em !important;
+  padding-bottom: 1em;
+  font-family: 'Merriweather', serif;
+}
+
+.pricing-title h3 {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+}
+
+.pricing-title p {
+  line-height: 1; 
+}
+
+.pricing-column {
+  float: left;
+  width: 40%;
+}
+
+.pricing-column li {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 2.5;
+  font-weight: 300;
+  white-space: normal;
+}
+
+.pt-one ul {
+  padding: 0;
+}
+.pt-one ul:first-of-type {
+  margin-left: 5%;
+  margin-right: 10%;
+}
+.pt-one ul:last-of-type {
+  margin-right: 5%;
+}
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 568px) {
+  .cost-options, .chevron {
+    margin-top: 2em;
+    height: 53em;
+  }
+  .pricing-title h3 {
+    font-size: 1.5rem;
+  }
+  .pricing-title p {
+    font-size: 15px;
+  }
+  .pricing-column img {
+    height: 140px;
+  }
+  .pricing-column li {
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .pricing-column {
+    float: left;
+    width: 49%;
+  }
+  .pt-one ul:first-of-type {
+    margin-right: 2%;
+    margin-left: 0;
+  }
+  .pt-one ul:last-of-type {
+    margin-right: 0;
+  }
+}

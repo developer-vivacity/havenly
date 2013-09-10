@@ -1,0 +1,145 @@
+.about-image {
+  background-image:url("../Images/havenly-team.png");
+  height: 40em;
+  width: auto;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.about h2 {
+  background-color: rgba(255, 255, 255,.7);
+  background:-webkit-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  background:-o-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  background:-moz-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
+  font-family: 'Merriweather', serif;
+  font-size: 3rem;
+  padding: .7em 0 .7em 0;
+  float: left;
+  position: relative;
+  width: 100%;
+  margin-top: 10.5em;
+  color: #232121;
+}
+
+
+.about {
+  background-color: #fff;
+  margin-top: -.6875em;
+  text-align: center;
+  height: 91em;
+}
+
+.about h1 {
+  font-family: 'Open Sans', serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: black;
+  padding-top: 2.5em;
+  padding-bottom: 1em;
+  max-width: 37em;
+  margin: 0 auto;
+}
+
+
+.meet-team {
+  font-family: 'Merriweather', serif;
+  font-size: 3.5rem;
+  color: black;
+}
+
+.bio {
+  height: 300px;
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2em;
+  margin: 4em;
+}
+
+
+.bio img{
+
+	position: absolute;  
+    left: 0;  
+    -webkit-transition: all 300ms ease-out;  
+    -moz-transition: all 300ms ease-out;  
+    -o-transition: all 300ms ease-out;  
+    -ms-transition: all 300ms ease-out;  
+    transition: all 300ms ease-out; 
+
+}
+
+/* .lee-descrip {
+  margin-right: 1%;
+} */
+
+.name {
+  padding-top: 2em;
+  font-family: 'Merriweather', serif;
+  font-size: 1.3em;
+  font-weight: normal;
+  margin: 0 !important;
+  line-height: .8em !important;
+  padding-bottom: .2em;
+	color: white;
+}
+
+.bio-p {
+  font-size: .7rem;
+  text-align: center;
+  width: 79%;
+ padding-top: 1em;
+ margin: auto !important;
+
+}
+
+.caption{
+	background-color: rgba(0,0,0,0.75);
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -webkit-transition: opacity 0.3s linear;
+    text-shadow: #000 1px 1px 0;
+    color: #fff;
+	border-radius: 100%;
+	 	 }
+
+
+
+
+.bio:hover .full-caption {  
+opacity: 1.0;
+}    
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 568px) {
+  .about {
+    height: 98em;
+  }
+  .about h1 {
+    font-size: 1.2rem;
+  }
+  .about h3 {
+    font-size: 2rem;
+  }
+  .about-image {
+    display: none;
+  }
+  .bio {
+    width: 100%;
+  }
+  .image-circle {
+    height: 280px;
+  }
+}
+

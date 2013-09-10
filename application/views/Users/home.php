@@ -369,7 +369,7 @@
 	  <p class = "medium sanslight dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
-		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
+		<img class = "inactive_one" wsrc = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
 		<input type="radio" name="type" id="type" value = "incomplete" class = "cbox"/></div>	 
 <div class = "third inline padding_small top">
 	  <img class = "inactive_one" src = <?php echo base_url('assets/Images/Type2.png');?> height=300em>

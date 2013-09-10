@@ -10,6 +10,7 @@
 					<li><a href = "http://www.facebook.com/thehavenly"><img src = <?php echo base_url("assets/Images/fbicon.png")?> align="middle"></a> </li>
 					<li><a href = "http://www.twitter.com/thehavenly"><img src = <?php echo base_url("assets/Images/twicon.png")?> align="middle"></a> </li>
 					<li><a href = "http://www.pinterest.com/thehavenly"><img src = <?php echo base_url("assets/Images/pinicon.png")?> align="middle"> </a></li>
+					<li><a href = "http://www.instagram.com/thehavenly"><img src = <?php echo base_url("assets/Images/instaicon.png")?> align="middle"> </a></li>
 						</ul>
 						
 					</div><!-- span4 -->

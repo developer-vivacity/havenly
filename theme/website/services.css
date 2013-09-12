@@ -1,0 +1,162 @@
+.services {
+  margin-top: -.6875em;
+  height: 48em;
+  width: 100%;
+}
+
+.services h1 {
+  padding-top: 3em;
+  font-size: 3rem;
+}
+
+.services h2 {
+  font-size: 1.3rem;
+  line-height: 1em !important;
+  margin-top: 0 !important;
+}
+
+.services h1,
+.services h2,
+.services h3 {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+.cards {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-descrip {
+  height: auto;
+}
+
+.card-descrip h3 {
+  padding-top: .9em;
+  font-family: 'Merriweather', serif;
+   font-weight: 300; 
+  font-size: 1.4rem;
+  margin: 0 !important;
+  line-height: .8em !important;
+  padding-bottom: .5em;
+}
+
+.card-descrip p {
+  padding: 0em 1em 1em 1em;
+  font-size: 1rem;
+}
+
+/* FLIPPING */
+.card {
+  width: 15em;
+  height: 15em;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+  -moz-transform-style: preserve-3d;
+  -moz-transition: 0.5s;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+  margin: 0 auto;
+}
+
+.anibox:hover .card {
+  -webkit-transform: rotateX(180deg);             
+  -moz-transform: rotateX(180deg);             
+  transform: rotateX(180deg);             
+}
+
+.face {
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.front {
+  width: 15em;
+  height: 15em;
+}        
+    
+.face img {
+  width:15em;
+  height:15em;
+}
+        
+.card1 {
+  float: left;
+  position: relative;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  margin-left: 6.25%;
+}
+
+.card2 {
+  float: left;
+  position: relative;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+            
+.card3 {
+  float: left;
+  position: relative;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.back {
+  width: 15em;
+  height: 15em;
+  -webkit-transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.anibox {
+  width: 25%;
+  margin-right: 6.25% !important;
+}
+.anibox:last-of-type {
+  margin-right: 0 !important;
+}
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 815px) {
+  .card,
+  .front,
+  .face img,
+  .back {
+    width: 13em;
+    height: 13em;
+  }
+  .anibox {
+    width: 25%;
+    margin-right: 8.5% !important;
+  }
+  .card1 {
+    margin-left: 3%;
+  }
+}
+@media only screen and (max-width: 568px) {
+  .services {
+    height: 87em;
+  }
+  .anibox {
+    width: 100%;
+  }
+  .anibox,
+  .card1,
+  .card2,
+  .card3 {
+    margin: 0;
+  }
+  .card {
+    margin: 0 auto;
+  }
+  .card-descrip p {
+    text-align: center;
+  }
+}

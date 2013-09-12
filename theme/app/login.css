@@ -1,0 +1,76 @@
+.login-section {
+  height: 48em;
+}
+
+.login-form {
+  width: 22em;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.home-login-logo {
+  padding: 4em 0 2em 0;
+}
+
+.label-name {
+  display: inline-block;
+}
+
+.email-label {
+  margin: 0 20px 20px 20px;
+}
+
+.password-label {
+  margin-right: 9px;
+}
+
+#enterloginemail {
+  width: 200px;
+  margin-bottom: 8px;
+}
+
+input[type=text] {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+#enterpass {
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+input[type=text] {
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}
+
+input:-webkit-autofill {
+  background-color: #fff !important;
+}
+
+#enterloginemail:-webkit-autofill {
+  background-color: white !important;
+}
+
+
+#forgotbutton {
+  display: block;
+  text-align: center;
+}
+
+.login-submit-button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding-top: 1em;
+}
+
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+#sign-in-logo-container {
+  width: 12.3em;
+  margin: 0 auto;
+}

@@ -66,7 +66,7 @@ $query=$this->db->update('user_rooms', $update);
 // status Open or Called for login user
  function Check_user_rooms($id)
  { 
- $query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id, user_rooms.room_type, user_rooms.budget, user_room_pictures.filename FROM user_rooms LEFT JOIN user_room_pictures on user_rooms.id = user_room_pictures.room_id  where user_rooms.user_id =".$id."");  
+ $query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id, user_rooms.room_type, user_rooms.status, user_rooms.budget, user_room_pictures.filename FROM user_rooms LEFT JOIN user_room_pictures on user_rooms.id = user_room_pictures.room_id  where user_rooms.user_id =".$id."");  
     
        // $this->db->select('user_rooms.id,user_rooms.user_id,user_rooms.room_type,user_rooms.status, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2');
        // $this->db->where('user_id',$id);
@@ -77,7 +77,7 @@ $query=$this->db->update('user_rooms', $update);
 //	
 function updateroom_loginuser($id)
 {
-  $query=$this->db->query("SELECT user_rooms.id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.id =".$id." and user_rooms.user_id=".$this->session->userdata('id')."");  
+  $query=$this->db->query("SELECT user_rooms.id,user_rooms.room_type, user_rooms.status, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.id =".$id." and user_rooms.user_id=".$this->session->userdata('id')."");  
  return $query->result();
 }				
 // 
@@ -158,7 +158,7 @@ function display_user_room_pic($room_id)
 {
 	 $this->db->where('room_id',$room_id);
 	 $query=$this->db->get('user_room_pictures');
-	 return $query->result();
+	 return $query->result_array();
 }
 // ----- this function display room video------
 function display_user_room_video($user_id)

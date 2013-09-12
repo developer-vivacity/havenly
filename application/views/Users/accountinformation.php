@@ -148,18 +148,21 @@
 
 			echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i>';
 
-		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Your Address">&nbsp;<BR><i class = "icon-home"></i>&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
+		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><i class = "icon-home"></i>&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 		else{
 			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><i class = "icon-home"></i> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
 
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/fblarge.png').'" height="15">';
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->facebook.'></td></tr>';
+			if($key->facebook==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->facebook.'></td></tr>';}
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/pinlarge.png').'" height="15">';
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->pinterest.'></td></tr>';
+			if($key->pinterest==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->pinterest.'></td></tr>';}
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/instaicon.png').'" height="15">';
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->instagram.'"></td></tr>';
+			if($key->instagram=='Your Instagram Page'){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->instagram.'"></td></tr>';}
 
 			echo '</table>';
 			echo '<BR><BR>';
@@ -183,14 +186,17 @@
 	
 	
 	<div id = "rooms" class = "usermain left-align"> 
-	<div class="room-descriptions">
 
 <?php 
 
 	foreach ($roomsassociated as $key){
-	echo '<img src="'.$key->filename.'" height = "150px">';
+	echo '<div class="room-picture"><img src="'.$key->filename.'" height = "200px">';
+	echo '<div class = "table white-text large">'.$key->room_type.'</div>';
+	echo '</div>';
 	$user_id = $key->user_id;
     $room_id = $key->id;
+	$room_status = $key->status;
+	$roomtype = $key->room_type;
 	}
 	
 
@@ -198,8 +204,7 @@
 ?>
 
 
-<!--------------------------------------------------->
-</div>
+<!-------------END ROOM TAB-------------------------------------->
 </div>
 
 <div class = "usermain" id = "designs"> <BR><BR>
@@ -264,72 +269,50 @@ echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next">&r
 if(isset($userpreference))
 {
 ?>
-<div id= "preferences" class = "left-align usermain"  > <BR><BR>
+	<div id= "preferences" class = "usermain"  > 
+	<div class="color-selections">
+    <h2>Your preferred colors.</h2>
+    <?php 
+      foreach ($userpreference as $key){
+      foreach($colorstylenumber as $keycolor)
+        {
+        if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
+        echo '<td><div style="background-color:'.$keycolor->color_code.'height:5em;width:15em;">&nbsp;</div>';
+          }
+        }
+      ?>
+	</div><!-- color selections -->
 
+ 
 
-<hr class = "style">
-<p class = "text-left condensed midsmall">&nbsp;Style Selections</p>
-<hr class = "style">
-<table class = "center">
-<tr class = "center">
-<?php
-                          $roomfolder="";
-	
-	                  if($roomtype=="BR")
-			{
-				$roomfolder="Bedroom";
-			}
-			elseif($roomtype=="LR")
-			{
-				$roomfolder="LivingRoom";
-				
-			}
-foreach($userpreference as $key)
-{
-echo '<td class = "center">';
-       	$i=1;	
-		while($i<15)
-		{
-		if(in_array($i,explode(',',$key->style_pics)))
-		{
-	
-		echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=150em >';
-		}
-		$i++;
-		}	
-}?>
-</td>
-</tr>
-</table><BR><BR>
-<hr class = "style">
-<p class = "condensed text-left midsmall">&nbsp;Color Selections</p>
-<hr class = "style">
-<table class = "center"><tr>
-<td>
-<?php 
+  <div class="style-selections">
+    <h2>Your favorite styles.</h2>
+    <?php
+      $roomfolder="";
+      if($roomtype=="BR")
+        {
+          $roomfolder="Bedroom";
+        }
+      elseif($roomtype=="LR")
+        {
+          $roomfolder="LivingRoom";
+        }
+      foreach($userpreference as $key)
+        {
+          echo '<td class = "center">';
+          $i=1; 
+     while($i<20)
+        {
+      if(in_array($i,explode(',',$key->style_pics)))
+        {
+          echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=300em >';
+        }
+          $i++;
+		} 	
+		} }
+		?>
+  </div><!-- style selections -->
 
-foreach ($userpreference as $key){
-
-	 	foreach($colorstylenumber as $keycolor)
-	 	{
-			
-			if(in_array($keycolor->color_id,explode(',',$key->color_pics)))
-			echo '<td><div style="background-color:'.$keycolor->color_code.'height:100px;width:100px;">&nbsp;</div>';
-			echo '</td>';
-	    }
-	   
-        
-
-}
-?>
-</td></tr>
-</table>
-
-<BR><BR>
-<?php
-echo '<a class = "button3 medium condensed " href="'.base_url().'index.php/Rooms/site/editroominfo/'.$room_id.'/'.$user_id.'">Edit</a>';
-}
-?>
 </div>
 <!----For user status--------->
 <div id ="status" class="usermain">

@@ -23,7 +23,6 @@ function room_submit()
 {
    if($_POST)
    {
-
   $data['about']=$this->input->post('about');
   $data['room_width']=$this->input->post('room_width');
   $data['room_height']=$this->input->post('room_height');
@@ -64,14 +63,7 @@ $data['instagram']=NULL;
   $data['type']=$this->input->post('type');
   $data['user_id']=$this->user_model->save_user($data);
   $data['room_id']=$this->room_model->save_room($data);
- /*----------------------------*/
- 
-  /* $newdata =array('user_id'=>$data['user_id'],'design_type'=>$this->input->post('designtype'),'promotion_code'=>$this->input->post('hidpromotioncode'),
-   'status'=>$this->input->post('feestatus'),'fee'=>$this->input->post('designfeeid'));*/
-   
-   $this->cart_model->add_designfee($this->input->post('designfeeid'));
-/*----------------------------*/
-if($this->input->post('room_file1'))
+ if($this->input->post('room_file1'))
 {
    $data['photo']=$this->input->post('room_file1');
    if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
@@ -101,7 +93,15 @@ $this->user_model->save_preferences($data);
 $this->session->set_userdata('id',$data['user_id']);
 $this->session->set_userdata('first_name',$data['first_name']);
 $this->session->set_userdata('email',$data['email']);
+/*----------------------------*/
 
+$this->cart_model->add_designfee($this->input->post('designfeeid'),$this->input->post('hidesigntype'),$this->session->userdata("id"));
+
+if(($this->input->post('tokencode')!=""))
+{
+   $this->cart_model->insert_token($this->input->post('tokencode'),$this->session->userdata("id"));
+}
+/*----------------------------*/
 }
  $data['id']=$this->session->userdata('id');
  $data['first_name']=$this->session->userdata('first_name');
@@ -110,7 +110,9 @@ $this->session->set_userdata('email',$data['email']);
  $data['phone']=$this->session->userdata('phone');
  $data['address']=$this->session->userdata('address');
  $data['zipcode']=$this->session->userdata('zipcode');
- $this->availability($data);
+
+ 
+$this->availability($data);
 
 }
 function confirm($is_login=null)

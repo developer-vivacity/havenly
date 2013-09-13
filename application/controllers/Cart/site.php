@@ -119,14 +119,19 @@ Class Site extends CI_Controller
 	  if(sizeof($checkpromotioncode)>0)
 	  { 
 		     if($checkpromotioncode[0]['status']==='active')
-	              echo "1-@-".$checkpromotioncode[0]['design_fee_id'];
-                       else
-                       echo "0-@-"."Design status inactive"; 
+	             echo "1-@-".$checkpromotioncode[0]['design_fee_id']."-@-".$checkpromotioncode[0]['fee'];
+                     else
+                     echo "0-@-"."Design status inactive"; 
                       
              }
   
   }
-  
+  function get_design_fee()
+  {
+   $data= $this->cart_model->get_design_fee($_POST['designtype']);
+   echo $data[0]['fee'];
+  }
+ 
 }
 
 

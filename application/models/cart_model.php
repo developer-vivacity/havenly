@@ -213,7 +213,7 @@ function get_design_info_by_id($design_id)
 function valid_promotion_code($promotioncode,$designtype)
 {
 	
-	$this->db->select('design_fee_id,status');
+	$this->db->select('design_fee_id,status,fee');
 	
 	$this->db->where('promotion_code',$promotioncode);
 	
@@ -223,18 +223,32 @@ function valid_promotion_code($promotioncode,$designtype)
 
 	return $query->result_array();
 }
-function add_designfee($data)
+function add_designfee($data,$design_type,$userid)
 {
- if($data==0)
- {
- $this->db->query('update  users set design_fee_id=(select design_fee_id from design_fee where promotion_code= "null" and status="active") where id='.$this->session->userdata("id").'');
 
+  if($data==0)
+  {
+  $this->db->query('update  users set design_fee_id=(select design_fee_id from design_fee where promotion_code is null and status="active" and design_type="'.     $design_type.'") where id='.$userid.'');
  }
  else
  {
- $this->db->query('update users set design_fee_id='.$data.' where id='.$this->session->userdata("id").'');
+ $this->db->query('update users set design_fee_id='.$data.' where id='.$userid.'');
  }
+ 
 }
+function get_design_fee($design_type)
+{
+
+    $this->db->select('fee');
+    $this->db->where('design_type',$design_type);
+    $this->db->where('promotion_code is null'); 
+    $query=$this->db->get('design_fee');
+    return $query->result_array();
+} 
+ function insert_token($token,$userid)
+ {
+  $this->db->insert("tocken_code",array("user_id"=>$userid,"token"=>$token));
+ }
 }
 
 

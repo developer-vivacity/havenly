@@ -496,6 +496,31 @@ color: black;}
 
 
 
+.button2{
+margin: 0;
+padding: 5px;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+-ms-border-radius: 7px;
+-o-border-radius: 7px;
+border-radius: 7px;
+display: inline-block;
+background-color: #ff9933;
+background-clip: padding-box;
+color: white;
+-webkit-appearance: none;
+-moz-background-clip: padding;
+-webkit-background-clip: padding;
+ z-index:999;
+ box-shadow: none;
+}
+.button2:hover{
+cursor: pointer;
+opacity: .6;
+}
+
+
+
 .button3{
 margin: 0;
 padding: 10px;

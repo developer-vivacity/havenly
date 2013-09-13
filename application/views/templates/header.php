@@ -32,7 +32,7 @@
     <link href="<?php echo base_url('theme/app/your-account.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/your-preferences.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/your-rooms.css');?>" rel="stylesheet">
- <link href="<?php echo base_url('theme/app/shopping-cart.css');?>" rel="stylesheet">
+	<link href="<?php echo base_url('theme/app/shopping-cart.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/base/footer.css');?>" rel="stylesheet">
 
     <link rel='stylesheet' id='prettyphoto-css'  href="theme/css/prettyPhoto.css" type='text/css' media='all'>		

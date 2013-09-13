@@ -12,7 +12,7 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-	  	  <li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>
+	  	  <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -86,18 +86,19 @@ Paint Color Suggestions:</p>
 ?>
 
 </div>
-<div class = "span5 offset1">
+<div class = "span8 offset1">
 <?php
 
 foreach($productname as $key=>$value)
 {
 echo'<div class = "producthold" >
  <div class="productimg">
- <img src="'.$value->link.'" height="150px" id="designproduct_'.$value->product_id.'" class="designproduct" />
+ <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />
+ <div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>
  <input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
  
  if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
- echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" />';
+ echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked/>';
  echo '</div>
  <div class = "productdetails sanslight">
  <div class = "productname medium">

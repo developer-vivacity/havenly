@@ -1,9 +1,6 @@
-.login-section {
-  height: 48em;
-}
 
 .login-form {
-  width: 22em;
+  width: 500px !important;
   margin: 0 auto;
   text-align: left;
 }

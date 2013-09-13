@@ -75,11 +75,11 @@ Class Site extends CI_Controller
   }
   function product_details_of_design($productid,$designid)
   {
-	 $data["productid"]=$productid;
-$data["designid"]=$designid;
-	 $data["productdetails"]=$this->product_model->get_all_product($productid);
-          $data["qty"]=$this->cart_model->get_product_qty($productid,$designid);
-	 $this->load->view('Cart/productdetails', $data);
+		$data["productid"]=$productid;
+		$data["designid"]=$designid;
+		$data["productdetails"]=$this->product_model->get_all_product($productid);
+		$data["qty"]=$this->cart_model->get_product_qty($productid,$designid);
+		$this->load->view('Cart/productdetails', $data);
    }  
   function update_or_insert_qty()
   {

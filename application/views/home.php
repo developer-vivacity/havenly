@@ -97,6 +97,37 @@
   </div><!-- video descrip -->
   <iframe id="video" src="http://player.vimeo.com/video/68198071" width="100%" height="315px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
 </section>
+<div id="example" class = "white"><BR><BR><BR><BR>
+			<div class="container">
+				<div class="row">
+					<!--<div class="span4"> </div>-->
+					<div class="span8 offset1">
+						<br><BR><br>
+						<h2 class = "large">Some love from our customers</h2>
+						<div id="myCarousel2" class="carousel slide">
+					        <div class="carousel-inner"><br>
+		          				<div class="item active">
+							      <p class = "medium sanslight">"Havenly helped my bedroom look like less of a crack den.  Girls no longer think I'm totally sketchy." <BR><BR><br>-Matt R.</p>
+		          			</div>
+							<div class="item">
+		            			<p class = "medium sanslight">"I couldn't figure out how to make my living room work out for me.  The space was too big, and mostly, too empty.  Havenly delivered everything I needed to me, and they were really friendly too!" <BR> <BR><BR>-Kevin P.</p>
+		          				</div>
+		          				<div class="item">
+		            			<p class = "medium sanslight">"Havenly is the best.  Just use it." <BR><BR>-Jess R.</p>
+		          				</div>
+		        			</div>
+		        			<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+		        			<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+						</div><!-- myCarousel2 -->
+					</div><!-- span8 -->
+					<div class="span2"></div>
+				</div><!-- row -->
+			</div><!-- container -->
+		
+		<BR><BR><BR><BR><BR>
+		</div>
+
+
 <section class="costs-goods">
   <div class="cost-options chevron">
     <h1>We're Cheap, and Easy</h1>

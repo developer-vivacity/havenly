@@ -141,9 +141,9 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 {
 
                     $this->db->where("user_id",$this->session->userdata("id"));
-		  $this->db->where("room_id",$room_id);
-		  $this->db->where("design_id",$design_id);
-		  $this->db->where("product_id",$product_id);
+					$this->db->where("room_id",$room_id);
+					$this->db->where("design_id",$design_id);
+					$this->db->where("product_id",$product_id);
 	                    
                     $this->db->delete("shoppingcart");
                     
@@ -176,7 +176,7 @@ function get_product_qty($product_id,$design_id)
 	$this->db->where('product_id',$product_id);
 	$this->db->where('design_id',$design_id);
 	$query=$this->db->get('shoppingcart');	
-         return $query->result();
+    return $query->result();
 }
 function product_details_with_design()
 {

@@ -296,9 +296,10 @@ function UserEditInformation()
 //----This function used for when user login...............//
  function login()
  {
-  
+
  if(($this->session->userdata('first_name')!=""))
     {
+     
       if($this->session->userdata('designinfo'))
        {
           $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
@@ -310,6 +311,7 @@ function UserEditInformation()
 	      
        $data["userdetails"]=$this->user_model->user_getall($this->session->userdata('id'));
        $data["roomsassociated"]=$this->room_model->Check_user_rooms($this->session->userdata('id'));
+       //die(var_dump($data["roomsassociated"]));
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
@@ -322,7 +324,7 @@ function UserEditInformation()
        $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
         #.......ConceptBoardModule==========
        
-      
+
        
        $this->load->view('Users/accountinformation', $data);
        return;
@@ -334,6 +336,7 @@ function UserEditInformation()
      return;
      }
 }
+  
    $this->load->library('form_validation');
    $this->form_validation->set_rules('enterloginemail', 'User Email', 'trim|required|valid_email');
    $this->form_validation->set_rules('enterpass', 'User Password', 'trim|required|min_length[4]|max_length[32]');
@@ -359,7 +362,9 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
 	   if($this->session->userdata('designinfo'))
             {
 	    $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
+             
              $designdata=array('designinfo'=>'');
+             
              $this->session->unset_userdata($designdata);
             
             }
@@ -371,13 +376,19 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
         $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
         $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
+      
+      
        #........ConceptBoardModule==========
         $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
 
  
         #.......ConceptBoardModule==========
+        
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+        
+     
         $this->load->view('Users/accountinformation',$data);
+        
     }
     else
     {

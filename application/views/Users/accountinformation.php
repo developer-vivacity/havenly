@@ -180,46 +180,9 @@
 
 
 <!-------ROOM TAB ------------> 
+
+<div id = "rooms" class = "usermain left-align"> 
 <?php
-	if(isset($roomsassociated))
-	{
-		
-		
-?>
-	
-	
-	<div id = "rooms" class = "usermain left-align"> 
-
-<?php 
-
-	foreach ($roomsassociated as $key)
-	{
-	echo '<div class="room-picture"><img src="'.$key->filename.'" height = "200px">';
-	echo '<div class = "table white-text large">'.$key->room_type.'</div>';
-	echo '</div>';
-	$user_id = $key->user_id;
-    $room_id = $key->id;
-	$room_status = $key->status;
-	$roomtype = $key->room_type;
-	}
-	
-
-}
-?>
-
-
-
-<!-------------END ROOM TAB-------------------------------------->
-</div>
-
-<?php
-if(isset($roomsassociated))
-{
-?>
-<div id = "rooms" class = "usermain left-align"> <BR><BR>
-
-<?php
-
 
 echo '<table class = "table">';
 echo '<tr width = 80%>';
@@ -243,9 +206,12 @@ $roomtype=$key->room_type;
 $user_id = $key->user_id;
 $room_id = $key->id;
 $room_status=$key->status;
-?>
-</table>
+?></table>
 
+
+
+<!-------------END ROOM TAB-------------------------------------->
+</div>
 
 
 <div class = "usermain" id = "designs"> <BR><BR>

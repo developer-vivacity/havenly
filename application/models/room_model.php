@@ -60,18 +60,15 @@ $update= array(
 $this->db->where('id',$room_id);
 $query=$this->db->update('user_rooms', $update);
 }
-
-
 // status Open or Called for login user
  function Check_user_rooms($id)
  { 
- //$query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
-    
-       $this->db->select('user_rooms.id,user_rooms.user_id,user_rooms.room_type,user_rooms.status, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2');
-       $this->db->where('user_id',$id);
-        $query=$this->db->get('user_rooms');
-   
- return $query->result();
+   //$query=$this->db->query("SELECT user_rooms.id,user_rooms.user_id,user_rooms.room_type, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2 FROM user_rooms where user_rooms.user_id =".$id."");  
+    $this->db->distinct();
+    $this->db->select('user_rooms.id,user_rooms.user_id,user_rooms.room_type,user_rooms.status, user_rooms.budget, user_rooms.width, user_rooms.height, user_rooms.room_photo1,   user_rooms.room_photo2');
+    $this->db->where('user_id',$id);
+    $query=$this->db->get('user_rooms');
+    return $query->result();
  }
 //	
 function updateroom_loginuser($id)

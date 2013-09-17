@@ -3,7 +3,7 @@
 	
 ?>
 <!---add script by kbs--------
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>--->
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
 --------------------------->
@@ -165,17 +165,16 @@
 
 <!-------ROOM TAB ------------> 
 
-<div id = "rooms" class = "usermain left-align"> 
 <?php
-<<<<<<< HEAD
+
 	if(isset($roomsassociated))
 	{
 ?>
 	
 	
 <div id = "rooms" class = "usermain left-align"> 
-=======
->>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
+<?php 
+
 
 echo '<table class = "table">';
 echo '<tr width = 80%>';
@@ -198,7 +197,7 @@ echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.ph
 $roomtype=$key->room_type;
 $user_id = $key->user_id;
 $room_id = $key->id;
-$room_status=$key->status;
+$room_status=$key->status;}
 ?></table>
 
 
@@ -350,43 +349,21 @@ $(document).ready(function(){
 
 	$('.carousel').carousel();
 	$(".usermain").hide();
-	$("#"+$("#currentpage").val()).show();
-	$("#editroomstatus").hide();
+	// $("#"+$("#currentpage").val()).show();
+	// $("#editroomstatus").hide();
   
-		 $("#bstabs a").click(function()
-		 {
+		 // $("#bstabs a").click(function()
+		 // {
 
-		     $(".usermain").hide();
-		     $("#"+(this.rel)).show();
+		     // $(".usermain").hide();
+		     // $("#"+(this.rel)).show();
 	
       
+		 // });
+		
+		
 		 });
-		 $("#currentroomstatusedit").click(function()
-		 {
-			 $("#currentroomstatus").hide();
-			 $("#"+(this.rel)).show(); 
-		 })
-		
-		$("#updatecurrentroomstatus").click(function()
-		{
-			
-			
-		window.location.href=$("#sitepath").val()+"/index.php/Rooms/site/update_current_room_status/"+$("#selectupdatestatus").val()+"/"+$("#hold_cur_room_id").val();
-			
-		})
-		$("#canclecurrentroomstatus").click(function()
-		{
-			
-			 $("#"+(this.rel)).hide();
-			$("#currentroomstatus").show();
-		}
-		
-		)
-		 });
-		 
-		
-
-
+	
 </script>
 
 	<?php 

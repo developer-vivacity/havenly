@@ -1,5 +1,6 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
+	
 ?>
 <!---add script by kbs--------
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
@@ -163,33 +164,48 @@
 
 
 <!-------ROOM TAB ------------> 
+
+<div id = "rooms" class = "usermain left-align"> 
 <?php
+<<<<<<< HEAD
 	if(isset($roomsassociated))
 	{
 ?>
 	
 	
 <div id = "rooms" class = "usermain left-align"> 
+=======
+>>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
 
-<?php 
+echo '<table class = "table">';
+echo '<tr width = 80%>';
+echo '<td>Room Type</td>';
+echo '<td>Budget</td>';
+echo '<td>Width/Length</td>';
+echo '<td>&nbsp;</td></tr>';
 
-	foreach ($roomsassociated as $key){
-	echo '<div class="room-picture"><img src="'.$key->filename.'" height = "200px">';
-	echo '<div class = "table white-text large">'.$key->room_type.'</div>';
-	echo '</div>';
-	$user_id = $key->user_id;
-    $room_id = $key->id;
-	$room_status = $key->status;
-	$roomtype = $key->room_type;
-	}
-	
+foreach($roomsassociated as $key){
+echo '<tr><td>'.$key->room_type.'</td>';
 
+if ($key->budget==0){
+echo '<td>&nbsp;</td>';} else{
+echo '<td>'.$key->budget.'</td>';}
+echo '<td>'.$key->width.'ft/ '.$key->height.'ft</td>';
+
+
+echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
 }
-?>
+$roomtype=$key->room_type;
+$user_id = $key->user_id;
+$room_id = $key->id;
+$room_status=$key->status;
+?></table>
+
 
 
 <!-------------END ROOM TAB-------------------------------------->
 </div>
+
 
 <div class = "usermain" id = "designs"> <BR><BR>
 <?php

@@ -14,7 +14,9 @@
 | path to your installation.
 |
 */
-$config['base_url']= 'http://localhost/test/Design3';
+//$config['base_url']= 'http://localhost/test/Design3';
+$config['base_url']= 'http://localhost/ellemot2';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

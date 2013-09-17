@@ -4,7 +4,6 @@ Class Site extends CI_Controller
 {
 
          public $insertdata;	
-         
          public $_File_Location;
          public $_add_new_design;
 
@@ -136,6 +135,7 @@ function roomsadministrator($orderby=null,$ordertype=null)
 function currentroomwithuser($room_id=null)
 {
 	$orderby="";
+	
     if(($this->session->userdata('adminid')!=""))
      {
 	   
@@ -175,22 +175,39 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
    
   if(($this->session->userdata('adminid')!=""))
      {
-	 if($room_id!="")
+	 if($room_id!="" && $user_id!="" && $design_id!="")
 	 {
 	  
+<<<<<<< HEAD
 	  $data["roomid"]=$room_id;
       $data["userid"]=$user_id;
       $data["designid"]=$design_id;
+=======
+	    if($this->product_model->valid_user($room_id,$user_id,$design_id)==0)
+	    {
+		redirect('/Admin/site/roomsadministrator', 'refresh');
+	    }
+	   
+	   $data["roomid"]=$room_id;
+            $data["userid"]=$user_id;
+            $data["designid"]=$design_id;
+>>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
            
-           $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
-           $data["producttype"]=$this->product_model->product_type();
-	  $data["productcolortype"]=$this->product_model->color_type();
-	  $data["productmaterialtype"]=$this->product_model->product_material();
-	  $data["productstyle"]=$this->product_model->product_style();
+            $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
+            $data["producttype"]=$this->product_model->product_type();
+	   $data["productcolortype"]=$this->product_model->color_type();
+	   $data["productmaterialtype"]=$this->product_model->product_material();
+	   $data["productstyle"]=$this->product_model->product_style();
 	  
+<<<<<<< HEAD
 	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	  $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
       $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
+=======
+	   $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
+	   $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
+            $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
+>>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
 
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
@@ -232,7 +249,6 @@ function additional_details_user_room($room_id=null)
 		//$this->load->view('Admin/adminlogin');
 		//return;
 		redirect('/Admin/site/adminlogin', 'refresh');
-		
 	}
 	$room_id=intval($room_id);
 	if($_POST)
@@ -378,12 +394,19 @@ function assign_product()
 function add_product()
 {
 	
-	if(($this->session->userdata('adminid')==""))
-	{
-		
-		redirect('/Admin/site/adminlogin', 'refresh');
-		
-	}if($_POST)
+	  if(($_REQUEST['r']=="") || ($_REQUEST['u']=="") || ($_REQUEST['d']==""))
+	  {
+	  redirect('/Admin/site/roomsadministrator', 'refresh');
+           }
+	  else if($this->product_model->valid_user($_REQUEST['r'],$_REQUEST['u'],$_REQUEST['d'])==0)
+	  {
+	   redirect('/Admin/site/roomsadministrator', 'refresh');
+	  }
+	
+	  if(($this->session->userdata('adminid')==""))
+	  {
+	   redirect('/Admin/site/adminlogin', 'refresh');
+	  }if($_POST)
 		{
 			
 		$holdlinkuploadimg=array();	 
@@ -478,9 +501,13 @@ function add_product()
 				
 	}
 		
-		
-		$data['vendors']= $this->product_model->get_vendors_details();
-		$this->load->view('Admin/addproduct',$data);
+		  
+		  $data['roomid']=$_REQUEST['r'];
+		  $data['userid']=$_REQUEST['u'];
+		  $data['designid']=$_REQUEST['d'];
+		  
+		  $data['vendors']= $this->product_model->get_vendors_details();
+		  $this->load->view('Admin/addproduct',$data);
 	    
 }
 function search_text_for_ajax($text=null,$id=null)
@@ -507,7 +534,6 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 		redirect('/Admin/site/adminlogin', 'refresh');
 	}
 	$isvalid=  $this->admin_model->is_valid_user($design_id,$room_id,$current_user_id);
-        
          if($isvalid!=0)
 	{
 	      $data['roomid']=$room_id;

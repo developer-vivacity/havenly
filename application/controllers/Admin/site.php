@@ -178,11 +178,11 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	 if($room_id!="" && $user_id!="" && $design_id!="")
 	 {
 	  
-<<<<<<< HEAD
+
 	  $data["roomid"]=$room_id;
       $data["userid"]=$user_id;
       $data["designid"]=$design_id;
-=======
+
 	    if($this->product_model->valid_user($room_id,$user_id,$design_id)==0)
 	    {
 		redirect('/Admin/site/roomsadministrator', 'refresh');
@@ -191,23 +191,22 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	   $data["roomid"]=$room_id;
             $data["userid"]=$user_id;
             $data["designid"]=$design_id;
->>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
+
            
             $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
             $data["producttype"]=$this->product_model->product_type();
 	   $data["productcolortype"]=$this->product_model->color_type();
 	   $data["productmaterialtype"]=$this->product_model->product_material();
 	   $data["productstyle"]=$this->product_model->product_style();
-	  
-<<<<<<< HEAD
+
 	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	  $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
       $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
-=======
+
 	   $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	   $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
             $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
->>>>>>> 382db074f02dad76718fe2e5a05f1de19064b0d9
+
 
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));

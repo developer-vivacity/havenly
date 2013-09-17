@@ -12,7 +12,7 @@
         </div><!-- social-media -->
         <div class="footer-links">
           <ul class="inline">
-            <li class="about-nav"><a href = <?php echo base_url('/#about');?> class="midsmall sanslight white_text">about</li>
+            <li class="about-nav"><a href = <?php echo base_url('index.php/Users/site/faq');?> class="midsmall sanslight white_text">faq</li>
             <li><a class="midsmall sanslight white_text" href=<?php echo base_url('index.php/Users/site/terms');?>>terms</li>
             <li><a class="midsmall sanslight white_text" href="http://blog.havenly.com" target="_blank">blog</a></li>
           </ul>
@@ -20,8 +20,8 @@
 		
 		  <div id="addressEmail">
         
-          <a class = "small sanslight white-text" href="mailto:hello@havenly.com">hello@havenly.com</a>
-       		<p class = "small serif white_text"> Designed with love in beautiful colorado. <BR> &copy; Havenly, Inc  2013</p>
+          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a><BR><BR>
+       	<div id = "footer-bottom" > Designed with love in beautiful Colorado. <BR> &copy; Havenly, Inc  2013</p>
 		
 		</div><!-- addressEmail -->
       </div><!-- contain -->

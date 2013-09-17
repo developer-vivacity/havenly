@@ -179,8 +179,8 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	 {
 	  
 	  $data["roomid"]=$room_id;
-           $data["userid"]=$user_id;
-           $data["designid"]=$design_id;
+      $data["userid"]=$user_id;
+      $data["designid"]=$design_id;
            
            $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
            $data["producttype"]=$this->product_model->product_type();
@@ -190,13 +190,13 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 	  
 	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	  $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
-           $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
+      $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
 
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
           
-          else if($this->input->post("hidproductsearch")=="sort")
-          $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"),$this->input->post("searchoptionforprice"));
+      else if($this->input->post("hidproductsearch")=="sort")
+     $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"),$this->input->post("searchoptionforprice"));
 	 else
 	 $data["productdetails"]=$this->product_model->get_all_product();
 

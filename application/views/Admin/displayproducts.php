@@ -33,55 +33,64 @@
 <div class = "container">
 
 <BR><BR><BR><BR><BR>
- <div class = "alert alert-error" id="div_show_error_message"></div>
+ <div id="div_show_error_message"></div>
 
  <?php
     $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/',$attributes);
-?>
- <?php
-        $designidforroom="";
+
+    $designidforroom="";
         
-        ?>
+  ?>
 
 <div class = "row midlarge text-center sanslight">
-
+<div class = "admin_design_header">
      <?php
+	 
+	  // this hidden variable stores the design name.
            echo $userdesign[0]->design_name;
            echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
-           // this hidden variable store design name.
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
      ?>&nbsp;
-<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
+		<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
 
-<p class = "midsmall sanslight">Edit user design and add products to complete user design.</p>
-
+		<p class = "midsmall sanslight">Edit user design and add products to complete user design.</p>
+		<div class = "popup_design midsmall boxshadow">
+			Save as Draft or Submit Design?&nbsp;
+			<select name="design_status" id="design_status">
+				<option value="draft">Save as Draft</option>
+				<option value="submitted">Submit Design</option>
+				</select>
+			<input type="button" class = "button2 pink" value="Go" onclick="saveproductdetailsofdesign();"/>
+			
+</div>
 </div>
 
-<BR>
-<BR>	
-<div class = "well trellis" style="height: 110px;">
-<div class = "span5 text-center middle" style = "display:table-cell; vertical-align: middle;" >
 	
-<p class = "sanslight text-center midsmall">Upload Design Image</p>
+<div class = "well">
+
+	
+<p class = "sanslight text-center midsmall">Step 1:  Upload Design Images</p>
 	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
-		<span id="mestatus" ></span><br/></div>
+		<span id="mestatus" ></span><br/>
 		
-<div class = "span5 ">
+
 	<div id="files"  style="list-style-type: none;">
 		<li class="success" >
 		</li>
 </div>
 <div id="displaydesignimages">
 <?php
-foreach($designimage as $key)
-{
-echo '<div style="float:left;"><img src="'.$key->filename.'" height="100px"></div>';
-}
+	foreach($designimage as $key)
+	{
+		echo '<div class = "design_image_holder"><img src="'.$key->filename.'" height="150px"></div>';
+	}
 ?>
 </div>
-</div></div>
+</div>
 <br/><br/><br/>
+
+
 <div class = "row">
 
 <!--<div>
@@ -182,7 +191,7 @@ echo '<div style="float:left;"><img src="'.$key->filename.'" height="100px"></di
          echo '</div>';
          echo '<div style="width:100%;float:left;display:none;" id="showselectedproductimage'.$key2->design_id.'" class="designname">';
          $productidhold="";
-$count=$count+1;      
+		$count=$count+1;      
         } 
     
      foreach($selectproduct as $key)

@@ -2,31 +2,38 @@
 	include(APPPATH.'/views/templates/header.php');
 ?>
 
-
- <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-        <div class="container"> 
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-		<a class="brand" href="#">Havenly</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a id = "servlink" href="#services">Services</a></li>
-              <li><a id = "pricelink" href="#price">Cost</a></li>
-			      <li><a id = "goodslink" href="#goods">Goods</a></li>
-              <li><a id = "aboutlink" href="<?php echo base_url('index.php/Users/site/whoweare');?>">About</a></li>
-              <li><a <a id = "contlink"href="#contact">Contact</a></li>
-            </ul>
-			
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-	  </div>
-
+ <div class="top-nav">
+    <div class="nav-left">
+      <div class="logo">Havenly</div>
+      <ul>
+        <li class="services-nav">Services</li>
+        <li class="cg-nav">Cost &amp; Goods</li>
+        <li class="about-nav">About</li>
+        <li class="contact-nav">Contact</li>
+      </ul>
+    </div><!-- nav left -->
+    <div class="nav-right">
+      <ul>
+        <li><a id="startbutton" class="button3" href="#overlay">&nbsp;GET STARTED</a><li>
+        <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
+      </ul>
+    </div><!-- nav right -->
+    <div class="nav-mobile">
+      <ul id="list-pages-accordion">
+        <li>
+          <a href=""><img src=<?php echo base_url('theme/img/menu.png');?>></a>
+          <ul id="dropdownList">
+            <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
+            <li><a id="startbutton" class="button3" href="#overlay">GET STARTED</a><li>
+            <li class="services-nav">Services</li>
+            <li class="cg-nav">Cost &amp; Goods</li>
+            <li class="about-nav">About</li>
+            <li class="contact-nav">Contact</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- top nav -->
 
 
 <div class = "container">

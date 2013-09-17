@@ -1,11 +1,11 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-<!---add script by kbs-------->
+<!---add script by kbs--------
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
-<!---------------------------->
+--------------------------->
 	  
 	  
 <!-- ACCOUNT TOP NAV -->
@@ -14,20 +14,20 @@
     <div class="account-nav-left">
 	
 	<ul id="bstabs">
-	<li><a href="#status"  rel="status">Current Status</a></li>
-      <li><a href="#designer" rel="designer">Your Account</a></li>
-      <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
-      <li><a href="#rooms" rel="rooms">Your Rooms</a></li>
+	<li><a href="#status"  rel="status">STATUS</a></li>
+      <li><a href="#designer" rel="designer">ACCOUNT</a></li>
+      <li><a href="#preferences" rel="preferences">PREFERENCES</a></li>
+      <li><a href="#rooms" rel="rooms">ROOMS</a></li>
       <?php
 			if($conceptboard[0]->total!=0):
 	?>
-	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
 	<?php endif; ?>
 	  
 	  
 	  
 	  <?php if(sizeof($designforloginuser)>0){
-        echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
+        echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
       }
 	  ?>
     </ul>
@@ -73,23 +73,7 @@
 	 <?php
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
 	?>
-	
- <!-- // <div class = "text-center">
- // <ul id = "bstabs" class = "nav nav-pills sanslight ">
-// <li ><a class = "pink white_text" href="#designer"  rel="designer">Your Account</a></li>
-// <li><a class = "pink white_text" href="#preferences"  rel="preferences">Your Preferences</a></li>
-// <li><a class = "pink white_text" href="#rooms"  rel="rooms">Your Rooms</a></li>
--->
 
-
-
-
-<!--
-<li><a class = "pink white_text" href="#status"  rel="status">Status</a></li>
-<li><a class = "pink white_text" href="
-<?php echo base_url();?>
-/index.php/Contests/site/designer_availability/"  rel="designer">Designer Availability</a></li>
-</ul></div>-->
  
 <div class = "usermain" id = "designer"> 
 <div class="welcome-page">
@@ -185,7 +169,7 @@
 ?>
 	
 	
-	<div id = "rooms" class = "usermain left-align"> 
+<div id = "rooms" class = "usermain left-align"> 
 
 <?php 
 
@@ -260,7 +244,7 @@ echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next">&r
 //------------end update code-----------//
 ?>
 </div>
-
+</div>
 
 
 
@@ -311,9 +295,9 @@ if(isset($userpreference))
 		} 	
 		} }
 		?>
-  </div><!-- style selections -->
+  </div>
+</div><!-- preference-->
 
-</div>
 <!----For user status--------->
 <div id ="status" class="usermain">
 <div>
@@ -321,7 +305,7 @@ if(isset($userpreference))
 <?php 
 
 $value = urldecode($room_status);
-
+echo $value;
 if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
 echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
 
@@ -333,26 +317,25 @@ echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="60%">';}
 
 else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
 
-
-
-
 ?>
 </div>
 </div>
 <!----------------------------->
 <input type="hidden" id="hold_cur_room_id" value="<?php echo $room_id;?>">
+<BR><BR><BR>
+
 </div>
 
 </div>
 <div class = "push"> 
-</div><BR><BR><BR></div>
+</div></div>
 <script>
 $(document).ready(function(){
 
-	 $('.carousel').carousel();
-   $(".usermain").hide();
-   $("#"+$("#currentpage").val()).show();
-   $("#editroomstatus").hide();
+	$('.carousel').carousel();
+	$(".usermain").hide();
+	$("#"+$("#currentpage").val()).show();
+	$("#editroomstatus").hide();
   
 		 $("#bstabs a").click(function()
 		 {

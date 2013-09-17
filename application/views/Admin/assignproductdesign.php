@@ -32,7 +32,6 @@
 	  </div>
 
 <div class = "white">
-<div class = "container">
 <BR><BR><BR><BR><BR>
 <table>
 <tr><td class = "midlarge"><?php echo $designname;?></td><td>

@@ -64,18 +64,17 @@ if($privileges=='global'):?>
 <div class = "white container">
 <BR><BR><BR><BR>
 
-<div class = "midlarge serif gray_text padding canvas boxshadow">
-
+<div class = "midlarge serif gray_text padding canvas ">
 Open Rooms<br></div>
 
 <BR><BR>
-<table class = "table table-hover" >
-	<tr class = "medium gray_text">
-	<td>Email Address<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/users.email/'.$filter.''; ?>">&nbsp; &darr;</a></td>
-	<td>Order #<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.id/'.$filter.''; ?>">&nbsp; &darr; </a></td>
-	<td>Status<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.status/'.$filter.''; ?>">&nbsp; &darr;</a></td>
-	<td>Room Type<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.room_type/'.$filter.'';?>">&nbsp; &darr;</a></td>
-	<td>Designer<a class = "black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/designer.designer_name/'.$filter.'';?>">&nbsp; &darr;</a></td>
+<table class = "table sanslight table-hover" >
+	<tr class = "midsmall sanslight gray_text">
+	<td >Email Address<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/users.email/'.$filter.''; ?>">&nbsp; &darr;</a></td>
+	<td>Order #<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.id/'.$filter.''; ?>">&nbsp; &darr; </a></td>
+	<td>Status<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.status/'.$filter.''; ?>">&nbsp; &darr;</a></td>
+	<td>Room Type<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.room_type/'.$filter.'';?>">&nbsp; &darr;</a></td>
+	<td>Designer<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/designer.designer_name/'.$filter.'';?>">&nbsp; &darr;</a></td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>

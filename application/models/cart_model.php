@@ -247,7 +247,7 @@ function get_design_fee($design_type)
 } 
  function insert_token($token,$userid)
  {
-  $this->db->insert("tocken_code",array("user_id"=>$userid,"token"=>$token));
+  $this->db->insert("token_code",array("user_id"=>$userid,"token"=>$token));
  }
 }
 

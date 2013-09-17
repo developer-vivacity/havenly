@@ -48,7 +48,7 @@
   color: gray;
 }
 
-.table td {
+#rooms .table td {
   border: none !important;
   font-family: 'Merriweather', serif;
   font-size: 1.3rem;

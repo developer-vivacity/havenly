@@ -2,9 +2,6 @@
 	include(APPPATH.'/views/templates/header.php');
 ?>
 
-<?php 
-	include(APPPATH.'/views/templates/header.php');
-?>
 
 <div class = "center bgcontainer"><BR>
 <div class = "seventy" style= "height:80px;">

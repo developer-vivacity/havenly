@@ -232,7 +232,7 @@
         </div><!-- social-media -->
         <div class="footer-links">
           <ul class="inline">
-            <li class="about-nav"><a class="midsmall sanslight white_text">about</li>
+            <li class="about-nav"><a href = "<?php echo base_url('index.php/Users/site/faq');?>" class="midsmall sanslight white_text">faqs</li>
             <li><a class="midsmall sanslight white_text" href=<?php echo base_url('index.php/Users/site/terms');?>>terms</li>
             <li><a class="midsmall sanslight white_text" href="http://blog.havenly.com" target="_blank">blog</a></li>
           </ul>
@@ -240,8 +240,8 @@
 		
 		  <div id="addressEmail">
         
-          <a class = "small sanslight white-text" href="mailto:hello@havenly.com">hello@havenly.com</a>
-       		<p class = "small serif white_text"> Designed with love in beautiful colorado. <BR> &copy; Havenly, Inc  2013</p>
+          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a>
+       		<div id = "footer-bottom" > Designed with love in beautiful colorado. <BR> &copy; Havenly, Inc  2013</p>
 		
 		</div><!-- addressEmail -->
       </div><!-- contain -->
@@ -249,19 +249,21 @@
   </section>
 
   <div id="overlay">
-    <div class="boxoverlay"><div class="paddingmob dark_gray_text padding_small">
-    <p class="condensed medium request-note">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll hit you back.</p>
+    <div class="boxoverlay"><div class="dark_gray_text">
+	<p class = "medium">W E L C O M E</p>
+	<hr class = "style">
+    <p class="midsmall request-note">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll get you in as soon as possible.</p>
     <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
       <table class = "table-center">
-        <tr><td width = "50%"><label class="half condensed midsmall middle inline email-label" for="Email">Email Address:</label></td>
+        <tr><td width = "50%"><label class="half sanslight small middle inline email-label" for="Email">Email Address:</label></td>
         <td><input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/></td>
       </tr><BR>
       <tr>
-       <td width = "50%"> <label class = "half condensed midsmall middle inline zipcode-label" for="Zipcode">Zipcode:</label></td>
+       <td width = "50%"> <label class = "half sanslight small middle inline zipcode-label" for="Zipcode">Zipcode:</label></td>
         <td><input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30"/></td>
       </tr></table>
       <div class = "horizontal seventy">
-        <a class = "button3 pink white_text condensed" id="requestinvite">Request</a>
+        <a class = "button3 pink white_text sanslight" id="requestinvite">REQUEST</a>
       </div>
     </form>
   </div></div></div>

@@ -6,7 +6,7 @@
 	  	  <BR><BR><BR>
 		  
 		  <div class = "container">
-		  <div class = "span12 text-center"><br><BR><Br><Br>
+		  <div class = "span10 text-center"><br><BR><Br><Br>
 		  <p class = "large blue_text sanslight">
 		  When can we call you?
 		  </p>

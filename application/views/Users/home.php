@@ -456,8 +456,8 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 </div>	</div>
 
 
-	  <div id = "type" class = "resize">
-	  	<ul class = "survey_step">
+<div id = "type" class = "resize">
+<ul class = "survey_step">
 <li class = "circle_survey condensed browsable clickstyle_pics">1</li>
 <li class = "circle_survey condensed browsable clickcolors">2</li>
 <li class = "circle_survey condensed browsable clickroom_pics">3</li>
@@ -471,13 +471,11 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 	  <p class = "medium sanslight dark_gray_text">Are you a <span>total beginner</span>, or do you <span>just need help </span>putting it all together?</p><br>
 	  
 	  <div class = "third padding_small inline top">
-<<<<<<< HEAD
+
 		<img class = "inactive_one" src = <?php echo base_url('assets/Images/Type1.png');?> height=300em >
 		<input type="radio" name="type"  id="type" value = "incomplete" class = "cbox"/></div>	 
-=======
-		<img class = "inactive_one" wsrc = <?php echo base_url('assets/Images/Type1.png');?> height=300em>
-		<input type="radio" name="type" id="type" value = "incomplete" class = "cbox"/></div>	 
->>>>>>> 59a9936ad02e654a5b32928b95a751cb11f16110
+
+	
 <div class = "third inline padding_small top">
 	  <img class = "inactive_one"  src = <?php echo base_url('assets/Images/Type2.png');?> height=300em>
 	  <input type="radio" name="type" id="type" value = "complete" class = "cbox"/>

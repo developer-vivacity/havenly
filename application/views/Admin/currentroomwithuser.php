@@ -29,11 +29,10 @@
         </div>
       </div>
 	  </div>
-	  <div class = "canvas">
+<div class = "canvas">
 	  
 	  
 	  
-<div class = "container">
 <BR><BR><BR>
 <?php
 $style_pics="";
@@ -77,7 +76,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 
 	$roomstatus=array("OPEN" , "CALLED", "DESIGN", "MOODBOARD REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
 	
-	echo '<div class= "span11 well blue white_text">';
+	echo '<div class= "span12 well blue white_text">';
 	echo '<div class = "span6 midsmall Condensed">';
 	// echo 'UPDATE STATUS &nbsp;';
 	echo '<select class = "small " name="update_room_status" id="update_room_status">';
@@ -92,7 +91,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 	echo '</select>&nbsp;&nbsp;<input type="submit" class = "button2 condensed blue_text white" value="Update"></div></div>';
 	
 ?>
-
+<div class = "canvas">
 <div class = "span3 canvas">
 <ul id = "bstabs" class = "nav sanslight">
 <li><a class = "gray_text" href="#CurrentUser"  rel="CurrentUser">User Information</a></li>
@@ -168,13 +167,17 @@ echo '</td></tr>';
 	
 	echo '<tr><td class = "sanslight gray_text midsmall">ROOM PICTURES</td></tr>';
 	echo  '<tr><td>';
+	
+	if(sizeof($roompicture)==0){
+	echo "No pictures uploaded";}
+	else{
 	foreach($roompicture as $roompickey)
 	{
 	  echo '<div><img src="'.$roompickey->filename.'" height="200px"/></div>';	
 		
-	}
-	if(sizeof($roompicture)==0)
-	echo "No pictures uploaded";
+	}}
+	
+	
 	echo'</td></tr><tr><td class = "sanslight gray_text">VIDEOS</td><td>';
 	foreach($roomvedio as $roomvediokey)
 	{
@@ -349,7 +352,10 @@ function submit_designer_comment()
 }
 
 </script>
-<BR><BR><BR>
+<BR><BR><BR><BR><BR>
+
+<div style = "clear: both;">
+<BR><BR><BR><BR>
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>

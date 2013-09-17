@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.pricing-table {
+min-width: 100%;
+}
+
 .cost-options,
 .chevron {
   margin-top: -.8em;

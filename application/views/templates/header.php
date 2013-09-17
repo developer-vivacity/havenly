@@ -33,7 +33,9 @@
     <link href="<?php echo base_url('theme/app/your-preferences.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/your-rooms.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('theme/app/shopping-cart.css');?>" rel="stylesheet">
+	<link href="<?php echo base_url('theme/admin/admindesign.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/base/footer.css');?>" rel="stylesheet">
+	 <link href="<?php echo base_url('theme/app/concept-board.css');?>" rel="stylesheet">
 
     <link rel='stylesheet' id='prettyphoto-css'  href="theme/css/prettyPhoto.css" type='text/css' media='all'>		
     <link href='http://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,300|Open+Sans+Condensed:300|Arizonia' rel='stylesheet' type='text/css'>

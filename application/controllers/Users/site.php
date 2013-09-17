@@ -203,29 +203,16 @@ if ($exists){$file_name= 0;}
 else {$file_name = $file_name;}
 return $file_name;
 }	
-function howwework()
-{
-$this->load->view('Static/howwework');
-}
 
-function whoweare()
-{
-$this->load->view('Static/whoweare');
-}
-
-function pricing()
-{
-$this->load->view('Static/pricing');
-}
-function products()
-	{
-		$this->load->view('Static/products');
-}
 function terms()
 	{
 		$this->load->view('Static/terms');
 }
 
+function faq()
+{ 
+	$this->load->view('Static/faq');
+	}
 
 function requestinvite()
 {

@@ -27,19 +27,19 @@ $(function(){
 			           var obj=$.parseJSON(response);	
 			           if(obj.success==="success")
                                 	  {
-				       mestatus.text('Photo Uploaded Sucessfully!');
+				       mestatus.html('<p class = "alert">Photo Uploaded Sucessfully!</p>');
 				       
-				       $("#mestatus").after('<div id="uploadmoreimg"><a href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload more image</a></div>');
+				       $("#mestatus").after('<div id="uploadmoreimg"><a class = "button1 pink small" href="#" id="Uploadimg" onclick="show_upload_more_img();">Upload another one.</a></div>');
 				       
 				       if($("#displaydesignimages").length!=0)
 				       {
 					       //$("#messagefordesign").remove();	   
-					       $("#displaydesignimages").append('<div style="width:90px;border:solid 2px white;float:left;"><img src="'+obj.images+'" width="80px" height="80px"/></div>');
+					       $("#displaydesignimages").append('<div class = "design_image_holder"><img src="'+obj.images+'" width="100px"/></div>');
 					       
 				       }
 				       if($("#designimageassignproduct").length!=0)
 				       {
-				            $("#messagefordesign").remove();	   
+				       $("#messagefordesign").remove();	   
 					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" width="100%" height="100px"/></div>');
 			                }
 				  } 
@@ -72,6 +72,8 @@ function show_upload_more_img()
 var global_prodct_id;
 var global_image_path;
 var object;
+
+
 function selectedproductimage(productid,productimagepath,refobject)
 {
    	

@@ -2,3 +2,25 @@ body {
   margin: 0 auto;
   overflow-x: hidden;
 }
+
+#faq h3	{ 
+font-family: 'Open Sans';
+font-weight: 300;
+text-transform: 'uppercase';
+cursor:pointer;
+font-size: 1.5em;
+line-height: 1.5em; 
+margin-bottom: 20px;}
+#faq h3 span{
+color: #F74D76;
+font-weight: 400;}
+
+#faq h3.active	{ color:#F74D76; }
+
+#faq div { height:0; overflow:hidden; position:relative; }
+#faq div p	{ 
+font-size: 1.2em;
+padding: 20px;
+font-family: 'Open Sans';
+font-weight: 300;
+ margin-bottom:30px; }

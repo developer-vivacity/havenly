@@ -1,16 +1,7 @@
  $(document).ready(function() 
  {
  jQuery.noConflict();
- 
- (':checkbox:checked').each(function(){
-	var image = $(this).parent().find('.designproduct');
-	var id = image.attr('id');
-	var id_get =id.split("_");
-	
-	alert ($(this).attr('checked'));
-	
-	});
- 
+
 	
  $(".checkimg").click(function()
  {

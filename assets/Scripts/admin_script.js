@@ -4,7 +4,7 @@ var fileupload_value=0;
 $(document).ready(function()
 {
  
-   $(".adminmain").hide();
+    $(".adminmain").hide();
    $("#CurrentUser").show();
   
 		 $("#bstabs a").click(function()
@@ -56,7 +56,7 @@ $(document).ready(function()
 			          }
 			    });
 			    if(e_value==1)
-			    {
+			    {alert("two");
 			       $("#itemsbuy").val(buyarea);
 			      $("#updateform").submit();
 		      }
@@ -133,8 +133,8 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   $("#AddProduct").click(
   function()
   {
-		 
-		  document.location.href=$("#siteurl").val()+"index.php/Admin/site/add_product";
+  
+   document.location.href=$("#siteurl").val()+"index.php/Admin/site/add_product?r="+$('#currentroomid').val()+"&u="+$('#currentuserid').val()+"&d="+$('#userdesign').val();
   
   });
   $("#SaveSelected").click(function()
@@ -147,12 +147,12 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
           
           if((value_length==0)||($("#designproductid_"+designid).val().trim()==""))
 	  {
-	         $("#div_show_error_message").html('<p class = "alert alert-error">Select at least one product</p>');
+	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
 	  }
 	  else if($("#displaydesignimages").html().trim()=="")
 	  {
 		  
-		$("#div_show_error_message").html('<p class = "alert alert-error>Upload at least one design image</p>');  
+		$("#div_show_error_message").html('<p>*Upload at lest one design images:</p>');  
 		  
 	  }
 	  else 
@@ -160,7 +160,8 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  
 	   $("#hidproductsearch").val("SaveSelected");
 	   $("#productid").val(productimage);
-	   $(".popup_design").show();
+	   $("#saveproduct").before('<div style="width:100%;height:100%;position:absolute;z-index:100;"><div style="width:450px;margin-left:450px;margin-top:50px;background-color:#A1D2E6;border:solid 2px #ADB1B3;"><div style="color:white;margin-left:70px;">&nbsp;<b>Select Design Status</b>&nbsp;</div><div style="margin-left:70px;"><select name="design_status" id="design_status"><option value="draft">draft</option><option value="submitted">submitted</option></select></div><div style="margin-top:10px;padding-left:160px;"><input type="button" value="submit" onclick="saveproductdetailsofdesign();"/></div></div></div>');
+	   
           }
   });
   
@@ -236,7 +237,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	$("#productsearchbyname").val("");  
 	  
 	$("#hidproductsearch").val("search");
-   
+
         $("#saveproduct").submit();
    }
 })
@@ -306,6 +307,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 		  if(is_sort)
 		  { 
 		  $("#hidproductsearch").val("sort");
+                 
                     $("#saveproduct").submit();
                     }
   
@@ -422,6 +424,8 @@ $("#adduploadproductpic").click(function()
 	$("#appenduploadphoto").append('<p id="uploadproductpic_'+total+'" class="imageappend"><input type="file" name="uploadproductpic'+total+'" class="uploadproductpic" onchange="typechackfileupload('+total+');"/><input type="button" value="remove" onclick="removeuploadpic('+total+')"></p>');
     total++;	
         }
+        
+       
 });
 
 
@@ -435,6 +439,10 @@ $('input[type="textbox"]').keypress(function()
 	                $("#"+this.id+"_error").remove();
 }
 )
+
+  $(".btn.dropdown-toggle").click(function()
+  {return false;
+  })
 
  });
 function removeuploadpic(id)
@@ -681,8 +689,7 @@ function save_comment(input_id,conceptid,roomid,form_id)
 		       $("#"+input_id).focus();
 	        }
 	        else
-	        {
-
+	        {alert("one");
                         $("#holdcomment").val($("#"+input_id).val());
                         $("#holdconceptid").val(conceptid);        
 		      $("#holdroomid").val(roomid);

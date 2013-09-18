@@ -1,6 +1,8 @@
 
 $(document).ready(function()
-{
+{	 
+
+
    var ischack=false;
    $("#radioyes").click(function()
    {
@@ -22,7 +24,7 @@ $(document).ready(function()
   });
   $("#update_update").click(function()
    {
-	 
+
         var e_value=1;
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         $("#div_show_error_message").html("");

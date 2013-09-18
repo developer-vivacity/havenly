@@ -1,10 +1,12 @@
 $(".cbox").hide();
 $(function(){
+	
 		var btnUpload=$('#me');
 		var mestatus=$('#mestatus');
 		var files=$('#files');
 
 		new AjaxUpload(btnUpload, {
+			
 		action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
 			name: 'uploadfile',
 			roomid:$("#currentroomid").val(),
@@ -61,6 +63,7 @@ $(".inactive, .active").click(function()
                  var checkbox = $(this).parent().find('.cbox');
 	        checkbox.prop('checked',!checkbox[0].checked);
 });
+
 function show_upload_more_img()
 {
              $("#uploadmoreimg").remove();	
@@ -171,6 +174,12 @@ function saveproductdetailsofdesign()
          $("#saveproduct").submit();	
 }
 
+function display_child(id)
+{
+	$(".dropdown-menu").hide();
+	$("#"+id).show();
+	return false;
+}
 
 
 

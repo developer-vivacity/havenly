@@ -55,19 +55,15 @@
 <div class = "black_text" id="total_items_in_cart"><?php echo $totalitemincart;?>
 </div></div>
 
-	
-
 <div class = "span4">
 
 <div class = "button3 pink white_text" id="addallproduct">BUY THE WHOLE ROOM</div><BR>
 <?php 
-foreach($designimage as $key){
-echo
-    '<div class = "design_image"><img src="'.$key->filename.'" width="100%"/>
-    </div><BR><BR>';}
+foreach($designimage as $key)
+{
+    echo'<div class = "design_image"><img src="'.$key->filename.'" width="100%"/></div><BR><BR>';
+}
 ?>
-
-
 <?php if(sizeof($design_color)>0):?>
 <div class = "paint">
 <p class = "sanslight text-center">
@@ -92,15 +88,26 @@ Paint Color Suggestions:</p>
 
 foreach($productname as $key=>$value)
 {
-  echo'<div class = "producthold" >
+	
+	
+	echo'<div class = "producthold" >
        <div class="productimg">
-       <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />
-       <div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>
-       <input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
- 
- if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
- echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked="checked"/>';
- echo '</div>
+       <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />';
+       
+       if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
+       echo'<div class = "checkimg gray_text serif small" style ="opacity:0.8;display:block;"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
+       else
+       echo'<div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
+      
+       
+       echo'<input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
+   
+   if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
+   echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked="checked"/>';
+   
+   
+   
+  echo '</div>
  <div class = "productdetails sanslight">
  <div class = "productname medium">
 '.$value->product_name.'

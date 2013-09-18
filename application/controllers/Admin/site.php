@@ -175,44 +175,34 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
    
   if(($this->session->userdata('adminid')!=""))
      {
+	
 	 if($room_id!="" && $user_id!="" && $design_id!="")
 	 {
-	  
-
-	  $data["roomid"]=$room_id;
-      $data["userid"]=$user_id;
-      $data["designid"]=$design_id;
-
+	
 	    if($this->product_model->valid_user($room_id,$user_id,$design_id)==0)
 	    {
 		redirect('/Admin/site/roomsadministrator', 'refresh');
 	    }
-	   
+	     
 	   $data["roomid"]=$room_id;
             $data["userid"]=$user_id;
             $data["designid"]=$design_id;
-
            
             $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id),"","","");
             $data["producttype"]=$this->product_model->product_type();
 	   $data["productcolortype"]=$this->product_model->color_type();
 	   $data["productmaterialtype"]=$this->product_model->product_material();
 	   $data["productstyle"]=$this->product_model->product_style();
-
-	  $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
-	  $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
-      $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
-
+	  
 	   $data["userdesign"]=$this->product_model->userdesign(intval($room_id),intval($design_id));
 	   $data["designimage"]=$this->product_model->design_image_for_rooms($room_id,$design_id);   
             $data["productwithdesign"]=$this->product_model->productassociatewithdesign(intval($room_id),intval($design_id));
 
-
 	 if($this->input->post("hidproductsearch")=="search")
 	 $data["productdetails"]=$this->product_model->search_product($this->input->post('productsearchbyname'),$this->input->post("searchoptionfortype"),$this->input->post("searchoptionforprice"),$this->input->post("searchoptionforcolor"),$this->input->post("searchoptionforstyle"),$this->input->post("searchoptionformaterial"));
           
-      else if($this->input->post("hidproductsearch")=="sort")
-     $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"),$this->input->post("searchoptionforprice"));
+          else if($this->input->post("hidproductsearch")=="sort")
+          $data["productdetails"]= $this->product_model->product_sort_by_type($this->input->post("hidproducttypecheck"),$this->input->post("hidproductstylecheck"),$this->input->post("hidproductmaterialtypecheck"),$this->input->post("hidproductcolortypecheck"),$this->input->post("searchoptionforprice"));
 	 else
 	 $data["productdetails"]=$this->product_model->get_all_product();
 
@@ -245,8 +235,7 @@ function additional_details_user_room($room_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
 	{
-		//$this->load->view('Admin/adminlogin');
-		//return;
+		
 		redirect('/Admin/site/adminlogin', 'refresh');
 	}
 	$room_id=intval($room_id);
@@ -369,6 +358,8 @@ function set_file_name()
 }
 function assign_product()
 {	
+	
+	
     if($this->input->post("holddesignidforroom")!="")
     {   $value=$this->input->post("holddesignidforroom");
         $assing_product=array();
@@ -440,16 +431,14 @@ function add_product()
 		
 	       }
 	    }
-	    
-		if($this->input->post("stylehiddenfilter")!="")
+	    if($this->input->post("stylehiddenfilter")!="")
 	    {
-			 $arrayaddstylefilter=explode(',',$this->input->post("stylehiddenfilter"));
+		   $arrayaddstylefilter=explode(',',$this->input->post("stylehiddenfilter"));
 		   foreach($arrayaddstylefilter as $key=>$value)
 		   {
-			 
-			$data =array('style'=>$value);
-	        $newstyleid=$this->product_model->insert_data_in_db('product_style',$data);		
-	        $stylehiddenfilter=($stylehiddenfilter==""?$newstyleid:$stylehiddenfilter.','.$newstyleid);
+		   $data =array('style'=>$value);
+	            $newstyleid=$this->product_model->insert_data_in_db('product_style',$data);		
+	            $stylehiddenfilter=($stylehiddenfilter==""?$newstyleid:$stylehiddenfilter.','.$newstyleid);
 		  }
 	   }
 	  if($this->input->post("colorhiddenfilter")!="")

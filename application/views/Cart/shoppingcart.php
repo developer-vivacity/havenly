@@ -1,6 +1,7 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
 
  <div class="account-nav">
@@ -91,14 +92,14 @@ Paint Color Suggestions:</p>
 
 foreach($productname as $key=>$value)
 {
-echo'<div class = "producthold" >
- <div class="productimg">
- <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />
- <div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>
- <input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
+  echo'<div class = "producthold" >
+       <div class="productimg">
+       <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />
+       <div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>
+       <input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
  
  if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
- echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked/>';
+ echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked="checked"/>';
  echo '</div>
  <div class = "productdetails sanslight">
  <div class = "productname medium">

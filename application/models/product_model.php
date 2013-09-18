@@ -57,7 +57,7 @@ timestamp timestamp NOT NULL)");
 	  if($pid!="")   
 	  $this->db->where('productid',$pid);
 		
-      return $this->db->get()->result(); 
+          return $this->db->get()->result(); 
   }
  //-------
  function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null,$designid=null)
@@ -500,6 +500,18 @@ function get_paint_color($design_id)
 	$this->db->where('design_id',$design_id);
 	$query=$this->db->get('paint_colors');
          return $query->result();
+}
+function valid_user($room_id,$user_id,$design_id)
+{
+	$this->db->from('user_design','user_rooms');
+	
+	$this->db->join('user_rooms','user_design.room_id=user_rooms.id');
+	$this->db->where('user_rooms.user_id',$user_id);
+	$this->db->where('user_design.design_id',$design_id);
+	$this->db->where('user_design.room_id',$room_id);
+	$query=$this->db->get();
+	
+	return $query->num_rows();
 }
 }
 

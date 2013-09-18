@@ -8,12 +8,12 @@
  <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="#">Havenly</a>
+	<a class="brand" href="#">Havenly</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="<?php echo base_url('/index.php/Admin/site/currentroomwithuser/'.$roomid);?>">Back</a></li>
@@ -21,7 +21,6 @@
               <li><a>Designs</a></li>
 	  </ul>
 			<ul class = "nav pull-right black_text">
-			
 			<li><a class = "black_text sanslight" href = "<?php echo base_url('index.php/Admin/site/adminlogout');?>">LOGOUT</a></li>
 			</ul>
           </div><!--/.nav-collapse -->
@@ -265,10 +264,10 @@ elseif(sizeof($userdesign)==0)
 <div class="btn-group">
  <!-------add rip class for jquery by kbs------->
   <button class="btn rip">Product Type</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
+  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_type')">
+  <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="drop_type">
   <?php
 
 	foreach($producttype as $key)
@@ -284,11 +283,11 @@ elseif(sizeof($userdesign)==0)
 
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip">Style</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
+  <button class="btn rip" >Style</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_style')">
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="drop_style">
 <?php
 
 foreach($productstyle as $key)
@@ -300,11 +299,11 @@ foreach($productstyle as $key)
 <div class = "span2">
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip">Color</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
+  <button class="btn rip" >Color</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_color')">
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="drop_color">
 <?php
 foreach($productcolortype as $key)
 {
@@ -315,11 +314,11 @@ foreach($productcolortype as $key)
 <div class = "span2">
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip">Material</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
+  <button class="btn rip" >Material</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_material')">
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="drop_material">
 <?php
 foreach($productmaterialtype as $key)
 {

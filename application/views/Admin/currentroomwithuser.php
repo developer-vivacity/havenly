@@ -1,7 +1,7 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-
+<script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/jquery-1.9.js" ></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>/assets/Scripts/concept_board.js" ></script>
@@ -14,8 +14,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-		<a class="brand" href="<?php echo base_url();?>">Havenly</a>
-          <div class="nav-collapse collapse">
+	<a class="brand" href="<?php echo base_url();?>">Havenly</a>
+         <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href = "<?php echo base_url();?>">Home</a></li>
               <li><a href="<?php echo base_url('index.php/Admin/site/roomsadministrator')?>">Rooms</a></li>

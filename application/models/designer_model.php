@@ -157,9 +157,11 @@ function book($data)
 	    
 	    $this->db->where("time >=",$startdate);
 	    
-	    $this->db->where("time >=",$enddate);
+	    $this->db->where("time <=",$enddate);
 	    
 	    $this->db->delete("designer_calls");
+	    
+	   
       }
 
 	  

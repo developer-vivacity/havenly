@@ -3,6 +3,7 @@
 ?>
 
 <!----add script by kbs----->
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/product_design.js"></script>
 <!-------------------------------->

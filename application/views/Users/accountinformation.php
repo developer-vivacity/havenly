@@ -2,11 +2,12 @@
 	include(APPPATH.'/views/templates/header.php');
 	
 ?>
-<!---add script by kbs--------
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>--->
+<!---add script by kbs----------->
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
---------------------------->
+
 	  
 	  
 <!-- ACCOUNT TOP NAV -->
@@ -31,6 +32,7 @@
         echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
       }
 	  ?>
+	  
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -54,9 +56,10 @@
 			<?php endif; ?>
 		  
 		  <?php
-		  if(sizeof($designforloginuser)>0){
-            echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
-          }
+		  if(sizeof($designforloginuser)>0)
+		  {
+                    echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
+                     }
 		  ?>
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
@@ -102,7 +105,7 @@
 					<p class="designer-contact">Your Personal Decorator</p>
 					<p class="designer-contact"><?php echo $key->designer_phone_number; ?></p>
 					<p class="designer-contact"><?php echo $key->designer_email; ?></p>
-				</div>'; 
+				</div>
 				<?php
 				$i++;}
             		}}
@@ -349,6 +352,7 @@ $(document).ready(function(){
 
 	$('.carousel').carousel();
 	$(".usermain").hide();
+	
 	// $("#"+$("#currentpage").val()).show();
 	// $("#editroomstatus").hide();
   

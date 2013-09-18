@@ -3,7 +3,7 @@
 ?>
 
 
-
+<script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/jquery-1.9.js" ></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/Scripts/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>/assets/Scripts/concept_board.js" ></script>

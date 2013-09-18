@@ -49,7 +49,9 @@ Class Site extends CI_Controller
 	         $data["design_color"]=$this->cart_model->paint_colors_for_design($design_id);
 	  
 	         $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
-	         $data["designid"]=$design_id;          
+	         $data["designid"]=$design_id;
+	           
+	           
 	     
 	     $data["totalitemincart"]=$this->cart_model->updateshoppingcart(null,null,$design_id,null);
 	     $data["totalitemincart"]=(sizeof($data["totalitemincart"])==0?0:$data["totalitemincart"][0]->total_qty);
@@ -110,7 +112,8 @@ Class Site extends CI_Controller
        $this->load->view('Cart/productsincart',$data);  
   }
   function  promotion_code()
-  {	
+  {
+	
 	  $checkpromotioncode=$this->cart_model->valid_promotion_code($_POST['promotioncode'],$_POST['type']);	
 	  
 	  if(sizeof($checkpromotioncode)>0)
@@ -120,13 +123,15 @@ Class Site extends CI_Controller
                      else
                      echo "0-@-"."Design status inactive"; 
                       
-             }  
+             }
+  
   }
   function get_design_fee()
   {
    $data= $this->cart_model->get_design_fee($_POST['designtype']);
    echo $data[0]['fee'];
-  } 
+  }
+ 
 }
 
 

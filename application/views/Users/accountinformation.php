@@ -7,31 +7,20 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
-
-	  
-	  
 <!-- ACCOUNT TOP NAV -->
 <div class="account-nav">
     <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "100"></a></div>
     <div class="account-nav-left">
-	
 	<ul id="bstabs">
 	<li><a href="#status"  rel="status">STATUS</a></li>
       <li><a href="#designer" rel="designer">ACCOUNT</a></li>
       <li><a href="#preferences" rel="preferences">PREFERENCES</a></li>
       <li><a href="#rooms" rel="rooms">ROOMS</a></li>
-      <?php
-			if($conceptboard[0]->total!=0):
-	?>
-	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
-	<?php endif; ?>
-	  
-	  
-	  
-	  <?php if(sizeof($designforloginuser)>0){
+     <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
+<?php if(sizeof($designforloginuser)>0)
+{
         echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
-      }
-	  ?>
+}?>
 	  
     </ul>
   </div><!-- nav left -->
@@ -49,12 +38,9 @@
           <li><a href="#designer" rel="designer">Your Account</a></li>
           <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
           <li><a href="#rooms" rel="rooms">Your Rooms</a></li>
-           <?php
-			if($conceptboard[0]->total!=0):
-			?>
-			<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+           	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
 	
-		<?php endif; ?>
+	
 		  
 		  <?php
 		  if(sizeof($designforloginuser)>0)

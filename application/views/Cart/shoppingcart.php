@@ -13,7 +13,14 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
+              <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+	  	  <?php
+	  	      if(sizeof($designforloginuser)>0):
+	  	  ?>
 	  	  <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>
+	  	  <?php
+	  	      endif;
+	  	  ?>
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">

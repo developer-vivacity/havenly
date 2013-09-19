@@ -15,7 +15,7 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Rooms</a></li>
-	  
+	   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
 	  
 	  <?php if(sizeof($designforloginuser)>0){
       echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">SHOP</a></li>';
@@ -38,10 +38,13 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
 		   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-		 <?php if(sizeof($designforloginuser)>0)
+		 <?php 
+		
+		if(sizeof($designforloginuser)>0)
 		{
-		echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
+		  echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
 		}
+		
 		?>
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>

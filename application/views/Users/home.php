@@ -606,8 +606,9 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		   <span class="payment-errors"></span>
 		<div class="horizontal">
 		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
-		  <div class="labels" > 
-                   <!----<select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		  <div class="labels"> 
+               
+               <select id="card-name" style="width:280px;float:left;margin-left:27px;">
 		        <option value="Visa">
 			 visa card
 		      </option>
@@ -626,27 +627,8 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		     <option value="JCB">
 		     JCB
 		     </option>
-		    </select>---->
- <select id="card-name" style="width:280px;float:left;margin-left:27px;">
-		        <option value="4242424242424242">
-			 visa card
-		      </option>
-		     <option value="5555555555554444">
-			 master card
-		     </option>
-		     <option value="378282246310005">
-		     American Express
-		     </option>
-		     <option value="6011111111111117">
-		     Discover
-		     </option>
-		     <option value="30569309025904">
-		     Diner's Club
-		     </option>
-		     <option value="3530111333300000">
-		     JCB
-		     </option>
 		    </select>
+
 		</div>
 		</div>
 		<div class="horizontal">

@@ -53,7 +53,8 @@
 			if($conceptboard[0]->total!=0):
 			?>
 			<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-			<?php endif; ?>
+	
+		<?php endif; ?>
 		  
 		  <?php
 		  if(sizeof($designforloginuser)>0)
@@ -78,8 +79,7 @@
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
 	?>
 
- 
-<div class = "usermain" id = "designer"> 
+ <div class = "usermain" id = "designer"> 
 <div class="welcome-page">
 <div class="designer-information">
 	<?php
@@ -113,8 +113,7 @@
    
    </div><!-- designer info -->
   <div class="user-information">
-
-	<?php
+<?php
 	if(isset($userdetails))
 	{
 		$attributes = array('class' => 'updateform', 'id' => 'updateform');
@@ -321,9 +320,7 @@ if(isset($userpreference))
 <div>
 
 <?php 
-
 $value = urldecode($room_status);
-echo $value;
 if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
 echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
 
@@ -348,22 +345,21 @@ else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">
 <div class = "push"> 
 </div></div>
 <script>
-$(document).ready(function(){
-
-	$('.carousel').carousel();
+$(document).ready(function()
+{
+        //$('.carousel').carousel();
 	$(".usermain").hide();
-	
-	// $("#"+$("#currentpage").val()).show();
-	// $("#editroomstatus").hide();
+	$("#"+$("#currentpage").val()).show();
+ $("#editroomstatus").hide();
   
-		 // $("#bstabs a").click(function()
-		 // {
+		 $("#bstabs a").click(function()
+		 {
 
-		     // $(".usermain").hide();
-		     // $("#"+(this.rel)).show();
+		     $(".usermain").hide();
+		      $("#"+(this.rel)).show();
 	
       
-		 // });
+	 });
 		
 		
 		 });

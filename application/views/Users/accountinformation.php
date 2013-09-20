@@ -17,11 +17,13 @@
       <li><a href="#preferences" rel="preferences">PREFERENCES</a></li>
       <li><a href="#rooms" rel="rooms">ROOMS</a></li>
      <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
-<?php if(sizeof($designforloginuser)>0)
-{
-        echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
-}?>
-	  
+    <?php 
+       if(sizeof($designforloginuser)>0)
+       {
+         echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
+       }
+   ?>
+ <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/">Designer Availability</a></li>	  	  
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -39,15 +41,13 @@
           <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
           <li><a href="#rooms" rel="rooms">Your Rooms</a></li>
            	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-	
-	
-		  
-		  <?php
+	<?php
 		  if(sizeof($designforloginuser)>0)
 		  {
                     echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
                      }
 		  ?>
+	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -342,6 +342,7 @@ $(document).ready(function()
 		 {
 
 		     $(".usermain").hide();
+		    
 		      $("#"+(this.rel)).show();
 	
       

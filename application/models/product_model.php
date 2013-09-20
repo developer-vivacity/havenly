@@ -427,13 +427,18 @@ function productassociatewithdesign($room_id,$designid)
 function display_design_associated_products($design_id,$status=null)
 {
 	
-	($status==null?$this->db->from('design_product_mapping','products'):$this->db->from('design_product_mapping','products','user_design'));
-	
-	$this->db->join('products','design_product_mapping.product_id=products.productid');
+       ($status==null?$this->db->from('design_product_mapping','products'):$this->db->from('design_product_mapping','products','user_design'));
+        
+        $this->db->join('products','design_product_mapping.product_id=products.productid');
 	
 	if($status!=null)
 	{
-	  $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');	
+	  $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
+	
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.This join find variant key of the product from shopify_product_variant table.........	
+	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.productid');
+	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	 
 	  $this->db->where('user_design.status',$status);
 	}
 	

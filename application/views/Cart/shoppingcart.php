@@ -3,17 +3,16 @@
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
-
- <div class="account-nav">
+<div class="account-nav">
     <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "100"></a></div>
     <div class="account-nav-left">
 	
 	<ul id="bstabs">
-		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-              <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+	<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
+         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
+         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
+         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
+         <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
 	  	  <?php
 	  	      if(sizeof($designforloginuser)>0):
 	  	  ?>
@@ -33,16 +32,17 @@
       <li>
         <a href=""><img src=<?php echo base_url('theme/img/menu.png'); ?>></a>
         <ul id="bstabs" class="dropdownList">
-		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
+	 <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-		   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-		 <?php if(sizeof($designforloginuser)>0)
-		{
-		echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
-		}
-		?>
+          <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+	<?php 
+	if(sizeof($designforloginuser)>0)
+	{
+	  echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
+	}
+	?>
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -50,15 +50,13 @@
   </div><!-- nav-mobile -->
 </div><!-- top nav -->	 
 
- 
 <div class = "white">
 
 
 <form method ="post" action="<?php echo base_url('index.php/Cart/site/products_associate_design/'.$designid.'');?>" id="shoppingcartform">
 
 <div id = "cartcircle" class="circle1 white_text small sanslight text-center midsmall">
-	<a href="<?php echo base_url()?>/index.php/Cart/site/products_in_cart/<?php echo $designid?>" id="cart_details">
-	<img class = "border img-circle" src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/></a>
+<img class = "border img-circle" src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px"/>
 <div class = "black_text" id="total_items_in_cart"><?php echo $totalitemincart;?>
 </div></div>
 
@@ -79,42 +77,37 @@ Paint Color Suggestions:</p>
 <?php
  foreach($design_color as $keycolor)
  {
-  
-  echo '<div style="background-color:'.$keycolor->color.'height:30px;width:100px;display:inline-block;">&nbsp;</div>';
-
+   echo '<div style="background-color:'.$keycolor->color.'height:30px;width:100px;display:inline-block;">&nbsp;</div>';
  }
 ?>
 </div></div>
 <?php
   endif;
 ?>
-
 </div>
 <div class = "span8 offset1">
 <?php
-
 foreach($productname as $key=>$value)
 {
-	
-	
-	echo'<div class = "producthold" >
-       <div class="productimg">
+        echo
+        '<div class = "producthold" >
+        <div class="productimg">
        <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />';
-       
        if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
        echo'<div class = "checkimg gray_text serif small" style ="opacity:0.8;display:block;"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
        else
        echo'<div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
-      
-       
        echo'<input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
-   
-   if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
-   echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked="checked"/>';
-   
-   
-   
-  echo '</div>
+    /*if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
+       echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'" checked="checked"/>';
+       else
+       echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="designproductcheck[]" value="'.$value->product_id.'"/>';
+    */
+    if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
+    echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="id[]" value="'.$value->variant_id.'" checked="checked"/>';
+    else
+    echo '<input type="checkbox" class = "productcheck" id="designproductcheck'.$value->product_id.'" name="id[]" value="'.$value->variant_id.'"/>';
+    echo '</div>
  <div class = "productdetails sanslight">
  <div class = "productname medium">
 '.$value->product_name.'
@@ -133,8 +126,10 @@ echo '<input type="hidden" id="holdroomid" name="holdroomid" value="'.$room_type
 
 echo '<input type="hidden" id="holddesignid" name="holddesignid" value="'.$designid.'"/>';
 ?>
+ <div>
+ <input type="button" value="Add to cart" onclick="add_to_cart();"/>
 </div>
-
+</div>
 
 </form>
 <div style = "clear:both;"></div>

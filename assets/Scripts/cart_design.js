@@ -5,23 +5,29 @@
 	
  $(".checkimg").click(function()
  {
-   
+
    var checkbox = $(this).parent().find('.productcheck');
+   
    var image = $(this).parent().find('.designproduct');
+   
    var id = image.attr('id');
+   
    var id_get =id.split("_");
    
    if(checkbox.is(':checked'))
    {
 	checkbox.prop('checked',!checkbox.prop('checked'));
+	
 	$(this).css({opacity:0});
+ 	
  	removecheckbox(id_get[1]);
-	   
-	   }
-   
-   else{ 
+  }
+  else
+  { 
    addcheckboxforaddcart(id_get[1]);
+   
    $(this).css({opacity:0.8});
+  
   checkbox.prop("checked",!checkbox.prop("checked"));}
 });
 
@@ -41,23 +47,26 @@ $(".productname").click(function()
 document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"/"+$("#holddesignid").val()+"";
 })
 
-
 $("#cart_details").mouseout(function()
-          {
+{
 	$("#productdetails").remove();
-	});
+});
+});
+//----This function add product to shopify card--------//
+function add_to_cart()
+{	 $('#shoppingcartform').attr('action', 'http://leemayer.myshopify.com/cart/add');
+	 $('#shoppingcartform').submit();
 }
-
-)
-
+//---------------------------------------------------------------------------------------
 function delete_design(user_id,design_id,room_id)
 {
 	$("#message_design_div").remove();
          $("body").before("<div style='z-index:100;position:absolute;background-color:#787274;width:100%;height:100%;opacity:0.9' id='message_design_div'><div style='width:450px;height:150px;margin-top:200px;margin-left:550px;background-color:white;text-align:center'><br/><br/><div>Delete Design?</div><br/><br/><div><span><input type='button' name='yes' value='yes' onclick='removedesigndiv("+user_id+","+design_id+","+room_id+")'/></span>&nbsp;&nbsp;<span><input type='button' name='no' value='no' onclick='removedesigndiv();'/></span></div></div></div>");
-
 }
 function addcheckboxforaddcart(id)
 {
+	
+	$(".checkimg .gray_text .serif .small").show();
     
     $.post($("#basepath").val()+"index.php/Cart/site/add_or_update_cart", {productid :id,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"insert"}, function(data){
     if(data.length>0)

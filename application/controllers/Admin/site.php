@@ -136,14 +136,14 @@ function currentroomwithuser($room_id=null)
 {
 	$orderby="";
 	
-    if(($this->session->userdata('adminid')!=""))
+    if(($this->session->userdata('adminid')!="") && (sizeof($this->room_model->displayusreinformationwithroom(intval($room_id)))<>0))
      {
 	   
 	   $orderby=$this->input->post('ascproductid');
-	   
 	   $condition=($this->session->userdata('privileges')=="local"?" where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".intval($room_id)."":" where  user_rooms.id=".intval($room_id)."") ;
 	   $adminrooms=$this->room_model->display_all_rooms($condition);
 	   $data["roomid"]=$room_id;
+	   
 	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	   
 	   $data["conceptboard"]=$this->concept_model->admin_display($room_id);
@@ -166,7 +166,7 @@ function currentroomwithuser($room_id=null)
      else
      {
 	  
-	  redirect('/Admin/site/adminlogin', 'refresh');
+	  redirect('/Admin/site/roomsadministrator', 'refresh');
      }
 }
 
@@ -321,8 +321,7 @@ function for_pic_upload($filename=null)
                                                            }
 					else {
 					
-						     $file_location = $_FILES[$name]['tmp_name'];
-						     $file_name = $this->set_file_name();
+						     $file_location = $_FILES[$name]['tmp_name'];$file_name = $this->set_file_name();
 							if ($file_name==0) {$file_name = $this->set_file_name();}
 							else
 							{

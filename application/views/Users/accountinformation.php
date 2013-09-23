@@ -217,28 +217,30 @@ echo '<div class = "carousel-inner text-center">';}
            {
            echo '<tr><td colspan="5"><p style="color:#F50727;font-size:100%">'.$deletedesigninfo.'</p></td></tr>';
            }
-          
-         
-
-	  foreach($designforloginuser as $key)
+           foreach($designforloginuser as $key)
 	  {
 	  
 		
 		if ($i==1){
-		   echo '<div class = "item active">';}
-		   else {echo '<div class = "item">';}
-              // echo 
-             // $key->design_name
-             echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
-             echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a>';
-             echo '</div>'; 
+		   echo '<div class = "item active" id="room_des_'.$i.'">';}
+		   else {echo '<div class = "item" id="room_des_'.$i.'">';}
+                echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
+                echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a><br/><br/>';
+                if(!empty($key->designer_notes))
+                echo  '<div><span><b>Designer_notes:&nbsp;</b></span>'.$key->designer_notes.'</div>';
+                echo '</div>'; 
 		   $i++;
 	  }
 	  ?>
 </div>
-<?php if (sizeof($designforloginuser>1)){
-echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>';
-echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>';}?>
+<?php 
+
+if (sizeof($designforloginuser)>1)
+{
+echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'prev\')">&lsaquo;</a>';
+echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'next\')">&rsaquo;</a>';}
+
+?>
 	
 </div>
 

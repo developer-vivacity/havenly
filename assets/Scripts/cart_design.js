@@ -52,12 +52,16 @@ $("#cart_details").mouseout(function()
 	$("#productdetails").remove();
 });
 });
+
 //----This function add product to shopify card--------//
+
 function add_to_cart()
 {	 $('#shoppingcartform').attr('action', 'http://leemayer.myshopify.com/cart/add');
 	 $('#shoppingcartform').submit();
 }
 //---------------------------------------------------------------------------------------
+
+
 function delete_design(user_id,design_id,room_id)
 {
 	$("#message_design_div").remove();
@@ -117,5 +121,24 @@ function removedesigndiv(user_id,design_id,room_id)
 	
 	
 }
+var nav_start=1;
+function slide_nav(total,direction)
+{
 
+	if((direction=='prev')&&(nav_start>1))
+	{
+	$("#room_des_"+nav_start+"" ).removeClass( "item active" ).addClass( "item");
+         nav_start=nav_start-1;
+         $("#room_des_"+nav_start+"" ).removeClass( "item" ).addClass( "item active");
+         }
+         else if((direction=='next')&&(nav_start<total))
+         {
+		
+	$("#room_des_"+nav_start+"" ).removeClass( "item active" ).addClass( "item");
+         nav_start=nav_start+1;
+         $("#room_des_"+nav_start+"" ).removeClass( "item" ).addClass( "item active");
+	}
+         
+         
+}
 

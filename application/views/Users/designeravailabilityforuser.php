@@ -5,7 +5,7 @@
 <!---add script by kbs----------->
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/jquery-1.9.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/designer_script.js">
 </script>
 <!-- ACCOUNT TOP NAV -->
 <div class="account-nav">
@@ -101,10 +101,7 @@
 
 </form>
 
- 
- 
- 
-</div>
+ </div>
 </div>
 
 <div class = "push"> 

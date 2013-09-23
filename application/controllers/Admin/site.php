@@ -321,10 +321,8 @@ function for_pic_upload($filename=null)
                                                            }
 					else {
 					
-						      $file_location = $_FILES[$name]['tmp_name'];
-										
-						
-							$file_name = $this->set_file_name();
+						     $file_location = $_FILES[$name]['tmp_name'];
+						     $file_name = $this->set_file_name();
 							if ($file_name==0) {$file_name = $this->set_file_name();}
 							else
 							{
@@ -356,29 +354,40 @@ function set_file_name()
 		else {$file_name = $file_name;}
 		return $file_name;
 }
-function assign_product()
+function assign_product($room_id=null,$user_id=null,$design_id=null)
 {	
 	
-	
-    if($this->input->post("holddesignidforroom")!="")
-    {   $value=$this->input->post("holddesignidforroom");
+ if($_POST)
+ {
+     if($this->input->post("holddesignidforroom")!="")
+     {   
+        $value=$this->input->post("holddesignidforroom");
         $assing_product=array();
         $assing_product[$value]=$this->input->post("assign_".$value);
      }
      else
-     $assing_product["product"]=$this->input->post("assign_7u7");
+     {
+      $assing_product["product"]=$this->input->post("assign_7u7");
+     }
+     
      if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
-     $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assing_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	
+       $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assing_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	
      if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
      {
-     $this->_add_new_design=1;
-     $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
+      $this->_add_new_design=1;
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
      }
      else
      {
-     $this->_add_new_design=1;     
-     $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
+      $this->_add_new_design=1;     
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
      }
+   }
+   else
+   {
+	$this->productdetails($room_id,$user_id,$design_id);
+	   	   
+   } 
 }
 
 function add_product()
@@ -536,8 +545,8 @@ function display_product_name_associate_with_design($design_id=null,$designname=
         }
         else
         {
-	      $this->adminlogin();          
-	        
+	     // $this->adminlogin();          
+	       redirect('/Admin/site/roomsadministrator','refresh');
         }
 }
 function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$user_id=null,$design_status=null,$product_details=null)

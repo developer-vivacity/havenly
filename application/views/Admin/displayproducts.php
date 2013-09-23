@@ -36,11 +36,9 @@
 
  <?php
     $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
-    echo form_open('Admin/site/assign_product/',$attributes);
-
+    echo form_open('Admin/site/assign_product/'.$roomid.'/'.$userid.'/'.$designid.'',$attributes);
     $designidforroom="";
-        
-  ?>
+ ?>
 
 <div class = "row midlarge text-center sanslight">
 <div class = "admin_design_header">
@@ -166,6 +164,8 @@
 </div>-->
 <div id="showselectedproductimage"> 
 <?php
+
+
         $design_id="";
         $selectproductid="";
         $productidhold="";
@@ -251,17 +251,18 @@ elseif(sizeof($userdesign)==0)
 <div class = "row">
 <div class = "span2">
 <div class="btn-group">
-  <button class="btn rip">Product Type</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown">
+  <button class="btn rip">Price</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_price')">
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="drop_price">
 &nbsp;&nbsp;<input type="checkbox" id="High" name="searchprice[]" value="1"/>&nbsp;&nbsp;High<br/>
 &nbsp;&nbsp;<input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>&nbsp;&nbsp;Moderate<br/>
 &nbsp;&nbsp;<input type="checkbox" id="Low" name="searchprice[]" value="3"/>&nbsp;&nbsp;Low<br/>
 </ul></div></div>
 <div class = "span2">
 <div class="btn-group">
+
  <!-------add rip class for jquery by kbs------->
   <button class="btn rip">Product Type</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_type')">

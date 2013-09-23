@@ -9,6 +9,7 @@ $(document).ready(function()
   
 		 $("#bstabs a").click(function()
 		 {
+			
 			$('#bstabs a').removeClass('pink_text');
 			$(this).addClass('pink_text');
 		         $(".adminmain").hide();
@@ -56,7 +57,7 @@ $(document).ready(function()
 			          }
 			    });
 			    if(e_value==1)
-			    {alert("two");
+			    {
 			       $("#itemsbuy").val(buyarea);
 			      $("#updateform").submit();
 		      }

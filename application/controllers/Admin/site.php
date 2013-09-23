@@ -107,9 +107,9 @@ function roomsadministrator($orderby=null,$ordertype=null)
 {
       if(($this->session->userdata('adminid')==""))
       {
-	  //$this->adminlogin();
+	
 	  redirect('/Admin/site/adminlogin', 'refresh');
-	  //return;
+	  
      }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
@@ -218,7 +218,7 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
    }
    else
    {
-	//$this->load->view('Admin/adminlogin');
+	
 	redirect('/Admin/site/adminlogin', 'refresh');
     }
 }
@@ -262,13 +262,14 @@ function additional_details_user_room($room_id=null)
 	      }
 	      else
 	      {
-			  $this->adminlogin();  
+			  
+			  redirect('/Admin/site/roomsadministrator', 'refresh');
 	      }
       }
 		else
 		{
-	       $this->adminlogin();
 	       
+	       redirect('/Admin/site/roomsadministrator', 'refresh');
 	    }
     }
 }
@@ -544,7 +545,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
         }
         else
         {
-	     // $this->adminlogin();          
+	             
 	       redirect('/Admin/site/roomsadministrator','refresh');
         }
 }

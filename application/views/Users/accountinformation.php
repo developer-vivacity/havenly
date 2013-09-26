@@ -7,32 +7,23 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/cart_design.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/user_validation.js">
 </script>
-
-	  
-	  
 <!-- ACCOUNT TOP NAV -->
 <div class="account-nav">
     <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "100"></a></div>
     <div class="account-nav-left">
-	
 	<ul id="bstabs">
 	<li><a href="#status"  rel="status">STATUS</a></li>
       <li><a href="#designer" rel="designer">ACCOUNT</a></li>
       <li><a href="#preferences" rel="preferences">PREFERENCES</a></li>
       <li><a href="#rooms" rel="rooms">ROOMS</a></li>
-      <?php
-			if($conceptboard[0]->total!=0):
-	?>
-	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
-	<?php endif; ?>
-	  
-	  
-	  
-	  <?php if(sizeof($designforloginuser)>0){
-        echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
-      }
-	  ?>
-	  
+     <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
+    <?php 
+       if(sizeof($designforloginuser)>0)
+       {
+         echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
+       }
+   ?>
+ <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/">Designer Availability</a></li>	  	  
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -49,18 +40,14 @@
           <li><a href="#designer" rel="designer">Your Account</a></li>
           <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
           <li><a href="#rooms" rel="rooms">Your Rooms</a></li>
-           <?php
-			if($conceptboard[0]->total!=0):
-			?>
-			<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-			<?php endif; ?>
-		  
-		  <?php
+           	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+	<?php
 		  if(sizeof($designforloginuser)>0)
 		  {
                     echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
                      }
 		  ?>
+	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -78,8 +65,7 @@
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
 	?>
 
- 
-<div class = "usermain" id = "designer"> 
+ <div class = "usermain" id = "designer"> 
 <div class="welcome-page">
 <div class="designer-information">
 	<?php
@@ -113,8 +99,7 @@
    
    </div><!-- designer info -->
   <div class="user-information">
-
-	<?php
+<?php
 	if(isset($userdetails))
 	{
 		$attributes = array('class' => 'updateform', 'id' => 'updateform');
@@ -232,28 +217,30 @@ echo '<div class = "carousel-inner text-center">';}
            {
            echo '<tr><td colspan="5"><p style="color:#F50727;font-size:100%">'.$deletedesigninfo.'</p></td></tr>';
            }
-          
-         
-
-	  foreach($designforloginuser as $key)
+           foreach($designforloginuser as $key)
 	  {
 	  
 		
 		if ($i==1){
-		   echo '<div class = "item active">';}
-		   else {echo '<div class = "item">';}
-              // echo 
-             // $key->design_name
-             echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
-             echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a>';
-             echo '</div>'; 
+		   echo '<div class = "item active" id="room_des_'.$i.'">';}
+		   else {echo '<div class = "item" id="room_des_'.$i.'">';}
+                echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
+                echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a><br/><br/>';
+                if(!empty($key->designer_notes))
+                echo  '<div><span><b>Designer_notes:&nbsp;</b></span>'.$key->designer_notes.'</div>';
+                echo '</div>'; 
 		   $i++;
 	  }
 	  ?>
 </div>
-<?php if (sizeof($designforloginuser>1)){
-echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>';
-echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>';}?>
+<?php 
+
+if (sizeof($designforloginuser)>1)
+{
+echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'prev\')">&lsaquo;</a>';
+echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'next\')">&rsaquo;</a>';}
+
+?>
 	
 </div>
 
@@ -321,9 +308,7 @@ if(isset($userpreference))
 <div>
 
 <?php 
-
 $value = urldecode($room_status);
-echo $value;
 if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
 echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
 
@@ -348,22 +333,22 @@ else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">
 <div class = "push"> 
 </div></div>
 <script>
-$(document).ready(function(){
-
-	$('.carousel').carousel();
+$(document).ready(function()
+{
+        //$('.carousel').carousel();
 	$(".usermain").hide();
-	
-	// $("#"+$("#currentpage").val()).show();
-	// $("#editroomstatus").hide();
+	$("#"+$("#currentpage").val()).show();
+ $("#editroomstatus").hide();
   
-		 // $("#bstabs a").click(function()
-		 // {
+		 $("#bstabs a").click(function()
+		 {
 
-		     // $(".usermain").hide();
-		     // $("#"+(this.rel)).show();
+		     $(".usermain").hide();
+		    
+		      $("#"+(this.rel)).show();
 	
       
-		 // });
+	 });
 		
 		
 		 });

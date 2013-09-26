@@ -22,6 +22,12 @@ function create_table()
   PRIMARY KEY (id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=167");	
 	
+ $this->db->query("CREATE TABLE IF NOT EXISTS shopify_product_variant (
+  product_id int(11) NOT NULL,
+  variant_id int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1");	
+	
+	
 }
 
 
@@ -245,10 +251,18 @@ function get_design_fee($design_type)
     $query=$this->db->get('design_fee');
     return $query->result_array();
 } 
- function insert_token($token,$userid)
- {
+  function insert_token($token,$userid)
+  {
   $this->db->insert("token_code",array("user_id"=>$userid,"token"=>$token));
- }
+  }
+  
+  /*function get_variant_id($product_id)
+  {
+	 $this->db->select('variant_id');
+	 $this->db->where_in('product_id',$product_id);
+          $query=$this->db->get('shopify_product_variant');
+          $query->result_array();
+  }*/
 }
 
 

@@ -30,31 +30,28 @@ Class Site extends CI_Controller
 	    
      	   $data["productname"]=$this->product_model->display_design_associated_products($design_id,'submitted');
 	   
+	   $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+	   
 	   if(sizeof($data["productname"])===0)
 	   {
 	     
 		   $designInfo=$this->cart_model->get_design_info_by_id($design_id);
-		   
 		   $designdata=array('designinfo'=>$designInfo[0]['design_name']);
-		   
 		   $this->session->set_userdata($designdata);
-		   
 		   redirect('/Users/site/login?a=designs', 'refresh');
             }
             else
             {
-		
 		$data["designimage"]=$this->product_model->design_image_for_rooms(null,$design_id);
 	         $data["room_type"]=$this->cart_model->Check_user_rooms();
 	         $data["design_color"]=$this->cart_model->paint_colors_for_design($design_id);
-	  
 	         $data["shoppingproduct"]=$this->cart_model->getproductinshoppingcard($design_id);
 	         $data["designid"]=$design_id;
 	           
 	           
 	     
-	     $data["totalitemincart"]=$this->cart_model->updateshoppingcart(null,null,$design_id,null);
-	     $data["totalitemincart"]=(sizeof($data["totalitemincart"])==0?0:$data["totalitemincart"][0]->total_qty);
+	         $data["totalitemincart"]=$this->cart_model->updateshoppingcart(null,null,$design_id,null);
+	         $data["totalitemincart"]=(sizeof($data["totalitemincart"])==0?0:$data["totalitemincart"][0]->total_qty);
 		  
 	    }
             
@@ -89,8 +86,7 @@ Class Site extends CI_Controller
 	}
 	if($_POST)  
 	{
-
-	 $data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
+          $data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
           $this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
 	 $this->products_associate_design($_POST["holddesignid"]);
 	 redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');

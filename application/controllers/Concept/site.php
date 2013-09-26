@@ -33,7 +33,7 @@ Class Site extends CI_Controller
 	{
 		$this->concept_model->save_comment($_POST['holdcomment'],$_POST['holdconceptid'],$_POST['holdroomid']);
 		$this->initial_concepts_for_user();
-		redirect('/Concept/site/initial_concepts_for_user', 'refresh');
+		
 	}   
 
    }

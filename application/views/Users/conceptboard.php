@@ -15,12 +15,14 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Rooms</a></li>
+	   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
 	  
-	  
-	  <?php if(sizeof($designforloginuser)>0){
-      echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">SHOP</a></li>';
-      }
+	  <?php if(sizeof($designforloginuser)>0)
+	  {
+               echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">SHOP</a></li>';
+           }
 	  ?>
+	  <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  	  	
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -37,12 +39,16 @@
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-		   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-		 <?php if(sizeof($designforloginuser)>0)
+	 <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+		 <?php 
+		
+		if(sizeof($designforloginuser)>0)
 		{
-		echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
+		  echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
 		}
+		
 		?>
+	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  	  	
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -74,32 +80,45 @@ echo '<p class = "condensed midsmall">Take a look, and provide some feedback for
 echo '</div>';
 
 $i=1;
+
 foreach($conceptboard as $key)
 {
 	$comment=($key->comments!=""?$key->comments:"Provide some feedback for your designer");
-    $reset=  ($key->comments!=""?0:1);
+         $reset=  ($key->comments!=""?0:1);
 	
-	if ($i==1){
-	echo '<div class = "item active">';}
-	else {echo '<div class = "item">';}
+	if ($i==1)
+	{
+	  echo '<div class = "item active" id="room_des_'.$i.'">';
+	}
+	else 
+	{
+	  echo '<div class = "item"  id="room_des_'.$i.'">';
+	}
     
 	if($key->status!=1)
-   
+         echo '<img src="'.$key->filename.'" width="100%"/><BR><BR>';
+         echo '<textarea width = "70%" rows = "3" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button3 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
 	
-   echo '<img src="'.$key->filename.'" width="100%"/><BR><BR>';
-   echo '<textarea width = "70%" rows = "3" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button3 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
 	$i++;
 	echo '</div>';
 	}
 ?>
 </div>
-<a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
-	<a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>
-	</div>
+<?php
+if (sizeof($conceptboard)>1)
+{
+echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev" onclick="slide_nav(\''.sizeof($conceptboard).' \',\'prev\')">&lsaquo;</a>';
+echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next" onclick="slide_nav(\''.sizeof($conceptboard).'\',\'next\')">&rsaquo;</a>';
+}
+
+?>
+</div>
 <input type="hidden" value="" id="holdcomment" name="holdcomment"/>
 <input type="hidden" value="" id="holdconceptid" name="holdconceptid"/>
 <input type="hidden" value="" id="holdroomid" name="holdroomid"/>
-<?php echo form_close(); ?>
+<?php 
+echo form_close(); 
+?>
 </div>
 </div>
 

@@ -613,6 +613,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		<div id="payment-form" class = "horizontal">
 		   <span class="alert-error alert payment-errors"></span>
 		<div class="horizontal">
+<<<<<<< HEAD
 		   <label class = "labels inline forty middle left-align small sanslight dark_gray_text" for="cardtype">Card Type: </label>
 		 
  <select id="card-name" class = "forty forminput">
@@ -626,7 +627,32 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		     American Express
 		     </option>
 		    
+=======
+		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
+		  <div class="labels"> 
+               
+               <select id="card-name" style="width:280px;float:left;margin-left:27px;">
+		        <option value="Visa">
+			 visa card
+		      </option>
+		     <option value="Mastercard">
+			 master card
+		     </option>
+		     <option value="AmericanExpress">
+		     American Express
+		     </option>
+		     <option value="Discover">
+		     Discover
+		     </option>
+		     <option value="Diner's Club">
+		     Diner's Club
+		     </option>
+		     <option value="JCB">
+		     JCB
+		     </option>
+>>>>>>> 6679e638057642c78b0aa083d08f57bd6998143e
 		    </select>
+
 		</div>
 		</div>
 		<div class="horizontal">

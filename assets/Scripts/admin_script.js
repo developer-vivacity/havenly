@@ -9,6 +9,7 @@ $(document).ready(function()
   
 		 $("#bstabs a").click(function()
 		 {
+			
 			$('#bstabs a').removeClass('pink_text');
 			$(this).addClass('pink_text');
 		         $(".adminmain").hide();
@@ -56,7 +57,7 @@ $(document).ready(function()
 			          }
 			    });
 			    if(e_value==1)
-			    {alert("two");
+			    {
 			       $("#itemsbuy").val(buyarea);
 			      $("#updateform").submit();
 		      }
@@ -689,7 +690,7 @@ function save_comment(input_id,conceptid,roomid,form_id)
 		       $("#"+input_id).focus();
 	        }
 	        else
-	        {alert("one");
+	        {
                         $("#holdcomment").val($("#"+input_id).val());
                         $("#holdconceptid").val(conceptid);        
 		      $("#holdroomid").val(roomid);
@@ -707,7 +708,28 @@ function removetext(id,isreset)
 function resettest(id)
 {
 	$(".error").remove();
-         if($("#"+id).val().trim()==" ")
-	$("#"+id).html("Enter comment");
+         if($("#"+id).val().trim()=="")
+	$("#"+id).html("Provide Some feedback for your designer");
 	
+}
+var nav_start=1;
+function slide_nav(total,direction)
+{
+
+  
+
+	if((direction=='prev')&&(nav_start>1))
+	{
+	$("#room_des_"+nav_start+"" ).removeClass( "item active" ).addClass( "item");
+         nav_start=nav_start-1;
+         $("#room_des_"+nav_start+"" ).removeClass( "item" ).addClass( "item active");
+         }
+         else if((direction=='next')&&(nav_start<total))
+         {
+		
+	$("#room_des_"+nav_start+"" ).removeClass( "item active" ).addClass( "item");
+         nav_start=nav_start+1;
+         $("#room_des_"+nav_start+"" ).removeClass( "item" ).addClass( "item active");
+	}
+         
 }

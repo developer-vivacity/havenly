@@ -1,6 +1,6 @@
  $(document).ready(function() 
  {
- jQuery.noConflict();
+  jQuery.noConflict();
 
 	
  $(".checkimg").click(function()

@@ -545,38 +545,47 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 	<!-------------------------@@@@@@@@@@@@@@@@@@@@@----------------------------------->
 	<div id = "information" class = "resize">
 		<p class = "extralarge sanslight blue_text">CREATE YOUR ACCOUNT</p><br>
-		<p class = "medium sanslight dark_gray_text">We'll be in <span>touch.</span></p><br><br>
+		<p class = "medium sanslight dark_gray_text">We'll be in <span>touch.</span></p>
+	<div class = "horizontal left-align"><BR><BR>
+	<div class = "half inline infosection">
+	
 	<div class = "horizontal">
-			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="first_name">First Name:</label>
-			<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput inline" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="first_name">First Name:</label>
+	<input type="text" name="first_name" value="Holly" id="first_name" class = "forminput inline" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 			
-		<div class = "horizontal">
-			<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="last_name">Last Name:</label> <input type="text" name="last_name" value="Golightly" id="last_name" class = "forminput"  maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+	<div class = "horizontal">
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="last_name">Last Name:</label> 
+	<input type="text" name="last_name" value="Golightly" id="last_name" class = "forminput"  maxlength="30"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+			</div>
 			
-			
-		<div class = "horizontal">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="email">Email:</label>
-		<input type="text" name="email" value="cat@gmail.com" id="email" class = "forminput"  maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+	<div class = "horizontal">
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="email">Email:</label>
+	<input type="text" name="email" value="cat@gmail.com" id="email" class = "forminput"  maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 		
-		<div class = "horizontal">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="phone">Phone Number:</label>
-		<input type="text" name="phone" value="867-5309" id="phone" class = "forminput"  maxlength="100"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
+	<div class = "horizontal">
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="phone">Phone Number:</label>
+	<input type="text" name="phone" value="867-5309" id="phone" class = "forminput"  maxlength="100"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br>
 		</div>
 		
-		<div class = "horizontal">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="zipcode">Zipcode: </label>
-		<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
-		<div class = "horizontal">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="password">Pick a Password: </label>
-		<input type="text" name="password" value="Password (min 6 chars.)" id="password" class = "forminput pwd" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
-		</div>
+	<div class = "horizontal">
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="zipcode">Zipcode: </label>
+	<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+		
+	<div class = "horizontal">
+	<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="password">Pick a Password: </label>
+	<input type="text" name="password" value="Password (min 6 chars.)" id="password" class = "forminput pwd" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+	</div>
+	</div>	
+		
 		<!-------------------------------------Add Design Fee----------------------------------------------------->
-		<div class= "horizontal"><span  id="designfeepart"></span></div>
-		<div class= "horizontal" >
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text">Design Fee:</label>
+
+		<div class= "half inline border	 left-align infosection" >
+		<div class = "horizontal aligned">
+		<span id="designfeepart"></span>
+		<label class = " inline forty middle right-align midsmall condensed dark_gray_text">D E S I G N &nbsp; F E E :</label>
+		<span id="show_design_fee" class = "inline middle midsmall condensed pink_text"><?php echo $designfee; ?></span></div>
 		
-<span class = "labels" style="text-align:center;" id="show_design_fee"><?php echo $designfee; ?></span>
-		
+		<hr class = "style">
 		<!-----------design fee hidden variables------->
 		
 		<input type="hidden" value="0" name="designfeeid" id="designfeeid"/>
@@ -590,75 +599,44 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
                 <input type="hidden" value="incomplete" name="hidesigntype" id="hidesigntype" >
                 <input type="hidden"  name="tokencode" id="tokencode"/>
 		<!----------end design fee hidden variables------>
-		</div>
-		<br/>
-		<div class="horizontal">
+		
+				<!--<div class="horizontal">
 		<div class="labels" id="designtype">&nbsp;</div>
-		</div>
+		</div>-->
 		<br/>
-		<div class="horizontal" id="codepromotion">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="zipcode">Promotion code: </label>	
-		<input type="text" name="promotioncode" value="Enter 6 alphanumeric chars." id="promotioncode" class = "forminput"  maxlength="6"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:35%"/>
-		<input type="button" name="Apply" value="Apply" id="designApply"/>
+		<div class="horizontal aligned" id="codepromotion">
+		<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="promotioncode">Promotion Code:</label>
+		<input type="text" name="promotioncode" value="Promotion Code:" id="promotioncode" class = "forminput middle"  maxlength="6"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+		<input type="button" class = "button3 pink white_text condensed small" name="Apply" value="Apply" id="designApply"/>
 		</div>
-		<br/>
-		<div id="payment-form">
-		   <span class="payment-errors"></span>
+		
+		<div id="payment-form" class = "horizontal">
+		   <span class="alert-error alert payment-errors"></span>
 		<div class="horizontal">
-		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
-		  <div class="labels" > 
-                   <!----<select id="card-name" style="width:280px;float:left;margin-left:27px;">
-		        <option value="Visa">
-			 visa card
-		      </option>
-		     <option value="Mastercard">
-			 master card
-		     </option>
-		     <option value="AmericanExpress">
-		     American Express
-		     </option>
-		     <option value="Discover">
-		     Discover
-		     </option>
-		     <option value="Diner's Club">
-		     Diner's Club
-		     </option>
-		     <option value="JCB">
-		     JCB
-		     </option>
-		    </select>---->
- <select id="card-name" style="width:280px;float:left;margin-left:27px;">
-		        <option value="4242424242424242">
-			 visa card
+		   <label class = "labels inline forty middle left-align small sanslight dark_gray_text" for="cardtype">Card Type: </label>
+		 
+ <select id="card-name" class = "forty forminput">
+		      <option value="4242424242424242">
+			 Visa
 		      </option>
 		     <option value="5555555555554444">
-			 master card
+			Master
 		     </option>
 		     <option value="378282246310005">
 		     American Express
 		     </option>
-		     <option value="6011111111111117">
-		     Discover
-		     </option>
-		     <option value="30569309025904">
-		     Diner's Club
-		     </option>
-		     <option value="3530111333300000">
-		     JCB
-		     </option>
+		    
 		    </select>
 		</div>
 		</div>
 		<div class="horizontal">
-		<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardnumber">Enter card number: </label>
-		<input type="text" data-stripe="CVC" id="CVC" value="CVC" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:9%" maxlength="4"/><input type="text" data-stripe="cardnumber" value="credit card number" id="cardnumber" class = "forminput"  maxlength="16"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:30%" />
+		<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="cardnumber">Card Number:</label>
+		<input type="text" data-stripe="cardnumber" value="Card Number" id="cardnumber" class = "forminput"  maxlength="16"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
+		<input type="text" data-stripe="CVC" id="CVC" value="CVC" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" style="width:9%" maxlength="4"/>
 		</div>
 		<div class="horizontal">
-<div style="margin-left:350px;" >
-<div  for="cardnumber" style="float:left;text-align:left;" class = "labels inline forty middle midlarge sanslight dark_gray_text">Enter expiration date: </div>
-			
-<div  style="width:10%;float:left;">
-<select data-stripe="exp-month" id="cart_month">
+		<div for="cardnumber"  class = "labels inline forty middle small sanslight dark_gray_text">Expiration Date </div>
+	<select data-stripe="exp-month" class = "forminput" id="cart_month">
 <?php
 
    for($i=1;$i<=12;$i++)
@@ -667,9 +645,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
    }
 ?>	
 </select>
-</div>
-<div  style="width:10%;float:left;">
-<select data-stripe="exp-year" id="cart_year">
+<select data-stripe="exp-year" class = "forminput" id="cart_year">
   <?php
    for($year=2013;$year<=2020;$year++)
    {
@@ -678,13 +654,13 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 ?>	
 </select> 
 </div>
-	<div style="width:10%;float:left;">
+	<div">
 	<!---<button type="button" id="SecurCode">SecurCode</button>--->
 	</div>	
 	</div>	</div></div>
 <br/>
 		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
-<br><br><hr class = "style half"/><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
+<br><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
 	</div>
 	</form>
 	</div>
@@ -1174,7 +1150,7 @@ $("#submit").click(function(){
 	  return false;	 
           }
 	
-	 if(($("#promotioncode").val()=="Enter 6 alphanumeric chars.")||($("#promotioncode").val()==""))
+	 if(($("#promotioncode").val()=="ENTER CODE")||($("#promotioncode").val()==""))
          {
          $("#designfeeid").val(0);
          }  

@@ -56,7 +56,7 @@ $("#cart_details").mouseout(function()
 //----This function add product to shopify card--------//
 
 function add_to_cart()
-{	 $('#shoppingcartform').attr('action', 'http://leemayer.myshopify.com/cart/add');
+{	 $('#shoppingcartform').attr('action', 'https://leemayer.myshopify.com/cart/add');
 	 $('#shoppingcartform').submit();
 }
 //---------------------------------------------------------------------------------------

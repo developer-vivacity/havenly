@@ -1,7 +1,7 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-   <div class="top-nav">
+<div class="top-nav">
     <div class="nav-left">
       <div class="logo">Havenly</div>
       <ul>
@@ -63,11 +63,11 @@
 	</div>
 	</div>
 	<div id = "login" class = "login-form" style="display:<?php echo $display;?>">
-	
-
-   <?php echo form_open('Users/site/login/');?>
-
-
+<?php 
+   $attributes = array('name' => 'loginform','id'=>'loginform');
+   echo form_open('Users/site/login/',$attributes);?>
+   <iframe src="http://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe> 
+   <input type="hidden" id="sitepath" value="<?php echo base_url();?>"/> 
 
    <table class = "table-center span5 border white">
  
@@ -91,7 +91,10 @@
 	<td class = "third middle right-align">
 	</td>
 	<td class = "half left-align">
-		<BR><input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" /><BR><BR>
+		<BR>
+			<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />
+	<!---<input type="button" class="button3 pink horizontal small sanslight" value="SIGN IN" onclick="reset();" id="sin_in"/>---->
+			<BR><BR>
 	</td>
 	</tr>
 	</table>
@@ -130,7 +133,9 @@
   </td></tr>
   <tr><td> </td>
   <td>
-  <input type="submit" class="button3 pink small text-center sanslight" value="SIGN IN" /><BR><BR><BR></td></tr>
+<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />-
+	<BR><BR><BR></td></tr>
+   
    </table>
 
  <div class = "sanslight blue_text small"><br/>
@@ -152,7 +157,20 @@
 
 </div>
 <script>
+	//var result;
+         
+ /*result=window.open("https://leemayer.myshopify.com/cart/clear.js",'mywindow','alwaysRaised=no,z-lock=no,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes,width=1,height=1,left=4000,top=754');
+*/
+//result=window.open("http://leemayer.myshopify.com/cart/clear.js",'mywindow','alwaysRaised=no,z-lock=no,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes,width=1,height=1,left=4000,top=754');
 
+
+	//result.resizeTo(1,1);
+ //var winint= self.setInterval(function(){close_win()},4000);
+ /*function close_win()
+ {
+	 result.close();
+	 window.clearInterval(winint)
+}*/
 
 $("#forgotbutton").click(function(){
 $("#login").hide();
@@ -161,7 +179,6 @@ $("#enteremail").val("");
 $(".displayinfoerror").html("");
 });
 
-
 $("#loginbutton").click(function(){
 $("#login").fadeIn();
 $("#forgot").hide();
@@ -169,5 +186,7 @@ $("#enterloginemail").val("");
 $("#enterpass").val("");
 $(".displayinfoerror").html("");
 });
+
+
 
 </script>

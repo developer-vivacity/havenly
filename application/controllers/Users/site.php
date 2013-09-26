@@ -284,15 +284,17 @@ function UserEditInformation()
  function login()
  {
 
- if(($this->session->userdata('first_name')!=""))
+if(($this->session->userdata('first_name')!=""))
     {
-     
-      if($this->session->userdata('designinfo'))
+       /*-------HIT shopify shop url by curl------------------*/
+	    $this->hit_url();
+     /*-------------------------------------------------*/
+       if($this->session->userdata('designinfo'))
        {
           $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
           $designdata=array('designinfo'=>'');
           $this->session->unset_userdata($designdata);
-        }
+       }
       if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)//If all user rooms in status “Open” or “Called” Redirect to user/accountinformation view
       {
 	      
@@ -302,7 +304,11 @@ function UserEditInformation()
        $data["colorstylenumber"]= $this->room_model->fetch_color_style_number();
        $data["userpreference"]= $this->preference_model->User_preference_information($this->session->userdata('id'));
        $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
+       
        $data["designforloginuser"]=$this->cart_model->get_design_login_user();
+       
+       //die($data["designforloginuser"]);
+       
        $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
       
        $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
@@ -343,9 +349,11 @@ if($this->form_validation->run() == FALSE)
   
   if($this->session->userdata('first_name')!="")
    {
+	   $this->login();
 	   
-if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
-    {
+   /*	   
+    if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
+     {
 	   if($this->session->userdata('designinfo'))
             {
 	    $data["deletedesigninfo"]=$this->session->userdata('designinfo').'&nbsp;Design Has Been Deleted By Admin!';
@@ -382,7 +390,7 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
      $data["message"]="No Rooms found";
      $this->load->view('Users/accountinformation', $data);
      return;
-    }
+    }*/
 }
 else
 {
@@ -508,9 +516,15 @@ $this->load->view('Users/login', $data);
   'user_email' => ''
   
   );
+  
+  
+  
+  
   $this->session->unset_userdata($newdata );
+  
   $this->session->sess_destroy();
- 
+
+
  $this->ForLogin();
  }
  
@@ -589,6 +603,16 @@ $data =array('first_name'=> $this->input->post('update_name'),
     redirect('/Users/site/login/','refresh');
 
  }
+ function hit_url()
+ {
+     $ch =curl_init();
+     curl_setopt($ch, CURLOPT_URL, "leemayer.myshopify.com/cart/clear.js");
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+     curl_exec($ch);
+     curl_close($ch);	 
+	 
+	 
+}
  /*
  function display_designer_vailability()
  {

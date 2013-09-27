@@ -46,7 +46,6 @@ $checktitems=array();
 $currentroomid="";
 $currentuserid="";
 
-
 foreach($roomwithuser as $key)
 {
     
@@ -63,8 +62,6 @@ foreach($roomwithuser as $key)
 	$otherroom_type=($roomtype=="BR"?"LR":"BR");
 	
 	$otherroom_folder=($optionroomfolder=="LivingRoom"?"Bedroom":"LivingRoom");
-	
-
 }	
 
 $attributes = array('class' => 'updateform', 'id' => 'updateform');
@@ -77,7 +74,8 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 	$roomstatus=array("OPEN" , "CALLED", "DESIGN", "MOODBOARD REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
 	
 	echo '<div class= "span12 well blue white_text">';
-	echo '<div class = "span6 midsmall Condensed">';
+	echo '<div class = "span7 midsmall Condensed">';
+	
 	// echo 'UPDATE STATUS &nbsp;';
 	echo '<select class = "small " name="update_room_status" id="update_room_status">';
 
@@ -88,7 +86,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 		
 	}
 	
-	echo '</select>&nbsp;&nbsp;<input type="submit" class = "button2 condensed blue_text white" value="Update"></div></div>';
+	echo '</select>&nbsp;&nbsp;<textarea style="width:180px;" id="uprc" name="statuscomment">Enter comment!</textarea><input type="submit" class = "button2 condensed blue_text white" value="Update" id="uprs"></div></div>';
 	
 ?>
 <div class = "canvas">
@@ -168,9 +166,12 @@ echo '</td></tr>';
 	echo '<tr><td class = "sanslight gray_text midsmall">ROOM PICTURES</td></tr>';
 	echo  '<tr><td>';
 	
-	if(sizeof($roompicture)==0){
-	echo "No pictures uploaded";}
-	else{
+	if(sizeof($roompicture)==0)
+	{
+	echo "No pictures uploaded";
+	}
+	else
+	{
 	foreach($roompicture as $roompickey)
 	{
 	  echo '<div><img src="'.$roompickey->filename.'" height="200px"/></div>';	
@@ -264,13 +265,15 @@ if(sizeof($designassociaterooms)>0)
  {
 ?>
 <?php
-echo '<div class = "well midsmall" >';
-echo '<table>';
-foreach($designassociaterooms as $key)
-{
+
+  echo '<div class = "well midsmall" >';
+  echo '<table>';
+  foreach($designassociaterooms as $key)
+  {
 	
 	echo '<tr><td width = "80%" id="displaydesignname_'.$key->design_id.'"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></td><td><a class = "small" href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></td></tr>';
-}
+  }
+  
 ?>
 </table>
 </div>
@@ -315,6 +318,16 @@ echo form_close();
 </div></div>
 <script>
 	
+ $("#uprc").keypress(function()
+	{
+	  if($("#uprc").val()=="Enter comment!")
+	  $("#uprc").val(" ");
+	});
+$("#uprc").blur(
+function(){
+	if($("#uprc").val().trim()=="")
+	$("#uprc").val("Enter comment!");
+	});	
 $("#AddDesigntext").click(function(){
 	
 $("#AddDesigntext").val("");	
@@ -337,7 +350,7 @@ function show_add_design(roomid)
              {
              var designid="null"; 
 	    if($("#roomdesignname").length!=0)
-		$("#roomdesignname").before('<div class = "padding" style="position:absolute;width:600px;height:200px;z-index:100;background-color:gray;opacity:0.9;"><div id="inputcomment"><div><p class = "white_text">Add Design Notes:<BR><br></p><textarea name="designer_notes" id="designer_notes" cols= "50"></textarea></div><div ><input class = "button2 sanslight pink white_text" type="button" value="submit" onclick="submit_designer_comment();"/></div><input type="hidden" name="designroomid" value="'+roomid+'"><input type="hidden" name="designuserid" value="'+$("#userid").val()+'"></div>');
+	    $("#roomdesignname").before('<div class = "padding" style="position:absolute;width:600px;height:200px;z-index:100;background-color:gray;opacity:0.9;"><div id="inputcomment"><div><p class = "white_text">Add Design Notes:<BR><br></p><textarea name="designer_notes" id="designer_notes" cols= "50"></textarea></div><div ><input class = "button2 sanslight pink white_text" type="button" value="submit" onclick="submit_designer_comment();"/></div><input type="hidden" name="designroomid" value="'+roomid+'"><input type="hidden" name="designuserid" value="'+$("#userid").val()+'"></div>');
             
              }
 
@@ -350,6 +363,15 @@ function submit_designer_comment()
 	   else
 	   $("#designeform").submit();
 }
+$("#uprs").click(function()
+{
+	if(($("#uprc").val().trim()=="")||($("#uprc").val().trim()=="Enter comment!"))
+	{
+           return false;
+	}
+	
+})
+
 
 </script>
 <BR><BR><BR><BR><BR>

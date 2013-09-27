@@ -6,10 +6,12 @@ Class Site extends CI_Controller
          public $insertdata;	
          public $_File_Location;
          public $_add_new_design;
+         public $sendmailval;
 
 function __construct() 
 {
 	parent::__construct();
+	
 	$this->load->library('s3');
 	$this->load->library('session');
 	$this->load->model('Users/picture_model');
@@ -107,10 +109,8 @@ function roomsadministrator($orderby=null,$ordertype=null)
 {
       if(($this->session->userdata('adminid')==""))
       {
-	
-	  redirect('/Admin/site/adminlogin', 'refresh');
-	  
-     }
+	redirect('/Admin/site/adminlogin', 'refresh');
+       }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
       {  
@@ -226,10 +226,25 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 function update_room_status_by_admin()
 {
 	$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
+	
 	$preferencedata=array('room_type'=>$this->input->post('update_room_type'));
+	
 	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$roomdata);
+	
 	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$preferencedata);
-	$this->roomsadministrator();
+	if($_POST)
+	{
+	   if($this->sendmailval!=1)
+	   {
+	      $userdata=$this->user_model->user_getall($this->input->post('userid'));
+	      
+	      $this->send_mail($userdata[0]->email,$this->input->post('update_room_status'),$this->input->post('statuscomment'));
+	      
+            }
+            
+         }
+         redirect('/Admin/site/roomsadministrator', 'refresh');
+	
 }
 function additional_details_user_room($room_id=null)
 {
@@ -266,8 +281,8 @@ function additional_details_user_room($room_id=null)
 			  redirect('/Admin/site/roomsadministrator', 'refresh');
 	      }
       }
-		else
-		{
+	   else
+	   {
 	       
 	       redirect('/Admin/site/roomsadministrator', 'refresh');
 	    }
@@ -682,6 +697,44 @@ function update_concept_board()
 	
       	$this->concept_model->update_concept_board_status($_POST["roomid"],$_POST["conceptid"],$_POST["status"]);
       	echo "success";
+	
+}
+function send_mail($_email,$update_room_type,$_data)
+{
+	
+	  $this->sendmailval=1;
+	
+               $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	                $this->load->library('email',$config);
+	                $this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this ->email->to($_email);
+			$this->email->subject('Hello from Havenly');
+		         $data["message"]=$_data;
+		         
+		         $data["updateroom"]=$update_room_type;
+		         
+			$this->email->message($this->load->view('Admin/update_email', $data, true));
+			
+		         if($this->email->send()) 
+		         {
+			  $data['message']= 'thank you';
+		         }
+			else 
+			{
+			  ob_start();
+			  $this->email->print_debugger();
+			  $error = ob_end_clean();
+			  $errors[] = $error;
+                           }	
 	
 }
 }

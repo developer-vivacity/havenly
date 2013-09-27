@@ -33,8 +33,6 @@
       </ul>
     </div>
   </div><!-- top nav -->
-	  
-
 <div class = "chevron text-center row">
 	<div class = "home-login-logo">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
@@ -58,8 +56,7 @@
 		echo '<div class="alert alert-error">'.$loginerrors.'</div>';
 		}
 	?>
-	
-	</div>
+</div>
 	</div>
 	</div>
 	<div id = "login" class = "login-form" style="display:<?php echo $display;?>">
@@ -67,6 +64,7 @@
    $attributes = array('name' => 'loginform','id'=>'loginform');
    echo form_open('Users/site/login/',$attributes);?>
    <iframe src="http://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe> 
+   <iframe src="https://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe>
    <input type="hidden" id="sitepath" value="<?php echo base_url();?>"/> 
 
    <table class = "table-center span5 border white">
@@ -93,7 +91,7 @@
 	<td class = "half left-align">
 		<BR>
 			<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />
-	<!---<input type="button" class="button3 pink horizontal small sanslight" value="SIGN IN" onclick="reset();" id="sin_in"/>---->
+	
 			<BR><BR>
 	</td>
 	</tr>
@@ -157,21 +155,6 @@
 
 </div>
 <script>
-	//var result;
-         
- /*result=window.open("https://leemayer.myshopify.com/cart/clear.js",'mywindow','alwaysRaised=no,z-lock=no,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes,width=1,height=1,left=4000,top=754');
-*/
-//result=window.open("http://leemayer.myshopify.com/cart/clear.js",'mywindow','alwaysRaised=no,z-lock=no,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes,width=1,height=1,left=4000,top=754');
-
-
-	//result.resizeTo(1,1);
- //var winint= self.setInterval(function(){close_win()},4000);
- /*function close_win()
- {
-	 result.close();
-	 window.clearInterval(winint)
-}*/
-
 $("#forgotbutton").click(function(){
 $("#login").hide();
 $("#forgot").fadeIn();
@@ -186,7 +169,4 @@ $("#enterloginemail").val("");
 $("#enterpass").val("");
 $(".displayinfoerror").html("");
 });
-
-
-
 </script>

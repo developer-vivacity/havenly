@@ -33,13 +33,9 @@ width: 30%;
 <img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80>
 <br>
 <P class = "text dark_gray_text medium">
-Your room status has been changed by <?php echo $updateroom; ?>.
+ <?php echo $message.'to'.$updateroom; ?>.
 </p>
-<p>
-<?php
-      echo  $message;
- ?> 
-</p>
+
 Lee & Emily & the Havenly Team.
 
 <br><br><br><br>

@@ -1,19 +1,17 @@
 <?php
-include(APPPATH.'/views/templates/header.php');?>
-
+include(APPPATH.'/views/templates/header.php');
+?>
 <?php
-
-if($privileges=='global'):?>
-
-
- <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
-        <div class="container"> 
-		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+if($privileges=='global'):
+?>
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar-inner">
+<div class="container"> 
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+ </a>
 		<a class="brand" href="#">HAVENLY</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -76,7 +74,7 @@ Open Rooms<br></div>
 	<td>Room Type<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/user_rooms.room_type/'.$filter.'';?>">&nbsp; &darr;</a></td>
 	<td>Designer<a class = "sanslight small black_text" href="<?php echo base_url().'index.php/Admin/site/roomsadministrator/designer.designer_name/'.$filter.'';?>">&nbsp; &darr;</a></td>
 	<td>&nbsp;</td>
-	<td>&nbsp;</td>
+	<!-----<td>&nbsp;</td>------>
 	<td>&nbsp;</td>
 	</tr>
 <?php
@@ -90,8 +88,7 @@ foreach($adminrooms as $key)
 	echo '<td>'.$key->Room_type.'</td>
 	<td>'.$key->assigned_to.'</td>';
 	echo '<td><a class = "button1 boxshadow blue white_text" href="'.base_url().'index.php/Admin/site/currentroomwithuser/'.$key->Order_number.'">View Details</a></td>';
-	echo '<td><a class = "button1 boxshadow blue white_text" href="'.base_url().'index.php/Admin/site/additional_details_user_room/'.$key->Order_number.'">Add More Information</a></td>
-	<td><a href="'.base_url().'index.php/Admin/site/designer_availability/'.$key->user_id.'/'.$key->designer_id.'">Designer  availability</a></a></td></tr>';
+	echo '<td><a href="'.base_url().'index.php/Admin/site/designer_availability/'.$key->user_id.'/'.$key->designer_id.'">Designer  availability</a></a></td></tr>';
 }
 ?>
 </table>

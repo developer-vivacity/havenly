@@ -132,10 +132,23 @@ function roomsadministrator($orderby=null,$ordertype=null)
       $data['privileges']=$this->session->userdata('privileges');
       $this->load->view('Admin/roomsadministrator',$data);
 }
-function currentroomwithuser($room_id=null)
+function currentroomwithuser($room_id=null,$updatetype=null)
 {
-	$orderby="";
 	
+/*------------------------------ Add Additional Notes -----------------------------------------------------*/
+             if($_POST)
+	    {
+		    
+	         $data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
+		$querytype=$this->input->post('querytype');
+		$this->admin_model->get_additional_details_user_room($this->input->post('roomid'),$data,$querytype);
+                  redirect('/Admin/site/currentroomwithuser/'.$this->input->post('roomid').'/urd', 'refresh');   
+                  
+            }
+
+   $data['curdisplay']=(isset($updatetype)?$updatetype:'');
+
+/*-------------------------------------------------------------------------------------------*/   
     if(($this->session->userdata('adminid')!="") && (sizeof($this->room_model->displayusreinformationwithroom(intval($room_id)))<>0))
      {
 	   
@@ -147,7 +160,9 @@ function currentroomwithuser($room_id=null)
 	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	   
 	   $data["conceptboard"]=$this->concept_model->admin_display($room_id);
+            
             $data["colorstyle"]=$this->room_model->fetch_color_style_number();
+	   
 	   $data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
 	 
 	   $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
@@ -157,7 +172,26 @@ function currentroomwithuser($room_id=null)
 	   $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
                  
             $data["roomvedio"]=  $this->room_model->display_user_room_video($data["roomwithuser"][0]->user_id);
+          
+          /*---------------------------------------------------------------------------------------*/
+          /*------------ Add Additional Notes -----------------------------------------------------*/
+          /*---------------------------------------------------------------------------------------*/
+             
+             $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
+             $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
+             
+             if(sizeof($data["adminrooms"])>0)
+             {
+	       
+	       $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
+	   
+	       $data["roomid"]=$room_id;
+	      
+	     }
             
+	/*--------------------------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------------------------*/
+                      
 	   if(sizeof($adminrooms)!=0)
             $this->load->view('Admin/currentroomwithuser',$data);
             else
@@ -246,6 +280,7 @@ function update_room_status_by_admin()
          redirect('/Admin/site/roomsadministrator', 'refresh');
 	
 }
+/*
 function additional_details_user_room($room_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
@@ -281,13 +316,14 @@ function additional_details_user_room($room_id=null)
 			  redirect('/Admin/site/roomsadministrator', 'refresh');
 	      }
       }
-	   else
-	   {
+      else
+      {
 	       
 	       redirect('/Admin/site/roomsadministrator', 'refresh');
-	    }
+     }
     }
 }
+*/
 function upload_design_pic_by_admin($filename=null,$userroomid=null,$userid=null,$designid=null)
 {
 

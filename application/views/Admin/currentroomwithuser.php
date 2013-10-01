@@ -420,20 +420,6 @@ echo form_close();
 
 </div>
 <script>
-/*	
- $("#uprc").keypress(function()
-	{
-	  if($("#uprc").val()=="Enter comment!")
-	  $("#uprc").val(" ");
-	});
-$("#uprc").blur(
-function(){
-	if($("#uprc").val().trim()=="")
-	$("#uprc").val("Enter comment!");
-	});
-	
-	*/	
-	
 $("#AddDesigntext").click(function(){
 	
 $("#AddDesigntext").val("");	
@@ -463,9 +449,9 @@ function show_add_design(roomid)
 }
 function submit_designer_comment()
 {
-	   $(".error").remove();
+	   $(".alert alert-error").remove();
 	   if($("#designer_notes").val().trim()=="")
-	   $("#inputcomment").before("<div style='float:right;color:white;' class='error'>Enter Comment!</div>");
+	   $("#inputcomment").before("<div style='float:right;color:white;' class='alert alert-error'>Enter Comment!</div>");
 	   else
 	   $("#designeform").submit();
 }
@@ -473,8 +459,8 @@ $("#uprs").click(function()
 {
 	if(($("#uprc").val().trim()==""))
 	{
-	    $(".error").remove();
-	    $("#uprc").after('<span class="error">Enter comment!</span>');
+	    $(".alert alert-error").remove();
+	    $("#uprc").after('<span class="alert alert-error">Enter comment!</span>');
              return false;
 	}
 	

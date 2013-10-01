@@ -426,12 +426,12 @@ function assign_product($room_id=null,$user_id=null,$design_id=null)
      if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
      {
       $this->_add_new_design=1;
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
      }
      else
      {
       $this->_add_new_design=1;     
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
      }
    }
    else
@@ -586,7 +586,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 	{
 	      $data['roomid']=$room_id;
                $data['designid']=$design_id;
-	      $data['designname']=urldecode($designname);
+	      $data['designname']=urldecode(base64_decode($designname));
                $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
                $data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	      $data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
@@ -609,16 +609,13 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
          {
 	 
 	 $room_id=$_POST["designroomid"];
-	 $design_name=$_POST["AddDesigntext"];	
+	 $design_name=rtrim(base64_encode($_POST["AddDesigntext"]),'=');	
 	 $user_id=$_POST["designuserid"];
 	 $designer_notes=$_POST["designer_notes"];	
 	 $design_status=null;
 	}
-         
-         
-         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status,$designer_notes));
-	
-	($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
+         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id,$design_status,$designer_notes));
+         ($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
 	
 	
 	

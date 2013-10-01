@@ -275,7 +275,7 @@ if(sizeof($designassociaterooms)>0)
   foreach($designassociaterooms as $key)
   {
 	
-	echo '<tr><td width = "80%" id="displaydesignname_'.$key->design_id.'"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.$key->design_name.'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></td><td><a class = "small" href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></td></tr>';
+	echo '<tr><td width = "80%" id="displaydesignname_'.$key->design_id.'"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.rtrim(base64_encode($key->design_name),'=').'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></td><td><a class = "small" href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></td></tr>';
   }
   
 ?>

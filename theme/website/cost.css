@@ -38,8 +38,8 @@ min-width: 100%;
 }
 
 .pricing-column {
-  float: left;
-  width: 40%;
+float: center;
+ width: 90%;
 }
 
 .pricing-column li {

@@ -213,6 +213,13 @@ function faq()
 { 
 	$this->load->view('Static/faq');
 	}
+	
+	
+	function howwework()
+{ 
+	$this->load->view('Static/howwework');
+	}
+
 
 function requestinvite()
 {

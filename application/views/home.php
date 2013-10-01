@@ -103,7 +103,7 @@
 					<!--<div class="span4"> </div>-->
 					<div class="span8 offset1">
 						<br><BR><br>
-						<h2 class = "large">Some love from our customers</h2>
+						<h2 class = "large">Some <img src = "<?php echo base_url('assets/Images/heart.png');?>" class = "inline top" height = "100px"> from our customers</h2>
 						<div id="myCarousel2" class="carousel slide">
 					        <div class="carousel-inner"><br>
 		          				<div class="item active">
@@ -131,34 +131,22 @@
 <section class="costs-goods">
   <div class="cost-options chevron">
     <h1>We're Cheap, and Easy</h1>
-    <h2>We have two options to cover all of your needs.</h2>
+    <h2></h2>
     <div class="pricing-table-wrapper">
       <div class="pricing-table pt-one">
-        <ul class="pricing-column">
-          <li class="pricing-title">
-            <h3>Cotton</h3>
-            <p>Have most of your stuff?</p>
-            <p>Just want some help?</p>
-          </li>
-          <li><img src="<?php echo base_url().'assets/Images/cotton-pink.png';?>" height="150px"> </span>
-          </li>
-          <li>Selection of furnishings to coordinate with your current room</li>
-          <li>Custom moodboard</li>
-          <li>Unlimited stylish support</li>
-          <li>$10 credit towards eligible furnishings</li>
-        </ul>
+ 
       <ul class="pricing-column">
         <li class="pricing-title">
-          <h3>Cashmere</h3>
-          <p>Want the full deal?</p>
-          <p>Our comprehensive design plan.</p>
+          <h3>One Flat Fee</h3>
+                  <p>Our comprehensive design plan.</p>
         </li>
         <li><img src="<?php echo base_url().'assets/Images/cashmere-pink.png';?>" height="150px"> </span>
         </li>
-        <li>Whole room decorating plan.</li>
-        <li>Custom rendering &amp; full revision</li>
+        <li>Whole room decorating plan with designer support.</li>
+        <li>Choice of designer concepts.</li>
+		<li>Custom rendering &amp; full revision</li>
         <li>Unlimited Stylish Support</li>
-        <li>$30 credit towards eligible furnishings</li>
+        
       </ul>
       </div><!-- Pricing-Table Row Fluid -->
     </div><!-- Pricing-Table-Wraper -->

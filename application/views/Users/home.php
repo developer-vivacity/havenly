@@ -613,8 +613,8 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		<div id="payment-form" class = "horizontal">
 		   <span class="alert-error alert payment-errors"></span>
 		<div class="horizontal">
-<<<<<<< HEAD
-		   <label class = "labels inline forty middle left-align small sanslight dark_gray_text" for="cardtype">Card Type: </label>
+
+		   <label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="cardtype">Card Type: </label>
 		 
  <select id="card-name" class = "forty forminput">
 		      <option value="4242424242424242">
@@ -627,7 +627,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		     American Express
 		     </option>
 		    
-=======
+
 		   <label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>
 		  <div class="labels"> 
                
@@ -650,7 +650,6 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 		     <option value="JCB">
 		     JCB
 		     </option>
->>>>>>> 6679e638057642c78b0aa083d08f57bd6998143e
 		    </select>
 
 		</div>
@@ -686,7 +685,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 	</div>	</div></div>
 <br/>
 		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
-<br><br><input type="submit"  id = "submit" class="button2 midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> 
+<br><br><div class = "center gray"><input type="submit"  id = "submit" class="button3 sanslight midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> </div>
 	</div>
 	</form>
 	</div>

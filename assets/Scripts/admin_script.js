@@ -4,9 +4,13 @@ var fileupload_value=0;
 $(document).ready(function()
 {
  
+     $start_display=($('#CurrentUser').css('display')=='block'?1:2);
+ 
     $(".adminmain").hide();
-   $("#CurrentUser").show();
-  
+    
+    
+       var d_check= ($start_display==1?$("#CurrentUser").show():$("#CurrentRoom").show()); 
+		 
 		 $("#bstabs a").click(function()
 		 {
 			
@@ -22,6 +26,8 @@ $(document).ready(function()
 		 
 		 $("#addroominfo").click(function()
 		  {
+			
+			
 			 $("#div_show_error_message").html(""); 	
 			 e_value=1;
 			 
@@ -59,7 +65,7 @@ $(document).ready(function()
 			    if(e_value==1)
 			    {
 			       $("#itemsbuy").val(buyarea);
-			      $("#updateform").submit();
+			      $("#addaditionnotesform").submit();
 		      }
 	      }
 		 

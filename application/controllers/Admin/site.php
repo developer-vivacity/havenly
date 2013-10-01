@@ -6,10 +6,12 @@ Class Site extends CI_Controller
          public $insertdata;	
          public $_File_Location;
          public $_add_new_design;
+         public $sendmailval;
 
 function __construct() 
 {
 	parent::__construct();
+	
 	$this->load->library('s3');
 	$this->load->library('session');
 	$this->load->model('Users/picture_model');
@@ -107,10 +109,8 @@ function roomsadministrator($orderby=null,$ordertype=null)
 {
       if(($this->session->userdata('adminid')==""))
       {
-	
-	  redirect('/Admin/site/adminlogin', 'refresh');
-	  
-     }
+	redirect('/Admin/site/adminlogin', 'refresh');
+       }
       $condition="";
       if($this->session->userdata('privileges')=="local") 
       {  
@@ -132,10 +132,23 @@ function roomsadministrator($orderby=null,$ordertype=null)
       $data['privileges']=$this->session->userdata('privileges');
       $this->load->view('Admin/roomsadministrator',$data);
 }
-function currentroomwithuser($room_id=null)
+function currentroomwithuser($room_id=null,$updatetype=null)
 {
-	$orderby="";
 	
+/*------------------------------ Add Additional Notes -----------------------------------------------------*/
+             if($_POST)
+	    {
+		    
+	         $data=array('room_id'=>$this->input->post('roomid'),'Style_notes'=>$this->input->post('stylenotes'),'Ceiling_Height'=>$this->input->post('ceilingheight'),'Hates'=>$this->input->post('hates'),'Likes'=>$this->input->post('likes'),'Keep'=>$this->input->post('keep'),'Buy'=>$this->input->post('itemsbuy'));
+		$querytype=$this->input->post('querytype');
+		$this->admin_model->get_additional_details_user_room($this->input->post('roomid'),$data,$querytype);
+                  redirect('/Admin/site/currentroomwithuser/'.$this->input->post('roomid').'/urd', 'refresh');   
+                  
+            }
+
+   $data['curdisplay']=(isset($updatetype)?$updatetype:'');
+
+/*-------------------------------------------------------------------------------------------*/   
     if(($this->session->userdata('adminid')!="") && (sizeof($this->room_model->displayusreinformationwithroom(intval($room_id)))<>0))
      {
 	   
@@ -147,7 +160,9 @@ function currentroomwithuser($room_id=null)
 	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	   
 	   $data["conceptboard"]=$this->concept_model->admin_display($room_id);
+            
             $data["colorstyle"]=$this->room_model->fetch_color_style_number();
+	   
 	   $data["userroomdetails"]=$this->admin_model->get_additional_details_user_room(intval($room_id));
 	 
 	   $data["selectproduct"]= $this->product_model->save_product_associated_with_room(intval($room_id));
@@ -157,7 +172,26 @@ function currentroomwithuser($room_id=null)
 	   $data["roompicture"]=$this->room_model->display_user_room_pic($data["roomwithuser"][0]->user_id);
                  
             $data["roomvedio"]=  $this->room_model->display_user_room_video($data["roomwithuser"][0]->user_id);
+          
+          /*---------------------------------------------------------------------------------------*/
+          /*------------ Add Additional Notes -----------------------------------------------------*/
+          /*---------------------------------------------------------------------------------------*/
+             
+             $condition= ($this->session->userdata('privileges')=="local"? " where designer.id=".$this->session->userdata('designerid')." and user_rooms.status!='closed' and user_rooms.id=".$room_id."" : " where user_rooms.id=".$room_id."");
+             $data["adminrooms"]=$this->room_model->display_all_rooms($condition);
+             
+             if(sizeof($data["adminrooms"])>0)
+             {
+	       
+	       $data["additionalroomdetails"]=$this->admin_model->get_additional_details_user_room($room_id);
+	   
+	       $data["roomid"]=$room_id;
+	      
+	     }
             
+	/*--------------------------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------------------------*/
+                      
 	   if(sizeof($adminrooms)!=0)
             $this->load->view('Admin/currentroomwithuser',$data);
             else
@@ -226,11 +260,27 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 function update_room_status_by_admin()
 {
 	$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
+	
 	$preferencedata=array('room_type'=>$this->input->post('update_room_type'));
+	
 	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$roomdata);
+	
 	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$preferencedata);
-	$this->roomsadministrator();
+	if($_POST)
+	{
+	   if($this->sendmailval!=1)
+	   {
+	      $userdata=$this->user_model->user_getall($this->input->post('userid'));
+	      
+	      $this->send_mail($userdata[0]->email,$this->input->post('update_room_status'),$this->input->post('statuscomment'));
+	      
+            }
+            
+         }
+         redirect('/Admin/site/roomsadministrator', 'refresh');
+	
 }
+/*
 function additional_details_user_room($room_id=null)
 {
 	if(($this->session->userdata('adminid')==""))
@@ -266,13 +316,14 @@ function additional_details_user_room($room_id=null)
 			  redirect('/Admin/site/roomsadministrator', 'refresh');
 	      }
       }
-		else
-		{
+      else
+      {
 	       
 	       redirect('/Admin/site/roomsadministrator', 'refresh');
-	    }
+     }
     }
 }
+*/
 function upload_design_pic_by_admin($filename=null,$userroomid=null,$userid=null,$designid=null)
 {
 
@@ -375,12 +426,12 @@ function assign_product($room_id=null,$user_id=null,$design_id=null)
      if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
      {
       $this->_add_new_design=1;
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
      }
      else
      {
       $this->_add_new_design=1;     
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),$this->input->post("holddesignname"),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
+      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
      }
    }
    else
@@ -535,7 +586,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
 	{
 	      $data['roomid']=$room_id;
                $data['designid']=$design_id;
-	      $data['designname']=urldecode($designname);
+	      $data['designname']=urldecode(base64_decode($designname));
                $data['designdetail']=$this->product_model->userdesign($room_id,$design_id);
                $data['productassign']=$this->product_model->display_design_associated_products($design_id);
 	      $data['designimage']=$this->product_model->design_image_for_rooms($room_id,$design_id);
@@ -558,16 +609,13 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
          {
 	 
 	 $room_id=$_POST["designroomid"];
-	 $design_name=$_POST["AddDesigntext"];	
+	 $design_name=rtrim(base64_encode($_POST["AddDesigntext"]),'=');	
 	 $user_id=$_POST["designuserid"];
 	 $designer_notes=$_POST["designer_notes"];	
 	 $design_status=null;
 	}
-         
-         
-         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,urldecode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,$design_name,$design_id,$design_status,$designer_notes));
-	
-	($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
+         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id):$this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id,$design_status,$designer_notes));
+         ($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):($product_details=="this"?$this->productdetails($room_id,$user_id,$design_id):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh')));
 	
 	
 	
@@ -682,6 +730,44 @@ function update_concept_board()
 	
       	$this->concept_model->update_concept_board_status($_POST["roomid"],$_POST["conceptid"],$_POST["status"]);
       	echo "success";
+	
+}
+function send_mail($_email,$update_room_type,$_data)
+{
+	
+	  $this->sendmailval=1;
+	
+               $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	                $this->load->library('email',$config);
+	                $this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this ->email->to($_email);
+			$this->email->subject('Hello from Havenly');
+		         $data["message"]=$_data;
+		         
+		         $data["updateroom"]=$update_room_type;
+		         
+			$this->email->message($this->load->view('Admin/update_email', $data, true));
+			
+		         if($this->email->send()) 
+		         {
+			  $data['message']= 'thank you';
+		         }
+			else 
+			{
+			  ob_start();
+			  $this->email->print_debugger();
+			  $error = ob_end_clean();
+			  $errors[] = $error;
+                           }	
 	
 }
 }

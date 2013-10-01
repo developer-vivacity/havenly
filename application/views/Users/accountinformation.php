@@ -23,13 +23,13 @@
          echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
        }
    ?>
- <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/">Designer Availability</a></li>	  	  
+ <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" rel="designerAval">Designer Availability</a></li>	  	  
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
     <ul>
       <li><a href ="<?php echo base_url().'index.php/Users/site/logout/'; ?>">Logout</a></li>
-    </ul>
+     </ul>
   </div><!-- nav right -->
   <div class="nav-mobile">
     <ul id="list-pages-accordion">
@@ -47,7 +47,7 @@
                     echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
                      }
 		  ?>
-	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  
+	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" rel="designerAval">Designer Availability</a></li>	  
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -60,12 +60,12 @@
 <div class = "container text-center">
 <BR><BR>
 <div class = "white">
-	<!----add new hidden variable to store current page---->
+	 <!----add new hidden variable to store current page---->
 	 <?php
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
 	?>
 
- <div class = "usermain" id = "designer"> 
+ <div class = "usermain" id = "designer" style="display:none;"> 
 <div class="welcome-page">
 <div class="designer-information">
 	<?php
@@ -155,7 +155,7 @@
 
 <?php
 
-	if(isset($roomsassociated))
+if(isset($roomsassociated))
 	{
 ?>
 	
@@ -237,8 +237,9 @@ echo '<div class = "carousel-inner text-center">';}
 
 if (sizeof($designforloginuser)>1)
 {
-echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'prev\')">&lsaquo;</a>';
-echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'next\')">&rsaquo;</a>';}
+ echo '<a class="left carousel-control" href="#myCarousel2" data-slide="prev" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'prev\')">&lsaquo;</a>';
+ echo '<a class="right carousel-control" href="#myCarousel2" data-slide="next" onclick="slide_nav(\''.sizeof($designforloginuser).'\',\'next\')">&rsaquo;</a>';
+}
 
 ?>
 	
@@ -336,13 +337,14 @@ else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">
 $(document).ready(function()
 {
         //$('.carousel').carousel();
-	$(".usermain").hide();
-	$("#"+$("#currentpage").val()).show();
- $("#editroomstatus").hide();
+	     $(".usermain").hide();
+	    $("#"+$("#currentpage").val()).show();
+             $("#editroomstatus").hide();
   
 		 $("#bstabs a").click(function()
 		 {
 
+		     if((this.rel!="Concepts")&&(this.rel!="designerAval"))
 		     $(".usermain").hide();
 		    
 		      $("#"+(this.rel)).show();
@@ -352,7 +354,8 @@ $(document).ready(function()
 		
 		
 		 });
-	
+		 
+
 </script>
 
 	<?php 

@@ -21,22 +21,28 @@ Class Site extends CI_Controller
 
      	if($this->session->userdata('first_name')!="")
      	{
-     	   
-     	     if($_POST & isset($_POST["holdproductidfordesign"]) & isset($_POST["holdroomid"]))
+     	      $designInfo=$this->cart_model->get_design_info_by_id($design_id);
+              
+              if(sizeof($designInfo)==0)
+              {              
+               redirect('/Users/site/login', 'refresh');
+              }    	     
+             if($_POST & isset($_POST["holdproductidfordesign"]) & isset($_POST["holdroomid"]))
      	     {
 		 
 		  $this->cart_model->insert_product_for_design($_POST["holdproductidfordesign"],$_POST["holdroomid"],$design_id);
 	     }
 	    
      	   $data["productname"]=$this->product_model->display_design_associated_products($design_id,'submitted');
-	   
+	  
 	   $data["designforloginuser"]=$this->cart_model->get_design_login_user();
 	   
 	   if(sizeof($data["productname"])===0)
 	   {
 	     
-		   $designInfo=$this->cart_model->get_design_info_by_id($design_id);
-		   $designdata=array('designinfo'=>$designInfo[0]['design_name']);
+		   
+		  
+ $designdata=array('designinfo'=>$designInfo[0]['design_name']);
 		   $this->session->set_userdata($designdata);
 		   redirect('/Users/site/login?a=designs', 'refresh');
             }

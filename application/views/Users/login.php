@@ -1,7 +1,7 @@
 <?php 
 	include(APPPATH.'/views/templates/header.php');
 ?>
-   <div class="top-nav">
+<div class="top-nav">
     <div class="nav-left">
       <div class="logo">Havenly</div>
       <ul>
@@ -33,8 +33,6 @@
       </ul>
     </div>
   </div><!-- top nav -->
-	  
-
 <div class = "chevron text-center row">
 	<div class = "home-login-logo">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
@@ -58,16 +56,16 @@
 		echo '<div class="alert alert-error">'.$loginerrors.'</div>';
 		}
 	?>
-	
-	</div>
+</div>
 	</div>
 	</div>
 	<div id = "login" class = "login-form" style="display:<?php echo $display;?>">
-	
-
-   <?php echo form_open('Users/site/login/');?>
-
-
+<?php 
+   $attributes = array('name' => 'loginform','id'=>'loginform');
+   echo form_open('Users/site/login/',$attributes);?>
+   <iframe src="http://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe> 
+   <iframe src="https://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe>
+   <input type="hidden" id="sitepath" value="<?php echo base_url();?>"/> 
 
    <table class = "table-center span5 border white">
  
@@ -91,7 +89,10 @@
 	<td class = "third middle right-align">
 	</td>
 	<td class = "half left-align">
-		<BR><input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" /><BR><BR>
+		<BR>
+			<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />
+	
+			<BR><BR>
 	</td>
 	</tr>
 	</table>
@@ -130,7 +131,9 @@
   </td></tr>
   <tr><td> </td>
   <td>
-  <input type="submit" class="button3 pink small text-center sanslight" value="SIGN IN" /><BR><BR><BR></td></tr>
+<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />-
+	<BR><BR><BR></td></tr>
+   
    </table>
 
  <div class = "sanslight blue_text small"><br/>
@@ -152,15 +155,12 @@
 
 </div>
 <script>
-
-
 $("#forgotbutton").click(function(){
 $("#login").hide();
 $("#forgot").fadeIn();
 $("#enteremail").val("");
 $(".displayinfoerror").html("");
 });
-
 
 $("#loginbutton").click(function(){
 $("#login").fadeIn();
@@ -169,5 +169,4 @@ $("#enterloginemail").val("");
 $("#enterpass").val("");
 $(".displayinfoerror").html("");
 });
-
 </script>

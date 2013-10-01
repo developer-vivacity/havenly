@@ -517,8 +517,7 @@ $this->load->view('Users/login', $data);
   );
   $this->session->unset_userdata($newdata );
   $this->session->sess_destroy();
- 
- $this->ForLogin();
+  redirect('/Users/site/login/','refresh');
  }
  
  //------For update user informetion---------

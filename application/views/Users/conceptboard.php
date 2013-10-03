@@ -7,22 +7,20 @@
 <!---------------------------->
  
  <div class="account-nav">
-    <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "100"></a></div>
+    <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "85"></a></div>
     <div class="account-nav-left">
 	
 	<ul id="bstabs">
-		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Status</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Account</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Preferences</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Rooms</a></li>
-	   <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
-	  
+		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">YOUR STATUS</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">YOUR ACCOUNT</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">YOUR PREFERENCES</a></li>
+   
 	  <?php if(sizeof($designforloginuser)>0)
 	  {
-               echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">SHOP</a></li>';
+               echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">VIEW DESIGN & SHOP</a></li>';
            }
 	  ?>
-	  <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" >Designer Availability</a></li>	  	  	
+	
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">

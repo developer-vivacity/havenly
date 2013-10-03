@@ -9,21 +9,20 @@
 </script>
 <!-- ACCOUNT TOP NAV -->
 <div class="account-nav">
-    <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "100"></a></div>
+    <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "85"></a></div>
     <div class="account-nav-left">
 	<ul id="bstabs">
 	<li><a href="#status"  rel="status">STATUS</a></li>
-      <li><a href="#designer" rel="designer">ACCOUNT</a></li>
-      <li><a href="#preferences" rel="preferences">PREFERENCES</a></li>
-      <li><a href="#rooms" rel="rooms">ROOMS</a></li>
-     <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">CONCEPT BOARDS</a></li>
+      <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
+      <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
+         <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">YOUR INITIAL CONCEPT BOARDS</a></li>
     <?php 
        if(sizeof($designforloginuser)>0)
        {
-         echo '<li><a href="#designs" rel="designs">SHOP</a></li>';
+         echo '<li><a href="#designs" rel="designs">VIEW DESIGN & SHOP</a></li>';
        }
    ?>
- <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" rel="designerAval">Designer Availability</a></li>	  	  
+ 
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -39,15 +38,14 @@
 		<li><a href="#status"  rel="status">Current Status</a></li>
           <li><a href="#designer" rel="designer">Your Account</a></li>
           <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
-          <li><a href="#rooms" rel="rooms">Your Rooms</a></li>
-           	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+                    	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
 	<?php
 		  if(sizeof($designforloginuser)>0)
 		  {
                     echo '<li><a href="#designs" rel="designs">Your Designs</a></li>';
                      }
 		  ?>
-	 <li><a href="<?php echo base_url();?>/index.php/Contests/site/designer_availability/" rel="designerAval">Designer Availability</a></li>	  
+	
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -63,6 +61,15 @@
 	 <!----add new hidden variable to store current page---->
 	 <?php
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
+	if(isset($roomsassociated))
+	{
+	foreach($roomsassociated as $key){
+	$roomtype=$key->room_type;
+	$user_id = $key->user_id;
+	$room_id = $key->id;
+	$room_status=$key->status;}}
+	
+	
 	?>
 
  <div class = "usermain" id = "designer" style="display:none;"> 
@@ -151,47 +158,6 @@
 </div><!--END ACCOUNT TAB -->
 
 
-<!-------ROOM TAB ------------> 
-
-<?php
-
-if(isset($roomsassociated))
-	{
-?>
-	
-	
-<div id = "rooms" class = "usermain left-align"> 
-<?php 
-
-
-echo '<table class = "table">';
-echo '<tr width = 80%>';
-echo '<td>Room Type</td>';
-echo '<td>Budget</td>';
-echo '<td>Width/Length</td>';
-echo '<td>&nbsp;</td></tr>';
-
-foreach($roomsassociated as $key){
-echo '<tr><td>'.$key->room_type.'</td>';
-
-if ($key->budget==0){
-echo '<td>&nbsp;</td>';} else{
-echo '<td>'.$key->budget.'</td>';}
-echo '<td>'.$key->width.'ft/ '.$key->height.'ft</td>';
-
-
-echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
-}
-$roomtype=$key->room_type;
-$user_id = $key->user_id;
-$room_id = $key->id;
-$room_status=$key->status;}
-?></table>
-
-
-
-<!-------------END ROOM TAB-------------------------------------->
-</div>
 
 
 <div class = "usermain" id = "designs"> <BR><BR>
@@ -301,9 +267,42 @@ if(isset($userpreference))
 		} 	
 		} }
 		?>
-  </div>
-</div><!-- preference-->
+  
+  
+ <!--<h2>Your projects.</h2>-->
+	
+<?php 
 
+
+// echo '<table class= "table">';
+// echo '<tr class = "medium">';
+// echo '<td>Room Type</td>';
+// echo '<td>Budget</td>';
+// echo '<td>Width/Length</td>';
+// echo '<td>&nbsp;</td></tr>';
+
+// foreach($roomsassociated as $key){
+// if ($key->room_type =='BR'){
+// echo '<tr><td>Bedroom</td>';}
+// else {echo '<tr><td>Living/Dining Room</td>';}
+
+// if ($key->budget==0){
+// echo '<td>&nbsp;</td>';} else{
+// echo '<td>'.$key->budget.'</td>';}
+// echo '<td>'.$key->width.'ft/ '.$key->height.'ft</td>';
+
+
+//echo '<td><a class = "button3 condensed white_text" href="'.base_url().'index.php/Rooms/site/editroominfo/'.$key->id.'/'.$key->user_id.'">Edit</a>';
+// }
+// $roomtype=$key->room_type;
+// $user_id = $key->user_id;
+// $room_id = $key->id;
+// $room_status=$key->status;
+?></table>
+  
+  
+</div><!-- preference-->
+</div>
 <!----For user status--------->
 <div id ="status" class="usermain">
 <div>
@@ -311,15 +310,15 @@ if(isset($userpreference))
 <?php 
 $value = urldecode($room_status);
 if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
-echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
+echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">';}
 
 elseif ($value =='DESIGN'|| $value =='MOODBOARD REVIEW'){
-echo '<img src = "'.base_url('assets/Images/Process2.jpg').'" width="60%">';}
+echo '<img src = "'.base_url('assets/Images/Process2.jpg').'" width="80%">';}
 
 elseif ($value =='FINAL DESIGN'|| $value =='ORDER'){
-echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="60%">';}
+echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="80%">';}
 
-else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="60%">';}
+else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">';}
 
 ?>
 </div>

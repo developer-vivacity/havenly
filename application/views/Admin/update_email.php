@@ -30,13 +30,13 @@ width: 30%;
 </style>
 </head>
 <div class = "padding">
-<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80>
+<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80  width =80>
 <br>
 <P class = "text dark_gray_text medium">
- <?php echo $message.'to'.$updateroom; ?>.
+ <?php echo $message; ?>
+ <BR><BR><?php echo 'Your status has changed to '.$updateroom; ?>.
 </p>
 
-Lee & Emily & the Havenly Team.
 
 <br><br><br><br>
 <p class = "small text">

@@ -66,26 +66,26 @@ $data['instagram']=NULL;
  if($this->input->post('room_file1'))
 {
    $data['photo']=$this->input->post('room_file1');
-   if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+   if($data['photo']!= base_url('assets/Images/uploadpng.png')){
    $this->room_model->save_photo($data);}
 }
 
 if($this->input->post('room_file2'))
 {$data['photo']=$this->input->post('room_file2');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+if($data['photo']!= base_url('assets/Images/uploadpng.png')){
 $this->room_model->save_photo($data);}
 }
 
 
 if($this->input->post('room_file3'))
 {$data['photo']=$this->input->post('room_file3');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+if($data['photo']!= base_url('assets/Images/uploadpng.png')){
 $this->room_model->save_photo($data);}
 }
 
 if($this->input->post('room_file4'))
 {$data['photo']=$this->input->post('room_file4');
-if($data['photo']!= base_url('assets/Images/imagepng.jpg')){
+if($data['photo']!= base_url('assets/Images/uploadpng.png')){
 $this->room_model->save_photo($data);}
 }
 $this->user_model->save_preferences($data);
@@ -112,7 +112,7 @@ if(($this->input->post('tokencode')!=""))
  $data['zipcode']=$this->session->userdata('zipcode');
 
  
-$this->availability($data);
+$this->confirm();
 
 }
 function confirm($is_login=null)

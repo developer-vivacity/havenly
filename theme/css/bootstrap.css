@@ -219,13 +219,13 @@ body {
 }
 
 a {
-  color: #0088cc;
+  color: white;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #005580;
+  color: white;
   text-decoration: underline;
 }
 

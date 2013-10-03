@@ -42,9 +42,9 @@ function get_token()
        return false;
        }
        else if($("#CVC").val().length<3)
-       $('.payment-errors').html("Enter three or four digit for CVC number!");    
+       $('.payment-errors').html("Please enter CVC number");    
        else if($("#cardnumber").val().length<16)
-       $('.payment-errors').html("Enter sixteen digit for card number!");    
+       $('.payment-errors').html("Please check the card number");    
 
 }
 
@@ -55,13 +55,13 @@ function get_token()
 $("#submit").hide();	
 if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
         {
-         $('.payment-errors').html("Enter CSV number!");          
+         $('.payment-errors').html("Please check your CVC number");          
           $("#submit").hide();       
          return false;         
          }
          else if($("#cardnumber").val()=="credit card number" || $("#cardnumber").val()=="")
          {
-                  $('.payment-errors').html("Enter credit card number!");          
+                  $('.payment-errors').html("Please enter credit card number");          
                   $("#submit").hide();                
                   return false;
           }
@@ -72,13 +72,13 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
  
          if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
          {
-         $('.payment-errors').html("Enter CSV number!");   
+         $('.payment-errors').html("Please check your CVC number!");   
          $("#submit").hide();       
          return false;         
          }
          else if($("#cardnumber").val()=="credit card number" || $("#cardnumber").val()=="")
          {
-          $('.payment-errors').html("Enter credit card number!");          
+          $('.payment-errors').html("Please enter credit card number");          
           $("#submit").hide();                 
           return false;
          }
@@ -103,7 +103,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
     // token contains id, last4, and card type
     var token = response.id;
 
-    $form.find('.payment-errors').text("Card is valid!");
+    $form.find('.payment-errors').text("Thank you!");
     $("#tokencode").val(token);
   
     if(flag_sub==1)
@@ -791,6 +791,7 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 	                 
 	                 $("#intro").hide();
 	                 $("#style_pics").fadeIn();});
+					 
 		        $('#uploader1').fineUploader({
 		        request: {
 				endpoint: 'site/upload_room_pic'
@@ -1171,7 +1172,7 @@ $("#submit").click(function(){
 	 
           if($("#feestatus").val()!="active")
           { $(".error").remove();
-	  $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">choose active design fee!</label>');	 
+	  $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">Please choose a design fee</label>');	 
 	  return false;	 
           }
 	

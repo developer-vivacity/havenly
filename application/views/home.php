@@ -10,7 +10,7 @@
         <li class="services-nav">Services</li>
         <li class="cg-nav">Cost &amp; Goods</li>
         <li class="about-nav">About</li>
-        <li class="contact-nav">Contact</li>
+        <li class="contact-nav"><a href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">How We Work</a></li>
       </ul>
     </div><!-- nav left -->
     <div class="nav-right">
@@ -29,7 +29,7 @@
             <li class="services-nav">Services</li>
             <li class="cg-nav">Cost &amp; Goods</li>
             <li class="about-nav">About</li>
-            <li class="contact-nav">Contact</li>
+            <li class="contact-nav"><a class = "white_text" href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">How We Work</a></li>
           </ul>
         </li>
       </ul>
@@ -43,6 +43,7 @@
   </div><!-- home content -->
 </section><!-- home -->
 <section class="services white">
+<div id = "#services">
   <h1>Your room should be as pretty as you are.</h1>
   <h2>Let our decorators help you decorate your place.  One very low flat fee. No minimums or commitments. </h2>
   <div class="cards">
@@ -126,26 +127,27 @@
 		
 		<BR><BR><BR><BR><BR>
 		</div>
-
+</div>
 
 <section class="costs-goods">
-  <div class="cost-options chevron">
-    <h1>We're Cheap, and Easy</h1>
-    <h2></h2>
+<div id = "goods">
+  <div class="cost-options chevron"><BR>
+    <h1>We're Easy and Cheap</h1>
+    <h2>One per room flat fee gets you your very own decorator.</h2>
     <div class="pricing-table-wrapper">
       <div class="pricing-table pt-one">
  
       <ul class="pricing-column">
-        <li class="pricing-title">
+    <!--    <li class="pricing-title">
           <h3>One Flat Fee</h3>
                   <p>Our comprehensive design plan.</p>
-        </li>
+        </li>-->
         <li><img src="<?php echo base_url().'assets/Images/cashmere-pink.png';?>" height="150px"> </span>
         </li>
-        <li>Whole room decorating plan with designer support.</li>
+        <li>Whole room decorating plan.</li>
         <li>Choice of designer concepts.</li>
-		<li>Custom rendering &amp; full revision</li>
-        <li>Unlimited Stylish Support</li>
+		<li>Custom rendering &amp; 1 full revision</li>
+        <li>Unlimited stylish support.</li>
         
       </ul>
       </div><!-- Pricing-Table Row Fluid -->
@@ -180,10 +182,11 @@
       <tr height="70px"><td><img src = <?php echo base_url('assets/Images/art-white.png');?> height="50px"></td>
         <td><p class="price-range sanslight medium">$100-$3000</p></td></tr>
     </table>
-  </div><!-- goods-->
+  </div><!-- goods--></div>
 </section>
 
 <section class="about">
+<div id = "about">
   <div class="about-image"><h2>We built Havenly to help.</h2></div>
 
   <h1>Whether you stare longingly at your ever-growing pinterest page, or you just want someone to take care of decorating for you - we get it.</h1>
@@ -203,7 +206,7 @@
 	<h3 class="name">Emily Motayed</h3>
     <p class="bio-p">Emily is a DC gal at heart, but is currenly a nomad traveling between Denver, Chicago and NYC. She was formerly at American Express, and Huron Consulting. Emily has a B.A. from Vanderbilt University. <BR><BR>She hates working out, and has strayed quite far from her childhood ambition to be a grocery store baker.</p>
 	</span>
-	</div>
+	</div></div>
 </section>
 
   <section class="contact">

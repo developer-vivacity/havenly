@@ -4,12 +4,12 @@
 
    <div class="top-nav">
     <div class="nav-left">
-      <div class="logo">Havenly</div>
+      <div class="logo"><a href = "<?php echo base_url();?>">Havenly<a></div>
       <ul>
-        <li class="services-nav">Services</li>
-        <li class="cg-nav">Cost &amp; Goods</li>
-        <li class="about-nav">About</li>
-        <li class="contact-nav">Contact</li>
+        <li class="services-nav"><a href = "<?php echo base_url('/#services');?>"> Services</a></li>
+        <li class="cg-nav"><a href = "<?php echo base_url('/#goods');?>">Cost &amp; Goods</a></li>
+        <li class="about-nav"><a href = "<?php echo base_url('/#about');?>">About</a></li>
+       
       </ul>
     </div><!-- nav left -->
     <div class="nav-right">
@@ -25,11 +25,10 @@
           <ul id="dropdownList">
             <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
             <li><a id="startbutton" class="button3" href="#overlay">GET STARTED</a><li>
-            <li class="services-nav">Services</li>
-            <li class="cg-nav">Cost &amp; Goods</li>
-            <li class="about-nav">About</li>
-            <li class="contact-nav">Contact</li>
-          </ul>
+            <li class="services-nav"><a href = "<?php echo base_url('/#services');?>">Services</a></li>
+            <li class="cg-nav"><a href = "<?php echo base_url('/#goods');?>">Cost &amp; Goods</a></li>
+            <li class="about-nav"><a href = "<?php echo base_url('/#about');?>">About</a></li>
+            </ul>
         </li>
       </ul>
     </div>
@@ -86,6 +85,62 @@
 </div>
 </div>
 
+  <div id="overlay">
+    <div class="boxoverlay"><div class="dark_gray_text">
+	<p class = "medium">W E L C O M E</p>
+	<hr class = "style">
+    <p class="midsmall request-note">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll get you in as soon as possible.</p>
+    <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
+      <table class = "table-center">
+        <tr><td width = "50%"><label class="half sanslight small middle inline email-label" for="Email">Email Address:</label></td>
+        <td><input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/></td>
+      </tr><BR>
+      <tr>
+       <td width = "50%"> <label class = "half sanslight small middle inline zipcode-label" for="Zipcode">Zipcode:</label></td>
+        <td><input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30"/></td>
+      </tr></table>
+      <div class = "horizontal seventy">
+        <a class = "button3 pink white_text sanslight" id="requestinvite">REQUEST</a>
+      </div>
+    </form>
+  </div></div></div>
+
+
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
+
+<script>
+$("#startbutton, #startbutton2").click(function(){
+      $("#overlay").show();
+    });
+
+    $("#overlay .close").on("click", function(){
+      $("#overlay").fadeOut(1000);
+    });
+    $('#overlay').click(function(e) {
+      if (e.target.id === "overlay"){
+        $('#overlay').fadeOut();
+      }
+  });
+
+  $("#requestinvite").click(function(){
+  var email = $("#email").val();
+  var zipcode = $("#zipcode").val();
+  $.ajax({
+      type: "POST",
+      url: "requestinvite",
+      data: {email: email, zipcode: zipcode},
+      success: function(data) {
+      if(data=='nope')
+        {$(".boxoverlay").prepend('<p class = "medium error">Oops, we need more information</p>');}
+      else{
+          $(".boxoverlay").html(data);
+      $("#overlay .close").on("click", function(){
+        $("#overlay").fadeOut(1000);
+        });}
+      }
+    });
+  });
+  
+ </script>

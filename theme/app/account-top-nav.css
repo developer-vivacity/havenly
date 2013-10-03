@@ -19,7 +19,8 @@
 
 .account-nav-logo a {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 30px;
+  margin-top: 10px;
 }
 
 .account-nav-logo a:hover {
@@ -36,7 +37,7 @@
   text-transform: uppercase;
   margin-right: 1.2em;
   font-weight: 300;
-  vertical-align: top;
+  vertical-align: bottom;
 }
 
 .account-nav ul li a {

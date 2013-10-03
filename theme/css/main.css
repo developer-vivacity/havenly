@@ -703,7 +703,7 @@ color: #00CDBF}
 .pink_text{
 color: #F74D76;}
 .white_text{
-color: white;}
+color: white !important;}
 
 .black_text{
 color: black;}

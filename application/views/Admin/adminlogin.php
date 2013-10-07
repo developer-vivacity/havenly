@@ -43,7 +43,7 @@
 echo ' <button type="button" class="close" data-dismiss="alert">&times;</button>';
 echo $error;
 echo '</div>';}
-echo validation_errors('<p class="error">');
+echo validation_errors('<p class="error alert-error">');
 ?>
 <br/>
 <div class = "span6 offset3">

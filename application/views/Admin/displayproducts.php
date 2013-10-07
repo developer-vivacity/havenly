@@ -32,8 +32,7 @@
 <div class = "container">
 
 <BR><BR><BR><BR><BR>
- <div id="div_show_error_message"></div>
-
+ <div id="div_show_error_message" class="alert alert-error"></div>
  <?php
     $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/'.$roomid.'/'.$userid.'/'.$designid.'',$attributes);
@@ -270,8 +269,7 @@ elseif(sizeof($userdesign)==0)
   </button>
   <ul class="dropdown-menu" id="drop_type">
   <?php
-
-	foreach($producttype as $key)
+        foreach($producttype as $key)
 	{
 		echo '<div>&nbsp;&nbsp;<input type="checkbox" id="'.$key->type_id.'" name="searchproducttype[]" value="'.$key->type_id.'"/>&nbsp;&nbsp;'.$key->type.'</div>';	
 	}

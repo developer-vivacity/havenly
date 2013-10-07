@@ -119,7 +119,7 @@ if(($("#update_password").length>0))
     else
     {
 	  $("#div_show_error_message").focus();	
-		
+		 $("#div_show_error_message").show();
 	}
 
  });
@@ -264,6 +264,14 @@ if(e_value==1)
     
      $("#updateform").submit();
  }
+   else
+    {
+	
+	    $("#div_show_error_message").focus();	
+		//$("#div_show_error_message").show();
+	}
+	
+
    }
 }
 

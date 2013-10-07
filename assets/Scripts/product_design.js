@@ -18,6 +18,7 @@ $(function(){
 		      { 
 			      
                         mestatus.text('Only JPG, PNG or GIF files are allowed');
+                        
                         $("#me").show()
 		      return false;
 		      }
@@ -63,7 +64,6 @@ $(".inactive, .active").click(function()
                  var checkbox = $(this).parent().find('.cbox');
 	        checkbox.prop('checked',!checkbox[0].checked);
 });
-
 function show_upload_more_img()
 {
              $("#uploadmoreimg").remove();	
@@ -75,8 +75,6 @@ function show_upload_more_img()
 var global_prodct_id;
 var global_image_path;
 var object;
-
-
 function selectedproductimage(productid,productimagepath,refobject)
 {
    	
@@ -84,20 +82,18 @@ function selectedproductimage(productid,productimagepath,refobject)
          global_prodct_id=productid;
 	global_image_path=productimagepath;
 	object=refobject;
-if($("#productimage_"+productid+"").is(':checked')==false)
-{
-      $("#productlist").css('overflow','hidden');
-    
-      $("#productlist").append("<div style='width:100%;height:1000%;border:solid 1px;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background-color:white;border-radius: 5px;padding: 5px 5px;border:solid 1px; opacity:1.0; margin-top:150px; margin-left:350px;margin-right:200px;height:100px;'><div ><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='distory_popup();'/></div><div style='margin-top:50px;'><span onclick='addselectimg();' style='margin-left:240px;margin-right:200px;cursor:pointer;'>Add To Design</span></div></div></div>");   
+  if($("#productimage_"+productid+"").is(':checked')==false)
+  {      $("#productlist").css('overflow','hidden');
+         $("#productlist").append("<div style='width:100%;height:1000%;border:solid 1px;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background-color:white;border-radius: 5px;padding: 5px 5px;border:solid 1px; opacity:1.0; margin-top:150px; margin-left:350px;margin-right:200px;height:100px;'><div ><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='distory_popup();'/></div><div style='margin-top:50px;'><span onclick='addselectimg();' style='margin-left:240px;margin-right:200px;cursor:pointer;'>Add To Design</span></div></div></div>");   
 
-}       
- else
-{
-  var hold_id_in_string=$("#designproductid_"+designid).val();
-  var hold_productid= hold_id_in_string.split(",");
-  hold_productid = jQuery.grep(hold_productid, function(value) {
-  return value != productid;
-    });
+  }       
+  else
+  {
+         var hold_id_in_string=$("#designproductid_"+designid).val();
+         var hold_productid= hold_id_in_string.split(",");
+         hold_productid = jQuery.grep(hold_productid, function(value) {
+         return value != productid;
+  });
        var afterreplace = [];
        $.each(hold_productid, function(idx2,val2) {                    
        var str = val2;
@@ -163,9 +159,7 @@ function display_design()
          $(".designname").hide();
          $("#showselectedproductimage"+$("#userdesign").val()).show();
 
-
 }
-
 function saveproductdetailsofdesign()
 {
 	
@@ -173,7 +167,6 @@ function saveproductdetailsofdesign()
 
          $("#saveproduct").submit();	
 }
-
 function display_child(id)
 {
 	$(".dropdown-menu").hide();

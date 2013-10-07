@@ -65,8 +65,6 @@
      $attributes = array('class' =>'conceptboardform','id' => 'conceptboardform');
      echo form_open('Concept/site/save_comment_concept_bord/',$attributes);
 ?>
-
-
 <div class = "carousel slider" id = "myCarousel2">
 <div class = "carousel-inner">
 <?php

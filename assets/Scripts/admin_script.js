@@ -51,8 +51,8 @@ $(document).ready(function()
 					   if($("#othervalue").val().trim()=="")
 					   {
 					      
-					         $(".error").remove();
-			                         $("#othervalue").before('<p class="error">*Enter value in other:</p>');
+					         $(".alert,.alert-error").remove();
+			                         $("#othervalue").before('<p class="alert alert-error">*Enter value in other:</p>');
 			                         e_value=0;
 				             }
 				             else
@@ -87,7 +87,7 @@ $('input[name$="retail_option"]').click(function()
 
 $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keypress(function(event)
 {
-                      $("#ShowStylefilter").html("");
+                                          $("#ShowStylefilter").html("");
 				      $("#ShowColorfilter").html("");
 				      $("#ShowMaterialfilter").html("");
 				      $("#ShowTypefilter").html("");	 
@@ -687,12 +687,12 @@ function remove_display_div()
 }
 function save_comment(input_id,conceptid,roomid,form_id)
         {
-	      
-	        $(".error").remove();
+	     
+	        $(".alert,.alert-error").remove();
 	        if($("#"+input_id).val().trim()=="")
 	        {
 		        
-		       $("#"+input_id).after("<div class='error'>Enter comment!</div>");    
+		       $("#"+input_id).after("<div class='alert alert-error'>Enter comment!</div>");    
 		       $("#"+input_id).focus();
 	        }
 	        else
@@ -706,14 +706,14 @@ function save_comment(input_id,conceptid,roomid,form_id)
         }
 function removetext(id,isreset)
 {
-         $(".error").remove();
+         $(".alert,.alert-error").remove();
          if(isreset==1)
 	$("#"+id).html(" ")
 
 }
 function resettest(id)
 {
-	$(".error").remove();
+	$(".alert,.alert-error").remove();
          if($("#"+id).val().trim()=="")
 	$("#"+id).html("Provide Some feedback for your designer");
 	

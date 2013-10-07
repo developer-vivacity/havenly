@@ -190,11 +190,12 @@ function product_details_with_design()
    $this->db->select('user_design.design_name,products.product_name,products.price,products.rent_price,products.ship_cost,shoppingcart.qty');
    $this->db->join('user_design','user_design.design_id = shoppingcart.design_id');
    $this->db->join('products','products.productid = shoppingcart.product_id');
+   
    $this->db->where('shoppingcart.user_id',$this->session->userdata('id'));
    $this->db->where('user_design.status','submitted');
    $query=$this->db->get();
    
-   
+   die($this->db->last_query());
    return $query->result();
      
 	
@@ -207,6 +208,7 @@ function paint_colors_for_design($design_id)
 	return $query->result();
 	
 }
+
 //-------------------------------------
 function get_design_info_by_id($design_id)
 {
@@ -214,7 +216,6 @@ function get_design_info_by_id($design_id)
 	$query=$this->db->get('user_design');
 	
 	return $query->result_array();
-
 }
 function valid_promotion_code($promotioncode,$designtype)
 {

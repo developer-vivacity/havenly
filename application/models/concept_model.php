@@ -54,16 +54,20 @@ $this->db->query("CREATE TABLE IF NOT EXISTS concept_board_comments (
    }
    function initial_concepts_for_user()
    {
-	
-     $query= $this->db->query('select concept_board.concept_id,concept_board.room_id,concept_board.filename,concept_board.status,concept_board_comments.comments from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1 or concept_board.status is null)');
-    
+
+     /*$query= $this->db->query('select concept_board.concept_id,concept_board.room_id,concept_board.filename,concept_board.status,concept_board_comments.comments from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1 or concept_board.status is null)');
+    */
+$query= $this->db->query('select concept_board.concept_id,concept_board.room_id,concept_board.filename,concept_board.status,concept_board_comments.comments from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1)');
+
      return $query->result();   
    }
    function total_rows_initial_concepts()
    {
 	
-     $query= $this->db->query('select count(*) as total from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1 or concept_board.status is null)');
-     return $query->result(); 
+/*     $query= $this->db->query('select count(*) as total from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1 or concept_board.status is null)');
+*/
+   $query= $this->db->query('select count(*) as total from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1)');
+return $query->result(); 
 
    }
    function save_comment($comment,$conceptid,$roomid)

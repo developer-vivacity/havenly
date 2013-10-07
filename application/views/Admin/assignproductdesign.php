@@ -93,7 +93,7 @@ echo '<input type="hidden" value="'.$designid.'" id="userdesign" name="userdesig
 <tr><td>&nbsp;</td></tr>
 <tr><td>
 
- <?php echo '<div id="updatedesign">Design name <input type="textbox" value="'.$designname.'" id="designtext"/><a href="#" onclick="Updatedesign('.$designid.','.$roomid.',\'name\');">Update</a></div>';?>
+ <?php echo '<div id="updatedesign">Design name <input type="textbox" value="'.$designname.'" id="designtext"/><input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'name\');" value="Update" class="pink condensed button3"/></div>';?>
 
 </td></tr>
 <tr><td>&nbsp;</td></tr>
@@ -101,7 +101,7 @@ echo '<input type="hidden" value="'.$designid.'" id="userdesign" name="userdesig
 	 
 Design Status <select name="DesignStatus" id="DesignStatus"><option value="draft" <?php
 	 if($designdetail[0]->status=="draft") echo "selected";?>>draft</option><option value="submitted" <?php if($designdetail[0]->status=="submitted") echo "selected";?>>submitted</option></select>
-<?php echo '<a href="#" onclick="Updatedesign('.$designid.','.$roomid.',\'status\');">Update</a>'?>
+<?php echo '<input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'status\');" value="Update" class="pink condensed button3"/>'?>
 </td></tr>
 
 <tr><td>&nbsp;</td></tr>
@@ -112,7 +112,8 @@ Design Status <select name="DesignStatus" id="DesignStatus"><option value="draft
 	
   <span style=" cursor:pointer; font-family:Verdana, Geneva, sans-serif; font-size:9px;">
   <span style=" cursor:pointer;">Click Here To Upload Design Images</span></span></div>
-  <span id="mestatus" ></span>        
+  
+  <span id="mestatus"></span>        
   <div id="files" style="list-style-type: none;">
   <li class="success" >
   </li>
@@ -128,7 +129,7 @@ $attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
 echo form_open('Admin/site/paint_colors_for_design/',$attributes);
 ?>
 <table border="0">
-<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="error_show"></td><td><a href="#" onclick="insert_color('comment');">Update</a></td><td><div style="float:right;"></div></td></tr>	
+<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="alert alert-error error_show"></td><td><input type="button"  onclick="insert_color('comment');" value="Update" class="pink condensed button3"/></td><td><div style="float:right;"></div></td></tr>	
 <tr ><td colspan="8" ><div style="margin-left:200px;"><h4>Design color</h4></div></td></tr>
 <?php
 $r=0;
@@ -148,7 +149,7 @@ foreach($designcolor as $designer_key)
           <td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" maxlength="3" value="'.$designcolor[2].'"/></td>
           <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'">'.$designer_key->description.'</textarea></td>
           <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></a></td>
-          <td><div id="rgberror'.$r.'" class="error_show"></div></td>
+          <td><div id="rgberror'.$r.'" class="alert alert-error error_show2"></div></td>
           </tr>';
 	
 }
@@ -168,12 +169,12 @@ foreach($designcolor as $designer_key)
     <td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
     <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'"></textarea></td>
     <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td>
-    <td><div id="rgberror'.$r.'" class="error_show"></div></td></tr>';
+    <td><div id="rgberror'.$r.'" class="alert alert-error error_show2"></div></td></tr>';
    }
 echo '<input type="hidden" id="totalrgb" value="'.$r.'" name="totalrgb"/>';
-echo '<tr id="rgbtablerow"><td colspan="8"><div style="margin-left:200px;display:'.$display.'" id="d_color"><a href="#" id="addmorergb">Add Color</a></div></td></tr>';
+echo '<tr id="rgbtablerow"><td colspan="8"><div style="margin-left:200px;display:'.$display.'" id="d_color"><input type="button"  id="addmorergb" value="Add Color" class="pink condensed button3"/></div></td></tr>';
 ?>
-<tr><td colspan="8"><div style="float:left;margin-left:200px;" id="sub_color"><a href="#" onclick="insert_color('color');">Submit</a></div></td></tr>
+<tr><td colspan="8"><div style="float:left;margin-left:200px;" id="sub_color"><input type="button"  onclick="insert_color('color');" value="Submit" class="pink condensed button3"/></div></td></tr>
 </table>
 
 <?php echo '<input type="hidden" name="desinerholdid" id="desinerholdid" value="'.$designid.'">';
@@ -187,6 +188,13 @@ echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value
 </body>
 <!----start add code by kbs-------->
 <script>
+	
+$(document).ready(function()
+{
+	
+	$(".alert").hide();
+	
+});
 function handle_key(event)
 {
         var k = event.keyCode ? event.keyCode : event.charCode
@@ -199,12 +207,13 @@ function handle_key(event)
 	
 function Updatedesign(designid,roomid,type)
 {
+	if($("#designname").length>0)
+	$("#designname").remove();
 	
-	$(".error").remove();
 	if(type=="name")
 	{
 	if($("#designtext").val().trim()=="")
-	$("#updatedesign").before('<p  style="margin-left:200px;" class="error">*Enter Design Name</p>');
+	$("#updatedesign").before('<p  style="margin-left:200px;" class="alert alert-error" id="designname">*Enter Design Name</p>');
 	else
 location.href=$("#siteurl").val()+"index.php/Admin/site/Add_Design_For_Room/"+roomid+"/"+$("#designtext").val().trim()+"/"+designid+"/"+$("#currentuserid").val()+"/"+$("#DesignStatus").val()+"/"+1;		  
 	  
@@ -256,15 +265,16 @@ var error_flage=true;
 function display_error()
 {
 	error_flage=true;
-	$(".error_show").html("");
 	
+	$(".error_show2").hide();
 	for(k=1;k<=zi;k++)
 	{
 	   if($("#rgbone"+k+"").length>0)
 	   if(($("#rgbone"+k+"").val().trim()=="")||($("#rgbtwo"+k+"").val().trim()=="")||($("#rgbthree"+k+"").val()=="")||($("#comment"+k+"").val().trim()==""))
      	   {  
 	   error_flage=false;
-	   $("#rgberror"+k+"").html("Fill all value!");	
+	   $("#rgberror"+k+"").html("Fill all value!");
+	   $("#rgberror"+k+"").show();
 	   return false;	
 	   }
 	  }
@@ -288,7 +298,8 @@ $("#addmorergb").click(function()
 	 {
 	   zi= ++zi;
 	   $("#rgberror"+(zi-1)+"").html("");
-	   $("#rgbtablerow").before('<tr id="rgbtablerow'+zi+'"><td>Enter RGB</td><td id="colorpic'+zi+'">&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')"><img src="'+$("#siteurl").val()+'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td><td><div id="rgberror'+zi+'" class="error_show"></div></td></tr>');
+	   $("#rgberror"+(zi-1)+"").hide();
+	   $("#rgbtablerow").before('<tr id="rgbtablerow'+zi+'"><td>Enter RGB</td><td id="colorpic'+zi+'">&nbsp;</td><td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'+zi+'" onkeypress="return handle_key(event);" onblur="color_pic('+zi+');"/></td><td>Description</td><td><textarea name="comment[]" id="comment'+zi+'"></textarea></td><td><a href="#" onclick="removergbrow(\'rgbtablerow'+zi+'\')"><img src="'+$("#siteurl").val()+'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td><td><div id="rgberror'+zi+'" class="alert alert-error" style="display:none;"></div></td></tr>');
 	   $("#sub_color").show();
 	}
 	if(zi>=5)
@@ -317,6 +328,7 @@ function removergbrow(id)
 }
 function insert_color(type)
 {    
+	
 	zi=($("#totalrgb").val()!=0?$("#totalrgb").val():zi);
          
          if(type=="color")
@@ -326,6 +338,7 @@ function insert_color(type)
 		if($("#designer_notes").val().trim()=="")
 		{
 		$("#designercommenterror").html("Enter Designer Notes!");
+		$("#designercommenterror").show();
 		$("#designercommenterror").focus();
 	         error_flage=false;
 	         }

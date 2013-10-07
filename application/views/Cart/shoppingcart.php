@@ -118,6 +118,12 @@ $'.$value->price.'
  <div class = "shippingprice">
 ($'.$value->ship_cost.' shipping)
  </div>
+ <div class = "shippingprice">
+($'.$value->ven_shipping.' vendor)
+ </div>
+  <div class = "shippingprice">
+($'.$value->tota_price.' total price)
+ </div>
  </div></div>';
 }
 echo '<input type="hidden" value="'.base_url().'" id="basepath" name="basepath"/>';

@@ -5,6 +5,8 @@
 <div class = "center"><br><br><br>
 </div>
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/jquery.fineuploader-3.4.1.min.js")?>></script>
+
+
 <script type="text/javascript" src=<?php echo base_url("assets/Scripts/ajaxfileupload.js")?>></script>
 
 <!------------for stripe integration--------------->
@@ -18,12 +20,23 @@
 </script>
 
 <script type="text/javascript">
-var flag_sub=0;
- // This identifies your website in the createToken call below
- 
- Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5');
-// ...
 
+ // This identifies your website in the createToken call below
+var flag_sub=0; 
+
+// This identifies your website in the createToken call below
+//this plublish key of kbs.php@gmail.com test account. 
+ //Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5');
+//this plublish key of lee.m.mayer@gmail.com test account. 
+//Stripe.setPublishableKey('pk_test_9yS0nvRQ3OHGX0SMmXZ2jDAG');
+
+
+
+//this plublish key of lee.m.mayer@gmail.com live account. 
+
+Stripe.setPublishableKey('pk_live_LEf8fHz4TyZG3fN21gAVv3I8');
+
+// ...// ...
 function get_token()
 {
 
@@ -37,55 +50,13 @@ function get_token()
         exp_month: $('#cart_month').val(),
         exp_year: $("#cart_year").val()
         }, stripeResponseHandler);
-
-       // Prevent the form from submitting with the default action
-       return false;
+       
        }
-       else if($("#CVC").val().length<3)
-       $('.payment-errors').html("Please enter CVC number");    
-       else if($("#cardnumber").val().length<16)
-       $('.payment-errors').html("Please check the card number");    
 
 }
 
 
- jQuery(function($) {
-    $('#CVC,#cardnumber').keyup(function(event) 
-    {
-$("#submit").hide();	
-if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
-        {
-         $('.payment-errors').html("Please check your CVC number");          
-          $("#submit").hide();       
-         return false;         
-         }
-         else if($("#cardnumber").val()=="credit card number" || $("#cardnumber").val()=="")
-         {
-                  $('.payment-errors').html("Please enter credit card number");          
-                  $("#submit").hide();                
-                  return false;
-          }
-         get_token();
-    });
-    $('#cart_month,#cart_year,#card-name').change(function(event){
-    $("#submit").hide();
- 
-         if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
-         {
-         $('.payment-errors').html("Please check your CVC number!");   
-         $("#submit").hide();       
-         return false;         
-         }
-         else if($("#cardnumber").val()=="credit card number" || $("#cardnumber").val()=="")
-         {
-          $('.payment-errors').html("Please enter credit card number");          
-          $("#submit").hide();                 
-          return false;
-         }
-         get_token();
-
-     })
-});
+  
   var stripeResponseHandler = function(status, response) 
   {
   
@@ -93,23 +64,22 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 
   if(response.error) 
   {
-    // Show the errors on the form
     $form.find('.payment-errors').text(response.error.message);
-    $("#submit").hide();
+    flag_sub=0;
   } 
   else if(status==200) 
   {
-
-    // token contains id, last4, and card type
+   // token contains id, last4, and card type
     var token = response.id;
-
     $form.find('.payment-errors').text("Thank you!");
     $("#tokencode").val(token);
-  
-    if(flag_sub==1)
-    $("#submit").show();                 
+    flag_sub=1;
+    $("#loading").show();
+    $("#user_login_form").submit();
+
   }
 };
+
 </script>
 
 <!-----------------------------$$$$$$$$$$$$$$$$-------------------------------------->
@@ -136,7 +106,7 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
   <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
 </div>
 
-<form class = "user_form" name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
+<form class = "user_form" id="user_login_form" name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
 <input type="hidden" name="basepath" id="basepath" value="<?php echo base_url();?>">	
 	<div id = "intro" class = "resize">
 	<p class = "extralarge sans-serif blue_text">
@@ -685,7 +655,8 @@ if(($("#CVC").val()=="CVC") || ($("#CVC").val()==""))
 	</div>	</div></div>
 <br/>
 		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
-<br><br><div class = "center gray"><input type="submit"  id = "submit" class="button3 sanslight midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> </div>
+<br><br><div class = "center gray">
+<input type="button"  id = "submit_but" class="button3 sanslight midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> </div>
 	</div>
 	</form>
 	</div>
@@ -793,7 +764,9 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 	                 $("#style_pics").fadeIn();});
 					 
 		        $('#uploader1').fineUploader({
+
 		        request: {
+					
 				endpoint: 'site/upload_room_pic'
 				},
 				debug:true,
@@ -806,10 +779,13 @@ $(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue,
 				uploadButton: '<a> <img src = "<?php echo base_url('assets/Images/uploadpng.png');?>" height="120"></a>'
 				}
 				}).on('complete', function(event, id, fileName, responseJSON) {
+				
 				if (responseJSON.success) {
+					
 					var data = responseJSON.filename;
 					var newimage= '<BR><BR><img src="https://s3.amazonaws.com/easableimages/'+data+'" width=200>';
 					$(this).html(newimage);
+					
 					$("#room_pics .continue").show();
 					$("#uploader1 .qq-uploader").hide();
 				}
@@ -1079,7 +1055,7 @@ if (isMobile)
 	$("#room_width,#room_height,#about").css("font-size","3em");
 	$(".midlarge").css("font-size","2em");
 	$(".forminput").css("font-size","4em");
-	$("#submit").css("font-size","3em")
+	$("#submit_but").css("font-size","3em")
 	$(".labels").hide();
 	$(".forminput").css("margin", "1em%");
 	$(".forminput").css("width","80%");
@@ -1129,14 +1105,14 @@ $("#cardnumber").val().length<16
 $("#password").val()=="Password (min 6 chars.)"
 ||$("#password").val().length < 6)
 {
-   $("#submit").hide();
+   $("#submit_but").hide();
 }
 
 
 else 
 {
-   $("#submit").fadeIn();
-   flag_sub=1;
+   $("#submit_but").fadeIn();
+   //flag_sub=1;
 }
 });
 $("#tweetsend").click(function()
@@ -1159,21 +1135,23 @@ $("#promotioncode").keyup(function(){
   $promotion_code=0;
   $("#designfeeid").val(0);
 })
-$("#submit").click(function(){
+$("#submit_but").click(function(){
 	
-	var d = new Date();
-         var curr_date = d.getDate();
-         var curr_month = d.getMonth()+1 ; //Months are zero based
-         var curr_year = d.getFullYear();
-         var nowdate=curr_month+"/"+curr_date+"/"+curr_year;
+          flag_sub=0;
+	      var d = new Date();
+          var curr_date = d.getDate();
+          var curr_month = d.getMonth()+1 ; //Months are zero based
+          var curr_year = d.getFullYear();
+          var nowdate=curr_month+"/"+curr_date+"/"+curr_year;
 	 
          if($('#type:checked').size()>0)
          $("#hidesigntype").val($('#type:checked').val());
 	 
           if($("#feestatus").val()!="active")
-          { $(".error").remove();
-	  $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">Please choose a design fee</label>');	 
-	  return false;	 
+          { 
+             $(".error").remove();
+	        $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">Please choose a design fee</label>');	 
+	        return false;	 
           }
 	
 	 if(($("#promotioncode").val()=="ENTER CODE")||($("#promotioncode").val()==""))
@@ -1181,8 +1159,12 @@ $("#submit").click(function(){
          $("#designfeeid").val(0);
          }  
 	    $("#error").remove();
-	    $("#loading").show();
-	    $(".user_form").submit();
+
+        
+	    get_token();
+	    
+	// 
+	    
 	});
 
 	});

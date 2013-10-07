@@ -15,7 +15,13 @@
 	<li><a href="#status"  rel="status">STATUS</a></li>
       <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
       <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
+      <?php
+      if($conceptboard[0]->total>0):
+      ?>
          <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">YOUR INITIAL CONCEPT BOARDS</a></li>
+   <?php
+    endif;
+    ?>
     <?php 
        if(sizeof($designforloginuser)>0)
        {
@@ -112,7 +118,7 @@
 		$attributes = array('class' => 'updateform', 'id' => 'updateform');
 		echo form_open('Users/site/updatedata/',$attributes);
 
-		echo '<div id="div_show_error_message" class="alert-error"> </div>';
+		echo '<div id="div_show_error_message" class="alert alert-error" style="display:none;"> </div>';
 
 		foreach($userdetails as $key)
 		{

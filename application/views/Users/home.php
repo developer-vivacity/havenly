@@ -754,7 +754,7 @@ function get_token()
 	var left = ($(window).width())/2;
 	$("#loading-image").css("left",left);
 	
-$(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue, .login, .cbox, #later, #submit").hide();
+$(" #file1, #file2, #file3, #file4, #room_video, #BR, #LR,  #loading, .continue, .login, .cbox, #later, #submit_but").hide();
   $("#social, #room_pics, #style_pics,#colors,#type,#sizes, #information").hide();
 
   $("#social .continue").show();

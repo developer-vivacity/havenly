@@ -3,7 +3,9 @@
 <?php
 $attributes = array('class' => 'addproductform', 'id' => 'addproductform','enctype'=>'multipart/form-data','method'=>'post');
 echo form_open('Admin/site/add_product',$attributes);
-
+echo '<input type="hidden" value="'.$roomid.'" name="room_hid">';
+echo '<input type="hidden" value="'.$userid.'" name="user_hid">';
+echo '<input type="hidden" value="'.$designid.'" name="design_hid">';
 ?>
 <p><?php 
 

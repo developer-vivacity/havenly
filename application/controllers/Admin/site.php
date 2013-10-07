@@ -443,23 +443,27 @@ function assign_product($room_id=null,$user_id=null,$design_id=null)
 
 function add_product()
 {
-	
-	  if(($_REQUEST['r']=="") || ($_REQUEST['u']=="") || ($_REQUEST['d']==""))
+      if($_GET)
+      {
+	  if(($_GET['r']=="") || ($_GET['u']=="") || ($_GET['d']==""))
 	  {
 	  redirect('/Admin/site/roomsadministrator', 'refresh');
            }
-	  else if($this->product_model->valid_user($_REQUEST['r'],$_REQUEST['u'],$_REQUEST['d'])==0)
+	  else if($this->product_model->valid_user($_GET['r'],$_GET['u'],$_GET['d'])==0)
 	  {
 	   redirect('/Admin/site/roomsadministrator', 'refresh');
 	  }
-	
+                  $data['roomid']=$_REQUEST['r'];
+		  $data['userid']=$_REQUEST['u'];
+		  $data['designid']=$_REQUEST['d'];
+       }	
 	  if(($this->session->userdata('adminid')==""))
 	  {
 	   redirect('/Admin/site/adminlogin', 'refresh');
 	  }if($_POST)
 		{
-			
-		$holdlinkuploadimg=array();	 
+		  
+		 $holdlinkuploadimg=array();	 
                $i=0;
 	    
 	    while($i<=4)
@@ -546,13 +550,13 @@ function add_product()
 	   $this->product_model->insert_image_link_with_product_id($product_id,$holdlinkuploadimg);
 	   
 	   $data['message']="Product details has been saved";
-				
+		$data['roomid']=$_POST['room_hid'];
+		  $data['userid']=$_POST['user_hid'];
+		  $data['designid']=$_POST['design_hid'];		
 	}
 		
-		  
-		  $data['roomid']=$_REQUEST['r'];
-		  $data['userid']=$_REQUEST['u'];
-		  $data['designid']=$_REQUEST['d'];
+		   
+		 
 		  
 		  $data['vendors']= $this->product_model->get_vendors_details();
 		  $this->load->view('Admin/addproduct',$data);

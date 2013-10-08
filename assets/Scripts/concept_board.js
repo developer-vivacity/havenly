@@ -25,7 +25,7 @@ $(function(){
                                 	  {
 					  
 				   mestatus.text('');
-				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'"  width="200px"></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation(-1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
+				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'"  width="200px"></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation( -1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
 		                    } 
 				  else
 				  {
@@ -41,7 +41,7 @@ $(function(){
 	
 	function concept_confirmation(conf,roomid,for_div)
 	{
-                  conf=-1;
+                  
 		$("#confirmation_div").remove();
 		var dismessage=(conf==1?"Sure?":"Sure?");
 

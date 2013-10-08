@@ -77,6 +77,7 @@ echo '</div>';
 
 $i=1;
 
+
 foreach($conceptboard as $key)
 {
 	$comment=($key->comments!=""?$key->comments:"Provide some feedback for your designer");
@@ -91,7 +92,7 @@ foreach($conceptboard as $key)
 	  echo '<div class = "item"  id="room_des_'.$i.'">';
 	}
     
-	if($key->status!=1)
+	if($key->status==1)
          echo '<img src="'.$key->filename.'" width="100%"/><BR><BR>';
          echo '<textarea width = "70%" rows = "3" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button3 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
 	

@@ -553,7 +553,7 @@ function get_token()
 		<div class = "horizontal aligned">
 		<span id="designfeepart"></span>
 		<label class = " inline forty middle right-align midsmall condensed dark_gray_text">D E S I G N &nbsp; F E E :</label>
-		<span id="show_design_fee" class = "inline middle midsmall condensed pink_text"><?php echo $designfee; ?></span></div>
+		<span id="show_design_fee" class = "inline middle midsmall condensed pink_text"></span></div>
 		
 		<hr class = "style">
 		<!-----------design fee hidden variables------->

@@ -67,7 +67,7 @@ $query= $this->db->query('select concept_board.concept_id,concept_board.room_id,
 /*     $query= $this->db->query('select count(*) as total from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1 or concept_board.status is null)');
 */
    $query= $this->db->query('select count(*) as total from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1)');
-return $query->result(); 
+	return $query->result(); 
 
    }
    function save_comment($comment,$conceptid,$roomid)

@@ -29,7 +29,7 @@
         </div>
       </div>
 	  </div>
-<div class = "canvas">
+<div class = "white">
 	  
 	  
 	  
@@ -67,6 +67,7 @@ foreach($roomwithuser as $key)
 $attributes = array('class' => 'updateform', 'id' => 'updateform');
 
 	echo form_open('Admin/site/update_room_status_by_admin/',$attributes);
+	
 	echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
 	echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$currentroomid.'"/>';
 	echo '<input type="hidden" name="userid" id="userid" value="'.$currentuserid.'"/>';
@@ -74,8 +75,8 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 	$roomstatus=array("OPEN" , "CALLED", "DESIGN", "MOODBOARD REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
 	
 	echo '<div class= "span12 well blue white_text">';
-	echo '<div class = "span7 midsmall Condensed">';
-	
+	echo '<div class = "span10 midsmall Condensed">';
+	echo '<p class = "condensed medium white_text">CHANGE ROOM STATUS</p><hr class = "white">';
 	// echo 'UPDATE STATUS &nbsp;';
 	echo '<select class = "small " name="update_room_status" id="update_room_status">';
 
@@ -86,11 +87,11 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 		
 	}
 	
-	echo '</select>&nbsp;&nbsp;<textarea style="width:180px;" id="uprc" name="statuscomment">Your room status has been changed</textarea><input type="submit" class = "button2 condensed blue_text white" value="Update" id="uprs"></div></div>';
+	echo '</select>&nbsp;&nbsp;<textarea id="uprc" name="statuscomment">We have changed your room status!</textarea><input type="submit" class = "button2 condensed blue_text white" value="Update" id="uprs"></div></div>';
 	
 ?>
-<div class = "canvas">
-<div class = "span3 canvas">
+<div class = "">
+<div class = "span3 ">
 <ul id = "bstabs" class = "nav sanslight">
 <li><a class = "gray_text" href="#CurrentUser"  rel="CurrentUser">User Information</a></li>
 <li><a class = "gray_text" href="#CurrentRoom"  rel="CurrentRoom">Room Information</a></li>
@@ -100,7 +101,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 <li><a class = "gray_text" href="#moreinformation" rel="moreinformation">Add More Information</a></li>
 </ul>
 <BR></div>
-<div class = "span8 white padding boxshadowleft">
+<div class = "span9 white padding boxshadowleft">
 <?php
     
    $roomupdate=($curdisplay=='urd'?'block':'none');
@@ -109,12 +110,12 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 foreach($roomwithuser as $key)
 {
 	echo '<div class= "padding" >';
-	echo '<table id="CurrentUser" class="adminmain" style="display:'.$userinfo.';">';
-	echo '<tr><td><i class = "icon-user"></i></td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
-	echo '<tr><td><i class = "icon-comment"></i></td><td>'.$key->phone.'</td></tr>';
-	echo '<tr><td><i class = "icon-envelope"></i></td><td>'.$key->email.'</td></tr>';
-	echo '<tr><td><i class = "icon-home"></i></td><td>'.$key->address.'</td></tr>';
-	echo '<tr><td><i class = "icon-home"></i></td><td>'.$key->zipcode.'</td></tr>';
+	echo '<table id="CurrentUser" class="adminmain condensed small gray_text" style="display:'.$userinfo.';">';
+	echo '<tr><td><img src = '.base_url('assets/Images/icon-user.png').' height = 15px></td><td>'.$key->first_name.'&nbsp;'.$key->last_name.'</td></tr>';
+	echo '<tr><td><img src = '.base_url('assets/Images/icon-phone.png').' height = 15px></i></td><td>'.$key->phone.'</td></tr>';
+	echo '<tr><td><img src = '.base_url('assets/Images/icon-email.png').' height = 15px></td><td>'.$key->email.'</td></tr>';
+	echo '<tr><td><img src = '.base_url('assets/Images/icon-home.png').' height = 15px></td><td>'.$key->address.'</td></tr>';
+	echo '<tr><td><img src = '.base_url('assets/Images/icon-home.png').' height = 15px></td><td>'.$key->zipcode.'</td></tr>';
 	echo '<tr><td><img src = '.base_url('assets/Images/instaicon.png').' height = 15px></td><td>'.$key->instagram.'</td></tr>';
 	echo '<tr><td><img src = '.base_url('assets/Images/fblarge.png').' height = 15px></td><td>'.$key->facebook.'</td></tr>';
 	echo '<tr><td><img src = '.base_url('assets/Images/pinlarge.png').' height = 15px></td><td>'.$key->pinterest.'</td></tr>';

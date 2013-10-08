@@ -16,12 +16,12 @@
       <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
       <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
       <?php
-      if($conceptboard[0]->total>0):
-      ?>
+       if($conceptboard[0]->total>0):
+       ?>
          <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">YOUR INITIAL CONCEPT BOARDS</a></li>
    <?php
     endif;
-    ?>
+     ?>
     <?php 
        if(sizeof($designforloginuser)>0)
        {
@@ -41,10 +41,10 @@
       <li>
         <a href=""><img src=<?php echo base_url('theme/img/menu.png'); ?>></a>
         <ul id="bstabs" class="dropdownList">
-		<li><a href="#status"  rel="status">Current Status</a></li>
-          <li><a href="#designer" rel="designer">Your Account</a></li>
-          <li><a href="#preferences" rel="preferences">Your Preferences</a></li>
-                    	<li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
+		<li><a href="#status"  rel="status">STATUS</a></li>
+          <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
+          <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">INITIAL CONCEPTS</a></li>
 	<?php
 		  if(sizeof($designforloginuser)>0)
 		  {
@@ -123,20 +123,20 @@
 		foreach($userdetails as $key)
 		{
 			echo '<table class = "midsmall table-center">';
-			echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><i class = "icon-user"></i>';
+			echo '<tr width= "100%"><td class = "dark_gray_text sanslight"><img src = "'.base_url('assets/Images/icon-user.png').'" height="15">';
 			echo '&nbsp;&nbsp;<input id = "update_name" name = "update_name" class = "small-input sanslight" type = "text" value ="'.$key->first_name.'"/><input class = "sanslight" type="text" value="'.$key->last_name.'" id="update_last_name" name="update_last_name"/></td></tr>';
 
-			echo '<tr><td class="sanslight dark_gray_text"><i class = "icon-envelope"></i>';
+			echo '<tr><td class="sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-email.png').'" height="15">';
 			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_email" id = "update_email" type = "text" value = '.$key->email.'></td></tr>';
 			echo '<tr>';
-			echo '<td class = "sanslight dark_gray_text"><i class = "icon-comment"></i>';
+			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-phone.png').'" height="15">';
 			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_phone" id = "update_phone" type = "text" value ='.$key->phone.'><br><br></td></tr>';
 
-			echo '<td class = "sanslight dark_gray_text"><i class = "icon-home"></i>';
+			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">';
 
-		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><i class = "icon-home"></i>&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
+		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 		else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><i class = "icon-home"></i> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15"> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
 
@@ -259,6 +259,9 @@ if(isset($userpreference))
         {
           $roomfolder="LivingRoom";
         }
+	else {$roomfolder = "LivingRoom";
+		$roomtype ="LR";}	
+		
       foreach($userpreference as $key)
         {
           echo '<td class = "center">';
@@ -267,7 +270,7 @@ if(isset($userpreference))
         {
       if(in_array($i,explode(',',$key->style_pics)))
         {
-          echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.''.$i.'.jpg').' height=300em >';
+          echo '<img class = "inactive" src ='.base_url('assets/Images/'.$roomfolder.'/'.$roomtype.$i.'.jpg').' height=300em >';
         }
           $i++;
 		} 	

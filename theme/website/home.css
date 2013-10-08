@@ -149,5 +149,8 @@ padding-top: 142px;
     margin-left: 0;
     clear: both;
   }
+  
+  .home{
+   background: url("../Images/markbgmob.jpg") no-repeat center center fixed; }
 
 }

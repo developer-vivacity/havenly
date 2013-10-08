@@ -987,29 +987,23 @@ margin-left: 3em;
 width: 80%;
 }
 .adminmain td{
-padding: .2em;
+padding: .2em;}
 
 
 /********** MEDIA QUIERIES **********/
 
-@media (max-width: 979px) {
-#headerwrap {
-    margin-top: -20px;
-    padding-top:160px;
-}
-}
 
-@media (max-width: 1024px) {
-#headerwrap{
-   background: url(../../assets/Images/flowerbg.jpg); 
-}
-
-#projectwrap{
-  background: url(../../assets/Images/lampmob.jpg); 
-}
-
+@media only screen and (max-width: 1024px) {
 #overlay .boxoverlay{
+width: 80% !important;
+}
+
+.boxoverlay input[type=text]{
 width: 70%;
+}
+
+.boxoverlay table{
+width: 80%;
 }
 
 .navbar-inverse .navbar-inner {

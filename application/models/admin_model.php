@@ -22,8 +22,6 @@ parent::__construct();
  NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
 
 
- 
-
  }  
  function authorize_user($password,$name)
  {

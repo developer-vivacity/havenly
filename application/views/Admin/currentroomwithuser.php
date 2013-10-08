@@ -324,11 +324,8 @@ echo form_close();
 
 <BR><BR><BR>
 <div id="moreinformation" class="adminmain" style="display:none;">
-<div class = "midlarge serif gray_text padding canvas boxshadow">
-Add Additional Notes
-<br>
-</div>
-<BR><BR>
+
+
 <div id="alert alert-error div_show_error_message">
 
 </div>

@@ -17,7 +17,7 @@ $(function(){
 		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
 		      { 
 			      
-                        mestatus.text('Only JPG, PNG or GIF files are allowed');
+                        mestatus.html('<div class = "alert alert-error small">Only JPG, PNG or GIF files are allowed</div>');
                         
                         $("#me").show()
 		      return false;
@@ -37,18 +37,18 @@ $(function(){
 				       if($("#displaydesignimages").length!=0)
 				       {
 					       //$("#messagefordesign").remove();	   
-					       $("#displaydesignimages").append('<div class = "design_image_holder"><img src="'+obj.images+'" width="100px"/></div>');
+					       $("#displaydesignimages").append('<div class = "design_image_holder"><img src="'+obj.images+'" height ="150px"/></div>');
 					       
 				       }
 				       if($("#designimageassignproduct").length!=0)
 				       {
 				       $("#messagefordesign").remove();	   
-					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" width="100%" height="100px"/></div>');
+					   $("#designimageassignproduct").append('<div style="float:left;width:110px;"><img src="'+obj.images+'" height = "150px"/></div>');
 			                }
 				  } 
 				  else
 				  {
-					mestatus.text('file uploded is failed!')
+					mestatus.text('File upload failed!')
 				  }
 			
 				
@@ -66,7 +66,7 @@ $(".inactive, .active").click(function()
 });
 function show_upload_more_img()
 {
-             $("#uploadmoreimg").remove();	
+        $("#uploadmoreimg").remove();	
 	    $("#me").show();
 	    $("#me").focus();
 	    $("#mestatus").text('');
@@ -78,8 +78,8 @@ var object;
 function selectedproductimage(productid,productimagepath,refobject)
 {
    	
-         var designid=$("#holddesignidforroom").val();
-         global_prodct_id=productid;
+      var designid=$("#holddesignidforroom").val();
+      global_prodct_id=productid;
 	global_image_path=productimagepath;
 	object=refobject;
   if($("#productimage_"+productid+"").is(':checked')==false)

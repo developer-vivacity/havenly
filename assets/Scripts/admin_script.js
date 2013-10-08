@@ -145,7 +145,9 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
   
   });
   $("#SaveSelected").click(function()
-  {
+  {  
+  
+	
 	  var productimage="";
 	  $("#div_show_error_message").html('');
            var designid=$("#holddesignidforroom").val();
@@ -154,12 +156,12 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
           
           if((value_length==0)||($("#designproductid_"+designid).val().trim()==""))
 	  {
-	         $("#div_show_error_message").html('<p>*Select at least one product:</p>');
+	         $("#div_show_error_message").html('<div class = "alert alert-error medium">Select at least one product</div>');
 	  }
 	  else if($("#displaydesignimages").html().trim()=="")
 	  {
 		  
-		$("#div_show_error_message").html('<p>*Upload at lest one design images:</p>');  
+		$("#div_show_error_message").html('<div class = "alert alert-error medium">Upload at least one design images:</div>');  
 		  
 	  }
 	  else 
@@ -167,8 +169,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 	  
 	   $("#hidproductsearch").val("SaveSelected");
 	   $("#productid").val(productimage);
-	   $("#saveproduct").before('<div style="width:100%;height:100%;position:absolute;z-index:100;"><div style="width:450px;margin-left:450px;margin-top:50px;background-color:#A1D2E6;border:solid 2px #ADB1B3;"><div style="color:white;margin-left:70px;">&nbsp;<b>Select Design Status</b>&nbsp;</div><div style="margin-left:70px;"><select name="design_status" id="design_status"><option value="draft">draft</option><option value="submitted">submitted</option></select></div><div style="margin-top:10px;padding-left:160px;"><input type="button" value="submit" onclick="saveproductdetailsofdesign();"/></div></div></div>');
-	   
+		$(".popup_design").show();
           }
   });
   

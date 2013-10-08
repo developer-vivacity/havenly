@@ -32,7 +32,7 @@
 <div class = "container">
 
 <BR><BR><BR><BR><BR>
- <div id="div_show_error_message" class="alert alert-error"></div>
+ 
  <?php
     $attributes = array('class' => 'updateform', 'id' => 'saveproduct','enctype'=>'multipart/form-data','method'=>'post');
     echo form_open('Admin/site/assign_product/'.$roomid.'/'.$userid.'/'.$designid.'',$attributes);
@@ -41,7 +41,9 @@
 
 <div class = "row midlarge text-center sanslight">
 <div class = "admin_design_header">
-     <?php
+     <div id = "div_show_error_message"></div>
+	 
+	 <?php
 	 
 	  // this hidden variable stores the design name.
            echo $userdesign[0]->design_name;
@@ -87,81 +89,10 @@
 <br/><br/><br/>
 
 
-<div class = "row">
 
-<!--<div>
-<b>Sortable by:</b>
-<table>
-<tr><td width="200px;">
-&nbsp;&nbsp;Product Type:
-</td><td>
-<div>
-// <?php
-// foreach($producttype as $key)
-// echo '<div style="float:left;"><input type="checkbox" name="producttypecheck[]" value="'.$key->type_id.'">'.$key->type.'</div>';
-// ?>
-</div>
 
-</td>
-</tr>
-<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-<tr><td>&nbsp;&nbsp;Product Color:
-	</td>
-     <td>
-<div>
-// <?php
-// foreach($productcolortype as $key)
-// echo '<div style="float:left;"><input type="checkbox" name="productcolortypecheck[]" value="'.$key->color_id.'">'.$key->color.'</div>';?>
-</div>     
-</td>
-</tr>
-
-<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-<tr><td>&nbsp;&nbsp;Product Material:</td>
-	<td>
-// <?php
-// foreach($productmaterialtype as $key)
-// echo '<div style="float:left;"><input type="checkbox" name="productmaterialtypecheck[]" value="'.$key->material_id.'">'.$key->material.'</div>';?>
-	
-</td>
-
-</tr>
-
-<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-
-<tr><td>&nbsp;&nbsp;Product Price:</td><td>
-<div style="float:left;">
-<input type="checkbox" id="High1" name="ascprice[]" value="1"/>High</div>
-<div style="float:left;">
-<input type="checkbox" id="Moderate1" name="ascprice[]" value="2"/>Moderate</div>
-<div style="float:left;">
-<input type="checkbox" id="Low1" name="ascprice[]" value="3"/>Low
-</div>
-
-</td></tr>
-
-<tr><td colspan="2">&nbsp;&nbsp;</td></tr>
-<tr><td>&nbsp;&nbsp;Product Style:</td>
-<td>
-// <?php
-// echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
-// foreach($productstyle as $key)
-// echo '<div style="float:left;"><input type="checkbox" name="productstylecheck[]" value="'.$key->style_id.'">'.$key->style.'</div>';
-// ?>
-
-&nbsp;&nbsp;
-<input type="button" value="go" id="ascproduct"/>
-</td>
-</tr>
-</table>
-
-<input type="hidden" name="hidproducttypecheck" id="hidproducttypecheck"/>
-<input type="hidden" name="hidproductcolortypecheck" id="hidproductcolortypecheck"/>
-<input type="hidden" name="hidproductmaterialtypecheck" id="hidproductmaterialtypecheck"/>
-<input type="hidden" name="hidproductstylecheck" id="hidproductstylecheck"/>
-
-</div>-->
 <div id="showselectedproductimage"> 
+
 <?php
 
 
@@ -169,15 +100,17 @@
         $selectproductid="";
         $productidhold="";
         $count=0;
-  if(sizeof($productwithdesign)>0)
+  
+  if(sizeof($productwithdesign)>0)//if products are associated with design
   {
        
-   foreach($productwithdesign as $key2)
+   foreach($productwithdesign as $key2)//foreach product associated
    {
       if($design_id!=$key2->design_id & $design_id=="" )        
-       { $productidhold="";     
+       { 
+		 $productidhold="";     
          $count=$count+1;
-         echo '<div style="width:100%" id="showselectedproductimage'.$key2->design_id.'" class="designname">';
+         echo '<div id="showselectedproductimage'.$key2->design_id.'" class="designname">';
        }
       elseif($design_id!=$key2->design_id)
       {  
@@ -187,8 +120,8 @@
        
          echo "<input type='hidden' id='designproductid_".$design_id."' value='".$productidhold."'/>";
          echo '</div>';
-         echo '<div style="width:100%;float:left;display:none;" id="showselectedproductimage'.$key2->design_id.'" class="designname">';
-         $productidhold="";
+         echo '<div id="showselectedproductimage'.$key2->design_id.'" class="designname">';
+        $productidhold="";
 		$count=$count+1;      
         } 
     
@@ -197,7 +130,7 @@
    
       if(($key2->product_id==$key->productid))
       {
-         echo'<div id="select_img_'.$key2->design_id.'_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->productid.'" /></div>';
+         echo'<div id="select_img_'.$key2->design_id.'_'.$key->productid.'" class = "selectedproductimagediv"><img src="'.$key->link.'" height="100px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->productid.'" /></div>';
     
          $productidhold=($productidhold==""?$key->productid:$productidhold.','.$key->productid);	
  
@@ -222,7 +155,7 @@ elseif(sizeof($userdesign)==0)
   foreach($selectproduct as $key)
 	   {
 		 
-	  echo'<div id="select_img_7u7_'.$key->productid.'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'.$key->link.'" width="75px;" height="75px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->productid.'" /></div>';
+	  echo'<div id="select_img_7u7_'.$key->productid.'" class = "selectedproductimagediv" ><img src="'.$key->link.'" height="100px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->productid.'" /></div>';
 	  if($selectproductid=="")
 	  $selectproductid=$key->productid;
 	  else
@@ -232,13 +165,13 @@ elseif(sizeof($userdesign)==0)
 }
 
 ?>
-
-<div class = "span12"><div class = "well">
-
+</div>
+<div class = "span10">
+<div class = "well">
 <p class = "sanslight medium">Search for a product: &nbsp; &nbsp;
 <input class = "search-query" type="textbox" name="productsearchbyname" id="productsearchbyname"/>
-<input class = "btn" type="button" value="Search" id="searchproductname"/></p>
-
+<input class = "button2 pink" type="button" value="Search" id="searchproductname"/></p>
+</div>
 <input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
 
 <input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
@@ -247,8 +180,8 @@ elseif(sizeof($userdesign)==0)
 <input type="hidden"  name="searchoptionforcolor" id="searchoptionforcolor" />
 <input type="hidden"  name="searchoptionformaterial" id="searchoptionformaterial" />
 <br/>
-<div class = "row">
-<div class = "span2">
+<div class = "row ">
+<div class = "span1">
 <div class="btn-group">
   <button class="btn rip">Price</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_price')">
@@ -326,17 +259,16 @@ foreach($productmaterialtype as $key)
 ?>
 </div></div>
 
-<!----Add code by kbs------>
+
 <div>
-<input type="button" id="filterproduct" name="filterproduct" value="Filter" />
-</div>
-<!----------------->
-
+<input type="button" class = "button2 gray" id="filterproduct" name="filterproduct" value="Filter" />
 </div>
 
-<input class= "btn" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>	
+</div>
+
+<input class= "button2 pink" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>	
 	
-<div style="border:solid 1px;height:300px;overflow-y:scroll;" id="productlist">
+<div id="productlist">
 	<?php
 	foreach($productdetails as $key)
 	{	
@@ -347,12 +279,12 @@ foreach($productmaterialtype as $key)
 		   $ischecked="checked";
 		   $active = "active";
 		   }
-		  echo'<div style="float:left;width:150px;height:150px;cursor:pointer;">
+		  echo'<div class = "productlistimg">
 		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->link.' height="100px" width="100px" onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);" id="product_img'.$key->productid.'"/>&nbsp;&nbsp;</div>';
+		 <img class = '.$active.' src ='.$key->link.' height="150px"  onmouseover="return display_div('.$key->productid.');" onmouseout="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);" id="product_img'.$key->productid.'"/>&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
-	echo "No products found!";
+	echo "<p class = 'alert alert-error'>No products matching your criteria.</p>";
         ?>
 
 

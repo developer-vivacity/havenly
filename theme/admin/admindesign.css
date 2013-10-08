@@ -22,3 +22,21 @@ display: inline;
 margin: 5px;
 margin-top: 10px;
 }
+
+#productlist{
+border: solid 1px gray;
+height: 500px;
+overflow-y:scroll;
+}
+
+#showselectedproductimages{
+background: lightgray;
+border: 1px solid gray;
+}
+
+.selectedproductimagediv{
+height: 100px
+}
+.productlistimg{
+display: inline-block;
+}

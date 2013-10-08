@@ -52,9 +52,9 @@ echo "<span id='messagefordesign'>No Image</span>";
 echo '<div id="designimageassignproduct">';
 foreach($designimage as $key)
 {
-echo '<div style="float:left;width:110px;"><img src="'.$key->filename.'" width="100px" height="100px"/></div>';
+echo '<div><img src="'.$key->filename.'" height="150px"/></div>';
 }
-echo '<div>';	
+echo '</div>';	
 //---end add div tag.......
 ?>
 </td>
@@ -73,7 +73,7 @@ echo '<div>';
 	echo "No Products Uploaded";
          foreach($productassign as $key)
 	{
-	echo '<div style="float:left;width:110px;"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
+	echo '<div><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
 	}
 
 //add hidden variable by kbs---------------------------

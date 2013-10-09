@@ -32,6 +32,7 @@ function __construct()
  
  
 function upload_room_pic(){
+
 $this->image_path= realpath(APPPATH.'/images');
 
 $name = 'qqfile';
@@ -113,7 +114,8 @@ echo json_encode($result);
 
 }}}
 
-function upload_room_pic_phone(){
+function upload_room_pic_phone()
+{
 $this->image_path= realpath(APPPATH.'/images');
 
 $name = $this->input->post('id');

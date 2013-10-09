@@ -42,7 +42,7 @@ if ((($_FILES[$name]["type"] == "image/gif")
 || ($_FILES[$name]["type"] == "image/png")
 || ($_FILES[$name]["type"] == "image/pjpeg")
 || ($_FILES[$name]["type"] == "image/jpg"))
-&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
+&& ($_FILES[$name]["size"]< 5000000)//less than a certain size
 && in_array($extension, $allowedExts))
 {
 if ($_FILES[$name]["error"] > 0)
@@ -102,11 +102,11 @@ if($s3result)
 $result['filename']=$file_name;
 $result['success']=true;
 unlink ($file_location);
-header("Content-Type: text/plain");
+// header("Content-Type: text/plain");
 echo json_encode($result);}
 else {
 $result['error']= 'Sorry! Try again';
-header("Content-Type: text/plain");
+// header("Content-Type: text/plain");
 echo json_encode($result);
 }
 }

@@ -265,29 +265,10 @@ endforeach;
      $attributes = array( 'id' => 'designeform','method'=>'post');
      echo form_open('Admin/site/Add_Design_For_Room/',$attributes);
 ?>
-<?php
-if(sizeof($designassociaterooms)>0)
- {
-?>
-<?php
 
-  echo '<div class = "well midsmall" >';
-  echo '<table>';
-  foreach($designassociaterooms as $key)
-  {
-	
-	echo '<tr><td width = "80%" id="displaydesignname_'.$key->design_id.'"><a href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.rtrim(base64_encode($key->design_name),'=').'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$key->design_name.'</a></td><td><a class = "small" href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></td></tr>';
-  }
-  
-?>
-</table>
-</div>
-<?php
-}
-?>
 <table id="roomdesignname">
 <tr><td colspan="6" id="textmessage">&nbsp;</td></tr>
-<tr><td class = "condensed" colspan="6">&nbsp;ADD A DESIGN &nbsp;</td><td>
+<tr><td class = "condensed" colspan="6">&nbsp;ADD A NEW DESIGN &nbsp;</td><td>
 	<?php
              $data = array('name' => 'AddDesigntext','id'  => 'AddDesigntext',
               'value'       => 'Design Name',
@@ -317,6 +298,30 @@ if(sizeof($designassociaterooms)>0)
 <?php
 echo form_close();
 ?>
+
+<?php
+if(sizeof($designassociaterooms)>0)
+ {
+?>
+<?php
+
+  echo '<div class = "well small" >';
+  echo '<table>';
+  echo '<tr class = "text-center"><p class = "medium condensed">EXISTING DESIGNS</p><hr></tr>';
+  $count = 0;
+  foreach($designassociaterooms as $key)
+  {
+	$count = $count+1;
+	echo '<tr><td width = "80%" id="displaydesignname_'.$key->design_id.'"><a class = "gray_text" href="'.base_url().'index.php/Admin/site/display_product_name_associate_with_design/'.$key->design_id.'/'.rtrim(base64_encode($key->design_name),'=').'/'.$roomid.'/'.$currentuserid.'">&nbsp;&nbsp;'.$count.'.&nbsp; &nbsp;'.$key->design_name.'</a></td><td><a class = "small" href="'.base_url().'index.php/Cart/site/delete_assign_design/'.$currentuserid.'/'.$currentroomid.'/'.$key->design_id.'/admin" >Delete</a></td></tr>';
+  }
+  
+?>
+</table>
+</div>
+<?php
+}
+?>
+
 </div>
 <!----------@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@---------------------------------------------->
 <!------------Add More Information In Room ----------------------------------------------->

@@ -32,7 +32,7 @@ $this->db->query("CREATE TABLE IF NOT EXISTS concept_board_comments (
    }
    function save_image_info($room_id,$filename)
    {
-	   $data=array("room_id"=>$room_id,"filename"=>$filename);	
+	   $data=array("room_id"=>$room_id,"filename"=>$filename,"status"=>1);	
 	   $this->db->insert('concept_board',$data); 
 	   return $this->db->insert_id();
    }

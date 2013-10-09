@@ -191,29 +191,26 @@ function insert_image_link_with_product_id($product_id,$link_array)
 
 function search_product($product_name=null,$search_type=null,$search_price=null,$search_color=null,$search_style=null,$search_material=null)
 {
-	
+
 	if(!empty($search_type))
 	{
 		$search_type=','.$search_type.',';
-		$this->db->like("concat(',',product_type_id)",$search_type);
+		$this->db->or_like("concat(',',product_type_id)",$search_type);
 	}
-      	
-	if(!empty($search_style))
+      	if(!empty($search_style))
 	{
 	   $search_style=','.$search_style.',';
-	   $this->db->like("concat(',',product_style_id)",$search_style);
-        }
-
-        if(!empty($search_material))
+	   $this->db->or_like("concat(',',product_style_id)",$search_style);
+        }if(!empty($search_material))
 	{
 	  $search_material=','.$search_material.',';
-	  $this->db->like("concat(',',product_material_id)",$search_material);
+	  $this->db->or_like("concat(',',product_material_id)",$search_material);
 	  
         }
         if(!empty($search_color))
 	{
 	  $search_color=','.$search_color.',';
-	  $this->db->like("concat(',',product_color_id)",$search_color);
+	  $this->db->or_like("concat(',',product_color_id)",$search_color);
 	}
      
        $this->db->like('product_name', $product_name); 
@@ -270,6 +267,7 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 
 function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
 {
+
 	$_like='';
 	
          $_typelike='';
@@ -460,7 +458,8 @@ function  design_image_for_rooms($room_id=null,$designid=null)
 }
 function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null,$designer_comment=null)
 {
-	if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
+	
+if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	{
 	   $data=array("room_id"=>$room_id,"design_name"=>$design_name,"designer_notes"=>$designer_comment);
 	   $this->db->insert('user_design',$data);

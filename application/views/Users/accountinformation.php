@@ -136,7 +136,7 @@
 
 		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 		else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ='.$key->address.'>&nbsp;<br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15"> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'">&nbsp;<br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15"> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
 

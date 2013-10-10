@@ -580,7 +580,7 @@ function get_token()
 		<input type="button" class = "button3 pink white_text condensed small" name="Apply" value="Apply" id="designApply"/>
 		</div>
 		
-		<div id="payment-form" class = "horizontal">
+		<div id="payment-form" class = "alert alert-error">
 		   <span class="alert-error alert payment-errors"></span>
 		<div class="horizontal">
 

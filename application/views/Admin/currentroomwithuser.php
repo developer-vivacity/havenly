@@ -96,9 +96,10 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 <li><a class = "gray_text" href="#CurrentUser"  rel="CurrentUser">User Information</a></li>
 <li><a class = "gray_text" href="#CurrentRoom"  rel="CurrentRoom">Room Information</a></li>
 <li><a class = "gray_text" href="#currentref"  rel="currentref">Style Selections</a></li>
+<li><a class = "gray_text" href="#moreinformation" rel="moreinformation">Add More Information</a></li>
 <li><a class = "gray_text" href="#conceptboard"  rel="conceptboard">Initial Concept Responses</a></li>
 <li><a class = "gray_text" href="#productdesign" rel="productdesign">View/Add Design Responses</a></li>
-<li><a class = "gray_text" href="#moreinformation" rel="moreinformation">Add More Information</a></li>
+
 </ul>
 <BR></div>
 <div class = "span9 white padding boxshadowleft">
@@ -130,7 +131,7 @@ foreach($roomwithuser as $key)
    	echo '<tr><td class = "sanslight gray_text midsmall">WIDTH/LENGTH</td></tr>';
 	echo '<td class = "sanslight small">'.$key->width.'ft/'.$key->height.'ft</td></tr>';
 	echo '<tr><td>&nbsp;</td></tr>';
-	echo '<tr class = "top"><td class = "sanslight gray_text midsmall">WHAT SHE SAYS</td></tr>';
+	echo '<tr class = "top"><td class = "sanslight gray_text midsmall">WHAT S/HE SAYS</td></tr>';
 	echo '<tr><td class = "sanslight small">'.$key->about.'</td></tr>';
 	echo '<tr><td>&nbsp;</td></tr>';
 
@@ -444,30 +445,16 @@ function show_add_design(roomid)
              else
              {
              var designid="null"; 
-	    if($("#roomdesignname").length!=0)
-	    $("#roomdesignname").before('<div class = "padding" style="position:absolute;width:600px;height:200px;z-index:100;background-color:gray;opacity:0.9;"><div id="inputcomment"><div><p class = "white_text">Add Design Notes:<BR><br></p><textarea name="designer_notes" id="designer_notes" cols= "50"></textarea></div><div ><input class = "button2 sanslight pink white_text" type="button" value="submit" onclick="submit_designer_comment();"/></div><input type="hidden" name="designroomid" value="'+roomid+'"><input type="hidden" name="designuserid" value="'+$("#userid").val()+'"></div>');
-            
+			if($("#roomdesignname").length!=0)
+					{
+					 $(".alert alert-error").remove();
+					 $("#designeform").submit();
+					 }
              }
 
 }
-function submit_designer_comment()
-{
-	   $(".alert alert-error").remove();
-	   if($("#designer_notes").val().trim()=="")
-	   $("#inputcomment").before("<div style='float:right;color:white;' class='alert alert-error'>Enter Comment!</div>");
-	   else
-	   $("#designeform").submit();
-}
-$("#uprs").click(function()
-{
-	if(($("#uprc").val().trim()==""))
-	{
-	    $(".alert alert-error").remove();
-	    $("#uprc").after('<span class="alert alert-error">Enter comment!</span>');
-             return false;
-	}
-	
-})
+
+
 
 
 </script>

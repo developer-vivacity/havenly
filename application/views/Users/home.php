@@ -1105,7 +1105,7 @@ $("#cardnumber").val().length<16
 $("#password").val()=="Password (min 6 chars.)"
 ||$("#password").val().length < 6)
 {
-   $("#submit_but").hide();
+  // $("#submit_but").hide();
 }
 
 
@@ -1115,8 +1115,12 @@ else
    //flag_sub=1;
 }
 });
+
+
+
 $("#tweetsend").click(function()
 {
+
 var check = $(this).find('#later');
 
 check.prop('checked',!check[0].checked);

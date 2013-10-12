@@ -12,9 +12,9 @@ class Product_model extends CI_Model
   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_designs(user_id int(10) NOT NULL,
 room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(100) NOT NULL)");
 
-  $this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,link varchar(200) NOT NULL,
+  $this->db->query("CREATE TABLE IF NOT EXISTS products(product_id int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,weblink text NOT NULL,
 product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_style_id varchar(100) NOT NULL,
-description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(100) NOT NULL,PRIMARY KEY(productid))");
+description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NULL, material_name varchar(300) NULL, color_name varchar (300) NULL, PRIMARY KEY(product_id))");
 
   $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
 
@@ -26,9 +26,9 @@ description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(1
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_style(style_id int(10) NOT NULL AUTO_INCREMENT,style varchar(100) NOT NULL,PRIMARY KEY(style_id))");
 
- $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NOT NULL,
-phone_number varchar(50) NOT NULL,
-contact varchar(100) NOT NULL,website_link varchar(100) NOT NULL, PRIMARY KEY(vendor_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NULL,
+phone_number varchar(50)  NULL,
+contact varchar(100)  NULL,website_link varchar(100) NULL, PRIMARY KEY(vendor_id))");
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
@@ -52,10 +52,10 @@ timestamp timestamp NOT NULL)");
  function get_all_product($pid=null)
   {	
 	 
-	  $this->db->select('productid,product_name,link,dimensions,description,ship_cost,ship_cost,price,rent_price');
+	  $this->db->select('product_id,product_name, color_name, material_name, weblink,dimensions,description,ship_cost,ship_cost,price');
 	  $this->db->from('products');
 	  if($pid!="")   
-	  $this->db->where('productid',$pid);
+	  $this->db->where('product_id',$pid);
 		
           return $this->db->get()->result(); 
   }
@@ -79,9 +79,9 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
    {
     $this->db->from('products','product_room_mapping');
    
-    $this->db->select('productid,product_name,link,Design_Plan'); 
+    $this->db->select('products.product_id,product_name,weblink,Design_Plan'); 
    
-    $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id');     
+    $this->db->join('product_room_mapping', 'products.product_id = product_room_mapping.product_id');     
    
     $this->db->where('room_id',$roomid);  
     $this->db->distinct();
@@ -254,9 +254,9 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 	
        $query=$this->db->from('products','product_room_mapping');
 	
-       $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id','left');
+       $this->db->join('product_room_mapping', 'products.product_id = product_room_mapping.product_id','left');
        
-       $this->db->group_by('products.productid');
+       $this->db->group_by('products.product_id');
        $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
        
        $query = $this->db->get();	
@@ -359,9 +359,9 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
          break;
      }
 	
-$query=$this->db->query("select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
+$query=$this->db->query("select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
 UNION
-select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where productid not in (select concat(',',productid)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
+select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where product_id not in (select concat(',',product_id)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
 
 return $query->result();	
 	
@@ -392,7 +392,7 @@ function product_style()
 }
 function product_details_by_id($id)
 {
-	$this->db->where('productid',$id);
+	$this->db->where('product_id',$id);
 	$query=$this->db->get('products');
 	return $query->result();
 }
@@ -403,8 +403,8 @@ function userdesign($room_id=null,$design_id=null)
          if($design_id!=null)
          $this->db->where('design_id',$design_id);
          $this->db->where('status !=','close');	
-	 $query=$this->db->get('user_design');
-	 return $query->result();
+		$query=$this->db->get('user_design');
+		return $query->result();
 }
 function productassociatewithdesign($room_id,$designid)
 {
@@ -428,13 +428,13 @@ function display_design_associated_products($design_id,$status=null)
        ($status==null?$this->db->from('design_product_mapping','products','vendors'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
        $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
         
-        $this->db->join('products','design_product_mapping.product_id=products.productid');
+        $this->db->join('products','design_product_mapping.product_id=products.product_id');
         $this->db->join('vendors','vendors.vendor_id=products.vendor_id');
 	if($status!=null)
 	{
 	 $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.This join find variant key of the product from shopify_product_variant table.........	
-	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.productid');
+	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	 $this->db->where('user_design.status',$status);
 	}
@@ -456,12 +456,12 @@ function  design_image_for_rooms($room_id=null,$designid=null)
           $query = $this->db->get();
          return $query->result();
 }
-function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null,$designer_comment=null)
+function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null)
 {
 	
 if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	{
-	   $data=array("room_id"=>$room_id,"design_name"=>$design_name,"designer_notes"=>$designer_comment);
+	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
 	   $this->db->insert('user_design',$data);
 	 
 	   return $this->db->insert_id();
@@ -469,7 +469,7 @@ if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
          }
          elseif($design_id!="")
          {
-	 $this->db->where('room_id',$room_id);
+			$this->db->where('room_id',$room_id);
           $this->db->where('design_id',$design_id);
          
           $data=array('status'=>$design_status,'design_name'=>$design_name);

@@ -29,13 +29,12 @@ height: 500px;
 overflow-y:scroll;
 }
 
-#showselectedproductimages{
-background: lightgray;
-border: 1px solid gray;
-}
 
-.selectedproductimagediv{
-height: 100px
+.selectedproducts{
+height: 100px;
+background-color: lightgray;
+border: solid 1px gray;
+overflow-y: scroll;
 }
 .productlistimg{
 display: inline-block;

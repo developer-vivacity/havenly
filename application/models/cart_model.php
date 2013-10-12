@@ -189,7 +189,7 @@ function product_details_with_design()
    $this->db->from('shoppingcart','user_design','products');
    $this->db->select('user_design.design_name,products.product_name,products.price,products.rent_price,products.ship_cost,shoppingcart.qty');
    $this->db->join('user_design','user_design.design_id = shoppingcart.design_id');
-   $this->db->join('products','products.productid = shoppingcart.product_id');
+   $this->db->join('products','products.product_id = shoppingcart.product_id');
    
    $this->db->where('shoppingcart.user_id',$this->session->userdata('id'));
    $this->db->where('user_design.status','submitted');

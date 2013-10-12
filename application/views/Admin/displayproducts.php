@@ -63,12 +63,22 @@
 			
 </div>
 </div>
+<div class = "designmain" id  = "designermessage">
 
-	
 <div class = "well">
 
+<p class = "medium condensed">Add a note to the client, letting them know about your inspiration, and any special instructions.</p>
+<textarea name="designer_notes" id="designer_notes" cols= "50">
+	<?php echo $userdesign[0]->designer_notes;?>
+</textarea>
+<input type = "button" id = "commentsave" class = "button2 small pink" value = "Save" onclick = "save_comment();"/>
+</div>
+
+<div class = "well">
+
+<div class = "designmain" id = "designimage">
 	
-<p class = "sanslight text-center midsmall">Step 1:  Upload Design Images</p>
+<p class = "sanslight text-center midsmall"> Upload Design Images</p>
 	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
 		<span id="mestatus" ></span><br/>
 		
@@ -85,13 +95,12 @@
 	}
 ?>
 </div>
-</div>
-<br/><br/><br/>
+</div></div>
+<br/><br/>
 
 
+<div class = "designmain" id = "productselection">
 
-
-<div id="showselectedproductimage"> 
 
 <?php
 
@@ -128,11 +137,12 @@
      foreach($selectproduct as $key)
      {
    
-      if(($key2->product_id==$key->productid))
+      if(($key2->product_id==$key->product_id))
       {
-         echo'<div id="select_img_'.$key2->design_id.'_'.$key->productid.'" class = "selectedproductimagediv"><img src="'.$key->link.'" height="100px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->productid.'" /></div>';
+         echo'<div id="select_img_'.$key2->design_id.'_'.$key->product_id.'" class = "selectedproductimagediv">
+		 <img src="'.$key->weblink.'" height="100px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->product_id.'" /></div>';
     
-         $productidhold=($productidhold==""?$key->productid:$productidhold.','.$key->productid);	
+         $productidhold=($productidhold==""?$key->product_id:$productidhold.','.$key->product_id);	
  
             
        }
@@ -155,11 +165,11 @@ elseif(sizeof($userdesign)==0)
   foreach($selectproduct as $key)
 	   {
 		 
-	  echo'<div id="select_img_7u7_'.$key->productid.'" class = "selectedproductimagediv" ><img src="'.$key->link.'" height="100px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->productid.'" /></div>';
+	  echo'<div id="select_img_7u7_'.$key->productid.'" class = "selectedproductimagediv" ><img src="'.$key->weblink.'" height="200px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->product_id.'" /></div>';
 	  if($selectproductid=="")
-	  $selectproductid=$key->productid;
+	  $selectproductid=$key->product_id;
 	  else
-	  $selectproductid=$selectproductid.','.$key->productid;
+	  $selectproductid=$selectproductid.','.$key->product_id;
 	}
   echo "<input type='hidden' id='designproductid_7u7' value='".$selectproductid."' name='designproductid_7u7'/>";
 }
@@ -274,14 +284,14 @@ foreach($productmaterialtype as $key)
 	{	
 		  $ischecked="";
 		  $active = "inactive";
-		  if(in_array($key->productid,explode(',',$selectproductid)))
+		  if(in_array($key->product_id,explode(',',$selectproductid)))
 		   {
 		   $ischecked="checked";
 		   $active = "active";
 		   }
 		  echo'<div class = "productlistimg">
-		 <input type="checkbox"  value = '.$key->productid.' class="cbox"  name="productimage[]" id="productimage_'.$key->productid.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->link.' height="150px"  onmouseover="return display_div('.$key->productid.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->productid.',\''.$key->link.'\',this);" id="product_img'.$key->productid.'"/>&nbsp;&nbsp;</div>';
+		 <input type="checkbox"  value = '.$key->product_id.' class="cbox"  name="productimage[]" id="productimage_'.$key->product_id.'"  '.$ischecked.'/>
+		 <img class = '.$active.' src ='.$key->weblink.' height="150px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->weblink.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "<p class = 'alert alert-error'>No products matching your criteria.</p>";
@@ -303,7 +313,8 @@ foreach($productmaterialtype as $key)
 
 echo form_close(); ?>
 </div>
-</body>
+</div>
+
 <script>
 $(".cbox").hide();
 
@@ -319,5 +330,11 @@ $(".btn.rip").click(function()
 {
 $("#hidproductsearch").val("search");	
 });
+
+
+	
+		
+
+
 </script>
 

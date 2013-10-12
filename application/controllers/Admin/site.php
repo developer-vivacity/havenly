@@ -417,14 +417,16 @@ function set_file_name()
 }
 function assign_product($room_id=null,$user_id=null,$design_id=null)
 {	
+
+
 	
- if($_POST)
- {
+  if($_POST)
+  {
      if($this->input->post("holddesignidforroom")!="")
      {   
         $value=$this->input->post("holddesignidforroom");
         $assign_product=array();
-        $assigm_product[$value]=$this->input->post("assign_".$value);
+        $assign_product[$value]=$this->input->post("assign_".$value);
      }
      else
      {
@@ -432,17 +434,21 @@ function assign_product($room_id=null,$user_id=null,$design_id=null)
      }
      
      if($_POST & ($this->input->post("hidproductsearch")!="search") & ($this->input->post("hidproductsearch")!="sort"))
-       $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assign_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	
-     if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
-     {
-      $this->_add_new_design=1;
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
-     }
-     else
-     {
-      $this->_add_new_design=1;     
-      $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
-     }
+	 
+	 
+      { $this->product_model->save_product_associated_with_room($this->input->post("currentroomid"),$assign_product,$this->input->post("Design_Plan"),$this->input->post("holddesignidforroom"));	}
+			
+			
+			if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
+					 {
+					  $this->_add_new_design=1;
+					  $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
+					 }
+			else
+					 {
+					  $this->_add_new_design=1;     
+					  $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'notthis');
+					 }
    }
    else
    {
@@ -621,8 +627,8 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 {
 
      
-         $designer_notes=null;
-         if(isset($_POST["designroomid"])|isset($_POST["AddDesigntext"])|isset($_POST["designuserid"]))
+  $designer_notes=null;
+  if(isset($_POST["designroomid"])|isset($_POST["AddDesigntext"])|isset($_POST["designuserid"]))
          {
 	 
 	 $room_id=$_POST["designroomid"];

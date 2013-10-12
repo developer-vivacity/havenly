@@ -59,7 +59,7 @@
 				<option value="draft">Save as Draft</option>
 				<option value="submitted">Submit Design</option>
 				</select>
-			<input type="button" class = "button2 pink" value="Go" onclick="saveproductdetailsofdesign();"/>
+			<input type="button" class = "button2 pink"  value="Go" onclick="saveproductdetailsofdesign();"/>
 			
 </div>
 </div>
@@ -78,7 +78,7 @@
 
 <div class = "designmain" id = "designimage">
 	
-<p class = "sanslight text-center midsmall"> Upload Design Images</p>
+<p class = "condensed text-center medium"> Upload Design Images</p>
 	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
 		<span id="mestatus" ></span><br/>
 		
@@ -100,7 +100,7 @@
 
 
 <div class = "designmain" id = "productselection">
-
+<div id = "showselectedproductimage">
 
 <?php
 
@@ -165,7 +165,7 @@ elseif(sizeof($userdesign)==0)
   foreach($selectproduct as $key)
 	   {
 		 
-	  echo'<div id="select_img_7u7_'.$key->productid.'" class = "selectedproductimagediv" ><img src="'.$key->weblink.'" height="200px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->product_id.'" /></div>';
+	  echo'<div id="select_img_7u7_'.$key->product_id.'" class = "selectedproductimagediv" ><img src="'.$key->weblink.'" height="100px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->product_id.'" /></div>';
 	  if($selectproductid=="")
 	  $selectproductid=$key->product_id;
 	  else
@@ -289,7 +289,7 @@ foreach($productmaterialtype as $key)
 		   $ischecked="checked";
 		   $active = "active";
 		   }
-		  echo'<div class = "productlistimg">
+		  echo'<div id = "productlistimg_'.$key->product_id.'" class = "productlistimg">
 		 <input type="checkbox"  value = '.$key->product_id.' class="cbox"  name="productimage[]" id="productimage_'.$key->product_id.'"  '.$ischecked.'/>
 		 <img class = '.$active.' src ='.$key->weblink.' height="150px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->weblink.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;</div>';
 	}

@@ -46,13 +46,14 @@
 	 <?php
 	 
 	  // this hidden variable stores the design name.
-           echo $userdesign[0]->design_name;
+           echo '<p class = "blue_text midlarge sanslight">'.$userdesign[0]->design_name.'</p>';
            echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
-     ?>&nbsp;
+     ?>
 		<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
 
 		<p class = "midsmall sanslight">Edit user design and add products to complete user design.</p>
+		
 		<div class = "popup_design midsmall boxshadow">
 			Save as Draft or Submit Design?&nbsp;
 			<select name="design_status" id="design_status">
@@ -78,15 +79,15 @@
 
 <div class = "designmain" id = "designimage">
 	
-<p class = "condensed text-center medium"> Upload Design Images</p>
+<p class = "condensed text-center midlarge"> Upload Design Images</p>
 	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
 		<span id="mestatus" ></span><br/>
-		
 
 	<div id="files"  style="list-style-type: none;">
 		<li class="success" >
 		</li>
 </div>
+<hr>
 <div id="displaydesignimages">
 <?php
 	foreach($designimage as $key)
@@ -96,10 +97,12 @@
 ?>
 </div>
 </div></div>
-<br/><br/>
+<br/>
 
-
+<hr>
+<br/>
 <div class = "designmain" id = "productselection">
+<p class = "midlarge condensed"> Add Products to Complete the Room</p>
 <div id = "showselectedproductimage">
 
 <?php
@@ -119,7 +122,7 @@
        { 
 		 $productidhold="";     
          $count=$count+1;
-         echo '<div id="showselectedproductimage'.$key2->design_id.'" class="designname">';
+         echo '<div id="showselectedproductimage'.$key2->design_id.'" class="designname"><p class = "condensed medium">Selected Products</p><hr class = "style">';
        }
       elseif($design_id!=$key2->design_id)
       {  
@@ -178,7 +181,7 @@ elseif(sizeof($userdesign)==0)
 </div>
 <div class = "span10">
 <div class = "well">
-<p class = "sanslight medium">Search for a product: &nbsp; &nbsp;
+<p class = "condensed medium">Search for a product: &nbsp; &nbsp;
 <input class = "search-query" type="textbox" name="productsearchbyname" id="productsearchbyname"/>
 <input class = "button2 pink" type="button" value="Search" id="searchproductname"/></p>
 </div>

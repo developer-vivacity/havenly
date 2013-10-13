@@ -53,8 +53,7 @@
      ?>
 		<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
 
-		<p class = "midsmall sanslight">Edit user design and add products to complete user design.</p>
-		
+		<hr>
 		<div class = "popup_design midsmall boxshadow">
 			Save as Draft or Submit Design?&nbsp;
 			<select name="design_status" id="design_status">
@@ -62,7 +61,7 @@
 				<option value="submitted">Submit Design</option>
 				</select>
 			<input type="button" class = "button2 pink"  value="Go" onclick="saveproductdetailsofdesign();"/>
-			
+			<a class = "remove_popup"><img src="<?php echo base_url('assets/Images/delicon.fw.png');?>" width="20px" height="20px" class="float_right"></a>
 </div>
 </div>
 <div class = "designmain" id  = "designermessage">
@@ -70,17 +69,19 @@
 <div class = "well">
 
 <p class = "medium condensed">Add a note to the client, letting them know about your inspiration, and any special instructions.</p>
-<textarea name="designer_notes" id="designer_notes" cols= "50">
+<textarea name="designer_notes" id="designer_notes" cols= "50" rows = "10">
 	<?php echo $userdesign[0]->designer_notes;?>
-</textarea>
-<input type = "button" id = "commentsave" class = "button2 small pink" value = "Save" onclick = "save_comment();"/>
-</div>
-
-<div class = "well">
+</textarea><br>
+<input type = "button" id = "commentsave" class = "button2 small pink showimage" value = "Save" onclick = "save_comment();"/>
+</div></div>
 
 <div class = "designmain" id = "designimage">
+
+
+
 	
-<p class = "condensed text-center midlarge"> Upload Design Images</p>
+<p class = "condensed text-center medium"> Upload final design renderings for the room.</p><BR>
+<div class = "well">
 	<div id = "me" class = "styleall button2 pink white_text small sanslight">Browse</div>
 		<span id="mestatus" ></span><br/>
 
@@ -97,13 +98,14 @@
 	}
 ?>
 </div>
-</div></div>
-<br/>
+</div>
+<a class = "button2 pink small showproducts">Done</a>
 
-<hr>
-<br/>
+</div>
+
 <div class = "designmain" id = "productselection">
-<p class = "midlarge condensed"> Add Products to Complete the Room</p>
+<p class = "medium condensed">Add products to purchase for client design.</p>
+<br>
 <div id = "showselectedproductimage">
 
 <?php
@@ -186,31 +188,17 @@ elseif(sizeof($userdesign)==0)
 <input class = "search-query" type="textbox" name="productsearchbyname" id="productsearchbyname"/>
 <input class = "button2 pink" type="button" value="Search" id="searchproductname"/></p>
 </div>
-<input type="hidden"  name="hidproductsearch" id="hidproductsearch" />
 
-<input type="hidden"  name="searchoptionfortype" id="searchoptionfortype" />
-<input type="hidden"  name="searchoptionforprice" id="searchoptionforprice" />
-<input type="hidden"  name="searchoptionforstyle" id="searchoptionforstyle" />
-<input type="hidden"  name="searchoptionforcolor" id="searchoptionforcolor" />
-<input type="hidden"  name="searchoptionformaterial" id="searchoptionformaterial" />
-<br/>
-<div class = "row ">
-<div class = "span1">
+<div class = "well">
+<p class = "condensed medium">Filter by Category</p><hr>
+<div class = "button_padding">
 <div class="btn-group">
-  <button class="btn rip">Price</button>
-  <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_price')">
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" id="drop_price">
-&nbsp;&nbsp;<input type="checkbox" id="High" name="searchprice[]" value="1"/>&nbsp;&nbsp;High<br/>
-&nbsp;&nbsp;<input type="checkbox" id="Moderate" name="searchprice[]" value="2"/>&nbsp;&nbsp;Moderate<br/>
-&nbsp;&nbsp;<input type="checkbox" id="Low" name="searchprice[]" value="3"/>&nbsp;&nbsp;Low<br/>
-</ul></div></div>
-<div class = "span2">
-<div class="btn-group">
+  <button class="button2 gray rip">Price &darr;</button>
+</div></div>
 
- <!-------add rip class for jquery by kbs------->
-  <button class="btn rip">Product Type</button>
+<div class = "button_padding">
+<div class="btn-group">
+<button class="button2 gray rip">Product Type &darr;</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_type')">
   <span class="caret"></span>
   </button>
@@ -224,12 +212,10 @@ elseif(sizeof($userdesign)==0)
   </ul>
 </div></div>
 
-<div class = "span2">
-
-
+<div class = "button_padding">
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip" >Style</button>
+  <button class="button2 gray rip" >Style &darr;</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_style')">
     <span class="caret"></span>
   </button>
@@ -242,10 +228,11 @@ foreach($productstyle as $key)
 }
 ?></ul>
 </div></div>
-<div class = "span2">
+
+<div class = "button_padding">
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip" >Color</button>
+  <button class="button2 gray rip" >Color &darr;</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_color')">
     <span class="caret"></span>
   </button>
@@ -257,10 +244,10 @@ foreach($productcolortype as $key)
 }
 ?></ul>
 </div></div>
-<div class = "span2">
+<div class = "button_padding">
 <div class="btn-group">
 	<!-------add rip class for jquery by kbs------->
-  <button class="btn rip" >Material</button>
+  <button class="button2 gray rip" >Material &darr;</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown" onclick="display_child('drop_material')">
     <span class="caret"></span>
   </button>
@@ -274,15 +261,17 @@ foreach($productmaterialtype as $key)
 </div></div>
 
 
-<div>
-<input type="button" class = "button2 gray" id="filterproduct" name="filterproduct" value="Filter" />
-<input type="button" class = "button2 gray" id="clearfilter" name="clearfilter" value="Clear Filters" />
+<div class = "button_padding">
+<input type="button" class = "button2 pink" id="filterproduct" name="filterproduct" value="Go" />
+<input type="button" class = "button2 pink" id="clearfilter" name="clearfilter" value="Clear" />
 </div>
 
 </div>
 
-<input class= "button2 pink" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>	
-	
+<div class = "addnewproduct">
+<p class = "sanslight small">Can't find what you're looking for?</p>
+<input class= "button2 blue" type="button" value="Add Product" id="AddProduct" name="AddProduct"/>
+</div>	
 <div id="productlist">
 	<?php
 	foreach($productdetails as $key)
@@ -318,8 +307,9 @@ foreach($productmaterialtype as $key)
 
 echo form_close(); ?>
 </div>
+</div></div></div></div>
+<div class = "adminpush">  .
 </div>
-
 <script>
 $(".cbox").hide();
 
@@ -331,15 +321,34 @@ $(".inactive, .active").click(function()
 		 checkbox.prop('checked',!checkbox[0].checked);
 });
 
-$(".btn.rip").click(function()
+$(".remove_popup").click(function()
 {
-$("#hidproductsearch").val("search");	
+	$(this).parent().hide();
+});
+
+$(".designmain").hide();
+$("#designermessage").show();
+
+$(".showproducts").click(function()
+{
+$(".designmain").hide();
+$("#productselection").show();
+});
+
+$(".showimage").click(function()
+{
+$(".designmain").hide();
+$("#designimage").show();
+});
+
+$(".showmsg").click(function()
+{
+$(".designmain").hide();
+$("#designermessage").show();
 });
 
 
-	
-		
-
-
 </script>
-
+<?php 
+	include(APPPATH.'/views/templates/footer.php');
+?>

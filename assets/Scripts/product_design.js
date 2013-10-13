@@ -85,7 +85,7 @@ function selectedproductimage(productid,productimagepath,refobject)
   if($("#productimage_"+productid+"").is(':checked')==false)
   {      
 		$(".productdetailsdiv").hide();
-		$("#productlistimg_"+productid+"").prepend("<div id='popup'><div class = 'addimageholder'><div><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='destroy_popup();'/></div><div><a class = 'pink_text small' onclick='addselectimg();'>Add To Design</a></div></div></div>");   
+		$("#productlistimg_"+productid+"").prepend("<div id='popup'><div class = 'addimageholder'><div><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='destroy_popup();'/></div><div><a class = 'button2 white_text small' onclick='addselectimg();'>Add To Design</a></div></div></div>");   
 		
   }       
   else

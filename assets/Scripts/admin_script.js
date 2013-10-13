@@ -71,6 +71,9 @@ $(document).ready(function()
 		 
  })
 
+
+ 
+ 
 $('input[name$="retail_option"]').click(function()
 		{
 			$('#rentprise').val("");
@@ -192,6 +195,21 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
     var productcolor="";
     var productstyle="";
     var productmaterial=""; 
+	var productimage = "";
+	
+	
+	var designid = $("#holddesignidforroom").val();
+	
+  $('.selectedprod').each(function()
+  {
+  
+	if(productimage=="")
+	productimage = this.value;
+	else
+		productimage = productimage+','+this.value;
+		
+  
+		});
 
   $('input[name="searchproducttype[]"]:checked').each(function(i,e)
   {
@@ -239,16 +257,52 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       is_filter=true;
   });
     
-    $("#searchoptionforcolor").val(productcolor);
-    if(is_filter==true)
-    {
-	$("#productsearchbyname").val("");  
-	  
-	$("#hidproductsearch").val("search");
 
-        $("#saveproduct").submit();
-   }
-})
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/filter_products',
+        type: 'POST',
+        data: {typeid: producttypeid, styleid: productstyle, colorid: productcolor, materialid: productmaterial, productimage: productimage },
+       success : function(data) {
+				$("#productlist").html(data);
+				$(".cbox").hide();
+				}
+	   
+    });
+		
+		
+
+});
+
+
+$("#clearfilter").click(function(){
+
+var productimage = "";
+var designid = $("#holddesignidforroom").val();
+	
+  $('.selectedprod').each(function()
+  {
+  
+	if(productimage=="")
+	productimage = this.value;
+	else
+		productimage = productimage+','+this.value;
+});
+
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/clear_filter',
+        type: 'POST',
+		data: {productimage: productimage},
+        success : function(data) {
+				$("#productlist").html(data);
+				$(".cbox").hide();
+				}
+	   
+    });
+		
+		});
+	
+
+
   
   $("#ascproduct").click(function(){
   var is_sort=false;
@@ -705,6 +759,9 @@ function save_comment(input_id,conceptid,roomid,form_id)
 	        }
 	        
         }
+		
+	
+		
 function removetext(id,isreset)
 {
          $(".alert,.alert-error").remove();

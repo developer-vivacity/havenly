@@ -13,7 +13,7 @@ class Product_model extends CI_Model
 room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(100) NOT NULL)");
 
   $this->db->query("CREATE TABLE IF NOT EXISTS products(product_id int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,weblink text NOT NULL,
-product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_style_id varchar(100) NOT NULL,
+product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,
 description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NULL, material_name varchar(300) NULL, color_name varchar (300) NULL, PRIMARY KEY(product_id))");
 
   $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
@@ -24,7 +24,7 @@ description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NU
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_material(material_id int(10) NOT NULL AUTO_INCREMENT,material varchar(100) NOT NULL,PRIMARY KEY(material_id))");
 
- $this->db->query("CREATE TABLE IF NOT EXISTS product_style(style_id int(10) NOT NULL AUTO_INCREMENT,style varchar(100) NOT NULL,PRIMARY KEY(style_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_color(color_id int(10) NOT NULL AUTO_INCREMENT,color varchar(100) NOT NULL,PRIMARY KEY(color_id))");
 
  $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NULL,
 phone_number varchar(50)  NULL,
@@ -131,14 +131,14 @@ function product_search($text=null,$id=null)
 {
    if($id==1)
 	{
-          $this->db->select('style_id,style');
-          $this->db->like('style', $text);	
-          $query = $this->db->get('product_style');
+          $this->db->select('color_id,color');
+          $this->db->like('color', $text);	
+          $query = $this->db->get('product_color');
        }
     elseif($id==2)
     {
 	   $this->db->select('color_id,color');
-            $this->db->like('color', $text);	
+         $this->db->like('color', $text);	
             $query = $this->db->get('product_colors');
      }
 	elseif($id==3)
@@ -151,7 +151,7 @@ function product_search($text=null,$id=null)
 	{
 		$this->db->select('type_id,type');
 		$this->db->like('type', $text);	
-                  $query = $this->db->get('product_type');
+       $query = $this->db->get('product_type');
 	}
     return $query->result(); 	
 }
@@ -189,7 +189,7 @@ function insert_image_link_with_product_id($product_id,$link_array)
 }
 
 
-function search_product($product_name=null,$search_type=null,$search_price=null,$search_color=null,$search_style=null,$search_material=null)
+function search_product($product_name=null,$search_type=null,$search_price=null,$search_color=null,$search_color=null,$search_material=null)
 {
 
 	if(!empty($search_type))
@@ -197,10 +197,10 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 		$search_type=','.$search_type.',';
 		$this->db->or_like("concat(',',product_type_id)",$search_type);
 	}
-      	if(!empty($search_style))
+      	if(!empty($search_color))
 	{
-	   $search_style=','.$search_style.',';
-	   $this->db->or_like("concat(',',product_style_id)",$search_style);
+	   $search_color=','.$search_color.',';
+	   $this->db->or_like("concat(',',product_color_id)",$search_color);
         }if(!empty($search_material))
 	{
 	  $search_material=','.$search_material.',';
@@ -264,15 +264,59 @@ function search_product($product_name=null,$search_type=null,$search_price=null,
 }
 
 
+function filter_products($product_type, $product_color, $product_color, $product_material)
 
-function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
+{
+	if ($product_type !="")
+	{
+		
+		$product_type_separate = explode(",", $product_type);
+		$product_type_array = array_map('intval', $product_type_separate);
+		$this->db->where_in('product_type_id',$product_type_array);
+		
+	}
+	
+	if ($product_color !="")
+	{
+		$product_color_separate = explode(",", $product_color);
+		$product_color_array = array_map('intval', $product_color_separate);
+	
+		$this->db->where_in('product_color_id', $product_color_array);
+	}
+	
+		if ($product_color !="")
+	{
+		$product_color_separate = explode(",", $product_color);
+		$product_color_array = array_map('intval', $product_color_separate);
+		$this->db->where_in('product_color_id', $product_color_array);
+	}
+	
+	
+	if ($product_material !="")
+	{
+	
+		$product_material_separate = explode(",", $product_material);
+		$product_material_array = array_map('intval', $product_material_separate);
+		$this->db->where_in('product_material_id', $product_material_array);
+	}
+	
+	
+		$this->db->from('products');
+		$query = $this->db->get();
+		return $query->result();
+
+}
+
+
+
+function product_sort_by_type($producttypecheck,$productcolorcheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
 {
 
 	$_like='';
 	
          $_typelike='';
 	
-	$_stylelike='';
+	$_colorlike='';
 	
 	$_materiallike='';
 	
@@ -294,17 +338,17 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
            $_like=1;
            }
 	}
-	if(!empty($productstylecheck))
+	if(!empty($productcolorcheck))
 	{
                 
 
-             $productstylecheck=explode(',',$productstylecheck);
-             sort($productstylecheck);
-             $productstylecheck=(implode(',',$productstylecheck));
+             $productcolorcheck=explode(',',$productcolorcheck);
+             sort($productcolorcheck);
+             $productcolorcheck=(implode(',',$productcolorcheck));
 
 
-		$productstylecheck=','.$productstylecheck.',';
-                $_stylelike=($_like==""?" concat(',',product_style_id) like '%".$productstylecheck."%'":" and concat(',',product_style_id) like '%".$productstylecheck."%'");
+		$productcolorcheck=','.$productcolorcheck.',';
+                $_colorlike=($_like==""?" concat(',',product_color_id) like '%".$productcolorcheck."%'":" and concat(',',product_color_id) like '%".$productcolorcheck."%'");
  $_like=1;
 	}
 	if(!empty($productmaterialtypecheck))
@@ -359,9 +403,9 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
          break;
      }
 	
-$query=$this->db->query("select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
+$query=$this->db->query("select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_color_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_colorlike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
 UNION
-select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where product_id not in (select concat(',',product_id)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
+select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_color_id,dimensions,description, 	note from products where product_id not in (select concat(',',product_id)  from products  where ".$_typelike." ".$_colorlike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
 
 return $query->result();	
 	

@@ -46,9 +46,10 @@
 	 <?php
 	 
 	  // this hidden variable stores the design name.
-           echo '<p class = "blue_text midlarge sanslight">'.$userdesign[0]->design_name.'</p>';
+         
            echo '<input type="hidden" name="holddesignidforroom" id="holddesignidforroom" value="'.$designid.'"/>';
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
+		   echo $userdesign[0]->design_name;
      ?>
 		<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
 
@@ -80,7 +81,7 @@
 <div class = "designmain" id = "designimage">
 	
 <p class = "condensed text-center midlarge"> Upload Design Images</p>
-	<div id = "me" class = "styleall button2 pink white_text small condensed">Browse</div>
+	<div id = "me" class = "styleall button2 pink white_text small sanslight">Browse</div>
 		<span id="mestatus" ></span><br/>
 
 	<div id="files"  style="list-style-type: none;">
@@ -143,7 +144,7 @@
       if(($key2->product_id==$key->product_id))
       {
          echo'<div id="select_img_'.$key2->design_id.'_'.$key->product_id.'" class = "selectedproductimagediv">
-		 <img src="'.$key->weblink.'" height="100px;"/><input type="hidden" name="assign_'.$key2->design_id.'[]" value="'.$key->product_id.'" /></div>';
+		 <img src="'.$key->weblink.'" height="100px;"/><input type="hidden" class = "selectedprod" name="assign_'.$key2->design_id.'[]" value="'.$key->product_id.'" /></div>';
     
          $productidhold=($productidhold==""?$key->product_id:$productidhold.','.$key->product_id);	
  
@@ -179,7 +180,7 @@ elseif(sizeof($userdesign)==0)
 
 ?>
 </div>
-<div class = "span10">
+<div>
 <div class = "well">
 <p class = "condensed medium">Search for a product: &nbsp; &nbsp;
 <input class = "search-query" type="textbox" name="productsearchbyname" id="productsearchbyname"/>
@@ -275,6 +276,7 @@ foreach($productmaterialtype as $key)
 
 <div>
 <input type="button" class = "button2 gray" id="filterproduct" name="filterproduct" value="Filter" />
+<input type="button" class = "button2 gray" id="clearfilter" name="clearfilter" value="Clear Filters" />
 </div>
 
 </div>

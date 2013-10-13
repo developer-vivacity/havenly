@@ -256,6 +256,8 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
     }
 }
 
+
+
 function update_room_status_by_admin()
 {
 	$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
@@ -441,8 +443,9 @@ function assign_product($room_id=null,$user_id=null,$design_id=null)
 			
 			if(($this->input->post("hidproductsearch")=="search") | ($this->input->post("hidproductsearch")=="sort"))
 					 {
-					  $this->_add_new_design=1;
-					  $this->Add_Design_For_Room($this->input->post("currentroomid"),rtrim(base64_encode($this->input->post("holddesignname")),'='),$this->input->post("userdesign"),$this->input->post("currentuserid"),$this->input->post("product_status"),'this');
+					  
+					  
+					  $this->load->view('test',$data);
 					 }
 			else
 					 {
@@ -582,7 +585,7 @@ function search_text_for_ajax($text=null,$id=null)
 {
 
 	    $data['filtertext']=$this->product_model->product_search($text,$id);
-             echo json_encode($data['filtertext']);
+        echo json_encode($data['filtertext']);
 	
 }
 
@@ -794,4 +797,27 @@ function send_mail($_email,$update_room_type,$_data)
                            }	
 	
 }
+
+function filter_products()
+
+{
+
+	$data["productdetails"]=$this->product_model->filter_products($this->input->post("typeid"),$this->input->post("colorid"),$this->input->post("styleid"),$this->input->post("materialid"));
+	$data["selectedproducts"]=$this->input->post("productimage");
+	$view=$this->load->view('Admin/productview', $data);
+	echo $view;
+	
+}
+
+function clear_filter()
+
+{
+	$data["productdetails"]=$this->product_model->get_all_product();
+	$data["selectedproducts"]=$this->input->post("productimage");
+	$view=$this->load->view('Admin/productview', $data);
+	echo $view;
+
+
+}
+
 }

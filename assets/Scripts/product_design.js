@@ -163,7 +163,7 @@ function display_design()
 function saveproductdetailsofdesign()
 {
 	
-	$("#product_status").val($("#design_status").val());
+	     $("#product_status").val($("#design_status").val());
 
          $("#saveproduct").submit();	
 }

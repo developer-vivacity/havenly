@@ -580,7 +580,7 @@ function get_token()
 		<input type="button" class = "button3 pink white_text condensed small" name="Apply" value="Apply" id="designApply"/>
 		</div>
 		
-		<div id="payment-form" class = "horizontal">
+		<div id="payment-form" class = "alert alert-error">
 		   <span class="alert-error alert payment-errors"></span>
 		<div class="horizontal">
 
@@ -1105,7 +1105,7 @@ $("#cardnumber").val().length<16
 $("#password").val()=="Password (min 6 chars.)"
 ||$("#password").val().length < 6)
 {
-   $("#submit_but").hide();
+  // $("#submit_but").hide();
 }
 
 
@@ -1115,8 +1115,12 @@ else
    //flag_sub=1;
 }
 });
+
+
+
 $("#tweetsend").click(function()
 {
+
 var check = $(this).find('#later');
 
 check.prop('checked',!check[0].checked);

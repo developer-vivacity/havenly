@@ -71,6 +71,9 @@ $(document).ready(function()
 		 
  })
 
+
+ 
+ 
 $('input[name$="retail_option"]').click(function()
 		{
 			$('#rentprise').val("");
@@ -87,10 +90,10 @@ $('input[name$="retail_option"]').click(function()
 
 $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keypress(function(event)
 {
-                                          $("#ShowStylefilter").html("");
-				      $("#ShowColorfilter").html("");
-				      $("#ShowMaterialfilter").html("");
-				      $("#ShowTypefilter").html("");	 
+     $("#ShowStylefilter").html("");
+	 $("#ShowColorfilter").html("");
+	 $("#ShowMaterialfilter").html("");
+	 $("#ShowTypefilter").html("");	 
 });
 
 		
@@ -135,9 +138,8 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 		})
 
   
-}
-);
-  $("#AddProduct").click(
+});
+$("#AddProduct").click(
   function()
   {
   
@@ -173,17 +175,44 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
           }
   });
   
+ 
    
   
   $("#searchproductname").click(function()
   {
-     $("#hidproductsearch").val("search");
-     
-     $("#saveproduct").submit();
+     var productimage = "";
+	 var productname = "";
+	var designid = $("#holddesignidforroom").val();
+	
+  $('.selectedprod').each(function()
+  {
   
-  })
+	if(productimage=="")
+	productimage = this.value;
+	else
+		productimage = productimage+','+this.value;
+});
+
+	productname = $("#productsearchbyname").val();
+
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/text_search',
+        type: 'POST',
+		data: {productimage: productimage, productname: productname},
+        success : function(data) {
+				$("#productlist").html(data);
+				$(".cbox").hide();
+				}
+	   
+    });
+		
+		});
+	 
+	 
   
-  $("#filterproduct,.btn.rip").click(function()
+  
+  
+  $("#filterproduct").click(function()
   {
 	
     var is_filter=false;
@@ -192,6 +221,21 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
     var productcolor="";
     var productstyle="";
     var productmaterial=""; 
+	var productimage = "";
+	
+	
+	var designid = $("#holddesignidforroom").val();
+	
+  $('.selectedprod').each(function()
+  {
+  
+	if(productimage=="")
+	productimage = this.value;
+	else
+		productimage = productimage+','+this.value;
+		
+  
+		});
 
   $('input[name="searchproducttype[]"]:checked').each(function(i,e)
   {
@@ -202,7 +246,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
            is_filter=true;
   });
  
-  $("#searchoptionfortype").val(producttypeid);
+  
   $('input[name="searchprice[]"]:checked').each(function(i,e)
   {
 	  if(productprice=="")
@@ -211,7 +255,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       productprice=productprice+','+e.value;
       is_filter=true;
   });
-  $("#searchoptionforprice").val(productprice);
+ 
   $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
   {
 	  if(productstyle=="")
@@ -220,7 +264,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       productstyle=productstyle+','+e.value;
       is_filter=true;
   });
-  $("#searchoptionforstyle").val(productstyle);
+  
   $('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
   {
 	  if(productmaterial=="")
@@ -229,7 +273,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       productmaterial=productmaterial+','+e.value;
       is_filter=true;
   });
-  $("#searchoptionformaterial").val(productmaterial);
+  
   $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
   {
 	  if(productcolor=="")
@@ -239,87 +283,55 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
       is_filter=true;
   });
     
-    $("#searchoptionforcolor").val(productcolor);
-    if(is_filter==true)
-    {
-	$("#productsearchbyname").val("");  
-	  
-	$("#hidproductsearch").val("search");
 
-        $("#saveproduct").submit();
-   }
-})
-  
-  $("#ascproduct").click(function(){
-  var is_sort=false;
-  var ascproducttypecheck="";
-  var ascproductcolortypecheck="";
-  var ascproductmaterialtypecheck="";
-  var ascproductstylecheck="";
-  var ascproductpricecheck="";
-           $('input[name="producttypecheck[]"]:checked').each(function(i,e)
-           {
-			  is_sort=true;
-			  if(ascproducttypecheck=="")
-			   ascproducttypecheck=e.value;
-			   else
-			   ascproducttypecheck=ascproducttypecheck+','+e.value;
-			   
-		   })
-           $('input[name="productcolortypecheck[]"]:checked').each(function(i,e)
-           {
-                            is_sort=true;
-                            if(ascproductcolortypecheck=="")
-			    ascproductcolortypecheck=e.value;
-			    else
-			    ascproductcolortypecheck=ascproductcolortypecheck+','+e.value;
-			   
-			   
-			   
-		   })
-	 $('input[name="productmaterialtypecheck[]"]:checked').each(function(i,e)
-           {
-			   is_sort=true;
-               if(ascproductmaterialtypecheck=="")
-			   ascproductmaterialtypecheck=e.value;
-			   else
-			   ascproductmaterialtypecheck=ascproductmaterialtypecheck+','+e.value;
-		 })
-	$('input[name="productstylecheck[]"]:checked').each(function(i,e)
-           {
-			   is_sort=true;
-			   if(ascproductstylecheck=="")
-			   ascproductstylecheck=e.value;
-			   else
-			   ascproductstylecheck=ascproductstylecheck+','+e.value;
-			   
-			   
-		   })
-              $('input[name="ascprice[]"]:checked').each(function(i,e)
-                   {
-			   is_sort=true;
-			   if(ascproductpricecheck=="")
-			   ascproductpricecheck=e.value;
-			   else
-			   ascproductpricecheck=ascproductpricecheck+','+e.value;
-			   
-			   
-		   })
-		   
-		$("#searchoptionforprice").val(ascproductpricecheck);
-		$("#hidproducttypecheck").val(ascproducttypecheck);
-		$("#hidproductcolortypecheck").val(ascproductcolortypecheck);
-		$("#hidproductmaterialtypecheck").val(ascproductmaterialtypecheck);
-		$("#hidproductstylecheck").val(ascproductstylecheck);
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/filter_products',
+        type: 'POST',
+        data: {typeid: producttypeid, styleid: productstyle, colorid: productcolor, materialid: productmaterial, productimage: productimage },
+       success : function(data) {
+				$("#productlist").html(data);
+				$(".cbox").hide();
+				}
+	   
+    });
 		
-		  if(is_sort)
-		  { 
-		  $("#hidproductsearch").val("sort");
-                 
-                    $("#saveproduct").submit();
-                    }
-  
+		
+
 });
+
+
+$("#clearfilter").click(function(){
+
+var productimage = "";
+var designid = $("#holddesignidforroom").val();
+	
+  $('.selectedprod').each(function()
+  {
+  
+	if(productimage=="")
+	productimage = this.value;
+	else
+		productimage = productimage+','+this.value;
+});
+
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/clear_filter',
+        type: 'POST',
+		data: {productimage: productimage},
+        success : function(data) {
+				$("#productlist").html(data);
+				$(".cbox").hide();
+				}
+	   
+    });
+		
+		});
+	
+
+	
+
+  
+  
 $("#savecurrentproduct").click(function()
 {
 	var p_value=1;
@@ -439,7 +451,7 @@ $("#adduploadproductpic").click(function()
 
 $('input[type="textbox"]').keypress(function()
 {
-	                              $("#ShowStylefilter").html("");
+	$("#ShowStylefilter").html("");
 				      $("#ShowColorfilter").html("");
 				      $("#ShowMaterialfilter").html("");
 				      $("#ShowTypefilter").html("");	  
@@ -657,7 +669,7 @@ function display_div(id)
 	
      $(".productdetailsdiv").remove();
 
-    $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv" style="background-color:white;border-radius: 5px;padding: 5px 5px;position:absolute;z-index:100;width: 100px;font-size:8px !important;font-family:airal,Georgia,Serif;font-size:12px !important;"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
+    $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
      
     $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
      {
@@ -667,9 +679,9 @@ function display_div(id)
                $.each(data, function(key, val) 
 			   {
 				   
-                             $("#productdetailsdiv_"+id+"").html(" ");
+                $("#productdetailsdiv_"+id+"").html(" ");
 			    
-			    $("#productdetailsdiv_"+id+"").append('<div>Name:'+val.product_name+'</div><div>Price:'+val.price+'</div><div>Dimensions:'+val.dimensions+'</div>');	  
+			    $("#productdetailsdiv_"+id+"").append('<div class = "condensed small">'+val.product_name+'<br>Price:&nbsp;'+val.price+'<BR>Dimensions:&nbsp;'+val.dimensions+"</div>" );	  
 				globalkey="no";	  
 			   })
                   $(".productdetailsdiv").show();
@@ -683,7 +695,6 @@ function remove_display_div()
 	$(".productdetailsdiv").html(" ");
 	$(".productdetailsdiv").hide();
 	$(".productdetailsdiv").remove();
-	
 	
 }
 function save_comment(input_id,conceptid,roomid,form_id)
@@ -705,6 +716,9 @@ function save_comment(input_id,conceptid,roomid,form_id)
 	        }
 	        
         }
+		
+	
+		
 function removetext(id,isreset)
 {
          $(".alert,.alert-error").remove();
@@ -720,6 +734,7 @@ function resettest(id)
 	
 }
 var nav_start=1;
+
 function slide_nav(total,direction)
 {
 
@@ -740,3 +755,77 @@ function slide_nav(total,direction)
 	}
          
 }
+
+
+
+
+// $("#ascproduct").click(function(){
+  // var is_sort=false;
+  // var ascproducttypecheck="";
+  // var ascproductcolortypecheck="";
+  // var ascproductmaterialtypecheck="";
+  // var ascproductstylecheck="";
+  // var ascproductpricecheck="";
+           // $('input[name="producttypecheck[]"]:checked').each(function(i,e)
+           // {
+			  // is_sort=true;
+			  // if(ascproducttypecheck=="")
+			   // ascproducttypecheck=e.value;
+			   // else
+			   // ascproducttypecheck=ascproducttypecheck+','+e.value;
+			   
+		   // })
+           // $('input[name="productcolortypecheck[]"]:checked').each(function(i,e)
+           // {
+                            // is_sort=true;
+                            // if(ascproductcolortypecheck=="")
+			    // ascproductcolortypecheck=e.value;
+			    // else
+			    // ascproductcolortypecheck=ascproductcolortypecheck+','+e.value;
+			   
+			   
+			   
+		   // })
+	 // $('input[name="productmaterialtypecheck[]"]:checked').each(function(i,e)
+           // {
+			   // is_sort=true;
+               // if(ascproductmaterialtypecheck=="")
+			   // ascproductmaterialtypecheck=e.value;
+			   // else
+			   // ascproductmaterialtypecheck=ascproductmaterialtypecheck+','+e.value;
+		 // })
+	// $('input[name="productstylecheck[]"]:checked').each(function(i,e)
+           // {
+			   // is_sort=true;
+			   // if(ascproductstylecheck=="")
+			   // ascproductstylecheck=e.value;
+			   // else
+			   // ascproductstylecheck=ascproductstylecheck+','+e.value;
+			   
+			   
+		   // })
+              // $('input[name="ascprice[]"]:checked').each(function(i,e)
+                   // {
+			   // is_sort=true;
+			   // if(ascproductpricecheck=="")
+			   // ascproductpricecheck=e.value;
+			   // else
+			   // ascproductpricecheck=ascproductpricecheck+','+e.value;
+			   
+			   
+		   // })
+		   
+		// $("#searchoptionforprice").val(ascproductpricecheck);
+		// $("#hidproducttypecheck").val(ascproducttypecheck);
+		// $("#hidproductcolortypecheck").val(ascproductcolortypecheck);
+		// $("#hidproductmaterialtypecheck").val(ascproductmaterialtypecheck);
+		// $("#hidproductstylecheck").val(ascproductstylecheck);
+		
+		  // if(is_sort)
+		  // { 
+		  // $("#hidproductsearch").val("sort");
+                 
+                    // $("#saveproduct").submit();
+                    // }
+  
+// });

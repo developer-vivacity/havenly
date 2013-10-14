@@ -32,51 +32,7 @@
       </div>
 	  </div>
 
-<div class = "white">
-<BR><BR><BR><BR><BR>
-<table>
-<tr><td class = "midlarge"><?php echo $designname;?></td><td>
-
-	&nbsp;&nbsp;<a class = "btn" href = <?php echo base_url('index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid);?>>Edit Design</a>
-	</td></tr>
-	
-<tr><td>&nbsp;</td></tr>
-<tr><td><p>Design Images</p></td></tr>
-<tr>
-<td>
-
-<?php
-//----add div tag by kbs----
-if(sizeof($designimage)==0)
-echo "<span id='messagefordesign'>No Image</span>";
-echo '<div id="designimageassignproduct">';
-foreach($designimage as $key)
-{
-echo '<div><img src="'.$key->filename.'" height="150px"/></div>';
-}
-echo '</div>';	
-//---end add div tag.......
-?>
-</td>
-</tr>
-<tr>
-<td>&nbsp;</td></tr>
-
-<tr><td><p>Product Images</p></td></tr>
-
-<tr>
-<td>
-
-<?php
-
-	if(sizeof($productassign)==0)
-	echo "No Products Uploaded";
-         foreach($productassign as $key)
-	{
-	echo '<div><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'"><img src="'.$key->link.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
-	}
-
-//add hidden variable by kbs---------------------------
+	  <?php //add hidden variables by kbs---------------------------
 echo '<input type="hidden" name="siteurl" id="siteurl" value="'.base_url().'"/>';
 echo '<input type="hidden" value="'.$roomid.'" id="currentroomid" name="currentroomid"/>';
 echo '<input type="hidden" value="'.$currentuserid.'" id="currentuserid" name="currentuserid"/>';
@@ -85,52 +41,41 @@ echo '<input type="hidden" value="'.$designid.'" id="userdesign" name="userdesig
 
 
 ?>
+<div class = "white">
+<div class = "container text-center">
+<BR><BR><BR>
 
-</td>
-
-</tr>
-<!----start add code by kbs-------->	
-<tr><td>&nbsp;</td></tr>
-<tr><td>
-
- <?php echo '<div id="updatedesign">Design name <input type="textbox" value="'.$designname.'" id="designtext"/><input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'name\');" value="Update" class="pink condensed button3"/></div>';?>
-
-</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td>
-	 
-Design Status <select name="DesignStatus" id="DesignStatus"><option value="draft" <?php
-	 if($designdetail[0]->status=="draft") echo "selected";?>>draft</option><option value="submitted" <?php if($designdetail[0]->status=="submitted") echo "selected";?>>submitted</option></select>
-<?php echo '<input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'status\');" value="Update" class="pink condensed button3"/>'?>
-</td></tr>
-
-<tr><td>&nbsp;</td></tr>
-<tr><td>
-<div>
-<p>Upload Design Images</p>
-<div id="me" class="styleall" style=" cursor:pointer;">
-	
-  <span style=" cursor:pointer; font-family:Verdana, Geneva, sans-serif; font-size:9px;">
-  <span style=" cursor:pointer;">Click Here To Upload Design Images</span></span></div>
-  
-  <span id="mestatus"></span>        
-  <div id="files" style="list-style-type: none;">
-  <li class="success" >
-  </li>
+<div class = "admin_header text-center">
+	<p class = "midlarge"><?php echo '<div id="updatedesign"><input type="textbox" class= "midlarge sanslight" value="'.$designname.'" id="designtext"/>
+	<input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'name\');" value="Update Name" class="pink small button2"/></div>';?>
+	<a class = "button2 float_right blue small" href = <?php echo base_url('index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid);?>>Edit Design</a>
+</div>
+<BR><BR>
+<div class = "well white text-left">
+<div class = "span3 top"> Design Status: </div>
+<div class = "span5 top"><select name="DesignStatus" id="DesignStatus">
+		<option value="draft" <?php if($designdetail[0]->status=="draft") echo "selected";?>>Draft</option>
+		<option value="submitted" <?php if($designdetail[0]->status=="submitted") echo "selected";?>>Submitted</option>
+</select>
+<?php echo '<input type="button" onclick="Updatedesign('.$designid.','.$roomid.',\'status\');" value="Update" class="pink button2 small"/>'?>
 </div>
 
-</td></tr>
-<tr><td>&nbsp;&nbsp;</td></tr>
-<!---end add code by kbs code----->
-<tr><td>
-	<?php
-	
-$attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
-echo form_open('Admin/site/paint_colors_for_design/',$attributes);
+<?php
+	$attributes = array( 'id' => 'insertrgb','enctype' => 'multipart/form-data');
+	echo form_open('Admin/site/paint_colors_for_design/',$attributes);
 ?>
-<table border="0">
-<tr><td>Designer Notes</td><td colspan="5"><textarea name="designer_notes" id="designer_notes"><?php echo $designdetail[0]->designer_notes;?></textarea></td><td><div id="designercommenterror" class="alert alert-error error_show"></td><td><input type="button"  onclick="insert_color('comment');" value="Update" class="pink condensed button3"/></td><td><div style="float:right;"></div></td></tr>	
-<tr ><td colspan="8" ><div style="margin-left:200px;"><h4>Design color</h4></div></td></tr>
+<div>
+<div class = "span3">Designer Notes</div>
+<div class = "span5">
+	<textarea name="designer_notes" id="designer_notes">
+	<?php echo $designdetail[0]->designer_notes;?></textarea><input type="button"  onclick="insert_color('comment');" value="Update" class="pink small button2"/>
+	<div id="designercommenterror" class="alert alert-error error_show"></div>
+	
+</div></div><br>
+<div>
+<div class = "span3">
+Paint Color:</div>
+<div class = "span5">
 <?php
 $r=0;
 $name="";
@@ -139,52 +84,86 @@ $display='none';
 foreach($designcolor as $designer_key)
 {        
 	         
-          $designcolor= explode(',',str_replace("rgb(","",str_replace(");","",$designer_key->color)));
-          ++$r;
-          echo'<tr id="rgbtablerow'.$r.'">
-          <td>'.$name.'</td>
-          <td id="colorpic'.$r.'"><div style="background-color:'.$designer_key->color.';width:50px;height:50px;">&nbsp;</div></td>
-          <td><input type="text" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'.$r.'" maxlength="3" value="'.$designcolor[0].'" onblur="color_pic('.$r.');"/></td>
-          <td><input type="text" size="2" class="txtrgb" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'.$r.'" maxlength="3" value="'.$designcolor[1].'"/></td>
-          <td><input type="text" name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" maxlength="3" value="'.$designcolor[2].'"/></td>
-          <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'">'.$designer_key->description.'</textarea></td>
-          <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></a></td>
-          <td><div id="rgberror'.$r.'" class="alert alert-error error_show2"></div></td>
-          </tr>';
+    $designcolor= explode(',',str_replace("rgb(","",str_replace(");","",$designer_key->color)));
+     ++$r;
+    echo'<div id="rgbtablerow'.$r.'">'
+          .$name.
+          '<div id="colorpic'.$r.'">
+		  <div style="background-color:'.$designer_key->color.'>
+          <input type="text" name="txtrgbfirst[]" class="txtrgb"  id="rgbone'.$r.'" maxlength="3" value="'.$designcolor[0].'" onblur="color_pic('.$r.');"/></td>
+          <input type="text" size="2" class="txtrgb" name="txtrgbsecond[]" id="rgbtwo'.$r.'" maxlength="3" value="'.$designcolor[1].'"/>
+          <input type="text" name="txtrgbthird[]" size="2" class="txtrgb" id="rgbthree'.$r.'" maxlength="3" value="'.$designcolor[2].'"/></td>
+          <br>
+		  Color Name: 
+		  <input type = "text" name="comment[]" id="comment'.$r.'" value='.$designer_key->description.'/>
+		  <a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></a></td>
+          <div id="rgberror'.$r.'" class="alert alert-error error_show2"></div>
+          </div></div></div>';
 	
-}
+}	
    
-   if($r<5)
-   {
-   $display='block';
-   }
-   if($r==0)
-   {
+if($r==0)
+{
     $r=$r+1;
-    echo '<tr id="rgbtablerow'.$r.'">
-    <td>Enter RGB</td><td id="colorpic'.$r.'">&nbsp;</td>
-    <td><input type="text" maxlength="3" name="txtrgbfirst[]" style="width:20px;" class="txtrgb"  id="rgbone'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
-    <td><input type="text" maxlength="3" class="txtrgb" size="2" style="width:20px;" name="txtrgbsecond[]" id="rgbtwo'.$r.'" 
-    onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
-    <td><input type="text" maxlength="3"  name="txtrgbthird[]" size="2" style="width:20px;" class="txtrgb" id="rgbthree'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/></td>
-    <td>Description</td><td><textarea name="comment[]" id="comment'.$r.'"></textarea></td>
-    <td><a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/></td>
-    <td><div id="rgberror'.$r.'" class="alert alert-error error_show2"></div></td></tr>';
+    echo '<div id="rgbtablerow'.$r.'">
+    <Enter RGB><div id="colorpic'.$r.'"></div>
+    <input type="text" maxlength="3" name="txtrgbfirst[]" class="txtrgb"  id="rgbone'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/>
+    <input type="text" maxlength="3" class="txtrgb" size="2" name="txtrgbsecond[]" id="rgbtwo'.$r.'"  onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/>
+    <input type="text" maxlength="3"  name="txtrgbthird[]" size="2" class="txtrgb" id="rgbthree'.$r.'" onkeypress="return handle_key(event);" onblur="color_pic('.$r.');"/>
+    Color Name
+	<textarea name="comment[]" id="comment'.$r.'"></textarea>
+    <a href="#" onclick="removergbrow(\'rgbtablerow'.$r.'\')"><img src="'.base_url().'assets/Images/delicon.fw.png" height="30px;" width="30px;"/>
+   <div id="rgberror'.$r.'" class="alert alert-error error_show2"></div>';
    }
 echo '<input type="hidden" id="totalrgb" value="'.$r.'" name="totalrgb"/>';
-echo '<tr id="rgbtablerow"><td colspan="8"><div style="margin-left:200px;display:'.$display.'" id="d_color"><input type="button"  id="addmorergb" value="Add Color" class="pink condensed button3"/></div></td></tr>';
+echo '<div id="rgbtablerow"><div id="d_color"><input type="button"  id="addmorergb" value="Add Color" class="pink small button2/></div></div>';
 ?>
-<tr><td colspan="8"><div style="float:left;margin-left:200px;" id="sub_color"><input type="button"  onclick="insert_color('color');" value="Submit" class="pink condensed button3"/></div></td></tr>
-</table>
+<input type="button"  class="pink small button2" onclick="insert_color('color');" value="Submit" /></div>
 
 <?php echo '<input type="hidden" name="desinerholdid" id="desinerholdid" value="'.$designid.'">';
-
-echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value="'.$roomid.'">';
+	echo '<input type="hidden" name="desinerholdroomid" id="desinerholdroomid" value="'.$roomid.'">';
 ?>
 <?php  echo form_close(); ?>
-</td>
-</tr>
-</table>
+
+</div></div></div>
+<BR><BR>
+<div class = "well white">	<hr>
+<p class = "medium condensed">DESIGN RENDERINGS</p>
+<hr>
+
+
+<?php
+//----add div tag by kbs----
+if(sizeof($designimage)==0)
+	{echo "<div id='messagefordesign'><p class = 'alert alert-error'>No Design Images Uploaded</p></div>";}
+else {
+echo '<div id="designimageassignproduct">';
+	
+	foreach($designimage as $key)
+	{
+		echo '<div class = "inline"><img src="'.$key->filename.'" height="200px"/></div>';
+	}
+echo '</div>';}	
+//---end add div tag.......
+?>
+</div>
+<br><BR>
+<div class = "well white"><hr>
+<p class = "medium condensed">SELECTED PRODUCTS</p>
+<hr>
+
+<?php
+
+	if(sizeof($productassign)==0)
+	echo "No Products Uploaded";
+     foreach($productassign as $key)
+	{
+	echo '<div><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'">
+	<img src="'.$key->weblink.'" height="100px" width="100px"/><br><span>&nbsp;'.wordwrap($key->product_name,15,"<br />\n").'</span></a></div>';
+	}
+
+?>
+</div>
 </body>
 <!----start add code by kbs-------->
 <script>
@@ -204,6 +183,8 @@ function handle_key(event)
         }
 
 }
+
+$('.error_show').hide();
 	
 function Updatedesign(designid,roomid,type)
 {
@@ -321,7 +302,7 @@ function removergbrow(id)
 	if(zi==0)
 	{
 	    $("#sub_color").hide()
-         }
+      }
 	
 	$("#d_color").show();
 	$("#totalrgb").val(zi);
@@ -337,7 +318,7 @@ function insert_color(type)
 	{
 		if($("#designer_notes").val().trim()=="")
 		{
-		$("#designercommenterror").html("Enter Designer Notes!");
+		$("#designercommenterror").html("Please enter a note to the client");
 		$("#designercommenterror").show();
 		$("#designercommenterror").focus();
 	         error_flage=false;

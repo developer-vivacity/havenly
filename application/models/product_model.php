@@ -12,9 +12,9 @@ class Product_model extends CI_Model
   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_designs(user_id int(10) NOT NULL,
 room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(100) NOT NULL)");
 
-  $this->db->query("CREATE TABLE IF NOT EXISTS products(productid int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,link varchar(200) NOT NULL,
-product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,product_style_id varchar(100) NOT NULL,
-description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(100) NOT NULL,PRIMARY KEY(productid))");
+  $this->db->query("CREATE TABLE IF NOT EXISTS products(product_id int(10) NOT NULL AUTO_INCREMENT,vendor_id int(10) NOT NULL,product_name varchar(100) NOT NULL,price decimal(10,2) NOT NULL,rent_price decimal(10,2) NOT NULL,ship_cost decimal(10,2) NOT NULL ,qty_in_stock  int(10) NOT NULL,weblink text NOT NULL,
+product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,
+description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NULL, material_name varchar(300) NULL, color_name varchar (300) NULL, PRIMARY KEY(product_id))");
 
   $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
 
@@ -24,11 +24,11 @@ description varchar(300) NOT NULL,dimensions varchar(50) NOT NULL,note varchar(1
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_material(material_id int(10) NOT NULL AUTO_INCREMENT,material varchar(100) NOT NULL,PRIMARY KEY(material_id))");
 
- $this->db->query("CREATE TABLE IF NOT EXISTS product_style(style_id int(10) NOT NULL AUTO_INCREMENT,style varchar(100) NOT NULL,PRIMARY KEY(style_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS product_color(color_id int(10) NOT NULL AUTO_INCREMENT,color varchar(100) NOT NULL,PRIMARY KEY(color_id))");
 
- $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NOT NULL,
-phone_number varchar(50) NOT NULL,
-contact varchar(100) NOT NULL,website_link varchar(100) NOT NULL, PRIMARY KEY(vendor_id))");
+ $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NULL,
+phone_number varchar(50)  NULL,
+contact varchar(100)  NULL,website_link varchar(100) NULL, PRIMARY KEY(vendor_id))");
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
@@ -52,10 +52,10 @@ timestamp timestamp NOT NULL)");
  function get_all_product($pid=null)
   {	
 	 
-	  $this->db->select('productid,product_name,link,dimensions,description,ship_cost,ship_cost,price,rent_price');
+	  $this->db->select('product_id,product_name, color_name, material_name, weblink,dimensions,description,ship_cost,ship_cost,price');
 	  $this->db->from('products');
 	  if($pid!="")   
-	  $this->db->where('productid',$pid);
+	  $this->db->where('product_id',$pid);
 		
           return $this->db->get()->result(); 
   }
@@ -79,9 +79,9 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
    {
     $this->db->from('products','product_room_mapping');
    
-    $this->db->select('productid,product_name,link,Design_Plan'); 
+    $this->db->select('products.product_id,product_name,weblink,Design_Plan'); 
    
-    $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id');     
+    $this->db->join('product_room_mapping', 'products.product_id = product_room_mapping.product_id');     
    
     $this->db->where('room_id',$roomid);  
     $this->db->distinct();
@@ -96,7 +96,7 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
           {    
                if($designkey!="product")
                {               
-               $this->db->where('design_id',$designkey);
+               $this->db->where('design_product_mapping.design_id',$designkey);
                $this->db->delete('design_product_mapping');      
                } 
              foreach($designvalue as $key=>$value) 
@@ -131,14 +131,14 @@ function product_search($text=null,$id=null)
 {
    if($id==1)
 	{
-          $this->db->select('style_id,style');
-          $this->db->like('style', $text);	
-          $query = $this->db->get('product_style');
+          $this->db->select('color_id,color');
+          $this->db->like('color', $text);	
+          $query = $this->db->get('product_color');
        }
     elseif($id==2)
     {
 	   $this->db->select('color_id,color');
-            $this->db->like('color', $text);	
+         $this->db->like('color', $text);	
             $query = $this->db->get('product_colors');
      }
 	elseif($id==3)
@@ -151,7 +151,7 @@ function product_search($text=null,$id=null)
 	{
 		$this->db->select('type_id,type');
 		$this->db->like('type', $text);	
-                  $query = $this->db->get('product_type');
+       $query = $this->db->get('product_type');
 	}
     return $query->result(); 	
 }
@@ -189,96 +189,88 @@ function insert_image_link_with_product_id($product_id,$link_array)
 }
 
 
-function search_product($product_name=null,$search_type=null,$search_price=null,$search_color=null,$search_style=null,$search_material=null)
+
+
+function filter_products($product_type, $product_color, $product_color, $product_material)
+
 {
+	if ($product_type !="")
+	{
+		
+		$product_type_separate = explode(",", $product_type);
+		$product_type_array = array_map('intval', $product_type_separate);
+		$this->db->where_in('product_type_id',$product_type_array);
+		
+	}
+	
+	if ($product_color !="")
+	{
+		$product_color_separate = explode(",", $product_color);
+		$product_color_array = array_map('intval', $product_color_separate);
+	
+		$this->db->where_in('product_color_id', $product_color_array);
+	}
+	
+		if ($product_color !="")
+	{
+		$product_color_separate = explode(",", $product_color);
+		$product_color_array = array_map('intval', $product_color_separate);
+		$this->db->where_in('product_color_id', $product_color_array);
+	}
+	
+	
+	if ($product_material !="")
+	{
+	
+		$product_material_separate = explode(",", $product_material);
+		$product_material_array = array_map('intval', $product_material_separate);
+		$this->db->where_in('product_material_id', $product_material_array);
+	}
+	
+	
+		$this->db->from('products');
+		$query = $this->db->get();
+		return $query->result();
 
-	if(!empty($search_type))
-	{
-		$search_type=','.$search_type.',';
-		$this->db->or_like("concat(',',product_type_id)",$search_type);
-	}
-      	if(!empty($search_style))
-	{
-	   $search_style=','.$search_style.',';
-	   $this->db->or_like("concat(',',product_style_id)",$search_style);
-        }if(!empty($search_material))
-	{
-	  $search_material=','.$search_material.',';
-	  $this->db->or_like("concat(',',product_material_id)",$search_material);
-	  
-        }
-        if(!empty($search_color))
-	{
-	  $search_color=','.$search_color.',';
-	  $this->db->or_like("concat(',',product_color_id)",$search_color);
-	}
-     
-       $this->db->like('product_name', $product_name); 
-	
-       switch ($search_price) 
-	{
-         case "1,2,3":
-         $num=0;
-         $this->db->where('price >',$num); 
-         break;
-         case "1,2":
-         $num=500.00;
-         $this->db->where('price >=',$num); 
-         break;
-         case "2,3":
-         $num=500;
-         $this->db->where('price <',$num); 
-         break;
-         case "1,3":
-         $num=100;
-         $this->db->where('price <',$num);
-         $num=1000;
-         $this->db->or_where('price >=',$num); 
-         break;
-         case "1":
-         $num=1000.00;
-         $this->db->where('price >=',$num);
-         break;
-         case "2":
-         $num=500;
-         $this->db->where('price >=',$num);
-         $num=1000;
-         $this->db->where('price <',$num);
-         break;
-         case "3":
-         $num=100;
-         $this->db->where('price <',$num);
-         break;
-}
-       $this->db->distinct();
-	
-       $query=$this->db->from('products','product_room_mapping');
-	
-       $this->db->join('product_room_mapping', 'products.productid = product_room_mapping.product_id','left');
-       
-       $this->db->group_by('products.productid');
-       $this->db->order_by('count(product_room_mapping.room_id)', 'desc');
-       
-       $query = $this->db->get();	
-       return $query->result();
 }
 
 
+function search_product_name($productname)
+{
+	$this->db->like('product_name', $productname);
+	$this->db->or_like ('material_name', $productname);
+	$this->db->or_like ('color_name', $productname);
+	$this->db->or_like ('vendor_name', $productname);
+	$this->db->or_like ('description', $productname);
+	$this->db->or_like ('color', $productname);
+	$this->db->or_like ('type', $productname);
+	$this->db->or_like ('material', $productname);
+	
+	$this->db->select('products.*');
+	$this->db->from('products');
+	$this->db->join('vendors', 'products.vendor_id = vendors.vendor_id', 'left');
+	$this->db->join('product_type', 'products.product_type_id = product_type.type_id', 'left');
+	$this->db->join('product_color', 'products.product_color_id=product_color.color_id', 'left');
+	$this->db->join('product_material', 'products.product_material_id=product_material.material_id','left');
+	
+	$query = $this->db->get();
+	return $query->result();
+}
 
-function product_sort_by_type($producttypecheck,$productstylecheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
+function product_sort_by_type($producttypecheck,$productcolorcheck,$productmaterialtypecheck,$productcolortypecheck,$searchoptionforprice)
 {
 
 	$_like='';
 	
-         $_typelike='';
+    $_typelike='';
 	
-	$_stylelike='';
+	$_colorlike='';
 	
 	$_materiallike='';
 	
 	$_colorlike='';
 	
-         $_likeprice='';
+    $_likeprice='';
     
 	
 	if(!empty($producttypecheck))
@@ -294,17 +286,17 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
            $_like=1;
            }
 	}
-	if(!empty($productstylecheck))
+	if(!empty($productcolorcheck))
 	{
                 
 
-             $productstylecheck=explode(',',$productstylecheck);
-             sort($productstylecheck);
-             $productstylecheck=(implode(',',$productstylecheck));
+             $productcolorcheck=explode(',',$productcolorcheck);
+             sort($productcolorcheck);
+             $productcolorcheck=(implode(',',$productcolorcheck));
 
 
-		$productstylecheck=','.$productstylecheck.',';
-                $_stylelike=($_like==""?" concat(',',product_style_id) like '%".$productstylecheck."%'":" and concat(',',product_style_id) like '%".$productstylecheck."%'");
+		$productcolorcheck=','.$productcolorcheck.',';
+                $_colorlike=($_like==""?" concat(',',product_color_id) like '%".$productcolorcheck."%'":" and concat(',',product_color_id) like '%".$productcolorcheck."%'");
  $_like=1;
 	}
 	if(!empty($productmaterialtypecheck))
@@ -359,9 +351,9 @@ function product_sort_by_type($producttypecheck,$productstylecheck,$productmater
          break;
      }
 	
-$query=$this->db->query("select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
+$query=$this->db->query("select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_color_id,dimensions,description, 	note  from products  where ".$_typelike." ".$_colorlike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice."
 UNION
-select productid,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_style_id,dimensions,description, 	note from products where productid not in (select concat(',',productid)  from products  where ".$_typelike." ".$_stylelike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
+select product_id,product_name,vendor_id,price,rent_price,ship_cost,qty_in_stock,link,product_type_id,product_color_id,product_material_id,product_color_id,dimensions,description, 	note from products where product_id not in (select concat(',',product_id)  from products  where ".$_typelike." ".$_colorlike." ".$_materiallike."  ". $_colorlike."  ".$_likeprice.")");	
 
 return $query->result();	
 	
@@ -392,7 +384,7 @@ function product_style()
 }
 function product_details_by_id($id)
 {
-	$this->db->where('productid',$id);
+	$this->db->where('product_id',$id);
 	$query=$this->db->get('products');
 	return $query->result();
 }
@@ -401,10 +393,10 @@ function userdesign($room_id=null,$design_id=null)
          $this->db->select('design_id,design_name,status,designer_notes'); 
          $this->db->where('room_id',$room_id);
          if($design_id!=null)
-         $this->db->where('design_id',$design_id);
+         $this->db->where('user_design.design_id',$design_id);
          $this->db->where('status !=','close');	
-	 $query=$this->db->get('user_design');
-	 return $query->result();
+		$query=$this->db->get('user_design');
+		return $query->result();
 }
 function productassociatewithdesign($room_id,$designid)
 {
@@ -422,19 +414,34 @@ function productassociatewithdesign($room_id,$designid)
    
        return $query->result();
 }
+
+
+function display_products($design_id)
+{
+	
+	$this->db->select('products.*');
+	$this->db->where('design_id', $design_id);
+	$this->db->from('design_product_mapping');
+	$this->db->join('products','products.product_id=design_product_mapping.product_id');
+	$this->db->join('product_image','products.product_id=product_image.product_id', 'left');
+	$query = $this->db->get();
+	return $query->result();
+}
+
+
 function display_design_associated_products($design_id,$status=null)
 {
 	
        ($status==null?$this->db->from('design_product_mapping','products','vendors'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
        $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
         
-        $this->db->join('products','design_product_mapping.product_id=products.productid');
+        $this->db->join('products','design_product_mapping.product_id=products.product_id');
         $this->db->join('vendors','vendors.vendor_id=products.vendor_id');
 	if($status!=null)
 	{
 	 $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.This join find variant key of the product from shopify_product_variant table.........	
-	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.productid');
+	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	 $this->db->where('user_design.status',$status);
 	}
@@ -446,22 +453,18 @@ function display_design_associated_products($design_id,$status=null)
 }
 function  design_image_for_rooms($room_id=null,$designid=null)
 {
-	 if($room_id!="")
-	 $this->db->where('room_id',$room_id);
-          if($designid!="")
-          $this->db->where('design_id',$designid);
-	 
-	 $this->db->from('user_room_designs');
-	 $this->db->select('filename');
-          $query = $this->db->get();
-         return $query->result();
+			if($designid!="")
+			$this->db->where('design_id',$designid);
+	 		$this->db->select('user_room_designs.filename');
+			$query = $this->db->get('user_room_designs');
+			return $query->result();
 }
-function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null,$designer_comment=null)
+function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null)
 {
 	
 if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	{
-	   $data=array("room_id"=>$room_id,"design_name"=>$design_name,"designer_notes"=>$designer_comment);
+	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
 	   $this->db->insert('user_design',$data);
 	 
 	   return $this->db->insert_id();
@@ -469,7 +472,7 @@ if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
          }
          elseif($design_id!="")
          {
-	 $this->db->where('room_id',$room_id);
+			$this->db->where('room_id',$room_id);
           $this->db->where('design_id',$design_id);
          
           $data=array('status'=>$design_status,'design_name'=>$design_name);

@@ -7,11 +7,11 @@ $(function(){
 
 		new AjaxUpload(btnUpload, {
 			
-		action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
+			action: $("#siteurl").val()+'index.php/Admin/site/upload_design_pic_by_admin/'+'uploadfile/'+$("#currentroomid").val()+'/'+$("#currentuserid").val()+'/'+$("#userdesign").val(),
 			name: 'uploadfile',
 			roomid:$("#currentroomid").val(),
 			userid:$("#currentuserid").val(),
-                        designid:$("#userdesign").val(),
+            designid:$("#userdesign").val(),
 		      onSubmit: function(file, ext){
 		      $("#me").hide();
 		      if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext)))
@@ -78,14 +78,15 @@ var object;
 function selectedproductimage(productid,productimagepath,refobject)
 {
    	
-      var designid=$("#holddesignidforroom").val();
-      global_prodct_id=productid;
-	global_image_path=productimagepath;
-	object=refobject;
+		var designid=$("#holddesignidforroom").val();
+		global_prodct_id=productid;
+		global_image_path=productimagepath;
+		object=refobject;
   if($("#productimage_"+productid+"").is(':checked')==false)
-  {      $("#productlist").css('overflow','hidden');
-         $("#productlist").append("<div style='width:100%;height:1000%;border:solid 1px;position: relative;background-color:black;opacity:0.8;' id='popup'><div style='background-color:white;border-radius: 5px;padding: 5px 5px;border:solid 1px; opacity:1.0; margin-top:150px; margin-left:350px;margin-right:200px;height:100px;'><div ><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='distory_popup();'/></div><div style='margin-top:50px;'><span onclick='addselectimg();' style='margin-left:240px;margin-right:200px;cursor:pointer;'>Add To Design</span></div></div></div>");   
-
+  {      
+		$(".productdetailsdiv").hide();
+		$("#productlistimg_"+productid+"").prepend("<div id='popup'><div class = 'addimageholder'><div><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='destroy_popup();'/></div><div><a class = 'button2 white_text small' onclick='addselectimg();'>Add To Design</a></div></div></div>");   
+		
   }       
   else
   {
@@ -103,7 +104,7 @@ $("#designproductid_"+designid).val(afterreplace.join(", "));
 $("#select_img_"+designid+"_"+productid).remove();
 }
 }
-function distory_popup()
+function destroy_popup()
 {
 	$("#productlist").css('overflow-y', 'scroll');
 	$("#popup").remove();
@@ -126,7 +127,7 @@ function addselectimg()
       else
       $("#designproductid_"+designid).val(global_prodct_id);
       
-     $("#showselectedproductimage"+forappend).append('<div id="select_img_'+designid+'_'+global_prodct_id+'" style="float:left;width:85px;height:85px;border:solid 2px white;"><img src="'+global_image_path+'" width="75px;" height="75px;"/><input type="hidden" name="assign_'+designid+'[]" value="'+global_prodct_id+'" class="cbox"/></div>');
+     $("#showselectedproductimage"+forappend).append('<div id="select_img_'+designid+'_'+global_prodct_id+'" class ="selectedproductimagediv"><img src="'+global_image_path+' "height="100px;"/><input type="hidden" class = "selectedprod" name="assign_'+designid+'[]" value="'+global_prodct_id+'" class="cbox"/></div>');
      $("#popup").remove();
 
 }
@@ -174,5 +175,26 @@ function display_child(id)
 	return false;
 }
 
+
+
+
+function save_comment()
+{
+
+if($("#designer_notes").val()!="")
+		{
+		var designid = $('#holddesignidforroom').val();
+		var designer_notes = $('#designer_notes').val();
+		
+    $.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/add_design_comment',
+        type: 'POST',
+        data: {design_id: designid, designer_notes: designer_notes},
+       success : alert('Saved!') 
+    });
+	
+}
+else { alert('please enter comment');}
+}
 
 

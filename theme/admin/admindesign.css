@@ -15,6 +15,7 @@ width: 100%;
 height: 100px;
 border: 1px solid gray;
  display: none; 
+ opacity: 0.95;
 }
 
 .design_image_holder{
@@ -25,18 +26,104 @@ margin-top: 10px;
 
 #productlist{
 border: solid 1px gray;
-height: 500px;
+height: 600px;
 overflow-y:scroll;
+position: relative;
 }
 
-#showselectedproductimages{
-background: lightgray;
-border: 1px solid gray;
-}
 
-.selectedproductimagediv{
-height: 100px
+.selectedproducts{
+height: 100px;
+background-color: lightgray;
+border: solid 1px gray;
+overflow-y: scroll;
 }
 .productlistimg{
 display: inline-block;
+position: relative;
+min-width: 80px;
 }
+
+
+.productdetailsdiv{
+z-index: 100;
+position: absolute;
+top: 10px;
+left: 0;
+width: 100%;
+opacity: 0.9;
+background-color: white;
+text-align: left;
+}
+#popup{
+position: absolute;
+top:0;
+background-color: black;
+opacity: 0.8;
+width: 100%;
+height: 100%;
+z-index: 100;
+text-align: center;
+}
+.addimageholder{
+margin: auto;
+height: 50px;
+width: 80%;
+padding: 10px;
+z-index: 100;
+}
+
+a:hover{
+cursor:pointer;
+}
+
+#showselectedproductimage{
+background-color: white;
+z-index: 9999;
+margin: 0;
+position: fixed;
+left: 0px;
+bottom: 0px;
+min-height: 20px;
+border: 10px solid lightgray;
+padding: 20px;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 3px 3px 3px #888;
+}
+
+.selectedproductimagediv{
+display: inline-block;
+padding: 10px;}
+
+
+.button_padding{
+padding: 10px;
+display: inline-block;
+}
+
+.adminpush{
+height = 50px;
+}
+
+.float_right{
+float:right;
+padding:10px;
+}
+
+.addnewproduct{
+height: 80px;
+min-width: 80px;
+position: fixed;
+top: 50px;
+right: 0px;
+border: 10px solid lightgray;
+-moz-box-shadow: 10px 10px 5px #888;
+-webkit-box-shadow: 10px 10px 5px #888;
+box-shadow: 3px 3px 3px #888;
+padding: 10px;
+background-color: white;
+z-index: 999;
+}
+
+

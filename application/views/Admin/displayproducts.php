@@ -51,8 +51,9 @@
            echo '<input type="hidden" name="holddesignname" id="holddesignname" value="'.$userdesign[0]->design_name.'"/>';
 		   echo $userdesign[0]->design_name;
      ?>
-		<input class = "button2 pink" type="button" value="Save Selected" id="SaveSelected"/>
-
+		<input class = "button2 blue" type="button" value="(+) Save Design" id="SaveSelected"/>
+	<BR>
+		<a class = "gray_text small condensed showmsg">EDIT MESSAGE</a>&nbsp;&nbsp;<a class = "gray_text small condensed showimage">EDIT IMAGE</a>&nbsp;&nbsp;<a class = " gray_text small condensed showproducts">EDIT PRODUCTS</a>
 		<hr>
 		<div class = "popup_design midsmall boxshadow">
 			Save as Draft or Submit Design?&nbsp;
@@ -72,7 +73,7 @@
 <textarea name="designer_notes" id="designer_notes" cols= "50" rows = "10">
 	<?php echo $userdesign[0]->designer_notes;?>
 </textarea><br>
-<input type = "button" id = "commentsave" class = "button2 small pink showimage" value = "Save" onclick = "save_comment();"/>
+<input type = "button" id = "commentsave" class = "button2 small pink showimage" value = "Save &rarr;" onclick = "save_comment();"/>
 </div></div>
 
 <div class = "designmain" id = "designimage">

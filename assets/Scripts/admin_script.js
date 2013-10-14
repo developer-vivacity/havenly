@@ -759,6 +759,7 @@ function slide_nav(total,direction)
 
 
 
+
 // $("#ascproduct").click(function(){
   // var is_sort=false;
   // var ascproducttypecheck="";

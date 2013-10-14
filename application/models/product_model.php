@@ -459,7 +459,7 @@ function  design_image_for_rooms($room_id=null,$designid=null)
 			$query = $this->db->get('user_room_designs');
 			return $query->result();
 }
-function Add_Design_For_Room($room_id,$design_name,$design_id,$design_status=null)
+function Add_Design_For_Room($design_name,$design_id,$design_status=null)
 {
 	
 if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
@@ -472,7 +472,7 @@ if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
          }
          elseif($design_id!="")
          {
-			$this->db->where('room_id',$room_id);
+			
           $this->db->where('design_id',$design_id);
          
           $data=array('status'=>$design_status,'design_name'=>$design_name);
@@ -481,9 +481,10 @@ if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
 	}
 
 }
-function paint_color_delete($design_id)
+function paint_color_delete($design_id, $id)
 {
 	$this->db->where('design_id',$design_id);
+	$this->db->where('id',$id);
 	$this->db->delete('paint_colors');
 	
 }

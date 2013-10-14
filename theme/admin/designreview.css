@@ -2,3 +2,22 @@
 width: 25px;
 font-size: 10px;
 }
+
+
+.paintholder {
+width: 100%;
+margin-top:20px;
+margin-bottom: 20px;
+}
+
+.paintshow{
+padding: 10px;
+color: white;
+width: 70%;
+}
+.productsassigned{
+display: inline-block;
+}
+.producttitle{
+color: black;
+}

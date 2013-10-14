@@ -986,6 +986,13 @@ width: 80%;
 .adminmain td{
 padding: .2em;}
 
+.middle{
+vertical-align: middle;
+}
+
+.top{
+vertical-align: top;
+}
 
 /********** MEDIA QUIERIES **********/
 

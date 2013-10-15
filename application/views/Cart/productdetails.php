@@ -44,7 +44,7 @@
 <br/>
 <br/>
 <br/>
-<div class = "canvas">
+<div class = "white">
 <div class = "container">
 <form method="post"  action="<?php echo base_url('index.php/Cart/site/update_or_insert_qty');?>" id="productdetails">
 <BR><BR><BR>
@@ -52,9 +52,18 @@
 <div class = "span5">
 <a class = "black_text condensed small" href = "<?php echo base_url('index.php/Cart/site/products_associate_design/'.$designid);?>">&larr;&nbsp;Back to Products</a>
 <br><br>
-<img src="<?php echo$productdetails[0]->weblink;?>" width="90%">
-
+<div class = "productimages">
+<div class = "imageholder">
+<img src="<?php echo$productdetails[0]->weblink;?>" height="100%">
 </div>
+<div class = "smallimageholder">
+<div class = "smallimage">
+<img src="http://rk.pbimgs.com/pbimgs/rk/images/dp/wcm/201323/0015/img52o.jpg" width="100%">
+</div>
+<div class = "smallimage">
+<img src="http://rk.pbimgs.com/pbimgs/rk/images/dp/wcm/201325/0003/img84c.jpg" width="100%">
+</div></div>
+</div></div>
 <div class = "span4">
 <p class = "sanslight productname">
 <?php echo $productdetails[0]->product_name;?></p>
@@ -75,7 +84,7 @@ $<?php echo $productdetails[0]->price;?><BR>
     echo '<div id = "productamount"><input type="text" class = "sanslight" style="width:20px;height:20px;" 
 	id="totalvalueadd" name="totalvalueadd" value="'.$quantity.'"/>
 	<input type="button"  class = "button2 small pink white_text sanslight" 
-	value="Add to Cart" onclick="submitcartvalue();"/></div>';
+	value="ADD TO CART" onclick="submitcartvalue();"/></div>';
 ?>
 
 <div class = "productdetails border sanslight ">

@@ -61,6 +61,16 @@ $(".overlay").click(function(){
 	close_box();
 	});
 
+$(".smallimage").click(function(){
+
+	var currimg = $(this).find('img').attr('src');
+	var oldimg = $(".imageholder").find('img').attr('src');
+	
+	$(this).html('<img src ="'+oldimg+'"  height = "100%">');
+	$(".imageholder").html('<img src = "'+currimg+'" height = "100%">');
+	
+});
+	
 });
 
 //----This function add product to shopify card--------//

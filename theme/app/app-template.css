@@ -1,3 +1,18 @@
 .usermain {
   padding-top: 80px;
 }
+
+.designimage{
+position: relative;
+}
+
+.designimagetext{
+position: absolute;
+top: 50px;
+width: 80%;
+background-color: white;
+padding: 10px;
+text-align: center;
+opacity: 0.8;
+}
+

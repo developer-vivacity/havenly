@@ -11,9 +11,10 @@
     <div class="account-nav-left">
 	
 	<ul id="bstabs">
-		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">YOUR STATUS</a></li>
+		<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">STATUS</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">YOUR ACCOUNT</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">YOUR PREFERENCES</a></li>
+		    <li><a href="#">YOUR INITIAL CONCEPT BOARDS</a></li>
    
 	  <?php if(sizeof($designforloginuser)>0)
 	  {

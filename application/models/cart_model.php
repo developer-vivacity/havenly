@@ -38,10 +38,9 @@ function get_design_login_user($productid=null)
    $this->db->from('user_room_designs','design_product_mapping','user_design');
    $this->db->select('user_room_designs.user_id,user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id,user_design.status,user_design.design_name,user_design.designer_notes');
    $this->db->select('user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id');
-   $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id');
-   $this->db->join('user_design','user_room_designs.design_id = user_design.design_id');
+   $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id', 'left');
+   $this->db->join('user_design','user_room_designs.design_id = user_design.design_id', 'left');
    $this->db->where('user_room_designs.user_id',$this->session->userdata('id'));
-  
    $this->db->where('user_design.status','submitted');
    if($productid!="")
    $this->db->where('design_product_mapping.product_id',$productid);
@@ -99,14 +98,14 @@ function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=nu
 	}
 	
 	  //$this->db->select('sum(qty) as total_qty');
-	  $this->db->select('count(*) as total_qty');
+	  $this->db->select('sum(qty) as total_qty');
 	  $this->db->where('user_id',$this->session->userdata('id'));
 	  $this->db->where('design_id',$designid);
 	  $query=$this->db->get("shoppingcart");
 	  return $query->result(); 
 }
 // get product id which are on the shopping card.................
-function getproductinshoppingcard($designid)
+function getproductinshoppingcart($designid)
 {
 	
 	$this->db->select('GROUP_CONCAT(product_id) as product_id');
@@ -153,7 +152,7 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 	                    
                     $this->db->delete("shoppingcart");
                     
-                    if($product_qty!=0)
+          if($product_qty!=0)
 		  {
 			  
 		   $data=array("user_id"=>$this->session->userdata("id"),"room_id"=>$room_id,"design_id"=>$design_id,"product_id"=>$product_id,"qty"=>$product_qty);	
@@ -202,7 +201,7 @@ function product_details_with_design()
 }
 function paint_colors_for_design($design_id)
 {
-	$this->db->select('color');
+	$this->db->select('*');
 	$this->db->where('design_id',$design_id);
 	$query=$this->db->get('paint_colors');
 	return $query->result();

@@ -8,18 +8,18 @@
     <div class="account-nav-left">
 	
 	<ul id="bstabs">
-	<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
-         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
-         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
-         <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-         <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-	  	  <?php
-	  	      if(sizeof($designforloginuser)>0):
-	  	  ?>
-	  	  <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>
-	  	  <?php
-	  	      endif;
-	  	  ?>
+	<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">STATUS</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">YOUR ACCOUNT</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">YOUR PREFERENCES</a></li>
+		    <li><a href="#">YOUR INITIAL CONCEPT BOARDS</a></li>
+   
+	  <?php if(sizeof($designforloginuser)>0)
+	  {
+               echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">VIEW DESIGN & SHOP</a></li>';
+           }
+	  ?>
+	
+    </ul>
     </ul>
   </div><!-- nav left -->
   <div class="account-nav-right">
@@ -32,17 +32,18 @@
       <li>
         <a href=""><img src=<?php echo base_url('theme/img/menu.png'); ?>></a>
         <ul id="bstabs" class="dropdownList">
-	 <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">Current Status</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">Your Account</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">Your Preferences</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=rooms"  rel="rooms">Your Rooms</a></li>
-          <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">Initial Concepts</a></li>
-	<?php 
-	if(sizeof($designforloginuser)>0)
-	{
-	  echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">YOUR DESIGNS</a></li>';
-	}
-	?>
+	<li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=status"  rel="status">STATUS</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=designer"  rel="designer">YOUR ACCOUNT</a></li>
+          <li><a href="<?php echo base_url();?>/index.php/Users/site/login?a=preferences"  rel="preferences">YOUR PREFERENCES</a></li>
+		    <li><a href="#">YOUR INITIAL CONCEPT BOARDS</a></li>
+   
+	  <?php if(sizeof($designforloginuser)>0)
+	  {
+               echo '<li><a href="'.base_url().'/index.php/Users/site/login?a=designs" rel="designs">VIEW DESIGN & SHOP</a></li>';
+           }
+	  ?>
+	
+    </ul>
           <li><a href="<?php echo base_url().'index.php/Users/site/logout/';?>">Logout</a></li>
         </ul>
       </li>
@@ -60,7 +61,7 @@
 <div class = "black_text" id="total_items_in_cart"><?php echo $totalitemincart;?>
 </div></div>
 
-<div class = "span4">
+<div class = "span4 well">
 
 <div class = "button3 pink white_text" id="addallproduct">BUY THE WHOLE ROOM</div><BR>
 <?php 
@@ -92,9 +93,9 @@ foreach($productname as $key=>$value)
         echo
         '<div class = "producthold" >
         <div class="productimg">
-       <img src="'.$value->link.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />';
+       <img src="'.$value->weblink.'" height = 150px; id="designproduct_'.$value->product_id.'" class="designproduct" />';
        if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
-       echo'<div class = "checkimg gray_text serif small" style ="opacity:0.8;display:block;"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
+       echo'<div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
        else
        echo'<div class = "checkimg gray_text serif small"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "150px"></div>';
        echo'<input type="hidden" name="holdproductidfordesign[]" value="'.$value->product_id.'"/>';
@@ -117,12 +118,6 @@ $'.$value->price.'
  </div>
  <div class = "shippingprice">
 ($'.$value->ship_cost.' shipping)
- </div>
- <div class = "shippingprice">
-($'.$value->ven_shipping.' vendor)
- </div>
-  <div class = "shippingprice">
-($'.$value->tota_price.' total price)
  </div>
  </div></div>';
 }

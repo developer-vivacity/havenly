@@ -378,8 +378,9 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();
 
  
-        #.......ConceptBoardModule==========
-        
+        #.......CartBoardModule==========
+        $id = $this->session->userdata('id');
+		$prodid = "";
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
         
      

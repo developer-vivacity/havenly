@@ -433,15 +433,15 @@ function display_design_associated_products($design_id,$status=null)
 {
 	
        ($status==null?$this->db->from('design_product_mapping','products','vendors'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
-       $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
+       $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
         
-        $this->db->join('products','design_product_mapping.product_id=products.product_id');
-        $this->db->join('vendors','vendors.vendor_id=products.vendor_id');
+      $this->db->join('products','design_product_mapping.product_id=products.product_id');
+      $this->db->join('vendors','vendors.vendor_id=products.vendor_id','left');
 	if($status!=null)
 	{
 	 $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.This join find variant key of the product from shopify_product_variant table.........	
-	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id');
+	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id','left');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	 $this->db->where('user_design.status',$status);
 	}

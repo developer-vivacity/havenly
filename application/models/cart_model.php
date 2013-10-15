@@ -38,10 +38,9 @@ function get_design_login_user($productid=null)
    $this->db->from('user_room_designs','design_product_mapping','user_design');
    $this->db->select('user_room_designs.user_id,user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id,user_design.status,user_design.design_name,user_design.designer_notes');
    $this->db->select('user_room_designs.filename,user_room_designs.design_status,user_room_designs.design_id,user_room_designs.room_id');
-   $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id');
-   $this->db->join('user_design','user_room_designs.design_id = user_design.design_id');
+   $this->db->join('design_product_mapping','user_room_designs.design_id = design_product_mapping.design_id', 'left');
+   $this->db->join('user_design','user_room_designs.design_id = user_design.design_id', 'left');
    $this->db->where('user_room_designs.user_id',$this->session->userdata('id'));
-  
    $this->db->where('user_design.status','submitted');
    if($productid!="")
    $this->db->where('design_product_mapping.product_id',$productid);
@@ -106,7 +105,7 @@ function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=nu
 	  return $query->result(); 
 }
 // get product id which are on the shopping card.................
-function getproductinshoppingcard($designid)
+function getproductinshoppingcart($designid)
 {
 	
 	$this->db->select('GROUP_CONCAT(product_id) as product_id');

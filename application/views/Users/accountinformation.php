@@ -12,7 +12,7 @@
     <div class="account-nav-logo"><a href="<?php echo base_url();?>"><img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "85"></a></div>
     <div class="account-nav-left">
 	<ul id="bstabs">
-	<li><a href="#status"  rel="status">STATUS</a></li>
+	<li><a href="#status"  rel="status">STATUS </a></li>
       <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
       <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
       <?php
@@ -187,7 +187,7 @@ echo '<div class = "carousel-inner text-center">';}
 
            if(isset($deletedesigninfo))
            {
-           echo '<tr><td colspan="5"><p style="color:#F50727;font-size:100%">'.$deletedesigninfo.'</p></td></tr>';
+			echo '<div class = "alert alert-error">'.$deletedesigninfo.'</div>';
            }
            foreach($designforloginuser as $key)
 	  {
@@ -195,11 +195,12 @@ echo '<div class = "carousel-inner text-center">';}
 		
 		if ($i==1){
 		   echo '<div class = "item active" id="room_des_'.$i.'">';}
-		   else {echo '<div class = "item" id="room_des_'.$i.'">';}
-                echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
-                echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/></a><br/><br/>';
+		   else {echo '<div class = "designimage" id="room_des_'.$i.'">';}
+                echo '<a class = "black_text" href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
+                echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/>';
+				echo '<div class = "designimagetext"><div class = "condensed black_text midlarge">C L I C K  &nbsp; T O  &nbsp;S H O P</div></div></a>';
                 if(!empty($key->designer_notes))
-                echo  '<div><span><b>Designer_notes:&nbsp;</b></span>'.$key->designer_notes.'</div>';
+                echo  '<div><span><b>A Note from your Designer:&nbsp;</b></span>'.$key->designer_notes.'</div>';
                 echo '</div>'; 
 		   $i++;
 	  }

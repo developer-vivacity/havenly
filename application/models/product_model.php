@@ -52,7 +52,7 @@ timestamp timestamp NOT NULL)");
  function get_all_product($pid=null)
   {	
 	 
-	  $this->db->select('product_id,product_name, color_name, material_name, weblink,dimensions,description,ship_cost,ship_cost,price');
+	  $this->db->select('product_id,product_name, time_to_ship, color_name, material_name, weblink,dimensions,description,ship_cost,price');
 	  $this->db->from('products');
 	  if($pid!="")   
 	  $this->db->where('product_id',$pid);
@@ -433,7 +433,7 @@ function display_design_associated_products($design_id,$status=null)
 {
 	
        ($status==null?$this->db->from('design_product_mapping','products','vendors'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
-       $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
+       $this->db->select('products.*','vendors.*','((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
         
       $this->db->join('products','design_product_mapping.product_id=products.product_id');
       $this->db->join('vendors','vendors.vendor_id=products.vendor_id','left');

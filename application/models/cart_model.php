@@ -98,7 +98,7 @@ function updateshoppingcart($productid=null,$roomid=null,$designid=null,$type=nu
 	}
 	
 	  //$this->db->select('sum(qty) as total_qty');
-	  $this->db->select('count(*) as total_qty');
+	  $this->db->select('sum(qty) as total_qty');
 	  $this->db->where('user_id',$this->session->userdata('id'));
 	  $this->db->where('design_id',$designid);
 	  $query=$this->db->get("shoppingcart");
@@ -152,7 +152,7 @@ function update_insert_qty($product_qty=null,$product_id=null,$room_id=null,$des
 	                    
                     $this->db->delete("shoppingcart");
                     
-                    if($product_qty!=0)
+          if($product_qty!=0)
 		  {
 			  
 		   $data=array("user_id"=>$this->session->userdata("id"),"room_id"=>$room_id,"design_id"=>$design_id,"product_id"=>$product_id,"qty"=>$product_qty);	
@@ -201,7 +201,7 @@ function product_details_with_design()
 }
 function paint_colors_for_design($design_id)
 {
-	$this->db->select('color');
+	$this->db->select('*');
 	$this->db->where('design_id',$design_id);
 	$query=$this->db->get('paint_colors');
 	return $query->result();

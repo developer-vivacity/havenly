@@ -94,7 +94,7 @@ Class Site extends CI_Controller
 	{
           $data["details"]=$this->cart_model->get_design_login_user($_POST["holdproductid"]);	  
           $this->cart_model->update_insert_qty($_POST["totalvalueadd"],$_POST["holdproductid"],$data["details"][0]->room_id,$data["details"][0]->design_id);
-	 $this->products_associate_design($_POST["holddesignid"]);
+		$this->products_associate_design($_POST["holddesignid"]);
 	 redirect('/Cart/site/products_associate_design/'.$data["details"][0]->design_id.'', 'refresh');
 	}
   }

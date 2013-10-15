@@ -1,7 +1,9 @@
  $(document).ready(function() 
  {
-  jQuery.noConflict();
 
+  
+	$(".renderfull").hide();
+	$(".overlay").hide();
 	
  $(".checkimg").click(function()
  {
@@ -12,7 +14,7 @@
    
    var id = image.attr('id');
    
-   var id_get =id.split("_");
+
    
    if(checkbox.is(':checked'))
    {
@@ -20,15 +22,18 @@
 	
 	$(this).css({opacity:0});
  	
- 	removecheckbox(id_get[1]);
+ 	removecheckbox(id);
+
   }
   else
   { 
-   addcheckboxforaddcart(id_get[1]);
+   addcheckboxforaddcart(id);
    
    $(this).css({opacity:0.8});
   
   checkbox.prop("checked",!checkbox.prop("checked"));}
+ 
+  
 });
 
 	
@@ -38,19 +43,24 @@ $("#addallproduct").click(function()
 	
 });
 
-$(".productname").click(function()
-{
 
-   var image = $(this).parent().parent().find('.designproduct');
-   var id = image.attr('id');
-   var id_get =id.split("_");
-document.location=$("#basepath").val()+"index.php/Cart/site/product_details_of_design/"+id_get[1]+"/"+$("#holddesignid").val()+"";
-})
 
 $("#cart_details").mouseout(function()
 {
 	$("#productdetails").remove();
 });
+
+$(".design_image").click(function(){
+
+	var image = $(this).find('img').attr('src');
+	$(".renderfull").html('<a class = "closebutton black_text large sanslight" onclick="close_box();">X</a><img src ="'+image+'" width = "100%">');
+	$(".renderfull, .overlay").show();
+});
+
+$(".overlay").click(function(){
+	close_box();
+	});
+
 });
 
 //----This function add product to shopify card--------//
@@ -61,6 +71,10 @@ function add_to_cart()
 }
 //---------------------------------------------------------------------------------------
 
+function close_box(){
+$(".renderfull").fadeOut();
+$(".overlay").fadeOut();
+}
 
 function delete_design(user_id,design_id,room_id)
 {
@@ -71,40 +85,49 @@ function addcheckboxforaddcart(id)
 {
 	
 	$(".checkimg .gray_text .serif .small").show();
-    
-    $.post($("#basepath").val()+"index.php/Cart/site/add_or_update_cart", {productid :id,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"insert"}, function(data){
-    if(data.length>0)
-    { 
-		       $("#total_items_in_cart").html(data);
-      } 
-    }) 
+	
+		$.ajax({
+        url: $('#basepath').val()+'index.php/Cart/site/add_or_update_cart',
+        type: 'POST',
+		data: {productid:id,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"insert"},
+        success : function(data) {
+			$("#total_items_in_cart").html(data);
+			$("#clicktoadd"+id).html('<p>C L I C K  T O  R E M O V E</p>');
+		}
+	   
+   
+    });
     
 	
 }
 function removecheckbox(productid)
 {
 
-   $.post($("#basepath").val()+"index.php/Cart/site/add_or_update_cart", {productid :productid,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"delete"}, function(data){
-    if(data.length>0)
-    { 
-        $("#total_items_in_cart").html(data);
-    } 
-    })
+	$.ajax({
+        url: $('#basepath').val()+'index.php/Cart/site/add_or_update_cart',
+        type: 'POST',
+		data: {productid:productid,roomid:$("#holdroomid").val(),designid:$("#holddesignid").val(),type:"delete"},
+        success : function(data) {
+			$("#total_items_in_cart").html(data);
+			$("#clicktoadd"+productid).html('<p>C L I C K  T O  A D D</p>');
+}
+      });
   
 }
 function submitcartvalue()
 {
 	 var issubmit=true;
-	 $(".error").remove();
-          if($("#totalvalueadd").val().trim()=="")
+	 $(".alert").hide();
+     if($("#totalvalueadd").val().trim()=="")
 	 {
-          $("#productamount").before('<div class="error" style="float:right;height:20px;margin-top:20px;">*Enter number!</div>');	
-	 issubmit=false;
+	 
+          $("#productamount").before('<div class="alert alert-error" style="float:right;height:20px;margin-top:20px;">Enter Quantity</div>');	
+			issubmit=false;
 	 }
 	 if($("#totalvalueadd").val().trim()!="" && !$.isNumeric($("#totalvalueadd").val()))
 	 {
-	 $("#productamount").before('<div class="error" style="float:right;height:20px;margin-top:20px;">*Enter value in numeric format:</div>');	
-	 issubmit=false;
+		$("#productamount").before('<div class="alert alert-error">Enter Count in Numeric Value</div>');	
+		issubmit=false;
 	 }
 	 if(issubmit==true)
 	 {

@@ -425,14 +425,15 @@ function display_products($design_id)
 	$this->db->join('products','products.product_id=design_product_mapping.product_id');
 	$this->db->join('product_image','products.product_id=product_image.product_id', 'left');
 	$query = $this->db->get();
-	return $query->result();
+	
+return $query->result();
 }
 
 
 function display_design_associated_products($design_id,$status=null)
 {
 	
-       ($status==null?$this->db->from('design_product_mapping','products','vendors'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
+       ($status==null?$this->db->from('design_product_mapping','products','vendors','product_image'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
        $this->db->select('*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
         
         $this->db->join('products','design_product_mapping.product_id=products.product_id');
@@ -445,10 +446,14 @@ function display_design_associated_products($design_id,$status=null)
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	 $this->db->where('user_design.status',$status);
 	}
-	
+	else
+	{
+	$this->db->join('product_image','products.product_id=product_image.product_id');	
+	$this->db->order_by('products.product_id', 'asc');
+	}
 	    $this->db->where('design_product_mapping.design_id',$design_id);
 	    $query = $this->db->get();	
-        
+     //die($this->db->last_query());
         return $query->result();
 }
 function  design_image_for_rooms($room_id=null,$designid=null)
@@ -493,6 +498,7 @@ function paint_colors_for_design($design_id,$color_code,$description)
 	
 	$data=array('design_id'=>$design_id,'color'=>$color_code,'description'=>$description);
 	$this->db->insert('paint_colors',$data);
+        return $this->db->insert_id();
 }
 
 function update_designer_notes($design_id,$designernotes)
@@ -521,6 +527,17 @@ function valid_user($room_id,$user_id,$design_id)
 	
 	return $query->num_rows();
 }
+
+
+function update_assignproducts($design_id,$data)
+{
+
+
+         $this->db->where('design_id',$design_id);
+        $this->db->update('user_design',$data);
+
+}
+
 }
 
 ?>

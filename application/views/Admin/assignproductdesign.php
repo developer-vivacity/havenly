@@ -69,7 +69,7 @@
 </div>
 
 <div class = "row"><BR>
-<div class = "span2 offset1">Designer Notes</div>
+<div class = "span2 offset1">Note to Client:</div>
 <div class = "span5">
 	<textarea name="designer_notes" id="designer_notes" class = "sanslight small">
 	<?php echo $designdetail[0]->designer_notes;?></textarea>
@@ -145,71 +145,17 @@ echo '</div>';}
 
 <?php
 
-/*	
+	
 if(sizeof($productassign)==0)
 	echo "No Products Uploaded";
      foreach($productassign as $key)
 	{
 	echo '<div class = "productsassigned"><a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'">
-	<img src="'.$key->weblink.'" height="100px" width="100px"/><br><span class = "producttitle">&nbsp;'.wordwrap($key->product_name,30,"<BR>\n").'</span></a></div>';
+	<img src="'.$key->filename.'" height="100px" width="100px"/><br><span class = "producttitle">&nbsp;'.wordwrap($key->product_name,30,"<BR>\n").'</span></a></div>';
 	}
-*/
+
 ?>
 
-<?php
-   $start_id=1;
-    $product_id="";
-	if(sizeof($productassign)==0)
-echo "No Products Uploaded";
-	else
-	{
-	foreach($productassign as $key)
-	{
-	 if(($product_id!="") && ($product_id!=$key->product_id))
-	 {
-	      $visibility=($start_id<6?'opacity:0.4;filter:alpha(opacity=40);':'');
-	      echo '<div style="float:left;height:60px;width:60px;'.$visibility.';" id="next_button_'.$product_id.'">
-	     <img src="'.base_url().'assets/Images/media_next.png" height="50px" width="50px">
-	     </div></div>';
-         $start_id=1;
-     }
-	 if($product_id!=$key->product_id)	
-	 {
-	     $start_id=1;
-	     $product_id=$key->product_id;
-	     echo '<div style="width:100%;margin-top:40px;float:left;">
-	     <a href="'.base_url().'index.php/Admin/site/productdetails/'.$roomid.'/'.$currentuserid.'/'.$designid.'" id="big_img_'.$product_id.'">
-	     <img src="'.$key->filename.'" height="300px" width="300px"/>
-	    </a>
-	     <div style="margin-left:100px;margin-top:5px;margin-bottom:5px;font-weight:bold;">
-	     &nbsp;'.wordwrap($key->product_name,15,"<br />\n").'
-	     </div>
-	     </div>';
-         echo '<div style="width:70%" >
-         <div style="float:left;height:60px;width:60px;opacity:0.4;filter:alpha(opacity=40);" id="prev_button_'.$product_id.'" onclick="display_prev('.$product_id.');">
-         <img src="'.base_url().'assets/Images/media_previous.png" height="50px" width="50px">
-         </div>
-         <div style="float:left;height:60px;width:60px;" id="small_img_'.$product_id.'_'.$start_id.'"><img src="'.$key->filename.'" height="50px" width="50px" 
-         onclick="change_format(\''.$key->filename.'\',\'big_img_'.$product_id.'\');"/>
-         </div>';
-     }
-     else
-     {
-		
-		  $start_id=$start_id+1;
-	      $display= ($start_id>=6?'none':'block');
-	      echo '<div style="float:left;height:60px;width:60px;display:'.$display.'" id="small_img_'.$product_id.'_'.$start_id.'">
-	      <img src="'.$key->filename.'" height="50px" width="50px" 
-	      onclick="change_format(\''.$key->filename.'\',\'big_img_'.$product_id.'\');"/></div>';	
-     }
-	}
-	 $visibility=($start_id<6?'opacity:0.4;filter:alpha(opacity=40);':'');
-     echo '<div style="float:left;height:60px;width:60px;'.$visibility.';" id="next_button_'.$product_id.'">
-     <img src="'.base_url().'assets/Images/media_next.png" height="50px" width="50px" onclick="display_next(\''.$product_id.'\',6,'.$start_id.');"></div></div>';
-     $start_id=1;
-     
- }
-?>
 </div></div></div>
 
 <!----start add code by kbs-------->

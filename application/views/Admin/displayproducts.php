@@ -147,7 +147,7 @@
       if(($key2->product_id==$key->product_id))
       {
          echo'<div id="select_img_'.$key2->design_id.'_'.$key->product_id.'" class = "selectedproductimagediv">
-		 <img src="'.$key->weblink.'" height="100px;"/><input type="hidden" class = "selectedprod" name="assign_'.$key2->design_id.'[]" value="'.$key->product_id.'" /></div>';
+		 <img src="'.$key->filename.'" height="100px;"/><input type="hidden" class = "selectedprod" name="assign_'.$key2->design_id.'[]" value="'.$key->product_id.'" /></div>';
     
          $productidhold=($productidhold==""?$key->product_id:$productidhold.','.$key->product_id);	
  
@@ -172,7 +172,7 @@ elseif(sizeof($userdesign)==0)
   foreach($selectproduct as $key)
 	   {
 		 
-	  echo'<div id="select_img_7u7_'.$key->product_id.'" class = "selectedproductimagediv" ><img src="'.$key->weblink.'" height="100px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->product_id.'" /></div>';
+	  echo'<div id="select_img_7u7_'.$key->product_id.'" class = "selectedproductimagediv" ><img src="'.$key->filename.'" height="100px;"/><input type="hidden" name="assign_7u7[]" value="'.$key->product_id.'" /></div>';
 	  if($selectproductid=="")
 	  $selectproductid=$key->product_id;
 	  else
@@ -286,7 +286,7 @@ foreach($productmaterialtype as $key)
 		   }
 		  echo'<div id = "productlistimg_'.$key->product_id.'" class = "productlistimg">
 		 <input type="checkbox"  value = '.$key->product_id.' class="cbox"  name="productimage[]" id="productimage_'.$key->product_id.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->weblink.' height="150px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->weblink.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;</div>';
+		 <img class = '.$active.' src ='.$key->filename.' height="150px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->filename.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;</div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "<p class = 'alert alert-error'>No products matching your criteria.</p>";

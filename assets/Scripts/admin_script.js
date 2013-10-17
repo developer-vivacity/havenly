@@ -230,20 +230,22 @@ $("#AddProduct").click(
   {
   
 	if(productimage=="")
-	productimage = this.value;
+		productimage = this.value;
 	else
 		productimage = productimage+','+this.value;
 		
   
 		});
 
+		
+		
   $('input[name="searchproducttype[]"]:checked').each(function(i,e)
   {
 	  if(producttypeid=="")
 	  producttypeid=e.value;
            else
            producttypeid=producttypeid+','+e.value;
-           is_filter=true;
+           
   });
  
   
@@ -253,7 +255,7 @@ $("#AddProduct").click(
 	  productprice=e.value;
       else
       productprice=productprice+','+e.value;
-      is_filter=true;
+      
   });
  
   $('input[name="searchproductstyle[]"]:checked').each(function(i,e)
@@ -262,7 +264,7 @@ $("#AddProduct").click(
 	  productstyle=e.value;
       else
       productstyle=productstyle+','+e.value;
-      is_filter=true;
+     
   });
   
   $('input[name="searchproductmaterial[]"]:checked').each(function(i,e)
@@ -271,7 +273,7 @@ $("#AddProduct").click(
 	  productmaterial=e.value;
       else
       productmaterial=productmaterial+','+e.value;
-      is_filter=true;
+    
   });
   
   $('input[name="searchproductcolor[]"]:checked').each(function(i,e)
@@ -280,7 +282,7 @@ $("#AddProduct").click(
 	  productcolor=e.value;
       else
       productcolor=productcolor+','+e.value;
-      is_filter=true;
+     
   });
     
 
@@ -291,6 +293,7 @@ $("#AddProduct").click(
        success : function(data) {
 				$("#productlist").html(data);
 				$(".cbox").hide();
+				$(".dropdown-menu").hide();
 				}
 	   
     });
@@ -321,6 +324,7 @@ var designid = $("#holddesignidforroom").val();
         success : function(data) {
 				$("#productlist").html(data);
 				$(".cbox").hide();
+				$(".dropdown-menu").hide();
 				}
 	   
     });

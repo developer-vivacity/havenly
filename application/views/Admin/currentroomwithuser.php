@@ -87,7 +87,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 		
 	}
 	
-	echo '</select>&nbsp;&nbsp;<textarea id="uprc" name="statuscomment">We have changed your room status!</textarea><input type="submit" class = "button2 condensed blue_text white" value="Update" id="uprs"></div></div>';
+	echo '</select>&nbsp;&nbsp;<textarea id="uprc" name="statuscomment">Your room status has changed, please login to your account at www.havenly.com to view your newest changes.</textarea><input type="submit" class = "button2 condensed blue_text white" value="Update" id="uprs"></div></div>';
 	
 ?>
 <div class = "">

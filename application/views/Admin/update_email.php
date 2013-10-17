@@ -34,7 +34,7 @@ width: 30%;
 <br>
 <P class = "text dark_gray_text medium">
  <?php echo $message; ?>
- <BR><BR><?php echo 'Your status has changed to '.$updateroom; ?>.
+ <BR><BR>
 </p>
 
 

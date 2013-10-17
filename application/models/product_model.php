@@ -51,13 +51,13 @@ timestamp timestamp NOT NULL)");
  //-----For Product Details 
  function get_all_product($pid=null)
   {	
-	 
-	  $this->db->select('product_id,product_name, color_name, material_name, weblink,dimensions,description,ship_cost,time_to_ship,ship_cost,price');
-	  $this->db->from('products');
-	  if($pid!="")   
-	  $this->db->where('product_id',$pid);
-		
-          return $this->db->get()->result(); 
+		  $this->db->select('products.product_id, filename, product_name,color_name, material_name, weblink,dimensions,description,ship_cost,time_to_ship,ship_cost,price');
+		  $this->db->from('products');
+		  $this->db->join('product_image','products.product_id=product_image.product_id','left outer');
+		  if($pid!="")   
+		  $this->db->where('product_id',$pid);
+		  $this->db->where('product_image.type','main');
+			return $this->db->get()->result(); 
   }
  //-------
  function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null,$designid=null)
@@ -79,11 +79,13 @@ function save_product_associated_with_room($roomid=null,$productid=null,$product
    {
     $this->db->from('products','product_room_mapping');
    
-    $this->db->select('products.product_id,product_name,weblink,Design_Plan'); 
+    $this->db->select('products.product_id, filename, product_name,weblink,Design_Plan'); 
    
-    $this->db->join('product_room_mapping', 'products.product_id = product_room_mapping.product_id');     
+    $this->db->join('product_room_mapping', 'products.product_id = product_room_mapping.product_id');
+	$this->db->join('product_image', 'products.product_id = product_image.product_id');  	
    
     $this->db->where('room_id',$roomid);  
+	 $this->db->where('product_image.type','main');  
     $this->db->distinct();
     $query=$this->db->get();
    
@@ -433,14 +435,15 @@ return $query->result();
 function display_design_associated_products($design_id,$status=null)
 {
 	
-       ($status==null?$this->db->from('design_product_mapping','products','vendors','product_image'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
-       $this->db->select('products.*,product_image.*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
+       ($status==null?$this->db->from('design_product_mapping','products','vendors','product_image'):$this->db->from('design_product_mapping','products','user_design', 'product_image','vendors'));
+       $this->db->select('products.*,product_image.*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
         
         $this->db->join('products','design_product_mapping.product_id=products.product_id');
         $this->db->join('vendors','vendors.vendor_id=products.vendor_id');
 	if($status!=null)
 	{
-	 $this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
+	$this->db->join('product_image','products.product_id=product_image.product_id');		
+	$this->db->join('user_design','user_design.design_id=design_product_mapping.design_id');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.This join find variant key of the product from shopify_product_variant table.........	
 	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id', 'left');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -467,7 +470,7 @@ function  design_image_for_rooms($room_id=null,$designid=null)
 function Add_Design_For_Room($design_name,$design_id,$design_status=null)
 {
 	
-if(($design_id=="" | $design_id=="null") & $design_name!="not submitted")
+if(($design_id=="" || $design_id=="null") & $design_name!="not submitted")
 	{
 	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
 	   $this->db->insert('user_design',$data);

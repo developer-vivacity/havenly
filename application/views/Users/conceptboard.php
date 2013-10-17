@@ -81,7 +81,7 @@ $i=1;
 
 foreach($conceptboard as $key)
 {
-	$comment=($key->comments!=""?$key->comments:"Provide some feedback for your designer");
+	$comment=($key->comments!=""?$key->comments:"Provide feedback for your designer.  The more details, the better.");
          $reset=  ($key->comments!=""?0:1);
 	
 	if ($i==1)
@@ -95,7 +95,7 @@ foreach($conceptboard as $key)
     
 	if($key->status==1)
          echo '<img src="'.$key->filename.'" width="100%"/><BR><BR>';
-         echo '<textarea width = "70%" rows = "3" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button3 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
+         echo '<textarea width = "70%" rows = "6" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea></td><td><input type="button" class = "button3 pink white_text" value="Save" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
 	
 	$i++;
 	echo '</div>';

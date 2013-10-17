@@ -123,9 +123,7 @@ foreach($productname as $key=>$value)
  <div class = "productprice">
 $'.$value->price.'
  </div>
- <div class = "shippingprice">
-($'.$value->ship_cost.' shipping)
- </div>
+
  </div></div>';
 }
 echo '<input type="hidden" value="'.base_url().'" id="basepath" name="basepath"/>';

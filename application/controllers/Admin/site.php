@@ -451,33 +451,34 @@ function add_product()
       {
 	  if(($_GET['r']=="") || ($_GET['u']=="") || ($_GET['d']==""))
 	  {
-	  redirect('/Admin/site/roomsadministrator', 'refresh');
-           }
+		redirect('/Admin/site/roomsadministrator', 'refresh');
+       }
 	  else if($this->product_model->valid_user($_GET['r'],$_GET['u'],$_GET['d'])==0)
 	  {
 	   redirect('/Admin/site/roomsadministrator', 'refresh');
 	  }
-                  $data['roomid']=$_REQUEST['r'];
+          $data['roomid']=$_REQUEST['r'];
 		  $data['userid']=$_REQUEST['u'];
 		  $data['designid']=$_REQUEST['d'];
        }	
 	  if(($this->session->userdata('adminid')==""))
 	  {
 	   redirect('/Admin/site/adminlogin', 'refresh');
-	  }if($_POST)
+	  }
+	  
+	  if($_POST)
 		{
 		  
 		 $holdlinkuploadimg=array();	 
                $i=0;
 	    
-	    while($i<=4)
+	    while($i<=5)
 	    {
 	        if(!empty($_FILES['uploadproductpic'.$i]['name']))
                  {
 			
-		     $this->for_pic_upload('uploadproductpic'.$i);
-			 
-		     $holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->_File_Location;	 
+				$this->for_pic_upload('uploadproductpic'.$i);
+			 	$holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->_File_Location;	 
 	        }
 		 $i++;
 	     }		
@@ -522,7 +523,7 @@ function add_product()
 	
 	if($this->input->post("materialhiddenfilter")!="")
 	 {
-		   $arrayaddmaterialfilter=explode(',',$this->input->post("materialhiddenfilter"));
+		$arrayaddmaterialfilter=explode(',',$this->input->post("materialhiddenfilter"));
 		foreach($arrayaddmaterialfilter as $key=>$value)
 		{
 			$data =array('material'=>$value);
@@ -547,18 +548,18 @@ function add_product()
           $materialhiddenfilter=implode(',',$materialhiddenfilter);
 
       $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
-'rent_price'=>$this->input->post("rentprise"),'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),
-'link'=>$holdlinkuploadimg[0],'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',',
+'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),
+'weblink'=>$this->input->post('website'),'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',',
 'product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
 		
 	   $product_id=$this->product_model->insert_data_in_product_table($data);
 
 	   $this->product_model->insert_image_link_with_product_id($product_id,$holdlinkuploadimg);
 	   
-	   $data['message']="Product details has been saved";
-		$data['roomid']=$_POST['room_hid'];
-		  $data['userid']=$_POST['user_hid'];
-		  $data['designid']=$_POST['design_hid'];		
+			$data['message']="Product details have been saved";
+			$data['roomid']=$_POST['room_hid'];
+			$data['userid']=$_POST['user_hid'];
+			$data['designid']=$_POST['design_hid'];		
 	}
 		
 		   

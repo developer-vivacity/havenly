@@ -334,94 +334,68 @@ var designid = $("#holddesignidforroom").val();
   
 $("#savecurrentproduct").click(function()
 {
+
+	alert('yay');
 	var p_value=1;
 	$("#producterrormessage").html("");
-        $(".showerror").remove();
+        $(".alert").remove();
 	if($("#product_name").val().trim()=="")
 	{
-	   $("#product_name").before("<p class='showerror' id='product_name_error'>*Enter product name</p>");	
+
+	   $("#productnamerow").before("<p class='alert alert-error' id='product_name_error'>Enter Product Name");	
 	   p_value=0;	
 	}
 	if($("#Price").val().trim()=="")
 	{
-	   $("#Price").before("<p class='showerror' id='Price_error'>*Enter product price</p>");	
+	   $("#pricerow").before("<p class='alert alert-error' id='Price_error'>Enter product price</p>");	
 	   p_value=0;	
 	}
-	if($("#ship_cost").val().trim()=="")
-	{
-	   $("#ship_cost").before("<p class='showerror' id='ship_cost_error'>*Enter ship cost</p>");	
-	   p_value=0;
-	}
-	if($("#qty_in_stock").val().trim()=="")
-	{
-	  $("#qty_in_stock").before("<p class='showerror' id='qty_in_stock_error'>*Enter qty in stock</p>");	
-	  p_value=0;
-	}
-	if($("#description").val().trim()=="")
-	{
-	  $("#description").before("<p class='showerror' id='description_error'>*Enter Description</p>");	
-	  p_value=0;
-	}
+
 	if($("#dimention").val().trim()=="")
 	{
-	   $("#dimention").before("<p class='showerror' id='dimention_error'>*Enter Dimention</p>");	
+	   $("#dimensionrow").before("<p class='alert alert-error' id='dimension_error'>Please Enter Dimensions</p>");	
 	   p_value=0;		
-	}
-	
-	if($('input[name$="retail_option"]:checked ').val()=="on" && $("#rentprise").val().trim()=="")
-	{
-	   $("#rentprise").before("<p class='showerror' id='rentprise_error'>*Enter Rent Prise</p>");	
-	   p_value=0;
 	}
 	if($("#selecttypefilter").html().trim()=="")
 	{
-	   $("#selecttypefilter").before("<p class='showerror' id='Typefilter_error'>*Enter Type</p>");		
+	   $("#selecttypefilter").before("<p class='alert alert-error' id='Typefilter_error'>Enter Type</p>");		
 	   p_value=0;
 	}
 	if($("#selectstylefilter").html().trim()=="")
 	{
-	   $("#selectstylefilter").before("<p class='showerror' id='Stylefilter_error'>*Enter Style</p>");		
+	   $("#selectstylefilter").before("<p class='alert alert-error' id='Stylefilter_error'>Enter Style</p>");		
 	   p_value=0;
 	}
 	if($("#selectcolorfilter").html().trim()=="")
 	{
-	   $("#selectcolorfilter").before("<p class='showerror' id='Colorfilter_error'>*Enter Color</p>");		
+	   $("#selectcolorfilter").before("<p class='alert alert-error' id='Colorfilter_error'>Enter Color</p>");		
 	   p_value=0;
 	}
 	if($("#selectmaterialfilter").html().trim()=="")
 	{
-	   $("#selectmaterialfilter").before("<p class='showerror' id='Materialfilter_error'>*Enter Material</p>");	
+	   $("#selectmaterialfilter").before("<p class='alert alert-error' id='Materialfilter_error'>Enter Material</p>");	
 	   p_value=0;	
 	}
 	if($("#uploadproductpic").val().trim()=="" && $("#productweblink").val().trim()=="")
 	{
-	   $("#productweblink").before("<p class='showerror'>*Upload picture or weblink</p>");		
+	   $("#productweblink").before("<p class='alert alert-error'>*Upload picture or weblink</p>");		
 	   p_value=0;
 	}
 	if($("#Price").val().trim()!="" && !$.isNumeric($("#Price").val()))
        {
-		$("#Price").before("<p class='showerror' id='Price_error'>*Enter price in numeric format</p>");	
+		$("#Price").before("<p class='alert alert-error' id='Price_error'>Please enter price in numeric format</p>");	
 		p_value=0;	
 	}
 	if($("#ship_cost").val().trim()!="" && !$.isNumeric($("#ship_cost").val()))
         {
-		$("#ship_cost").before("<p class='showerror' id='ship_cost_error'>*Enter ship cost in numeric format</p>");	
+		$("#ship_cost").before("<p class='alert alert-error' id='ship_cost_error'>Enter ship cost in numeric format</p>");	
 		p_value=0;
 	}
 
-	if($("#qty_in_stock").val().trim()!="" && !$.isNumeric($("#qty_in_stock").val()))
-	{
-	   $("#qty_in_stock").before("<p class='showerror' id='qty_in_stock_error'>*Enter ship cost in numeric format</p>");	
-	   p_value=0;
-    }
-    if($('input[name$="retail_option"]:checked ').val()=="on" && $("#rentprise").val().trim()!="" && !$.isNumeric($("#rentprise").val()) )
-	{
-	    $("#rentprise").before("<p class='showerror' id='rentprise_error'>*Enter rentprise in numeric format</p>");	
-	    p_value=0;
-    }
+
    if(($("#productweblink").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
     {
-        $("#productweblink").before("<p class='showerror' id='productweblink_error'>*Enter valid Url</p>");	
+        $("#productweblink").before("<p class='alert alert-error' id='productweblink_error'>Please enter valid URL</p>");	
         p_value=0;
     }
     if(fileupload_value==0)

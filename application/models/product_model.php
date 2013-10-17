@@ -434,7 +434,7 @@ function display_design_associated_products($design_id,$status=null)
 {
 	
        ($status==null?$this->db->from('design_product_mapping','products','vendors','product_image'):$this->db->from('design_product_mapping','products','user_design', 'vendors'));
-       $this->db->select('products.*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
+       $this->db->select('products.*,product_image.*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as tota_price');
         
         $this->db->join('products','design_product_mapping.product_id=products.product_id');
         $this->db->join('vendors','vendors.vendor_id=products.vendor_id');

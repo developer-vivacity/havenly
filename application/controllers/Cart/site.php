@@ -13,6 +13,7 @@ Class Site extends CI_Controller
     $this->load->model('cart_model');
 	 $this->load->model('user_model');
     $this->load->model('product_model');
+    $this->load->model('user_model');
     
     }
     
@@ -118,15 +119,14 @@ Class Site extends CI_Controller
   {
 	
 	  $checkpromotioncode=$this->cart_model->valid_promotion_code($_POST['promotioncode'],$_POST['type']);	
-	  
-	  if(sizeof($checkpromotioncode)>0)
-	  { 
+	   if(sizeof($checkpromotioncode)>0)
+	   { 
 		     if($checkpromotioncode[0]['status']==='active')
 	             echo "1-@-".$checkpromotioncode[0]['design_fee_id']."-@-".$checkpromotioncode[0]['fee'];
                      else
                      echo "0-@-"."Design status inactive"; 
-                      
-             }
+                    
+            }
   
   }
   function get_design_fee()
@@ -134,6 +134,7 @@ Class Site extends CI_Controller
    $data= $this->cart_model->get_design_fee($_POST['designtype']);
    echo $data[0]['fee'];
   }
+<<<<<<< HEAD
   
   
   function confirm_order(){
@@ -174,6 +175,24 @@ Class Site extends CI_Controller
 			  $errors[] = $error;
                            }	
 	
+=======
+ function use_token()
+ {
+   $user= $this->user_model->get_user_id();
+   $id=(int)$user[0]["id"]+1;
+  
+    
+    $amount=(int)$_POST["amount"]*100;
+    $data["amount"]=$amount;
+    $data["token"]=$_POST["stripeToken"];
+    $data["description"]=$_POST["description"];
+    $data["id"]=$id;   
+    $message= $this->load->view('Cart/stripepayment', $data,true);
+    echo $message;
+ 
+ }
+
+>>>>>>> c6fed78f6da58ea0c1150718a6b3137e7a55da58
 }
 
 	

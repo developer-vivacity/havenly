@@ -282,5 +282,11 @@ $data = array('password' => $password);
    $query=$this->db->get("users");
    return $query->num_rows();
   }
+  function get_user_id()
+ {
+   $this->db->select_max('id');
+   $query = $this->db->get('users');
+   return $query->result_array();
+ }
 }
 ?>

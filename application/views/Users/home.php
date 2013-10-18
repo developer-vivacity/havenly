@@ -28,43 +28,44 @@ var flag_sub=0;
 //this plublish key of kbs.php@gmail.com test account. 
  //Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5');
 //this plublish key of lee.m.mayer@gmail.com test account. 
+
 //Stripe.setPublishableKey('pk_test_9yS0nvRQ3OHGX0SMmXZ2jDAG');
-
-
 
 //this plublish key of lee.m.mayer@gmail.com live account. 
 
-Stripe.setPublishableKey('pk_test_HRnP8vucwckyxOntuSL0MSC5 ');
+Stripe.setPublishableKey('pk_live_LEf8fHz4TyZG3fN21gAVv3I8');
 
 // ...// ...
+var str_amount;
 function get_token()
 {
+     str_amount=$("#show_design_fee").html();
+       str_amount=str_amount.replace('$','');
 
-     // if(($("#CVC").val().length>=3)&&($("#cardnumber").val().length>14))    
+     //if(($("#CVC").val().length>=3)&&($("#cardnumber").val().length<=16))    
+     if(($("#CVC").val().length>=3))    
       {
         $('.payment-errors').html("<img src='"+$("#basepath").val()+"/assets/Images/ajax-loader.gif' width='25px' height='25px'>");    
-        Stripe.card.createToken({
-        name: $('#card-name').val(),
-        number: $('#cardnumber').val(),
-        cvc: $('#CVC').val(),
-        exp_month: $('#cart_month').val(),
-        exp_year: $("#cart_year").val()
+         Stripe.card.createToken({
+              
+         name: $('#card-name').val(),
+         number: $('#cardnumber').val(),
+         cvc: $('#CVC').val(),
+         exp_month: $('#cart_month').val(),
+         exp_year: $("#cart_year").val()
         }, stripeResponseHandler);
        
        }
 
 }
 
-
-  
-  var stripeResponseHandler = function(status, response) 
+var stripeResponseHandler = function(status, response) 
   {
- 
+  
   var $form = $('#payment-form');
 
   if(response.error) 
   {
-   alert('yay');
     $form.find('.payment-errors').text(response.error.message);
     flag_sub=0;
   } 
@@ -72,13 +73,26 @@ function get_token()
   {
    // token contains id, last4, and card type
     var token = response.id;
-    $form.find('.payment-errors').text("Thank you!");
     $("#tokencode").val(token);
     flag_sub=1;
-    $("#loading").show();
-    $("#user_login_form").submit();
+    $.post($("#basepath").val()+"index.php/Cart/site/use_token", {stripeToken :token,amount:str_amount,description:$("#email").val()},function(data)
+    {
+       
+    if(data==1)
+    {
+        $form.find('.payment-errors').text("Thank you!");
+        $("#loading").show();
+        $("#user_login_form").submit();
+     }
+    else
+    {
 
-  }
+      $form.find('.payment-errors').text(data);
+
+    }    
+})   
+
+   }
 };
 
 </script>
@@ -382,7 +396,7 @@ function get_token()
 
 <div class = "horizontal"><a>
 <div id = "tweetsend" class = "padding_small third border auto light_gray">
-	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium blue_text condensed inline"> 
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> 
 	OR, click here to email (hello@havenly.com) your pictures to us.</p>
 </div></a></div>
 <br><br><hr class = "style half"><br><br><br><br><br>
@@ -560,7 +574,7 @@ function get_token()
 		<!-----------design fee hidden variables------->
 		
 		<input type="hidden" value="0" name="designfeeid" id="designfeeid"/>
-		<input type="hidden" value="0" name="designfeeamt" id="designfeeamt"/>
+		
 		<!---<input type="hidden" value="inactive" name="feestatus" id="feestatus"/>---->
 		
 		<input type="hidden" value="active" name="feestatus" id="feestatus"/>
@@ -586,19 +600,43 @@ function get_token()
 		<div class="horizontal">
 
 		   <label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="cardtype">Card Type: </label>
-		 
-			<select id="card-name" class = "forty forminput">
-		      <option value="Visa">
+<!-------		 
+ <select id="card-name" class = "forty forminput">
+		      <option value="4242424242424242">
 			 Visa
 		      </option>
-		     <option value="Mastercard">
+		     <option value="5555555555554444">
 			Master
+		     </option>
+		     <option value="378282246310005">
+		     American Express
+		     </option>
+		    ----->
+
+		   <!----<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>--->
+		  <div class="labels"> 
+               
+               <select id="card-name" style="width:100px;float:left;margin-left:27px;" class = "forty forminput">
+		        <option value="Visa">
+			 visa card
+		      </option>
+		     <option value="Mastercard">
+			 master card
 		     </option>
 		     <option value="AmericanExpress">
 		     American Express
 		     </option>
-		   </select> 
-
+		     <option value="Discover">
+		     Discover
+		     </option>
+		     <option value="Diner's Club">
+		     Diner's Club
+		     </option>
+		     <option value="JCB">
+		     JCB
+		     </option>
+		    </select>
+</div>
 		</div>
 		<div class="horizontal">
 		<label class = "labels inline forty middle right-align small sanslight dark_gray_text" for="cardnumber">Card Number:</label>
@@ -631,7 +669,7 @@ function get_token()
 	</div>	</div></div>
 <br/>
 		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
-<br><br><div class = "horizontal continue center gray">
+<br><br><div class = "center gray">
 <input type="button"  id = "submit_but" class="button3 sanslight midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> </div>
 	</div>
 	</form>
@@ -654,69 +692,62 @@ function get_token()
     $.post($("#basepath").val()+"index.php/Cart/site/get_design_fee", {designtype :type},function(data)
     {
        $("#show_design_fee").html(data);
-	   $("#designfeeamt").val(data);
 
     })
 
 
    })
-    
-	
-	var $promotion_code=0;
-    $("#designfeeid").val(0);
-    $("#designApply").click(function()
+    var $promotion_code=0;
+       $("#designfeeid").val(0);
+     $("#designApply").click(function()
      {
-	 
-	
-	 $(".alert").remove();
-	 
-	 
+
          var designtype="incomplete";
          if($('#type:checked').size()>0)
          designtype=$('#type:checked').val();
 
-    
-
+         $(".error").remove();
+	 $("#promotionerror").remove();
+	 $(".designtypeerror").remove();
 	 
-    var str="Invalid Code";
-	if($("#promotioncode").val()==str||$("#promotioncode").val()=="")	 
+         var str="Enter 6 alphanumeric chars.";
+	if($("#promotioncode").val()==str)	 
         {
-            alert('nope');   
-            if($("#designtypeerror").length==0)	 
-	       
-		
-		   $("#codepromotion").append('<span class = "alert alert-error" id="designtypeerror">Enter Promotion Code</span>')
+               
+                 if($("#designtypeerror").length==0)	 
+	        $("#designtype").after('<span class = "error" id="designtypeerror">Enter Promotion Code</span>')
                  return false;
-			}
+          }
           if($("#feestatus").val()!="active")
           {
 	        if($("#designtypeerror").length==0)	 
-	        $("#codepromotion").append('<span class = "alert alert-error" id="designtypeerror">Invalid Code</span>')
+	        $("#designtype").after('<span class = "error" id="designtypeerror">choose active design fee!</span>')
                  return false;	 
           }
-          $("#codepromotion").append('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"></span>')
+          $("#designtype").after('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"></span>')
           $.post($("#basepath").val()+"index.php/Cart/site/promotion_code", {promotioncode :$("#promotioncode").val(),type:designtype}, 
           function(data)
           {
-			$("#imgspan").remove();
-			$(".alert").remove();
-				 
+		 $("#imgspan").remove();
+		 $(".error").remove();
+		 $("#designtypeerrorimg").remove();
+		 
             if(data.length>0)
             { 
-			var data= data.split('-@-');
-			$promotion_code=data[0];
+		   var data= data.split('-@-');
+		   $promotion_code=data[0];
 	   
                    
                    $("#hidpromotioncode").val($("#promotioncode").val());  
                    if($promotion_code==1)
                    {
-                   $("#codepromotion").after('<span class = "alert" id="designtypeerror">Promotion Code Accepted</span>')
+                   $("#designtype").after('<span class = "error" id="designtypeerror">it\'s valid!</span>')
                    $("#show_design_fee").html(data[2]); 
                    $("#designfeeid").val(data[1]);                  
                    }                 
                    else
                    {
-                   $("#codepromotion").after('<span class = "alert alert-error" id="designtypeerror">'+data[1]+'</span>')
+                   $("#designtype").after('<span class = "error" id="designtypeerror">'+data[1]+'</span>')
                    $("#designfeeid").val(0);                     
                    }                    
                    return false; 
@@ -1063,7 +1094,7 @@ if (isMobile)
 
  });
 
-$("#information :input").keyup(function(){
+$("#information input:text, #information input:password").keyup(function(){
 
 $(this).css("color","gray");
 if ($("#first_name").val()=="Holly"||
@@ -1083,18 +1114,16 @@ $("#CVC").val()=="CVC"||
 $("#CVC").val().length<3||
 $("#cardnumber").val()==''||
 $("#cardnumber").val()=="credit card number" ||
-$("#cardnumber").val().length<14||
 $("#password").val()=="Password"||
 $("#password").val()=="Password (min 6 chars.)"
 ||$("#password").val().length < 6)
 {
-   $("#submit_but").hide();
+  // $("#submit_but").hide();
 }
 
 
 else 
 {
- 
    $("#submit_but").fadeIn();
    //flag_sub=1;
 }
@@ -1133,12 +1162,12 @@ $("#submit_but").click(function(){
           var nowdate=curr_month+"/"+curr_date+"/"+curr_year;
 	 
          if($('#type:checked').size()>0)
-			$("#hidesigntype").val($('#type:checked').val());
+         $("#hidesigntype").val($('#type:checked').val());
 	 
           if($("#feestatus").val()!="active")
           { 
-            $(".alert").remove();
-	        $("#designfeepart").append('<div class = "alert alert-error" >Please choose a design type</div>');	 
+             $(".error").remove();
+	        $("#designfeepart").append('<label class = "error labels"  style="width:400px;text-align:center;">Please choose a design fee</label>');	 
 	        return false;	 
           }
 	
@@ -1146,7 +1175,7 @@ $("#submit_but").click(function(){
          {
          $("#designfeeid").val(0);
          }  
-	    $(".alert").remove();
+	    $("#error").remove();
 
         
 	    get_token();
@@ -1195,31 +1224,27 @@ $("#submit_but").click(function(){
             });  
       });
       
-    // $('#CVC,#cardnumber').keydown(
-    // function(event)
-    // {
+    $('#CVC,#cardnumber').keydown(
+    function(event)
+    {
 	
-	// if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
-             // // Allow: Ctrl+A
-            // (event.keyCode == 65 && event.ctrlKey === true) || 
-             // // Allow: home, end, left, right
-            // (event.keyCode >= 35 && event.keyCode <= 39)) {
-                 // // let it happen, don't do anything
-                 // return;
-        // }
-        // else {
-            // // Ensure that it is a number and stop the keypress
-            // if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+	if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
 		 
-                // event.preventDefault(); 
-            // }   
-        // }	
+                event.preventDefault(); 
+            }   
+        }	
 	
-// });
+});
 
-function checktext(){
-
-}
-	
 	
 	</script>

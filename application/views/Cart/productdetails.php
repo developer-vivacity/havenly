@@ -53,16 +53,27 @@
 <a class = "black_text condensed small" href = "<?php echo base_url('index.php/Cart/site/products_associate_design/'.$designid);?>">&larr;&nbsp;Back to Products</a>
 <br><br>
 <div class = "productimages">
-<div class = "imageholder">
-<img src="<?php echo$productdetails[0]->weblink;?>" height="100%">
+<?php 
+
+	$i=0;
+	foreach($productdetails as $image)
+	
+	{
+		if ($i==0)
+		
+		{echo'<div class = "imageholder">';
+		echo '<img src="'.$productdetails[$i]->filename.'" height="100%"></div>';
+		$i++;
+		}
+		
+		else{
+		echo '<div class = "smallimageholder"><div class = "smallimage">';
+		echo '<img src="'.$productdetails[$i]->filename.'" width="100%"></div>';
+		$i++;
+		}
+}
+		?>
 </div>
-<div class = "smallimageholder">
-<div class = "smallimage">
-<img src="http://rk.pbimgs.com/pbimgs/rk/images/dp/wcm/201323/0015/img52o.jpg" width="100%">
-</div>
-<div class = "smallimage">
-<img src="http://rk.pbimgs.com/pbimgs/rk/images/dp/wcm/201325/0003/img84c.jpg" width="100%">
-</div></div>
 </div></div>
 <div class = "span4">
 <p class = "sanslight productname">

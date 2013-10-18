@@ -66,7 +66,7 @@
 <div class = "white">
 	 <!----add new hidden variable to store current page---->
 	 <?php
-	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="designer"/>');
+	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="status"/>');
 	if(isset($roomsassociated))
 	{
 	foreach($roomsassociated as $key){
@@ -346,9 +346,9 @@ else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">
 $(document).ready(function()
 {
         //$('.carousel').carousel();
-	     $(".usermain").hide();
+	    $(".usermain").hide();
 	    $("#"+$("#currentpage").val()).show();
-             $("#editroomstatus").hide();
+        $("#editroomstatus").hide();
   
 		 $("#bstabs a").click(function()
 		 {

@@ -81,7 +81,7 @@ Class Site extends CI_Controller
   {
 		$data["productid"]=$productid;
 		$data["designid"]=$designid;
-		$data["productdetails"]=$this->product_model->get_all_product($productid);
+		$data["productdetails"]=$this->product_model->get_all_products_and_images($productid);
 		$data["qty"]=$this->cart_model->get_product_qty($productid,$designid);
 		$this->load->view('Cart/productdetails', $data);
    }  

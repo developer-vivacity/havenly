@@ -55,10 +55,21 @@ timestamp timestamp NOT NULL)");
 		  $this->db->from('products');
 		  $this->db->join('product_image','products.product_id=product_image.product_id','left outer');
 		  if($pid!="")   
-		  $this->db->where('product_id',$pid);
+		  $this->db->where('products.product_id',$pid);
 		  $this->db->where('product_image.type','main');
 			return $this->db->get()->result(); 
   }
+  
+  function get_all_products_and_images($pid)
+  
+  { 	 $this->db->select('products.product_id, filename, product_name,color_name, material_name, weblink,dimensions,description,ship_cost,time_to_ship,ship_cost,price');
+		  $this->db->from('products');
+		  $this->db->join('product_image','products.product_id=product_image.product_id','left outer');
+		  if($pid!="")   
+		  $this->db->where('products.product_id',$pid);
+				return $this->db->get()->result(); 
+  }
+  
  //-------
  function  upload_design_info_user_room_design($userid=null,$roomid=null,$filename=null,$design_status=null,$designid=null)
  {
@@ -182,7 +193,7 @@ function insert_image_link_with_product_id($product_id,$link_array)
 	{
 	  if($link_array[$i]!="")
 	  {
-	  $data=array('product_id'=>$product_id,'filename'=>$link_array[$i]);	
+	  $data=array('product_id'=>$product_id,'filename'=>$link_array[$i]['filename'], 'type'=>$link_array[$i]['type']);	
 	  $this->db->insert("product_image", $data);    
            }
 	  $i=$i+1;
@@ -229,8 +240,9 @@ function filter_products($product_type, $product_color, $product_color, $product
 		$this->db->where_in('product_material_id', $product_material_array);
 	}
 	
-	
+		$this->db->where('product_image.type','main');
 		$this->db->from('products');
+		$this->db->join('product_image', 'product_image.product_id=products.product_id','left');
 		$query = $this->db->get();
 		return $query->result();
 
@@ -245,16 +257,17 @@ function search_product_name($productname)
 	$this->db->or_like ('vendor_name', $productname);
 	$this->db->or_like ('description', $productname);
 	$this->db->or_like ('color', $productname);
-	$this->db->or_like ('type', $productname);
+	$this->db->or_like ('product_type.type', $productname);
 	$this->db->or_like ('material', $productname);
-	
-	$this->db->select('products.*');
+	$this->db->where('product_image.type','main');
+	$this->db->select('products.*, filename');
 	$this->db->from('products');
 	$this->db->join('vendors', 'products.vendor_id = vendors.vendor_id', 'left');
 	$this->db->join('product_type', 'products.product_type_id = product_type.type_id', 'left');
 	$this->db->join('product_color', 'products.product_color_id=product_color.color_id', 'left');
 	$this->db->join('product_material', 'products.product_material_id=product_material.material_id','left');
-	
+	$this->db->join('product_image', 'product_image.product_id=products.product_id','left');
+	$this->db->group_by('products.product_id');
 	$query = $this->db->get();
 	return $query->result();
 }
@@ -436,7 +449,7 @@ function display_design_associated_products($design_id,$status=null)
 {
 	
        ($status==null?$this->db->from('design_product_mapping','products','vendors','product_image'):$this->db->from('design_product_mapping','products','user_design', 'product_image','vendors'));
-       $this->db->select('products.*,product_image.*,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
+       $this->db->select('products.*,product_image.filename,((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100) as ven_shipping,(CAST(products.price AS UNSIGNED)+((CAST(products.price AS UNSIGNED)*CAST(vendors.shipping AS UNSIGNED))/100)+(CAST(products.ship_cost AS UNSIGNED))) as total_price');
         
         $this->db->join('products','design_product_mapping.product_id=products.product_id');
         $this->db->join('vendors','vendors.vendor_id=products.vendor_id');
@@ -448,6 +461,7 @@ function display_design_associated_products($design_id,$status=null)
 	 $this->db->join('shopify_product_variant','shopify_product_variant.product_id=products.product_id', 'left');
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	 $this->db->where('user_design.status',$status);
+	 $this->db->where('product_image.type','main');
 	}
 	else
 	{
@@ -455,6 +469,7 @@ function display_design_associated_products($design_id,$status=null)
 	$this->db->order_by('products.product_id', 'asc');
 	}
 	    $this->db->where('design_product_mapping.design_id',$design_id);
+		$this->db->group_by('products.product_id');
 	    $query = $this->db->get();	
      //die($this->db->last_query());
         return $query->result();

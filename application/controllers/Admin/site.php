@@ -489,20 +489,43 @@ function add_product()
 		{
 		  
 		 $holdlinkuploadimg=array();	 
-               $i=0;
+          $i=0;
+		  $count=0;
 	    
 	    while($i<=5)
-	    {
-	        if(!empty($_FILES['uploadproductpic'.$i]['name']))
+	     {
+	         if(!empty($_FILES['uploadproductpic'.$i]['name']))
                  {
 			
 				$this->for_pic_upload('uploadproductpic'.$i);
-			 	$holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->_File_Location;	 
+			 	$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['filename']=$this->_File_Location;
+				if ($i==0)
+					{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']='main';}
+					else{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']=NULL;}
+					
 	        }
 		 $i++;
-	     }		
+	     }
 		
-		$holdlinkuploadimg[sizeof($holdlinkuploadimg)]=$this->input->post("productweblink");
+		$count = sizeof($holdlinkuploadimg);
+		$i=0;
+		 while ($count<=5){
+		 			
+			if($this->input->post('productweblink'.$count)){		
+			 $holdlinkuploadimg[$i]['filename']=$this->input->post('productweblink'.$count);
+			 $holdlinkuploadimg[$i]['type']='main';
+			 if ($i>0)
+			 {
+				 $holdlinkuploadimg[$i]['type']=NULL;
+				
+			}
+			$i++;
+			
+		 }
+		 $count++;
+		 }
+		 
+		
 		$typehiddenfilter=$this->input->post("typehiddenfilterid");
 		$stylehiddenfilter=$this->input->post("stylehiddenfilterid");
 		$colorhiddenfilter=$this->input->post("colorhiddenfilterid");
@@ -513,8 +536,8 @@ function add_product()
 	      $arrayaddtypefilter=explode(',',$this->input->post("typehiddenfilter"));	    
 	      foreach($arrayaddtypefilter as $key=>$value)
 	       {
-		         $data=array('type'=>$value);
-		   	$newtypeid=$this->product_model->insert_data_in_db('product_type',$data);
+		      $data=array('type'=>$value);
+			$newtypeid=$this->product_model->insert_data_in_db('product_type',$data);
 			$typehiddenfilter=($typehiddenfilter==""?$newtypeid:$typehiddenfilter.','.$newtypeid);
 		
 	       }
@@ -569,7 +592,7 @@ function add_product()
       $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
 		'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),
 		'weblink'=>$this->input->post('website'),'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',',
-		'product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'');
+		'product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'',);
 		
 	   $product_id=$this->product_model->insert_data_in_product_table($data);
 
@@ -584,8 +607,8 @@ function add_product()
 		   
 		 
 		  
-		  $data['vendors']= $this->product_model->get_vendors_details();
-		  $this->load->view('Admin/addproduct',$data);
+		 $data['vendors']= $this->product_model->get_vendors_details();
+		 $this->load->view('Admin/addproduct',$data);
 	    
 }
 function search_text_for_ajax($text=null,$id=null)
@@ -771,8 +794,9 @@ function send_mail($_email,$update_room_type,$_data)
 		
 			$this->email->from('lee@havenly.com','Lee from Havenly');
 			$this ->email->to($_email);
+			$this->email->cc('shelby@havenly.com');
 			$this->email->subject('Hello from Havenly');
-		         $data["message"]=$_data;
+		    $data["message"]=$_data;
 		         
 		         $data["updateroom"]=$update_room_type;
 		         
@@ -819,8 +843,7 @@ function clear_filter()
 function text_search()
 
 {
-
-        $data["productdetails"]=$this->product_model->search_product_name($this->input->post('productname'));
+       $data["productdetails"]=$this->product_model->search_product_name($this->input->post('productname'));
         $data["selectedproducts"]=$this->input->post("productimage");
         $view=$this->load->view('Admin/productview', $data);
         echo $view;

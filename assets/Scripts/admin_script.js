@@ -143,9 +143,10 @@ $("#AddProduct").click(
   function()
   {
   
-   document.location.href=$("#siteurl").val()+"index.php/Admin/site/add_product?r="+$('#currentroomid').val()+"&u="+$('#currentuserid').val()+"&d="+$('#userdesign').val();
+ window.open($("#siteurl").val()+"index.php/Admin/site/add_product?r="+$('#currentroomid').val()+"&u="+$('#currentuserid').val()+"&d="+$('#userdesign').val(),"popupWindow", "width=1300 height=800,scrollbars=yes");
   
   });
+
   $("#SaveSelected").click(function()
   {  
   
@@ -163,7 +164,7 @@ $("#AddProduct").click(
 	  else if($("#displaydesignimages").html().trim()=="")
 	  {
 		  
-		$("#div_show_error_message").html('<div class = "alert alert-error medium">Upload at least one design images:</div>');  
+		$("#div_show_error_message").html('<div class = "alert alert-error medium">Upload at least one design image</div>');  
 		  
 	  }
 	  else 
@@ -215,6 +216,7 @@ $("#AddProduct").click(
   $("#filterproduct").click(function()
   {
 	
+
     var is_filter=false;
     var producttypeid="";
     var productprice="";
@@ -339,10 +341,10 @@ var designid = $("#holddesignidforroom").val();
 $("#savecurrentproduct").click(function()
 {
 
-	alert('yay');
+	
 	var p_value=1;
 	$("#producterrormessage").html("");
-        $(".alert").remove();
+    $(".alert").remove();
 	if($("#product_name").val().trim()=="")
 	{
 
@@ -380,9 +382,9 @@ $("#savecurrentproduct").click(function()
 	   $("#selectmaterialfilter").before("<p class='alert alert-error' id='Materialfilter_error'>Enter Material</p>");	
 	   p_value=0;	
 	}
-	if($("#uploadproductpic").val().trim()=="" && $("#productweblink").val().trim()=="")
+	if($("#uploadproductpic").val().trim()=="" && $("#productweblink0").val().trim()=="")
 	{
-	   $("#productweblink").before("<p class='alert alert-error'>*Upload picture or weblink</p>");		
+	   $("#productweblink").before("<p class='alert alert-error'>Upload picture or weblink</p>");		
 	   p_value=0;
 	}
 	if($("#Price").val().trim()!="" && !$.isNumeric($("#Price").val()))
@@ -397,30 +399,44 @@ $("#savecurrentproduct").click(function()
 	}
 
 
-   if(($("#productweblink").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
-    {
-        $("#productweblink").before("<p class='alert alert-error' id='productweblink_error'>Please enter valid URL</p>");	
-        p_value=0;
-    }
-    if(fileupload_value==0)
-    {
-		
-		 p_value=0;
-    }
+   // if(($("#productweblink0").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
+    // {
+        // $("#productweblink0").before("<p class='alert alert-error' id='productweblink_error'>Please enter valid URL</p>");	
+        // p_value=0;
+    // }
+	   // if(($("#productweblink1").val().trim()!="") && (/^(http|https|ftp):\/\/[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test($("#productweblink").val()))==false)
+    // {
+        // $("#productweblink1").before("<p class='alert alert-error' id='productweblink_error'>Please enter valid URL</p>");	
+        // p_value=0;
+    // }
+
+	
     else if(p_value==1)
     {
 		
 	  $("#addproductform").submit();	
-    }
-	})
+     }
+	});
 
 $("#adduploadproductpic").click(function()
 {
 	
-	if(total<=4)
+	if(total<=5)
 	{
 	$("#appenduploadphoto").append('<p id="uploadproductpic_'+total+'" class="imageappend"><input type="file" name="uploadproductpic'+total+'" class="uploadproductpic" onchange="typechackfileupload('+total+');"/><input type="button" value="remove" onclick="removeuploadpic('+total+')"></p>');
     total++;	
+        }
+        
+       
+});
+
+$("#addimagelink").click(function()
+{
+	
+	if(total<=5)
+	{
+		$('#productlinkdiv'+total).show();
+		total++;	
         }
         
        

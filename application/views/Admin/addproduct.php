@@ -59,13 +59,7 @@
 
 
 
-<div id="producterrormessage" style="font-family:Times New Roman, Times, serif;font-size:15px;margin-left:500px;">
-	<?php
-	if(isset($message))
-	echo $message;
-	?>
-	
-</div>	
+
 <div id="producterrormessageforuploadimage">
 </div>	
 <div class = "white">
@@ -77,6 +71,15 @@ echo '<input type="hidden" value="'.$roomid.'" name="room_hid">';
 echo '<input type="hidden" value="'.$userid.'" name="user_hid">';
 echo '<input type="hidden" value="'.$designid.'" name="design_hid">';
 ?><BR><BR><BR><BR>
+	<?php
+	if(isset($message))
+	echo'<div id="producterrormessage" class="alert">'.$message.'</div>';
+	
+	if (isset($style))
+	print_r($style);
+	?>
+	
+</div>	
 <div class = "row">
 <div class = "span5 sanslight">
 
@@ -94,7 +97,9 @@ echo '<input type="hidden" value="'.$designid.'" name="design_hid">';
 	?>
 </select></span></div>
 <div class = "row" id = "productnamerow">
-<span class = "span2">Name</span><span class = "span3"><input type="text" id="product_name" name="product_name"/></span></div>
+<span class = "span2">Product Name</span><span class = "span3"><input type="text" id="product_name" name="product_name"/></span></div>
+<div class = "row"><span class = "span2">Material Name</span><span class = "span3"><input type="text" id="material_name" name="material_name"/></span></div>
+<div class = "row"><span class = "span2">Color Name</span><span class = "span3"><input type="text" id="color_name" name="color_name"/></span></div>
 <div class = "row" id = "pricerow">
 <span class = "span2">Price</span><span class = "span3"><input type="text" id="Price" name="Price"/></span></div>
 <div class = "row"><span class = "span2">Ship Cost</span><span class = "span3"><input type="text" id="ship_cost" name="ship_cost"/></span></div>
@@ -106,13 +111,18 @@ echo '<input type="hidden" value="'.$designid.'" name="design_hid">';
 <span class = "span2">Website Link</span><span class = "span3"><input type="text" id="website" name="website"/></span></div>
 <BR><BR>
 <div class = "well">
-Upload Picture
-<div id="appenduploadphoto"><input type="file" name="uploadproductpic0" id="uploadproductpic"/><input type="button" class = "button2 pink" value="Add" style="display:none;" id="adduploadproductpic"></div>
-Image Link <input type="text" id="productweblink" name="productweblink"/></div>
-<input type="button" class = "button2 blue" name="SaveCurrentProduct" value="Save Product" id="savecurrentproduct"/>
+ <div id = "appendlink">Image Link: <input type="text" id="productweblink0" name="productweblink0"/>
+<div id = "productlinkdiv1"style="display:none" >Image Link: <input type="text" id="productweblink1" name="productweblink1"/></div>
+<div id = "productlinkdiv2" style="display:none" >Image Link: <input type="text" id="productweblink3" name="productweblink2"/></div>
+<div id = "productlinkdiv3" style="display:none" >Image Link: <input type="text" id="productweblink3" name="productweblink3"/></div>
+ </div><input type="button" class = "button2 pink" value="Add Another Link" id="addimagelink"><br><BR>
+or Upload Picture:
+<div id="appenduploadphoto"><input type="file" name="uploadproductpic0" id="uploadproductpic"/><input type="button" class = "button2 pink" value="Add" style="display:none;" id="adduploadproductpic"></div></div>
+ 
+ <input type="button" class = "button2 blue" name="SaveCurrentProduct" value="Save Product" id="savecurrentproduct"/>
 
 </div>
-<div class = "span4 sanslight ">
+<div class = "span4 sanslight">
 <div class = "categories well">
 Type: 
 	

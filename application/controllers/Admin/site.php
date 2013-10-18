@@ -776,6 +776,7 @@ function update_concept_board()
       	echo "success";
 	
 }
+
 function send_mail($_email,$update_room_type,$_data)
 {
 	

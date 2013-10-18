@@ -183,18 +183,22 @@ function get_product_qty($product_id,$design_id)
 	$query=$this->db->get('shoppingcart');	
     return $query->result();
 }
+
+
 function product_details_with_design()
 {
    $this->db->from('shoppingcart','user_design','products');
-   $this->db->select('user_design.design_name,products.product_name,products.price,products.rent_price,products.ship_cost,shoppingcart.qty');
+   $this->db->select('user_design.design_name, filename, time_to_ship, products.product_name,products.price,products.ship_cost,shoppingcart.qty, vendors.shipping_percent, vendors.shipping_flat');
    $this->db->join('user_design','user_design.design_id = shoppingcart.design_id');
    $this->db->join('products','products.product_id = shoppingcart.product_id');
-   
+   $this->db->join('vendors','products.vendor_id = vendors.vendor_id');
+   $this->db->join('product_image','products.product_id=product_image.product_id');
+   $this->db->where('product_image.type','main');
    $this->db->where('shoppingcart.user_id',$this->session->userdata('id'));
-   $this->db->where('user_design.status','submitted');
+  
    $query=$this->db->get();
    
-   die($this->db->last_query());
+   // die($this->db->last_query());
    return $query->result();
      
 	
@@ -256,6 +260,15 @@ function get_design_fee($design_type)
   $this->db->insert("token_code",array("user_id"=>$userid,"token"=>$token));
   }
   
+  function set_order($designid)
+  {
+  
+	$order = array(
+	'ordered'=>'yes');
+	$this->db->where('design_id',$designid);
+	$this->db->update('shoppingcart',$order);
+	
+  }
   /*function get_variant_id($product_id)
   {
 	 $this->db->select('variant_id');

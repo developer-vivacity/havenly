@@ -11,6 +11,7 @@ Class Site extends CI_Controller
     $this->load->library('s3');
     $this->load->library('session');
     $this->load->model('cart_model');
+	 $this->load->model('user_model');
     $this->load->model('product_model');
     
     }
@@ -110,7 +111,7 @@ Class Site extends CI_Controller
   function products_in_cart($design_id)
   {
        $data["designid"]=$design_id;
-       $data["productincart"]=$this->cart_model->product_details_with_design();	  
+	   $data["productincart"]=$this->cart_model->product_details_with_design();	  
        $this->load->view('Cart/productsincart',$data);  
   }
   function  promotion_code()
@@ -133,8 +134,52 @@ Class Site extends CI_Controller
    $data= $this->cart_model->get_design_fee($_POST['designtype']);
    echo $data[0]['fee'];
   }
- 
+  
+  
+  function confirm_order(){
+  
+	$designid=$this->input->post('design_id');
+	$data=$this->cart_model->set_order($designid);
+	$userid = $this->session->userdata('id');
+	$user= $this->user_model->get_user($userid);
+	
+	  	
+             $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
+			
+	                $this->load->library('email',$config);
+	                $this->email->set_newline("\r\n");
+		
+			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this->email->to('lee@havenly.com');
+			$this->email->subject('New Order');
+		   	$datamsg = "New order from UserID ".$userid;         
+		         	         
+			$this->email->message($datamsg);
+			
+		         if($this->email->send()) 
+		         {
+				$data['message']= 'thank you';
+		         }
+			else 
+			{
+			  ob_start();
+			  $this->email->print_debugger();
+			  $error = ob_end_clean();
+			  $errors[] = $error;
+                           }	
+	
 }
+
+	
+}
+
+
 
 
 ?>

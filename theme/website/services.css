@@ -22,6 +22,10 @@
   font-family: 'Merriweather', serif;
 }
 
+.services a:hover{
+color: black;
+}
+
 .cards {
   width: 100%;
   margin: 0 auto;

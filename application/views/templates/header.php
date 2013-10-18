@@ -33,6 +33,7 @@
     <link href="<?php echo base_url('theme/app/your-preferences.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/your-rooms.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('theme/app/shopping-cart.css');?>" rel="stylesheet">
+	<link href="<?php echo base_url('theme/app/checkout.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('theme/admin/admindesign.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('theme/admin/designreview.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/base/footer.css');?>" rel="stylesheet">

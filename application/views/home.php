@@ -46,7 +46,7 @@
 <div id = "#services">
   <h1>Your room should be as pretty as you are.</h1>
   <h2>Let our decorators help you decorate your place.  One very low flat fee. No minimums or commitments. </h2>
-  <div class="cards">
+  <div class="cards"><a class = "black_text" href = "<?php echo base_url('index.php/Users/site/howwework');?>">
     <div class="anibox card1">
       <div class="card">
         <div class="face front">  
@@ -89,7 +89,7 @@
         <p>You tell us about the items you love, and we send it all to you.  Invite people over, shame free.</p>
       </div><!-- card-descrip -->
     </div><!-- anix box card 3-->
-  </div><!-- cards -->
+  </div><!-- cards --></a>
 </section><!-- services -->
 <section class="services-video blue">
   <div class="video-descrip">

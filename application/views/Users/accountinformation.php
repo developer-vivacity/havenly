@@ -136,7 +136,7 @@
 
 		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 		else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'">&nbsp;<br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15"> <input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'"><br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
 
@@ -200,7 +200,7 @@ echo '<div class = "carousel-inner text-center">';}
                 echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/>';
 				echo '<div class = "designimagetext"><div class = "condensed black_text midlarge">C L I C K  &nbsp; T O  &nbsp;S H O P</div></div></a>';
                 if(!empty($key->designer_notes))
-                echo  '<div><span><b>A Note from your Designer:&nbsp;</b></span>'.$key->designer_notes.'</div>';
+                echo  '<div><span class = "sanslight midsmall"><b>A Note from your Designer:&nbsp;</b></span><span class = "sanslight midsmall">'.$key->designer_notes.'</span></div>';
                 echo '</div>'; 
 		   $i++;
 	  }

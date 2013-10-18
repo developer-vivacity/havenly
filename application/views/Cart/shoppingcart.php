@@ -58,7 +58,7 @@
 
 <form method ="post" action="<?php echo base_url('index.php/Cart/site/products_associate_design/'.$designid.'');?>" id="shoppingcartform">
 
-<div id = "cartcircle" class="circle1 white_text small sanslight text-center midsmall"><a class = "black_text" onclick = "add_to_cart();">
+<div id = "cartcircle" class="circle1 white_text small sanslight text-center midsmall"><a class = "black_text" href="<?php echo base_url('index.php/Cart/site/products_in_cart/'.$designid);?>">
 <img class = "border img-circle" src="<?php echo base_url()?>/assets/Images/cart.png" width="50px" height="50px" /></a>
 <div class = "black_text" id="total_items_in_cart"><?php echo $totalitemincart;?>
 </div></div>

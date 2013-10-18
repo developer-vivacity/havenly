@@ -68,12 +68,12 @@
 		
 		else{
 		echo '<div class = "smallimageholder"><div class = "smallimage">';
-		echo '<img src="'.$productdetails[$i]->filename.'" width="100%"></div>';
+		echo '<img src="'.$productdetails[$i]->filename.'" width="100%"></div></div>';
 		$i++;
 		}
 }
 		?>
-</div>
+
 </div></div>
 <div class = "span4">
 <p class = "sanslight productname">

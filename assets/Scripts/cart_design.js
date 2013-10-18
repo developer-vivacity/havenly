@@ -4,6 +4,7 @@
   
 	$(".renderfull").hide();
 	$(".overlay").hide();
+	$("#overlaymsg").hide();
 	
  $(".checkimg").click(function()
  {
@@ -69,6 +70,27 @@ $(".smallimage").click(function(){
 	$(this).html('<img src ="'+oldimg+'"  height = "100%">');
 	$(".imageholder").html('<img src = "'+currimg+'" height = "100%">');
 	
+});
+
+$('#checkoutbutton').click(function(){
+
+var designid = $("#designidhold").val();
+    $.ajax({
+        url: $('#siteurl').val()+'index.php/Cart/site/confirm_order',
+        type: 'POST',
+        data: {design_id: designid},
+       success : function(data){
+			$('#overlaymsg').fadeIn();
+		  	   }
+    });
+	
+
+
+});
+
+$("#overlaymsg").click(function(){
+
+$("#overlaymsg").fadeOut();
 });
 	
 });

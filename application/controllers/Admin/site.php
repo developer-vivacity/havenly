@@ -393,10 +393,30 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 				$user_id=$_POST["designuserid"];
 				$designer_notes=$_POST["designer_notes"];	
 				$design_status=null;
-	}
-         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id):$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id,$design_status,$designer_notes));
-         ($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh'));
-	
+	     }
+	  
+	       //
+	      //die($room_id."----".$design_name."-----".$user_id."-----".$designer_notes."----".empty($design_status));
+          /*
+          $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id):
+          $this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id,$design_status,$designer_notes));
+          */
+        
+         /*cahnges here $design_id to $room_id*/
+         /*
+          $design_id=(empty($design_status)?$this->product_model->Add_Design_For_Room(base64_decode($design_name),$room_id):
+          $this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id,$design_status,$designer_notes));
+          */
+          
+          $design_id=(empty($design_status)?$this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id):
+          $this->product_model->Add_Design_For_Room($room_id,base64_decode($design_name),$design_id,$design_status,$designer_notes));
+          
+         /*-----------*/
+         
+         (empty($product_details)?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):
+         redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh'));
+	    
+	    /*---------------*/
 	
 	
 }

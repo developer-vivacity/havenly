@@ -264,7 +264,7 @@ foreach($productmaterialtype as $key)
 
 <div class = "button_padding">
 <input type="button" class = "button2 pink" id="filterproduct" name="filterproduct" value="Go" />
-<input type="button" class = "button2 pink" id="clearfilter" name="clearfilter" value="Clear" />
+<input type="button" class = "button2 pink" id="clearfilter" name="clearfilter" value="Refresh" />
 </div>
 
 </div>
@@ -286,7 +286,8 @@ foreach($productmaterialtype as $key)
 		   }
 		  echo'<div id = "productlistimg_'.$key->product_id.'" class = "productlistimg">
 		 <input type="checkbox"  value = '.$key->product_id.' class="cbox"  name="productimage[]" id="productimage_'.$key->product_id.'"  '.$ischecked.'/>
-		 <img class = '.$active.' src ='.$key->filename.' height="225px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->filename.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;</div>';
+		 <img class = '.$active.' src ='.$key->filename.' height="225px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->filename.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;
+		 <br><a class = "gray_text" href = "'.$key->weblink.'"><span class = "small condensed">'.$key->product_name.'</span>	 </div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "<p class = 'alert alert-error'>No products matching your criteria.</p>";

@@ -384,24 +384,29 @@ function Add_Design_For_Room($room_id=null,$design_name=null,$design_id=null,$us
 {
 
      
-         $designer_notes=null;
-         if(isset($_POST["designroomid"])&&isset($_POST["AddDesigntext"])&&isset($_POST["designuserid"])&&isset($_POST["designer_notes"]))
-         {
-	 
-				$room_id=$_POST["designroomid"];
-				$design_name=rtrim(base64_encode($_POST["AddDesigntext"]),'=');	
-				$user_id=$_POST["designuserid"];
-				$designer_notes=$_POST["designer_notes"];	
-				$design_status=null;
+          $designer_notes=null;
+         
+	if(isset($_POST["designroomid"])&&isset($_POST["AddDesigntext"])&&isset($_POST["designuserid"]))
+         	 
+	{		
+		$room_id=$this->input->post("designroomid");
+		$design_name=rtrim(base64_encode($this->input->post("AddDesigntext")),'=');
+		$user_id=$this->input->post("designuserid");
+		$design_status=null;
 	}
-         $design_id=($design_status=="null"?$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id):$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id,$design_status,$designer_notes));
-         ($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh'));
+		
+	
+	 if(isset($_POST["designer_notes"]))
+	 {
+		 $designer_notes = $_POST["designer_notes"];
+	 }
+	
+      $design_id=($design_status==NULL?$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id, $room_id):$this->product_model->Add_Design_For_Room(base64_decode($design_name),$design_id,$room_id,$design_status,$designer_notes));
+      ($product_details==null?redirect('/Admin/site/productdetails/'.$room_id.'/'.$user_id.'/'.$design_id.'','refresh'):redirect('/Admin/site/display_product_name_associate_with_design/'.$design_id.'/'.$design_name.'/'.$room_id.'/'.$user_id.'','refresh'));
 	
 	
 	
 }
-
-
 
 
 function productdetails($room_id=null,$user_id=null,$design_id=null)
@@ -615,7 +620,7 @@ function search_text_for_ajax($text=null,$id=null)
 {
 
 	    $data['filtertext']=$this->product_model->product_search($text,$id);
-             echo json_encode($data['filtertext']);
+         echo json_encode($data['filtertext']);
 	
 }
 

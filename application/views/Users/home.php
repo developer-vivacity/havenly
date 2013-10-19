@@ -160,45 +160,45 @@ var stripeResponseHandler = function(status, response)
 	<div id = "BR" class = "padding_small">
 	<div>
 		<input type="checkbox" name="style[]" value = 1 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR1.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 2 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR2.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 3 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR3.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 4 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=170em> 
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR4.jpg');?> height=270em> 
 		</div><div><input type="checkbox" name="style[]" value = 5 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=170em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR5.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 6 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=170em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR6.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 7 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=170em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR7.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 8 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=170em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR8.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 9 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=170em>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR9.jpg');?> height=270em>
 		</div><div><input type="checkbox" name="style[]" value = 10 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR10.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 11 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR11.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR11.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 12 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR12.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR12.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 13 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR13.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR13.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 14 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR14.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR14.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 15 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR15.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR15.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 16 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR16.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR16.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 17 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR17.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR17.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 18 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR18.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR18.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 19 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR19.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR19.jpg');?> height=270em></div>
 		<div><input type="checkbox" name="style[]" value = 20 class='cbox' />
-		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR20.jpg');?> height=170em></div>
+		<img class = "inactive" src = <?php echo base_url('assets/Images/Bedroom/BR20.jpg');?> height=270em></div>
 		</div>
 		
 		<div id = "LR" class = "padding_small">
@@ -327,7 +327,7 @@ var stripeResponseHandler = function(status, response)
 <div style = "display: table-row">
 <div class = "inline gray" style = "display:table-cell; width:40%"><BR><BR>
 <p class = "sanslight white_text midlarge"> Upload photos of your room</p><BR>
-<p class = "sanslight white_text midsmall">Take pictures of all four walls of your room, if you can</p><BR><BR>
+<p class = "sanslight white_text midsmall">Take pictures of all four walls of your room, if you can.</p><BR><BR>
 <div id = "first_photo" class= "padding inline"> 
 
 	<div>
@@ -385,7 +385,11 @@ var stripeResponseHandler = function(status, response)
 </div>
 
 
-
+<div class = "horizontal"><a>
+<div id = "tweetsend" class = "pink white_text padding_small third border auto light_gray">
+	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> 
+	OR, click here to email (hello@havenly.com) your pictures to us later.</p>
+</div></a></div>
 </div>
 
 
@@ -394,15 +398,11 @@ var stripeResponseHandler = function(status, response)
 </div></div>
 <BR><BR>
 
-<div class = "horizontal"><a>
-<div id = "tweetsend" class = "padding_small third border auto light_gray">
-	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> 
-	OR, click here to email (hello@havenly.com) your pictures to us.</p>
-</div></a></div>
+
 <br><br><hr class = "style half"><br><br><br><br><br>
 <div class = "continue horizontal"><br>
 	<!--<a class = "button2 login gray">Login, if this is old</a>-->
-	<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'room_photo', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>
+	<a class = "button2 midsmall pink">Keep Going &rarr;</a><br><br>
 </div>
 </div>
 
@@ -469,7 +469,7 @@ var stripeResponseHandler = function(status, response)
 		<br><br><br><br><hr class = "style half"/><br><br><br><br>
 		<div class = "continue horizontal"><br>
 	
-			<a class = "button2 midsmall pink" onClick="_gaq.push(['_trackEvent', 'type', 'click', 'userform', '5']);">Keep Going &rarr;</a><br><br>		
+			<a class = "button2 midsmall pink">Keep Going &rarr;</a><br><br>		
 		</div>
 		
 	</div>
@@ -530,7 +530,7 @@ var stripeResponseHandler = function(status, response)
 	<!-------------------------@@@@@@@@@@@@@@@@@@@@@----------------------------------->
 	<div id = "information" class = "resize">
 		<p class = "extralarge sanslight blue_text">CREATE YOUR ACCOUNT</p><br>
-		<p class = "medium sanslight dark_gray_text">We'll be in <span>touch.</span></p>
+		<p class = "medium sanslight dark_gray_text">Your designer will be in <span>touch in three business days.</span></p>
 	<div class = "horizontal left-align"><BR><BR>
 	<div class = "half inline infosection">
 	
@@ -568,7 +568,9 @@ var stripeResponseHandler = function(status, response)
 		<div class = "horizontal aligned">
 		<span id="designfeepart"></span>
 		<label class = " inline forty middle right-align midsmall condensed dark_gray_text">D E S I G N &nbsp; F E E :</label>
-		<span id="show_design_fee" class = "inline middle midsmall condensed pink_text"></span></div>
+		<span id="show_design_fee" class = "inline middle midsmall condensed pink_text"></span>
+		<br>
+		</div>
 		
 		<hr class = "style">
 		<!-----------design fee hidden variables------->
@@ -616,25 +618,17 @@ var stripeResponseHandler = function(status, response)
 		   <!----<label class = "labels inline forty middle right-align midlarge sanslight dark_gray_text" for="cardtype">Select card type: </label>--->
 		  <div class="labels"> 
                
-               <select id="card-name" style="width:100px;float:left;margin-left:27px;" class = "forty forminput">
+               <select id="card-name" style="width:100%" class = "forty forminput">
 		        <option value="Visa">
-			 visa card
+			 Visa
 		      </option>
 		     <option value="Mastercard">
-			 master card
+			Mastercard
 		     </option>
 		     <option value="AmericanExpress">
 		     American Express
 		     </option>
-		     <option value="Discover">
-		     Discover
-		     </option>
-		     <option value="Diner's Club">
-		     Diner's Club
-		     </option>
-		     <option value="JCB">
-		     JCB
-		     </option>
+		    
 		    </select>
 </div>
 		</div>
@@ -666,11 +660,16 @@ var stripeResponseHandler = function(status, response)
 	<div">
 	<!---<button type="button" id="SecurCode">SecurCode</button>--->
 	</div>	
-	</div>	</div></div>
+	</div>	</div><BR><BR>
+	<div class = "seventy small condensed dark_gray_text">If you aren't satisfied after your first designer call, we will refund your design fee. Please call us at (888)978-3152 with any questions.</div> 
+	</div>
 <br/>
 		<!-----------------------------@@@@@@@@@@@@@@@@@@@@@@@@@@----------------------------------->
-<br><br><div class = "center gray">
-<input type="button"  id = "submit_but" class="button3 sanslight midsmall white_text pink" value="Submit"  onClick="_gaq.push(['_trackEvent', 'pers_info', 'click', 'userform', '5']);" /> </div>
+<br><br>
+	
+
+<div class = "continue2 horizontal">
+<input type="button"  id = "submit_but" class="button3 sanslight midsmall white_text pink" value="Submit"> </div>
 	</div>
 	</form>
 	</div>
@@ -1029,10 +1028,10 @@ $("#room_pics .continue").show();
 	
 			if($("#room_height").val()!='')
 				{
-				$(this).parent().parent().parent().parent().parent().find('.continue').fadeIn();
+				$("#sizes .continue").fadeIn();
 				}
-				else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
-			} else {$(this).parent().parent().parent().parent().parent().find('.continue').hide();}
+				else {$("#sizes .continue").hide();}
+			} else {$("#sizes .continue").hide();}
 			});
 		
 		
@@ -1118,7 +1117,7 @@ $("#password").val()=="Password"||
 $("#password").val()=="Password (min 6 chars.)"
 ||$("#password").val().length < 6)
 {
-  // $("#submit_but").hide();
+   $("#submit_but").hide();
 }
 
 
@@ -1141,10 +1140,12 @@ if (check.prop('checked')==true)
 	{$("#room_pics .continue").show();
 	$(this).css("background-color","gray");
 	$(this).css("color", "white");
+	$(this).css("border", "10px solid white");
 	}
 	
 	else {$("#room_pics .continue").hide();
 	$(this).css("background-color","#F0F0F0")
+	$(this).css("color", "darkgray");
 	}
 
 });

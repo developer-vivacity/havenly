@@ -11,7 +11,7 @@ try
   "amount" => $amount, // amount in cents, again
   "currency" => "usd",
   "card" => $token,
-  "description" => $description,"user_id"=>$id)
+  "description" => $description)
 );
 echo "1";
 } 

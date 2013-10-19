@@ -134,7 +134,7 @@ Class Site extends CI_Controller
    $data= $this->cart_model->get_design_fee($_POST['designtype']);
    echo $data[0]['fee'];
   }
-<<<<<<< HEAD
+
   
   
   function confirm_order(){
@@ -173,9 +173,9 @@ Class Site extends CI_Controller
 			  $this->email->print_debugger();
 			  $error = ob_end_clean();
 			  $errors[] = $error;
-                           }	
+                           }	}
 	
-=======
+
  function use_token()
  {
    $user= $this->user_model->get_user_id();
@@ -192,8 +192,8 @@ Class Site extends CI_Controller
  
  }
 
->>>>>>> c6fed78f6da58ea0c1150718a6b3137e7a55da58
-}
+
+
 
 	
 }

@@ -20,7 +20,8 @@
 		
 		  <div id="addressEmail">
         
-          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a><BR><BR>
+          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a><BR>
+		  <span class = "footer_phone"> (888)978-3152.  M-F 8a-5p EST.</span>
        	<div id = "footer-bottom" > Designed with love in beautiful Colorado. <BR> &copy; Havenly, Inc  2013</p>
 		
 		</div><!-- addressEmail -->

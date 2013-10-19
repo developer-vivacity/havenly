@@ -698,15 +698,15 @@ function save_comment(input_id,conceptid,roomid,form_id)
 	        if($("#"+input_id).val().trim()=="")
 	        {
 		        
-		       $("#"+input_id).after("<div class='alert alert-error'>Enter comment!</div>");    
+		       $("#"+input_id).after("<div class='alert alert-error'>Enter some feedback.</div>");    
 		       $("#"+input_id).focus();
 	        }
 	        else
 	        {
                         $("#holdcomment").val($("#"+input_id).val());
                         $("#holdconceptid").val(conceptid);        
-		      $("#holdroomid").val(roomid);
-		      $("#"+form_id).submit();
+						$("#holdroomid").val(roomid);
+						$("#"+form_id).submit();
 	        }
 	        
         }

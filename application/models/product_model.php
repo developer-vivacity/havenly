@@ -16,7 +16,7 @@ room_id int(10) NOT NULL,design_status varchar(100) NOT NULL,filename varchar(10
 product_type_id varchar(100) NOT NULL,product_color_id varchar(100) NOT NULL,product_material_id varchar(100) NOT NULL,
 description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NULL, material_name varchar(300) NULL, color_name varchar (300) NULL, PRIMARY KEY(product_id))");
 
-  $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL)");
+  $this->db->query("CREATE TABLE IF NOT EXISTS product_image(product_id int(10) NOT NULL,filename varchar(50) NOT NULL,type varchar(50) NULL)");
 
   $this->db->query("CREATE TABLE IF NOT EXISTS product_type(type_id int(10) NOT NULL AUTO_INCREMENT,type varchar(50) NOT NULL,PRIMARY KEY(type_id))");
 
@@ -28,7 +28,7 @@ description varchar(300) NULL, dimensions varchar(50) NULL, note varchar(100) NU
 
  $this->db->query("CREATE TABLE IF NOT EXISTS vendors(vendor_id int(10) NOT NULL AUTO_INCREMENT,vendor_name varchar(100) NOT NULL,address varchar(100) NULL,
 phone_number varchar(50)  NULL,
-contact varchar(100)  NULL,website_link varchar(100) NULL, PRIMARY KEY(vendor_id))");
+contact varchar(100)  NULL,website_link varchar(100) NULL, shipping_percent varchar(100) NULL, shipping_flat INT(50) NULL, PRIMARY KEY(vendor_id))");
 
  $this->db->query("CREATE TABLE IF NOT EXISTS product_room_mapping(room_id int(10) NOT NULL,product_id varchar(100) NOT NULL,status varchar(50) NOT NULL,
 timestamp timestamp NOT NULL)");
@@ -144,9 +144,9 @@ function product_search($text=null,$id=null)
 {
    if($id==1)
 	{
-          $this->db->select('color_id,color');
-          $this->db->like('color', $text);	
-          $query = $this->db->get('product_color');
+          $this->db->select('style_id,style');
+          $this->db->like('style', $text);	
+          $query = $this->db->get('product_style');
        }
     elseif($id==2)
     {
@@ -482,10 +482,10 @@ function  design_image_for_rooms($room_id=null,$designid=null)
 			$query = $this->db->get('user_room_designs');
 			return $query->result();
 }
-function Add_Design_For_Room($design_name,$design_id,$design_status=null)
+function Add_Design_For_Room($design_name,$design_id,$room_id=null,$design_status=null)
 {
 	
-if(($design_id=="" || $design_id=="null") & $design_name!="not submitted")
+if(($design_id=="" || $design_id=="null") &$room_id!=null& $design_name!="not submitted")
 	{
 	   $data=array("room_id"=>$room_id,"design_name"=>$design_name);
 	   $this->db->insert('user_design',$data);

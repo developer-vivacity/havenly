@@ -1,5 +1,7 @@
 <?php
 
- print_r($style);
+ print_r($roomid);
+  print_r($design_name);
+   print_r($userid);
 
 ?>

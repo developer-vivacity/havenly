@@ -1,7 +1,7 @@
 .home {
   width: 100%;
   min-height: 60em;
-  background: url("../Images/markbg.jpg") no-repeat center center fixed; 
+  background: url("../images/markbg.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

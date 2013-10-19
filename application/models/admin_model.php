@@ -25,7 +25,7 @@ parent::__construct();
  }  
  function authorize_user($password,$name)
  {
-      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and name='".$name."'");
+      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and username='".$name."'");
        if($query->num_rows()!=0)
        {
          foreach($query->result() as $rows)

@@ -4,9 +4,7 @@
 
 
 <div class = "form_container">
-<div id="loading">
-  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
-</div>
+
 <br><br><br><br><br><br>
 <p class = "sanslight large blue_text">Thanks <?php echo $first_name;?>! </p>
 <p class = "serif medium dark_gray_text">Now What Should You<span> Expect?</span>	</p>

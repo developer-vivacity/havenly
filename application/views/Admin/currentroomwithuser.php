@@ -265,6 +265,8 @@ endforeach;
      echo '<div id="productdesign" class="adminmain" style="display:none;">';
      $attributes = array( 'id' => 'designeform','method'=>'post');
      echo form_open('Admin/site/Add_Design_For_Room/',$attributes);
+	 echo '<input type="hidden" value="'.$roomid.'" name="designroomid"/>';
+	 echo '<input type="hidden" name="designuserid" id="designuserid" value="'.$currentuserid.'"/>';
 ?>
 
 <table id="roomdesignname">
@@ -436,11 +438,11 @@ $("#AddDesigntext").blur(function()
 })	
 function show_add_design(roomid)
 {	
-	    $("#enterdesign").remove();
+	    $(".alert").remove();
 	
 	    if($("#AddDesigntext").val().trim()=="" || $("#AddDesigntext").val().trim()=="Design Name")
              {             
-             $("#textmessage").html('<p id="enterdesign" class = "alert alert-error">Enter a Name for the Design</p>');
+             $("#textmessage").html('<p class = "alert alert-error">Enter a Name for the Design</p>');
              }            
              else
              {

@@ -100,18 +100,18 @@ $this->cart_model->add_designfee($this->input->post('designfeeid'),$this->input-
 if(($this->input->post('tokencode')!=""))
 {
    $this->cart_model->insert_token($this->input->post('tokencode'),$this->session->userdata("id"));
-   Stripe::setApiKey("sk_test_jcYSUW3M1IXTTycn0epuWkyt");
-   $token = $_POST['tokencode'];
-   try {
-$charge = Stripe_Charge::create(array(
-  "amount" => 100, // amount in cents, again
-  "currency" => "usd",
-  "card" => $token,
-  "description" => "Paying User")
-);
-} catch(Stripe_CardError $e) {
-  // The card has been declined
-}
+   // Stripe::setApiKey("sk_test_jcYSUW3M1IXTTycn0epuWkyt");
+   // $token = $_POST['tokencode'];
+   // try {
+// $charge = Stripe_Charge::create(array(
+  // "amount" => $this->input->post('design_fee_final'), // amount in cents, again
+  // "currency" => "usd",
+  // "card" => $token,
+  // "description" => $data['email'])
+// );
+// } catch(Stripe_CardError $e) {
+  // // The card has been declined
+// }
 }
 /*----------------------------*/
 }

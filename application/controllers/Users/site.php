@@ -21,7 +21,11 @@ function __construct()
 }
  function index()
  {
-   $this->load->view('Users/home');
+ 
+	if($this->session->userdata('first_name')==''){
+   $this->load->view('Users/home');}
+   else {$this->login();}
+   
    $this->room_model->create_table();
    $this->user_model->create_table();
    $this->preference_model->create_table();

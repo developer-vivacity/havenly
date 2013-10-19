@@ -82,7 +82,7 @@ Class Site extends CI_Controller
   {
 		$data["productid"]=$productid;
 		$data["designid"]=$designid;
-		$data["productdetails"]=$this->product_model->get_all_products_and_images($productid);
+		$data["productdetails"]=$this->product_model->get_all_product($productid);
 		$data["qty"]=$this->cart_model->get_product_qty($productid,$designid);
 		$this->load->view('Cart/productdetails', $data);
    }  
@@ -178,15 +178,12 @@ Class Site extends CI_Controller
 
  function use_token()
  {
-   $user= $this->user_model->get_user_id();
-   $id=(int)$user[0]["id"]+1;
-  
-    
+   
     $amount=(int)$_POST["amount"]*100;
     $data["amount"]=$amount;
     $data["token"]=$_POST["stripeToken"];
     $data["description"]=$_POST["description"];
-    $data["id"]=$id;   
+    
     $message= $this->load->view('Cart/stripepayment', $data,true);
     echo $message;
  

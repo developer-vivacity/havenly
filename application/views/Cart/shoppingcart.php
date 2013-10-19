@@ -93,7 +93,7 @@ foreach($productname as $key=>$value)
         echo 
         '<div class = "producthold" >
         <div class="productimg">
-       <img src="'.$value->filename.'" height = 200px; id="'.$value->product_id.'" class="designproduct" />';
+       <img src="'.$value->weblink.'" height = 200px; id="'.$value->product_id.'" class="designproduct" />';
 	
        if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
        {
@@ -123,7 +123,9 @@ foreach($productname as $key=>$value)
  <div class = "productprice">
 $'.$value->price.'
  </div>
-
+ <div class = "shippingprice">
+($'.$value->ship_cost.' shipping)
+ </div>
  </div></div>';
 }
 echo '<input type="hidden" value="'.base_url().'" id="basepath" name="basepath"/>';

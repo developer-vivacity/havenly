@@ -71,8 +71,16 @@ function adminlogin()
     $this->concept_model->create_table();
    if(($this->session->userdata('adminid')!=""))
      {
-      $data['privileges']=$this->session->userdata('privileges');
-      $this->load->view('Admin/adminview',$data);
+		 $data['privileges']=$this->session->userdata('privileges');
+		
+		 //###########################
+		 $data['invitemail']=$this->admin_model->get_invite_requests();
+		 
+         $data['lastlogininfo']=$this->admin_model->get_last_login();
+            
+         //##########################
+      
+         $this->load->view('Admin/adminview',$data);
       return;
     }
 
@@ -88,8 +96,18 @@ function adminlogin()
      $this->admin_model->authorize_user($this->input->post('password'),$this->input->post('username'));
      if(($this->session->userdata('adminid')!=""))
      {
-      $data['privileges']=$this->session->userdata('privileges');
-      $this->load->view('Admin/adminview',$data);
+		  ##------user last login---------#
+		 
+		  $this->admin_model->last_admin_login($this->session->userdata('adminid'));
+		 
+		 //#################################
+		 $data['invitemail']=$this->admin_model->get_invite_requests();
+		 
+         $data['lastlogininfo']=$this->admin_model->get_last_login();
+         //#################################
+         
+         $data['privileges']=$this->session->userdata('privileges');
+         $this->load->view('Admin/adminview',$data);
      }
      else
      {
@@ -493,7 +511,7 @@ function add_product()
 	  if($_POST)
 		{
 		  
-		 $holdlinkuploadimg=array();	 
+		  $holdlinkuploadimg=array();	 
           $i=0;
 		  $count=0;
 	    
@@ -502,11 +520,17 @@ function add_product()
 	         if(!empty($_FILES['uploadproductpic'.$i]['name']))
                  {
 			
-				$this->for_pic_upload('uploadproductpic'.$i);
-			 	$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['filename']=$this->_File_Location;
-				if ($i==0)
-					{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']='main';}
-					else{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']=NULL;}
+				    $this->for_pic_upload('uploadproductpic'.$i);
+			 	
+			 	    $holdlinkuploadimg[$i]['filename']=$this->_File_Location;
+				    if ($i==0)
+					{
+						$holdlinkuploadimg[$i]['type']='main';
+				    }
+					else
+					{
+						$holdlinkuploadimg[$i]['type']=NULL;
+					}
 					
 	        }
 		 $i++;

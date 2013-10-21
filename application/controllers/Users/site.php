@@ -387,7 +387,9 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
 		$prodid = "";
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
         
-     
+        #-------user last login---------#
+        $this->user_model->last_user_login($id);
+        #-------------------------------#
         $this->load->view('Users/accountinformation',$data);
         
     }

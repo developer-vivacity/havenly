@@ -67,10 +67,36 @@ if($privileges=='global'):?>
 
 <div class = "container">
 	<div class = "row">
-		<div style="height:500px;">
-		
+	   <div style="height:500px;">
+	<div><p>New User</p></div>
+	<div>Email:
+	<?php
+	echo $invitemail[0]->email;
+	?>
 	</div>
-	</div></div>
+	<div>
+	
+	&nbsp;
+	</div>
+	<div><p>Last login User</p></div>
+	<div>
+		<?php 
+		
+		$username=$lastlogininfo[0]->first_name."&nbsp;".$lastlogininfo[0]->last_name;
+		
+		?>
+		Name: <?php echo $username;  ?>
+	</div>
+	<div>
+	<?php 
+	$useremail=$lastlogininfo[0]->email;
+	?>
+	Email:<?php echo $useremail;?>
+	</div>
+	
+</div>
+  </div>
+  </div>
 
 <?php 
 	include(APPPATH.'/views/templates/footer.php');

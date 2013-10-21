@@ -231,7 +231,8 @@
 		
 		  <div id="addressEmail">
         
-          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a>
+          <a class = "small sanslight blue_text" href="mailto:hello@havenly.com">hello@havenly.com</a><BR>
+		  <span class = "footer_phone"> (888)978-3152.  M-F 8a-5p EST.</span>
        		<div id = "footer-bottom" > Designed with love in beautiful colorado. <BR> &copy; Havenly, Inc  2013</p>
 		
 		</div><!-- addressEmail -->
@@ -256,6 +257,7 @@
       <div class = "horizontal seventy">
         <a class = "button3 pink white_text sanslight" id="requestinvite">REQUEST</a>
       </div>
+	  <input type = "hidden" value = <?php echo base_url();?> name = "siteurl" id = "siteurl"/>
     </form>
   </div></div></div>
 
@@ -277,6 +279,9 @@
   $("#requestinvite").click(function(){
   var email = $("#email").val();
   var zipcode = $("#zipcode").val();
+  var siteurl = $("#siteurl").val();
+  $(".boxoverlay").html('<img src = "'+siteurl+'/assets/Images/ajax-loader.gif" height = "100px">');
+  
   $.ajax({
       type: "POST",
       url: "index.php/Users/site/requestinvite",

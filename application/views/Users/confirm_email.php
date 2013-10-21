@@ -32,7 +32,7 @@ width: 30%;
 
 
 <div class = "padding">
-<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80>
+<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height="80px" width = "80px">
 <p class = "text inline teal_text midlarge">Ready for some awesome?</p>
 <br>
 <p class = "text dark_gray_text midlarge">Thanks for using Havenly, <?php echo $first_name;?>!</p>

@@ -252,8 +252,8 @@ $this->user_model->invite_request($data);
 			'smtp_host'=>'ssl://smtp.googlemail.com',
 			'smtp_port'=> 465,
 			'mailtype' => 'html',
-			'smtp_user'=>'lee@havenly.com',
-			'smtp_pass'=>'Motayed123');
+			'smtp_user'=>'hello@havenly.com',
+			'smtp_pass'=>'Motayed2');
 			
 	$this->load->library('email',$config);
 	
@@ -261,7 +261,7 @@ $this->user_model->invite_request($data);
 
 			$this->email->set_newline("\r\n");
 		
-			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this->email->from('hello@havenly.com','The Havenly Team');
 			$this ->email->to($data['email']);
 			$this->email->subject('Hello from Havenly');
 		
@@ -464,8 +464,8 @@ $email=$this->input->post('enteremail');
 'smtp_host'=>'ssl://smtp.googlemail.com',
 'smtp_port'=> 465,
 'mailtype' => 'html',
-'smtp_user'=>'lee@havenly.com',
-'smtp_pass'=>'Motayed123',
+'smtp_user'=>'hello@havenly.com',
+'smtp_pass'=>'Motayed2',
 );
 
 $this->load->library('email',$config);
@@ -483,7 +483,7 @@ $subject="Account Information from Havenly";
            $message = $this->load->view('Users/sendmailmessage',$data,true);
           
 
-           $this->email->from('lee@havenly.com','Havenly');
+           $this->email->from('hello@havenly.com','Havenly');
            $this->email->to($to);
            $this->email->subject($subject);
            $this->email->message($message);
@@ -537,67 +537,45 @@ $this->load->view('Users/login', $data);
       if($this->user_model->mail_with_login_id($this->input->post('update_email'),$this->session->userdata('id')))
       {
 	     
-       $this->mailmessage=$this->input->post('update_email')."&nbsp;email already exists";
+       $this->mailmessage=$this->input->post('update_email')."&nbsp;Email already exists";
        $this->login();
        return;
     }
    }
    
-if($this->input->post('radio_value')=="true")
-{
+
+   if($this->input->post('pass')!=0){
+
+ $data =array('first_name'=> $this->input->post('update_name'),
+'last_name'=> $this->input->post('update_last_name'),
+'email'=> $this->input->post('update_email'),
+'phone'=>$this->input->post('update_phone'),
+'address'=>$this->input->post('update_address'),
+'zipcode'=>$this->input->post('update_zip'),
+'facebook'=>$this->input->post('update_facebook'),
+'password'=>$this->input->post('update_password'),
+'pinterest'=>$this->input->post('update_pinterest'),
+'instagram'=>$this->input->post('update_instagram')
+);}
+
+else {
 $data =array('first_name'=> $this->input->post('update_name'),
 'last_name'=> $this->input->post('update_last_name'),
 'email'=> $this->input->post('update_email'),
 'phone'=>$this->input->post('update_phone'),
 'address'=>$this->input->post('update_address'),
 'zipcode'=>$this->input->post('update_zip'),
-'password'=>$this->input->post('update_password'),
 'facebook'=>$this->input->post('update_facebook'),
-'pinterest'=>$this->input->post('update_pinterest')
-
+'pinterest'=>$this->input->post('update_pinterest'),
+'instagram'=>$this->input->post('update_instagram')
 );
-    }
-    else
-    {
+}
 
-    $data =array('first_name'=> $this->input->post('update_name'),
-'last_name'=> $this->input->post('update_last_name'),
-'email'=> $this->input->post('update_email'),
-'phone'=>$this->input->post('update_phone'),
-'address'=>$this->input->post('update_address'),
-'zipcode'=>$this->input->post('update_zip'),
-'facebook'=>$this->input->post('update_facebook'),
-'pinterest'=>$this->input->post('update_pinterest')
-);
 
-    }
+   
    $this->user_model->update_user_info($data,$this->session->userdata('id'));
      
-     if($this->input->post('radio_value')=="true")
-     {
-
-          $config = array(
-'protocol'=>'smtp',
-'smtp_host'=>'ssl://smtp.googlemail.com',
-'smtp_port'=> 465,
-'mailtype' => 'html',
-'smtp_user'=>'lee@havenly.com',
-'smtp_pass'=>'Motayed123');
-
-   $this->load->library('email',$config);
-   $this->email->set_newline("\r\n");
-   $subject="Account Information From Havenly";
-           $to =$this->input->post('update_email');
-           $data["receivername"]=$this->input->post('update_name')."&nbsp;".$this->input->post('update_last_name');
-           $data["randompassword"]=$this->input->post('update_password');
-           $message = $this->load->view('Users/resetpasswordemail',$data,true);
-          
-           $this->email->from('lee@havenly.com','Havenly');
-           $this->email->to($to);
-           $this->email->subject($subject);
-           $this->email->message($message);
-           $this->email->send();
-          }
+   
     
     redirect('/Users/site/login/','refresh');
 

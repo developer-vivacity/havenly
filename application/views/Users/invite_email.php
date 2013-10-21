@@ -32,7 +32,7 @@ width: 30%;
 
 
 <div class = "padding">
-<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80>
+<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height="80px" width = "80px">
 
 <br>
 <p class = "text dark_gray_text midlarge">Thanks so much for signing up for Havenly!</p>

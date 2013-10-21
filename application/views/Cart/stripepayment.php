@@ -1,6 +1,6 @@
 <?php
 require_once(APPPATH.'libraries/stripe/Stripe.php');
-Stripe::setApiKey("sk_live_nvgzVNH1JoeB0OmVb3ceLycw");
+Stripe::setApiKey("sk_test_ikqKx5SJpIQpPQqSblf40sAJ");
 // Get the credit card details submitted by the form
 //$token = $stripeToken;
 

@@ -65,6 +65,8 @@
 <BR><BR>
 <div class = "white">
 	 <!----add new hidden variable to store current page---->
+	 
+	 <input type = "hidden" id = "siteurl" name = "siteurl" value = <?php echo base_url(); ?>>
 	 <?php
 	echo (isset($_GET["a"])?'<input type="hidden" id="currentpage" name="currentpage" value="'.$_GET["a"].'"/>':'<input type="hidden" id="currentpage" name="currentpage" value="status"/>');
 	if(isset($roomsassociated))
@@ -119,7 +121,7 @@
 		echo form_open('Users/site/updatedata/',$attributes);
 
 		echo '<div id="div_show_error_message" class="alert alert-error" style="display:none;"> </div>';
-
+		echo '<input type = "hidden" name = "passcheck" id = "passcheck">';
 		foreach($userdetails as $key)
 		{
 			echo '<table class = "midsmall table-center">';
@@ -131,28 +133,36 @@
 			echo '<tr>';
 			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-phone.png').'" height="15">';
 			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_phone" id = "update_phone" type = "text" value ='.$key->phone.'><br><br></td></tr>';
+			
 
-			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">';
+			echo '<tr><td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">';
 
-		if ($key->address ==0){echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address">&nbsp;<BR><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
+		if ($key->address ==0)
+		{
+			echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address"></td></tr><tr><td><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
 		else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'"><br><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'"></td></tr><tr><td><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
+			echo '<tr>';
+			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-pass.png').'" height="15">';
+			echo '&nbsp;&nbsp;<input class = "sanslight pwd" name = "update_password" id = "update_password" type = "text" value = "Update Password" ></td></tr>';
+			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-pass.png').'" height="15">';
+			echo '&nbsp;&nbsp;<input class = "sanslight pwd" name = "update_password2" id = "update_password2" type = "text" value = "Confirm New Password"><BR><BR></td></tr>';
 
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/fblarge.png').'" height="15">';
-			if($key->facebook==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->facebook.'></td></tr>';}
+			if($key->facebook==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_facebook" id = "update_facebook"  value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_facebook" id = "update_facebook" value = '.$key->facebook.'></td></tr>';}
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/pinlarge.png').'" height="15">';
-			if($key->pinterest==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = '.$key->pinterest.'></td></tr>';}
+			if($key->pinterest==0){echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_pinterest" id = "update_pinterest" type = "text" value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_pinterest" id = "update_pinterest"  value = '.$key->pinterest.'></td></tr>';}
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/instaicon.png').'" height="15">';
-			if($key->instagram=='Your Instagram Page'){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = ""></td></tr>';}else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" value = "'.$key->instagram.'"></td></tr>';}
+			if($key->instagram=='Your Instagram Handle'||$key->instagram=='Your Instagram Page'||$key->instagram==''){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_instagram" id = "update_instagram" value = ""></td></tr>';}else{
+			echo '&nbsp;&nbsp;<input class = "sanslight" type = "text"   name = "update_instagram" id = "update_instagram" value = "'.$key->instagram.'"></td></tr>';}
 
 			echo '</table>';
 			echo '<BR><BR>';
-			echo '<div class = "text-center"><input class = "button3 seventy midsmall pink condensed" type="button" value="Update Account Information" id="update_update"></div>';
+			echo '<div class = "text-center" id = "buttonhold"><input class = "button3 seventy midsmall pink condensed" type="button" value="U P D A T E" id="update_update"></div>';
  }
 ?>
 </div>
@@ -345,7 +355,7 @@ else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">
 <script>
 $(document).ready(function()
 {
-        //$('.carousel').carousel();
+      //  $('.carousel').carousel();
 	    $(".usermain").hide();
 	    $("#"+$("#currentpage").val()).show();
         $("#editroomstatus").hide();

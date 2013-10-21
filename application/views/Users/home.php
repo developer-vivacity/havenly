@@ -33,7 +33,7 @@ var flag_sub=0;
 
 //this plublish key of lee.m.mayer@gmail.com live account. 
 
-Stripe.setPublishableKey('pk_live_LEf8fHz4TyZG3fN21gAVv3I8');
+Stripe.setPublishableKey('pk_test_9yS0nvRQ3OHGX0SMmXZ2jDAG');
 
 // ...// ...
 var str_amount;
@@ -45,7 +45,7 @@ function get_token()
      //if(($("#CVC").val().length>=3)&&($("#cardnumber").val().length<=16))    
      if(($("#CVC").val().length>=3))    
       {
-        $('.payment-errors').html("<img src='"+$("#basepath").val()+"/assets/Images/ajax-loader.gif' width='25px' height='25px'>");    
+        $('.continue2').html("<div class ='button2'> <img src='"+$("#basepath").val()+"/assets/Images/ajax-whitepink.gif' width='105px' height='105px'></div>");    
          Stripe.card.createToken({
               
          name: $('#card-name').val(),
@@ -88,7 +88,8 @@ var stripeResponseHandler = function(status, response)
     {
 
       $form.find('.payment-errors').text(data);
-
+	  $("#loading").hide();
+	  $(".continue2").html('<input type="button"  id = "submit_but" class="button3 sanslight midsmall white_text pink" value="Submit">');
     }    
 })   
 
@@ -118,7 +119,7 @@ var stripeResponseHandler = function(status, response)
 
 <div class = "form_container">
 <div id="loading">
-  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> alt="Loading..." />
+  <img id="loading-image" src=<?php echo base_url('assets/Images/ajax-loader.gif');?> height="100px" alt="Loading..." />
 </div>
 
 <form class = "user_form" id="user_login_form" name="user_room_form" method="post" action="<?php echo base_url('index.php/Contests/site/room_submit');?>" enctype="multipart/form-data">
@@ -386,7 +387,7 @@ var stripeResponseHandler = function(status, response)
 
 
 <div class = "horizontal"><a>
-<div id = "tweetsend" class = "pink white_text padding_small third border auto light_gray">
+<div id = "tweetsend" class = "gray white_text padding_small third border auto">
 	<input type="checkbox" class = "inline top" name="later" id="later" value="later"/><p class = "medium teal_text condensed inline"> 
 	OR, click here to email (hello@havenly.com) your pictures to us later.</p>
 </div></a></div>
@@ -494,7 +495,7 @@ var stripeResponseHandler = function(status, response)
 		<img src = <?php echo base_url('assets/Images/fblarge.png');?> height = 80>
 		</div>
 		<div class = "half middle inline">
-		<input type = "text" name = "facebook" value = "Link to your Facebook page" id = "facebook"
+		<input type = "text" name = "facebook" value = "Link to Your Facebook Page" id = "facebook"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
 		</div></div><BR><BR>
@@ -503,7 +504,7 @@ var stripeResponseHandler = function(status, response)
 		<img src = <?php echo base_url('assets/Images/pinlarge.png');?> height = 80>
 		</div>
 		<div class = "half middle inline">
-		<input type = "text" name = "pinterest" value = "Link to a pinterest board" id = "pinterest"
+		<input type = "text" name = "pinterest" value = "Link to a Pinterest Board" id = "pinterest"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
 		</div></div><BR><BR>
@@ -515,7 +516,7 @@ var stripeResponseHandler = function(status, response)
 		
 		
 		<div class = "half middle inline">
-		<input type = "text" name = "instagram" value = "Your Instagram Page" id = "instagram"
+		<input type = "text" name = "instagram" value = "Your Instagram Handle" id = "instagram"
 		onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" 
 		/>
 		</div></div>
@@ -705,22 +706,22 @@ var stripeResponseHandler = function(status, response)
          if($('#type:checked').size()>0)
          designtype=$('#type:checked').val();
 
-         $(".error").remove();
+         $(".alert").remove();
 	 $("#promotionerror").remove();
 	 $(".designtypeerror").remove();
 	 
-         var str="Enter 6 alphanumeric chars.";
+      var str="Enter Promotion Code";
 	if($("#promotioncode").val()==str)	 
         {
                
                  if($("#designtypeerror").length==0)	 
-	        $("#designtype").after('<span class = "error" id="designtypeerror">Enter Promotion Code</span>')
+	        $("#designtype").after('<span class = "alert alert-error" id="designtypeerror">Enter Promotion Code</span>')
                  return false;
           }
           if($("#feestatus").val()!="active")
           {
 	        if($("#designtypeerror").length==0)	 
-	        $("#designtype").after('<span class = "error" id="designtypeerror">choose active design fee!</span>')
+	        $("#designtype").after('<span class = "alert alert-error" id="designtypeerror">Invalid Code</span>')
                  return false;	 
           }
           $("#designtype").after('<span id="imgspan"><img src="'+$("#basepath").val()+'/assets/Images/ajax-loader.gif" width="25px" height="25px" id="designtypeerrorimg"></span>')
@@ -728,7 +729,7 @@ var stripeResponseHandler = function(status, response)
           function(data)
           {
 		 $("#imgspan").remove();
-		 $(".error").remove();
+		 $(".alert").remove();
 		 $("#designtypeerrorimg").remove();
 		 
             if(data.length>0)
@@ -740,13 +741,13 @@ var stripeResponseHandler = function(status, response)
                    $("#hidpromotioncode").val($("#promotioncode").val());  
                    if($promotion_code==1)
                    {
-                   $("#designtype").after('<span class = "error" id="designtypeerror">it\'s valid!</span>')
+                  
                    $("#show_design_fee").html(data[2]); 
                    $("#designfeeid").val(data[1]);                  
                    }                 
                    else
                    {
-                   $("#designtype").after('<span class = "error" id="designtypeerror">'+data[1]+'</span>')
+                   $("#designtype").after('<span class = "alert alert-error" id="designtypeerror">'+data[1]+'</span>')
                    $("#designfeeid").val(0);                     
                    }                    
                    return false; 
@@ -754,7 +755,7 @@ var stripeResponseHandler = function(status, response)
            else
            {
 		   $promotion_code=0;
-	            $("#designtype").after('<span class = "error" id="designtypeerror">it\'s not found!</span>')
+	            $("#designtype").after('<span class = "alert alert-error" id="designtypeerror">Invalid Code</span>')
             } 
           })
 	
@@ -1010,7 +1011,7 @@ $("#room_pics .continue").show();
 		});
 		
 			 $('.pwd').click(function(){
-			$(this).get(0).type='password';
+				$(this).get(0).type='password';
 				});
 
 		
@@ -1087,12 +1088,19 @@ if (isMobile)
 		});
 }
 
- $("#sizes input:text").keyup(function()
+ $("#sizes input:text, #sizes textarea").keyup(function()
  {
             $(this).css("color","gray");
 
  });
+ 
+ $("#information select").change(function()
+ {
+   $(this).css("color","gray");
 
+ });
+ 
+ 
 $("#information input:text, #information input:password").keyup(function(){
 
 $(this).css("color","gray");
@@ -1138,14 +1146,14 @@ var check = $(this).find('#later');
 check.prop('checked',!check[0].checked);
 if (check.prop('checked')==true)
 	{$("#room_pics .continue").show();
-	$(this).css("background-color","gray");
+	$(this).css("background-color","#FF31B5");
 	$(this).css("color", "white");
 	$(this).css("border", "10px solid white");
 	}
 	
 	else {$("#room_pics .continue").hide();
-	$(this).css("background-color","#F0F0F0")
-	$(this).css("color", "darkgray");
+	$(this).css("background-color","gray")
+	$(this).css("color", "white");
 	}
 
 });

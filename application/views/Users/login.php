@@ -28,12 +28,13 @@
       </ul>
     </div>
 </div>
-<div class = "chevron text-center row">
-	<div class = "home-login-logo">
+<div class = "trellis text-center">
+<div class = "container">
+<div class = "home-login-logo">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
 </div>
 <div class = "row">
-<div class = "span5 offset4">
+<div class = "span10">
 	<div class="displayinfoerror">
 	<?php 
     $display="none";
@@ -41,25 +42,25 @@
 	{
 	$display="block";
 	if(validation_errors()!=false){
-	echo '<div class = "alert alert-error">';
+	echo '<div class = "alert alert-error sanslight small">';
 	echo validation_errors();
 	echo '</div>';}
     }
 	if (!empty($loginerrors))
 	{
 		$display="block";
-		echo '<div class="alert alert-error">'.$loginerrors.'</div>';
+		echo '<div class="alert alert-error sanslight small">'.$loginerrors.' <span class="close" data-dismiss="alert">&times;</span></div>';
 		}
 	?>
 </div>
-	</div>
-	</div>
+	</div></div>
+
 	<div id = "login" class = "login-form" style="display:<?php echo $display;?>">
 <?php 
    $attributes = array('name' => 'loginform','id'=>'loginform');
    echo form_open('Users/site/login/',$attributes);?>
-   <iframe src="http://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe> 
-   <iframe src="https://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe>
+  <!-- <iframe src="http://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe> 
+   <iframe src="https://leemayer.myshopify.com/cart/clear.js" style="display:none;"></iframe>-->
    <input type="hidden" id="sitepath" value="<?php echo base_url();?>"/> 
 
    <table class = "table-center span5 border white">
@@ -83,16 +84,16 @@
 	<tr>
 	<td class = "third middle right-align">
 	</td>
-	<td class = "half left-align">
+	<td class = "half">
 		<BR>
-			<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />
+			<input type="submit" class="button3 pink horizontal small condensed" value="S I G N &nbsp; I N" />
 	
 			<BR><BR>
 	</td>
 	</tr>
 	</table>
 	<div class = "sanslight blue_text small"><br/>
-	<a id = "forgotbutton" class = "small sanslight blue_text" href = "#forgot">Forgot Password</a>
+	<a id = "forgotbutton" class = "small condensed dark_gray_text" href = "#forgot">FORGOT PASSWORD?</a>
 </div>
  <?php echo form_close(); ?>
 </div>
@@ -104,12 +105,12 @@
 	if($title=="forgotpassword")
     {
 	  $display="block";
-      echo validation_errors('<div class="alert third alert-error">');
+      echo validation_errors('<div class="alert alert-error">');
    
     }
     if (!empty($errors))
 	{        $display="block";
-		echo '<div class = "alert alert-error">'.$errors.'</div>';}
+		echo '<div class = "alert alert-error">'.$errors.' <span class="close" data-dismiss="alert">&times;</span></div>';}
 	?>
 </div>
 <div id = "forgot"  class = "text-center" style="display:<?php echo $display; ?>">
@@ -119,20 +120,20 @@
    <table class = "white border span5 table-center">
  <tr>
   <td class = "middle"><BR><BR><BR>
-  <label class = "medium condensed" for="enteremail">Email:</label>
+  <label class = "midsmall sanslight" for="enteremail">Email:</label>
   </td>
   <td><BR><BR><BR>
   <input type="text" id="enteremail" name="enteremail"  class = "middle"  value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail']; ?>"/>
   </td></tr>
   <tr><td> </td>
   <td>
-<input type="submit" class="button3 pink horizontal small sanslight" value="SIGN IN" />-
+<input type="submit" class="button3 pink horizontal small condensed" value="R E S E T" />-
 	<BR><BR><BR></td></tr>
    
    </table>
 
  <div class = "sanslight blue_text small"><br/>
-	<a id = "loginbutton" class = "small sanslight blue_text" href = "#login">Login</a>
+	<a id = "loginbutton" class = "small condensed dark_gray_text" href = "#login">LOGIN</a>
 </div>
  <?php echo form_close(); ?>
 	
@@ -142,13 +143,13 @@
 </div>
 </div>
 
-	
+</div></div>	
 <?php 
 	include(APPPATH.'/views/templates/footer.php');
 ?>
 
 
-</div>
+
 <script>
 $("#forgotbutton").click(function(){
 $("#login").hide();

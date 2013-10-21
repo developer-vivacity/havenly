@@ -328,7 +328,7 @@ function for_pic_upload($filename=null)
 							$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
 							if($s3result)
 							{
-							   $this->_File_Location="https://s3.amazonaws.com/easableimages/".$file_name;
+							   $this->_File_Location="http://s3.amazonaws.com/easableimages/".$file_name;
                                                                   $insertdata=1;
 							   unlink ($file_location);
 							}

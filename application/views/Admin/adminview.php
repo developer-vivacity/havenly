@@ -69,31 +69,57 @@ if($privileges=='global'):?>
 	<div class = "row">
 	   <div style="height:500px;">
 	<div><p>New User</p></div>
-	<div>Email:
-	<?php
-	echo $invitemail[0]->email;
-	?>
+	<?php 
+		if(sizeof($invitemail)>0){
+		?>
+	<div>
+		
+		Email:
+	    <?php
+
+	    echo $invitemail[0]->email;
+	    
+	    ?>
 	</div>
+	<?php 
+     }
+	else
+    echo '<div>No New User Information</div>';
+	?>
 	<div>
 	
 	&nbsp;
 	</div>
 	<div><p>Last login User</p></div>
+	<?php 
+	if(sizeof($lastlogininfo)>0){
+	
+	?>
 	<div>
 		<?php 
 		
 		$username=$lastlogininfo[0]->first_name."&nbsp;".$lastlogininfo[0]->last_name;
+		?>
+		Name: <?php 
+		echo $username;  
 		
 		?>
-		Name: <?php echo $username;  ?>
 	</div>
 	<div>
 	<?php 
 	$useremail=$lastlogininfo[0]->email;
 	?>
-	Email:<?php echo $useremail;?>
-	</div>
+	Email:<?php echo $useremail;
 	
+	?>
+	</div>
+	<?php
+     }
+	else
+	{
+	echo '<div>No User Login Information</div>';
+     }
+	?>
 </div>
   </div>
   </div>

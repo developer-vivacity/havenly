@@ -93,9 +93,10 @@ $this->db->query("CREATE TABLE IF NOT EXISTS promotion_code (
 }
 
 
-function save_user($data){
-$this->db->where("email",$data['email']);
-$query=$this->db->get("users");
+function save_user($data)
+{
+  $this->db->where("email",$data['email']);
+  $query=$this->db->get("users");
  
    if($query->num_rows()==0)
    {
@@ -118,8 +119,9 @@ $query=$this->db->get("users");
     return $id;
   }
 
-else {
-$update=array('first_name'=>$data['first_name'],
+else 
+{
+ $update=array('first_name'=>$data['first_name'],
 'last_name'=>$data['last_name'],
 'address'=>$data['address'],
 'phone'=>$data['phone'],

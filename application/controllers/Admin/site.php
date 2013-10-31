@@ -223,13 +223,14 @@ function currentroomwithuser($room_id=null,$updatetype=null)
 }
 function update_room_status_by_admin()
 {
-	$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
+	//$roomdata=array('room_type'=>$this->input->post('update_room_type'),'status'=>$this->input->post('update_room_status'));
 	
-	$preferencedata=array('room_type'=>$this->input->post('update_room_type'));
+	$roomdata=array('status'=>$this->input->post('update_room_status'));
+	//$preferencedata=array('room_type'=>$this->input->post('update_room_type'));
 	
 	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$roomdata);
 	
-	$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$preferencedata);
+	//$this->preference_model->updateuserpreferenceinfowithid($this->input->post('userid'),$preferencedata);
 	if($_POST)
 	{
 	   if($this->sendmailval!=1)

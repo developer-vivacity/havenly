@@ -1,11 +1,11 @@
 .goods-picture {
   width: 100%;
-  background: url(../Images/carrie.jpg) no-repeat center center fixed; 
+  background: url(../images/productphoto.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;;
-  height: 30em;
+  background-size: cover;
+  height: 60em;
   text-align:center;
   margin-top: -.6875em;
 }
@@ -15,8 +15,8 @@
   background:-webkit-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
   background:-o-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
   background:-moz-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
-  font-family: 'Merriweather', serif;
-  font-size: 3rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem;
   padding: .7em 0 .7em 0;
   color: #232121;
   float: left;
@@ -26,9 +26,9 @@
 }
 
 .goods {
-  height: 71em;
+  height: 101em;
   text-align: center;
-  background-color: #32bfb7;
+  background-color: black;
   color: #fff;
 }
 
@@ -40,10 +40,11 @@
 
 .goods h2 {
   margin-top: 2em;
-  font-size: 2rem;
+  font-size: 3rem;
   max-width: 26em;
   color: #fff;
-  font-family: 'Merriweather', serif;
+  line-height: 100%;
+  font-family: 'Playfair Display', serif;
 }
 
 .goods h3 {
@@ -96,5 +97,18 @@ margin-top: 5px;}
   .left-price {
     padding-right: 0;
   }
+}
+
+@media only screen and (min-width: 569px) and (max-width: 768px)
+{
+
+.goods{ height: auto !important;
+padding-bottom: 10px;
+}
+
+.goods-picture{
+display: none;
+}
+
 }
 

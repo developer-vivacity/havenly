@@ -33,7 +33,9 @@ function __construct()
    $this->cart_model->create_table();
  }
  
- 
+ function upload()
+ {
+ $this->load->view('Users/home');}
  
 function upload_room_pic(){
 
@@ -215,6 +217,14 @@ function terms()
 		$this->load->view('Static/terms');
 }
 
+function careers()
+
+{ 
+	$this->load->view('Static/careers');
+}
+
+
+
 function faq()
 { 
 	$this->load->view('Static/faq');
@@ -281,7 +291,7 @@ $this->user_model->invite_request($data);
 			}
 
 
-echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "midlarge blue_text serif"> <BR><BR>Thank You For Signing Up! </p><p class = "condensed black_text medium"> We\'re working hard to get the site ready for you.  Look for an invitation in your inbox in upcoming weeks!</p><BR><BR><BR><BR></div>';
+echo '<div class = "padding"><a class = "close sanslight small padding_small light_gray_text">X Close</a><br><p class = "midlarge black_text serif"> <BR><BR>Thank You For Signing Up! </p><p class = "sanslight black_text medium"> We\'re working hard to get the site ready for you.  Look for an invitation in your inbox in the next week!</p><BR><BR><BR><BR></div>';
 
 }}
 
@@ -376,7 +386,7 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
         $data["designerinformation"]= $this->designer_model->designer_information($this->session->userdata('id'));
         $data["roompicture"]=$this->room_model->display_user_room_pic($this->session->userdata('id'));
         $data["roomvideo"]=  $this->room_model->display_user_room_video($this->session->userdata('id'));
-      
+        $data["haveproducts"]=$this->concept_model->have_products();
       
        #........ConceptBoardModule==========
         $data["conceptboard"]=$this->concept_model->total_rows_initial_concepts();

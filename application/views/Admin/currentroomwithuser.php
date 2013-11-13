@@ -72,7 +72,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 	echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$currentroomid.'"/>';
 	echo '<input type="hidden" name="userid" id="userid" value="'.$currentuserid.'"/>';
 
-	$roomstatus=array("OPEN" , "CALLED", "DESIGN", "MOODBOARD REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
+	$roomstatus=array("OPEN" , "CALLED", "MOODBOARD REVIEW", "PRODUCT REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
 	
 	echo '<div class= "span12 well blue white_text">';
 	echo '<div class = "span10 midsmall Condensed">';
@@ -180,7 +180,7 @@ foreach($roomwithuser as $key)
 	{
 	foreach($roompicture as $roompickey)
 	{
-	  echo '<div><img src="'.$roompickey->filename.'" height="200px"/></div>';	
+	  echo '<div><img src="'.$roompickey->filename.'" height="300px"/></div>';	
 		
 	}}
 	
@@ -252,7 +252,7 @@ endforeach;
    $comment=($conceptkey->comments!=""?$conceptkey->comments:'&nbsp;');
    if((string)$conceptkey->status!="0") 
 
-  echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><img src="'.$conceptkey->filename.'" height="100px" width="100px"></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr id="conceptcomment'.$conceptkey->concept_id.'"><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
+  echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><a href = "'.base_url().'/index.php/Admin/site/viewconceptproducts/'.$conceptkey->concept_id.'"> <img src="'.$conceptkey->filename.'" width="200px"></a></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr id="conceptcomment'.$conceptkey->concept_id.'"><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
 
  }
  ?>

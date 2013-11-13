@@ -16,10 +16,10 @@
     <div class="nav-mobile">
       <ul id="list-pages-accordion">
         <li>
-          <a href=""><img src=<?php echo base_url('theme/img/menu.png');?>></a>
+          <a href=""><img src=<?php echo base_url('theme/img/menu.png');?> height="25px"></a>
           <ul id="dropdownList">
             <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
-            <li><a id="startbutton" class="button3" href="#overlay">GET STARTED</a><li>
+            <li><a id="startbutton"  href="#overlay">GET STARTED</a><li>
             <li class="services-nav"><a href = "<?php echo base_url('/#services');?>">Services</a></li>
             <li class="cg-nav"><a href = "<?php echo base_url('/#goods');?>">Cost &amp; Goods</a></li>
            <li class="contact-nav"><a href = "<?php echo base_url('index.php/Users/site/howwework');?>">How We Work</a></li>
@@ -28,7 +28,7 @@
       </ul>
     </div>
 </div>
-<div class = "trellis text-center">
+<div class = "canvas text-center">
 <div class = "container">
 <div class = "home-login-logo">
 	<a href =<?php echo base_url();?>> <img src= <?php echo base_url('assets/Images/Blue_dalle.png');?> height=120></a>
@@ -67,7 +67,7 @@
  
 	<tr>
 	<td class = "third right-align middle"><BR><BR><BR>
-		<label class = "midsmall sanslight" for="email">&nbsp;&nbsp;&nbsp;Email:</label>
+		<label class = "midsmall condensed" for="email">&nbsp;&nbsp;&nbsp;Email:&nbsp;</label>
 	</td>
 	<td class = "seventy left-align middle"><BR><BR><BR>
 		<input type="text" id="enterloginemail" name="enterloginemail" value="<?php if(isset($_POST['enterloginemail']))echo $_POST['enterloginemail'];?>"/>
@@ -76,7 +76,7 @@
   
 	<tr>
 	<td class = "third middle right-align">
-		<label class = "midsmall sanslight" for="password">&nbsp;&nbsp;&nbsp;Password:</label>
+		<label class = "midsmall condensed" for="password">&nbsp;&nbsp;&nbsp;Password:&nbsp;</label>
 	</td>
 	<td class = "seventy left-align middle">
 		<input type="password" id="enterpass" name="enterpass"  value="<?php if(isset($_POST['enterpass']))echo $_POST['enterpass'];?>"/>
@@ -86,14 +86,14 @@
 	</td>
 	<td class = "half">
 		<BR>
-			<input type="submit" class="button3 pink horizontal small condensed" value="S I G N &nbsp; I N" />
+			<input type="submit" class="button4 white_text horizontal small condensed" value="S I G N &nbsp; I N" />
 	
 			<BR><BR>
 	</td>
 	</tr>
 	</table>
 	<div class = "sanslight blue_text small"><br/>
-	<a id = "forgotbutton" class = "small condensed dark_gray_text" href = "#forgot">FORGOT PASSWORD?</a>
+	<a id = "forgotbutton" class = "small serif dark_gray_text" href = "#forgot">Forgot Password</a>
 </div>
  <?php echo form_close(); ?>
 </div>
@@ -120,20 +120,20 @@
    <table class = "white border span5 table-center">
  <tr>
   <td class = "middle"><BR><BR><BR>
-  <label class = "midsmall sanslight" for="enteremail">Email:</label>
+  <label class = "midsmall condensed" for="enteremail">Email:</label>
   </td>
   <td><BR><BR><BR>
   <input type="text" id="enteremail" name="enteremail"  class = "middle"  value="<?php if(isset($_POST['enteremail']))echo $_POST['enteremail']; ?>"/>
   </td></tr>
   <tr><td> </td>
   <td>
-<input type="submit" class="button3 pink horizontal small condensed" value="R E S E T" />-
+<input type="submit" class="button4 white_text horizontal small condensed" value="R E S E T" />-
 	<BR><BR><BR></td></tr>
    
    </table>
 
  <div class = "sanslight blue_text small"><br/>
-	<a id = "loginbutton" class = "small condensed dark_gray_text" href = "#login">LOGIN</a>
+	<a id = "loginbutton" class = "small serif dark_gray_text" href = "#login">Login</a>
 </div>
  <?php echo form_close(); ?>
 	

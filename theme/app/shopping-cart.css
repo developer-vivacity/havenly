@@ -115,6 +115,11 @@ opacity:0.8;
 .designrender{
 box-shadow: 0 0 15px rgba(0,0,0,.1);
 }
+.design_image{
+width: 30%;
+margin: 2%;
+}
+
 .design_image:hover{
 cursor:pointer}
 .overlay{

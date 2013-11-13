@@ -25,15 +25,13 @@ parent::__construct();
  }  
  function authorize_user($password,$name)
  {
-      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and username='".$name."'");
+      $query=$this->db->query("SELECT admin.id,name,privileges,admin.designerid FROM admin where password='".$password."' and username='".$name."'");
        if($query->num_rows()!=0)
        {
          foreach($query->result() as $rows)
          {
       
-         if($rows->designerid=="")
-         $rows->designerid=0;
- $newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
+       		$newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
          }
         $this->session->set_userdata($newdata);
        }

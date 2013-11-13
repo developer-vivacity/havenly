@@ -141,6 +141,7 @@ Class Site extends CI_Controller
   
 	$designid=$this->input->post('design_id');
 	$data=$this->cart_model->set_order($designid);
+	
 	$userid = $this->session->userdata('id');
 	$user= $this->user_model->get_user($userid);
 	
@@ -150,13 +151,13 @@ Class Site extends CI_Controller
 			'smtp_host'=>'ssl://smtp.googlemail.com',
 			'smtp_port'=> 465,
 			'mailtype' => 'html',
-			'smtp_user'=>'lee@havenly.com',
-			'smtp_pass'=>'Motayed123');
+			'smtp_user'=>'hello@havenly.com',
+			'smtp_pass'=>'Motayed2');
 			
 	                $this->load->library('email',$config);
 	                $this->email->set_newline("\r\n");
 		
-			$this->email->from('lee@havenly.com','Lee from Havenly');
+			$this->email->from('hello@havenly.com','Havenly Orders');
 			$this->email->to('lee@havenly.com');
 			$this->email->subject('New Order');
 		   	$datamsg = "New order from UserID ".$userid;         

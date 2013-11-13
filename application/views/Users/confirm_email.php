@@ -24,7 +24,6 @@ font-size: .5em;
 }
 .inline{
 display: inline-block;
-width: 30%;
 }
  
 	</style>
@@ -32,11 +31,11 @@ width: 30%;
 
 
 <div class = "padding">
-<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height="80px" width = "80px">
+<img class = "inline" src = "<?php echo base_url('assets/Images/Blue_dallesmall.png');?>" height="30px" width = "30px">
 <p class = "text inline teal_text midlarge">Ready for some awesome?</p>
 <br>
 <p class = "text dark_gray_text midlarge">Thanks for using Havenly, <?php echo $first_name;?>!</p>
-<P class = "text dark_gray_text medium">We here at Havenly are so excited to be helping you with your room.  Your designer will give you a call within the next three days to talk over your style and needs.
+<P class = "text dark_gray_text medium">We here at Havenly are so excited to be helping you with your room.  Your designer will contact you shortly to talk over your style and needs.
 Pretty soon, you'll have a customized design plan, and we'll help you get everything you need to your house.
 
 <br><br>

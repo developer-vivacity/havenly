@@ -1,7 +1,7 @@
 .home {
   width: 100%;
   min-height: 60em;
-  background: url("../images/markbg.jpg") no-repeat center center fixed; 
+  background: url("../images/alanabg.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -25,8 +25,10 @@
  /*  color: #fff;
   height: 29em; */
 /*   width: 95%; */
-padding-top: 142px;
+padding-top: 50px;
+padding-left:50px;
   list-style: none;
+  
  /*  background-color: rgba(255, 255, 255,.85); */
 /*   background:-webkit-linear-gradient(bottom,rgba(255, 255, 255,.85) 85%, rgba(255, 255, 255,.85) 85%);
   background:-o-linear-gradient(bottom,rgba(255, 255, 255,.85) 85%, rgba(255, 255, 255,.85) 85%);
@@ -40,17 +42,28 @@ padding-top: 142px;
   display: inline-block;
   margin: 0 auto;
   vertical-align: middle;
-/*   padding-top: 42px;
-  padding-bottom: 50px;  */
+/*   padding-top: 42px;	*/
+  padding-bottom: 20px;  
 }
 
+ 
+
 .home-content h2 {
-  color: #fff;
-  font-size: 110px;
+  color: #000;
+  font-size: 55px !important;
+  font-weight: normal;
+  font-family: 'Open Sans' !important;
+  font-weight: 300;
   display: inline;
    vertical-align: middle;
-/*   margin-top: 20px; */
-/*   line-height: 100%; */
+   line-height: 55px;
+   padding-bottom: 20px;
+ text-transform: uppercase;
+ /*   line-height: 100%; */
+}
+
+.home-content p{
+margin-top: 10px;
 }
 
 .home-content li {
@@ -80,28 +93,29 @@ padding-top: 142px;
 
 .get-started {
   color: #fff;
-  padding: 1px;
-  -webkit-border-radius: 7px;
+  padding: 10px;
+/*   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
-  border-radius: 7px;
+  border-radius: 7px; */
   display: inline;
-  background-color: #f74d76;
+/*   background-color: #f74d76; */
+background-color: #000;
   background-clip: padding-box;
   -webkit-appearance: none;
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   z-index:999;
-  width: 8.5em;
-  font-size: 2em;
+  width: 6.8em;
+  font-size: 1.6em;
   line-height: 1.7;
-  font-family: 'Open Sans',sans-serif;
+  font-family: 'Open Sans Condensed',sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   /* margin-top: -28px; */
-  margin-top: 30px;
-  margin-left: 20px;
+  /* margin-top: 80px; */
+/*   margin-left: 20px; */
 }
 
 .email-label {
@@ -120,7 +134,23 @@ padding-top: 142px;
   .get-started {
     margin-top: 10px;
   }
+  
+  
 }
+
+@media only screen and (min-width: 569px) and (max-width: 1096px){
+
+ .home{
+  background: url("../images/alanabgmed.jpg") center center no-repeat;
+  background-size: cover;
+   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+   }
+
+ 
+   }
 
 @media only screen and (min-width: 481px) and (max-width: 768px) {
   .home-content {
@@ -135,13 +165,21 @@ padding-top: 142px;
   .home-content {
     height: 33em;
   }
+  
+  .home .offset8{
+  margin-left: 0%;
+  }
+  
+ .home-content h2{
+ font-size: 15px;
+ }
+  
   .home-content img {
-    padding-top: 92px;
-    padding-bottom: 20px;
+    display:none;
   }
   .home-content h2 {
     font-size: 42px;
-    margin-top: 0;
+    margin-top: 20px;
     line-height: 100%;
     display: block;
   }
@@ -150,7 +188,12 @@ padding-top: 142px;
     clear: both;
   }
   
-  .home{
-   background: url("../Images/markbgmob.jpg") no-repeat center center fixed; }
-
-}
+   .home {
+   background: url("../images/alanabgmob.png") center center no-repeat; 
+   background-size: cover;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+     }
+	 
+	}

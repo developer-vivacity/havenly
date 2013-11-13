@@ -75,6 +75,7 @@ $(".smallimage").click(function(){
 $('#checkoutbutton').click(function(){
 
 var designid = $("#designidhold").val();
+
     $.ajax({
         url: $('#siteurl').val()+'index.php/Cart/site/confirm_order',
         type: 'POST',

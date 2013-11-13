@@ -11,7 +11,7 @@ function save_room($data){
 $insert = array(
 'about'=>$data['about'],
 'user_id'=>$data['user_id'],
-'type'=>$data['type'],
+'budget'=>$data['budget'],
 'width'=>$data['room_width'],
 'height'=>$data['room_height'],
 'room_type'=>$data['room_type'],
@@ -21,11 +21,11 @@ $insert = array(
 $this->db->insert('user_rooms',$insert);
 $query=$this->db->insert_id();
 
-$insert = array(
-'designer_id'=>1,
-'user_id'=>$data['user_id']);
+// $insert = array(
+// 'designer_id'=>1,
+// 'user_id'=>$data['user_id']);
 
-$this->db->insert('designer_mapping',$insert);
+// $this->db->insert('designer_mapping',$insert);
 
 return $query;
 		
@@ -132,7 +132,7 @@ function fetch_color_style_number()
 // for display all data of user_rooms table.	
 function display_all_rooms($orderby=null)
 {
-$query=$this->db->query("SELECT distinct users.email AS username,user_rooms.user_id AS user_id,designer.id AS designer_id, user_rooms.id AS Order_number, user_rooms.room_type AS Room_type, user_rooms.status AS Order_status, designer.designer_name AS assigned_to
+$query=$this->db->query("SELECT distinct users.email AS username,user_rooms.user_id AS user_id,designer.id AS designer_id, user_rooms.id AS room_id, user_rooms.room_type AS Room_type, user_rooms.status AS Order_status, designer.designer_name AS assigned_to
 FROM user_rooms
 INNER JOIN users ON user_rooms.user_id = users.id
 LEFT JOIN designer_mapping ON designer_mapping.user_id = user_rooms.user_id
@@ -144,7 +144,7 @@ return $query->result();
 function displayusreinformationwithroom($room_id)
 {
 
-$query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_photo1,user_rooms.room_photo2,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics,user_rooms.status from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
+$query=$this->db->query("Select distinct user_rooms.id,user_rooms.user_id,users.first_name,users.last_name,users.email,users.phone,users.address,users.zipcode, users.pinterest, users.facebook, users.instagram, user_rooms.type,user_rooms.width,user_rooms.height,user_rooms.room_type,user_rooms.about,user_preferences.style_pics,user_preferences.color_pics,user_rooms.status from users inner join user_rooms on users.id=user_rooms.user_id inner join user_preferences on user_rooms.user_id=user_preferences.user_id where user_rooms.id=".$room_id."");	
 
 return $query->result();
 }
@@ -168,4 +168,10 @@ function display_user_room_video($user_id)
 	
 }
 
+function designer_email($room_id)
+{
+$query = $this->db->query("Select designer.designer_email from designer join designer_mapping on designer_mapping.designer_id=designer.id join user_rooms on user_rooms.user_id = designer_mapping.user_id where user_rooms.id = ".$room_id);
+return $query->result();
+
+}
 }

@@ -6,21 +6,29 @@ body {
 #faq h3	{ 
 font-family: 'Open Sans';
 font-weight: 300;
-text-transform: 'uppercase';
 cursor:pointer;
-font-size: 1.5em;
-line-height: 1.5em; 
-margin-bottom: 20px;}
+font-size: 1.3em;
+line-height: 1.3em;
+color: white !important;
+}
+
 #faq h3 span{
-color: #F74D76;
-font-weight: 400;}
+color: white !important;
+font-weight: bold;}
 
-#faq h3.active	{ color:#F74D76; }
+#faq h3.active	{ color:#00CDBF; }
 
-#faq div { height:0; overflow:hidden; position:relative; }
+.answer { height:0; overflow:hidden; position:relative; }
 #faq div p	{ 
-font-size: 1.2em;
+font-size: 1em;
 padding: 20px;
 font-family: 'Open Sans';
 font-weight: 300;
- margin-bottom:30px; }
+color: white !important;
+}
+ 
+ .question{
+ background-color: black;
+  border: 1px solid lightgray;
+ padding: 20px;
+ margin: 10px;}

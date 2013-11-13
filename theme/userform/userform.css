@@ -1,0 +1,245 @@
+.form_container .logo{
+margin: 10px;
+padding: 20px;
+}
+
+.resize{
+min-height: 650px;
+}
+
+.formtext{
+width: 80%;
+margin: auto !important;
+padding-bottom: 70px;
+}
+#room_pics .formtext{
+padding-bottom: 120px;
+}
+
+.question_heading{
+font-size: 80px;
+line-height: 100px;
+font-family: 'Playfair Display', serif;
+font-weight: 400;
+}
+
+.question_description{
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+font-size: 30px;
+line-height: 100%;
+margin-bottom: 40px;
+text-align: center;
+}
+
+
+#room_pics input{
+height:50px;
+}
+
+.survey_step{
+list-style-type: none;
+text-align: center;
+position: relative;
+}
+
+ul.survey_step li  {
+display: inline-block;
+color: #000;
+border: solid 1px #000;
+border-radius: 32px;
+height: 32px;
+width: 32px;
+font-size: 20px;
+line-height: 32px;
+}
+
+.survey_step .active{
+color: white;
+background-color: black}
+
+.browsable {
+cursor: pointer;
+}
+
+
+.continue,.intro,.continue2{
+position: fixed;
+bottom: 0;
+background-color: rgba(255,255,255, 0.7);
+padding:0;
+margin:0;
+vertical-align: middle;
+}
+
+
+.color {
+display: inline-block;
+zoom: 1;
+zoom: 1;
+height: 6em;
+width: 6em;
+border: .5em solid white;
+}
+
+select{
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+}
+
+#tweetsend{
+cursor:pointer;
+background-color: white;
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+padding: 20px;
+width: 30%;
+margin: auto;
+border: 10px solid black;
+margin-bottom: 20px;
+
+}
+#tweetsend p{
+font-family: 'Playfair Display', serif;
+font-size: 15px;
+color: black;
+}
+
+span.qq-drop-processing{
+display: none;
+}
+
+.square{
+font-size: 30px;
+padding: 20px;
+/* height: 150px;
+width: 150px;
+line-height: 150px; */
+}
+
+.form_container input[type=text], .form_container input[type=password], .form_container select {
+font-family: 'Open Sans';
+font-weight: 300;
+margin: .5em;
+color: white;
+background-color: lightgray;
+border: none;
+height: 2em;
+border-radius: 0px;
+font-size: 15px;
+}
+.form_container textarea{
+width: 90%;
+font-family: 'Open Sans';
+font-weight: 300;
+margin: .5em;
+color: white;
+background-color: lightgray;
+border: none;
+height: 4em;
+border-radius: 0px;
+}
+
+#social input{
+height: 3em;
+font-size: 2em;
+width: 100%;
+}
+
+.formlabel {
+line-height: 3em;
+font-size: 1.2em;
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+}
+
+#codepromotion span{
+margin-left: 0px;
+}
+
+.infosection{
+padding: 1.5em;}
+
+.form_container{
+padding-bottom: 70px;
+}
+
+#show_design_fee{
+padding-top: 10px;
+font-size: 30px;
+font-family: 'Playfair Display', serif;
+text-align: left;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/*	Media Queries
+/* ---------------------------------------------------------------------- */
+
+@media only screen and (max-width: 568px) {
+.question_heading {
+font-size: 3em;
+line-height: 100%;
+}
+
+.question_description{
+font-size: 1.2em;
+line-height: 100%;
+}
+
+#tweetsend{
+width: 70%;
+}
+
+#social input{
+font-size: 1em;
+}
+
+#social img{
+height: 50px;
+}
+
+#social text-right{
+text-align: left !important;
+}
+
+.formlabel {display: none;}
+
+#information input[type=text], #information input[type=password]{
+width: 90%;
+}
+
+#designlabel{
+text-align: center !important;
+}
+#show_design_fee{
+margin: 0;
+padding-top: 0px !important;
+text-align: center !important;
+padding-bottom: 10px !important;
+}
+
+@media only screen and (min-width: 569px) and (max-width: 1024px) {
+#information input[type=text]{
+width: 80%;
+}
+
+#information div.span5, #information .row{
+width: 100% !important;
+}
+.formlabel {
+line-height: 100%;
+}
+
+#information .span2{
+width: 40% !important;
+}
+
+#information .span1{
+width: 40%;
+}
+
+
+
+
+}

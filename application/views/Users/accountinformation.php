@@ -22,6 +22,9 @@
    <?php
     endif;
      ?>
+
+	 
+	 
     <?php 
        if(sizeof($designforloginuser)>0)
        {
@@ -39,9 +42,9 @@
   <div class="nav-mobile">
     <ul id="list-pages-accordion">
       <li>
-        <a href=""><img src=<?php echo base_url('theme/img/menu.png'); ?>></a>
+        <a href=""><img src=<?php echo base_url('theme/img/menu.png'); ?> height = "25px"></a>
         <ul id="bstabs" class="dropdownList">
-		<li><a href="#status"  rel="status">STATUS</a></li>
+			<li><a href="#status"  rel="status">STATUS</a></li>
           <li><a href="#designer" rel="designer">YOUR ACCOUNT</a></li>
           <li><a href="#preferences" rel="preferences">YOUR PREFERENCES</a></li>
           <li><a href="<?php echo base_url();?>/index.php/Concept/site/initial_concepts_for_user/"   rel="Concepts">INITIAL CONCEPTS</a></li>
@@ -100,10 +103,11 @@
 			foreach ($designerinformation as $key)
 			{
 				if ($i==1) {?>
-				 <img class="img-circle" src="<?php echo $url.'/'.$key->designer_picture; ?>" width="100%" >
+				 <div class = "designerimage"><img  src="<?php echo $url.'/'.$key->designer_picture; ?>" height="100%"></div>
 				<div class="designer-info">
 					<p class="designer-name"><?php echo $key->designer_name; ?></p>
 					<p class="designer-contact">Your Personal Decorator</p>
+					<hr>
 					<p class="designer-contact"><?php echo $key->designer_phone_number; ?></p>
 					<p class="designer-contact"><?php echo $key->designer_email; ?></p>
 				</div>
@@ -139,16 +143,16 @@
 
 		if ($key->address ==0)
 		{
-			echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address"></td></tr><tr><td><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td>';}
+			echo '&nbsp;&nbsp;<input type = "text" name = "update_address" id = "update_address" class = "sanslight" value = "Add Your Address"></td></tr><tr><td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_zip" id = "update_zip" value = '.$key->zipcode.'>	<BR><BR></td></tr>';}
 		else{
-			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'"></td></tr><tr><td><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight" name = "update_address" id = "update_address" type = "text" value ="'.$key->address.'"></td></tr><tr><td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-home.png').'" height="15">&nbsp;&nbsp;<input class = "sanslight" name = "update_zip" id = "update_zip" type = "text" value = '.$key->zipcode.'><br><br></td></tr>';
 			}
 
 			echo '<tr>';
 			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-pass.png').'" height="15">';
-			echo '&nbsp;&nbsp;<input class = "sanslight pwd" name = "update_password" id = "update_password" type = "text" value = "Update Password" ></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight small pwd" name = "update_password" id = "update_password" type = "text" value = "Update Password" ></td></tr>';
 			echo '<td class = "sanslight dark_gray_text"><img src = "'.base_url('assets/Images/icon-pass.png').'" height="15">';
-			echo '&nbsp;&nbsp;<input class = "sanslight pwd" name = "update_password2" id = "update_password2" type = "text" value = "Confirm New Password"><BR><BR></td></tr>';
+			echo '&nbsp;&nbsp;<input class = "sanslight small pwd" name = "update_password2" id = "update_password2" type = "text" value = "Confirm New Password"><BR><BR></td></tr>';
 
 			echo '<tr><td class = "sans-serif" ><img src = "'.base_url('assets/Images/fblarge.png').'" height="15">';
 			if($key->facebook==0){echo '&nbsp;&nbsp;<input class = "sanslight" type = "text" name = "update_facebook" id = "update_facebook"  value = ""></td></tr>';}else{
@@ -162,7 +166,7 @@
 
 			echo '</table>';
 			echo '<BR><BR>';
-			echo '<div class = "text-center" id = "buttonhold"><input class = "button3 seventy midsmall pink condensed" type="button" value="U P D A T E" id="update_update"></div>';
+			echo '<div class = "text-center" id = "buttonhold"><input class = "button4 seventy midsmall black condensed" type="button" value="U P D A T E" id="update_update"></div>';
  }
 ?>
 </div>
@@ -206,11 +210,11 @@ echo '<div class = "carousel-inner text-center">';}
 		if ($i==1){
 		   echo '<div class = "item active" id="room_des_'.$i.'">';}
 		   else {echo '<div class = "designimage" id="room_des_'.$i.'">';}
-                echo '<a class = "black_text" href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
+                echo '<a href="'.base_url().'index.php/Cart/site/products_associate_design/'.$key->design_id.'">';
                 echo '&nbsp; &nbsp;<img src="'.$key->filename.'" width = "100%"/>';
-				echo '<div class = "designimagetext"><div class = "condensed black_text midlarge">C L I C K  &nbsp; T O  &nbsp;S H O P</div></div></a>';
+				echo '<div class = "designimagetext"><div class = "sanslight midlarge">C L I C K  &nbsp; T O  &nbsp;S H O P</div></div></a>';
                 if(!empty($key->designer_notes))
-                echo  '<div><span class = "sanslight midsmall"><b>A Note from your Designer:&nbsp;</b></span><span class = "sanslight midsmall">'.$key->designer_notes.'</span></div>';
+                echo  '<div><span class = "serif midsmall"><b>A Note from your Designer:&nbsp;</b></span><span class = "serif midsmall">'.$key->designer_notes.'</span></div>';
                 echo '</div>'; 
 		   $i++;
 	  }
@@ -330,15 +334,18 @@ if(isset($userpreference))
 <?php 
 $value = urldecode($room_status);
 if ($value =='OPEN'|| $value =='CALLED'||$value == 'open'||$value=='Open'){
-echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">';}
+echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="90%">';}
 
 elseif ($value =='DESIGN'|| $value =='MOODBOARD REVIEW'){
-echo '<img src = "'.base_url('assets/Images/Process2.jpg').'" width="80%">';}
+echo '<img src = "'.base_url('assets/Images/Process2.jpg').'" width="90%">';}
 
-elseif ($value =='FINAL DESIGN'|| $value =='ORDER'){
-echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="80%">';}
+elseif ($value =='PRODUCT REVIEW'){
+echo '<img src = "'.base_url('assets/Images/Process3.jpg').'" width="90%">';}
 
-else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="80%">';}
+elseif ($value =='FINAL DESIGN'||$value=='ORDER'||$value=='CLOSED'){
+echo '<img src = "'.base_url('assets/Images/Process4.jpg').'" width="90%">';}
+
+else {echo '<img src = "'.base_url('assets/Images/Process1.jpg').'" width="90%">';}
 
 ?>
 </div>

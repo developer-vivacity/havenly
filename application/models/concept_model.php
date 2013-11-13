@@ -59,7 +59,7 @@ $this->db->query("CREATE TABLE IF NOT EXISTS concept_board_comments (
     */
 $query= $this->db->query('select concept_board.concept_id,concept_board.room_id,concept_board.filename,concept_board.status,concept_board_comments.comments from concept_board left join concept_board_comments on concept_board.concept_id=concept_board_comments.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and (concept_board.status=1)');
 
-     return $query->result();   
+  return $query->result();   
    }
    function total_rows_initial_concepts()
    {
@@ -91,7 +91,72 @@ $query= $this->db->query('select concept_board.concept_id,concept_board.room_id,
 	         $this->db->insert('concept_board_comments',$data);
 	   
    }
+   
+   
+   function save_product_concept($concept_id, $category, $filename, $price)
+   {
+   
+	$insert = array(
+		'category'=>$category,
+		'concept_id'=>$concept_id,
+		'filename'=>$filename,
+		'price'=>$price);
+		
+	$this->db->insert('concept_products',$insert);
+	$query = $this->db->insert_id();
+	return $query;
+   }
+   
+   function deleteproductconcept($id)
+   {
+   
+	$delete=array('id'=>$id);
+	$this->db->delete('concept_products',$delete);
+	  }
+	  
+	  function viewproducts($id)
+	  
+	  {
+	  
+		$this->db->order_by('category','asc');
+		$this->db->where('concept_id',$id);
+		$query = $this->db->get('concept_products');
+		return $query->result();
+   
+   }
+   
+function have_products()
+{
+	$query= $this->db->query('select distinct concept_board.concept_id from concept_board join concept_products on concept_board.concept_id=concept_products.concept_id where concept_board.room_id in (select id from user_rooms where user_id='.$this->session->userdata('id').') and concept_board.status=1 group by concept_board.concept_id');
+	return $query->result_array();
 }
 
 
+  function dist_categories ($id)
+   {
+  $query= $this->db->query('select distinct category from concept_products where concept_id = '.$id.' group by category');
+  return $query->result();
+}
+
+function products_by_category($category, $id)
+
+{$this->db->where ('concept_id',$id);
+$this->db->where('category',$category);
+$this->db->select('id,filename,price,comments');
+$query=$this->db->get('concept_products');
+return $query->result();
+
+}
+
+function save_prod_comments($pcid, $comment)
+{
+
+$update=array(
+'comments'=>$comment);
+$this->db->where('id', $pcid);
+$this->db->update('concept_products', $update);
+
+}
+
+}
 ?>

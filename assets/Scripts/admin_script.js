@@ -5,7 +5,8 @@ $(document).ready(function()
 {
  
      $start_display=($('#CurrentUser').css('display')=='block'?1:2);
- 
+
+
     $(".adminmain").hide();
     
     
@@ -22,6 +23,7 @@ $(document).ready(function()
       
 		 }
 		 )
+		 
 		 
 		 
 		 $("#addroominfo").click(function()
@@ -74,19 +76,6 @@ $(document).ready(function()
 
  
  
-$('input[name$="retail_option"]').click(function()
-		{
-			$('#rentprise').val("");
-			if(this.value=="off")
-			{
-			$('#rentprise').attr('readonly', 'readonly');
-		    }
-		    else
-		    {
-		    $('#rentprise').removeAttr('readonly')
-		    }
-		})
-
 
 $("#Stylefilter,#Colorfilter, #Materialfilter,#Typefilter").keypress(function(event)
 {
@@ -139,6 +128,7 @@ var flage= (filterid==1?$("#ShowStylefilter").append('<li  style="list-style-typ
 
   
 });
+//Add a product to the database on Admin/display products - opens a new window
 $("#AddProduct").click(
   function()
   {
@@ -147,6 +137,7 @@ $("#AddProduct").click(
   
   });
 
+ // Save a new design on Admin/displayproducts
   $("#SaveSelected").click(function()
   {  
   
@@ -178,7 +169,7 @@ $("#AddProduct").click(
   
  
    
-  
+  //Search product database by product name
   $("#searchproductname").click(function()
   {
      var productimage = "";
@@ -211,7 +202,7 @@ $("#AddProduct").click(
 	 
 	 
   
-  
+  //Filter prodcuts by selection
   
   $("#filterproduct").click(function()
   {
@@ -304,7 +295,7 @@ $("#AddProduct").click(
 
 });
 
-
+//Clear all searches and filters of the product db
 $("#clearfilter").click(function(){
 
 var productimage = "";
@@ -337,7 +328,7 @@ var designid = $("#holddesignidforroom").val();
 	
 
   
-  
+  //Save a product to the database
 $("#savecurrentproduct").click(function()
 {
 
@@ -418,6 +409,8 @@ $("#savecurrentproduct").click(function()
      }
 	});
 
+	
+//Add product pictures to the product
 $("#adduploadproductpic").click(function()
 {
 	
@@ -430,6 +423,7 @@ $("#adduploadproductpic").click(function()
        
 });
 
+//add an input to add a weblink for an additional image in the add products screen
 $("#addimagelink").click(function()
 {
 	
@@ -750,9 +744,65 @@ function slide_nav(total,direction)
          
 }
 
+function add_product_concept(){
+	
+	var weblink = $('.weblink').val();
+	var price = $('.price').val();
+	if (weblink!="Image Link"&&weblink!=""&&price!=""&&price!="")
+	{
+	
+		$("#addproducts").submit();
+	
 
+	}
+	
+	else {alert('need more information');}
 
+}
 
+function assign_designer(user_id)
+{
+	var user_id = user_id;
+	var designer_name = $("#select_"+user_id).val();
+	$.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/assign_designer',
+        type: 'POST',
+		data: {user_id: user_id, designer_name: designer_name},
+        success : function(data) {
+				$('#designer_'+user_id).html(designer_name);
+				}
+	   
+    });
+	
+	
+	}
+
+	// Add comment for concept products from user
+function add_prod_comment(id){
+
+var comment = $('#prod_comment_'+id).val();
+var pcid = id;
+
+if (comment !=""&&comment!="Type Feedback Here..."){
+$.ajax({
+        url: $('#siteurl').val()+'index.php/Concept/site/save_prod_comments',
+        type: 'POST',
+		data: {comment: comment, pcid: pcid},
+        success : function(data) {
+				$('#this').parent().html('<p class = "alert">Saved</p>');
+				}
+	   
+    });
+	
+	}
+	else {$('#prod_comment_'+id).prepend('<div class = "alert alert-error">Please Enter Feedback</div>');}
+	
+	}
+	
+	
+	function clearContents(element) {
+  element.value = '';
+}
 
 // $("#ascproduct").click(function(){
   // var is_sort=false;

@@ -148,7 +148,7 @@ function display_design()
    {
         var id_in_array= $("#designproductid_"+str_id).val().split(",");
           for(var i=0; i<(id_in_array.length);i++)
-          {
+          {	
           $("#product_img"+id_in_array[i]).addClass('active');
           $("#productimage_"+id_in_array[i]).prop('checked', true);
          }

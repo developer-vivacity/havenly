@@ -1,6 +1,8 @@
 <?php
 include(APPPATH.'/views/templates/header.php');
 ?>
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/Scripts/admin_script.js"></script>
 <?php
 if($privileges=='global'):
 ?>
@@ -61,7 +63,7 @@ if($privileges=='global'):
 <div class = "white">
 <div class = "white container">
 <BR><BR><BR><BR>
-
+<input type = "hidden" id = "siteurl" value = <?php echo base_url();?> />
 <div class = "midlarge serif gray_text padding canvas ">
 Open Rooms<br></div>
 
@@ -77,18 +79,33 @@ Open Rooms<br></div>
 	<!-----<td>&nbsp;</td>------>
 	<td>&nbsp;</td>
 	</tr>
+	
+	
 <?php
 foreach($adminrooms as $key)
 {
          $key->Room_type=($key->Room_type=="BR"?"Bedroom":"Living room");
-         echo'<tr style="text-align:left;">
+         echo'<tr id = "row_'.$key->user_id.'" style="text-align:left;">
          <td>'.$key->username.'</td>';
-	echo '<td>'.$key->Order_number.'</td>
-	<td>'.$key->Order_status.'</td>';
-	echo '<td>'.$key->Room_type.'</td>
-	<td>'.$key->assigned_to.'</td>';
-	echo '<td><a class = "button1 boxshadow blue white_text" href="'.base_url().'index.php/Admin/site/currentroomwithuser/'.$key->Order_number.'">View Details</a></td>';
-	echo '<td><a href="'.base_url().'index.php/Admin/site/designer_availability/'.$key->user_id.'/'.$key->designer_id.'">Designer  availability</a></a></td></tr>';
+		echo '<td>'.$key->user_id.'</td>
+		<td>'.$key->Order_status.'</td>';
+		echo '<td>'.$key->Room_type.'</td>';
+		if ($key->assigned_to !=""&&$key->assigned_to !=NULL){
+		echo '<td>'.$key->assigned_to.'</td>';
+		}
+		else {
+		echo '<td><div id = "designer_'.$key->user_id.'">';
+		echo '<select id= "select_'.$key->user_id.'">';
+		foreach ($designers as $designer)
+		{
+			echo '<option>'.$designer->designer_name.'</option>';
+		}
+		echo '</select>';
+		echo '<a class = "button4" onClick = "assign_designer('.$key->user_id.');">Assign</a></div></td> 	';
+		}
+		
+		echo '<td><a class = "button1 boxshadow blue white_text" href="'.base_url().'index.php/Admin/site/currentroomwithuser/'.$key->room_id.'">View Details</a></td>';
+		echo '<td><a href="'.base_url().'index.php/Admin/site/designer_availability/'.$key->user_id.'/'.$key->designer_id.'">Designer  availability</a></a></td></tr>';
 }
 ?>
 </table>

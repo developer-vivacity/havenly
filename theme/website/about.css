@@ -1,7 +1,6 @@
 .about-image {
-  background-image:url("../../assets/Images/teamfour.jpg");
-  height: 40em;
-  width: auto;
+  background-image:url("../../assets/Images/teamfour1.jpg");
+  height: 42em;
   background-color: black;
   background-repeat: no-repeat;
   background-position: top;
@@ -14,7 +13,8 @@
   background:-webkit-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
   background:-o-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
   background:-moz-linear-gradient(bottom,rgba(255, 255, 255,.7) 70%, rgba(255, 255, 255,.7) 70%);
-  font-family: 'Merriweather', serif;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
   font-size: 3rem;
   padding: .7em 0 .7em 0;
   float: left;
@@ -29,7 +29,7 @@
   background-color: #fff;
   margin-top: -.6875em;
   text-align: center;
-  height: 91em;
+  min-height: 91em;
 }
 
 .about h1 {
@@ -45,19 +45,20 @@
 
 
 .meet-team {
-  font-family: 'Merriweather', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 3.5rem;
   color: black;
+  font-weight: 400;
 }
 
 .bio {
-  height: 300px;
-  width: 300px;
+  height: 400px;
+  width: 400px;
   display: inline-block;
   position: relative;
   overflow: hidden;
   margin-top: 2em;
-  margin: 4em;
+  margin: 2em;
 }
 
 
@@ -70,7 +71,7 @@
     -o-transition: all 300ms ease-out;  
     -ms-transition: all 300ms ease-out;  
     transition: all 300ms ease-out; 
-
+	
 }
 
 /* .lee-descrip {
@@ -79,13 +80,19 @@
 
 .name {
   padding-top: 2em;
-  font-family: 'Merriweather', serif;
-  font-size: 1.3em;
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 2em;
   font-weight: normal;
   margin: 0 !important;
   line-height: .8em !important;
   padding-bottom: .2em;
 	color: white;
+	font-weight: 400;
+}
+
+.title{
+font-size: .8em;
+font-family: 'Playfair Display', serif;
 }
 
 .bio-p {
@@ -94,7 +101,7 @@
   width: 79%;
  padding-top: 1em;
  margin: auto !important;
-
+font-weight: 300;
 }
 
 .caption{
@@ -108,7 +115,6 @@
     -webkit-transition: opacity 0.3s linear;
     text-shadow: #000 1px 1px 0;
     color: #fff;
-	border-radius: 100%;
 	 	 }
 
 
@@ -124,13 +130,13 @@ opacity: 1.0;
 
 @media only screen and (max-width: 568px) {
   .about {
-    height: 98em;
+    max-height: 98em;
   }
   .about h1 {
     font-size: 1.2rem;
   }
   .about h3 {
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
   .about-image {
     display: none;
@@ -138,15 +144,43 @@ opacity: 1.0;
   .bio {
    width: 200px;
    height: 200px;
+   margin: 1em;
   }
   
   .bio img {
-  width: 200px;
-  height: 200px;
+   height: 200px;
   }
 
   .bio .full-caption{
   opacity: 0.8}
   
+  .name {
+  font-size: .3em;
+  padding-top: 10px;
+  }
+  
+  .bio-p {
+  font-size: 6px;
+  line-height: 100%;
+  }
+  
+  .title{
+  font-size: .6em;
+  }
+  
+  
+}
+@media only screen and (min-width: 569px) and (max-width: 768px){
+.about-image {
+  background-image:url("../../assets/Images/teamfour1med.jpg");
+ background-size: contain;
+ height: 
+ 
 }
 
+.about h2 {
+margin-top: 6em;
+}
+
+
+}

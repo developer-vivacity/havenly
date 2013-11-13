@@ -94,7 +94,7 @@ $<?php echo $productdetails[0]->price;?><BR>
      $quantity=((sizeof($qty)==0)?"":(($qty[0]->qty==0)?"":$qty[0]->qty));
     echo '<div id = "productamount"><input type="text" class = "sanslight" style="width:20px;height:20px;" 
 	id="totalvalueadd" name="totalvalueadd" value="'.$quantity.'"/>
-	<input type="button"  class = "button2 small pink white_text sanslight" 
+	<input type="button"  class = "button4 small white_text sanslight" 
 	value="ADD TO CART" onclick="submitcartvalue();"/></div>';
 ?>
 

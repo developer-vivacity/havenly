@@ -30,10 +30,10 @@ width: 30%;
 </style>
 </head>
 <div class = "padding">
-<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height=80  width =80>
+<img class = "inline" src = "<?php echo base_url('assets/Images/Blue_dallesmall.png');?>" height=80  width =80>
 <br>
 <P class = "text dark_gray_text medium">
- <?php echo $message; ?>
+ <pre><?php echo $message; ?></pre>
  <BR><BR>
 </p>
 

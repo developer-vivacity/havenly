@@ -79,7 +79,6 @@
 <div class = "designmain" id = "designimage">
 
 
-
 	
 <p class = "condensed text-center medium"> Upload final design renderings for the room.</p><BR>
 <div class = "well">
@@ -287,7 +286,7 @@ foreach($productmaterialtype as $key)
 		  echo'<div id = "productlistimg_'.$key->product_id.'" class = "productlistimg">
 		 <input type="checkbox"  value = '.$key->product_id.' class="cbox"  name="productimage[]" id="productimage_'.$key->product_id.'"  '.$ischecked.'/>
 		 <img class = '.$active.' src ='.$key->filename.' height="225px"  onmouseover="return display_div('.$key->product_id.');" mouseleave="return remove_display_div();" onclick="selectedproductimage('.$key->product_id.',\''.$key->filename.'\',this);" id="product_img'.$key->product_id.'"/>&nbsp;&nbsp;
-		 <br><a class = "gray_text" href = "'.$key->weblink.'"><span class = "small condensed">'.$key->product_name.'</span>	 </div>';
+		 <br><a class = "gray_text" href = "'.$key->weblink.'" target="_blank"><span class = "small condensed">'.$key->product_name.'</span></a>	 </div>';
 	}
 	if(sizeof($productdetails)==0)
 	echo "<p class = 'alert alert-error'>No products matching your criteria.</p>";

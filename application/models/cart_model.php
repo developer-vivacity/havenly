@@ -268,6 +268,8 @@ function get_design_fee($design_type)
 	$this->db->where('design_id',$designid);
 	$this->db->update('shoppingcart',$order);
 	
+	return 1;
+	
   }
   /*function get_variant_id($product_id)
   {

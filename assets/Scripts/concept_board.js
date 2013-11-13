@@ -1,8 +1,9 @@
+
 $(function(){
 		var btnUpload=$('#imageUpload');
 		var mestatus=$('#mestatus');
 		var files=$('#files');
-
+		var siteurl = $("#siteurl").val();
 		new AjaxUpload(btnUpload, {
 		action: $("#siteurl").val()+'index.php/Admin/site/upload_image_for_concept_board/'+'imageUpload'+'/'+$("#userroomid").val(),
 		name: 'imageUpload',
@@ -25,7 +26,7 @@ $(function(){
                                 	  {
 					  
 				   mestatus.text('');
-				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><img src="'+obj.imagespath+'"  width="200px"></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation( -1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
+				   $("#displayconceptimg").append('<tr id="conceptrow'+obj.insertid+'"><td><input type = "hidden" val = "'+obj.insertid+'" name = "conceptid[]" id = "conceptid'+obj.insertid+'"/><a href = "'+siteurl+'/index.php/Admin/site/viewconceptproducts/'+obj.insertid+'"> <img src="'+obj.imagespath+'"  width="200px"></a></td><td id="conceptcol'+obj.insertid+'"><input class = "button2 pink white_text" type="button" value="Archive" onclick="concept_confirmation( -1,'+$("#userroomid").val()+','+obj.insertid+');"/><input class = "button2 pink white_text" type="button" value="Delete &nbsp;" onclick="concept_confirmation(0,'+$("#userroomid").val()+','+obj.insertid+');"/></td><td>&nbsp;</td></tr>');		      
 		                    } 
 				  else
 				  {
@@ -71,8 +72,12 @@ $(function(){
               }
           } 
     }) 
-	        
+	    
+
+		
     }
+	
+	
     
   
      

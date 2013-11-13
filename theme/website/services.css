@@ -1,25 +1,30 @@
 .services {
   margin-top: -.6875em;
-  height: 48em;
+  min-height: 48em;
   width: 100%;
 }
 
 .services h1 {
-  padding-top: 3em;
-  font-size: 3rem;
+  padding-top: 2em;
+  font-size: 3.5rem;
 }
 
 .services h2 {
-  font-size: 1.3rem;
-  line-height: 1em !important;
+  font-size: 1.5rem;
+  line-height: 1.5em !important;
   margin-top: 0 !important;
+  font-family: 'Open Sans', sans-serif; 
+  font-weight: 300;
+  text-align: center;
+  
 }
 
 .services h1,
-.services h2,
 .services h3 {
   text-align: center;
-  font-family: 'Merriweather', serif;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  line-height: 100%;
 }
 
 .services a:hover{
@@ -37,8 +42,8 @@ color: black;
 
 .card-descrip h3 {
   padding-top: .9em;
-  font-family: 'Merriweather', serif;
-   font-weight: 300; 
+  font-family: 'Playfair Display', serif;
+   font-weight: 400; 
   font-size: 1.4rem;
   margin: 0 !important;
   line-height: .8em !important;
@@ -146,7 +151,7 @@ color: black;
 }
 @media only screen and (max-width: 568px) {
   .services {
-    height: 100em;
+    height: 95em;
   }
   .anibox {
     width: 100%;
@@ -163,4 +168,10 @@ color: black;
   .card-descrip p {
     text-align: center;
   }
+}
+
+@media only screen and (min-width: 569px) and (max-width: 1024px){
+.services{
+height: 100em;
+}
 }

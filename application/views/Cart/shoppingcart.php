@@ -52,7 +52,7 @@
 </div><!-- top nav -->	 
 
 <div class = "white">
-
+<div class = "container">
 <div class = "overlay">
 <div class = "renderfull white"></div></div>
 
@@ -63,13 +63,13 @@
 <div class = "black_text" id="total_items_in_cart"><?php echo $totalitemincart;?>
 </div></div>
 
-<div class = "span4 well canvas designrender">
+<div class = "row well canvas text-center designrender">
 
-<div class = "button3 pink white_text" id="addallproduct">BUY THE WHOLE ROOM</div><BR>
+<div class = "button4 black white_text" id="addallproduct">BUY THE WHOLE ROOM</div><BR>
 <?php 
 foreach($designimage as $key)
 {
-    echo'<div class = "design_image"><img src="'.$key->filename.'" width="100%"/></div><BR><BR>';
+    echo'<div class = "design_image inline"><img class = "inline" src="'.$key->filename.'" width="100%"/></div>';
 }
 ?>
 <?php if(sizeof($design_color)>0):?>
@@ -80,7 +80,7 @@ foreach($designimage as $key)
  
 ?>
 </div>
-<div class = "span8 offset1">
+<div class = "row">
 <div class = "text-center horizontal">
 <p class = "condensed medium ">S&nbsp; H &nbsp;O &nbsp;P &nbsp;&nbsp; Y&nbsp; O&nbsp; U&nbsp; R &nbsp;&nbsp; R&nbsp; O&nbsp; O&nbsp; M</p>
 <hr class = "style">
@@ -93,16 +93,16 @@ foreach($productname as $key=>$value)
         echo 
         '<div class = "producthold" >
         <div class="productimg">
-       <img src="'.$value->weblink.'" height = 200px; id="'.$value->product_id.'" class="designproduct" />';
+       <img src="'.$value->filename.'" height = 200px; id="'.$value->product_id.'" class="designproduct" />';
 	
        if(in_array($value->product_id,explode(',',$shoppingproduct[0]->product_id)))
        {
-	   	echo '<div class = "clicktoadd white_text condensed small" id = "clicktoadd'.$value->product_id.'"><p>C L I C K &nbsp; T O &nbsp R E M O V E<p></div>';
+	   	echo '<div class = "clicktoadd white_text small" id = "clicktoadd'.$value->product_id.'"><p>C L I C K &nbsp; T O &nbsp R E M O V E<p></div>';
 		echo '<div class = "checkimg gray_text serif small"  style = "opacity:0.8"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "200px"></div>';
        }
 	   else
        {
-	   	echo '<div class = "clicktoadd white_text condensed small" id = "clicktoadd'.$value->product_id.'"><p>C L I C K &nbsp; T O &nbsp A D D<p></div>';
+	   	echo '<div class = "clicktoadd white_text  small" id = "clicktoadd'.$value->product_id.'"><p>C L I C K &nbsp; T O &nbsp A D D<p></div>';
 		echo '<div class = "checkimg gray_text serif small" style = "opacity:0;"><img src = "'.base_url('assets/Images/Tick-icon.png').'" height = "200px"></div>';
        }
 	   
@@ -151,7 +151,7 @@ P A I N T &nbsp; C O L O R S</p>
 </div></div>
 </div>
 </div>
-
+</div>
 </form>
 <div style = "clear:both;"></div>
 <?php 

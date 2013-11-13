@@ -12,13 +12,7 @@
         <li class="contact-nav">Contact</li>
       </ul>
     </div><!-- nav left -->
-    <div class="nav-right">
-      <ul>
-        <li><a id="startbutton" class="button3" href="#overlay">&nbsp;GET STARTED</a><li>
-        <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
-      </ul>
-    </div><!-- nav right -->
-    <div class="nav-mobile">
+        <div class="nav-mobile">
       <ul id="list-pages-accordion">
         <li>
           <a href=""><img src=<?php echo base_url('theme/img/menu.png');?>></a>

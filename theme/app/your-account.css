@@ -23,35 +23,33 @@
   border-bottom-left-radius:2em;
 }
 
-.designer-info {
-  position: relative;
-  float: left;
-  margin-top: -130px;
-  margin-left: 295px;
-  color: #32bfb7;
-  width: 165px;
-  height: 165px;
-  background-color: rgba(50,191,183,.8);
-  background:-webkit-linear-gradient(bottom,rgba(50,191,183,.8) 80%, rgba(50,191,183,.8) 80%);
-  background:-o-linear-gradient(bottom,rgba(50,191,183,.8), rgba(50,191,183,.8) 80%);
-  background:-moz-linear-gradient(bottom,rgba(50,191,183,.8), rgba(50,191,183,.8) 80%);
-  line-height: 10px;
-  border-radius: 50%;
+
+.designerimage{
+height: 200px;
+width: 400px;
+overflow: hidden;
 }
 
+
+.designer-info {
+text-align: center;
+  position: relative;
+  width: 400px;
+ }
+
 .designer-name {
-  font-family: 'Open Sans', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
-  color: #fff;
+  color: #000;
   padding-top: .8em;
   margin-top: 48px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .designer-contact {
   font-family: 'Open Sans', serif;
   font-size: .8rem;
-  color: #fff;
+  color: #000;
    font-weight: 300;
 }
 

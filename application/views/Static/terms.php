@@ -18,8 +18,8 @@
         <li>
           <a href=""><img src=<?php echo base_url('theme/img/menu.png');?>></a>
           <ul id="dropdownList">
-            <li><a class="login"href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
-            <li><a id="startbutton" class="button3" href="#overlay">GET STARTED</a><li>
+            <li><a class="login" href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
+            <li><a id="startbutton"  href="<?php echo base_url('index.php/Users/site');?>">GET STARTED</a><li>
           
           </ul>
         </li>

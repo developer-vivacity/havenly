@@ -3,3 +3,32 @@
 padding: 20px;
 }
 
+.concepthold{
+position: relative;
+border: 10px solid black;
+padding: 20px;
+}
+
+.concepthold img{
+margin: 10px;
+background: url('../../assets/Images/ajaxbw.gif') no-repeat center;
+}
+
+.clickhold{
+margin: auto !important;
+position: absolute;
+z-index: 5;
+top: 10px;
+width: 80%;
+background-color: rgba(0,0,0,0.4);
+padding: 20px;
+font-family: 'Open Sans', sans-serif;
+font-weight: 300;
+font-size: 10px;
+line-height: 100%;
+color: white;
+}
+
+.conceptimages{
+margin: auto !important;
+}

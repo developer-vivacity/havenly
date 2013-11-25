@@ -8,10 +8,11 @@
       <div class="logo"> HAVENLY</div>
       <ul>
         <li class="services-nav">Services</li>
-        <li class="cg-nav">Cost &amp; Goods</li>
-        <li class="contact-nav"><a href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">How We Work</a></li>
+        <li class="cg-nav">Costs</li>
+        <li class="contact-nav"><a href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">How</a></li>
 		 <li class="about-nav">About</li>
-		<li><a href = "http://www.havenly.com/blog">Blog</a></li>
+		 <li><a href = "http://www.havenly.com/blog">Blog</a></li>
+		 <li id="gift"><a href = "<?php echo base_url('index.php/Users/site/gifts'); ?>">Give the gift of Havenly</a></li>
       </ul>
     </div><!-- nav left -->
     <div class="nav-right">
@@ -28,10 +29,10 @@
             <li><a class="login" href="<?php echo base_url('index.php/Users/site/login');?>">LOGIN</a><li>
             <li><a id="startbutton" href="<?php echo base_url('index.php/Users/site');?>">GET STARTED</a><li>
             <li class="services-nav">SERVICES</li>
-            <li class="cg-nav">COST &amp; GOODS</li>
+            <li class="cg-nav">COSTS</li>
             <li class="about-nav">ABOUT</li>
-            <li class="contact-nav"><a class = "white_text" href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">How We Work</a></li>
-          <li><a href = "<?php echo base_url('blog'); ?>">Blog</a></li>
+            <li class="contact-nav"><a class = "white_text" href = "<?php echo base_url('index.php/Users/site/howwework'); ?>">HOW</a></li>
+          <li><a href = "<?php echo base_url('blog'); ?>">BLOG</a></li>
 		  </ul>
         </li>
       </ul>
@@ -103,7 +104,7 @@
     <h3>How Havenly Works</h3>
     <p>It's pretty easy. You tell us about you, and we do the rest.</p>
 <!-- video descrip -->
-  <iframe id="video" src="http://player.vimeo.com/video/68198071" width="50%" height="315px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
+  <iframe id="video" src="https://player.vimeo.com/video/68198071" width="50%" height="315px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> 
 </div></section>
 <div id="example" class = "blue"><BR><BR>
 			<div class="container">
@@ -151,9 +152,9 @@
         </li>-->
         <li><img src="<?php echo base_url().'assets/Images/cashmere-pink.png';?>" height="150px"> </span>
         </li>
-        <li>Whole room decorating plan.</li>
+        <li>Hand picked decorating suggestions.</li>
         <li>Choice of designer concepts.</li>
-		<li>Custom rendering &amp; 1 full revision</li>
+		<li>Custom rendering</li>
         <li>Unlimited stylish support.</li>
         
       </ul>
@@ -162,7 +163,7 @@
   </div><!-- costs -->
   <div class="goods">
     <div class="goods-picture">
-      
+     <h1>Sourcing Products</h1>
     </div>
     <h2>We work with well known retailers and our own suppliers to find what you're looking for.</h2>
     <h3>Below is a general price range, but it all depends on your taste, budget and how much you need.</h3>
@@ -225,7 +226,7 @@ She seems very smiley but hates lots of things including: camping, ketchup, Toyo
 	</p>
 	</span>
 	</div>
-
+<BR>
 	
 	
 	 <div class="shelby-descrip bio">
@@ -288,21 +289,16 @@ Her humidity defying hair is also the most valued member of the Havenly team - i
   </section>
 
   <div id="overlay">
-    <div class="boxoverlay"><div class="dark_gray_text">
-	<p class = "medium">W E L C O M E</p>
-	<hr class = "style">
-    <p class="midsmall request-note">Havenly is currently open to people with an invitation in selected cities.  To request an invite, submit your email address and zip code, and we'll get you in as soon as possible.</p>
-    <form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/requestinvite');?>>
+    <div class="boxoverlay"><div class = "close"><img src = "<?php echo base_url('assets/Images/closebutton1.png');?>" height = "25"></div><div class="black_text">
+	<p class = "large serif ">Keep up to date.</p><BR>
+	
+    <p class="midsmall request-note">Be the first to know about new designs, exclusive discounts and easy ways to make your space way more awesome than you could have imagined.<BR><BR>  Get $25 off of your design fee when you sign up today.</p>
+    <BR><form name="signup" method="post" action=<?php echo base_url('index.php/Users/site/emailsignup');?>>
       <table class = "table-center">
-        <tr><td width = "50%"><label class="half sanslight small middle inline email-label" for="Email">Email Address:</label></td>
-        <td><input class = "half middle inline" type="text" name="email" value="" id="email" maxlength="30"/></td>
-      </tr><BR>
-      <tr>
-       <td width = "50%"> <label class = "half sanslight small middle inline zipcode-label" for="Zipcode">Zipcode:</label></td>
-        <td><input class = "half middle inline" type="text" name="zipcode" value="" id="zipcode" maxlength="30"/></td>
-      </tr></table>
-      <div class = "horizontal seventy">
-        <a class = "button4 white_text sanslight" id="requestinvite">REQUEST</a>
+        <tr>
+        <td valign="middle"><input class = "half inline" type="text" name="email" value="Email Address" id="email" maxlength="30" onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};"/></td>
+      <td valign="bottom">
+        <a class = "button4 white_text sanslight" id="requestinvite">SIGN UP</a></td></tr></table>
       </div>
 	  <input type = "hidden" value = <?php echo base_url();?> name = "siteurl" id = "siteurl"/>
     </form>
@@ -336,43 +332,50 @@ olark.identify('5800-712-10-4032');/*]]>*/</script><noscript><a href="https://ww
         interval: 3000
     });
 
+
     $('#myCarousel2').carousel('cycle');
-	
+	$("#overlay").show();
 	
 	// $("#startbutton, #startbutton2").click(function(){
       // $("#overlay").show();
     // });
 
-    // $("#overlay .close").on("click", function(){
-      // $("#overlay").fadeOut(1000);
-    // });
-    // $('#overlay').click(function(e) {
-      // if (e.target.id === "overlay"){
-        // $('#overlay').fadeOut();
-      // }
-  // });
+    $("#overlay .close").on("click", function(){
+      $("#overlay").fadeOut(1000);
+    });
+    $('#overlay').click(function(e) {
+      if (e.target.id === "overlay"){
+        $('#overlay').fadeOut();
+      }
+  });
 
-  // $("#requestinvite").click(function(){
-  // var email = $("#email").val();
-  // var zipcode = $("#zipcode").val();
-  // var siteurl = $("#siteurl").val();
-  // $(".boxoverlay").html('<img src = "'+siteurl+'/assets/Images/ajax-loader.gif" height = "100px">');
+  $("#requestinvite").click(function(){
   
-  // $.ajax({
-      // type: "POST",
-      // url: "index.php/Users/site/requestinvite",
-      // data: {email: email, zipcode: zipcode},
-      // success: function(data) {
-      // if(data=='nope')
-        // {$(".boxoverlay").prepend('<p class = "medium error">Oops, we need more information</p>');}
-      // else{
-          // $(".boxoverlay").html(data);
-      // $("#overlay .close").on("click", function(){
-        // $("#overlay").fadeOut(1000);
-        // });}
-      // }
-    // });
-  // });
+	var email = $("#email").val();
+     var siteurl = $("#siteurl").val();
+	 
+	 if (email==""||email=="Email Address"){
+	 $(".boxoverlay").prepend('<p class = "alert">Oops, we need more information!</p>')
+	
+	 }
+	 else{
+  $(".boxoverlay").html('<a class = "button4"><img src = "'+siteurl+'/assets/Images/ajaxwhiteblack.gif" height = "100px"></a>');
+  
+	$.ajax({
+      type: "POST",
+      url: "index.php/Users/site/emailsignup",
+      data: {email: email},
+      success: function(data) {
+      if(data=='nope')
+        {$(".boxoverlay").prepend('<p class = "alert alert-error">Check to see if you\'ve entered a valid email address</p>');}
+      else{
+          $(".boxoverlay").html(data);
+		$("#overlay .close").on("click", function(){
+        $("#overlay").fadeOut(1000);
+        });}
+      }
+    });}	
+  });
 
     $(".logo").on("click",function(e){
       $(window).scrollTo($(".home-detail"),900, {'axis':'y'});

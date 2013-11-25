@@ -16,16 +16,26 @@ parent::__construct();
   username varchar(100) NOT NULL,
   designerid int(10),PRIMARY KEY (id))");
   
-  $this->db->query("CREATE TABLE IF NOT EXISTS user_room_details
- (id int(10) NOT NULL AUTO_INCREMENT,room_id int(10) NOT NULL,Style_notes varchar(100) NOT NULL,
- Ceiling_Height int(10) NOT NULL,Hates varchar(100) NOT NULL,Likes varchar(100) NOT NULL,Keep varchar(100) 
- NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
+   $this->db->query("CREATE TABLE IF NOT EXISTS user_room_details
+  (id int(10) NOT NULL AUTO_INCREMENT,room_id int(10) NOT NULL,Style_notes varchar(100) NOT NULL,
+  Ceiling_Height int(10) NOT NULL,Hates varchar(100) NOT NULL,Likes varchar(100) NOT NULL,Keep varchar(100) 
+  NOT NULL,Buy varchar(100) NOT NULL,PRIMARY KEY (id))");
+
+
+  $this->db->query("CREATE TABLE IF NOT EXISTS user_last_login (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  user_last_login_id int(10) NOT NULL,
+  admin_last_login_id int(10) NOT NULL,
+  PRIMARY KEY (id)
+  ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2");
 
 
  }  
  function authorize_user($password,$name)
  {
-      $query=$this->db->query("SELECT admin.id,name,privileges,admin.designerid FROM admin where password='".$password."' and username='".$name."'");
+
+      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and username='".$name."'");
+
        if($query->num_rows()!=0)
        {
          foreach($query->result() as $rows)
@@ -61,12 +71,52 @@ parent::__construct();
             $this->db->where('user_design.design_id',$design_id);
             $this->db->where('user_rooms.id',$room_id);
             $this->db->where('user_rooms.user_id',$current_user_id);
-	   $query = $this->db->get();	
-	   return $query->num_rows();
+	        $query = $this->db->get();	
+	        return $query->num_rows();
 	   
  }
  
-
+ function get_invite_requests()
+ {
+	
+          $query =$this->db->query('SELECT email  FROM `invite_requests` WHERE `id`= (select max(id) from invite_requests)');	 
+	      return $query->result();
+	       
+ }
+ 
+ function get_last_login()
+ {
+	 
+      $this->db->from('users','user_last_login');
+      $this->db->select('users.first_name,users.last_name,users.email');	 
+	  $this->db->join('user_last_login','users.id=user_last_login.user_last_login_id');
+      $query= $this->db->get();
+   
+      return $query->result(); 
+ }
+function last_admin_login($id)
+  {
+	  
+	 if($this->db->count_all('user_last_login')==0)
+	 {
+	  $this->db->insert('user_last_login', array('admin_last_login_id'=>$id));  
+	
+     }
+     else
+     {
+	  $this->db->update('user_last_login', array('admin_last_login_id'=>$id));  	 
+	 }
+  }
+  
+ function has_paid($id){
+	 $this->db->where('user_id',$id);
+	 $this->db->where('description', 'design_fee');
+	 $query = $this->db->get('token_code');
+	 return $query->result_array();
+	 
+ }
+ 
+ 
 }
 
 ?>

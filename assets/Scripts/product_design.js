@@ -104,6 +104,17 @@ $("#designproductid_"+designid).val(afterreplace.join(", "));
 $("#select_img_"+designid+"_"+productid).remove();
 }
 }
+
+function addtocart(productid)
+{
+
+	$(".productdetailsdiv").hide();
+	var productid = productid
+	$("#productlistimg_"+productid+"").prepend("<div id='popup'><div class = 'addimageholder'><div><img src='"+$("#siteurl").val()+"assets/Images/delicon.fw.png' width='20px' height='20px' style='float:right;cursor:pointer;' onclick='destroy_popup();'/></div><div><input type = 'text' maxlength = '2' name = 'qty' id = 'qty"+productid+" value = 'qty'><a class = 'button4' onclick='addselectimg();'>Add To Design</a></div></div></div>");
+
+}
+
+
 function destroy_popup()
 {
 	$("#productlist").css('overflow-y', 'scroll');
@@ -133,7 +144,7 @@ function addselectimg()
 }
 function show_product_details()
 {
-             $("#select_products_for_room").hide();
+          $("#select_products_for_room").hide();
   	    $("#allproductdisplay").show();
 	
 }

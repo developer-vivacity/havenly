@@ -77,6 +77,7 @@ echo '</div>';
 
 $i=0;
 $t=0;
+$concwprod=array();
 if(sizeof($haveproducts)>0){
 foreach ($haveproducts as $prod){
 $concwprod[$t]= $prod['concept_id'];
@@ -84,20 +85,24 @@ $t++;
 }}
 
 
-echo '<table><tr>';
+echo '<table class = "text-center">';
 
 foreach($conceptboard as $key)
 {
+	if ($i % 2 == 0){
+	echo '<tr>';}
 	$comment=($key->comments!=""?$key->comments:"Provide overall feedback on the concept you see for your designer.  The more details, the better.");
     $reset=  ($key->comments!=""?0:1);
 	if($key->status==1)
 	{	
 	echo '<td><div class = "concept"  id="room_des_'.$i.'">';
 	echo '<div class = "concepthold">';
+
+	
 	if(in_array($key->concept_id,$concwprod)){
 		echo '<a href="'.base_url().'index.php/Concept/site/concept_products/'.$key->concept_id.'">';
 		echo '<div class = "clickhold">This concept has products for your review. Click to view your product suggestions</div>';}
-     $i++;
+   
    
   
    
@@ -105,11 +110,16 @@ foreach($conceptboard as $key)
          echo '<img class = "conceptimg" src="'.$key->filename.'" width="500px"/></a>';
          echo '<textarea width = "70%" rows = "6" id="concepttext'.$key->concept_id.'" onkeypress="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onclick="removetext(\'concepttext'.$key->concept_id.'\','.$reset.');" onblur="resettest(\'concepttext'.$key->concept_id.'\')">'.$comment.'</textarea><input type="button" class = "button4 black medium condensed white_text" value="SAVE" onclick="save_comment(\'concepttext'.$key->concept_id.'\','.$key->concept_id.','.$key->room_id.',\'conceptboardform\')" onblur="reset_text();"/>';	
 	
-	echo '</div></div></td>';}
+	echo '</div></div></td>';
+	
+	if ($i % 2 != 0){
+	echo '</tr>';}
+	  $i++;
+	}
 	}
 ?>
 
-</tr></table>
+</table>
 </div>
 
 <input type="hidden" value="" id="holdcomment" name="holdcomment"/>

@@ -189,12 +189,7 @@ $this->session->set_userdata('first_name',$data['first_name']);
 $this->session->set_userdata('email',$data['email']);
 /*----------------------------*/
 
-$this->cart_model->add_designfee($this->input->post('designfeeid'),$this->input->post('hidesigntype'),$this->session->userdata("id"));
 
-if(($this->input->post('tokencode')!=""))
-{
-   $this->cart_model->insert_token($this->input->post('tokencode'),$this->session->userdata("id"));
-}
  $data['id']=$this->session->userdata('id');
  $data['first_name']=$this->session->userdata('first_name');
  $data['last_name']=$this->session->userdata('last_name');

@@ -22,7 +22,7 @@ function __construct()
  function index()
  {
  
-	if($this->session->userdata('first_name')==''){
+	if($this->session->userdata('email')==''){
    $this->load->view('Users/home');}
    else {$this->login();}
    
@@ -295,6 +295,66 @@ echo '<div class = "padding"><a class = "close sanslight small padding_small lig
 
 }}
 
+
+
+
+function emailsignup()
+{
+  $this->load->library('form_validation');
+  $this->form_validation->set_rules('email', 'Email', 'required');
+  
+  $error = 'nope';
+  if($this->form_validation->run() == FALSE)
+{
+echo $error;
+}
+  else
+{
+
+$data['email'] = $this->input->post('email');
+
+$this->user_model->save_email($data);
+
+
+	$config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'hello@havenly.com',
+			'smtp_pass'=>'Motayed2');
+			
+	$this->load->library('email',$config);
+	
+
+
+			$this->email->set_newline("\r\n");
+		
+			$this->email->from('hello@havenly.com','The Havenly Team');
+			$this ->email->to($data['email']);
+			$this->email->subject('Hello from Havenly');
+		
+			$this->email->message($this->load->view('Users/signup_email', $data, true));
+			
+				
+			
+		if($this->email->send()) {
+			$data['message']= 'thank you';
+			}
+			else {
+			ob_start();
+			$this->email->print_debugger();
+			$error = ob_end_clean();
+			$errors[] = $error;
+			
+			}
+
+
+echo '<div class = "padding"><a class = "close"><img src = "'.base_url('assets/Images/closebutton1.png').'"></a></div><p class = "large black_text serif"><BR>Thank You For Signing Up! </p><p class = "sanslight black_text medium"> Your room will never be more attractive. </p><BR><BR><BR><BR></div>';
+
+}}
+
+
 //--For User edit information
 function UserEditInformation()
 {
@@ -307,7 +367,7 @@ function UserEditInformation()
  function login()
  {
 
- if(($this->session->userdata('first_name')!=""))
+ if(($this->session->userdata('id')!=""))
     {
      
       if($this->session->userdata('designinfo'))
@@ -397,7 +457,9 @@ if(count($this->room_model->Check_user_rooms($this->session->userdata('id')))>0)
 		$prodid = "";
         $data["designforloginuser"]=$this->cart_model->get_design_login_user();
         
-     
+        #-------user last login---------#
+        $this->user_model->last_user_login($id);
+        #-------------------------------#
         $this->load->view('Users/accountinformation',$data);
         
     }
@@ -590,6 +652,13 @@ $data =array('first_name'=> $this->input->post('update_name'),
     redirect('/Users/site/login/','refresh');
 
  }
+ 
+ function gifts()
+ {
+ 
+	$this->load->view('Users/gifts');
+}
+ 
  /*
  function display_designer_vailability()
  {

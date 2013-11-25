@@ -1,0 +1,16 @@
+#giftcontainer select{
+background-color: lightgray !important;
+width: 100%;
+font-family: 'Open Sans';
+font-weight: 300;
+color: white;
+border: none;
+height: 2em;
+border-radius: 0px;
+font-size: 19px;
+margin: 4px;
+}
+
+#giftcontainer{
+min-height: 600px;
+}

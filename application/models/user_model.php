@@ -80,12 +80,21 @@ $this->db->query("CREATE TABLE IF NOT EXISTS promotion_code (
   PRIMARY KEY (id)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45");
 
+
+ $this->db->query("CREATE TABLE IF NOT EXISTS user_last_login (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  user_last_login_id int(10) NOT NULL,
+  admin_last_login_id int(10) NOT NULL,
+  PRIMARY KEY (id)
+ ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2");
+
 }
 
 
-function save_user($data){
-$this->db->where("email",$data['email']);
-$query=$this->db->get("users");
+function save_user($data)
+{
+  $this->db->where("email",$data['email']);
+  $query=$this->db->get("users");
  
    if($query->num_rows()==0)
    {
@@ -108,8 +117,9 @@ $query=$this->db->get("users");
     return $id;
   }
 
-else {
-$update=array('first_name'=>$data['first_name'],
+else 
+{
+ $update=array('first_name'=>$data['first_name'],
 'last_name'=>$data['last_name'],
 'address'=>$data['address'],
 'phone'=>$data['phone'],
@@ -170,6 +180,16 @@ $insert=array(
 $this->db->insert('invite_requests',$insert);
 
 }
+
+function save_email($data){
+$insert=array(
+'email'=>$data['email']
+);
+
+$this->db->insert('signup',$insert);
+
+}
+
 
 // For inser user informetion---------
    function insert_user_info($data,$email)
@@ -299,10 +319,33 @@ $data = array('password' => $password);
    return $query->num_rows();
   }
   function get_user_id()
- {
+  {
    $this->db->select_max('id');
    $query = $this->db->get('users');
    return $query->result_array();
- }
+  }
+  
+   function get_email($userid)
+  {
+   $this->db->select('email');
+   $this->db->where('id',$userid);
+   $query = $this->db->get('users');
+   return $query->result_array();
+  }
+  
+  
+  function last_user_login($id)
+  {
+	  
+	 if($this->db->count_all('user_last_login')==0)
+	 {
+	  $this->db->insert('user_last_login', array('user_last_login_id'=>$id));  
+     }
+     else
+     {
+	  $this->db->update('user_last_login', array('user_last_login_id'=>$id));  	 
+	 }
+  } 
+ 
 }
 ?>

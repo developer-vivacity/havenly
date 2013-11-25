@@ -1,5 +1,7 @@
 
-
+#uprc{
+height: 150px !important;
+}
 .admin_design_header{
 position: relative;
 }
@@ -90,6 +92,8 @@ padding: 20px;
 -moz-box-shadow: 10px 10px 5px #888;
 -webkit-box-shadow: 10px 10px 5px #888;
 box-shadow: 3px 3px 3px #888;
+max-height: 150px;
+overflow-y:scroll;
 }
 
 .selectedproductimagediv{
@@ -126,4 +130,7 @@ background-color: white;
 z-index: 999;
 }
 
-
+ul#drop_type.dropdown-menu, ul#drop_color.dropdown-menu, ul#drop_style.dropdown-menu, ul#drop_material.dropdown-menu{
+height: 300px;
+overflow-y:scroll;
+}

@@ -101,9 +101,9 @@ foreach($productincart as $key)
 	{echo '<BR><div class = "shipcost">($'.$key->ship_cost.' white glove delivery surcharge)</div>';}
 	echo '</div><div class = "span2 subtotal"><b>Total: $'.$subtotal.'</b></div></div></div><BR>';
 
-	$totalcartprice = $totalcartprice+$totalinclshipping;
-	$shippingtotal = $shippingtotal+$shipping;
-	$totalitemprice = $totalitemprice+$itemcost;
+	$totalcartprice = number_format((float)$totalcartprice+$totalinclshipping, 2, '.', '');
+	$shippingtotal = number_format((float)$shippingtotal+$shipping, 2, '.', '');
+	$totalitemprice = number_format((float)$totalitemprice+$itemcost, 2, '.', '');
 	}
 endif;
 ?>

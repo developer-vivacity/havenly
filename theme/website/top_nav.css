@@ -1,14 +1,18 @@
+a {
+color: black;
+}
+
 .home .top-nav{
   width: 100%;
-  height: 4.575em;
-  background-color: rgba(255,255,255,0.2);
+  height: 3.675em;
+  background-color: rgba(255,255,255,1);
   vertical-align: middle;
 }
 
 .top-nav {
   width: 100%;
-  height: 4.575em;
-  background-color: rgba(33,33,33,0.8);
+  height: 4.075em;
+  background-color: rgba(255,255,255,0.8);
   vertical-align: middle;
 }
 
@@ -17,12 +21,12 @@
   list-style: none;
   clear: both;
   padding-left: 20px;
-  padding-top: 10px;
+  padding-top: 6px;
 }
 
 .logo {
   display: inline-block;
-  color: #fff;
+  color: #000;
   font-family: 'Museo Sans',sans-serif;
   text-transform: uppercase;
   font-size: 1.8rem;
@@ -35,15 +39,17 @@
   display: inline-block;
   font-family: 'Open Sans',sans-serif;
   font-weight: 300;
-  color: #fff;
+  color: #000;
   font-size: .9rem;
    text-transform: uppercase; 
   margin-right: .8em;
   font-weight: 1000;
 }
 
-.top-nav ul li:nth-of-type(5){
+.top-nav ul li:nth-of-type(6){
   margin-right: 0;
+  margin-left: 50px;
+  text-transform: capitalize;
 }
 
 .nav-left {
@@ -55,7 +61,7 @@
 }
 
 .nav-right {
-  padding-top: .8em;
+  padding-top: .4em;
   position: fixed;
   right: 1.2em;
   height: 3.575em;
@@ -126,19 +132,12 @@
 
 
 .login, #startbutton {
-  color: #000;
+  color: #FFF !important;
   margin: 0;
   padding: 10px;
-/*   -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-  border-radius: 7px; */
   display: inline-block;
-/*   background-color: #f74d76; */
-background-color: #fff;
+	background-color: #000;
   background-clip: padding-box;
-/*   color: white; */
   -webkit-appearance: none;
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
@@ -148,7 +147,8 @@ background-color: #fff;
    font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   border: 1px solid #C0C0C0;
-}
+  
+ }
 
 .login:hover, #startbutton:hover {
   cursor: pointer;

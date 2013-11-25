@@ -71,8 +71,16 @@ function adminlogin()
     $this->concept_model->create_table();
    if(($this->session->userdata('adminid')!=""))
      {
-      $data['privileges']=$this->session->userdata('privileges');
-      $this->load->view('Admin/adminview',$data);
+		 $data['privileges']=$this->session->userdata('privileges');
+		
+		 //###########################
+		 // $data['invitemail']=$this->admin_model->get_invite_requests();
+		 
+         // $data['lastlogininfo']=$this->admin_model->get_last_login();
+            
+         //##########################
+      
+         $this->load->view('Admin/adminhome',$data);
       return;
     }
 
@@ -88,8 +96,18 @@ function adminlogin()
      $this->admin_model->authorize_user($this->input->post('password'),$this->input->post('username'));
      if(($this->session->userdata('adminid')!=""))
      {
-      $data['privileges']=$this->session->userdata('privileges');
-      $this->load->view('Admin/adminview',$data);
+		  ##------user last login---------#
+		 
+		  $this->admin_model->last_admin_login($this->session->userdata('adminid'));
+		 
+		 //#################################
+		 $data['invitemail']=$this->admin_model->get_invite_requests();
+		 
+         $data['lastlogininfo']=$this->admin_model->get_last_login();
+         //#################################
+         
+         $data['privileges']=$this->session->userdata('privileges');
+         $this->load->view('Admin/adminhome',$data);
      }
      else
      {
@@ -169,6 +187,8 @@ function currentroomwithuser($room_id=null,$updatetype=null)
 	   
 	   $data["roomwithuser"]=$this->room_model->displayusreinformationwithroom(intval($room_id));
 	   
+	   $data["payment"]=$this->admin_model->has_paid($data["roomwithuser"][0]->user_id);
+	   
 	   $data["conceptboard"]=$this->concept_model->admin_display($room_id);
             
        $data["colorstyle"]=$this->room_model->fetch_color_style_number();
@@ -215,11 +235,14 @@ function currentroomwithuser($room_id=null,$updatetype=null)
 }
 function update_room_status_by_admin()
 {
+
 	$roomdata=array('status'=>$this->input->post('update_room_status'));
 	
 	$this->room_model->updateroominfowithid($this->input->post('userroomid'),$roomdata);
 	
-		if($_POST)
+
+	if($_POST)
+
 	{
 	   if($this->sendmailval!=1)
 	   {
@@ -427,7 +450,7 @@ function productdetails($room_id=null,$user_id=null,$design_id=null)
 
 			$data["productshow"]=($this->input->post("hidproductsearch")=="search"?"block":($this->input->post("hidproductsearch")=="sort"?"block":($this->input->post("hidproductsearch")=="SaveSelected"?"block":"none")));
           
-          $this->load->view('Admin/displayproducts',$data);
+          $this->load->view('Admin/completedesign',$data);
           	 
          }
          else
@@ -469,7 +492,7 @@ function add_product()
 	  if($_POST)
 		{
 		  
-		 $holdlinkuploadimg=array();	 
+		  $holdlinkuploadimg=array();	 
           $i=0;
 		  $count=0;
 	    
@@ -478,11 +501,17 @@ function add_product()
 	         if(!empty($_FILES['uploadproductpic'.$i]['name']))
                  {
 			
-				$this->for_pic_upload('uploadproductpic'.$i);
-			 	$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['filename']=$this->_File_Location;
-				if ($i==0)
-					{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']='main';}
-					else{$holdlinkuploadimg[sizeof($holdlinkuploadimg)]['type']=NULL;}
+				    $this->for_pic_upload('uploadproductpic'.$i);
+			 	
+			 	    $holdlinkuploadimg[$i]['filename']=$this->_File_Location;
+				    if ($i==0)
+					{
+						$holdlinkuploadimg[$i]['type']='main';
+				    }
+					else
+					{
+						$holdlinkuploadimg[$i]['type']=NULL;
+					}
 					
 	        }
 		 $i++;
@@ -570,14 +599,19 @@ function add_product()
           sort($materialhiddenfilter);
           $materialhiddenfilter=implode(',',$materialhiddenfilter);
 
-      $data=array('vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
+      $productid = $this->product_model->max_product_id();
+	 $productidnew=$productid[0]['product_id'];
+	  $productidnew=$productidnew+1;
+	  
+	  // $this->load->view('test',$data); 
+	  $data=array('product_id'=>$productidnew, 'vendor_id'=>$this->input->post("vender"),'product_name'=>$this->input->post("product_name"),'price'=>$this->input->post("Price"),
 		'ship_cost'=>$this->input->post("ship_cost"),'qty_in_stock'=>$this->input->post("qty_in_stock"),
 		'weblink'=>$this->input->post('website'),'product_type_id'=>$typehiddenfilter.',','product_color_id'=>$colorhiddenfilter.',','product_material_id'=>$materialhiddenfilter.',',
 		'product_style_id'=>$stylehiddenfilter.',','description'=>$this->input->post("description"),'dimensions'=>$this->input->post("dimention"),'note'=>'',);
 		
 	   $product_id=$this->product_model->insert_data_in_product_table($data);
 
-	   $this->product_model->insert_image_link_with_product_id($product_id,$holdlinkuploadimg);
+	   $this->product_model->insert_image_link_with_product_id($productidnew,$holdlinkuploadimg);
 	   
 			$data['message']="Product details have been saved";
 			$data['roomid']=$_POST['room_hid'];
@@ -615,7 +649,8 @@ function search_text_for_ajax($text=null,$id=null)
 function product_details_on_hover($id=null)
 {
    	$data['filtertext']=$this->product_model->product_details_by_id($id);
-   	echo json_encode($data['filtertext']);
+	header("Content-Type: application/json", true);
+   	echo json_encode($data['filtertext'][0]);
 	
 }
 
@@ -641,7 +676,7 @@ function display_product_name_associate_with_design($design_id=null,$designname=
            
 				$data['designcolor']= $this->product_model->get_paint_color($design_id);
 				$data['currentuserid']=$current_user_id;
-				$this->load->view('Admin/assignproductdesign',$data);
+				$this->load->view('Admin/designsummary',$data);
         }
         else
         {
@@ -822,7 +857,9 @@ function filter_products()
 
         $data["productdetails"]=$this->product_model->filter_products($this->input->post("typeid"),$this->input->post("colorid"),$this->input->post("styleid"),$this->input->post("materialid"));
         $data["selectedproducts"]=$this->input->post("productimage");
-        $view=$this->load->view('Admin/productview', $data);
+        // $view=
+		
+		$view = $this->load->view('Admin/productview', $data);
         echo $view;
         
 }
@@ -879,5 +916,52 @@ $concept_id = $this->uri->segment(4);
 $this->concept_model->deleteproductconcept($product_id);
 $this->viewconceptproducts($concept_id);
 }
+
+function send_payment_email(){
+$data['userid'] = $this->input->post('userid');
+$data['roomcount'] = $this->input->post('roomcount');
+$data['email'] = $this->input->post('email');
+$room_id = $this->input->post('roomid');
+ $des_email = $this->session->userdata('designer_email');
+ $config = array(
+			'protocol'=>'smtp',
+			'smtp_host'=>'ssl://smtp.googlemail.com',
+			'smtp_port'=> 465,
+			'mailtype' => 'html',
+			'smtp_user'=>'hello@havenly.com',
+			'smtp_pass'=>'Motayed2');
+			
+	        $this->load->library('email',$config);
+	        $this->email->set_newline("\r\n");
+		
+			$this->email->from('hello@havenly.com','The Havenly Team');
+			$this ->email->to($data['email']);
+			
+			if ($des_email!=NULL||$des_email!=""){
+			$this->email->cc($des_email);}
+			
+			else {$this->email->cc('shelby@havenly.com');}
+			$this->email->subject('Design Fee Payment');
+	
+		         
+			$this->email->message($this->load->view('Users/payment_email', $data, true));
+			
+		         if($this->email->send()) 
+		         {
+				$data['message']= 'thank you';
+		         }
+			else 
+			{
+			  ob_start();
+			  $this->email->print_debugger();
+			  $error = ob_end_clean();
+			  $errors[] = $error;
+                           }	
+
+	$this->currentroomwithuser($room_id,null);				 
+						   
+
+}
+
 
 }

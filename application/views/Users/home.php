@@ -49,7 +49,7 @@
      // if(($("#CVC").val().length>=3))    
       // {
         // $('#submit_but').hide();
-		// $('.continue2').append("<div class ='ajax_load button4'> <img src='"+$("#basepath").val()+"/assets/Images/ajaxwhiteblack.gif' width='105px' height='105px'></div>");    
+		// $('.continue2').append("<div class ='ajax_load button4'> <img src='"+$("#basepath").val()+"assets/Images/ajaxwhiteblack.gif' width='105px' height='105px'></div>");    
          // Stripe.card.createToken({
               
          // name: $('#card-name').val(),
@@ -489,8 +489,8 @@
 	<div class = "formtext">
 		<p class = "question_heading">Create Your Account</p><br>
 		<p class = "question_description">Your designer will be in <span>touch in three business days.</span></p>
-	<div class = "row text-left">
-	<div class = "span5 text-left">
+	<div class = "row">
+	<div class = "span5 offset2 text-left">
 	<br><br><br>
 	<div class = "row">
 	<label class = "span2 formlabel" for="first_name">First Name:</label>
@@ -512,15 +512,15 @@
 		
 	<div class = "row">
 	<label class = "span2 formlabel" for="zipcode">Zipcode: </label>
-	<input type="text" name="zipcode" value="10024" id="zipcode" class = "forminput"  maxlength="10"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
+	<input type="text" name="zipcode" value="10024" id="Zipcode" class = "forminput"  maxlength="5"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" /><br></div>
 		
 	<div class = "row">
 	<label class = "span2 formlabel" for="password">Pick a Password: </label>
 	<input type="text" name="password" value="Password (min 6 chars.)" id="password" class = "forminput pwd" maxlength="50"  onfocus="if(this.value==this.defaultValue){this.value=''}; return false;" onblur="if(this.value ==''){this.value =this.defaultValue};" />
 	</div>
 	</div>	
-		
-		<!-------------------------------------Add Design Fee----------------------------------------------------->
+	</div>	
+		<!-------------------------------------Add Design Fee----------------------------------------------------
 
 		<div class= "span5 inline border text-left infosection" >
 
@@ -530,12 +530,11 @@
 			<BR>
 		<div class = "span4 sanslight small dark_gray_text">Try us risk free! If you aren't satisfied after your first designer call, we will refund your design fee. Please get in touch at (888)978-3152 or hello@havenly.com with any questions.</div>
 		<hr class = "style span4"><br>
-		<!-----------design fee hidden variables------->
+	
 		
 		<input type="hidden" value="0" name="designfeeid" id="designfeeid"/>
 		
-		<!---<input type="hidden" value="inactive" name="feestatus" id="feestatus"/>---->
-		
+
 		<input type="hidden" value="active" name="feestatus" id="feestatus"/>
 		
 		<input type="hidden" value="null" name="hidpromotioncode" id="hidpromotioncode">
@@ -546,7 +545,7 @@
 		
 				<!--<div class="horizontal">
 		<div class="labels" id="designtype">&nbsp;</div>
-		</div>-->
+		</div>
 		<br/>
 		<div id="codepromotion" class = "row">
 		<label class = "span2 formlabel" for="promotioncode">Promotion Code:</label>
@@ -586,32 +585,32 @@
 		<div class="row">
 		<div for="cardnumber"  class = "span2 formlabel">Expiration Date </div>
 	<select data-stripe="exp-month" class = "span1 forminput" id="cart_month">
-<?php
+ <?php
 
-   for($i=1;$i<=12;$i++)
-   {
-       echo '<option value='.$i.'>'.$i.'</option>';	
-   }
-?>	
+   // for($i=1;$i<=12;$i++)
+   // {
+       // echo '<option value='.$i.'>'.$i.'</option>';	
+   // }
+ ?>	
 </select>
 <select data-stripe="exp-year" class = "forminput span1" id="cart_year">
   <?php
-   for($year=2013;$year<=2020;$year++)
-   {
-    echo '<option value='.$year.'>'.$year.'</option>';	
-    }
+   // for($year=2013;$year<=2020;$year++)
+   // {
+    // echo '<option value='.$year.'>'.$year.'</option>';	
+    // }
 ?>	
 </select> 
 </div>
 	<div>
-	<!---<button type="button" id="SecurCode">SecurCode</button>--->
+
 	</div>	
 	</div>	</div></div><BR><BR>
 	
 	</div>
-
+--->
 	
-
+</div>
 <div class = "continue2 horizontal">
 <input type="button"  id = "submit_but" class="button4 sanslight midsmall white_text" value="Submit"  onClick="_gaq.push(['_trackEvent', 'Userform', 'Payment', 'Payment']);"> </div>
 	</div>
@@ -1073,14 +1072,12 @@ $("#type .continue").click(function()
 	
 	});
 	
-$("#promotioncode").keyup(function(){
-  $promotion_code=0;
-  $("#designfeeid").val(0);
-})
+
 	
 	
 	$("#submit_but").click(function(){
-	
+	 $('#submit_but').hide();
+	 $('.continue2').append("<div class ='button4'> <img src='"+siteurl+"assets/Images/ajaxwhiteblack.gif' width='105px' height='105px'></div>");    
 	
 	$("#user_login_form").submit();
           // flag_sub=0;

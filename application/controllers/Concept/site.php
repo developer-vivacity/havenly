@@ -49,7 +49,7 @@ Class Site extends CI_Controller
 			$this->email->set_newline("\r\n");
 
 		   $this->email->from('hello@havenly.com','Lee from Havenly');
-		   $this ->email->to($email);
+		   $this ->email->to($des_email);
 		   $this->email->subject('You Have Comments on the Room Design');
 
 		   $this->email->message("You have new comments on the concept board from ".$user_email);

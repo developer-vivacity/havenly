@@ -122,11 +122,14 @@ foreach($productname as $key=>$value)
  </div>
  <div class = "productprice">
 $'.$value->price.'
- </div>
+ </div>';
+ 
+ if ($value->ship_cost!=0&&$value->ship_cost!=""){
+ echo'
  <div class = "shippingprice">
 ($'.$value->ship_cost.' shipping)
- </div>
- </div></div>';
+ </div>';}
+ echo '</div></div>';
 }
 echo '<input type="hidden" value="'.base_url().'" id="basepath" name="basepath"/>';
 
@@ -136,6 +139,8 @@ echo '<input type="hidden" id="holddesignid" name="holddesignid" value="'.$desig
 ?>
  <div>
  <!--<input type="button" value="Add to cart" onclick="add_to_cart();"/>-->
+
+<?php if (sizeof($design_color)>0){ ?>
  <div class = "paint">
 <hr class= "style">
 <p class = "condensed text-center">
@@ -148,7 +153,7 @@ P A I N T &nbsp; C O L O R S</p>
    echo '<div style="background-color:'.$keycolor->color.'height:50px;width:200px;color:white;vertical-align:middle;display:inline-block;">'.$keycolor->description.'</div>';
  }
 ?><hr class= "style">
-</div></div>
+</div></div><?php } ?>
 </div>
 </div>
 </div>

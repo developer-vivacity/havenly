@@ -659,22 +659,19 @@ function display_div(id)
 
     $('<div id="productdetailsdiv_'+id+'" class="productdetailsdiv"><img src="'+$("#siteurl").val()+'assets/Images/ajax-loader.gif" width="20px" height="20px"/></div>').insertBefore("#productimage_"+id);
      
-    $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(data,val) 
+    $.getJSON($("#siteurl").val()+'index.php/Admin/site/product_details_on_hover/'+id, function(json) 
      {
 	  
-	   if(globalkey=="yes")
-           {	  
-               $.each(data, function(key, val) 
-			   {
-				   
-                $("#productdetailsdiv_"+id+"").html(" ");
-			    
-			    $("#productdetailsdiv_"+id+"").append('<div class = "condensed small">'+val.product_name+'<br>Price:&nbsp;'+val.price+'<BR>Dimensions:&nbsp;'+val.dimensions+"</div>" );	  
-				globalkey="no";	  
-			   })
-                  $(".productdetailsdiv").show();
-     }
-   })
+	   // if(globalkey=="yes")
+           // {	  
+              
+				
+                $("#productdetailsdiv_"+id+"").html("");
+			     
+			    $("#productdetailsdiv_"+id+"").append('<div class = "condensed small">'+json.product_name+'<br>Price:&nbsp;'+json.price+'<BR>Dimensions:&nbsp;'+json.dimensions+"</div>" );	  
+				$("#productdetailsdiv_"+id+"").show();
+     // }
+	 })
 	
 }
 

@@ -12,10 +12,9 @@
         </div><!-- social-media -->
         <div class="footer-links">
           <ul class="inline">
-            <li><a href = <?php echo base_url('index.php/Users/site/faq');?> class="midsmall sanslight white_text">faq</li>
-			<li><a href = <?php echo base_url('index.php/Users/site/careers');?> class="midsmall sanslight white_text">careers</li>
+            <li class="about-nav"><a href = <?php echo base_url('index.php/Users/site/faq');?> class="midsmall sanslight white_text">faq</li>
             <li><a class="midsmall sanslight white_text" href=<?php echo base_url('index.php/Users/site/terms');?>>terms</li>
-            <li><a class="midsmall sanslight white_text" href="http://www.havenly.com/blog" target="_blank">blog</a></li>
+            <li><a class="midsmall sanslight white_text" href="http://blog.havenly.com" target="_blank">blog</a></li>
           </ul>
         </div><!-- footer-links -->
 		

@@ -9,8 +9,7 @@
 
 if($privileges=='global'):?>
 
-
- <div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
         <div class="container"> 
 		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -65,65 +64,29 @@ if($privileges=='global'):?>
 	  </div>
 
 <?php endif; ?>
+<div id="vendorBody" style="width:90%; margin:auto; padding-top:35px;">
+<table width="90%" align="center" height="" border="1" style="margin-bottom:25px;">
+<tr>
+<td valign="top" align="left" colspan="2"><h2>Vendors Lists</h2></td>
+</tr>
 
-<div class = "container">
-	<div class = "row">
-	   <div style="height:500px;">
-	<div><p>New User</p></div>
-	<?php 
-		if(sizeof($invitemail)>0){
-		?>
-	<div>
-		
-		Email:
-	    <?php
+<tr>
+<td valign="top" align="center" width="50%"><strong>Vendors Name</strong></td>
+<td valign="top" align="center" width="50%"><strong>View</strong></td>
+</tr>
 
-	    echo $invitemail[0]->email;
-	    
-	    ?>
-	</div>
-	<?php 
-     }
-	else
-    echo '<div>No New User Information</div>';
-	?>
-	<div>
-	
-	&nbsp;
-	</div>
-	<div><p>Last login User</p></div>
-	<?php 
-	if(sizeof($lastlogininfo)>0){
-	
-	?>
-	<div>
-		<?php 
-		
-		$username=$lastlogininfo[0]->first_name."&nbsp;".$lastlogininfo[0]->last_name;
-		?>
-		Name: <?php 
-		echo $username;  
-		
-		?>
-	</div>
-	<div>
-	<?php 
-	$useremail=$lastlogininfo[0]->email;
-	?>
-	Email:<?php echo $useremail;
-	
-	?>
-	</div>
-	<?php
-     }
-	else
-	{
-	echo '<div>No User Login Information</div>';
-     }
-	?>
+<?php
+foreach($vendor as $vendorData){ ?>
+
+<tr>
+<td valign="top" align="center" width="50%"><?=$vendorData->vendor_name;?></td>
+<td valign="top" align="center" width="50%"><a  style="color:#000;" href="<?php echo base_url('index.php/Admin/site/vendorsOrders?ven_id='.$vendorData->vendor_id)?>">Edit</a></td>
+</tr>
+<?php } ?>
+</table>
 </div>
-  </div>
-  </div>
+
+</div>
 
 <?php 
 	include(APPPATH.'/views/templates/footer.php');

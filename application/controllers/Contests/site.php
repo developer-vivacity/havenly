@@ -16,98 +16,6 @@ function __construct() {
 
 }
 
-function upload_room_pic_phone($id)
-{
-$this->image_path= realpath(APPPATH.'/images');
-
-$name = $id;
-$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG");//allowed to be uploaded
-$extension = end(explode(".", $_FILES[$name]["name"]));
-if ((($_FILES[$name]["type"] == "image/gif")
-|| ($_FILES[$name]["type"] == "image/jpeg")
-|| ($_FILES[$name]["type"] == "image/png")
-|| ($_FILES[$name]["type"] == "image/pjpeg")
-|| ($_FILES[$name]["type"] == "image/jpg"))
-&& ($_FILES[$name]["size"]< 3000000)//less than a certain size
-&& in_array($extension, $allowedExts))
-{
-if ($_FILES[$name]["error"] > 0)
-{
-$error ='error loading file';
-echo json_encode ($error);
-}
-else {
-
-$file_location = $_FILES[$name]['tmp_name'];
-if($_FILES[$name]["type"]=='image/jpeg'||$_FILES[$name]["type"]=='image/jpg')
-{	
-$this->image_path= realpath(APPPATH.'/images');
-
-$exif=@exif_read_data($_FILES[$name]['tmp_name']);
-if(isset($exif['Orientation']))
-{$orientation = $exif['Orientation'];}
-
-$image = imagecreatefromstring(file_get_contents($_FILES[$name]['tmp_name']));
-
-if(!empty($orientation)){
-
-switch($orientation){
-case 8:
-$image = imagerotate($image,90,0);
-break;
-case 3:
-$image = imagerotate($image,180,0);
-break;
-case 6:
-$image = imagerotate($image,-90,0);
-break;
-}
-
-}
-
-$file_name = $this->set_file_name();
-
-if ($file_name==0) {$file_name = $this->set_file_name();}
-
-
-else{
-$file_location = $this->image_path.'/'.$file_name.'.jpg';
-imagejpeg($image,$file_location);
-
-}
-}	
-
-$file_name = $this->set_file_name();
-if ($file_name==0) {$file_name = $this->set_file_name();}
-else{
-$file_name = $file_name.'.'.$extension;
-$this->s3->putBucket('EasableImages', S3::ACL_PUBLIC_READ);//add to amazon s3 library
-$s3result=$this->s3->putObjectFile($file_location,'EasableImages',$file_name, S3::ACL_PUBLIC_READ);
-if($s3result)
-{
-return $file_name;
-unlink ($file_location);
-}
-else {
-return 'error';
-
-}
-}
-
-}}
-
-}
-
-
-
-function set_file_name()
-{
-$file_name= random_string('numeric',9);
-$exists=$this->picture_model->check_name($file_name);
-if ($exists){$file_name= 0;}
-else {$file_name = $file_name;}
-return $file_name;
-}	
 
 
 
@@ -125,12 +33,11 @@ function room_submit()
   {
   $data['style'].=$style.",";
   }
-  
   $data['colors'] = $this->input->post('color');
   $data['color']="";
   foreach ($data['colors'] as $color){
   $data['color'].=$color.",";
-	}
+}
 
 $data['first_name']=$this->input->post('first_name');
 $data['last_name']=$this->input->post('last_name');
@@ -153,7 +60,7 @@ if ($data['instagram']=="Link to a pinterest board"){
 $data['instagram']=NULL;
 }
   $data['about']=$this->input->post('about');
-  $data['budget']=$this->input->post('budget');
+  $data['type']=$this->input->post('type');
   $data['user_id']=$this->user_model->save_user($data);
   $data['room_id']=$this->room_model->save_room($data);
  if($this->input->post('room_file1'))
@@ -181,7 +88,6 @@ if($this->input->post('room_file4'))
 if($data['photo']!= base_url('assets/Images/uploadpng.png')){
 $this->room_model->save_photo($data);}
 }
-
 $this->user_model->save_preferences($data);
 
 $this->session->set_userdata('id',$data['user_id']);
@@ -189,7 +95,26 @@ $this->session->set_userdata('first_name',$data['first_name']);
 $this->session->set_userdata('email',$data['email']);
 /*----------------------------*/
 
+$this->cart_model->add_designfee($this->input->post('designfeeid'),$this->input->post('hidesigntype'),$this->session->userdata("id"));
 
+if(($this->input->post('tokencode')!=""))
+{
+   $this->cart_model->insert_token($this->input->post('tokencode'),$this->session->userdata("id"));
+   // Stripe::setApiKey("sk_test_jcYSUW3M1IXTTycn0epuWkyt");
+   // $token = $_POST['tokencode'];
+   // try {
+// $charge = Stripe_Charge::create(array(
+  // "amount" => $this->input->post('design_fee_final'), // amount in cents, again
+  // "currency" => "usd",
+  // "card" => $token,
+  // "description" => $data['email'])
+// );
+// } catch(Stripe_CardError $e) {
+  // // The card has been declined
+// }
+}
+/*----------------------------*/
+}
  $data['id']=$this->session->userdata('id');
  $data['first_name']=$this->session->userdata('first_name');
  $data['last_name']=$this->session->userdata('last_name');
@@ -201,7 +126,7 @@ $this->session->set_userdata('email',$data['email']);
  
 $this->confirm();
 
-}}
+}
 function confirm($is_login=null)
 {
 
@@ -210,8 +135,8 @@ $config = array(
 'smtp_host'=>'ssl://smtp.googlemail.com',
 'smtp_port'=> 465,
 'mailtype' => 'html',
-'smtp_user'=>'hello@havenly.com',
-'smtp_pass'=>'Motayed2');
+'smtp_user'=>'lee@havenly.com',
+'smtp_pass'=>'Motayed123');
 
 $this->load->library('email',$config);
 
@@ -219,7 +144,7 @@ $data['email'] = $this->session->userdata('email');
 $data['first_name'] = $this->session->userdata('first_name');
 $this->email->set_newline("\r\n");
 
-$this->email->from('hello@havenly.com','The Havenly Team');
+$this->email->from('lee@havenly.com','Lee from Havenly');
 $this ->email->to($data['email']);
 $this->email->subject('Hello from Havenly');
 $this->email->message($this->load->view('Users/confirm_email',$data, true));
@@ -240,9 +165,8 @@ $errors[] = $error;
    $this->load->library('email',$config);
    $this->email->set_newline("\r\n");
 
-   $this->email->from('hello@havenly.com','Lee from Havenly');
+   $this->email->from('lee@havenly.com','Lee from Havenly');
    $this ->email->to('hello@havenly.com');
-   $this->email->cc('shelby@havenly.com');
    $this->email->subject('New Room to Design');
 
    $this->email->message("New room to design from {$data['first_name']}");

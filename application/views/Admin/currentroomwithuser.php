@@ -72,7 +72,7 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 	echo '<input type="hidden" name="userroomid" id="userroomid" value="'.$currentroomid.'"/>';
 	echo '<input type="hidden" name="userid" id="userid" value="'.$currentuserid.'"/>';
 
-	$roomstatus=array("OPEN" , "CALLED", "MOODBOARD REVIEW", "PRODUCT REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
+	$roomstatus=array("OPEN" , "CALLED", "DESIGN", "MOODBOARD REVIEW", "FINAL DESIGN", "ORDER", "CLOSED");
 	
 	echo '<div class= "span12 well blue white_text">';
 	echo '<div class = "span10 midsmall Condensed">';
@@ -99,7 +99,6 @@ $attributes = array('class' => 'updateform', 'id' => 'updateform');
 <li><a class = "gray_text" href="#moreinformation" rel="moreinformation">Add More Information</a></li>
 <li><a class = "gray_text" href="#conceptboard"  rel="conceptboard">Initial Concept Responses</a></li>
 <li><a class = "gray_text" href="#productdesign" rel="productdesign">View/Add Design Responses</a></li>
-<li><a class = "gray_text" href="#payment" rel="payment">Designer Fee Payment</a></li>
 
 </ul>
 <BR></div>
@@ -134,9 +133,6 @@ foreach($roomwithuser as $key)
 	echo '<tr><td>&nbsp;</td></tr>';
 	echo '<tr class = "top"><td class = "sanslight gray_text midsmall">WHAT S/HE SAYS</td></tr>';
 	echo '<tr><td class = "sanslight small">'.$key->about.'</td></tr>';
-	echo '<tr><td>&nbsp;</td></tr>';
-	echo '<tr class = "top"><td class = "sanslight gray_text midsmall">BUDGET</td></tr>';
-	echo '<tr><td class = "sanslight small">'.$key->budget.'</td></tr>';
 	echo '<tr><td>&nbsp;</td></tr>';
 
         
@@ -184,7 +180,7 @@ foreach($roomwithuser as $key)
 	{
 	foreach($roompicture as $roompickey)
 	{
-	  echo '<div><img src="'.$roompickey->filename.'" height="300px"/></div>';	
+	  echo '<div><img src="'.$roompickey->filename.'" height="200px"/></div>';	
 		
 	}}
 	
@@ -256,7 +252,7 @@ endforeach;
    $comment=($conceptkey->comments!=""?$conceptkey->comments:'&nbsp;');
    if((string)$conceptkey->status!="0") 
 
-  echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><a href = "'.base_url().'/index.php/Admin/site/viewconceptproducts/'.$conceptkey->concept_id.'"> <img src="'.$conceptkey->filename.'" width="200px"></a></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr id="conceptcomment'.$conceptkey->concept_id.'"><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
+  echo '<tr id="conceptrow'.$conceptkey->concept_id.'"><td><img src="'.$conceptkey->filename.'" height="100px" width="100px"></td><td id="conceptcol'.$conceptkey->concept_id.'"><input type="button" class = "button2 pink white_text" value="Archive" onclick="concept_confirmation(1,'.$currentroomid.','.$conceptkey->concept_id.');"/><input type="button" class = "button2 pink white_text" value="Delete &nbsp;" onclick="concept_confirmation(0,'.$currentroomid.','.$conceptkey->concept_id.');"/></td></tr><tr id="conceptcomment'.$conceptkey->concept_id.'"><td>USER COMMENTS<BR>'.  wordwrap($comment,20,'<br/>').'<BR><BR></td></tr>';	 
 
  }
  ?>
@@ -425,33 +421,6 @@ echo '<input type="hidden" value="'.$roomid.'" name="itemsbuy" id="itemsbuy"/>';
 echo form_close();
 ?>
 </td></tr></table></div>
-
-
-
-<div id="payment" class="adminmain" style="display:none;">
-<?php if (sizeof($payment)==0)
-{
-
-	$attributes = array('class' => 'payform', 'id' => 'payform');
-
-	echo form_open('Admin/site/send_payment_email/',$attributes);
-	echo '<input type = "hidden" value = '.$roomwithuser{0}->email.' name = "email" id = "email_payform">';
-	echo '<input type = "hidden" value = '.$roomwithuser{0}->user_id.' name = "userid" id = "userid_payform">';
-	echo '<input type = "hidden" value = '.$roomwithuser{0}->id.' name = "roomid" id = "roomid_payform">';
-	echo 'Number of Rooms : &nbsp;';
-	echo '<select name = "roomcount" id = "roomcount">';
-	$i = 1;
-	while($i<5){
-	echo '<option>'.$i.'</option>';
-	$i++;
-	}
-	echo '</select>';
-	echo '<input type = "submit" class = "button4" value = "Send Payment">';
-
-}
-else {echo 'User has already paid a design fee.';}
-?>
-</div>
 <BR><BR><BR><BR><BR><BR><BR>
 </div>
 

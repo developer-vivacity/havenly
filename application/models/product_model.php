@@ -243,7 +243,6 @@ function filter_products($product_type, $product_color, $product_color, $product
 		$this->db->where('product_image.type','main');
 		$this->db->from('products');
 		$this->db->join('product_image', 'product_image.product_id=products.product_id','left');
-		$this->db->select('*');
 		$query = $this->db->get();
 		return $query->result();
 
@@ -470,7 +469,7 @@ function display_design_associated_products($design_id,$status=null)
 	$this->db->order_by('products.product_id', 'asc');
 	}
 	    $this->db->where('design_product_mapping.design_id',$design_id);
-		//$this->db->group_by('products.product_id');
+		$this->db->group_by('products.product_id');
 	    $query = $this->db->get();	
      //die($this->db->last_query());
         return $query->result();
@@ -555,12 +554,6 @@ function update_assignproducts($design_id,$data)
          $this->db->where('design_id',$design_id);
         $this->db->update('user_design',$data);
 
-}
-
-function max_product_id()
-{$this->db->select_max('product_id');
-$query = $this->db->get('products');
-return $query->result_array();
 }
 
 }

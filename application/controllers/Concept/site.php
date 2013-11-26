@@ -21,8 +21,7 @@ Class Site extends CI_Controller
    {
 
 	 $data['designforloginuser']=$this->cart_model->get_design_login_user();
-     $data['conceptboard']=$this->concept_model->initial_concepts_for_user();
-	 $data['haveproducts']=$this->concept_model->have_products();
+          $data['conceptboard']=$this->concept_model->initial_concepts_for_user();
 	 $this->load->view('Users/conceptboard',$data);
    }
 
@@ -33,30 +32,8 @@ Class Site extends CI_Controller
 	if($_POST)
 	{
 		$this->concept_model->save_comment($_POST['holdcomment'],$_POST['holdconceptid'],$_POST['holdroomid']);
+		$this->initial_concepts_for_user();
 		
-			// Email Designer	
-			$config = array(
-			'protocol'=>'smtp',
-			'smtp_host'=>'ssl://smtp.googlemail.com',
-			'smtp_port'=> 465,
-			'mailtype' => 'html',
-			'smtp_user'=>'hello@havenly.com',
-			'smtp_pass'=>'Motayed2');
-
-			$des_email=$this->session->userdata('des_email');
-			$user_email = $this->session->userdata('email');
-			$this->load->library('email',$config);
-			$this->email->set_newline("\r\n");
-
-		   $this->email->from('hello@havenly.com','Lee from Havenly');
-		   $this ->email->to($des_email);
-		   $this->email->subject('You Have Comments on the Room Design');
-
-		   $this->email->message("You have new comments on the concept board from ".$user_email);
-		   $this->email->send();
-		   
-		   $this->initial_concepts_for_user();
-
 	}   
 
    }
@@ -69,7 +46,7 @@ Class Site extends CI_Controller
      	if($this->session->userdata('first_name')!="")
      	{
      	   
-     	    if($_POST & isset($_POST["holdproductidfordesign"]) & isset($_POST["holdroomid"]))
+     	     if($_POST & isset($_POST["holdproductidfordesign"]) & isset($_POST["holdroomid"]))
      	     {
 		 
 		  $this->cart_model->insert_product_for_design($_POST["holdproductidfordesign"],$_POST["holdroomid"],$design_id);
@@ -159,50 +136,6 @@ Class Site extends CI_Controller
        $data["productincart"]=$this->cart_model->product_details_with_design();	  
        $this->load->view('Cart/productsincart',$data);  
   }
-  // View products saved with the concept by category
-  function concept_products()
-  {
-	$data['concept_id']=$this->uri->segment(4);
-	$categories=$this->concept_model->dist_categories($data['concept_id']);
-	foreach ($categories as $type)
-	{	
-		$category=$type->category;
-		$data['categories'][$category]=$this->concept_model->products_by_category($category, $data['concept_id']);
-	  }
-  $this->load->view('Users/conceptproducts',$data);
-  
-  }
-  
-  // Save individual responses on each product
-  function save_prod_comments()
-  {
-	$pcid=$this->input->post('pcid');
-	$comment=$this->input->post('comment');
-	$this->concept_model->save_prod_comments($pcid, $comment);
-	
-	// Email Designer	
-			$config = array(
-			'protocol'=>'smtp',
-			'smtp_host'=>'ssl://smtp.googlemail.com',
-			'smtp_port'=> 465,
-			'mailtype' => 'html',
-			'smtp_user'=>'hello@havenly.com',
-			'smtp_pass'=>'Motayed2');
-
-			$des_email=$this->session->userdata('des_email');
-			$user_email = $this->session->userdata('email');
-			$this->load->library('email',$config);
-			$this->email->set_newline("\r\n");
-
-		   $this->email->from('hello@havenly.com','Lee from Havenly');
-		   $this ->email->to($email);
-		   $this->email->subject('Comments');
-
-		   $this->email->message("You have new comments on the products for ".$user_email);
-		   $this->email->send();
-	
-  }
-  
   
 }
 

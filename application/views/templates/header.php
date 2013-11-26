@@ -4,13 +4,13 @@
     <title>Havenly | Get Decorated.</title>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Havenly decorates your room. We connect you with professional interior designers and help you get everything you need for a beautiful room.  No hassle, fun decorating." />
-    <meta name="keywords" content="Havenly, decorate, interior design, interior decorating, furniture, online furniture, chair, throw pillow, affordable design, affordable interior design" />
+    <meta name="description" content="Havenly decorates your room. We connect you with professional interior designers and help you get everything you need for a beautiful room." />
+    <meta name="keywords" content="Havenly, decorate, interior design, interior decorating, furniture, online furniture, chair, throw pillow" />
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />	
 
     <link rel="icon" type="image/png" href=<?php echo base_url("assets/Images/icon.png");?> />
-    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
 
     <link href="<?php echo base_url('theme/css/bootstrap.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/css/bootstrap-responsive.css');?>" rel="stylesheet">
@@ -25,8 +25,7 @@
     <link href="<?php echo base_url('theme/website/goods.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/website/about.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/website/contact.css');?>" rel="stylesheet">
-	 <link href="<?php echo base_url('theme/userform/userform.css');?>" rel="stylesheet">
-	 	 <link href="<?php echo base_url('theme/userform/gift.css');?>" rel="stylesheet">
+
     <link href="<?php echo base_url('theme/app/app-template.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/login.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/app/account-top-nav.css');?>" rel="stylesheet">
@@ -39,10 +38,10 @@
 	<link href="<?php echo base_url('theme/admin/designreview.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('theme/base/footer.css');?>" rel="stylesheet">
 	 <link href="<?php echo base_url('theme/app/concept-board.css');?>" rel="stylesheet">
-	 <link href="<?php echo base_url('theme/app/productreview.css');?>" rel="stylesheet">
+
     <link rel='stylesheet' id='prettyphoto-css'  href="theme/css/prettyPhoto.css" type='text/css' media='all'>		
-    <link href='//fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,300|Open+Sans+Condensed:300|Arizonia' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather|Open+Sans:400,300|Open+Sans+Condensed:300|Arizonia' rel='stylesheet' type='text/css'>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('theme/js/bootstrap.js');?>"></script>
@@ -56,19 +55,6 @@
       $("a[rel^='prettyPhoto']").prettyPhoto();
       });
     </script>
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-39510629-1']);
-  _gaq.push(['_setDomainName', 'havenly.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
   </head>
 <body>

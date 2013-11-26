@@ -163,40 +163,7 @@ function book($data)
 	    
 	   
       }
-	  
-	  function get_designer_id($designer_name){
-	  
-	  $this->db->where('designer_name', $designer_name);
-	  $this->db->select('id');
-	  $query=$this->db->get('designer');
-	  return $query->result();
 
-	  }
 	  
-	  function assign_designer($user_id, $designer_id){
-		  $this->db->where('user_id', $user_id);
-		  $query = $this->db->get('designer_mapping');
-		  
-		  
-		  
-		  if (sizeof($query->result())>0)
-		  {
-			$update = array('designer_id'=> $designer_id);
-			$this->db->where('user_id', $user_id);
-			$this->db->update('designer_mapping', $update);
-			}
-			
-			else {
-			$insert = array ('designer_id'=>$designer_id,
-			'user_id'=>$user_id);
-			
-			$this->db->insert('designer_mapping', $insert);
-	}
-	  
-	  }
-	  
-	  function get_designers(){
-	  $query = $this->db->get('designer');
-	  return $query->result();}
 }
 ?>

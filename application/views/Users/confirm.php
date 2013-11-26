@@ -1,48 +1,38 @@
 <?php 
-	include(APPPATH.'/views/templates/header.php');
+	include(APPPATH.'/views/templates/header2.php');
 ?>
 
 
-<div class = "white">
-<div class = "white text-center container form_container">
-<div class = "logo">
-<a href = "<?php echo base_url()?>">
-<img src = "<?php echo base_url('assets/Images/Blue_dalle.png');?>" height = "120px"></a>
-</div>
+<div class = "form_container">
 
-<br><br>
-<p class = "serif large">Thanks <?php echo $first_name;?>! </p>
-<p class = "sanslight medium dark_gray_text">Now What Should You<span> Expect?</span>	</p>
+<br><br><br><br><br><br>
+<p class = "sanslight large blue_text">Thanks <?php echo $first_name;?>! </p>
+<p class = "serif medium dark_gray_text">Now What Should You<span> Expect?</span>	</p>
 
-<div id = "row">
-<div id = "first" class = "span3 text-center"><br><br>
+<div id = "display">
+<div id = "first" class = "third left inline"><br><br>
 <img src = <?php echo base_url('assets/Images/model.jpg');?> height=200><br><br><br>
-<p class = "medium serif">We Hand Pick a Designer</p><br>
-<p class = "small sanslight center">We will send you your perfect match today, and then your designer will give you a call within three business days, and she'll help put together a design plan for you, including all of the items that she thinks you'd love.</p>
+<p class = "dark_gray_text midlarge condensed center">Meet Your Designer: Shelby</p><br>
+<p class = "gray_text small sanslight center">Shelby will give you a call within three business days, and she'll help put together a design plan for you, including all of the items that she thinks you'd love.</p>
 </div>
 
-<div id ="second" class = "span3 text-center"><br><br>
+<div id ="second" class = "third inline"><br><br>
 
 <img src = <?php echo base_url('assets/Images/throw.jpg');?> height=200><br><br><br>
-<p class = "medium serif">Select What You Love</p><br>
-<p class = "small sanslight center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
+<p class = "dark_gray_text midlarge condensed center">Select the Items You Love</p><br>
+<p class = "gray_text small sanslight center">Via email, you'll receive your personalized design plan. You can decide to buy all of the items or just a few of them.  We ship them to you as quickly as we possibly can.</p>
 </div>
 
 
-<div id = "third" class = "span3 text-center"><br><br>
+<div id = "third" class = "third right inline"><br><br>
 <img src = <?php echo base_url('assets/Images/lovehome.jpg');?> height=200><br><br><br>
-<p class = "medium serif">Love Your Home</p><br>
-<p class = "small sanslight center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
+<p class = "dark_gray_text midlarge condensed center">Love Your Home</p><br>
+<p class = "gray_text small sanslight center">You end up with a professionally decorated home, delivered to you.  Keep coming back to see what your personal interior designer has to rev up your house for the season.</p>
+</div>
 </div>
 <br><br><br><BR><BR>
 </div>
-</div></div>
 
-
-<?php 
-	include(APPPATH.'/views/templates/footer.php');
-?>
-</div>
 
 <!-- Google Code for Completed Form Conversion Page -->
 <script type="text/javascript">

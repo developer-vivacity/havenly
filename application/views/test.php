@@ -1,3 +1,7 @@
 <?php
-print_r($productidnew);
+
+ print_r($roomid);
+  print_r($design_name);
+   print_r($userid);
+
 ?>

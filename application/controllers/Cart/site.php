@@ -14,7 +14,6 @@ Class Site extends CI_Controller
 	 $this->load->model('user_model');
     $this->load->model('product_model');
     $this->load->model('user_model');
-	$this->load->helper('url');
     
     }
     
@@ -116,23 +115,6 @@ Class Site extends CI_Controller
 	   $data["productincart"]=$this->cart_model->product_details_with_design();	  
        $this->load->view('Cart/productsincart',$data);  
   }
-  
-  
-  function payment_page(){
-  
-  $data['userid']=$this->uri->segment(4);
-  $data['roomcount']=$this->uri->segment(5);
-  $emailaddress=$this->user_model->get_email($data['userid']);
-  if(isset($emailaddress)){
-  
-  $data['email']=$emailaddress[0]['email'];
-  }
-  $fee = $this->cart_model->get_design_fee('incomplete');
-  $data['fee']=$fee[0]['fee'];
-  $this->load->view('Users/payment', $data);
-  }
-  
-  
   function  promotion_code()
   {
 	
@@ -145,8 +127,6 @@ Class Site extends CI_Controller
                      echo "0-@-"."Design status inactive"; 
                     
             }
-			
-			else { echo "0-@-"."Design status inactive";} 
   
   }
   function get_design_fee()
@@ -161,7 +141,6 @@ Class Site extends CI_Controller
   
 	$designid=$this->input->post('design_id');
 	$data=$this->cart_model->set_order($designid);
-	
 	$userid = $this->session->userdata('id');
 	$user= $this->user_model->get_user($userid);
 	
@@ -171,13 +150,13 @@ Class Site extends CI_Controller
 			'smtp_host'=>'ssl://smtp.googlemail.com',
 			'smtp_port'=> 465,
 			'mailtype' => 'html',
-			'smtp_user'=>'hello@havenly.com',
-			'smtp_pass'=>'Motayed2');
+			'smtp_user'=>'lee@havenly.com',
+			'smtp_pass'=>'Motayed123');
 			
 	                $this->load->library('email',$config);
 	                $this->email->set_newline("\r\n");
 		
-			$this->email->from('hello@havenly.com','Havenly Orders');
+			$this->email->from('lee@havenly.com','Lee from Havenly');
 			$this->email->to('lee@havenly.com');
 			$this->email->subject('New Order');
 		   	$datamsg = "New order from UserID ".$userid;         
@@ -209,94 +188,10 @@ Class Site extends CI_Controller
     echo $message;
  
  }
- 
- function pay_submit(){
- 
- $data['amount'] = $this->input->post('amount');
- $data['description'] = $this->input->post('description');
- 
- if($this->input->post('userid'))
- {
- $data['userid'] = $this->input->post('userid');}
- else {$data['userid']="tbd";} 
-
- $data['email'] = $this->input->post('email');
- if(($this->input->post('tokencode')!=""))
-{
-   $data['id']=$this->cart_model->insert_token($this->input->post('tokencode'),$data['userid'], $data['amount'], $data['description']);
-
-   }
-
-if (($this->input->post('shipzip')))
-{
-	$data['shipzip']=$this->input->post('shipzip');
-	$data['shipaddress']=$this->input->post('shipaddress');
-	$data['shipcity']=$this->input->post('shipcity');
-	$data['shipstate']=$this->input->post('shipst');
-	
-	if($this->input->post('giftmsg')){
-	$data['giftmsg']=$this->input->post('giftmsg');}
-	if($this->input->post('shipname')){
-	$data['shipname']=$this->input->post('shipname');}
-
-	$this->cart_model->insert_ship_info($data);
-	}
 
 
-  $config = array(
-			'protocol'=>'smtp',
-			'smtp_host'=>'ssl://smtp.googlemail.com',
-			'smtp_port'=> 465,
-			'mailtype' => 'html',
-			'smtp_user'=>'hello@havenly.com',
-			'smtp_pass'=>'Motayed2');
-			
-	                $this->load->library('email',$config);
-	                $this->email->set_newline("\r\n");
-		
-			$this->email->from('hello@havenly.com','Havenly Orders');
-			$this->email->to($data['email']);
-			$this->email->subject('Payment Confirmation');
-		        $message = $this->load->view('Users/confirm_payment_email',$data,true);      
-		         	         
-			$this->email->message($message);
-			
-		         if($this->email->send()) 
-		         {
-				$data['message']= 'thank you';
-		         }
-			else 
-			{
-			  ob_start();
-			  $this->email->print_debugger();
-			  $error = ob_end_clean();
-			  $errors[] = $error;
-                           }	
-if ($data['userid']!=NULL&&$data['userid']!="tbd"&&$data['userid']!=0){
-$this->session->set_userdata('id', $data['userid']);
-$this->session->set_userdata('email', $this->input->post('email'));
-redirect('Users/site');}
-else {redirect('site');}
-
-}
 
 
-function simple_checkout()
-
-{
-
-	$data['amount']=$this->input->post('amount');
-	$data['description']=$this->input->post('description');
-	if($this->input->post('userid'))
-	{
-		$data['userid']=$this->input->post('userid');
-	}
-	else {$data['userid']='tbd';}
-	
-	
-	$this->load->view('Users/simple_checkout', $data);
-	
-	}
 	
 }
 

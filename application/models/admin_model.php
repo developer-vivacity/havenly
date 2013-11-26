@@ -33,15 +33,17 @@ parent::__construct();
  }  
  function authorize_user($password,$name)
  {
-
-      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and username='".$name."'");
-
+	 //die("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and username='".$name."'");
+    
+      $query=$this->db->query("SELECT id,name,privileges,designerid FROM admin where password='".$password."' and name='".$name."'");
        if($query->num_rows()!=0)
        {
          foreach($query->result() as $rows)
          {
       
-       		$newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
+         if($rows->designerid=="")
+         $rows->designerid=0;
+ $newdata =array('adminid'=>$rows->id,'name'=>  $rows->name,'privileges'=>$rows->privileges,'designerid'=>$rows->designerid);   
          }
         $this->session->set_userdata($newdata);
        }
@@ -107,16 +109,6 @@ function last_admin_login($id)
 	  $this->db->update('user_last_login', array('admin_last_login_id'=>$id));  	 
 	 }
   }
-  
- function has_paid($id){
-	 $this->db->where('user_id',$id);
-	 $this->db->where('description', 'design_fee');
-	 $query = $this->db->get('token_code');
-	 return $query->result_array();
-	 
- }
- 
- 
 }
 
 ?>

@@ -24,6 +24,7 @@ font-size: .5em;
 }
 .inline{
 display: inline-block;
+width: 30%;
 }
  
 	</style>
@@ -31,7 +32,7 @@ display: inline-block;
 
 
 <div class = "padding">
-<img class = "inline" src = "<?php echo base_url('assets/Images/Blue_dallesmall.png');?>" height="80px" width = "80px">
+<img class = "inline" src = "http://www.havenly.com/assets/Images/Blue_dalle.png" height="80px" width = "80px">
 
 <br>
 <p class = "text dark_gray_text midlarge">Thanks so much for signing up for Havenly!</p>

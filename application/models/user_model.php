@@ -55,7 +55,9 @@ $this->db->query("CREATE TABLE IF NOT EXISTS promotion_code (
   budget int(50) DEFAULT NULL,
   status varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   about text COLLATE utf8_unicode_ci NOT NULL,
-   width float NOT NULL,
+  room_photo1 varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  room_photo2 varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  width float NOT NULL,
   height float NOT NULL,
   PRIMARY KEY (id),
   KEY user_id (user_id),
@@ -181,16 +183,6 @@ $this->db->insert('invite_requests',$insert);
 
 }
 
-function save_email($data){
-$insert=array(
-'email'=>$data['email']
-);
-
-$this->db->insert('signup',$insert);
-
-}
-
-
 // For inser user informetion---------
    function insert_user_info($data,$email)
    {
@@ -229,30 +221,12 @@ else
 
     foreach($query->result() as $rows)
     {
-     
-	$this->db->where('user_id',$rows->id);
-	$this->db->from('designer_mapping');
-	$this->db->join('designer','designer.id=designer_mapping.designer_id');
-	$this->db->select('designer_email');
-	$designer=$this->db->get();
-	$email=$designer->result();
-	
-	if (sizeof($email)>0)
-	{
-	foreach ($email as $mail)
-	{
-	 $des_email = $mail->designer_email;
-	
-	 $newdata =array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode, 'des_email'=>$des_email);
-    }}
-	else {$newdata = array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode);}
-	
-	}
+      $newdata =array('id'=>$rows->id,'first_name'=> $rows->first_name,'last_name'=> $rows->last_name,'email'=> $rows->email,'phone'=>$rows->phone,'address'=>$rows->address,'zipcode'=>$rows->zipcode);
+    }
     $this->session->set_userdata($newdata);
+    
     return $newdata;
    }
-   
- 
    else
    {
      $this->db->where("email",$email);
@@ -324,16 +298,6 @@ $data = array('password' => $password);
    $query = $this->db->get('users');
    return $query->result_array();
   }
-  
-   function get_email($userid)
-  {
-   $this->db->select('email');
-   $this->db->where('id',$userid);
-   $query = $this->db->get('users');
-   return $query->result_array();
-  }
-  
-  
   function last_user_login($id)
   {
 	  

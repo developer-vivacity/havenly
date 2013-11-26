@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']= 'http://localhost/test/Havenly/';
+$config['base_url']= 'http://localhost/havenly-master';
 /*
 |--------------------------------------------------------------------------
 | Index File

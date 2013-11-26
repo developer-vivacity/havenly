@@ -189,6 +189,22 @@ $("#paintdiv .span5").prepend('<div class = "paintholder" id="rgb'+rgb_id+'"><di
 	
 });
 
+$(".removebutton").click(function(){
+
+	var input = $(this).parent().parent().find('.paintcolor').val();
+	var designid = $("#designid").val();
+	var div = $(this).parent().parent().parent();
+	 $.ajax({
+        url: $('#siteurl').val()+'index.php/Admin/site/paint_colors_for_design',
+        type: 'POST',
+        data: {paintid: input, designid:designid },
+       success : function(data){
+			div.hide();
+	}
+	});
+});
+
+
 
 $("#updatechanges").click(function(){
 

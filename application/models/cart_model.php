@@ -233,7 +233,19 @@ function valid_promotion_code($promotioncode,$designtype)
 
 	return $query->result_array();
 }
+function add_designfee($data,$design_type,$userid)
+{
 
+  if($data==0)
+  {
+  $this->db->query('update  users set design_fee_id=(select design_fee_id from design_fee where promotion_code is null and status="active" and design_type="'.     $design_type.'") where id='.$userid.'');
+ }
+ else
+ {
+ $this->db->query('update users set design_fee_id='.$data.' where id='.$userid.'');
+ }
+ 
+}
 function get_design_fee($design_type)
 {
 
@@ -243,12 +255,9 @@ function get_design_fee($design_type)
     $query=$this->db->get('design_fee');
     return $query->result_array();
 } 
-  function insert_token($token,$userid, $amount, $description)
+  function insert_token($token,$userid)
   {
-  $this->db->insert("token_code",array("user_id"=>$userid,"token"=>$token, "amount"=>$amount, "description"=>$description));
-  $query = $this->db->insert_id();
-  return $query;
-  
+  $this->db->insert("token_code",array("user_id"=>$userid,"token"=>$token));
   }
   
   function set_order($designid)
@@ -259,30 +268,6 @@ function get_design_fee($design_type)
 	$this->db->where('design_id',$designid);
 	$this->db->update('shoppingcart',$order);
 	
-	return 1;
-	
-  }
-  
-  
-  
-  function insert_ship_info($data){
-  if(isset($data['shipname'])){$shipname = $data['shipname'];} else {$shipname = NULL;}
-  if(isset($data['giftmsg'])){$giftmsg=$data['giftmsg'];} else {$giftmsg=NULL;}
-  
-  
-  $insert = array(
-  'payment_id'=>$data['id'],
-  'shipaddress'=>$data['shipaddress'],
-  'shipcity'=>$data['shipcity'],
-  'shipstate'=>$data['shipstate'],
-  'shipzip'=>$data['shipzip'],
-  'shipname'=>$shipname,
-  'giftmsg'=>$giftmsg);
-  
-  $this->db->insert('pay_ship_address',$insert);
-  $query=$this->db->insert_id();
-  return $query;
-  
   }
   /*function get_variant_id($product_id)
   {
